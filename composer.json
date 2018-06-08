@@ -19,7 +19,9 @@
     "drupal-composer/drupal-scaffold": "^2.0.0",
     "drupal/admin_toolbar": "^1.0",
     "drupal/core": "^8.3",
-    "drush/drush": "^8.1"
+    "drush/drush": "^8.1",
+    "drupal/bootstrap": "^3.11",
+    "drupal/zurb_foundation": "^5.0@beta"
   },
   "require-dev": {
     "drupal/devel": "^1.0",
