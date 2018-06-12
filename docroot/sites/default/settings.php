@@ -732,19 +732,13 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  * different domain names (eg, you don't redirect http://www.example.com to
  * http://example.com), you should specify all of the host patterns that are
  * allowed by your site.
- *
- * For example:
- * @code
- * $settings['trusted_host_patterns'] = array(
- *   '^example\.com$',
- *   '^.+\.example\.com$',
- *   '^example\.org$',
- *   '^.+\.example\.org$',
- * );
- * @endcode
- * will allow the site to run off of all variants of example.com and
- * example.org, with all subdomains included.
  */
+
+$settings['trusted_host_patterns'] = array(
+ '^.+\.dev\.dd$',
+ '^.+\.devcloud\.acquia-sites\.com$',
+ '^.+\.landcam\.org'
+);
 
 /**
  * The default list of directories that will be ignored by Drupal's file API.
@@ -774,6 +768,7 @@ $settings['entity_update_batch_size'] = 50;
 /* Add config directory */
 
 $config_directories['vcs'] = $app_root . '/../config/' . basename($site_path);
+$config_directories[CONFIG_SYNC_DIRECTORY] = $app_root . '/../config/' . basename($site_path);
 
 /**
  * Load local development override configuration, if available.
