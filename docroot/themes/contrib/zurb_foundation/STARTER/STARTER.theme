@@ -11,7 +11,7 @@ function STARTER_preprocess_block(&$variables) {
 /**
  * Implements template_preprocess_field().
  */
-function STARTER_preprocess_field(&$variables) {
+function STARTER_preprocess_field(&$variables, $hook) {
 }
 
 /**

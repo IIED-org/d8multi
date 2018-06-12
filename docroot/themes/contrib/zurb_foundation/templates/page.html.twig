@@ -55,16 +55,17 @@
  */
 #}
 
-<div class="off-canvas-wrap" data-offcanvas>
-  <div class="inner-wrap">
-    <aside class="left-off-canvas-menu" role="complementary">
+<div class="off-canvas-wrapper">
+  <div class="inner-wrap off-canvas-wrapper-inner" id="inner-wrap" data-off-canvas-wrapper>
+    <aside id="left-off-canvas-menu" class="off-canvas left-off-canvas-menu position-left" role="complementary" data-off-canvas>
       {{ page.left_off_canvas }}
     </aside>
 
-    <aside class="right-off-canvas-menu" role="complementary">
+    <aside id="right-off-canvas-menu" class="off-canvas right-off-canvas-menu position-right" role="complementary" data-off-canvas>
       {{ page.right_off_canvas }}
     </aside>
 
+    <div class="off-canvas-content" data-off-canvas-content>
       {% if page.meta_header %}
         {% if meta_header_grid %}
           <div class="row">
@@ -92,15 +93,12 @@
             {% endif %}
           </div>
         {% endif %}
-      </header>
-
-      {% if page.header %}
-        <div class="row">
+        {% if page.header %}
           <div class="large-12 columns">
             {{ page.header }}
           </div>
-        </div>
-      {% endif %}
+        {% endif %}
+      </header>
 
       <div class="row">
         {% if show_account_info %}
@@ -203,8 +201,6 @@
           </div>
         </div>
       </div>
-
-    <a class="exit-off-canvas"></a>
-
+    </div>
   </div>
 </div>

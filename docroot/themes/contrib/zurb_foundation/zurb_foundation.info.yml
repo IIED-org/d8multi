@@ -1,5 +1,5 @@
-name: ZURB Foundation 5
-description: The most advanced responsive front-end framework in the world, now in Drupal! Based on Zurb Foundation version 5.x.
+name: ZURB Foundation 6
+description: The most advanced responsive front-end framework in the world, now in Drupal! Based on Zurb Foundation version 6.x.
 # core: 8.x
 type: theme
 
@@ -41,8 +41,8 @@ features:
   - comment_user_picture
   - node_user_picture
 
-# Information added by Drupal.org packaging script on 2017-02-19
-version: '8.x-5.0-beta3'
+# Information added by Drupal.org packaging script on 2018-03-19
+version: '8.x-6.0-alpha4'
 core: '8.x'
 project: 'zurb_foundation'
-datestamp: 1487487788
+datestamp: 1521471792

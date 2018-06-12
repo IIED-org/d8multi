@@ -43,7 +43,14 @@
  */
 #}
 {% if block.delta != 'main' %}
-<section{{ attributes }}>
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
+<section{{ attributes.addClass(classes) }}>
   {% endif %}
 
   {{ title_prefix }}

@@ -15,7 +15,7 @@
         var $messages = $(this);
         var $region = $messages.parent();
         $messages.appendTo('body');
-        $messages.foundation('reveal', 'open');
+        $messages.foundation('open');
 
         // This is required as this region will likely be empty after status
         // messages are removed.

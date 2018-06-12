@@ -10,13 +10,14 @@
    */
   Drupal.behaviors.foundationAlertClose = {
     attach: function (context, settings) {
-      $(document).once('foundation-alert').on('close.fndtn.alert', function(event) {
-        var $target = $(event.target);
-        if (typeof $target.data('alert') != 'undefined') {
-          var $region = $target.parent();
 
-          // Remove this alert from the DOM
-          $(event.target).remove();
+      $('.zurb-foundation-callout').once('foundation-alert').on('closed.zf', function(event) {
+        var $target = $(event.target);
+        var $region = $target.parent();
+
+        // Remove this alert from the DOM, if it has no siblings.
+        if (!$target.siblings().length) {
+          $target.remove();
 
           // Trim newlines out of the highlighted region, so that our :empty
           // selector still works.

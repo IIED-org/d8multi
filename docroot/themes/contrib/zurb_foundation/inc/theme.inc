@@ -23,9 +23,11 @@ function zurb_foundation_theme_suggestions_alter(&$suggestions, $variables, $hoo
           $suggestions[] = 'menu__off_canvas';
           break;
         }
-        elseif ($hook == 'block' && $variables['elements']['#plugin_id'] == $plugin->getPluginId()) {
-          $suggestions[] = 'block__off_canvas';
-          break;
+        elseif ($hook == 'block' && isset($variables['elements']['#id'])) {
+          if ($variables['elements']['#id'] == $block->id()) {
+            $suggestions[] = 'block__off_canvas';
+            break;
+          }
         }
       }
     }

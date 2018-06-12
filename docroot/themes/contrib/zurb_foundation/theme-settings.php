@@ -1,14 +1,17 @@
 <?php
+/**
+ * @file
+ * Add custom theme settings to the ZURB Foundation theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_form_FORM_ID_alter().
- *
  * @param $form
- *   The form.
- * @param $form_state
- *   The form state.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function zurb_foundation_form_system_theme_settings_alter(&$form, &$form_state) {
+function zurb_foundation_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
   $form['theme_ui'] = array(
     '#type' => 'details',
     '#title' => t('UI Elements'),
@@ -51,7 +54,7 @@ function zurb_foundation_form_system_theme_settings_alter(&$form, &$form_state) 
   $form['topbar'] = array(
     '#type' => 'details',
     '#title' => t('Foundation Top Bar'),
-    '#description' => t('The Foundation Top Bar gives you a great way to display a complex navigation bar on small or large screens.')
+    '#description' => t('The Foundation Top Bar gives you a great way to display a complex navigation bar on small or large screens.'),
   );
 
   $form['topbar']['zurb_foundation_top_bar_enable'] = array(
@@ -80,13 +83,6 @@ function zurb_foundation_form_system_theme_settings_alter(&$form, &$form_state) 
     '#default_value' => theme_get_setting('zurb_foundation_top_bar_sticky'),
   );
 
-  $form['topbar']['container']['zurb_foundation_top_bar_scrolltop'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Scroll to top on click'),
-    '#description' => t('Jump to top when sticky nav menu toggle is clicked.'),
-    '#default_value' => theme_get_setting('zurb_foundation_top_bar_scrolltop')
-  );
-
   $form['topbar']['container']['zurb_foundation_top_bar_is_hover'] = array(
     '#type' => 'checkbox',
     '#title' => t('Hover to expand menu'),
@@ -97,7 +93,7 @@ function zurb_foundation_form_system_theme_settings_alter(&$form, &$form_state) 
   // Menu settings.
   $form['topbar']['container']['menu'] = array(
     '#type' => 'details',
-    '#title' => t('Dropdown Menu')
+    '#title' => t('Dropdown Menu'),
   );
 
   $form['topbar']['container']['menu']['zurb_foundation_top_bar_menu_text'] = array(
@@ -118,28 +114,36 @@ function zurb_foundation_form_system_theme_settings_alter(&$form, &$form_state) 
     '#type' => 'textfield',
     '#title' => t('Custom back text'),
     '#description' => t('Define what you want your custom back text to be.'),
-    '#default_value' => theme_get_setting('zurb_foundation_top_bar_back_text')
-  );
-
-  $form['topbar']['container']['menu']['zurb_foundation_top_bar_mobile_show_parent_link'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Repeat parent link on mobile'),
-    '#description' => t('This provides an extra link for users to tap on the sub-menu for mobile'),
-    '#default_value' => theme_get_setting('zurb_foundation_top_bar_mobile_show_parent_link'),
+    '#default_value' => theme_get_setting('zurb_foundation_top_bar_back_text'),
   );
 
   // Search settings.
   $form['topbar']['container']['search'] = array(
     '#type' => 'details',
-    '#title' => t('Search Menu')
+    '#title' => t('Search Menu'),
   );
 
   $form['topbar']['container']['search']['zurb_foundation_top_bar_search'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable Search Menu'),
     '#description' => t('Displays the Search menu in the Top Bar.'),
-    '#default_value' => theme_get_setting('zurb_foundation_top_bar_search')
+    '#default_value' => theme_get_setting('zurb_foundation_top_bar_search'),
   );
+
+  // Language switcher settings.
+  if (\Drupal::moduleHandler()->moduleExists('language')) {
+    $form['topbar']['container']['languageswitcher'] = array(
+      '#type' => 'details',
+      '#title' => t('Language switcher'),
+    );
+
+    $form['topbar']['container']['languageswitcher']['zurb_foundation_top_bar_languageswitcher'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Enable Language switcher'),
+      '#description' => t('Displays the Language switcher in the Top Bar.'),
+      '#default_value' => theme_get_setting('zurb_foundation_top_bar_languageswitcher'),
+    );
+  }
 
   /*
    * Hard-coded page elements.
@@ -147,7 +151,7 @@ function zurb_foundation_form_system_theme_settings_alter(&$form, &$form_state) 
   $form['page_elements'] = array(
     '#type' => 'details',
     '#title' => t('Page Elements'),
-    '#description' => t('Contains settings to toggle hard-coded elements in the page template.')
+    '#description' => t('Contains settings to toggle hard-coded elements in the page template.'),
   );
 
   $form['page_elements']['zurb_foundation_page_site_name'] = array(
@@ -175,7 +179,7 @@ function zurb_foundation_form_system_theme_settings_alter(&$form, &$form_state) 
    * Styles and Scripts
    */
   $form['styles_scripts'] = array(
-    '#type' => 'fieldset',
+    '#type' => 'details',
     '#title' => t('Styles and Scripts'),
     '#collapsible' => TRUE,
   );
@@ -183,14 +187,14 @@ function zurb_foundation_form_system_theme_settings_alter(&$form, &$form_state) 
   $form['styles_scripts']['zurb_foundation_disable_base_css'] = array(
     '#type' => 'checkbox',
     '#title' => t('Disable Base Theme CSS'),
-    '#description' => t('Disabling the base theme CSS is useful for using SASS in a sub-theme.<br><strong>If you select this option, uncomment the relevant CSS includes in your sub-theme\'s .info file.</strong>'),
+    '#description' => t("Disabling the base theme CSS is useful for using SASS in a sub-theme.<br><strong>If you select this option, uncomment the relevant CSS includes in your sub-theme's .info.yml file.</strong>"),
     '#default_value' => theme_get_setting('zurb_foundation_disable_base_css'),
   );
 
   $form['styles_scripts']['zurb_foundation_disable_base_js'] = array(
     '#type' => 'checkbox',
     '#title' => t('Disable Base Theme JavaScript'),
-    '#description' => t('Disabling the base theme JavaScript when using a sub-theme is also recommended for more flexibility over which components get included.<br><strong>If you select this option, uncomment the relevant JS includes in your sub-theme\'s .info file.</strong>'),
+    '#description' => t("Disabling the base theme JavaScript when using a sub-theme is also recommended for more flexibility over which components get included.<br><strong>If you select this option, uncomment the relevant JS includes in your sub-theme's .info.yml file.</strong>"),
     '#default_value' => theme_get_setting('zurb_foundation_disable_base_js'),
   );
 }

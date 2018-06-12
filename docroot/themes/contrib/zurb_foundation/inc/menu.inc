@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Link;
+
 /**
  * Implements theme_menu_local_tasks().
  */
@@ -8,14 +10,14 @@ function zurb_foundation_menu_local_tasks(&$variables) {
 
   if (!empty($variables['primary'])) {
     $variables['primary']['#prefix'] = '<h2 class="visually-hidden">' . t('Primary tabs') . '</h2>';
-    $variables['primary']['#prefix'] .= '<ul class="button-group">';
-    $variables['primary']['#suffix'] = '</ul>';
+    $variables['primary']['#prefix'] .= '<div class="button-group">';
+    $variables['primary']['#suffix'] = '</div>';
     $output .= drupal_render($variables['primary']);
   }
   if (!empty($variables['secondary'])) {
     $variables['secondary']['#prefix'] = '<h2 class="visually-hidden">' . t('Secondary tabs') . '</h2>';
-    $variables['secondary']['#prefix'] .= '<ul class="button-group">';
-    $variables['secondary']['#suffix'] = '</ul>';
+    $variables['secondary']['#prefix'] .= '<div class="button-group">';
+    $variables['secondary']['#suffix'] = '</div>';
     $output .= drupal_render($variables['secondary']);
   }
 
@@ -36,11 +38,12 @@ function zurb_foundation_menu_local_task(&$variables) {
     $link_text['#suffix'] = '<span class="visually-hidden">' . t('(active tab)') . '</span>';
   }
 
-  $link['url']->setOption('attributes', array('class' => array('button', 'secondary')));
+  $state = !empty($variables['element']['#active']) ? 'active' : 'secondary';
+  $link['url']->setOption('attributes', array('class' => array('button', $state)));
 
-  $a_tag = \Drupal::l($link_text, $link['url']);
+  $a_tag = Link::fromTextAndUrl($link_text, $link['url'])->toString();
 
-  return '<li' . (!empty($variables['element']['#active']) ? ' class="active"' : '') . '>' . $a_tag. "</li>\n";
+  return $a_tag;
 }
 
 /**
@@ -67,52 +70,52 @@ function zurb_foundation_preprocess_menu__off_canvas(&$variables) {
 }
 
 /**
+ * Implements theme_preprocess_menu().
+ */
+function zurb_foundation_preprocess_menu(&$variables) {
+  $variables['attributes']['class'][] = 'menu';
+}
+
+/**
  * Implements theme_preprocess_menu__MENU_NAME().
  */
 function zurb_foundation_preprocess_menu__main(&$variables) {
   if ($variables['top_bar'] = theme_get_setting('zurb_foundation_top_bar_enable')) {
-    $top_bar_classes = array();
+    $top_bar_attributes = new \Drupal\Core\Template\Attribute();
 
     if (theme_get_setting('zurb_foundation_top_bar_grid')) {
-      $top_bar_classes[] = 'contain-to-grid';
+      $top_bar_attributes->addClass('row column');
     }
 
     if (theme_get_setting('zurb_foundation_top_bar_sticky')) {
-      $top_bar_classes[] = 'sticky';
+      $top_bar_attributes->addClass('sticky', 'large-12');
+      $top_bar_attributes->setAttribute('data-sticky', TRUE);
+      $top_bar_attributes->setAttribute('data-top-anchor', 'top-bar-sticky-container');
+      // 9999999(px) is used as no other bottom anchor stopped the top-bar from
+      // jumping back to the top of the screen after scrolling past 50% of the
+      // screen. Super silly, but hours of work led to this.
+      $top_bar_attributes->setAttribute('data-btm-anchor', 9999999);
+      $top_bar_attributes->setAttribute('data-margin-top', 0);
+      $top_bar_attributes->setAttribute('data-margin-bottom', 0);
+      $top_bar_attributes->setAttribute('data-options', 'stickyOn:small');
+      $variables['top_bar_sticky'] = TRUE;
     }
 
     if ($variables['top_bar'] == 2) {
-      $top_bar_classes[] = 'show-for-small';
+      $top_bar_attributes->addClass('show-for-small');
     }
 
-    $variables['top_bar_classes'] = implode(' ', $top_bar_classes);
+    $variables['top_bar_attributes'] = $top_bar_attributes;
     $variables['top_bar_menu_text'] = theme_get_setting('zurb_foundation_top_bar_menu_text');
 
-    $top_bar_options = array();
-
-    if (!theme_get_setting('zurb_foundation_top_bar_custom_back_text')) {
-      $top_bar_options[] = 'custom_back_text:false';
-    }
 
     if ($back_text = theme_get_setting('zurb_foundation_top_bar_back_text')) {
-      if ($back_text !== 'Back') {
-        $top_bar_options[] = "back_text:{$back_text}";
-      }
+      $variables['attributes']['data-back-button'] = "<li class=\"js-drilldown-back\"><a>{$back_text}</a></li>";
     }
 
     if (!theme_get_setting('zurb_foundation_top_bar_is_hover')) {
-      $top_bar_options[] = 'is_hover:false';
+      $variables['attributes']['data-disable-hover'] = 'true';
     }
-
-    if (!theme_get_setting('zurb_foundation_top_bar_scrolltop')) {
-      $top_bar_options[] = 'scrolltop:false';
-    }
-
-    if (theme_get_setting('zurb_foundation_top_bar_mobile_show_parent_link')) {
-      $top_bar_options[] = 'mobile_show_parent_link:true';
-    }
-
-    $variables['top_bar_options'] = implode('; ', $top_bar_options);
 
     // Format the linked site name.
     $site_name = \Drupal::config('system.site')->get('name');
@@ -122,10 +125,10 @@ function zurb_foundation_preprocess_menu__main(&$variables) {
 
     $variables['linked_site_name'] = '';
     if (!empty($variables['site_name'])) {
-      $variables['linked_site_name'] = \Drupal::l($variables['site_name'], $url);
+      $variables['linked_site_name'] = Link::fromTextAndUrl($variables['site_name'], $url)->toString();
     }
 
-    $variables['site_name'] = \Drupal::l($site_name, $url);
+    $variables['site_name'] = Link::fromTextAndUrl($site_name, $url)->toString();
 
     // Embed the search form inside the Top Bar.
     if (theme_get_setting('zurb_foundation_top_bar_search')) {
@@ -138,6 +141,17 @@ function zurb_foundation_preprocess_menu__main(&$variables) {
         $search_form['#suffix'] = '</ul></li>';
 
         $variables['top_bar_search'] = $search_form;
+      }
+    }
+
+    // Embed the Language switcher inside the Top Bar.
+    if (\Drupal::moduleHandler()->moduleExists('language')) {
+      if (theme_get_setting('zurb_foundation_top_bar_languageswitcher')) {
+        /** @var \Drupal\Core\Block\BlockManager $block_plugin_manager */
+        $block_plugin_manager = \Drupal::service('plugin.manager.block');
+        /** @var \Drupal\language\Plugin\Block\LanguageBlock $language_block */
+        $language_block = $block_plugin_manager->createInstance('language_block:language_interface', []);
+        $variables['top_bar_languageswitcher'] = $language_block->build();
       }
     }
   }
