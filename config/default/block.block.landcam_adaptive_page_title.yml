@@ -1,0 +1,27 @@
+uuid: 5d92711f-8d00-428c-8710-e878592fb15f
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - landcam_adaptive
+_core:
+  default_config_hash: fOSRpMHRA9NWwoYiS-aNblgmVCjJSbmMprsIkBN5pUg
+id: landcam_adaptive_page_title
+theme: landcam_adaptive
+region: content
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: "/node/*\r\n/user/*\r\n<front>"
+    negate: true
+    context_mapping: {  }

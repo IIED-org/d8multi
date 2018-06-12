@@ -1,0 +1,20 @@
+uuid: 6d76d9a7-e6d7-4f75-b9f3-8895a3d63cd2
+langcode: en
+status: true
+dependencies:
+  theme:
+    - landcam_adaptive
+_core:
+  default_config_hash: GYSAubvF5ZBhmKpMgRlEhoSUmGcWK5Q-0IfMNIeXQ7M
+id: landcam_adaptive_local_actions
+theme: landcam_adaptive
+region: content
+weight: 3
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: 79829e65-6032-4ee2-b228-ebbc57df8883
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - landcam_adaptive
+_core:
+  default_config_hash: 3wQrd4ctYukzj6oghmZsImiJDmeoR5hBBWFh9agbsxA
+id: landcam_adaptive_content
+theme: landcam_adaptive
+region: content
+weight: 4
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

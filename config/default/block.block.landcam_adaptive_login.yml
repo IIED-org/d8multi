@@ -1,0 +1,22 @@
+uuid: 64e0fa0d-218b-476c-a95d-3dcf7a695630
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+  theme:
+    - landcam_adaptive
+_core:
+  default_config_hash: Ns2BeRfNmRue7oYn1DiuC-iHyJofDVREVfvDG2_THaI
+id: landcam_adaptive_login
+theme: landcam_adaptive
+region: sidebar_second
+weight: 20
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  provider: user
+  label_display: visible
+visibility: {  }

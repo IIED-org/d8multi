@@ -1,0 +1,22 @@
+uuid: 5c3c21fa-e029-400c-a08a-b4562a12ce96
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+  theme:
+    - landcam_foundation
+_core:
+  default_config_hash: 4QlSnWBcxxKMIFRM8sbu_MjSkcp3NjGgnVrc-lynQHI
+id: landcam_foundation_login
+theme: landcam_foundation
+region: sidebar_first
+weight: 0
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  provider: user
+  label_display: visible
+visibility: {  }

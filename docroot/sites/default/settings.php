@@ -771,6 +771,10 @@ $settings['file_scan_ignore_directories'] = [
  */
 $settings['entity_update_batch_size'] = 50;
 
+/* Add config directory */
+
+$config_directories['vcs'] = $app_root . '/../config/' . basename($site_path);
+
 /**
  * Load local development override configuration, if available.
  *
