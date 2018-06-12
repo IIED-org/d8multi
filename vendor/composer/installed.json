@@ -1018,6 +1018,59 @@
         }
     },
     {
+        "name": "drupal/at_tools",
+        "version": "3.2.0",
+        "version_normalized": "3.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/at_tools",
+            "reference": "8.x-3.2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/at_tools-8.x-3.2.zip",
+            "reference": "8.x-3.2",
+            "shasum": "9d065b97a83c8ba48e169b391a36a7f8080916e9"
+        },
+        "require": {
+            "drupal/adaptivetheme": "*",
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-3.x": "3.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-3.2",
+                "datestamp": "1518479880",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Jeff Burnz",
+                "homepage": "http://adaptivethemes.com",
+                "role": "Maintainer"
+            }
+        ],
+        "description": "Tools to support Adaptivetheme 8.x and sub-themes, includes the AT Theme Generator.",
+        "homepage": "https://www.drupal.org/project/at_tools",
+        "support": {
+            "source": "http://git.drupal.org/project/at_tools.git",
+            "issues": "https://www.drupal.org/project/issues/at_tools",
+            "irc": "irc://irc.freenode.org/drupal-contribute"
+        }
+    },
+    {
         "name": "drupal/bootstrap",
         "version": "3.11.0",
         "version_normalized": "3.11.0.0",
