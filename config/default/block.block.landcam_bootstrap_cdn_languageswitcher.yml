@@ -1,0 +1,20 @@
+uuid: bc36b166-5e96-413f-95c3-9008cd61b24b
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+  theme:
+    - landcam_bootstrap_cdn
+id: landcam_bootstrap_cdn_languageswitcher
+theme: landcam_bootstrap_cdn
+region: navigation
+weight: 0
+provider: null
+plugin: 'language_block:language_interface'
+settings:
+  id: 'language_block:language_interface'
+  label: 'Language switcher'
+  provider: language
+  label_display: '0'
+visibility: {  }

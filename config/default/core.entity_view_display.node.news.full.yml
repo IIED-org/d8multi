@@ -7,52 +7,60 @@ dependencies:
     - field.field.node.news.body
     - field.field.node.news.field_date
     - field.field.node.news.field_image
+    - image.style.large
     - node.type.news
   module:
+    - ds
     - field_layout
     - image
-    - layout_discovery
     - text
     - user
 third_party_settings:
   field_layout:
     id: layout_onecol
     settings: {  }
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      ds_content:
+        - field_image
+        - body
 id: node.news.full
 targetEntityType: node
 bundle: news
 mode: full
 content:
   body:
+    type: text_summary_or_trimmed
+    weight: 1
+    region: ds_content
     label: hidden
-    type: text_default
-    weight: 101
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  field_date:
-    weight: 102
-    label: above
     settings:
-      date_format: medium
-      custom_date_format: ''
-      timezone: ''
+      trim_length: 200
     third_party_settings: {  }
-    type: timestamp
-    region: content
   field_image:
-    weight: 103
+    weight: 0
     label: hidden
     settings:
-      image_style: ''
+      image_style: large
       image_link: ''
     third_party_settings: {  }
     type: image
-    region: content
-  links:
-    weight: 100
-    region: content
-    settings: {  }
-    third_party_settings: {  }
+    region: ds_content
 hidden:
+  field_date: true
   langcode: true
+  links: true

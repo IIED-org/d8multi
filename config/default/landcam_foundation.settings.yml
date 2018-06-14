@@ -9,7 +9,7 @@ favicon:
 zurb_foundation_status_in_reveal: 1
 zurb_foundation_use_respondjs: 0
 zurb_foundation_meta_header_grid: 0
-zurb_foundation_top_bar_enable: '0'
+zurb_foundation_top_bar_enable: '1'
 zurb_foundation_top_bar_grid: 0
 zurb_foundation_top_bar_sticky: 0
 zurb_foundation_top_bar_is_hover: 0

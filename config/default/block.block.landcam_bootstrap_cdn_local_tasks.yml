@@ -1,0 +1,22 @@
+uuid: d4fba485-2b24-4f3c-9afb-23624278ec34
+langcode: en
+status: true
+dependencies:
+  theme:
+    - landcam_bootstrap_cdn
+_core:
+  default_config_hash: c-06bbElRY5sKmglk74ppgTW93Et4-EJFyNiUZMb8JY
+id: landcam_bootstrap_cdn_local_tasks
+theme: landcam_bootstrap_cdn
+region: content
+weight: -20
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }
