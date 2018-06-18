@@ -299,7 +299,7 @@ display:
           automatic_width: false
           alignment: horizontal
           col_class_default: false
-          col_class_custom: col-md-4
+          col_class_custom: 'col-md-4 column large-4'
           row_class_default: false
           row_class_custom: row
       defaults:
