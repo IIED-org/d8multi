@@ -88,6 +88,8 @@ class ComposerStaticInit016df429d526aac68dd958d0838ed504
         ),
         'D' => 
         array (
+            'Drupal\\ui_patterns\\' => 19,
+            'Drupal\\Tests\\ui_patterns\\' => 25,
             'Drupal\\Driver\\' => 14,
             'Drupal\\Core\\' => 12,
             'Drupal\\Component\\' => 17,
@@ -266,6 +268,14 @@ class ComposerStaticInit016df429d526aac68dd958d0838ed504
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Drupal\\ui_patterns\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/docroot/modules/contrib/ui_patterns/src',
+        ),
+        'Drupal\\Tests\\ui_patterns\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/docroot/modules/contrib/ui_patterns/tests/src',
         ),
         'Drupal\\Driver\\' => 
         array (

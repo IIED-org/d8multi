@@ -29,7 +29,10 @@
     "drupal/panels": "^4.3",
     "drupal/bootstrap_layouts": "^5.1",
     "drupal/entity_clone": "^1.0@alpha",
-    "drupal/basic": "^2.0"
+    "drupal/basic": "^2.0",
+    "drupal/ui_patterns": "^1.0@RC",
+    "drupal/components": "^1.0",
+    "drupal/foundation_patterns": "^1.0@alpha"
   },
   "require-dev": {
     "drupal/devel": "^1.0",
