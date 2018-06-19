@@ -7,6 +7,7 @@ module:
   block_content: 0
   breakpoint: 0
   ckeditor: 0
+  components: 0
   config: 0
   contact: 0
   contextual: 0
@@ -36,6 +37,11 @@ module:
   taxonomy: 0
   text: 0
   toolbar: 0
+  ui_patterns: 0
+  ui_patterns_ds: 0
+  ui_patterns_layouts: 0
+  ui_patterns_library: 0
+  ui_patterns_views: 0
   update: 0
   user: 0
   views_ui: 0
@@ -57,6 +63,8 @@ theme:
   bootstrap: 0
   landcam_bootstrap_cdn: 0
   basic: 0
+  foundation_patterns: 0
+  bootstrap_patterns: 0
 profile: minimal
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

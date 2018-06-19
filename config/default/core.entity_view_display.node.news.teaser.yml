@@ -21,23 +21,17 @@ third_party_settings:
     settings: {  }
   ds:
     layout:
-      id: ds_1col
+      id: pattern_card
       library: null
       disable_css: false
       entity_classes: all_classes
-      settings:
-        wrappers:
-          ds_content: div
-        outer_wrapper: div
-        attributes: ''
-        link_attribute: ''
-        link_custom: ''
-        classes:
-          layout_class: {  }
+      settings: {  }
     regions:
-      ds_content:
+      image:
         - field_image
+      title:
         - node_title
+      text:
         - body
         - links
     fields:
@@ -57,16 +51,16 @@ mode: teaser
 content:
   body:
     label: hidden
-    type: text_summary_or_trimmed
+    type: text_trimmed
     weight: 2
     settings:
       trim_length: 300
     third_party_settings: {  }
-    region: ds_content
+    region: text
   field_image:
     type: image
     weight: 0
-    region: ds_content
+    region: image
     label: hidden
     settings:
       image_style: medium
@@ -74,7 +68,7 @@ content:
     third_party_settings: {  }
   links:
     weight: 3
-    region: ds_content
+    region: text
     settings: {  }
     third_party_settings: {  }
 hidden:

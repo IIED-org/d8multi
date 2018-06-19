@@ -1,0 +1,22 @@
+uuid: aa217360-9ba9-4f7b-974a-7397c1e04768
+langcode: en
+status: false
+dependencies:
+  module:
+    - user
+  theme:
+    - foundation_patterns
+_core:
+  default_config_hash: 4QlSnWBcxxKMIFRM8sbu_MjSkcp3NjGgnVrc-lynQHI
+id: foundation_patterns_login
+theme: foundation_patterns
+region: sidebar_first
+weight: 0
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  provider: user
+  label_display: visible
+visibility: {  }

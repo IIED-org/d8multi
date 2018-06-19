@@ -1,0 +1,20 @@
+uuid: bf73671a-50a3-489e-a713-2d2a4747d7d8
+langcode: en
+status: true
+dependencies:
+  theme:
+    - foundation_patterns
+_core:
+  default_config_hash: PffmQ-ABSz5tFjWmVsR7NesunDnEivvopnJnBjl8KNE
+id: foundation_patterns_local_actions
+theme: foundation_patterns
+region: content
+weight: -10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }
