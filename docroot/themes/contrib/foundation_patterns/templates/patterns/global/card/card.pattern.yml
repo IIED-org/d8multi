@@ -1,0 +1,28 @@
+card:
+  label: 'Card'
+  description: 'A card component.'
+  fields:
+    image:
+      type: 'image'
+      label: 'Image'
+      description: 'Card image.'
+      preview:
+        type: 'pattern'
+        id: 'image'
+        fields:
+          image:
+            theme: 'image'
+            uri: 'http://lorempixel.com/400/200/nature/2'
+          caption: '&copy; 2017 John Smith photography'
+
+    title:
+      type: 'text'
+      label: 'Title'
+      description: 'Card title.'
+      preview: 'Card title'
+    text:
+      type: 'text'
+      label: 'Text'
+      description: 'Card text.'
+      preview: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'
+  use: "@global/card/card.twig"
