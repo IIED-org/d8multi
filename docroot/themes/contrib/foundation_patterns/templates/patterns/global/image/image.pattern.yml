@@ -8,10 +8,10 @@ image:
       description: 'The actual image.'
       preview:
         theme: 'image'
-        uri: 'http://lorempixel.com/350/250/nature/1'
+        uri: 'http://placekitten.com/350/250'
     caption:
       type: 'text'
       label: 'Caption'
       description: 'The image caption.'
-      preview: '&copy; 2017 John Smith photography'
+      preview: '&copy;2017 IIED.org'
   use: "@global/image/image.twig"

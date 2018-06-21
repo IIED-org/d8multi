@@ -12,8 +12,8 @@ card:
         fields:
           image:
             theme: 'image'
-            uri: 'http://lorempixel.com/400/200/nature/2'
-          caption: '&copy; 2017 John Smith photography'
+            uri: 'http://placekitten.com/400/200'
+          caption: '&copy;2018 IIED.org'
 
     title:
       type: 'text'
