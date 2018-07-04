@@ -21,7 +21,6 @@
     "drupal/core": "^8.3",
     "drush/drush": "^8.1",
     "drupal/bootstrap": "^3.11",
-    "drupal/zurb_foundation": "6.0-alpha4",
     "drupal/adaptivetheme": "^3.1",
     "drupal/at_tools": "^3.2",
     "drupal/foundation_layouts": "^6.0",
@@ -32,7 +31,18 @@
     "drupal/basic": "^2.0",
     "drupal/ui_patterns": "^1.0@RC",
     "drupal/components": "^1.0",
-    "drupal/foundation_patterns": "^1.0@alpha"
+    "drupal/foundation_patterns": "^1.0@alpha",
+    "fourkitchens/emulsify": "^2.6",
+    "drupal/ui_patterns_pattern_lab": "^1.0@alpha",
+    "evanlovely/plugin-twig-namespaces": "^1.1",
+    "drupal/bear_skin": "^3.0",
+    "drupal/console": "~1.0",
+    "drupal/zurb_foundation": "^6.0",
+    "drupal/bootstrap_barrio": "^4.14",
+    "drupal/bootstrap_sass": "^1.5",
+    "drupal/fontawesome": "^2.3",
+    "drupal/block_styles": "^1.2",
+    "drupal/custom_search": "^1.0@beta"
   },
   "require-dev": {
     "drupal/devel": "^1.0",
@@ -52,9 +62,6 @@
       "docroot/themes/contrib/{$name}": ["type:drupal-theme"]
     },
     "patches": {
-        "drupal/zurb_foundation": {
-          "fix bad layout code removes preset layouts": "https://www.drupal.org/files/issues/zurb_foundation-movelayouts-2867688-24.patch"
-        }
       }
   },
   "scripts": {

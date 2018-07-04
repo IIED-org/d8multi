@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "name": "bear_skin",
+  "description": "bear_skin",
+  "icons": {
+    "60": "/themes/bear_skin/images/favicons/firefox_app_60x60.png",
+    "128": "/themes/bear_skin/images/favicons/firefox_app_128x128.png",
+    "512": "/themes/bear_skin/images/favicons/firefox_app_512x512.png"
+  },
+  "developer": {
+    "name": null,
+    "url": null
+  }
+}

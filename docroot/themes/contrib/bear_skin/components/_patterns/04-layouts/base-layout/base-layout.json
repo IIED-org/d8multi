@@ -1,0 +1,12 @@
+{
+  "content": {
+    "top_row": "Top Row",
+    "left": "Left Sidebar",
+    "main": "Main Content",
+    "right": "Right Sidebar",
+    "bottom_row": "Bottom Row"
+  },
+  "classes": [
+    "container-fluid"
+  ]
+}

@@ -1,4 +1,4 @@
-name: landcam_foundation
+name: Landcam Foundation
 description: "Custom sub-theme, inherits from the Foundation base theme read <a href=\"http://foundation.zurb.com/docs/index.php\">framework documentation</a>"
 core: 8.x
 type: theme

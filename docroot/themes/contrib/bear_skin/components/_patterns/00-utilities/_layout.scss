@@ -1,0 +1,106 @@
+//*********
+// Wrappers
+//*********
+
+body {
+  overflow-x: hidden;
+}
+
+.wrapper--inner {
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: $site-max-width;
+  width: 100%;
+}
+
+.wrapper-main {
+  padding: 2rem 0;
+}
+
+img {
+  display: block;
+}
+
+//*************
+// Left Sidebar
+//*************
+
+.layout-sidebar-first {
+
+  .wrapper-main__inner {
+    @include breakpoint(break-2) {
+      display: flex;
+    }
+  }
+
+  .column.main {
+    @include breakpoint(break-2) {
+      padding: 0 0 0 2rem;
+      flex-basis: 75%;
+      order: 2;
+    }
+  }
+
+  .column.sidebar {
+    @include breakpoint(break-2) {
+      flex-basis: 25%;
+      order: 1;
+    }
+  }
+}
+
+//**************
+// Right Sidebar
+//**************
+
+.layout-sidebar-second {
+  @extend .layout-sidebar-first;
+
+  .column.main {
+    @include breakpoint(break-2) {
+      padding: 0 2rem 0 0;
+
+      order: 1;
+    }
+  }
+
+  .column.sidebar {
+    @include breakpoint(break-2) {
+      order: 2;
+    }
+  }
+}
+
+//**************
+// Two Sidebars
+//**************
+
+.layout-two-sidebars {
+  .wrapper-main__inner {
+    @include breakpoint(break-2) {
+      display: flex;
+    }
+  }
+
+  .column.main {
+    @include breakpoint(break-2) {
+      padding: 0 2rem;
+      flex-basis: 75%;
+      order: 2;
+    }
+  }
+
+  .column.sidebar {
+    @include breakpoint(break-2) {
+      flex-basis: 25%;
+
+      &.sidebar--first {
+        order: 1;
+      }
+
+      &.sidebar--second {
+        order: 3;
+      }
+    }
+  }
+}

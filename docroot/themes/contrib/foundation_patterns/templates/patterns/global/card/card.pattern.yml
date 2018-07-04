@@ -2,6 +2,11 @@ card:
   label: 'Card'
   description: 'A card component.'
   fields:
+    url:
+      type: text
+      label: Url
+      description: Url
+      preview: https://www.iied.org
     image:
       type: 'image'
       label: 'Image'
@@ -14,7 +19,6 @@ card:
             theme: 'image'
             uri: 'http://placekitten.com/400/200'
           caption: '&copy;2018 IIED.org'
-
     title:
       type: 'text'
       label: 'Title'
@@ -26,3 +30,6 @@ card:
       description: 'Card text.'
       preview: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'
   use: "@global/card/card.twig"
+libraries:
+  - pattern:
+      image:

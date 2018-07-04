@@ -1,0 +1,166 @@
+::-webkit-input-placeholder {
+  @include placeholder;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  @include placeholder;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  @include placeholder;
+}
+
+:-ms-input-placeholder {
+  @include placeholder;
+}
+
+form {
+  margin: 1rem 0;
+}
+
+.form-item {
+  margin-bottom: 1rem;
+}
+
+.form-submit {
+  margin-bottom: .5rem;
+}
+
+.form-required::after {
+  content: '';
+  vertical-align: super;
+  display: inline-block;
+  background: url('../images/required.svg') no-repeat left center;
+  background-size: 6px 6px;
+  margin-left: .3rem;
+  width: 6px;
+  height: 6px;
+}
+
+.description,
+.filter-guidelines {
+  @include fontsize(12, all);
+
+  clear: both;
+  margin-bottom: rem;
+  padding: .2rem 0;
+  line-height: 1.5;
+  color: $c-ui-font;
+
+  ul {
+    line-height: 1.5;
+  }
+}
+
+.filter-help {
+  @include fontsize(14, all);
+
+  float: none;
+}
+
+.filter-wrapper {
+  border: 1px solid $c-ui-border;
+}
+
+.field-suffix {
+  @extend .description;
+}
+
+.dropbutton-multiple {
+  margin-right: 5px;
+}
+
+.form-text,
+.form-email,
+.form-textarea,
+.form-date,
+.form-password,
+.form-date {
+  @include fontsize(16, all);
+
+  padding: .5rem .5rem;
+  width: 100%;
+  max-width: 30em;
+  transition: border .2s ease-in-out;
+  border: 1px solid $c-ui-border;
+
+  &:focus {
+    outline: 0;
+    border-color: $c-ui-active-form-element;
+  }
+}
+
+.form-date {
+  @include sans;
+
+  max-width: 10em;
+}
+
+.form-textarea {
+  @include sans;
+}
+
+.form-submit {
+  @extend .button;
+}
+
+input[type='search'] {
+  @extend .form-text;
+
+  appearance: initial;
+}
+
+.field-suffix {
+  display: block;
+}
+
+.dropbutton-widget {
+  @extend .button;
+
+  .form-submit {
+    padding: 0;
+    margin: 0;
+    background: transparent;
+  }
+
+  .secondary-action {
+    margin-top: 5px;
+  }
+
+  .dropbutton-toggle {
+    button, a {
+      color: $white;
+    }
+  }
+}
+
+fieldset {
+  padding: 1rem;
+  border: 1px solid $c-ui-border;
+}
+
+.ajax-progress-throbber {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, .8);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .throbber {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+    border: .3rem solid $black;
+    border-top-color: $white;
+  }
+}
+
+div[id^='ajax-wrapper'] {
+  position: relative;
+}

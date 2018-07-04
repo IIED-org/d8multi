@@ -7,7 +7,7 @@ var drush_alias = '';
 module.exports = {
   // set 'enabled: true' to run drush commands as a part of 'gulp watch'.
   drush: {
-    enabled: false,
+    enabled: true,
     alias: {
       css_js: 'drush ' + drush_alias + ' cc css-js',
       cr: 'drush ' + drush_alias + ' cr'
@@ -15,12 +15,11 @@ module.exports = {
   },
 
   // Override sass compile options.
-  /*
+
   scss: {
     outputStyle: 'expanded',
     lintIgnore: '',
   },
-  */
 
   // If your files are on a network share, you may want to turn on polling for
   // Gulp watch. Since polling is less efficient, we disable polling by default.

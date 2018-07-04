@@ -1,0 +1,33 @@
+.indented:first-of-type {
+  padding-left: 1rem;
+}
+
+.indented:nth-of-type(2) {
+  padding-left: 2rem;
+}
+
+.indented:nth-of-type(3) {
+  padding-left: 3rem;
+}
+
+.comment {
+
+  footer {
+
+    p {
+      margin-top: 1rem;
+      border-bottom: 1px solid $c-ui-border;
+      margin-bottom: 0;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    a {
+      text-decoration: underline;
+      text-transform: uppercase;
+    }
+  }
+}

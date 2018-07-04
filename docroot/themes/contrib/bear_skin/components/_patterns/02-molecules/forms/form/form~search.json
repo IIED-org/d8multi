@@ -1,0 +1,23 @@
+{
+  "attributes": {
+    "Attribute()": {
+      "action": "/search/node",
+      "method": "get",
+      "id": "search-block-form",
+      "accept-charset": "UTF-8"
+    }
+  },
+  "children": {
+    "join()": [
+      {
+        "include()": {
+          "pattern": "atoms-input-text",
+          "with": {
+            "description_display": false
+          }
+        }
+      },
+      "atoms-input-submit"
+    ]
+  }
+}

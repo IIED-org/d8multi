@@ -1,0 +1,53 @@
+{
+  "attributes": {
+    "Attribute()": {
+      "class": [
+        "page"
+      ]
+    }
+  },
+  "region_header": {
+    "include()": {
+      "pattern": "organisms-header"
+    }
+  },
+  "region_content": {
+    "join()": [
+      {
+        "include()": {
+          "pattern": "atoms-heading",
+          "with": {
+            "element": "h1",
+            "items": [
+              {
+                "content": "Page Title",
+                "attributes": {
+                  "Attribute()": {
+                    "class": [
+                      "field__item"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "include()": {
+          "pattern": "layouts-base-layout"
+        }
+      }
+    ]
+  },
+  "region_breadcrumb": {
+    "include()": {
+      "pattern": "organisms-region-breadcrumb"
+    }
+  },
+  "region_footer": {
+    "include()": {
+      "pattern": "organisms-region-footer"
+    }
+  }
+}
