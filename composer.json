@@ -32,7 +32,6 @@
     "drupal/ui_patterns": "^1.0@RC",
     "drupal/components": "^1.0",
     "drupal/foundation_patterns": "^1.0@alpha",
-    "fourkitchens/emulsify": "^2.6",
     "drupal/ui_patterns_pattern_lab": "^1.0@alpha",
     "evanlovely/plugin-twig-namespaces": "^1.1",
     "drupal/bear_skin": "^3.0",

@@ -6,6 +6,7 @@ description: 'Basic structure for a Bootstrap Barrio SubTheme.'
 base theme: bootstrap_barrio
 
 libraries:
+  - bootstrap_barrio_subtheme/bootstrap_cdn
   - bootstrap_barrio_subtheme/global-styling
 
 regions:
@@ -32,8 +33,8 @@ regions:
   footer_fourth: 'Footer fourth'
   footer_fifth: 'Footer fifth'
 
-# Information added by Drupal.org packaging script on 2018-06-25
-version: '8.x-4.14'
+# Information added by Drupal.org packaging script on 2018-07-04
+version: '8.x-4.15'
 core: '8.x'
 project: 'bootstrap_barrio'
-datestamp: 1529900337
+datestamp: 1530739426
