@@ -30,6 +30,10 @@ class ComposerStaticInit016df429d526aac68dd958d0838ed504
     );
 
     public static $prefixLengthsPsr4 = array (
+        'l' => 
+        array (
+            'lsolesen\\pel\\' => 13,
+        ),
         'c' => 
         array (
             'cweagans\\Composer\\' => 18,
@@ -114,6 +118,7 @@ class ComposerStaticInit016df429d526aac68dd958d0838ed504
         ),
         'F' => 
         array (
+            'FontLib\\' => 8,
             'Faker\\' => 6,
         ),
         'D' => 
@@ -151,6 +156,10 @@ class ComposerStaticInit016df429d526aac68dd958d0838ed504
     );
 
     public static $prefixDirsPsr4 = array (
+        'lsolesen\\pel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lsolesen/pel/src',
+        ),
         'cweagans\\Composer\\' => 
         array (
             0 => __DIR__ . '/..' . '/cweagans/composer-patches/src',
@@ -346,6 +355,10 @@ class ComposerStaticInit016df429d526aac68dd958d0838ed504
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'FontLib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phenx/php-font-lib/src/FontLib',
         ),
         'Faker\\' => 
         array (

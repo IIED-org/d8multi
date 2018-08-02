@@ -111,18 +111,3 @@
 .field--label-inline .field__item {
     display: inline-block
 }
-
-.field--type-image {
-  position: relative;
-}
-
-.field--name-bundle-fieldnode, .ctype {
-  display: inline-block;
-  position: absolute;
-  bottom: 1rem;
-  left:0;
-  padding: .5em 1rem;
-  background: $accent-shade;
-  opacity:0.7;
-  color: $white;
-}

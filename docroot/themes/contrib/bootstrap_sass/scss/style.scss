@@ -1,4 +1,4 @@
-/*
+/* 
 Theme Name: Bootstrap 4 Sass
 Description: Bootstrap 4 with Sass
 */
@@ -14,7 +14,7 @@ body {
 }
 
 
-/* COLORS
+/* COLORS 
 --------------------------------------------------*/
 
 a {
@@ -49,14 +49,6 @@ a {
 
 .card-group .field--type-image {
     margin: 0
-}
-
-.card {
-  cursor: pointer;
-  a:hover {
-    background-color: $accent-light;
-    text-decoration: none;
-  }
 }
 
 .slick {

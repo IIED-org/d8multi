@@ -42,7 +42,8 @@
     "drupal/bootstrap_sass": "^1.5",
     "drupal/fontawesome": "^2.3",
     "drupal/block_styles": "^1.2",
-    "drupal/custom_search": "^1.0@beta"
+    "drupal/custom_search": "^1.0@beta",
+    "drupal/pdfpreview": "^1.0@RC"
   },
   "require-dev": {
     "drupal/devel": "^1.0",
