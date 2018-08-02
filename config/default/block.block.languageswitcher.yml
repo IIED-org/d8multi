@@ -1,15 +1,15 @@
-uuid: 588ca203-dcee-4886-b686-519596023030
+uuid: e477c5c0-9eea-4bba-8165-174316d9b692
 langcode: en
 status: true
 dependencies:
   module:
     - language
   theme:
-    - landcam_foundation
+    - landcam_bootstrap_sass
 id: languageswitcher
-theme: landcam_foundation
-region: meta_header
-weight: 0
+theme: landcam_bootstrap_sass
+region: primary_menu
+weight: -3
 provider: null
 plugin: 'language_block:language_interface'
 settings:

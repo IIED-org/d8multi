@@ -9,9 +9,9 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: News
+name: Article
 type: news
-description: 'A news article'
+description: 'A news story or other article'
 help: ''
 new_revision: true
 preview_mode: 1
