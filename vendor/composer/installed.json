@@ -1699,6 +1699,72 @@
         }
     },
     {
+        "name": "drupal/colorbox",
+        "version": "1.4.0",
+        "version_normalized": "1.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/colorbox",
+            "reference": "8.x-1.4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/colorbox-8.x-1.4.zip",
+            "reference": "8.x-1.4",
+            "shasum": "bf163fd2d28450c1324512ad7e6a72fc48d274e3"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.4",
+                "datestamp": "1493051344",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "RenatoG",
+                "homepage": "https://www.drupal.org/user/3326031"
+            },
+            {
+                "name": "Sam152",
+                "homepage": "https://www.drupal.org/user/1485048"
+            },
+            {
+                "name": "frjo",
+                "homepage": "https://www.drupal.org/user/5546"
+            },
+            {
+                "name": "jdwfly",
+                "homepage": "https://www.drupal.org/user/298179"
+            },
+            {
+                "name": "rsmylski",
+                "homepage": "https://www.drupal.org/user/1324348"
+            }
+        ],
+        "description": "A light-weight, customizable lightbox plugin for jQuery.",
+        "homepage": "https://www.drupal.org/project/colorbox",
+        "support": {
+            "source": "https://cgit.drupalcode.org/colorbox",
+            "issues": "https://www.drupal.org/project/colorbox"
+        }
+    },
+    {
         "name": "drupal/components",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",
@@ -2717,6 +2783,140 @@
         }
     },
     {
+        "name": "drupal/flickr",
+        "version": "1.0.0-alpha2",
+        "version_normalized": "1.0.0.0-alpha2",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/flickr",
+            "reference": "8.x-1.0-alpha2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/flickr-8.x-1.0-alpha2.zip",
+            "reference": "8.x-1.0-alpha2",
+            "shasum": "7a9b704b498bc87319a191af565c6fdc08bfc4a5"
+        },
+        "require": {
+            "drupal/core": "~8.0",
+            "drupal/flickr_api": "^1.1"
+        },
+        "require-dev": {
+            "drupal/colorbox": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-alpha2",
+                "datestamp": "1521504784",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Alpha releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "BarisW",
+                "homepage": "https://www.drupal.org/user/107229"
+            },
+            {
+                "name": "KarenS",
+                "homepage": "https://www.drupal.org/user/45874"
+            },
+            {
+                "name": "andrewlevine",
+                "homepage": "https://www.drupal.org/user/49940"
+            },
+            {
+                "name": "dakku",
+                "homepage": "https://www.drupal.org/user/97634"
+            },
+            {
+                "name": "drewish",
+                "homepage": "https://www.drupal.org/user/34869"
+            },
+            {
+                "name": "ksenzee",
+                "homepage": "https://www.drupal.org/user/139855"
+            },
+            {
+                "name": "lolandese",
+                "homepage": "https://www.drupal.org/user/210402"
+            },
+            {
+                "name": "sumitmadan",
+                "homepage": "https://www.drupal.org/user/1538790"
+            },
+            {
+                "name": "wnoronha",
+                "homepage": "https://www.drupal.org/user/7344"
+            }
+        ],
+        "description": "Flickr Integration for Drupal",
+        "homepage": "https://www.drupal.org/project/flickr",
+        "support": {
+            "source": "http://cgit.drupalcode.org/flickr"
+        }
+    },
+    {
+        "name": "drupal/flickr_api",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/flickr_api",
+            "reference": "8.x-1.2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/flickr_api-8.x-1.2.zip",
+            "reference": "8.x-1.2",
+            "shasum": "66c0af4d841c08334c8496290f2aa493b788f189"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.2",
+                "datestamp": "1521477180",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "dakku",
+                "homepage": "https://www.drupal.org/user/97634"
+            }
+        ],
+        "description": "Flickr API and Drupal integration.",
+        "homepage": "https://www.drupal.org/project/flickr_api",
+        "support": {
+            "source": "http://cgit.drupalcode.org/flickr_api"
+        }
+    },
+    {
         "name": "drupal/fontawesome",
         "version": "2.4.0",
         "version_normalized": "2.4.0.0",
@@ -2985,6 +3185,55 @@
         "homepage": "https://www.drupal.org/project/imagemagick",
         "support": {
             "source": "http://cgit.drupalcode.org/imagemagick"
+        }
+    },
+    {
+        "name": "drupal/optional_end_date",
+        "version": "1.0.0-beta1",
+        "version_normalized": "1.0.0.0-beta1",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/optional_end_date",
+            "reference": "8.x-1.0-beta1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/optional_end_date-8.x-1.0-beta1.zip",
+            "reference": "8.x-1.0-beta1",
+            "shasum": "29c9d36918c701277853fbf8b0d406fa3c46e973"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-beta1",
+                "datestamp": "1525337884",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Project has not opted into security advisory coverage!"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Birk",
+                "homepage": "https://www.drupal.org/user/1033026"
+            }
+        ],
+        "description": "Make the end date in a Date range field optional.",
+        "homepage": "https://www.drupal.org/project/optional_end_date",
+        "support": {
+            "source": "http://cgit.drupalcode.org/optional_end_date"
         }
     },
     {

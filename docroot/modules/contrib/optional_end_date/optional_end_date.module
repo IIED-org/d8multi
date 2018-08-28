@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Make the end date in a Date range field optional.
+ */
+
+/**
+ * Implements hook_field_info_alter().
+ */
+function optional_end_date_field_info_alter(&$info) {
+  if (isset($info['daterange'])) {
+    $info['daterange']['class'] = 'Drupal\optional_end_date\Plugin\Field\FieldType\OptionalEndDateDateRangeItem';
+  }
+}
+
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
+function optional_end_date_field_formatter_info_alter(&$info) {
+  if (isset($info['daterange_default'])) {
+    $info['daterange_default']['class'] = 'Drupal\optional_end_date\Plugin\Field\FieldFormatter\OptionalEndDateDateRangeDefaultFormatter';
+    $info['daterange_plain']['class'] = 'Drupal\optional_end_date\Plugin\Field\FieldFormatter\OptionalEndDateDateRangePlainFormatter';
+    $info['daterange_custom']['class'] = 'Drupal\optional_end_date\Plugin\Field\FieldFormatter\OptionalEndDateDateRangeCustomFormatter';
+  }
+}
+
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
+function optional_end_date_field_widget_info_alter(&$info) {
+  if (isset($info['daterange_default'])) {
+    $info['daterange_default']['class'] = 'Drupal\optional_end_date\Plugin\Field\FieldWidget\OptionalEndDateDateRangeDefaultWidget';
+    $info['daterange_datelist']['class'] = 'Drupal\optional_end_date\Plugin\Field\FieldWidget\OptionalEndDateDateRangeDatelistWidget';
+  }
+}

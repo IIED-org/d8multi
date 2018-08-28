@@ -41,7 +41,10 @@
     "drupal/fontawesome": "^2.3",
     "drupal/block_styles": "^1.2",
     "drupal/custom_search": "^1.0@beta",
-    "drupal/pdfpreview": "^1.0@RC"
+    "drupal/pdfpreview": "^1.0@RC",
+    "drupal/flickr": "^1.0@alpha",
+    "drupal/optional_end_date": "^1.0@beta",
+    "drupal/colorbox": "^1.4"
   },
   "require-dev": {
     "drupal/devel": "^1.0",
