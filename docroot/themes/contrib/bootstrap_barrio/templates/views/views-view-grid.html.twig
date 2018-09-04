@@ -25,13 +25,12 @@
  */
 #}
 {%
-  set classes = [
-    'views-view-grid',
-    options.alignment,
-    'cols-' ~ options.columns,
-    'clearfix',
-    'col',
-  ]
+set classes = [
+  'views-view-grid',
+  options.alignment,
+  'container',
+  'clearfix',
+]
 %}
 {% if options.row_class_default %}
   {%

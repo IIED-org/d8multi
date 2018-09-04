@@ -38,9 +38,15 @@ a {
     color: $main-menu-shade;
 }
 
+/* Custom settings
+-------------------------------------------------- */
+
 .site-name-slogan a {
     text-decoration: none;
 }
+
+/* Cards
+--------------------------------------------------*/
 
 .card-group img {
     margin: 0;
@@ -54,9 +60,21 @@ a {
 
 .card {
   cursor: pointer;
+  height: 390px;
   a:hover {
-    background-color: $accent-light;
+    background-color: $secondary-shade;
     text-decoration: none;
+  }
+  .field--name-field-daterange, .field--name-field-date {
+    position: absolute;
+    bottom: 0;
+    padding: 0 .5rem;
+  }
+  .field--type-image {
+    margin: 0;
+  }
+  p {
+    padding: 0 .5rem;
   }
 }
 
@@ -66,4 +84,21 @@ a {
 
 .slick>div {
     margin: 0 15px;
+}
+
+/* Home page specific
+--------------------------------------------------*/
+
+.banner {
+  background-image: url(../images/banner.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.jumbotron .container {
+  margin-top: 5rem;
+}
+
+.front #main-wrapper {
+  padding-top: 0;
 }

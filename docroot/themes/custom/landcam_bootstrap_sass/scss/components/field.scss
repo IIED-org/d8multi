@@ -57,6 +57,8 @@
 .field--type-image img,
 .field--name-field-user-picture img {
     margin: 0 0 $spacer;
+    max-width: 100%;
+    height: auto;
 }
 
 .field--type-image a {
@@ -117,12 +119,12 @@
 }
 
 .field--name-bundle-fieldnode, .ctype {
-  display: inline-block;
-  position: absolute;
-  bottom: 1rem;
+  display: inline;
+  position: relative;
+  top: -2.8rem;
   left:0;
   padding: .5em 1rem;
-  background: $accent-shade;
-  opacity:0.7;
+  background: $secondary-shade;
+  opacity:0.8;
   color: $white;
 }
