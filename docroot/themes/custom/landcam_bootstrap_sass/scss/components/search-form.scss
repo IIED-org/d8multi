@@ -5,7 +5,7 @@
 
 input[type="search"] {
     box-sizing: border-box;
-    width: 3rem;
+    width: 3.3rem;
     transition: width 0.4s, opacity 0.4s;
     opacity: 0;
     &:focus, &:hover {
@@ -26,12 +26,11 @@ header #search-block-form {
 
 .search-button {
     box-sizing: content-box;
-    color: $primary-light;
-    display: inline;
+    color: $main-menu-shade;
     background-color: transparent;
     border: none;
     -webkit-appearance: initial;
-    font-size: 1.5rem;
-    margin-left: -3rem;
+    font-size: 1.2rem;
+    margin: 0.1rem 2rem 0 -3rem;
     pointer-events: none;
   }

@@ -18,23 +18,24 @@ body {
 --------------------------------------------------*/
 
 a {
-    color: $accent-shade;
+    color: $primary-shade;
 }
 
 .bg-inverse {
-    background: $primary-shade !important;
-}
-
-.site-footer {
     background: $accent-shade !important;
 }
 
+.site-footer {
+    background: $accent-light !important;
+}
+
 .menu--main li a {
-    color: $primary-shade;
+    color: $main-menu-shade;
+    font-size: $font-size-lg;
 }
 
 .menu--account li a {
-    color: $primary-shade;
+    color: $main-menu-shade;
 }
 
 .site-name-slogan a {

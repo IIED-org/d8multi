@@ -1,10 +1,11 @@
 /* VARIABLES */
 // colors
+$main-menu-shade: #8B5050;
 $primary-shade: #25A590;
 $primary-light: lighten($primary-shade, 37%);
 $primary-dark: darken($primary-shade, 12%);
-$accent-shade: #FF5F41;
-$accent-light: lighten($accent-shade, 37%);
+$accent-shade: #325935;
+$accent-light: #D9DFDA;
 $accent-dark: darken($accent-shade, 12%);
 // Reassign color vars to semantic color scheme
 $red: #dc3545;
@@ -30,10 +31,13 @@ $inverse-bg: $primary-shade;
 // Links
 //
 // Style anchor elements.
-$link-color: $accent-shade;
+$link-color: $primary-shade;
 $link-decoration: none;
-$link-hover-color: $accent-dark;
+$link-hover-color: $primary-dark;
 $link-hover-decoration: underline;
 // Comments
 $comment-spacer-x: 1.25em;
 $comment-spacer-y: 1.25em;
+
+//font-awesome
+$fa-font-path:        "../fontawesome/webfonts";
