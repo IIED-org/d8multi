@@ -1,0 +1,23 @@
+{% if content %}
+  {% if element is not empty %}
+    &lt;{{ element ?: &quot;div&quot; }}{{ attributes.addClass(classes) }}&gt;
+  {% endif %}
+
+  {% if display_title != false  %}
+    {{ title_prefix }}
+    {% if label %}
+      {% set title_classes = title_classes ?: &quot;block__content&quot; %}
+      &lt;{{ label_element ?: &quot;h2&quot; }}{{ title_attributes.addClass(title_classes) }}&gt;{{ label }}&lt;/{{ label_element ?: &quot;h2&quot; }}&gt;
+    {% endif %}
+    {{ title_suffix }}
+  {% endif %}
+
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+
+    {% if element is not empty %}
+      &lt;/{{ element ?: &quot;div&quot; }}&gt;
+    {% endif %}
+
+{% endif %}

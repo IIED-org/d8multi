@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Component for a breadcrumb trail.
+ *
+ * Variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - heading: [string] Accessible heading.
+ * - breadcrumb: [array] The breadcrumb trail items. Each item is an object
+ *   containing:
+ *   - text: [string] Text of the item.
+ *   - url: [string] URL of the item (optional).
+ */
+#}
+&lt;nav class=&quot;breadcrumb {{modifier_class}}&quot; role=&quot;navigation&quot; aria-labelledby=&quot;system-breadcrumb&quot;&gt;
+  &lt;h2 class=&quot;visually-hidden&quot;&gt;{{ heading|default('You are here') }}&lt;/h2&gt;
+  &lt;ol class=&quot;breadcrumb__list nm np no-list sans&quot;&gt;
+    {% for item in breadcrumb %}
+      &lt;li class=&quot;breadcrumb__item&quot;&gt;
+        {% if item.url %}
+          &lt;a class=&quot;breadcrumb__link&quot; href=&quot;{{ item.url }}&quot;&gt;{{ item.text }}&lt;/a&gt;
+        {% else %}
+          {{ item.text }}
+        {% endif %}
+        {% if not loop.last %}
+          &rsaquo;
+        {% endif %}
+      &lt;/li&gt;
+    {% endfor %}
+  &lt;/ol&gt;
+&lt;/nav&gt;

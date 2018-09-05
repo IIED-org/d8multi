@@ -1,0 +1,8 @@
+{
+  "node": true,
+  "esversion": 6,
+  "unused": true,
+  "undef": true,
+  "asi": true,
+  "maxdepth": 3
+}

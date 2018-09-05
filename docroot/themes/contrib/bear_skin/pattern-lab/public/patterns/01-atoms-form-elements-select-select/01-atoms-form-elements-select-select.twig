@@ -1,0 +1,18 @@
+{% spaceless %}
+&lt;div class=&quot;select-wrapper sans&quot;&gt;
+  &lt;select{{ attributes }}&gt;
+    {% for option in options %}
+      {% if option.type == 'optgroup' %}
+        &lt;optgroup label=&quot;{{ option.label }}&quot;&gt;
+          {% for sub_option in option.options %}
+            &lt;option value=&quot;{{ sub_option.value }}&quot;{{ sub_option.selected ? ' selected=&quot;selected&quot;' }}&gt;{{ sub_option.label }}&lt;/option&gt;
+          {% endfor %}
+        &lt;/optgroup&gt;
+      {% elseif option.type == 'option' %}
+        &lt;option value=&quot;{{ option.value }}&quot;{{ option.selected ? ' selected=&quot;selected&quot;' }}&gt;{{ option.label }}&lt;/option&gt;
+      {% endif %}
+    {% endfor %}
+  &lt;/select&gt;
+    &lt;div class=&quot;select-wrapper__icon&quot;&gt;&lt;i class=&quot;icon-chevron-left&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+&lt;/div&gt;
+{% endspaceless %}

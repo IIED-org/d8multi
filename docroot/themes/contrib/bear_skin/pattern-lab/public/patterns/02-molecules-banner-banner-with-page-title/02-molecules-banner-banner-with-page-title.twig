@@ -1,0 +1,12 @@
+{% spaceless %}
+  {% embed &quot;@atoms/fields/figure/figure.twig&quot; %}
+    {% block media %}
+      {% embed &quot;@atoms/banner/banner.twig&quot; %}
+      {% endembed %}
+    {% endblock %}
+    {% block caption %}
+      &lt;h1&gt;I am the page title.&lt;/h1&gt;
+      &lt;h3&gt;I am the page subtitle.&lt;/h3&gt;
+    {% endblock %}
+  {% endembed %}
+{% endspaceless %}
