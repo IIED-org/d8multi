@@ -44,7 +44,7 @@
 }
 .field--type-image img,
 .field--name-field-user-picture img {
-  margin: 0 0 1em;
+  /* margin: 0 0 1em; */
 }
 .field--type-image a {
   border-bottom: none;

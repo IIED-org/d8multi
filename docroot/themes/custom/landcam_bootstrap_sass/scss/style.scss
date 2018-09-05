@@ -60,7 +60,7 @@ a {
 
 .card {
   cursor: pointer;
-  height: 390px;
+  min-height: 23rem;
   a:hover {
     background-color: $secondary-shade;
     text-decoration: none;
