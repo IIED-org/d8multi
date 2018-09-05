@@ -29,9 +29,12 @@ a {
     background: $accent-light !important;
 }
 
-.menu--main li a {
-    color: $main-menu-shade;
-    font-size: $font-size-lg;
+.menu--main,
+.menu--navigation-prinicpale {
+   li a {
+      color: $main-menu-shade;
+      font-size: $font-size-lg;
+  }
 }
 
 .menu--account li a {
@@ -60,21 +63,29 @@ a {
 
 .card {
   cursor: pointer;
-  min-height: 23rem;
+  min-height: 25rem;
   a:hover {
     background-color: $secondary-shade;
     text-decoration: none;
   }
-  .field--name-field-daterange, .field--name-field-date {
-    position: absolute;
-    bottom: 0;
+  p {
     padding: 0 .5rem;
+    font-weight: $font-weight-bold;
+  }
+  .field--name-field-daterange,
+  .field--name-field-date,
+  .field--name-field-pubdate,
+  .field--name-field-author-s- {
+   position: absolute;
+   bottom: .5rem;
+   padding: 0 .5rem;
+   font-size: $font-size-xs;
   }
   .field--type-image {
     margin: 0;
   }
-  p {
-    padding: 0 .5rem;
+  .field--name-field-pubdate {
+    right: 0;
   }
 }
 
@@ -99,6 +110,26 @@ a {
   margin-top: 5rem;
 }
 
-.front #main-wrapper {
-  padding-top: 0;
+.path-frontpage {
+  #main-wrapper {
+    padding-top: 0;
+  }
+  #content {
+    .block {
+      padding: 2rem 0;
+      &:nth-child(odd) {
+        background-color: $gray-100;
+      }
+    }
+  }
+}
+
+/* Search results
+--------------------------------------------------*/
+
+.node--view-mode-search-result {
+  cursor: pointer;
+  &:hover, &:focus {
+    background-color: $gray-100;
+  }
 }

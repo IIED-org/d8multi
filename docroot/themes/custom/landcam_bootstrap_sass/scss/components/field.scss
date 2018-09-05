@@ -118,13 +118,26 @@
   position: relative;
 }
 
-.field--name-bundle-fieldnode, .ctype {
-  display: inline;
-  position: relative;
-  top: -2.8rem;
-  left:0;
-  padding: .5em 1rem;
-  background: $secondary-shade;
-  opacity:0.8;
-  color: $white;
+.card-img-top {
+  .field--name-bundle-fieldnode,
+  .field--name-field-material-type {
+    display: inline;
+    position: relative;
+    top: -2.8rem;
+    left:0;
+    padding: .5em 1rem;
+    background: $secondary-shade;
+    opacity:0.8;
+    color: $white;
+  }
+}
+
+.node--view-mode-full,
+.node--view-mode-search-result {
+  .field--label-inline .field__label {
+  font-weight: $font-weight-bold;
+    &:after {
+      content: ": ";
+    }
+  }
 }

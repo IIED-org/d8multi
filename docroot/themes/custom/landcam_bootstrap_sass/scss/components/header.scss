@@ -37,7 +37,8 @@
     margin-right: 1rem;
 }
 
-#block-landcam-bootstrap-sass-main-menu {
+#block-landcam-bootstrap-sass-main-menu,
+#block-navigationprinicpale {
   margin-left: 2rem;
 }
 
@@ -64,7 +65,8 @@
 }
 
 #block-languageswitcher {
-  margin-left: -3em;
+  position: absolute;
+  right: 10%;
   .links li {
     display: inline-block;
     list-style: none;

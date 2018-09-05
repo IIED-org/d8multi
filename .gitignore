@@ -12,6 +12,7 @@
 # core
 
 # Core's dependencies are managed with Composer.
+# Not on Acquia they ain't!!
 vendor
 
 # Ignore configuration files that may contain sensitive information.
