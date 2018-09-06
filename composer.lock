@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "49e861a4a767254cbef203577ba28ef9",
+    "content-hash": "8e389b953ee75733ad67354b52d53fac",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2339,6 +2339,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Fix language render issue": "https://www.drupal.org/files/issues/2018-05-17/ds-getLangcode.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
