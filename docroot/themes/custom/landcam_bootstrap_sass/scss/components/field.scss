@@ -39,7 +39,8 @@
 }
 
 @media all and (min-width: 560px) {
-    .node .field--type-image {
+    .node .field--type-image
+    .node .pdfpreview-image-wrapper {
         float: left;
         /* LTR */
         margin: 0 $spacer 0 0;
