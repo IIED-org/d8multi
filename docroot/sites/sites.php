@@ -55,3 +55,14 @@
  * @see \Drupal\Core\DrupalKernel::getSitePath()
  * @see https://www.drupal.org/documentation/install/multi-site
  */
+
+ $sites['sentineld8-dev.ac.iied.org'] = 'sentinel';
+ $sites['sentineld8-stage.ac.iied.org'] = 'sentinel';
+ $sites['sentineld8-prod.ac.iied.org'] = 'sentinel';
+ $sites['sentinel-gcrf.org'] = 'sentinel';
+
+ $sites['landcam-dev.ac.iied.org'] = 'landcam';
+ $sites['landcam-stage.ac.iied.org'] = 'landcam';
+ $sites['landcam-prod.ac.iied.org'] = 'landcam';
+ $sites['landcam.org'] = 'landcam';
+ 
