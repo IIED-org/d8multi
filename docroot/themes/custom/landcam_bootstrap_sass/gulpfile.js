@@ -14,7 +14,7 @@ gulp.task('sass', function() {
         .pipe(sass({ outputStyle: 'nested' }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest("css"))
-        // .pipe(minifyCss())
+        .pipe(minifyCss()) // Comment out when in dev mode
         .pipe(browserSync.stream());
 });
 
