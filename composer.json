@@ -21,8 +21,6 @@
     "drupal/core": "^8.3",
     "drush/drush": "^8.1",
     "drupal/bootstrap": "^3.11",
-    "drupal/adaptivetheme": "^3.1",
-    "drupal/at_tools": "^3.2",
     "drupal/foundation_layouts": "^6.0",
     "drupal/ds": "^3.1",
     "drupal/panels": "^4.3",
@@ -30,12 +28,9 @@
     "drupal/entity_clone": "^1.0@alpha",
     "drupal/ui_patterns": "^1.0@RC",
     "drupal/components": "^1.0",
-    "drupal/foundation_patterns": "^1.0@alpha",
     "drupal/ui_patterns_pattern_lab": "^1.0@alpha",
     "evanlovely/plugin-twig-namespaces": "^1.1",
-    "drupal/bear_skin": "^3.0",
     "drupal/console": "~1.0",
-    "drupal/zurb_foundation": "^6.0",
     "drupal/bootstrap_barrio": "^4.14",
     "drupal/bootstrap_sass": "^1.5",
     "drupal/fontawesome": "^2.3",
@@ -73,7 +68,10 @@
       "docroot/themes/contrib/{$name}": ["type:drupal-theme"]
     },
     "patches": {
+      "drupal/drupal": {
+        "Add startup configuration for PHP server": "https://www.drupal.org/files/issues/2018-08-22/2457999-183.patch"
       }
+    }
   },
   "scripts": {
     "post-install-cmd": [
