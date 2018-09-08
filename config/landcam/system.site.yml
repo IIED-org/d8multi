@@ -1,0 +1,14 @@
+uuid: 399db94b-eb33-4ed3-9f93-334e070cd88d
+name: landcam
+mail: webmaster@iied.org
+slogan: 'LandCam: Securing land and resource rights and improving governance in Cameroon'
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI

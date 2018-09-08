@@ -1,0 +1,278 @@
+uuid: f45aecec-fc72-4130-87ec-19590583e585
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.resource.body
+    - field.field.node.resource.field_author_s_
+    - field.field.node.resource.field_file
+    - field.field.node.resource.field_image
+    - field.field.node.resource.field_link
+    - field.field.node.resource.field_material_type
+    - field.field.node.resource.field_pubdate
+    - field.field.node.resource.field_publisher
+    - image.style.cover_large
+    - node.type.resource
+  module:
+    - datetime
+    - ds
+    - image
+    - link
+    - pdfpreview
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: bs_2col_stacked
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        layout:
+          wrapper: div
+          classes:
+            row: row
+          add_layout_class: 1
+          attributes: ''
+        regions:
+          top:
+            wrapper: div
+            classes:
+              col-sm-12: col-sm-12
+            add_region_classes: 1
+            attributes: ''
+          left:
+            wrapper: div
+            classes:
+              col-sm-6: col-sm-6
+            add_region_classes: 1
+            attributes: ''
+          right:
+            wrapper: div
+            classes:
+              col-sm-6: col-sm-6
+            add_region_classes: 1
+            attributes: ''
+          bottom:
+            wrapper: div
+            classes:
+              col-sm-12: col-sm-12
+            add_region_classes: 1
+            attributes: ''
+    regions:
+      top:
+        - node_title
+      left:
+        - field_file
+        - field_image
+        - field_link
+      right:
+        - field_author_s_
+        - field_pubdate
+        - field_publisher
+        - field_material_type
+        - body
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h2
+          class: ''
+          link: false
+id: node.resource.full
+targetEntityType: node
+bundle: resource
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    region: right
+  field_author_s_:
+    weight: 4
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: string
+    region: right
+  field_file:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: cover_large
+      image_link: file
+      tag: div
+      fallback_formatter: file_default
+      show_description: 0
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: clearfix
+            ow-at: ''
+            ow-def-at: true
+            ow-def-cl: true
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: '<div class=text-center my-1"><a class="btn btn-secondary" href=[node:field_file:entity:url]>Download file</a></div>'
+            lbw: false
+            lb-col: false
+            fis: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
+    type: pdfpreview
+    region: left
+  field_image:
+    weight: 2
+    label: hidden
+    settings:
+      image_style: cover_large
+      image_link: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: ''
+            ow-at: ''
+            ow-def-cl: true
+            fis: true
+            fis-el: div
+            fis-cl: 'd-block mx-auto clearfix'
+            fis-at: ''
+            fis-def-at: true
+            fi: true
+            fi-el: a
+            fi-cl: ''
+            fi-at: 'href=[node:field_link:uri] title=[node:field_link:title]'
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-at: false
+            fi-def-at: false
+    type: image
+    region: left
+  field_link:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 100
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: button
+            ow-cl: 'btn btn-secondary d-block mx-auto my-1'
+            ow-at: ''
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
+    type: link
+    region: left
+  field_material_type:
+    weight: 7
+    label: inline
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: entity_reference_label
+    region: right
+  field_pubdate:
+    weight: 5
+    label: inline
+    settings:
+      timezone_override: ''
+      date_format: 'F Y'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: datetime_custom
+    region: right
+  field_publisher:
+    type: text_default
+    weight: 6
+    region: right
+    label: inline
+    settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+hidden:
+  langcode: true
+  links: true

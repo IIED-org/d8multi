@@ -1,0 +1,33 @@
+uuid: dbf93c7a-b0c0-4511-b955-d83acdddfd9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.local_video
+    - media.type.remote_video
+  content:
+    - 'file:file:29c9074b-7ae4-4c9c-a918-1687127fc6f3'
+  module:
+    - entity_embed
+    - media
+_core:
+  default_config_hash: uDFr71znDwk7GjuKOoGMVNXOEuC0_cse0NdhYARcWu0
+label: 'Media Entity Embed'
+id: media_entity_embed
+type_id: entity
+type_settings:
+  entity_type: media
+  bundles:
+    - local_video
+    - remote_video
+  display_plugins:
+    - 'view_mode:media.full'
+    - 'view_mode:media.media_library'
+    - 'view_mode:media.token'
+    - 'entity_reference:entity_reference_entity_id'
+    - 'entity_reference:entity_reference_label'
+    - 'entity_reference:media_thumbnail'
+  entity_browser: video_browser
+  entity_browser_settings:
+    display_review: true
+icon_uuid: 29c9074b-7ae4-4c9c-a918-1687127fc6f3

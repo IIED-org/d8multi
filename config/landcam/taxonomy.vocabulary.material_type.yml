@@ -1,0 +1,9 @@
+uuid: 7bcf81b2-b13c-4ae0-89c0-eb1830887ffd
+langcode: en
+status: true
+dependencies: {  }
+name: 'Material type'
+vid: material_type
+description: 'Resource type'
+hierarchy: 0
+weight: 0
