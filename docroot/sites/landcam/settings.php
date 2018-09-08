@@ -735,7 +735,7 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  */
 
 $settings['trusted_host_patterns'] = array(
- '^.+\.dev\.dd$',
+ '^.+\.dd$',
  '^.+\.devcloud\.acquia-sites\.com$',
  '^.+\.landcam\.org'
 );

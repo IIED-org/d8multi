@@ -12,9 +12,9 @@ gulp.task('sass', function() {
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(sass({ outputStyle: 'nested' }))
-        .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write()) // Comment out in prod mode
         .pipe(gulp.dest("css"))
-        .pipe(minifyCss()) // Comment out when in dev mode
+        //.pipe(minifyCss()) // Comment out in dev mode
         .pipe(browserSync.stream());
 });
 
@@ -29,7 +29,7 @@ gulp.task('js', function() {
 gulp.task('serve', ['sass'], function() {
 
     browserSync.init({
-        proxy: "http://landcam.dev.dd:8083",
+        proxy: "http://landcam.dd:8083",
     });
 
     gulp.watch(['node_modules/bootstrap/scss/bootstrap.scss', 'scss/*.scss', 'scss/components/*.scss'], ['sass']);
