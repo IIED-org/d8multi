@@ -1,3 +1,3 @@
 Drupal 8 multisite code for:
-https://landcam.org
-https://sentinel-gcfr.org
+- https://landcam.org
+- https://sentinel-gcrf.org
