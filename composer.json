@@ -48,7 +48,8 @@
     "drupal/inline_entity_form": "^1.0@RC",
     "drupal/entity_embed": "^1.0@beta",
     "drupal/pathauto": "^1.2",
-    "drupal/entity": "^1.0"
+    "drupal/entity": "^1.0",
+    "drupal/addtoany": "^1.10"
   },
   "require-dev": {
     "drupal/devel": "^1.0",
