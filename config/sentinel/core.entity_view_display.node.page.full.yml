@@ -1,0 +1,36 @@
+uuid: 4593620b-9b9b-430d-adc6-9d19d69a2483
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.page.body
+    - field.field.node.page.field_subtitle
+    - field.field.node.page.field_video
+    - node.type.page
+  module:
+    - text
+    - user
+id: node.page.full
+targetEntityType: node
+bundle: page
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_subtitle:
+    type: text_default
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  addtoany: true
+  field_video: true
+  links: true

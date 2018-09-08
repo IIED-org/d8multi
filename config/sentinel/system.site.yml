@@ -1,0 +1,14 @@
+uuid: 4864a14d-368d-4089-a7ac-4dbed78306a8
+name: Sentinel
+mail: info@sentinel-grcf.org
+slogan: 'Social and Environmental Trade-Offs in African Agriculture'
+page:
+  403: ''
+  404: ''
+  front: /node/1
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI

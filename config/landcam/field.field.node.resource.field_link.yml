@@ -1,0 +1,23 @@
+uuid: a3c195d2-abc6-4795-b3d4-5647e03f2ba1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_link
+    - node.type.resource
+  module:
+    - link
+id: node.resource.field_link
+field_name: field_link
+entity_type: node
+bundle: resource
+label: Link
+description: 'Link to external resource'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

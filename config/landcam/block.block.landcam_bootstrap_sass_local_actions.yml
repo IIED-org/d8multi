@@ -1,0 +1,20 @@
+uuid: 272a5bdf-944d-4f08-917a-a71b9eb94fb5
+langcode: en
+status: true
+dependencies:
+  theme:
+    - landcam_bootstrap_sass
+_core:
+  default_config_hash: GYSAubvF5ZBhmKpMgRlEhoSUmGcWK5Q-0IfMNIeXQ7M
+id: landcam_bootstrap_sass_local_actions
+theme: landcam_bootstrap_sass
+region: content
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

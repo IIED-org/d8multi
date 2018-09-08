@@ -1,0 +1,29 @@
+uuid: 53550f04-a7fb-4c5f-85a5-cdd97a1f025e
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_browser_entity_form
+name: video_browser
+label: 'Video browser'
+display: modal
+display_configuration:
+  width: '650'
+  height: '500'
+  link_text: 'Select entities'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  cdf03d2c-11b3-4902-b061-d65aa75c03ae:
+    settings:
+      entity_type: media
+      bundle: remote_video
+      form_mode: media_library
+      submit_text: 'Save entity'
+    uuid: cdf03d2c-11b3-4902-b061-d65aa75c03ae
+    weight: 1
+    label: entity_form
+    id: entity_form

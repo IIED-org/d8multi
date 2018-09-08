@@ -1,0 +1,30 @@
+uuid: 20b6b26f-5ecc-4bbb-a346-da9785fd3569
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.frontpage
+  module:
+    - system
+    - views
+  theme:
+    - landcam_bootstrap_sass
+id: views_block__frontpage_block_1
+theme: landcam_bootstrap_sass
+region: content
+weight: -2
+provider: null
+plugin: 'views_block:frontpage-block_1'
+settings:
+  id: 'views_block:frontpage-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

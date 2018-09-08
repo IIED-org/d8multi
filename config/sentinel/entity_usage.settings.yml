@@ -1,0 +1,28 @@
+track_enabled_base_fields: false
+local_task_enabled_entity_types:
+  - media
+_core:
+  default_config_hash: D0RcOA_aIiwSPXOZSHQOTm5FXzziEsJHdfXGaF4nhIQ
+track_enabled_source_entity_types:
+  - block_content
+  - media
+  - node
+  - search_api_task
+  - taxonomy_term
+  - menu_link_content
+track_enabled_target_entity_types:
+  - block_content
+  - media
+  - node
+  - search_api_task
+  - taxonomy_term
+  - menu_link_content
+track_enabled_plugins:
+  - dynamic_entity_reference
+  - link
+  - linkit
+  - entity_reference
+  - entity_embed
+  - html_link
+  - block_field
+site_domains: {  }

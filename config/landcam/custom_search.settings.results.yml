@@ -1,0 +1,38 @@
+node_search:
+  path: node
+  search: true
+  advanced:
+    visibility: true
+    collapsible: true
+    collapsed: true
+    criteria:
+      or: or
+      phrase: phrase
+      negative: negative
+    types:
+      news: news
+      resource: resource
+      event: event
+      partner: partner
+      page: page
+    languages:
+      en: en
+      fr: fr
+      und: und
+      zxx: zxx
+  info:
+    type: type
+    user: user
+    date: date
+    comment: comment
+  filter:
+    position: disabled
+    label: 'Filter the results'
+    any: '- Any -'
+user_search:
+  advanced:
+    types:
+      resource: resource
+      event: event
+      partner: partner
+      page: page

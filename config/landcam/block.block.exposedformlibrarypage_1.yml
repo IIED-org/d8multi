@@ -1,0 +1,29 @@
+uuid: 37d5a499-0048-4893-a91c-1fca6fa14b4f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.library
+  module:
+    - system
+    - views
+  theme:
+    - landcam_bootstrap_sass
+id: exposedformlibrarypage_1
+theme: landcam_bootstrap_sass
+region: content
+weight: -4
+provider: null
+plugin: 'views_exposed_filter_block:library-page_1'
+settings:
+  id: 'views_exposed_filter_block:library-page_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: /library
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,23 @@
+uuid: d443c48f-3e38-4511-9b4c-2bb8f6800576
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_view
+    - paragraphs.paragraphs_type.view
+id: paragraph.view.field_view
+field_name: field_view
+entity_type: paragraph
+bundle: view
+label: View
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:entity_view_mode'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference
