@@ -128,8 +128,13 @@ a {
 --------------------------------------------------*/
 
 .node--view-mode-search-result {
+  margin-bottom: .5rem;
+  padding: .25rem;
   cursor: pointer;
   &:hover, &:focus {
     background-color: $gray-100;
+    h2 {
+      color: $primary-shade;
+    }
   }
 }
