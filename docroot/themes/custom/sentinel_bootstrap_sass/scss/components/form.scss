@@ -18,3 +18,10 @@
 .form-type-select {
   margin-top: .2rem;
 }
+
+form.contact-form {
+  input, textarea, fieldset {
+    max-width: 50rem;
+    min-width: 320px;
+  }
+}

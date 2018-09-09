@@ -9,28 +9,54 @@ dependencies:
     - field.field.node.page.field_video
     - node.type.page
   module:
+    - ds
     - text
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col_wrapper
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      ds_content:
+        - field_subtitle
+        - body
+        - addtoany
 id: node.page.full
 targetEntityType: node
 bundle: page
 mode: full
 content:
+  addtoany:
+    weight: 2
+    region: ds_content
+    settings: {  }
+    third_party_settings: {  }
   body:
     label: hidden
     type: text_default
     weight: 1
     settings: {  }
     third_party_settings: {  }
-    region: content
+    region: ds_content
   field_subtitle:
     type: text_default
     weight: 0
-    region: content
+    region: ds_content
     label: hidden
     settings: {  }
     third_party_settings: {  }
 hidden:
-  addtoany: true
   field_video: true
   links: true

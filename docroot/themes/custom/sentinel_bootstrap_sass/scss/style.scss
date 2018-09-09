@@ -93,13 +93,6 @@ a {
 /* Home page specific
 --------------------------------------------------*/
 
-.banner {
-  background-image: url(../images/banner.jpg);
-  background-repeat: no-repeat;
-  background-size: auto;
-  margin-bottom: 3rem;
-}
-
 .logo {
   @include text-hide;
   background-image: url(../logo.png);
@@ -107,6 +100,30 @@ a {
   height: 35px;
   margin: 1rem auto;
   padding: 1rem;
+}
+
+/* Banners
+--------------------------------------------------*/
+
+.banner {
+  background-repeat: no-repeat;
+  background-size: 1200px auto;
+  background-position: center bottom;
+  min-height: 400px;
+}
+
+.path-frontpage .banner {
+  margin-bottom: 3rem;
+  background-image: url(../images/banner.jpg);
+}
+.page-node-11 .banner {
+  background-image: url(../images/cover-cropped-1920by670.png);
+}
+.path-who-we-are .banner {
+  background-image: url(../images/image3.png);
+}
+.path-contact .banner {
+  background-image: url(../images/image4.png);
 }
 
 /* Alternating blocks
@@ -128,4 +145,15 @@ a {
   &:hover, &:focus {
     background-color: $gray-100;
   }
+}
+
+
+/* Organisations etc.
+--------------------------------------------------*/
+
+.node--type-organisation .field--name-body img {
+  margin: 0 1rem 1rem 0;
+  border: solid 1px $gray-100;
+  width: 100px;
+  height: auto;
 }
