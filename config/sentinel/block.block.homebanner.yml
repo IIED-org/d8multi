@@ -12,7 +12,7 @@ dependencies:
 id: homebanner
 theme: sentinel_bootstrap_sass
 region: content
-weight: -6
+weight: -8
 provider: null
 plugin: 'block_content:06167515-9c5d-458b-9c5e-9c72491fa038'
 settings:

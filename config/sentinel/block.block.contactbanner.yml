@@ -1,0 +1,31 @@
+uuid: c2405395-8b79-446a-84d9-c5248ce29b29
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:html:5b3b03c7-281b-4e7c-a3ef-637304f404d6'
+  module:
+    - block_content
+    - system
+  theme:
+    - sentinel_bootstrap_sass
+id: contactbanner
+theme: sentinel_bootstrap_sass
+region: content
+weight: -5
+provider: null
+plugin: 'block_content:5b3b03c7-281b-4e7c-a3ef-637304f404d6'
+settings:
+  id: 'block_content:5b3b03c7-281b-4e7c-a3ef-637304f404d6'
+  label: 'Contact banner'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: /contact
+    negate: false
+    context_mapping: {  }
