@@ -3840,8 +3840,7 @@ readers do not read off random characters that represent icons */
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  }
+  box-sizing: border-box; }
 
 html {
   font-family: sans-serif;
@@ -4287,18 +4286,16 @@ pre code {
 
 .container-fluid {
   width: 100%;
-  /* padding-right: 15px; */
-  /* padding-left: 15px; */
+  padding-right: 15px;
+  padding-left: 15px;
   margin-right: auto;
-  margin-left: auto;
-  }
+  margin-left: auto; }
 
 .row {
   display: flex;
   flex-wrap: wrap;
   margin-right: -15px;
-  margin-left: -15px;
-  }
+  margin-left: -15px; }
 
 .no-gutters {
   margin-right: 0;
@@ -6654,8 +6651,7 @@ tbody.collapse.show {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
-  }
+  padding: 0.5rem 1rem; }
 
 .navbar > .container,
 .navbar > .container-fluid {
@@ -6797,8 +6793,7 @@ tbody.collapse.show {
 @media (min-width: 992px) {
   .navbar-expand-lg {
     flex-flow: row nowrap;
-    justify-content: flex-start;
-    }
+    justify-content: flex-start; }
   .navbar-expand-lg .navbar-nav {
     flex-direction: row; }
   .navbar-expand-lg .navbar-nav .dropdown-menu {
@@ -11191,8 +11186,7 @@ header #search-block-form input[type="search"] {
   margin-top: 0;
   color: #343a40;
   width: 90%;
-  margin: 0 auto;
-  }
+  margin: 0 auto; }
 
 /**
  * @file
