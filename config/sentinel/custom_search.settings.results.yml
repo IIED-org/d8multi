@@ -12,6 +12,7 @@ node_search:
     types:
       page: page
       blog: blog
+      organisation: organisation
     languages:
       en: en
       und: und
@@ -30,3 +31,4 @@ user_search:
     types:
       page: page
       blog: blog
+      organisation: organisation
