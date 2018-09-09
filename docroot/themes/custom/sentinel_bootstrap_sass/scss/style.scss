@@ -115,11 +115,14 @@ a {
 .path-frontpage .banner {
   margin-bottom: 3rem;
   background-image: url(../images/banner.jpg);
+  &.ds {
+    display: none; //Hide display suite title
+  }
 }
 .page-node-11 .banner {
   background-image: url(../images/cover-cropped-1920by670.png);
 }
-.path-who-we-are .banner {
+.page-node-14 .banner {
   background-image: url(../images/image3.png);
 }
 .path-contact .banner {
@@ -132,10 +135,15 @@ a {
 .block-views {
   margin-top: 1rem;
   padding: 1rem;
-  &:nth-of-type(odd) {
-    background-color: $inverse-bg;
-  }
+  .views-row:nth-of-type(even) {
+      background-color: $inverse-bg;
+    }
 }
+
+.path-frontpage .block-views {
+    background-color: $inverse-bg;
+}
+
 
 /* Search results
 --------------------------------------------------*/
