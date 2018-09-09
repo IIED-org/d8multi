@@ -1,11 +1,11 @@
 .jumbotron {
     background-image: url(../images/yellowcrack.jpg);
     padding: 1rem;
+  @include media-breakpoint-up(xs) {
+    margin: 3rem;
+  }
 }
 .path-frontpage .jumbotron {
-  @include media-breakpoint-up(xs) {
-    margin: 5rem 1rem;
-  }
   @include media-breakpoint-up(sm) {
     margin: 10rem 3rem 0;
   }

@@ -45,6 +45,12 @@
     color: $link-color;
 }
 
+/* Views rows
+--------------------------------------------------*/
 .views-view-grid .row {
   margin-bottom: 1rem;
+}
+
+.views-row {
+  padding: 1rem;
 }
