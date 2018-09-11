@@ -3864,8 +3864,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
-  }
+  background-color: #fff; }
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -5522,8 +5521,7 @@ fieldset:disabled a.btn {
 .btn-secondary {
   color: #fff;
   background-color: #B47E00;
-  border-color: #B47E00;
-  }
+  border-color: #B47E00; }
 
 .btn-secondary:hover {
   color: #fff;
@@ -8514,8 +8512,7 @@ button.bg-dark:focus {
   display: block;
   width: 100%;
   padding: 0;
-  overflow: hidden;
-  }
+  overflow: hidden; }
 
 .embed-responsive::before {
   display: block;
@@ -8532,8 +8529,7 @@ button.bg-dark:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  border: 0;
-  }
+  border: 0; }
 
 .embed-responsive-21by9::before {
   padding-top: 42.85714%; }
