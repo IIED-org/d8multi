@@ -1,9 +1,11 @@
 disabled: false
-field_template: false
+field_template: true
 ft-default: default
 ft-show-colon: false
 classes:
-  region: {  }
+  region:
+    - banner
+    - jumbotron
   field: {  }
 use_field_names: true
 _core:

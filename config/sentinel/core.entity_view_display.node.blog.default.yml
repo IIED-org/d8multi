@@ -8,7 +8,9 @@ dependencies:
     - field.field.node.blog.field_video
     - node.type.blog
   module:
+    - ds
     - image
+    - media
     - text
     - user
 id: node.blog.default
@@ -34,11 +36,20 @@ content:
     region: content
   field_video:
     weight: 103
-    label: above
+    label: hidden
     settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
+      image_style: ''
+      image_link: media
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: media_thumbnail
     region: content
   links:
     weight: 100

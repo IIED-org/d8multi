@@ -3,27 +3,34 @@ description: 'Tout le contenu promu en page d''accueil.'
 display:
   default:
     display_options:
-      empty:
-        title:
-          title: 'Bienvenue sur [site:name]'
       exposed_form:
         options:
           submit_button: Appliquer
           reset_button_label: Réinitialiser
           exposed_sorts_label: 'Trier par'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        options:
-          expose:
-            items_per_page_label: 'Éléments par page'
-            items_per_page_options_all_label: '- Tout -'
-            offset_label: Décalage
-          tags:
-            previous: '‹ Précédent'
-            next: 'Suivant ›'
-            first: '« Premier'
-            last: 'Dernier »'
     display_title: Maître
   feed_1:
     display_title: Flux
+  page_1:
+    display_options:
+      fields:
+        field_image:
+          alter:
+            text: "<div class=\"field--type-image\">{{ field_image }}\r\n<div class=\"ctype\">{{ type }} </div>\r\n</div>"
+        nothing:
+          alter:
+            text: "{{ field_image }}\r\n<h4 class=\"node--title>{{ title }}</h4>\r\n<span class=\"date\">{{ field_date }}</span>"
+      header:
+        area:
+          content:
+            value: "<h3>Dernières nouvelles&nbsp;&nbsp;<a href=\"/fr/news\"><button class=\"btn btn-outline-secondary\">Voir toutes</button></a></h3>\r\n"
+            format: full_html
+  block_1:
+    display_options:
+      header:
+        area:
+          content:
+            value: '<h3>Dernières ressources&nbsp;&nbsp;<a href="/fr/library"><button class="btn btn-outline-secondary">Voir toutes</button></a></h3>'
+            format: full_html
+      title: 'Dernières ressources'
+    display_title: 'Dernières ressources'

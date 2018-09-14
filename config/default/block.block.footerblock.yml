@@ -1,0 +1,25 @@
+uuid: 83da0c7a-30f5-45c1-8672-cb77861c04e2
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:html:6e754243-a146-4750-aa92-cf6dbea80882'
+  module:
+    - block_content
+  theme:
+    - landcam_bootstrap_sass
+id: footerblock
+theme: landcam_bootstrap_sass
+region: footer_fifth
+weight: -5
+provider: null
+plugin: 'block_content:6e754243-a146-4750-aa92-cf6dbea80882'
+settings:
+  id: 'block_content:6e754243-a146-4750-aa92-cf6dbea80882'
+  label: 'Footer block'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

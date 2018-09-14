@@ -12,6 +12,9 @@ node_search:
     types:
       news: news
       resource: resource
+      event: event
+      partner: partner
+      page: page
     languages:
       en: en
       fr: fr
@@ -30,3 +33,6 @@ user_search:
   advanced:
     types:
       resource: resource
+      event: event
+      partner: partner
+      page: page

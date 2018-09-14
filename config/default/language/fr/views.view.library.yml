@@ -1,0 +1,24 @@
+display:
+  default:
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Recherche
+          reset_button_label: Réinitialiser
+          exposed_sorts_label: 'Trier par'
+      filters:
+        search_api_fulltext:
+          expose:
+            label: 'Rechercher nos ressources'
+            placeholder: 'Termes de recherche'
+      sorts:
+        field_pubdate:
+          admin_label: Tris
+        title:
+          expose:
+            label: Titre
+        search_api_relevance:
+          expose:
+            label: Pertinence
+      title: Bibliothèque
+label: Bibliothèque

@@ -9,7 +9,7 @@ dependencies:
 id: languageswitcher
 theme: landcam_bootstrap_sass
 region: primary_menu
-weight: -3
+weight: -4
 provider: null
 plugin: 'language_block:language_interface'
 settings:

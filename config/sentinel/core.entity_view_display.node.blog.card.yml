@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.card
     - field.field.node.blog.body
     - field.field.node.blog.field_image
+    - field.field.node.blog.field_video
     - image.style.large
     - node.type.blog
   module:
@@ -30,6 +31,8 @@ third_party_settings:
         link_custom: ''
         classes:
           layout_class: {  }
+          first: {  }
+          second: {  }
     regions:
       first:
         - field_image
@@ -64,7 +67,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   body:
-    type: text_trimmed
+    type: text_summary_or_trimmed
     weight: 2
     region: second
     label: hidden
@@ -83,4 +86,5 @@ content:
     type: image
     region: first
 hidden:
+  field_video: true
   links: true

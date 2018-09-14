@@ -33,21 +33,32 @@ third_party_settings:
         link_custom: ''
         classes:
           layout_class: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
     regions:
       header:
         - node_submitted_by
       left:
         - field_image
       right:
+        - node_title
         - body
-        - field_video
         - links
+      footer:
+        - field_video
     fields:
       node_submitted_by:
         plugin_id: node_submitted_by
         weight: 0
         label: hidden
         formatter: ds_post_date_blog_date
+      node_title:
+        plugin_id: node_title
+        weight: 2
+        label: hidden
+        formatter: default
 id: node.blog.full
 targetEntityType: node
 bundle: blog
@@ -56,7 +67,7 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     region: right
@@ -78,15 +89,42 @@ content:
     region: left
   field_video:
     type: entity_reference_entity_view
-    weight: 3
-    region: right
+    weight: 5
+    region: footer
     label: hidden
     settings:
-      view_mode: full
+      view_mode: media_library
       link: false
     third_party_settings:
       ds:
-        ds_limit: ''
+        ds_limit: '4'
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: container
+            ow-at: ''
+            fis: true
+            fis-el: div
+            fis-cl: row
+            fis-at: ''
+            fi: true
+            fi-el: div
+            fi-cl: 'col-12 col-md-6'
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis-def-at: false
+            fi-def-at: false
   links:
     weight: 4
     region: right

@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.news.body
     - field.field.node.news.field_date
     - field.field.node.news.field_image
+    - field.field.node.news.field_para
     - image.style.large
     - node.type.news
   module:
@@ -93,4 +94,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_para: true
   langcode: true

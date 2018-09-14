@@ -1,0 +1,192 @@
+uuid: 36411924-8990-4f81-bb62-c8c26bbf1f57
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - field.storage.node.field_author_s_
+    - field.storage.node.field_date
+    - field.storage.node.field_daterange
+    - field.storage.node.field_material_type
+    - field.storage.node.field_pubdate
+    - field.storage.node.field_publisher
+    - field.storage.paragraph.field_text
+    - search_api.server.default
+  module:
+    - search_api
+    - node
+    - paragraphs
+id: index
+name: 'Default search index'
+description: ''
+read_only: false
+field_settings:
+  body:
+    label: Body
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  field_author_s_:
+    label: Author(s)
+    datasource_id: 'entity:node'
+    property_path: field_author_s_
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_author_s_
+  field_date:
+    label: Date
+    datasource_id: 'entity:node'
+    property_path: field_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_date
+  field_daterange:
+    label: Dates
+    datasource_id: 'entity:node'
+    property_path: field_daterange
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_daterange
+  field_material_type:
+    label: 'Material type'
+    datasource_id: 'entity:node'
+    property_path: field_material_type
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_material_type
+  field_pubdate:
+    label: 'Date published'
+    datasource_id: 'entity:node'
+    property_path: field_pubdate
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_pubdate
+  field_publisher:
+    label: Publisher
+    datasource_id: 'entity:node'
+    property_path: field_publisher
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_publisher
+  field_text:
+    label: Text
+    datasource_id: 'entity:paragraph'
+    property_path: field_text
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_text
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  status:
+    label: status
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+  uid:
+    label: uid
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+  'entity:paragraph':
+    bundles:
+      default: false
+      selected:
+        - text_with_background
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_status: {  }
+  highlight:
+    highlight: always
+    highlight_partial: false
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields:
+      - body
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+  html_filter:
+    all_fields: true
+    fields:
+      - body
+      - field_author_s_
+      - field_publisher
+      - field_text
+      - title
+      - type
+    title: true
+    alt: true
+    tags:
+      b: 2
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
+  ignorecase:
+    all_fields: true
+    fields:
+      - body
+      - field_author_s_
+      - field_publisher
+      - field_text
+      - title
+      - type
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 100
+server: default
