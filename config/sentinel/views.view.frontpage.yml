@@ -274,6 +274,7 @@ display:
         use_more_text: false
         link_display: false
         link_url: false
+        footer: false
       style:
         type: grid
         options:
@@ -430,11 +431,229 @@ display:
         options:
           items_per_page: 3
           offset: 0
-      use_more: true
+      use_more: false
       use_more_always: false
       use_more_text: 'View more'
       link_display: custom_url
       link_url: blogs
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: 'View more'
+          empty: false
+          tokenize: false
+          content:
+            value: '<span data-align="center" class="mx-auto" ><a href="/blogs"><button class="btn btn-secondary">View more</button></a></span>'
+            format: full_html
+          plugin_id: text
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  block_2:
+    display_plugin: block
+    id: block_2
+    display_title: 'ALL Blogs block'
+    position: 3
+    display_options:
+      display_extenders: {  }
+      title: 'All blogs'
+      defaults:
+        title: false
+        style: false
+        row: false
+        filters: false
+        filter_groups: false
+        pager: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+        link_display: false
+        link_url: false
+        footer: false
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 3
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: 'col-12 col-sm-6 col-lg-4'
+          row_class_default: false
+          row_class_custom: row
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: card
+      filters:
+        promote:
+          admin_label: ''
+          expose:
+            description: ''
+            identifier: ''
+            label: ''
+            multiple: false
+            operator: ''
+            operator_id: ''
+            remember: false
+            remember_roles:
+              authenticated: authenticated
+            required: false
+            use_operator: false
+          exposed: false
+          field: promote
+          group: 1
+          group_info:
+            default_group: All
+            default_group_multiple: {  }
+            description: ''
+            group_items: {  }
+            identifier: ''
+            label: ''
+            multiple: false
+            optional: true
+            remember: false
+            widget: select
+          group_type: group
+          id: promote
+          is_grouped: false
+          operator: '='
+          relationship: none
+          table: node_field_data
+          value: '1'
+          plugin_id: boolean
+          entity_type: node
+          entity_field: promote
+        status:
+          expose:
+            operator: ''
+          field: status
+          group: 1
+          id: status
+          table: node_field_data
+          value: '1'
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+        langcode:
+          id: langcode
+          table: node_field_data
+          field: langcode
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            '***LANGUAGE_language_content***': '***LANGUAGE_language_content***'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: language
+          entity_type: node
+          entity_field: langcode
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            blog: blog
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      display_description: ''
+      pager:
+        type: none
+        options:
+          offset: 0
+      use_more: false
+      use_more_always: false
+      use_more_text: 'View more'
+      link_display: custom_url
+      link_url: blogs
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: 'View more'
+          empty: false
+          tokenize: false
+          content:
+            value: '<span data-align="center" class="mx-auto" ><a href="/blogs"><button class="btn btn-secondary">View more</button></a></span>'
+            format: full_html
+          plugin_id: text
+      block_description: 'ALL blogs'
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -479,8 +698,128 @@ display:
       tags: {  }
   page_1:
     display_options:
-      path: node
+      path: nnnn
       display_extenders: {  }
+      title: None
+      defaults:
+        title: false
+        style: false
+        row: false
+        filters: false
+        filter_groups: false
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 3
+          automatic_width: true
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: 'col-12 col-sm-6 col-lg-4'
+          row_class_default: false
+          row_class_custom: row
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: card
+      filters:
+        status:
+          expose:
+            operator: ''
+          field: status
+          group: 1
+          id: status
+          table: node_field_data
+          value: '1'
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+        langcode:
+          id: langcode
+          table: node_field_data
+          field: langcode
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            '***LANGUAGE_language_content***': '***LANGUAGE_language_content***'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: language
+          entity_type: node
+          entity_field: langcode
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            blog: blog
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      enabled: false
     display_plugin: page
     display_title: Page
     id: page_1

@@ -46,7 +46,6 @@
 .menu--navigation-prinicpale {
    li {
       display: inline-block;
-      font-weight: bold;
       color: $main-menu-shade;
       font-size: x-large;
       &:after {
@@ -59,8 +58,8 @@
       display: inline-block;
       color: $main-menu-shade !important;
       font-size: $font-size-lg;
-      &:hover {
-        color: $secondary-light !important;
+      &:hover, &.active {
+        font-weight: bold;
       }
    }
   }
