@@ -19,7 +19,7 @@ settings:
   id: 'block_content:403c8721-46d9-43dd-bacc-614e772b9c40'
   label: 'Blogs banner'
   provider: block_content
-  label_display: visible
+  label_display: '0'
   status: true
   info: ''
   view_mode: full

@@ -1,22 +1,22 @@
-uuid: 5a37d484-e773-46f3-96e8-14eb757943fe
+uuid: 64bbdf69-f843-4aac-9cb5-b816cd73b324
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:html:327e5b5b-b717-4f3d-bea7-2835b11b0353'
+    - 'block_content:html:aed15540-5fcf-467c-b6ed-2ec4ee6c92b6'
   module:
     - block_content
   theme:
     - sentinel_bootstrap_sass
-id: footerblock
+id: topfooterblock
 theme: sentinel_bootstrap_sass
 region: footer_fifth
-weight: 0
+weight: -9
 provider: null
-plugin: 'block_content:327e5b5b-b717-4f3d-bea7-2835b11b0353'
+plugin: 'block_content:aed15540-5fcf-467c-b6ed-2ec4ee6c92b6'
 settings:
-  id: 'block_content:327e5b5b-b717-4f3d-bea7-2835b11b0353'
-  label: 'Footer block'
+  id: 'block_content:aed15540-5fcf-467c-b6ed-2ec4ee6c92b6'
+  label: 'Top footer block'
   provider: block_content
   label_display: '0'
   status: true

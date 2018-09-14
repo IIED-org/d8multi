@@ -26,7 +26,7 @@ $brand-inverse: $primary-shade;
 // Body
 //
 // Settings for the `<body>` element.
-//$body-bg: $white;
+$body-bg: white;
 //$body-color: $gray-dark;
 $inverse-bg: $primary-light;
 //$inverse-color: $gray-lighter;
@@ -34,7 +34,7 @@ $inverse-bg: $primary-light;
 //
 // Style anchor elements.
 
-$main-menu-shade: $primary-dark;
+$main-menu-shade: $gray-800;
 $link-color: $accent-shade;
 $link-decoration: none;
 $link-hover-color: $primary-dark;

@@ -129,7 +129,10 @@ a {
   background-image: url(../images/image4.png);
 }
 .path-blogs .banner {
-  background-image: url(../images/logos.jpg);
+  background-image: url(../images/BlogsPageBannerOption3.png);
+  .jumbotron {
+    margin-top: 15rem;
+  }
 }
 
 /* Alternating blocks
@@ -142,11 +145,6 @@ a {
       background-color: $inverse-bg;
     }
 }
-
-.path-frontpage .block-views {
-    background-color: $inverse-bg;
-}
-
 
 /* Search results
 --------------------------------------------------*/
