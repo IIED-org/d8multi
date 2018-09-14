@@ -48,9 +48,5 @@ display:
           expose:
             label: Importance
       title: 'Entrées récentes du journal'
-      empty:
-        area:
-          content:
-            value: 'Aucune entrée du journal n''est disponible.'
   page:
     display_title: Page

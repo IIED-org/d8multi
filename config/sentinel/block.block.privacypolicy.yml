@@ -12,7 +12,7 @@ dependencies:
 id: privacypolicy
 theme: sentinel_bootstrap_sass
 region: featured_bottom_first
-weight: 0
+weight: -6
 provider: null
 plugin: 'block_content:9b0dd0b2-bdc9-4d96-8a06-f0fa364ca1fb'
 settings:

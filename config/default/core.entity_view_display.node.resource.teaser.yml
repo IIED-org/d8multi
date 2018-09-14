@@ -5,6 +5,13 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.resource.body
+    - field.field.node.resource.field_author_s_
+    - field.field.node.resource.field_file
+    - field.field.node.resource.field_image
+    - field.field.node.resource.field_link
+    - field.field.node.resource.field_material_type
+    - field.field.node.resource.field_pubdate
+    - field.field.node.resource.field_publisher
     - node.type.resource
   module:
     - text
@@ -25,5 +32,14 @@ content:
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
+  field_author_s_: true
+  field_file: true
+  field_image: true
+  field_link: true
+  field_material_type: true
+  field_pubdate: true
+  field_publisher: true
   langcode: true

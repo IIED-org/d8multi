@@ -14,7 +14,7 @@ settings:
   uri_scheme: public
   default_image:
     uuid: ''
-    alt: ''
+    alt: 'Cover image'
     title: ''
     width: null
     height: null

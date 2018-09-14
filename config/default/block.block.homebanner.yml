@@ -1,0 +1,31 @@
+uuid: a5747541-d528-4459-95e2-17c9227a17fb
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:html:b6960b1e-22d9-4745-b889-0120e8bc33a2'
+  module:
+    - block_content
+    - system
+  theme:
+    - landcam_bootstrap_sass
+id: homebanner
+theme: landcam_bootstrap_sass
+region: featured_top
+weight: 0
+provider: null
+plugin: 'block_content:b6960b1e-22d9-4745-b889-0120e8bc33a2'
+settings:
+  id: 'block_content:b6960b1e-22d9-4745-b889-0120e8bc33a2'
+  label: 'Home banner'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

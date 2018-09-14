@@ -3,13 +3,19 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.card
     - core.entity_view_mode.node.rss
     - core.entity_view_mode.node.teaser
     - field.storage.node.body
     - field.storage.node.field_date
     - field.storage.node.field_image
     - image.style.medium
+    - node.type.event
+    - node.type.news
+    - node.type.resource
   module:
+    - datetime
+    - ds
     - image
     - node
     - text
@@ -34,41 +40,7 @@ display:
       cache:
         type: tag
         options: {  }
-      empty:
-        area_text_custom:
-          admin_label: ''
-          content: 'No front page content has been created yet.<br/>Follow the <a target="_blank" href="https://www.drupal.org/docs/user_guide/en/index.html">User Guide</a> to start building your site.'
-          empty: true
-          field: area_text_custom
-          group_type: group
-          id: area_text_custom
-          label: ''
-          relationship: none
-          table: views
-          tokenize: false
-          plugin_id: text_custom
-        node_listing_empty:
-          admin_label: ''
-          empty: true
-          field: node_listing_empty
-          group_type: group
-          id: node_listing_empty
-          label: ''
-          relationship: none
-          table: node
-          plugin_id: node_listing_empty
-          entity_type: node
-        title:
-          id: title
-          table: views
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          empty: true
-          title: 'Welcome to [site:name]'
-          plugin_id: title
+      empty: {  }
       exposed_form:
         type: basic
         options:
@@ -80,44 +52,6 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       filters:
-        promote:
-          admin_label: ''
-          expose:
-            description: ''
-            identifier: ''
-            label: ''
-            multiple: false
-            operator: ''
-            operator_id: ''
-            remember: false
-            remember_roles:
-              authenticated: authenticated
-            required: false
-            use_operator: false
-          exposed: false
-          field: promote
-          group: 1
-          group_info:
-            default_group: All
-            default_group_multiple: {  }
-            description: ''
-            group_items: {  }
-            identifier: ''
-            label: ''
-            multiple: false
-            optional: true
-            remember: false
-            widget: select
-          group_type: group
-          id: promote
-          is_grouped: false
-          operator: '='
-          relationship: none
-          table: node_field_data
-          value: '1'
-          plugin_id: boolean
-          entity_type: node
-          entity_field: promote
         status:
           expose:
             operator: ''
@@ -138,6 +72,7 @@ display:
           admin_label: ''
           operator: in
           value:
+            '***LANGUAGE_language_interface***': '***LANGUAGE_language_interface***'
             '***LANGUAGE_language_content***': '***LANGUAGE_language_content***'
           group: 1
           exposed: false
@@ -169,27 +104,94 @@ display:
           plugin_id: language
           entity_type: node
           entity_field: langcode
-      pager:
-        type: full
-        options:
-          items_per_page: 10
-          offset: 0
-          id: 0
-          total_pages: 0
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            news: news
+            event: event
+          group: 1
+          exposed: false
           expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          tags:
-            previous: '‹ Previous'
-            next: 'Next ›'
-            first: '« First'
-            last: 'Last »'
-          quantity: 9
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+        field_image_target_id:
+          id: field_image_target_id
+          table: node__field_image
+          field: field_image_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: 'not empty'
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: numeric
+      pager:
+        type: some
+        options:
+          items_per_page: 3
+          offset: 0
       query:
         type: views_query
         options:
@@ -241,11 +243,20 @@ display:
           uses_fields: false
       title: ''
       header: {  }
-      footer: {  }
+      footer:
+        view:
+          id: view
+          table: views
+          field: view
+          plugin_id: view
       relationships: {  }
       fields: {  }
       arguments: {  }
       display_extenders: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     display_plugin: default
     display_title: Master
     id: default
@@ -253,10 +264,205 @@ display:
     cache_metadata:
       contexts:
         - 'languages:language_interface'
-        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       max-age: -1
+      tags: {  }
+  block_1:
+    display_plugin: block
+    id: block_1
+    display_title: 'Latest resources'
+    position: 3
+    display_options:
+      display_extenders: {  }
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 4
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: 'col col-12 col-sm-4'
+          row_class_default: false
+          row_class_custom: row
+      defaults:
+        style: false
+        row: false
+        filters: false
+        filter_groups: false
+        title: false
+        header: false
+        footer: false
+        sorts: false
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: card
+      filters:
+        status:
+          expose:
+            operator: ''
+          field: status
+          group: 1
+          id: status
+          table: node_field_data
+          value: '1'
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+        langcode:
+          id: langcode
+          table: node_field_data
+          field: langcode
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            '***LANGUAGE_language_interface***': '***LANGUAGE_language_interface***'
+            '***LANGUAGE_language_content***': '***LANGUAGE_language_content***'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: language
+          entity_type: node
+          entity_field: langcode
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            resource: resource
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      title: 'Latest resources'
+      display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "<h3>[view:title]&nbsp;&nbsp;<a href=\"/library\"><button class=\"btn btn-outline-secondary\" type=\"button\">See all</button></a></h3>\n<br />"
+            format: full_html
+          plugin_id: text
+      footer: {  }
+      sorts:
+        sticky:
+          admin_label: ''
+          expose:
+            label: ''
+          exposed: false
+          field: sticky
+          group_type: group
+          id: sticky
+          order: DESC
+          relationship: none
+          table: node_field_data
+          plugin_id: boolean
+          entity_type: node
+          entity_field: sticky
+        field_pubdate_value:
+          id: field_pubdate_value
+          table: node__field_pubdate
+          field: field_pubdate_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          granularity: day
+          plugin_id: datetime
+        created:
+          field: created
+          id: created
+          order: DESC
+          table: node_field_data
+          plugin_id: date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+          entity_type: node
+          entity_field: created
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
       tags: {  }
   feed_1:
     display_plugin: feed
@@ -286,6 +492,7 @@ display:
           relationship: none
           view_mode: rss
       display_extenders: {  }
+      enabled: false
     cache_metadata:
       contexts:
         - 'languages:language_interface'
@@ -300,25 +507,38 @@ display:
       style:
         type: grid
         options:
-          grouping: {  }
+          uses_fields: false
           columns: 3
           automatic_width: false
           alignment: horizontal
           col_class_default: false
-          col_class_custom: col-md-4
+          col_class_custom: 'col col-12 col-sm-4'
           row_class_default: false
           row_class_custom: row
       defaults:
         style: false
         row: false
         fields: false
+        header: false
+        footer: false
+        title: false
       row:
-        type: fields
+        type: 'ds_entity:node'
         options:
-          default_field_elements: true
-          inline: {  }
-          separator: ''
-          hide_empty: false
+          relationship: none
+          view_mode: card
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+            item_0: teaser
+            item_1: teaser
+            item_2: teaser
+          grouping_fieldset:
+            group: false
+            group_field: node_field_data|sticky
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
       fields:
         view_node_1:
           id: view_node_1
@@ -744,6 +964,22 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "<h3>Latest news&nbsp;&nbsp;<a href=\"/news\"><button class=\"btn btn-outline-secondary\" type=\"button\">See all</button></a></h3>\n<br />"
+            format: full_html
+          plugin_id: text
+      footer: {  }
+      title: Home
     display_plugin: page
     display_title: Page
     id: page_1
@@ -752,7 +988,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       max-age: -1
