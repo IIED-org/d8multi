@@ -16,12 +16,9 @@
 vendor
 
 # Ignore configuration files that may contain sensitive information.
-docroot/sites/*/settings*.php
+# docroot/sites/*/settings*.php
 docroot/sites/*/services*.yml
 docroot/sites/development.services.yml
-
-# Multi-site custom modules & themes (managed via subrepo)
-# docroot/sites/*/*/custom
 
 # Ignore paths that contain user-generated content.
 docroot/files

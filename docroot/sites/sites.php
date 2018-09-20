@@ -65,4 +65,3 @@
  $sites['landcam-stage.ac.iied.org'] = 'landcam';
  $sites['landcam-prod.ac.iied.org'] = 'landcam';
  $sites['landcam.org'] = 'landcam';
- 
