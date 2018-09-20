@@ -21,7 +21,7 @@ docroot/sites/*/services*.yml
 docroot/sites/development.services.yml
 
 # Ignore multi-site custom modules & themes (managed separately)
-docroot/sites/*/custom
+docroot/sites/*/*/custom
 
 # Ignore paths that contain user-generated content.
 docroot/files
