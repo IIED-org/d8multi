@@ -1,0 +1,20 @@
+uuid: 6bee350e-e271-429f-bf3f-eef62f348dd6
+langcode: en
+status: true
+dependencies:
+  theme:
+    - sentinel_bootstrap_sass
+_core:
+  default_config_hash: PffmQ-ABSz5tFjWmVsR7NesunDnEivvopnJnBjl8KNE
+id: sentinel_bootstrap_sass_local_actions
+theme: sentinel_bootstrap_sass
+region: content
+weight: -4
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

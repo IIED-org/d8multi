@@ -1,0 +1,9 @@
+uuid: e498aa63-b903-463c-924a-e510473d5f13
+langcode: und
+status: true
+dependencies: {  }
+name: 'Article type'
+vid: article_type
+description: ''
+hierarchy: 0
+weight: 0

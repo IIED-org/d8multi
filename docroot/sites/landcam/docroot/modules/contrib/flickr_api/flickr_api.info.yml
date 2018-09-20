@@ -1,0 +1,13 @@
+name: Flickr API Integration
+description: 'Flickr API and Drupal integration.'
+package: Flickr
+configure: flickr_api.settings
+
+type: module
+# core: 8.x
+
+# Information added by Drupal.org packaging script on 2018-03-19
+version: '8.x-1.2'
+core: '8.x'
+project: 'flickr_api'
+datestamp: 1521477224

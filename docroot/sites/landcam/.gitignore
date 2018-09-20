@@ -1,0 +1,35 @@
+# This file contains default .gitignore rules. To use it, copy it to .gitignore,
+# and it will cause files like your settings.php and user-uploaded files to be
+# excluded from Git version control. This is a common strategy to avoid
+# accidentally including private information in public repositories and patch
+# files.
+#
+# Because .gitignore can be specific to your site, this file has a different
+# name; updating Drupal core will not override your custom .gitignore file.
+
+# Ignore core when managing all of a project's dependencies with Composer
+# including Drupal core.
+# core
+
+# Core's dependencies are managed with Composer.
+# Not on Acquia they ain't!!
+vendor
+
+# Ignore configuration files that may contain sensitive information.
+docroot/sites/*/settings*.php
+docroot/sites/*/services*.yml
+docroot/sites/development.services.yml
+
+# Ignore multi-site custom modules & themes (managed separately)
+docroot/sites/*/custom
+
+# Ignore paths that contain user-generated content.
+docroot/files
+docroot/sites/*/files
+docroot/sites/*/private
+
+# Ignore SimpleTest multi-site environment.
+docroot/sites/simpletest
+
+# Acquia
+acquia-files

@@ -1,0 +1,14 @@
+uuid: c08278e4-aa84-48c3-8037-8a242c8e17a7
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
+id: view
+label: View
+icon_uuid: null
+description: 'Insert a view into a node'
+behavior_plugins: {  }

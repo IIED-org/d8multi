@@ -1,0 +1,17 @@
+uuid: dd08a154-f2e3-421a-a3f4-01e60bea118d
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Organisation
+type: organisation
+description: 'Partner content type with logo'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

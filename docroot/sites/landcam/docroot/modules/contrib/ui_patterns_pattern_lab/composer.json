@@ -1,0 +1,17 @@
+{
+  "name": "drupal/ui_patterns_pattern_lab",
+  "description": " UI Patterns Pattern Lab",
+  "keywords": ["drupal", "web", "ui"],
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
+  "require": {
+    "drupal/ui_patterns": "^1.0@RC",
+    "spatie/yaml-front-matter": "^2.0"
+  }
+}

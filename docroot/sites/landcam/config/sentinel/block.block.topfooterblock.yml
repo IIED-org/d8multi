@@ -1,0 +1,25 @@
+uuid: 74a320b1-6ec0-4cb2-924c-b966ced7756b
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:html:b3378e10-fdda-43f3-afdb-410ece6627da'
+  module:
+    - block_content
+  theme:
+    - sentinel_bootstrap_sass
+id: topfooterblock
+theme: sentinel_bootstrap_sass
+region: footer_fifth
+weight: -10
+provider: null
+plugin: 'block_content:b3378e10-fdda-43f3-afdb-410ece6627da'
+settings:
+  id: 'block_content:b3378e10-fdda-43f3-afdb-410ece6627da'
+  label: 'Top footer block'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

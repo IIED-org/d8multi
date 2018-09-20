@@ -1,0 +1,13 @@
+name: ZURB Foundation Layouts
+type: module
+description: Provides ZURB Foundation grid system layouts.
+# core: 8.x
+package: Layout
+dependencies:
+  - layout_discovery
+
+# Information added by Drupal.org packaging script on 2017-04-23
+version: '8.x-6.0'
+core: '8.x'
+project: 'foundation_layouts'
+datestamp: 1492945746

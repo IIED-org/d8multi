@@ -1,0 +1,27 @@
+uuid: fd24bd04-a683-4724-b493-a00b52936471
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_file
+    - node.type.resource
+  module:
+    - file
+id: node.resource.field_file
+field_name: field_file
+entity_type: node
+bundle: resource
+label: File
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: resources
+  file_extensions: 'txt pdf doc docx xls xlsx jpg jpeg gif png ppt pptx ppsx pptm'
+  max_filesize: ''
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

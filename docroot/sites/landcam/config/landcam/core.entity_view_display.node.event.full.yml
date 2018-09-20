@@ -1,0 +1,138 @@
+uuid: 69ae34a4-a7da-49ef-a72a-d2de43d08576
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.event.body
+    - field.field.node.event.field_daterange
+    - field.field.node.event.field_documents
+    - field.field.node.event.field_image
+    - image.style.large
+    - node.type.event
+  module:
+    - colorbox
+    - datetime_range
+    - ds
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: bs_2col_stacked
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        layout:
+          wrapper: div
+          classes:
+            row: row
+          add_layout_class: 1
+          attributes: ''
+        regions:
+          top:
+            wrapper: div
+            classes:
+              col-sm-12: col-sm-12
+            add_region_classes: 1
+            attributes: ''
+          left:
+            wrapper: div
+            classes:
+              col-sm-6: col-sm-6
+            add_region_classes: 1
+            attributes: ''
+          right:
+            wrapper: div
+            classes:
+              col-sm-6: col-sm-6
+            add_region_classes: 1
+            attributes: ''
+          bottom:
+            wrapper: div
+            classes:
+              col-sm-12: col-sm-12
+            add_region_classes: 1
+            attributes: ''
+    regions:
+      top:
+        - node_title
+      left:
+        - field_image
+      right:
+        - field_daterange
+        - body
+        - field_documents
+        - links
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+id: node.event.full
+targetEntityType: node
+bundle: event
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    region: right
+  field_daterange:
+    weight: 2
+    label: inline
+    settings:
+      timezone_override: ''
+      date_format: Y-m-d
+      separator: '-'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: Date
+            lb-col: false
+            classes: {  }
+    type: daterange_custom
+    region: right
+  field_documents:
+    weight: 4
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: right
+  field_image:
+    weight: 1
+    label: hidden
+    settings:
+      colorbox_node_style: large
+      colorbox_node_style_first: ''
+      colorbox_image_style: ''
+      colorbox_gallery: post
+      colorbox_gallery_custom: ''
+      colorbox_caption: auto
+      colorbox_caption_custom: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: colorbox
+    region: left
+  links:
+    weight: 5
+    region: right
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true

@@ -1,0 +1,20 @@
+uuid: aafa2ae7-c9da-4d10-8486-f1a7f18c6b5a
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - landcam_bootstrap_sass
+id: landcam_bootstrap_sass_searchform
+theme: landcam_bootstrap_sass
+region: primary_menu
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form'
+  provider: search
+  label_display: '0'
+visibility: {  }

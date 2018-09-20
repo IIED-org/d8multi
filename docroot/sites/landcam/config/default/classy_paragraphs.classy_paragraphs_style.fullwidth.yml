@@ -1,0 +1,7 @@
+uuid: b4d8783e-ce80-406c-951b-17055cbe8f1b
+langcode: en
+status: true
+dependencies: {  }
+id: fullwidth
+label: Fullwidth
+classes: container-fluid

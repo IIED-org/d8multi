@@ -1,0 +1,17 @@
+uuid: e2fc122b-5c46-45d6-b5d6-d51cdb2dd191
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Page
+type: page
+description: 'Static page for rarely-changing content'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

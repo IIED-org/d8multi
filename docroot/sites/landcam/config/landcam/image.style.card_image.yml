@@ -1,0 +1,30 @@
+uuid: e7a01782-7cda-4987-8d79-6925b5f2242c
+langcode: en
+status: true
+dependencies: {  }
+name: card_image
+label: 'Card image'
+effects:
+  9b251427-768c-4d90-9e48-fb53681bb726:
+    uuid: 9b251427-768c-4d90-9e48-fb53681bb726
+    id: image_scale
+    weight: -10
+    data:
+      width: 400
+      height: null
+      upscale: true
+  523f0be0-60ed-44a7-bb6d-56995a5262a5:
+    uuid: 523f0be0-60ed-44a7-bb6d-56995a5262a5
+    id: image_crop
+    weight: -8
+    data:
+      width: 400
+      height: 267
+      anchor: center-top
+  ef75224c-378d-4d9f-9f04-5dbdf05e2851:
+    uuid: ef75224c-378d-4d9f-9f04-5dbdf05e2851
+    id: image_resize
+    weight: 3
+    data:
+      width: 340
+      height: 227

@@ -1,0 +1,31 @@
+uuid: bfe0e95d-286a-4294-8c43-e9a88e1e9951
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:html:06167515-9c5d-458b-9c5e-9c72491fa038'
+  module:
+    - block_content
+    - system
+  theme:
+    - seven
+id: seven_homebanner
+theme: seven
+region: header
+weight: 0
+provider: null
+plugin: 'block_content:06167515-9c5d-458b-9c5e-9c72491fa038'
+settings:
+  id: 'block_content:06167515-9c5d-458b-9c5e-9c72491fa038'
+  label: 'Home banner'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

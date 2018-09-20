@@ -1,0 +1,15 @@
+uuid: 7a2ccc56-123d-46f3-95b9-770702e9b1e1
+langcode: en
+status: true
+dependencies: {  }
+name: large_squarecrop
+label: 'Large square crop 650'
+effects:
+  ff151377-98d4-4b82-b414-67883b1f07aa:
+    uuid: ff151377-98d4-4b82-b414-67883b1f07aa
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 650
+      height: 650
+      anchor: center-center

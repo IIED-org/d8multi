@@ -1,0 +1,8 @@
+uuid: 934615cc-506b-4e30-ad67-f52d4e05843f
+langcode: fr
+status: true
+dependencies: {  }
+id: navigation-prinicpale
+label: 'Navigation principale'
+description: ''
+locked: false
