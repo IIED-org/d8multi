@@ -1,5 +1,0 @@
-# Schema for the configuration files of the Bootstrap SASS Subtheme.
-
-landcam_bootstrap_sass.settings:
-  type: theme_settings
-  label: 'LandCam Bootstrap SASS theme settings'
