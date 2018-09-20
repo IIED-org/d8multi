@@ -1,0 +1,45 @@
+/* VARIABLES */
+// colors
+$main-menu-shade: #8B5050;
+$primary-shade: #25A590;
+$primary-light: lighten($primary-shade, 37%);
+$primary-dark: darken($primary-shade, 12%);
+$secondary-shade: #FF5F41;
+$secondary-light: lighten($secondary-shade, 37%);
+$accent-shade: #325935;
+$accent-light: #D9DFDA;
+$accent-dark: darken($accent-shade, 12%);
+// Reassign color vars to semantic color scheme
+$red: #dc3545;
+$yellow: #ffc107;
+$green: #28a745;
+$cyan: #17a2b8;
+$gray-100: #ECECEC !default;
+$gray-800: #343a40 !default;
+$theme-colors: ( primary: $primary-shade, secondary: $secondary-shade, success: $green, info: $cyan, warning: $yellow, danger: $red, light: $gray-100, dark: $gray-800);
+$brand-primary: $accent-shade;
+//$brand-success: $green;
+//$brand-info: $teal;
+//$brand-warning: $orange;
+//$brand-danger: $red;
+$brand-inverse: $primary-shade;
+// Body
+//
+// Settings for the `<body>` element.
+//$body-bg: $white;
+//$body-color: $gray-dark;
+$inverse-bg: $primary-shade;
+//$inverse-color: $gray-lighter;
+// Links
+//
+// Style anchor elements.
+$link-color: $primary-shade;
+$link-decoration: none;
+$link-hover-color: $primary-dark;
+$link-hover-decoration: underline;
+// Comments
+$comment-spacer-x: 1.25em;
+$comment-spacer-y: 1.25em;
+
+//font-awesome
+$fa-font-path:        "../fontawesome/webfonts";

@@ -1,0 +1,140 @@
+/*
+Theme Name: Bootstrap 4 Sass
+Description: Bootstrap 4 with Sass
+*/
+
+// import files
+@import "import";
+
+/* GENERAL STYLES
+-------------------------------------------------*/
+
+body {
+    background: $white;
+}
+
+
+/* COLORS
+--------------------------------------------------*/
+
+a {
+    color: $primary-shade;
+}
+
+.bg-inverse {
+    background: $accent-shade !important;
+}
+
+.site-footer {
+    background: $accent-light !important;
+}
+
+.menu--main,
+.menu--navigation-prinicpale {
+   li a {
+      color: $main-menu-shade;
+      font-size: $font-size-lg;
+  }
+}
+
+.menu--account li a {
+    color: $main-menu-shade;
+}
+
+/* Custom settings
+-------------------------------------------------- */
+
+.site-name-slogan a {
+    text-decoration: none;
+}
+
+/* Cards
+--------------------------------------------------*/
+
+.card-group img {
+    margin: 0;
+    width: 100%;
+    height: auto;
+}
+
+.card-group .field--type-image {
+    margin: 0
+}
+
+.card {
+  cursor: pointer;
+  min-height: 25rem;
+  a:hover {
+    background-color: $secondary-shade;
+    text-decoration: none;
+  }
+  p {
+    padding: 0 .5rem;
+    font-weight: $font-weight-bold;
+  }
+  .field--name-field-daterange,
+  .field--name-field-date,
+  .field--name-field-pubdate,
+  .field--name-field-author-s- {
+   position: absolute;
+   bottom: .5rem;
+   padding: 0 .5rem;
+   font-size: $font-size-xs;
+  }
+  .field--type-image {
+    margin: 0;
+  }
+  .field--name-field-pubdate {
+    right: 0;
+  }
+}
+
+.slick {
+    width: 100%;
+}
+
+.slick>div {
+    margin: 0 15px;
+}
+
+/* Home page specific
+--------------------------------------------------*/
+
+.banner {
+  background-image: url(../images/banner.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.jumbotron .container {
+  margin-top: 5rem;
+}
+
+.path-frontpage {
+  #main-wrapper {
+    padding-top: 0;
+  }
+  #content {
+    .block {
+      padding: 2rem 0;
+      &:nth-child(odd) {
+        background-color: $gray-100;
+      }
+    }
+  }
+}
+
+/* Search results
+--------------------------------------------------*/
+
+.node--view-mode-search-result {
+  margin-bottom: .5rem;
+  padding: .25rem;
+  cursor: pointer;
+  &:hover, &:focus {
+    background-color: $gray-100;
+    h2 {
+      color: $primary-shade;
+    }
+  }
+}
