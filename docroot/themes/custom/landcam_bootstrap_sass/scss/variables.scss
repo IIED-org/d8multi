@@ -9,6 +9,7 @@ $secondary-light: lighten($secondary-shade, 37%);
 $accent-shade: #325935;
 $accent-light: #D9DFDA;
 $accent-dark: darken($accent-shade, 12%);
+$semi-transparent: rgba(0,0,0,0.33);
 // Reassign color vars to semantic color scheme
 $red: #dc3545;
 $yellow: #ffc107;

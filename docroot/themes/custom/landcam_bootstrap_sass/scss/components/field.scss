@@ -120,6 +120,12 @@
   position: relative;
 }
 
+figcaption {
+  margin-top: -1rem;
+  font-size: $font-size-sm;
+  font-style: italic;
+}
+
 .card-img-top {
   .field--name-bundle-fieldnode,
   .field--name-field-material-type {
@@ -131,6 +137,12 @@
     background: $secondary-shade;
     opacity:0.8;
     color: $white;
+  }
+  figure {
+    margin: 0;
+  }
+  figcaption {
+    display: none;
   }
 }
 

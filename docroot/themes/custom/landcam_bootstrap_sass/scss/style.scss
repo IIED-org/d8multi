@@ -100,14 +100,12 @@ a {
 /* Home page specific
 --------------------------------------------------*/
 
-.banner {
+.featured-top {
   background-image: url(../images/banner.jpg);
   background-repeat: no-repeat;
   background-size: auto;
-}
-
-.jumbotron .container {
-  margin-top: 5rem;
+  background-attachment: fixed;
+  background-position: center top;
 }
 
 .path-frontpage {
@@ -127,13 +125,15 @@ a {
 /* Search results
 --------------------------------------------------*/
 
-.node--view-mode-search-result {
+.node--view-mode-search-result,
+.node--view-mode-teaser {
   margin-bottom: .5rem;
   padding: .25rem;
   cursor: pointer;
+  width: 100%;
   &:hover, &:focus {
     background-color: $gray-100;
-    h2 {
+    h3 {
       color: $primary-shade;
     }
   }
