@@ -30,3 +30,6 @@ docroot/sites/simpletest
 
 # Acquia
 acquia-files
+
+# Node
+node_modules
