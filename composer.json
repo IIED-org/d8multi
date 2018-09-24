@@ -74,7 +74,8 @@
         "Add startup configuration for PHP server": "https://www.drupal.org/files/issues/2018-08-22/2457999-183.patch"
       },
       "drupal/ds": {
-        "Fix language render issue": "https://www.drupal.org/files/issues/2018-05-17/ds-getLangcode.patch"
+        "Fix language render issue": "https://www.drupal.org/files/issues/2018-05-17/ds-getLangcode.patch",
+        "Fix token with external url": "https://www.drupal.org/files/issues/2018-05-25/2975313.patch"
       }
     }
   },

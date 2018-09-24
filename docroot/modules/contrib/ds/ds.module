@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Display\EntityDisplayInterface;
@@ -558,7 +559,12 @@ function ds_preprocess_ds_layout(&$variables) {
     }
 
     if (!empty($url)) {
-      $url = Url::fromUri('internal:/' . $url);
+      if (!UrlHelper::isExternal($url)) {
+        $url = Url::fromUri('internal:/' . $url);
+      }
+      else {
+        $url = Url::fromUri($url);
+      }
       $variables['attributes']['onclick'] = 'location.href=\'' . $url->toString() . '\'';
     }
   }
