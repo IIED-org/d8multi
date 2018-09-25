@@ -15,9 +15,9 @@
     "author": "@hatuhay",
     "license": "MIT",
     "dependencies": {
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^4.1.3",
         "hoek": "^5.0.4",
-        "mdbootstrap": "^4.5.9"
+        "mdbootstrap": "^4.5.10"
     },
     "devDependencies": {
         "browser-sync": "^2.24.7",
@@ -25,11 +25,9 @@
         "gulp-autoprefixer": "^4.1.0",
         "gulp-compress": "0.0.9",
         "gulp-concat": "^2.6.1",
-        "gulp-clean-css": "^1.0",
+        "gulp-minify-css": "^1.2.4",
         "gulp-sass": "^3.2.1",
         "gulp-sourcemaps": "^2.6.4",
-        "gulp-uglify": "^3.0.1",
-        "jquery": "^1.9.1",
-        "popper.js": "^1.12.9"
+        "gulp-uglify": "^3.0.1"
     }
 }

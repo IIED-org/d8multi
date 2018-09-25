@@ -1,5 +1,13 @@
 .jumbotron {
   background: transparent;
-  width: 100%;
-  color: white;
+  color: $white;
+}
+
+.jumbotron .container {
+  margin-top: 5rem;
+}
+
+.jumbotron .col {
+  background: $semi-transparent;
+  padding: 1rem;
 }

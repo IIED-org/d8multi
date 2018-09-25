@@ -5,3 +5,7 @@ Fix language render issue
 Source: https://www.drupal.org/files/issues/2018-05-17/ds-getLangcode.patch
 
 
+Fix token with external url
+Source: https://www.drupal.org/files/issues/2018-05-25/2975313.patch
+
+

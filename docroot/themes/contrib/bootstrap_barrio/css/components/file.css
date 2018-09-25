@@ -6,7 +6,7 @@
 /* File icons.*/
 
 .file {
-  padding-left: 20px; /* LTR */
+  /* padding-left: 20px; */ /* LTR */
   display: inline-block;
   min-height: 16px;
   background-repeat: no-repeat;

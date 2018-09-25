@@ -9,10 +9,11 @@ $secondary-light: lighten($secondary-shade, 37%);
 $accent-shade: #325935;
 $accent-light: #D9DFDA;
 $accent-dark: darken($accent-shade, 12%);
+$semi-transparent: rgba(28,71,43,0.5);
 // Reassign color vars to semantic color scheme
-$red: #dc3545;
+$red: #FF5F41;
 $yellow: #ffc107;
-$green: #28a745;
+$green: #70C5A0;
 $cyan: #17a2b8;
 $gray-100: #ECECEC !default;
 $gray-800: #343a40 !default;
