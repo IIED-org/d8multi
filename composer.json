@@ -50,7 +50,8 @@
     "drupal/pathauto": "^1.2",
     "drupal/entity": "^1.0",
     "drupal/addtoany": "^1.10",
-    "drupal/contact_block": "^1.4"
+    "drupal/contact_block": "^1.4",
+    "drupal/media_entity_flickr": "^4"
   },
   "require-dev": {
     "drupal/devel": "^1.0",
