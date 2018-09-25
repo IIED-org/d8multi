@@ -31,6 +31,7 @@ a {
   section {
     padding: 1rem 0;
     max-width: unset;
+    margin: auto -15px;
     &:nth-child(3n+1),
     &:nth-child(3n+3) {
       color: white !important;
