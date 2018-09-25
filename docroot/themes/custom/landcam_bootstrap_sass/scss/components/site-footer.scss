@@ -8,6 +8,7 @@
     .layout-container {
         padding: 0 $spacer;
     }
+    background: $accent-light !important;
 }
 
 
@@ -20,14 +21,15 @@
 
 /* Footer Bottom Styling. */
 
-.site-footer__bottom .block {
-    margin: ($spacer / 2) 0;
-}
-
-.site-footer__bottom .content {
-    padding: ($spacer / 2) 0;
-    margin-top: 0;
-    color: $dark;
-    width: 90%;
-    margin: 0 auto;
+.site-footer__bottom {
+  border: none !important;
+  margin-top: 0;
+  @extend .container;
+  .block {
+    margin: ($spacer / 2) auto;
+  }
+  .content {
+      padding: ($spacer / 2) 0;
+      color: $dark;
+  }
 }
