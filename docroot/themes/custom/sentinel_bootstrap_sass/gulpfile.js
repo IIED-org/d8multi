@@ -2,10 +2,9 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
 var concat = require("gulp-concat");
-var minifyCss = require("gulp-clean-css");
+var minifyCss = require("gulp-minify-css");
 var uglify = require("gulp-uglify");
 var sourcemaps = require('gulp-sourcemaps');
-var prod = false;
 
 // Compile sass into CSS & auto-inject into browsers
 gulp.task('sass', function() {
@@ -13,9 +12,9 @@ gulp.task('sass', function() {
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(sass({ outputStyle: 'nested' }))
-        .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write()) // Comment out in prod mode
         .pipe(gulp.dest("css"))
-        //.pipe(minifyCss())
+        //.pipe(minifyCss()) // Comment out in dev mode
         .pipe(browserSync.stream());
 });
 
@@ -34,7 +33,7 @@ gulp.task('serve', ['sass'], function() {
     });
 
     gulp.watch(['node_modules/bootstrap/scss/bootstrap.scss', 'scss/*.scss', 'scss/components/*.scss'], ['sass']);
-    gulp.watch("src/*.html").on('change', browserSync.reload);
+    //    gulp.watch("src/*.html").on('change', browserSync.reload);
 });
 
 gulp.task('default', ['js', 'serve']);
