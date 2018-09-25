@@ -57,7 +57,8 @@
     "drupal/stage_file_proxy": "^1.0"
   },
   "conflict": {
-    "drupal/core": "7.*"
+    "drupal/core": "7.*",
+    "doctrine/common": ">2.8"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
