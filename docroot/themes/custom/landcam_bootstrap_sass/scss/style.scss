@@ -21,6 +21,10 @@ a {
     color: $primary-shade;
 }
 
+.contextual-region .contextual .contextual-links a {
+    color: #333 !important;
+  }
+
 .bg-inverse {
   background: $accent-shade !important;
   color: white !important;
