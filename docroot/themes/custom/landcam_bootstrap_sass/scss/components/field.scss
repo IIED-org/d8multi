@@ -53,14 +53,14 @@
     .node .field--type-image+.field--type-image {
         clear: both;
     }
-}
 
-.field--type-image img,
-.field--name-field-user-picture img,
-.field--name-field-file img {
-    margin: 0 0 $spacer;
-    width: 100%;
-    height: auto;
+  .field--type-image img,
+  .field--name-field-user-picture img,
+  .field--name-field-file img {
+      margin: 0 0 $spacer;
+      width: 100%;
+      height: auto;
+    }
 }
 
 .field--type-image a {

@@ -23,7 +23,7 @@ a {
 
 .contextual-region .contextual .contextual-links a {
     color: #333 !important;
-  }
+}
 
 .bg-inverse {
   background: $accent-shade !important;
@@ -139,6 +139,16 @@ a {
 
 .slick>div {
     margin: 0 15px;
+}
+
+/* Resource specific
+--------------------------------------------------*/
+
+.node--type-resource .node--view-mode-card {
+  .field--type-image {
+    margin: $spacer auto;
+  }
+  
 }
 
 /* Home page specific
