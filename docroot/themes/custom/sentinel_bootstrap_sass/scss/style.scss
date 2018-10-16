@@ -94,7 +94,7 @@ a {
 --------------------------------------------------*/
 
 .logo {
-  @include text-hide;
+  @include text-hide; // to be removed
   background-image: url(../logo.png);
   width: 127px;
   height: 35px;
