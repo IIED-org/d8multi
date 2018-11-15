@@ -81,6 +81,13 @@
         "Fix language render issue": "https://www.drupal.org/files/issues/2018-05-17/ds-getLangcode.patch",
         "Fix token with external url": "https://www.drupal.org/files/issues/2018-05-25/2975313.patch"
       }
+    },
+    "drupal-scaffold": {
+      "source": "https://raw.githubusercontent.com/drupal/drupal/{version}/{path}",
+      "excludes": [
+        ".htaccess",
+        "robots.txt"
+      ]
     }
   },
   "scripts": {
