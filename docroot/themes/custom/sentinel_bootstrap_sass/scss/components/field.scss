@@ -143,3 +143,13 @@
     }
   }
 }
+
+.node--view-mode-full,
+.node--view-mode-search-result {
+  .field--label-inline .field__label {
+  font-weight: $font-weight-bold;
+    &:after {
+      content: ": ";
+    }
+  }
+}
