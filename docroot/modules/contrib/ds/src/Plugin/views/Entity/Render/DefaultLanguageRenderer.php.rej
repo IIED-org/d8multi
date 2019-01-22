@@ -1,0 +1,27 @@
+***************
+*** 14,26 ****
+     *
+     * @param \Drupal\views\ResultRow $row
+     *   The result row.
+-    * @param $relationship
+-    *   The relationship.
+     *
+     * @return string
+     *   A language code.
+     */
+-   public function getLangcode(ResultRow $row, $relationship = NULL) {
+      return $row->_entity->getUntranslated()->language()->getId();
+    }
+  
+--- 14,24 ----
+     *
+     * @param \Drupal\views\ResultRow $row
+     *   The result row.
+     *
+     * @return string
+     *   A language code.
+     */
++   public function getLangcode(ResultRow $row) {
+      return $row->_entity->getUntranslated()->language()->getId();
+    }
+  
