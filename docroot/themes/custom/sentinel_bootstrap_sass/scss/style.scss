@@ -152,13 +152,19 @@ a {
 /* Search results
 --------------------------------------------------*/
 
-.node--view-mode-search-result {
+.node--view-mode-search-result,
+.node--view-mode-teaser {
+  margin-bottom: .5rem;
+  padding: .25rem;
   cursor: pointer;
+  width: 100%;
   &:hover, &:focus {
     background-color: $gray-100;
+    h3 {
+      color: $primary-shade;
+    }
   }
 }
-
 
 /* Organisations etc.
 --------------------------------------------------*/
