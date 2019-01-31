@@ -54,6 +54,15 @@
       &:last-child:after {
         content: none;
       }
+     li {
+        &:after {
+           content: none;
+         }
+         a {
+           font-size: $font-size-base;
+         }
+      }
+    }
    a {
       display: inline-block;
       color: $main-menu-shade !important;
@@ -62,13 +71,17 @@
         font-weight: bold;
       }
    }
-  }
 }
 
 .menu--account li a {
     color: $main-menu-shade;
 }
 
+.navbar-collapse li {
+ &:after {
+    content: none;
+  }
+}
 
 @media (max-width: 47.9em) {
     .navbar-toggleable-sm .navbar-nav .nav-item+.nav-item,

@@ -11,11 +11,11 @@ gulp.task('sass', function() {
     return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'scss/style.scss'])
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
-        //.pipe(sass({ outputStyle: 'nested' })) // Comment out in prod mode
-        .pipe(sass({ outputStyle: 'compressed' })) // Comment out in dev mode
-        //.pipe(sourcemaps.write()) // Comment out in prod mode
+        .pipe(sass({ outputStyle: 'nested' })) // Comment out in prod mode
+        //.pipe(sass({ outputStyle: 'compressed' })) // Comment out in dev mode
+        .pipe(sourcemaps.write()) // Comment out in prod mode
         .pipe(gulp.dest("css"))
-        .pipe(minifyCss()) // Comment out in dev mode
+        //.pipe(minifyCss()) // Comment out in dev mode
         .pipe(browserSync.stream());
 });
 
