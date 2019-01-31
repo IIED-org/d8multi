@@ -119,9 +119,12 @@ a {
     display: none; //Hide display suite title
   }
 }
-.page-node-11 .banner {
-  background-image: url(../images/cover-cropped-1920by670.png);
+.page-node-11, .page-node-216 {
+  .banner {
+    background-image: url(../images/cover-cropped-1920by670.png);
+  }
 }
+
 .page-node-14 .banner {
   background-image: url(../images/image3.png);
 }
