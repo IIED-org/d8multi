@@ -44,25 +44,24 @@
 
 .menu--main,
 .menu--navigation-prinicpale {
-   li {
+   li.nav-item {
       display: inline-block;
       color: $main-menu-shade;
       font-size: x-large;
       &:after {
-        content: "\a0 | \a0";
+        content: "|";
       }
       &:last-child:after {
         content: none;
       }
-     li {
-        &:after {
-           content: none;
-         }
-         a {
-           font-size: $font-size-base;
-         }
+      li.dropdown-item {
+          &:after {
+             content: none;
+           }
+           a {
+             font-size: $font-size-base;
+           }
       }
-    }
    a {
       display: inline-block;
       color: $main-menu-shade !important;
@@ -71,6 +70,7 @@
         font-weight: bold;
       }
    }
+ }
 }
 
 .menu--account li a {
