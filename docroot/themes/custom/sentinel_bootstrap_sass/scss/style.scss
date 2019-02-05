@@ -18,7 +18,7 @@ body {
 --------------------------------------------------*/
 
 a {
-    color: $primary-shade;
+    color: $red;
 }
 
 .bg-inverse {
@@ -174,4 +174,8 @@ a {
   border: solid 1px $gray-100;
   width: 100px;
   height: auto;
+}
+
+img.align-left {
+  margin: 0 1rem 2rem 0;
 }

@@ -13,7 +13,7 @@ gulp.task('sass', function() {
         .pipe(sass().on('error', sass.logError))
         //.pipe(sass({ outputStyle: 'nested' })) // Comment out in prod mode
         .pipe(sass({ outputStyle: 'compressed' })) // Comment out in dev mode
-        //.pipe(sourcemaps.write()) // Comment out in prod mode
+        .pipe(sourcemaps.write()) // Comment out in prod mode
         .pipe(gulp.dest("css"))
         .pipe(minifyCss()) // Comment out in dev mode
         .pipe(browserSync.stream());
