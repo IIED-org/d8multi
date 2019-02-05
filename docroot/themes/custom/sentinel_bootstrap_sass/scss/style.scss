@@ -52,12 +52,13 @@ a {
 .card {
   cursor: pointer;
   min-height: 25rem;
+  margin-bottom: 1rem;
   a:hover {
     text-decoration: none;
   }
   p, strong {
     display: block;
-    padding: 0 .5rem;
+    padding: 0 .5rem .5rem;
   }
   .field--name-field-daterange,
   .field--name-field-date,

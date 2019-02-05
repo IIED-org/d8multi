@@ -9,6 +9,9 @@
 }
 .path-frontpage .jumbotron {
   padding: 1rem 1rem 2rem;
+  @include media-breakpoint-up(xs) {
+    margin: 1rem .5rem;
+  }
   @include media-breakpoint-up(sm) {
     margin: 10rem 3rem 0;
 
