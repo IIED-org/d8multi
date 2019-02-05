@@ -178,5 +178,15 @@ a {
 }
 
 img.align-left {
-  margin: 0 1rem 2rem 0;
+  margin: 0 1rem 1rem 0;
+}
+
+.field-organisation-logo {
+  height:250px;
+  width:250px;
+  float:right;
+  background-color:$body-bg;
+  img {
+    margin-top:33.3%;
+  }
 }
