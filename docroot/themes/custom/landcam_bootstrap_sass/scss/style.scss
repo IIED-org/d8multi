@@ -148,7 +148,7 @@ a {
   .field--type-image {
     margin: $spacer auto;
   }
-  
+
 }
 
 /* Home page specific
@@ -193,5 +193,20 @@ a {
     h3 {
       color: $primary-shade;
     }
+  }
+}
+
+/* Mailchimp signup
+---------------------------------------------------*/
+.mailchimp-signup-subscribe-form {
+  @extend .container;
+  text-align: center;
+  form {
+    @extend .col-md-10;
+    margin: auto;
+  }
+  .mailchimp-newsletter-mergefields {
+    width: 310px;
+    margin: auto;
   }
 }
