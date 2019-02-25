@@ -181,13 +181,15 @@ a {
 
 .block-facets {
   @extend .form-control;
+  height: auto;
 }
 
 .facets-widget-checkbox ul {
   margin-left: -2rem;
   list-style: none;
   label {
-    padding-left: .5rem;
+    display: inline;
+    padding: 0 .5rem;
   }
 }
 
