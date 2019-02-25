@@ -36,6 +36,15 @@ a {
     text-decoration: none;
 }
 
+/* Node & taxonomy term views
+-------------------------------------------------- */
+
+.node--view-mode-full, .taxonomy-term--view-mode-full {
+  .field--name-node-title, .field--name-taxonomy-term-title {
+    margin-top: 2rem;
+  }
+}
+
 /* Cards
 --------------------------------------------------*/
 
@@ -56,7 +65,7 @@ a {
   a:hover {
     text-decoration: none;
   }
-  p, strong {
+  .field--name-node-title {
     display: block;
     padding: 0 .5rem .5rem;
   }
@@ -98,7 +107,6 @@ a {
 --------------------------------------------------*/
 
 .logo {
-  @include text-hide; // to be removed
   background-image: url(../logo.png);
   width: 127px;
   height: 35px;

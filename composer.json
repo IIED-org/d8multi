@@ -56,7 +56,8 @@
     "drupal/google_analytics": "^2.3",
     "drupal/eu_cookie_compliance": "^1.2",
     "drupal/readonlymode": "^1.0",
-    "drupal/mailchimp": "^1.8"
+    "drupal/mailchimp": "^1.8",
+    "drupal/facets": "^1.2"
   },
   "require-dev": {
     "drupal/devel": "^1.0",
