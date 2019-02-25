@@ -107,6 +107,7 @@ a {
 --------------------------------------------------*/
 
 .logo {
+  @include text-hide;
   background-image: url(../logo.png);
   width: 127px;
   height: 35px;
@@ -178,7 +179,11 @@ a {
   }
 }
 
-.facets-widget-checkbox {
+.block-facets {
+  @extend .form-control;
+}
+
+.facets-widget-checkbox ul {
   margin-left: -2rem;
   list-style: none;
   label {
