@@ -23,7 +23,12 @@
     margin: auto;
     float: none;
   }
-  h2, a {
+  h2 {
+    color: inherit;
+    text-transform: none;
+    font-size: $h2-font-size;
+  }
+  a {
     color: inherit !important;
     font-weight: bold;
   }
