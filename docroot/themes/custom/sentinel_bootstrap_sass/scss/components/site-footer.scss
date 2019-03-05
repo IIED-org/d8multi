@@ -13,15 +13,30 @@
 
 /* Footer Top Styling. */
 
+@media all and (min-width: 560px) {
+  .site-footer__top, .site-footer__middle {
+    .region {
+      position: relative;
+      width: 100%;
+    }
+  }
+}
+
+@media all and (min-width: 851px) {
+  .site-footer__top, .site-footer__middle {
+    .region {
+      float: left;
+      width: 50%;
+      padding: 0 1%;
+    }
+  }
+}
+
 .site-footer__top {
+  @extend .container;
   .content {
     margin-top: 0;
     color: $dark;
-  }
-  .region-footer-first {
-    width: 100% !important;
-    margin: auto;
-    float: none;
   }
   h2 {
     color: inherit;
@@ -32,6 +47,12 @@
     color: inherit !important;
     font-weight: bold;
   }
+}
+
+/* Footer Middle Styling. */
+.site-footer__middle {
+  background-color: white;
+  margin: 0 -15px;
 }
 
 
@@ -46,7 +67,6 @@
     padding: ($spacer / 2) 0;
     margin-top: 0;
     color: $dark;
-    width: 90%;
     margin: 0 auto;
   }
     .block-views {
@@ -63,6 +83,7 @@
 }
 
 .site-footer .navbar-nav {
+  @extend .container;
   flex-direction: row;
   .nav-link {
     padding: .25rem 1rem;
