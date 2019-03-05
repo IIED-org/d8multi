@@ -13,8 +13,20 @@
 
 /* Footer Top Styling. */
 
-.site-footer__top .content {
+.site-footer__top {
+  .content {
     margin-top: 0;
+    color: $dark;
+  }
+  .region-footer-first {
+    width: 100% !important;
+    margin: auto;
+    float: none;
+  }
+  h2, a {
+    color: inherit !important;
+    font-weight: bold;
+  }
 }
 
 
