@@ -15,6 +15,10 @@
     .block {
       border: none;
     }
+    img {
+      margin: .25rem;
+      max-width: 100%;
+    }
 }
 
 
@@ -70,18 +74,13 @@
 }
 
 .site-footer__bottom {
+  margin-top: 10px;
+  border: none;
   .content {
     padding: ($spacer / 2) 0;
     margin-top: 0;
     margin: 0 auto;
   }
-    .block-views {
-        background-color: $body-bg;
-    }
-    img {
-      margin: .25rem;
-      max-width: 100%;
-    }
 }
 
 #block-topfooterblock p {
