@@ -14,7 +14,7 @@ gulp.task('sass', function() {
         .pipe(sass({ outputStyle: 'compressed' }))
         //.pipe(sourcemaps.write()) // Comment out in prod mode
         .pipe(gulp.dest("css"))
-        .pipe(minifyCss()) // Comment out in dev mode
+        .pipe(minifyCss())
         .pipe(browserSync.stream());
 });
 

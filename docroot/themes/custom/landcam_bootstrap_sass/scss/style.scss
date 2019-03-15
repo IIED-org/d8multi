@@ -205,8 +205,8 @@ a {
     @extend .col-md-10;
     margin: auto;
   }
-  .mailchimp-newsletter-mergefields {
-    width: 310px;
-    margin: auto;
+  fieldset {
+    max-width: 310px;
+    display: inline-block;
   }
 }
