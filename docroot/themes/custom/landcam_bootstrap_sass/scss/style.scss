@@ -211,3 +211,16 @@ a {
     display: inline-block;
   }
 }
+
+/* eu_cookie_compliance banner
+--------------------------------------------------*/
+.eu-cookie-compliance-banner  {
+  background-color: #777;
+  .eu-cookie-compliance-message {
+    max-width: 80%;
+    margin-top: 1.5rem;
+  }
+  span {
+    color: white;
+  }
+}
