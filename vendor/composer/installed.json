@@ -2296,6 +2296,9 @@
                 "recurse": false,
                 "replace": false,
                 "merge-extra": false
+            },
+            "patches_applied": {
+                "Entity Links fields does not have translation support": "https://www.drupal.org/files/issues/2019-01-05/2877994-88.patch"
             }
         },
         "installation-source": "dist",
