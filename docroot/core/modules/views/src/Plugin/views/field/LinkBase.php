@@ -3,8 +3,8 @@
 namespace Drupal\views\Plugin\views\field;
 
 use Drupal\Core\Access\AccessManagerInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Routing\RedirectDestinationTrait;
@@ -46,7 +46,7 @@ abstract class LinkBase extends FieldPluginBase {
   /**
    * The entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   protected $entityManager;
 
@@ -61,23 +61,15 @@ abstract class LinkBase extends FieldPluginBase {
    *   The plugin implementation definition.
    * @param \Drupal\Core\Access\AccessManagerInterface $access_manager
    *   The access manager.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity type manager.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, AccessManagerInterface $access_manager, EntityManagerInterface $entity_manager = NULL, LanguageManagerInterface $language_manager = NULL) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, AccessManagerInterface $access_manager, EntityTypeManagerInterface $entity_manager, LanguageManagerInterface $language_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->accessManager = $access_manager;
-    if (!$entity_manager) {
-      @trigger_error('Passing the entity manager service to \Drupal\views\Plugin\views\field\LinkBase::__construct is required since 8.7.0, see https://www.drupal.org/node/3023427.', E_USER_DEPRECATED);
-      $entity_manager = \Drupal::service('entity.manager');
-    }
     $this->entityManager = $entity_manager;
-    if (!$language_manager) {
-      @trigger_error('Passing the language manager service to \Drupal\views\Plugin\views\field\LinkBase::__construct is required since 8.7.0, see https://www.drupal.org/node/3023427.', E_USER_DEPRECATED);
-      $language_manager = \Drupal::service('language_manager');
-    }
     $this->languageManager = $language_manager;
   }
 
@@ -238,7 +230,10 @@ abstract class LinkBase extends FieldPluginBase {
   }
 
   /**
-   * {@inheritdoc}
+   * Returns the entity type manager.
+   *
+   * @return \Drupal\Core\Entity\EntityTypeManagerInterface
+   *   The entity manager.
    */
   protected function getEntityManager() {
     return $this->entityManager;

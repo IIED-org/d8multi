@@ -80,7 +80,7 @@
     },
     "patches": {
       "drupal/core": {
-        "Entity Links fields does not have translation support": "https://www.drupal.org/files/issues/2019-01-05/2877994-88.patch"
+        "Entity Links fields does not have translation support": "https://www.drupal.org/files/issues/2018-03-23/2877994-22.patch"
       },
       "drupal/drupal": {
         "Add startup configuration for PHP server": "https://www.drupal.org/files/issues/2018-08-22/2457999-183.patch"
