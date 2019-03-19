@@ -125,7 +125,8 @@ a {
    padding: 0 .5rem;
    font-size: $font-size-xs;
   }
-  .field--type-image {
+  .field--type-image,
+  .field--type-video-embed-field {
     margin: 0;
   }
   .field--name-field-pubdate {

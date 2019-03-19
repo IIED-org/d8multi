@@ -56,7 +56,8 @@
 
   .field--type-image img,
   .field--name-field-user-picture img,
-  .field--name-field-file img {
+  .field--name-field-file img,
+  .field--type-video-embed-field img {
       margin: 0 0 $spacer;
       width: 100%;
       height: auto;
@@ -116,7 +117,8 @@
     display: inline-block
 }
 
-.field--type-image {
+.field--type-image,
+.field--type-video-embed-field {
   position: relative;
 }
 
