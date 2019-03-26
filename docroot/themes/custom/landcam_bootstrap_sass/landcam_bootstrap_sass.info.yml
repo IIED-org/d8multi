@@ -28,6 +28,7 @@ regions:
   featured_bottom_first: 'Featured bottom first'
   featured_bottom_second: 'Featured bottom second'
   featured_bottom_third: 'Featured bottom third'
+  featured_bottom_fourth: 'Featured bottom fourth'
   footer_first: 'Footer first'
   footer_second: 'Footer second'
   footer_third: 'Footer third'
@@ -38,4 +39,3 @@ regions:
 version: '8.x-1.5'
 core: '8.x'
 project: 'bootstrap_sass'
-datestamp: 1528736598
