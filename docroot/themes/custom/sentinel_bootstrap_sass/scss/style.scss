@@ -197,7 +197,7 @@ a {
 /* Organisations etc.
 --------------------------------------------------*/
 
-.node--type-organisation .field--name-body img {
+.node--type-organisation .main-content .field--name-body img {
   margin: 0 1rem 1rem 0;
   border: solid 1px $gray-100;
   width: 100px;
@@ -214,6 +214,25 @@ img.align-left {
   float:right;
   background-color:$body-bg;
   img {
-    margin-top:33.3%;
+    margin: 1rem 0;
   }
+}
+
+.ds-2col-stacked-fluid > .group-right,
+.ds-2col-stacked-fluid > .group-left {
+  @include media-breakpoint-down(sm) {
+    float: none;
+    width: 100%;
+    .field-organisation-logo {
+      float: none;
+      height: auto;
+      img {
+        margin: 1rem 0;
+      }
+    }
+  }
+}
+
+iframe > html {
+  overflow: hidden;
 }
