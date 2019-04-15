@@ -24,20 +24,22 @@ class Event extends Facade
      * Replace the bound instance with a fake.
      *
      * @param  array|string  $eventsToFake
-     * @return void
+     * @return \Illuminate\Support\Testing\Fakes\EventFake
      */
     public static function fake($eventsToFake = [])
     {
         static::swap($fake = new EventFake(static::getFacadeRoot(), $eventsToFake));
 
         Model::setEventDispatcher($fake);
+
+        return $fake;
     }
 
     /**
      * Replace the bound instance with a fake during the given callable's execution.
      *
      * @param  callable  $callable
-     * @param  array|string  $eventsToFake
+     * @param  array  $eventsToFake
      * @return callable
      */
     public static function fakeFor(callable $callable, array $eventsToFake = [])

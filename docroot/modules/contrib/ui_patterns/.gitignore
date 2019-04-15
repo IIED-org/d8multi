@@ -1,7 +1,8 @@
-vendor
-behat.yml
-composer.lock
-docs/_build
-build/
-phpunit.xml
-behat.yml
+/.idea
+/vendor
+/composer.lock
+/docs/_build
+/build/
+/phpunit.xml
+/docker-compose.override.yml
+/runner.yml

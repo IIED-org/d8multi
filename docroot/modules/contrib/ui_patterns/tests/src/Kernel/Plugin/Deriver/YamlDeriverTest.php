@@ -13,13 +13,20 @@ use Drupal\ui_patterns\UiPatterns;
 class YamlDeriverTest extends AbstractUiPatternsTest {
 
   /**
+   * {@inheritdoc}
+   */
+  public static $modules = [
+    'ui_patterns',
+  ];
+
+  /**
    * Test get derivative definitions.
    *
    * @covers ::getDerivativeDefinitions
    */
   public function testGetDerivativeDefinitions() {
     foreach (UiPatterns::getManager()->getDefinitions() as $definition) {
-      expect($definition)->to->have->keys(['id', 'provider', 'base path']);
+      $this->assertArrayHasKey(['id', 'provider', 'base path'], $definition);
     }
   }
 

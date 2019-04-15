@@ -21,7 +21,7 @@ class FieldTemplateProcessor implements FieldTemplateProcessorInterface {
   /**
    * {@inheritdoc}
    */
-  public function process(&$variables) {
+  public function process(array &$variables) {
     $this->variables = $variables;
 
     $content = [];
@@ -34,6 +34,7 @@ class FieldTemplateProcessor implements FieldTemplateProcessorInterface {
       $content['pattern_' . $delta] = [
         '#type' => 'pattern',
         '#id' => $this->getPatternId(),
+        '#variant' => $this->getVariant(),
         '#fields' => $fields,
         '#context' => $this->getContext(),
         '#multiple_sources' => TRUE,
@@ -47,12 +48,12 @@ class FieldTemplateProcessor implements FieldTemplateProcessorInterface {
    * Get source value.
    *
    * @param array $mapping
-   *    Mapping array.
+   *   Mapping array.
    * @param int $delta
-   *    Field delta.
+   *   Field delta.
    *
    * @return mixed
-   *    Source value.
+   *   Source value.
    */
   public function getSourceValue(array $mapping, $delta) {
     $value = $this->variables['items'][$delta]['content'];
@@ -68,7 +69,7 @@ class FieldTemplateProcessor implements FieldTemplateProcessorInterface {
    * Get field parent entity.
    *
    * @return \Drupal\Core\Entity\ContentEntityBase
-   *    Parent entity.
+   *   Parent entity.
    */
   protected function getEntity() {
     return $this->variables['element']['#object'];
@@ -78,27 +79,52 @@ class FieldTemplateProcessor implements FieldTemplateProcessorInterface {
    * Get Pattern ID.
    *
    * @return string
-   *    Pattern ID.
+   *   Pattern ID.
    */
   protected function getPatternId() {
-    return $this->variables['ds-config']['settings']['pattern'];
+    return $this->getSetting('pattern');
   }
 
   /**
    * Get mapping settings.
    *
-   * @return mixed
-   *    Mapping settings.
+   * @return array
+   *   Mapping settings.
    */
   protected function getMapping() {
-    return $this->variables['ds-config']['settings']['pattern_mapping'];
+    return $this->getSetting('pattern_mapping', []);
+  }
+
+  /**
+   * Get mapping settings.
+   *
+   * @return string
+   *   Mapping settings.
+   */
+  protected function getVariant() {
+    return $this->getSetting('pattern_variant');
+  }
+
+  /**
+   * Get setting value or default to given value if none set.
+   *
+   * @param string $name
+   *   Setting name.
+   * @param string $default
+   *   Setting default value.
+   *
+   * @return mixed
+   *   Setting value.
+   */
+  protected function getSetting($name, $default = '') {
+    return isset($this->variables['ds-config']['settings'][$name]) ? $this->variables['ds-config']['settings'][$name] : $default;
   }
 
   /**
    * Get field name.
    *
    * @return string
-   *    Field name.
+   *   Field name.
    */
   protected function getFieldName() {
     return $this->variables['field_name'];
@@ -108,10 +134,10 @@ class FieldTemplateProcessor implements FieldTemplateProcessorInterface {
    * Extract column name from a source name.
    *
    * @param string $source
-   *    Source name.
+   *   Source name.
    *
    * @return string
-   *    Column name.
+   *   Column name.
    */
   protected function getColumnName($source) {
     return str_replace($this->getFieldName() . '__', '', $source);
@@ -121,7 +147,7 @@ class FieldTemplateProcessor implements FieldTemplateProcessorInterface {
    * Get pattern context.
    *
    * @return array
-   *    Pattern context.
+   *   Pattern context.
    */
   protected function getContext() {
     $element = $this->variables['element'];

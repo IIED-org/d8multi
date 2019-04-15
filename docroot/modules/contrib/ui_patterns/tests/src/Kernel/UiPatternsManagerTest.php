@@ -12,6 +12,13 @@ use Drupal\ui_patterns\UiPatterns;
 class UiPatternsManagerTest extends AbstractUiPatternsTest {
 
   /**
+   * {@inheritdoc}
+   */
+  public static $modules = [
+    'ui_patterns',
+  ];
+
+  /**
    * Test UiPatternsManager::getPatternDefinition.
    *
    * @covers ::getPatternDefinition
@@ -21,7 +28,7 @@ class UiPatternsManagerTest extends AbstractUiPatternsTest {
     $definitions = $manager->getDefinitions();
 
     foreach ($manager->getPatterns() as $pattern) {
-      expect($pattern->getBaseId())->to->equal($definitions[$pattern->getPluginId()]->id());
+      $this->assertEquals($definitions[$pattern->getPluginId()]->id(), $pattern->getBaseId());
     }
   }
 
