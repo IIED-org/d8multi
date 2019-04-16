@@ -3,12 +3,15 @@
  * Global utilities.
  *
  */
-// (function ($, Drupal) {
-//
-//   'use strict';
-//
-//   Drupal.behaviors.bootstrap_barrio_subtheme = {
-//     attach: function (context, settings) {
+(function ($, Drupal) {
+
+   'use strict';
+
+   Drupal.behaviors.bootstrap_barrio_subtheme = {
+   attach: function (context, settings) {
+
+     $('.facet-empty').parent().parent().hide();
+
 //
 //       $('.page-node-1 .carousel').wrap('<div class="col-12 col-md-10 col-lg-8" />');
 //       $('.path-node .node--type-page').addClass('row');
@@ -33,7 +36,6 @@
 //
 //
 //
-//     }
-//   };
-//
-// })(jQuery, Drupal);
+    }
+  };
+})(jQuery, Drupal);
