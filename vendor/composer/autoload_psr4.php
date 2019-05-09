@@ -72,6 +72,7 @@ return array(
     'FontLib\\' => array($vendorDir . '/phenx/php-font-lib/src/FontLib'),
     'FileEye\\MimeMap\\' => array($vendorDir . '/fileeye/mimemap/src'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
+    'Egulias\\EmailValidator\\' => array($vendorDir . '/egulias/email-validator/EmailValidator'),
     'Drush\\Internal\\' => array($vendorDir . '/drush/drush/internal-copy'),
     'Drush\\' => array($vendorDir . '/drush/drush/src'),
     'Drupal\\ui_patterns\\' => array($baseDir . '/docroot/modules/contrib/ui_patterns/src'),

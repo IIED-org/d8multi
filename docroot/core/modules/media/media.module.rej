@@ -1,0 +1,16 @@
+***************
+*** 77,82 ****
+      'media_oembed_iframe' => [
+        'variables' => [
+          'media' => NULL,
+        ],
+      ],
+    ];
+--- 77,83 ----
+      'media_oembed_iframe' => [
+        'variables' => [
+          'media' => NULL,
++         'placeholder_token' => '',
+        ],
+      ],
+    ];
