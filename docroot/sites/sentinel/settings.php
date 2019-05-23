@@ -553,6 +553,13 @@ if ($settings['hash_salt']) {
  */
 # $settings['file_private_path'] = '';
 
+if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+  $settings['file_private_path'] = '/mnt/files/' . $_ENV['AH_SITE_GROUP'] . '.' . $_ENV['AH_SITE_ENVIRONMENT'] . '/' . $site_path . '/files-private';
+}
+else {
+  $settings['file_private_path'] = '{PATH}';
+}
+
 /**
  * Session write interval:
  *
