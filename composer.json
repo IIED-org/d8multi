@@ -64,7 +64,8 @@
     "drupal/google_tag": "^1.1",
     "drupal/http_response_headers": "^2.0@alpha",
     "drupal/acquia_purge": "^1.0@beta",
-    "drupal/webform": "^5.2"
+    "drupal/webform": "^5.2",
+    "wikimedia/composer-merge-plugin": "^1.4"
   },
   "require-dev": {
     "drupal/devel": "^1.0",
@@ -104,6 +105,9 @@
         ".htaccess",
         "robots.txt"
       ]
+    },
+    "merge-plugin": {
+      "include": ["docroot/modules/contrib/webform/composer.libraries.json"]
     }
   },
   "scripts": {

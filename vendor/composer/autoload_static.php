@@ -53,6 +53,7 @@ class ComposerStaticInitdc417df6cd2696403bcacb909f58b9ba
         ),
         'W' => 
         array (
+            'Wikimedia\\Composer\\' => 19,
             'Webmozart\\PathUtil\\' => 19,
             'Webmozart\\Assert\\' => 17,
         ),
@@ -219,6 +220,10 @@ class ComposerStaticInitdc417df6cd2696403bcacb909f58b9ba
         'XdgBaseDir\\' => 
         array (
             0 => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src',
+        ),
+        'Wikimedia\\Composer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src',
         ),
         'Webmozart\\PathUtil\\' => 
         array (
@@ -3553,12 +3558,12 @@ class ComposerStaticInitdc417df6cd2696403bcacb909f58b9ba
         'Egulias\\EmailValidator\\Exception\\DomainHyphened' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/DomainHyphened.php',
         'Egulias\\EmailValidator\\Exception\\DotAtEnd' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/DotAtEnd.php',
         'Egulias\\EmailValidator\\Exception\\DotAtStart' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/DotAtStart.php',
-        'Egulias\\EmailValidator\\Exception\\ExpectedQPair' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingQPair.php',
         'Egulias\\EmailValidator\\Exception\\ExpectingAT' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingAT.php',
         'Egulias\\EmailValidator\\Exception\\ExpectingATEXT' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingATEXT.php',
         'Egulias\\EmailValidator\\Exception\\ExpectingCTEXT' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingCTEXT.php',
         'Egulias\\EmailValidator\\Exception\\ExpectingDTEXT' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingDTEXT.php',
         'Egulias\\EmailValidator\\Exception\\ExpectingDomainLiteralClose' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingDomainLiteralClose.php',
+        'Egulias\\EmailValidator\\Exception\\ExpectingQPair' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingQPair.php',
         'Egulias\\EmailValidator\\Exception\\InvalidEmail' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/InvalidEmail.php',
         'Egulias\\EmailValidator\\Exception\\NoDNSRecord' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/NoDNSRecord.php',
         'Egulias\\EmailValidator\\Exception\\NoDomainPart' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/NoDomainPart.php',
@@ -4202,6 +4207,7 @@ class ComposerStaticInitdc417df6cd2696403bcacb909f58b9ba
         'Illuminate\\Contracts\\Container\\ContextualBindingBuilder' => __DIR__ . '/..' . '/illuminate/contracts/Container/ContextualBindingBuilder.php',
         'Illuminate\\Contracts\\Cookie\\Factory' => __DIR__ . '/..' . '/illuminate/contracts/Cookie/Factory.php',
         'Illuminate\\Contracts\\Cookie\\QueueingFactory' => __DIR__ . '/..' . '/illuminate/contracts/Cookie/QueueingFactory.php',
+        'Illuminate\\Contracts\\Database\\Events\\MigrationEvent' => __DIR__ . '/..' . '/illuminate/contracts/Database/Events/MigrationEvent.php',
         'Illuminate\\Contracts\\Database\\ModelIdentifier' => __DIR__ . '/..' . '/illuminate/contracts/Database/ModelIdentifier.php',
         'Illuminate\\Contracts\\Debug\\ExceptionHandler' => __DIR__ . '/..' . '/illuminate/contracts/Debug/ExceptionHandler.php',
         'Illuminate\\Contracts\\Encryption\\DecryptException' => __DIR__ . '/..' . '/illuminate/contracts/Encryption/DecryptException.php',
@@ -4326,6 +4332,7 @@ class ComposerStaticInitdc417df6cd2696403bcacb909f58b9ba
         'Illuminate\\Support\\Traits\\ForwardsCalls' => __DIR__ . '/..' . '/illuminate/support/Traits/ForwardsCalls.php',
         'Illuminate\\Support\\Traits\\Localizable' => __DIR__ . '/..' . '/illuminate/support/Traits/Localizable.php',
         'Illuminate\\Support\\Traits\\Macroable' => __DIR__ . '/..' . '/illuminate/support/Traits/Macroable.php',
+        'Illuminate\\Support\\Traits\\Tappable' => __DIR__ . '/..' . '/illuminate/support/Traits/Tappable.php',
         'Illuminate\\Support\\ViewErrorBag' => __DIR__ . '/..' . '/illuminate/support/ViewErrorBag.php',
         'Interop\\Container\\ContainerInterface' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/ContainerInterface.php',
         'Interop\\Container\\Exception\\ContainerException' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/Exception/ContainerException.php',
@@ -6219,6 +6226,7 @@ class ComposerStaticInitdc417df6cd2696403bcacb909f58b9ba
         'Twig\\Node\\EmbedNode' => __DIR__ . '/..' . '/twig/twig/src/Node/EmbedNode.php',
         'Twig\\Node\\Expression\\AbstractExpression' => __DIR__ . '/..' . '/twig/twig/src/Node/Expression/AbstractExpression.php',
         'Twig\\Node\\Expression\\ArrayExpression' => __DIR__ . '/..' . '/twig/twig/src/Node/Expression/ArrayExpression.php',
+        'Twig\\Node\\Expression\\ArrowFunctionExpression' => __DIR__ . '/..' . '/twig/twig/src/Node/Expression/ArrowFunctionExpression.php',
         'Twig\\Node\\Expression\\AssignNameExpression' => __DIR__ . '/..' . '/twig/twig/src/Node/Expression/AssignNameExpression.php',
         'Twig\\Node\\Expression\\Binary\\AbstractBinary' => __DIR__ . '/..' . '/twig/twig/src/Node/Expression/Binary/AbstractBinary.php',
         'Twig\\Node\\Expression\\Binary\\AddBinary' => __DIR__ . '/..' . '/twig/twig/src/Node/Expression/Binary/AddBinary.php',
@@ -6578,6 +6586,13 @@ class ComposerStaticInitdc417df6cd2696403bcacb909f58b9ba
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Webmozart\\PathUtil\\Path' => __DIR__ . '/..' . '/webmozart/path-util/src/Path.php',
         'Webmozart\\PathUtil\\Url' => __DIR__ . '/..' . '/webmozart/path-util/src/Url.php',
+        'Wikimedia\\Composer\\Logger' => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src/Logger.php',
+        'Wikimedia\\Composer\\MergePlugin' => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src/MergePlugin.php',
+        'Wikimedia\\Composer\\Merge\\ExtraPackage' => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src/Merge/ExtraPackage.php',
+        'Wikimedia\\Composer\\Merge\\MissingFileException' => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src/Merge/MissingFileException.php',
+        'Wikimedia\\Composer\\Merge\\NestedArray' => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src/Merge/NestedArray.php',
+        'Wikimedia\\Composer\\Merge\\PluginState' => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src/Merge/PluginState.php',
+        'Wikimedia\\Composer\\Merge\\StabilityFlags' => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src/Merge/StabilityFlags.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'Zend\\Diactoros\\AbstractSerializer' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/AbstractSerializer.php',
         'Zend\\Diactoros\\CallbackStream' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/CallbackStream.php',
