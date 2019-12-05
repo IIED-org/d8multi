@@ -1,0 +1,25 @@
+uuid: ab230283-1f68-486e-9736-537df0a9d468
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video
+    - node.type.news
+  module:
+    - video_embed_field
+id: node.news.field_video
+field_name: field_video
+entity_type: node
+bundle: news
+label: Video
+description: 'Video source URL'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_providers:
+    vimeo: '0'
+    youtube: '0'
+    youtube_playlist: '0'
+field_type: video_embed_field

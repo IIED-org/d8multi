@@ -1,0 +1,42 @@
+uuid: 871bf042-7973-498c-9fae-06ffc2d22abd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.further_images.field_image
+    - field.field.paragraph.further_images.field_image_caption
+    - image.style.medium_540px_
+    - paragraphs.paragraphs_type.further_images
+  module:
+    - ds
+    - image
+    - text
+id: paragraph.further_images.default
+targetEntityType: paragraph
+bundle: further_images
+mode: default
+content:
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: medium_540px_
+      image_link: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: image
+    region: content
+  field_image_caption:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden: {  }

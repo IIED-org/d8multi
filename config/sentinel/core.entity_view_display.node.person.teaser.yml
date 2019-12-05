@@ -1,0 +1,136 @@
+uuid: ddba521c-64c9-4889-a5f7-5499f8759489
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.person.body
+    - field.field.node.person.field_country_advisory_group
+    - field.field.node.person.field_email
+    - field.field.node.person.field_external_advisory_group
+    - field.field.node.person.field_image
+    - field.field.node.person.field_link
+    - field.field.node.person.field_surname_for_sort
+    - field.field.node.person.field_theme
+    - image.style.thumbnail
+    - node.type.person
+  module:
+    - ds
+    - image
+    - link
+    - options
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          ds_content: {  }
+    regions:
+      ds_content:
+        - node_title
+        - field_image
+        - body
+        - field_email
+        - field_link
+        - field_external_advisory_group
+        - field_country_advisory_group
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h2
+          class: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.person.teaser
+targetEntityType: node
+bundle: person
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 2
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: ds_content
+  field_country_advisory_group:
+    type: list_default
+    weight: 6
+    region: ds_content
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+  field_email:
+    type: email_mailto
+    weight: 3
+    region: ds_content
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+  field_external_advisory_group:
+    type: boolean
+    weight: 5
+    region: ds_content
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+  field_image:
+    type: image
+    weight: 1
+    region: ds_content
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_link:
+    type: link
+    weight: 4
+    region: ds_content
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+hidden:
+  addtoany: true
+  field_surname_for_sort: true
+  field_theme: true
+  links: true

@@ -10,8 +10,8 @@ dependencies:
     - sentinel_bootstrap_sass
 id: views_block__organisations_block_2
 theme: sentinel_bootstrap_sass
-region: footer_fifth
-weight: -9
+region: footer_third
+weight: -14
 provider: null
 plugin: 'views_block:organisations-block_2'
 settings:

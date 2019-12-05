@@ -1,0 +1,25 @@
+uuid: 6711cab2-d88c-4518-9010-ac82048d91c7
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:html:51c43b3a-6286-4c84-a2a9-638a02178448'
+  module:
+    - block_content
+  theme:
+    - landcam_bootstrap_sass
+id: logoen
+theme: landcam_bootstrap_sass
+region: header
+weight: 0
+provider: null
+plugin: 'block_content:51c43b3a-6286-4c84-a2a9-638a02178448'
+settings:
+  id: 'block_content:51c43b3a-6286-4c84-a2a9-638a02178448'
+  label: Logo-EN
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

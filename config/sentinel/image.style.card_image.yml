@@ -1,0 +1,23 @@
+uuid: fae253c6-8bbb-49b0-b5b5-c753d640dd92
+langcode: en
+status: true
+dependencies: {  }
+name: card_image
+label: 'Card image'
+effects:
+  dce7dc70-ad44-4769-94eb-0c702a94e3c4:
+    uuid: dce7dc70-ad44-4769-94eb-0c702a94e3c4
+    id: image_scale_and_crop
+    weight: -9
+    data:
+      width: 340
+      height: 227
+      anchor: center-top
+  7ed11075-e053-4e17-9d3b-90e16c8de091:
+    uuid: 7ed11075-e053-4e17-9d3b-90e16c8de091
+    id: image_scale
+    weight: -10
+    data:
+      width: 400
+      height: 600
+      upscale: true

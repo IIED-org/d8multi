@@ -1,0 +1,30 @@
+uuid: b3440d45-bc17-46c6-bf42-4961177f21e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.partners
+  module:
+    - system
+    - views
+  theme:
+    - landcam_bootstrap_sass
+id: views_block__partners_block_1
+theme: landcam_bootstrap_sass
+region: featured_bottom_second
+weight: -10
+provider: null
+plugin: 'views_block:partners-block_1'
+settings:
+  id: 'views_block:partners-block_1'
+  label: Partners
+  provider: views
+  label_display: visible
+  views_label: Partners
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: "/about-us\r\n*/propos"
+    negate: false
+    context_mapping: {  }

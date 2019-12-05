@@ -1,0 +1,67 @@
+uuid: c81fd92a-9f15-4cda-bca6-b5893a2489e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.person.body
+    - field.field.node.person.field_country_advisory_group
+    - field.field.node.person.field_email
+    - field.field.node.person.field_external_advisory_group
+    - field.field.node.person.field_image
+    - field.field.node.person.field_link
+    - field.field.node.person.field_surname_for_sort
+    - field.field.node.person.field_theme
+    - image.style.thumbnail
+    - node.type.person
+  module:
+    - ds
+    - image
+    - text
+    - user
+id: node.person.search_result
+targetEntityType: node
+bundle: person
+mode: search_result
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 1
+    settings:
+      trim_length: 300
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    region: content
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: content
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: image
+    region: content
+hidden:
+  addtoany: true
+  field_country_advisory_group: true
+  field_email: true
+  field_external_advisory_group: true
+  field_link: true
+  field_surname_for_sort: true
+  field_theme: true
+  links: true

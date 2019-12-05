@@ -11,8 +11,8 @@ id: node.resource.body
 field_name: body
 entity_type: node
 bundle: resource
-label: Body
-description: ''
+label: Abstract
+description: 'Short description or summary'
 required: false
 translatable: true
 default_value: {  }

@@ -1,0 +1,45 @@
+uuid: 9d754ec7-c433-46f6-b59c-862e67fbbc93
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.subpage.body
+    - field.field.node.subpage.field_standfirst
+    - field.field.node.subpage.field_subtitle
+    - node.type.subpage
+  module:
+    - text
+    - user
+id: node.subpage.default
+targetEntityType: node
+bundle: subpage
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_standfirst:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_subtitle:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  addtoany: true

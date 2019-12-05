@@ -1,4 +1,4 @@
-default_form: feedback
+default_form: send_us_a_message
 flood:
   limit: 5
   interval: 3600

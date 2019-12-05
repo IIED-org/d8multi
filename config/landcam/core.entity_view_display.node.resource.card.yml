@@ -12,7 +12,7 @@ dependencies:
     - field.field.node.resource.field_material_type
     - field.field.node.resource.field_pubdate
     - field.field.node.resource.field_publisher
-    - image.style.card_image
+    - image.style.resource_card_image
     - node.type.resource
   module:
     - datetime
@@ -75,12 +75,19 @@ content:
     weight: 1
     label: hidden
     settings:
-      image_style: card_image
-      image_link: content
+      image_style: resource_card_image
+      image_link: ''
       tag: span
       fallback_formatter: file_default
       show_description: 0
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: pdfpreview
     region: first
   field_image:
@@ -89,7 +96,7 @@ content:
     region: first
     label: hidden
     settings:
-      image_style: card_image
+      image_style: resource_card_image
       image_link: ''
     third_party_settings:
       ds:
@@ -104,7 +111,14 @@ content:
     label: hidden
     settings:
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: entity_reference_label
     region: first
   field_pubdate:
@@ -112,9 +126,16 @@ content:
     label: hidden
     settings:
       timezone_override: ''
-      date_format: 'M Y'
-    third_party_settings: {  }
-    type: datetime_custom
+      format_type: month
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: datetime_default
     region: second
 hidden:
   body: true

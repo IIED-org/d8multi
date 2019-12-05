@@ -1,16 +1,4 @@
-label: 'Page d''accueil'
-description: 'Tout le contenu promu en page d''accueil.'
 display:
-  default:
-    display_options:
-      exposed_form:
-        options:
-          submit_button: Appliquer
-          reset_button_label: Réinitialiser
-          exposed_sorts_label: 'Trier par'
-    display_title: Maître
-  feed_1:
-    display_title: Flux
   page_1:
     display_options:
       fields:
@@ -23,14 +11,29 @@ display:
       header:
         area:
           content:
-            value: "<h3>Dernières nouvelles&nbsp;&nbsp;<a href=\"/fr/news\"><button class=\"btn btn-outline-secondary\">Voir toutes</button></a></h3>\r\n"
+            value: "<h3>Dernières actualités&nbsp;&nbsp;<a href=\"/fr/actualites\"><button class=\"btn btn-outline-secondary\">Tout voir</button></a></h3>\r\n"
             format: full_html
+    display_title: Page
   block_1:
     display_options:
       header:
         area:
           content:
-            value: '<h3>Dernières ressources&nbsp;&nbsp;<a href="/fr/library"><button class="btn btn-outline-secondary">Voir toutes</button></a></h3>'
+            value: "<h3>Dernières publications&nbsp;&nbsp;<a href=\"/fr/publications\"><button class=\"btn btn-outline-secondary\">Tout voir</button></a></h3>\r\n"
             format: full_html
-      title: 'Dernières ressources'
+      title: 'Dernières publications'
     display_title: 'Dernières ressources'
+  default:
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Appliquer
+          reset_button_label: Réinitialiser
+          exposed_sorts_label: 'Trier par'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+    display_title: Maître
+  feed_1:
+    display_title: Flux
+label: 'Page d''accueil'
+description: 'Tout le contenu promu en page d''accueil.'

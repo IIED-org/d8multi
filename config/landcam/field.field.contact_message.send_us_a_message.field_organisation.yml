@@ -1,0 +1,19 @@
+uuid: 869ef738-1cea-441f-9de5-50394c77f7a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.send_us_a_message
+    - field.storage.contact_message.field_organisation
+id: contact_message.send_us_a_message.field_organisation
+field_name: field_organisation
+entity_type: contact_message
+bundle: send_us_a_message
+label: Organisation
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

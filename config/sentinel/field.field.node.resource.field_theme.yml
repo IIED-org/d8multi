@@ -1,0 +1,29 @@
+uuid: 304fa1fd-5403-400b-96dc-db171b1bfb1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_theme
+    - node.type.resource
+    - taxonomy.vocabulary.research_themes
+id: node.resource.field_theme
+field_name: field_theme
+entity_type: node
+bundle: resource
+label: Theme(s)
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      research_themes: research_themes
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

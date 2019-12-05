@@ -6,7 +6,16 @@ classes:
   region:
     - banner
     - jumbotron
-  field: {  }
+    - media
+    - container
+    - col-12
+    - card
+    - col-md-10
+  field:
+    - media-body
+    - container
+    - col-12
+    - col-md-10
 use_field_names: true
 _core:
   default_config_hash: xfB0qOeoAomOThclNNokdKTrVwXLcXz13SU3-4a5-FY

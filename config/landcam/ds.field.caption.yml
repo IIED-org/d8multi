@@ -1,0 +1,11 @@
+id: caption
+label: Caption
+ui_limit: ''
+properties:
+  content:
+    value: "<span>[node:field_image:0:title]</span>\r\n"
+    format: full_html
+type: token
+type_label: 'Token field'
+entities:
+  node: node

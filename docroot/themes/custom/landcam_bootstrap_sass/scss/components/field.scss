@@ -123,9 +123,10 @@
 }
 
 figcaption {
-  margin-top: -1rem;
-  font-size: $font-size-sm;
+  //margin-top: -1rem;
+  @include font-size($figure-caption-font-size);
   font-style: italic;
+  color: $figure-caption-color;
 }
 
 .card-img-top {

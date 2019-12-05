@@ -32,6 +32,10 @@ third_party_settings:
         link_custom: ''
         classes:
           layout_class: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
     regions:
       header:
         - node_title
@@ -66,6 +70,33 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow-el: ''
+            ow-cl: ''
+            ow-at: ''
+            fis: true
+            fis-el: div
+            fis-cl: field-organisation-logo
+            fis-at: ''
+            fi: true
+            fi-el: div
+            fi-cl: text-center
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis-def-at: false
+            fi-def-at: false
     type: image
     region: right
 hidden:

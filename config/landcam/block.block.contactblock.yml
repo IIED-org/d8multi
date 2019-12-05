@@ -1,0 +1,29 @@
+uuid: b4960367-a8c6-40d6-9720-08dcb2e42b5e
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.send_us_a_message
+  module:
+    - contact_block
+    - system
+  theme:
+    - landcam_bootstrap_sass
+id: contactblock
+theme: landcam_bootstrap_sass
+region: featured_bottom_third
+weight: -12
+provider: null
+plugin: contact_block
+settings:
+  id: contact_block
+  label: 'Contact us'
+  provider: contact_block
+  label_display: visible
+  contact_form: send_us_a_message
+visibility:
+  request_path:
+    id: request_path
+    pages: "/about-us\r\n/contact\r\n/propos"
+    negate: false
+    context_mapping: {  }

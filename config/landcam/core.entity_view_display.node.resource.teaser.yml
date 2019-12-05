@@ -1,4 +1,4 @@
-uuid: 550698bb-86c5-4bd9-8bbd-a72c5d46d803
+uuid: 2b542d62-f4b6-491e-8d19-d877d4c65252
 langcode: en
 status: true
 dependencies:
@@ -12,34 +12,144 @@ dependencies:
     - field.field.node.resource.field_material_type
     - field.field.node.resource.field_pubdate
     - field.field.node.resource.field_publisher
+    - image.style.thumbnail
     - node.type.resource
   module:
-    - text
+    - datetime
+    - ds
+    - image
+    - pdfpreview
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col_wrapper
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: content
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          ds_content: {  }
+    regions:
+      ds_content:
+        - field_file
+        - field_image
+        - node_title
+        - field_author_s_
+        - field_pubdate
+        - field_material_type
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 2
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h3
+          class: ''
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.resource.teaser
 targetEntityType: node
 bundle: resource
 mode: teaser
 content:
-  body:
-    label: hidden
-    type: text_summary_or_trimmed
-    weight: 101
+  field_author_s_:
+    weight: 3
+    label: inline
     settings:
-      trim_length: 600
-    third_party_settings: {  }
-    region: content
-  links:
-    weight: 100
-    region: content
-    settings: {  }
-    third_party_settings: {  }
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: true
+            classes: {  }
+    type: string
+    region: ds_content
+  field_file:
+    type: pdfpreview
+    weight: 0
+    region: ds_content
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+      tag: div
+      fallback_formatter: file_default
+      show_description: 0
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_image:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: image
+    region: ds_content
+  field_material_type:
+    weight: 5
+    label: inline
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: true
+            classes: {  }
+    type: entity_reference_label
+    region: ds_content
+  field_pubdate:
+    weight: 4
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: month
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: true
+            classes: {  }
+    type: datetime_default
+    region: ds_content
 hidden:
-  field_author_s_: true
-  field_file: true
-  field_image: true
+  body: true
   field_link: true
-  field_material_type: true
-  field_pubdate: true
   field_publisher: true
   langcode: true
+  links: true

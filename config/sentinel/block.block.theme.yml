@@ -1,0 +1,29 @@
+uuid: a0dffa1a-a2e1-4053-93a3-6a2eb31f42f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.theme
+  module:
+    - facets
+    - system
+  theme:
+    - sentinel_bootstrap_sass
+id: theme
+theme: sentinel_bootstrap_sass
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'facet_block:theme'
+settings:
+  id: 'facet_block:theme'
+  label: 'Research theme'
+  provider: facets
+  label_display: visible
+  block_id: theme
+visibility:
+  request_path:
+    id: request_path
+    pages: /publications
+    negate: false
+    context_mapping: {  }

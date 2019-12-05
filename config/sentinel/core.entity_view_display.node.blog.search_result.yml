@@ -5,7 +5,11 @@ dependencies:
   config:
     - core.entity_view_mode.node.search_result
     - field.field.node.blog.body
+    - field.field.node.blog.field_authors
+    - field.field.node.blog.field_file_upload
+    - field.field.node.blog.field_further
     - field.field.node.blog.field_image
+    - field.field.node.blog.field_theme
     - field.field.node.blog.field_video
     - image.style.thumbnail
     - node.type.blog
@@ -37,12 +41,40 @@ third_party_settings:
         - node_title
         - body
         - node_post_date
+        - field_authors
     fields:
       node_post_date:
         plugin_id: node_post_date
         weight: 3
         label: hidden
         formatter: ds_post_date_blog_date
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: 'inline-block mr-3'
+            ow-at: 'style="float:left;"'
+            ow-def-at: true
+            ow-def-cl: true
+            fis: true
+            fis-el: span
+            fis-cl: ''
+            fis-at: ''
+            fis-def-at: true
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            fi: false
+            fi-def-at: false
       node_title:
         plugin_id: node_title
         weight: 1
@@ -75,9 +107,26 @@ content:
           id: default
           settings:
             lb: ''
+            classes:
+              - media-body
             lb-col: false
-            classes: {  }
     region: ds_content
+  field_authors:
+    type: string
+    weight: 4
+    region: ds_content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            classes:
+              - media-body
+            lb-col: false
   field_image:
     weight: 0
     label: hidden
@@ -97,5 +146,8 @@ content:
     region: ds_content
 hidden:
   addtoany: true
+  field_file_upload: true
+  field_further: true
+  field_theme: true
   field_video: true
   links: true

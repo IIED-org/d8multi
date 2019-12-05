@@ -1,0 +1,24 @@
+uuid: 2e332acf-f911-4aeb-b2c5-ece688fa8e10
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text
+    - paragraphs.paragraphs_type.html
+  module:
+    - text
+id: paragraph.html.field_text
+field_name: field_text
+entity_type: paragraph
+bundle: html
+label: Text
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: "<p>[flickr-photo:id=&lt;photoset_id&gt;, size=x]</p>\r\n"
+    format: full_html
+default_value_callback: ''
+settings: {  }
+field_type: text_long

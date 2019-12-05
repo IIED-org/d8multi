@@ -4,13 +4,16 @@ status: true
 dependencies:
   config:
     - field.field.node.partner.body
+    - field.field.node.partner.field_funder
     - field.field.node.partner.field_image
+    - field.field.node.partner.field_link
     - image.style.thumbnail
     - node.type.partner
   module:
     - field_layout
     - image
     - layout_discovery
+    - link
     - path
     - text
 third_party_settings:
@@ -37,6 +40,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_funder:
+    weight: 123
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_image:
     weight: 122
     settings:
@@ -44,6 +54,14 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
+  field_link:
+    weight: 124
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   langcode:
     type: language_select

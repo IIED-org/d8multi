@@ -7,6 +7,8 @@ dependencies:
     - field.field.node.event.field_daterange
     - field.field.node.event.field_documents
     - field.field.node.event.field_image
+    - field.field.node.event.field_image_caption
+    - field.field.node.event.field_paragraph
     - image.style.thumbnail
     - node.type.event
   module:
@@ -14,6 +16,7 @@ dependencies:
     - field_layout
     - image
     - layout_discovery
+    - paragraphs
     - path
     - text
 third_party_settings:
@@ -27,7 +30,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 121
+    weight: 10
     settings:
       rows: 9
       summary_rows: 3
@@ -36,18 +39,18 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   field_daterange:
-    weight: 124
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: daterange_default
     region: content
   field_documents:
-    weight: 125
+    weight: 13
     settings:
       match_operator: CONTAINS
       size: 60
@@ -56,23 +59,43 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_image:
-    weight: 122
+    weight: 11
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
     region: content
+  field_image_caption:
+    weight: 12
+    settings:
+      rows: 5
+      placeholder: 'Title Author via: <a href="#">Source</a>&nbsp;<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>'
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_paragraph:
+    type: entity_reference_paragraphs
+    weight: 14
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: select
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 1
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -80,43 +103,48 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 15
+    weight: 6
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 120
+    weight: 9
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 16
+    weight: 7
     region: content
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -5
+    weight: 0
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   translation:
-    weight: 10
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     region: content
+    third_party_settings: {  }
+  url_redirects:
+    weight: 15
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden: {  }

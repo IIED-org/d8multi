@@ -153,3 +153,9 @@
     }
   }
 }
+
+figcaption {
+  @include font-size($figure-caption-font-size);
+  font-style: italic;
+  color: $figure-caption-color;
+}

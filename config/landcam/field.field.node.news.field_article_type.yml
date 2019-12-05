@@ -1,0 +1,33 @@
+uuid: 6dd9e961-80d3-4e77-bafb-a86d724304e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_article_type
+    - node.type.news
+    - taxonomy.vocabulary.article_type
+  content:
+    - 'taxonomy_term:article_type:3cb2e24f-b6b0-46a1-b73f-c7284863c85d'
+id: node.news.field_article_type
+field_name: field_article_type
+entity_type: node
+bundle: news
+label: 'Article type'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    target_uuid: 3cb2e24f-b6b0-46a1-b73f-c7284863c85d
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      article_type: article_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
