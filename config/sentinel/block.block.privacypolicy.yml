@@ -12,14 +12,14 @@ dependencies:
 id: privacypolicy
 theme: sentinel_bootstrap_sass
 region: featured_bottom_first
-weight: -6
+weight: -11
 provider: null
 plugin: 'block_content:9b0dd0b2-bdc9-4d96-8a06-f0fa364ca1fb'
 settings:
   id: 'block_content:9b0dd0b2-bdc9-4d96-8a06-f0fa364ca1fb'
   label: 'Privacy policy'
   provider: block_content
-  label_display: visible
+  label_display: '0'
   status: true
   info: ''
   view_mode: full

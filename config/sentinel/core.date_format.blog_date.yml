@@ -5,4 +5,4 @@ dependencies: {  }
 id: blog_date
 label: 'Blog date'
 locked: false
-pattern: 'Y-m-d H:i'
+pattern: 'd M Y'

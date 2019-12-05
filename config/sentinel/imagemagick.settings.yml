@@ -1,6 +1,6 @@
-quality: 85
+quality: 95
 binaries: imagemagick
-path_to_binaries: ''
+path_to_binaries: /usr/bin/
 prepend: ''
 prepend_pre_source: false
 log_warnings: true

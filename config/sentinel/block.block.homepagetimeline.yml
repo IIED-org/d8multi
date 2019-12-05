@@ -1,6 +1,6 @@
 uuid: 0d1c96ef-63d4-461b-8779-faa0b2e251c6
 langcode: en
-status: true
+status: false
 dependencies:
   content:
     - 'block_content:html:e2214e8b-cac5-465e-99db-9afa5b236008'
@@ -12,7 +12,7 @@ dependencies:
 id: homepagetimeline
 theme: sentinel_bootstrap_sass
 region: featured_bottom_first
-weight: -8
+weight: -9
 provider: null
 plugin: 'block_content:e2214e8b-cac5-465e-99db-9afa5b236008'
 settings:

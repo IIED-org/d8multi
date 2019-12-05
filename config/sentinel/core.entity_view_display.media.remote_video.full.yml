@@ -27,37 +27,16 @@ content:
     region: content
     label: hidden
     settings:
-      max_width: 0
+      max_width: 400
       max_height: 0
     third_party_settings:
       ds:
         ft:
-          id: expert
+          id: default
           settings:
             lb: ''
-            prefix: ''
-            lbw-el: ''
-            lbw-cl: ''
-            lbw-at: ''
-            ow-el: ''
-            ow-cl: ''
-            ow-at: ''
-            fis-el: ''
-            fis-cl: ''
-            fis-at: ''
-            fi: true
-            fi-el: ''
-            fi-cl: embed-responsive-item
-            fi-at: ''
-            fi-def-at: true
-            suffix: ''
-            lbw: false
             lb-col: false
-            ow: false
-            ow-def-at: false
-            ow-def-cl: false
-            fis: false
-            fis-def-at: false
+            classes: {  }
 hidden:
   created: true
   field_description: true

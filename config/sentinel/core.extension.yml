@@ -1,4 +1,5 @@
 module:
+  acquia_purge: 0
   addtoany: 0
   admin_toolbar: 0
   admin_toolbar_tools: 0
@@ -6,6 +7,7 @@ module:
   block: 0
   block_content: 0
   breakpoint: 0
+  captcha: 0
   ckeditor: 0
   colorbox: 0
   components: 0
@@ -13,6 +15,7 @@ module:
   contact: 0
   contextual: 0
   ctools: 0
+  datetime: 0
   dblog: 0
   dynamic_page_cache: 0
   editor: 0
@@ -21,7 +24,9 @@ module:
   entity_browser: 0
   entity_browser_entity_form: 0
   entity_embed: 0
+  entity_reference_revisions: 0
   entity_usage: 0
+  facets: 0
   field: 0
   field_layout: 0
   field_ui: 0
@@ -29,6 +34,8 @@ module:
   file_mdm: 0
   file_mdm_exif: 0
   filter: 0
+  google_analytics: 0
+  honeypot: 0
   image: 0
   imagemagick: 0
   inline_entity_form: 0
@@ -40,10 +47,18 @@ module:
   media_library: 0
   menu_ui: 0
   node: 0
+  options: 0
   page_cache: 0
   path: 0
   pdfpreview: 0
+  purge: 0
+  purge_drush: 0
+  purge_processor_cron: 0
+  purge_processor_lateruntime: 0
+  purge_queuer_coretags: 0
+  purge_ui: 0
   quickedit: 0
+  recaptcha: 0
   search: 0
   search_api: 0
   search_api_db: 0
@@ -55,13 +70,18 @@ module:
   update: 0
   user: 0
   views_ui: 0
+  webform: 0
+  webform_ui: 0
   ds: 1
   menu_link_content: 1
   pathauto: 1
+  webform_bootstrap: 1
   ds_extras: 2
   views: 10
-  custom_search: 50
+  paragraphs: 11
   minimal: 1000
+  readonlymode: 9999
+  eu_cookie_compliance: 10000
 theme:
   stark: 0
   bootstrap_barrio: 0

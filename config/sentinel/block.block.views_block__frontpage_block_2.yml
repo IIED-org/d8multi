@@ -12,7 +12,7 @@ dependencies:
 id: views_block__frontpage_block_2
 theme: sentinel_bootstrap_sass
 region: content
-weight: 0
+weight: -10
 provider: null
 plugin: 'views_block:frontpage-block_2'
 settings:

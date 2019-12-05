@@ -1,0 +1,19 @@
+uuid: 81751a1e-dc04-4ad6-9d13-fb570390e0ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_surname_for_sort
+    - node.type.person
+id: node.person.field_surname_for_sort
+field_name: field_surname_for_sort
+entity_type: node
+bundle: person
+label: 'Surname for sort'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

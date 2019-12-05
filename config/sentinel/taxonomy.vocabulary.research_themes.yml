@@ -1,0 +1,8 @@
+uuid: 07042d0e-3b59-4341-9e6d-746c213b1d3f
+langcode: en
+status: true
+dependencies: {  }
+name: 'Research theme'
+vid: research_themes
+description: ''
+weight: 0

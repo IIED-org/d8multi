@@ -10,8 +10,8 @@ dependencies:
     - sentinel_bootstrap_sass
 id: footerblock_2
 theme: sentinel_bootstrap_sass
-region: footer_fifth
-weight: -8
+region: footer_fourth
+weight: -13
 provider: null
 plugin: 'block_content:327e5b5b-b717-4f3d-bea7-2835b11b0353'
 settings:

@@ -1,0 +1,24 @@
+uuid: b3296d38-44d1-4917-8d04-aa49b5282847
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image_caption
+    - node.type.event
+  module:
+    - text
+id: node.event.field_image_caption
+field_name: field_image_caption
+entity_type: node
+bundle: event
+label: 'Main image caption'
+description: 'Title, author, source, license'
+required: false
+translatable: true
+default_value:
+  -
+    value: "<p>Title Author via: <a href=\"#\">Source</a>&nbsp;<a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a></p>\r\n"
+    format: full_html
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,22 @@
+uuid: 598e1a01-c722-49d1-a7b6-f5f2ea233d59
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.subpage
+id: node.subpage.status
+field_name: status
+entity_type: node
+bundle: subpage
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

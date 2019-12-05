@@ -5,6 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.blog.body
+    - field.field.node.blog.field_authors
+    - field.field.node.blog.field_file_upload
+    - field.field.node.blog.field_further
+    - field.field.node.blog.field_image
+    - field.field.node.blog.field_theme
+    - field.field.node.blog.field_video
     - node.type.blog
   module:
     - text
@@ -27,4 +33,11 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  addtoany: true
+  field_authors: true
+  field_file_upload: true
+  field_further: true
+  field_image: true
+  field_theme: true
+  field_video: true

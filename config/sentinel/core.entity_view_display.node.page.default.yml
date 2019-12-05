@@ -20,20 +20,28 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
-        wrappers: null
-        outer_wrapper: null
+        wrappers:
+          header: div
+          left: div
+          right: div
+          footer: div
+        outer_wrapper: div
         attributes: ''
-        link_attribute: null
-        link_custom: null
+        link_attribute: ''
+        link_custom: ''
         classes:
           layout_class: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
     regions:
       header:
         - field_subtitle
+        - field_video
+        - field_standfirst
       left:
         - body
-      right:
-        - field_media
 id: node.page.default
 targetEntityType: node
 bundle: page
@@ -52,7 +60,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: content
+    region: header
   field_subtitle:
     type: text_default
     weight: 0
@@ -68,7 +76,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    region: content
+    region: header
 hidden:
   addtoany: true
   links: true

@@ -1,0 +1,30 @@
+uuid: a544b6d0-ce85-4e3d-9859-4d6170864258
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.timeline_phase1
+  module:
+    - system
+    - views
+  theme:
+    - sentinel_bootstrap_sass
+id: views_block__timeline_phase1_block_1
+theme: sentinel_bootstrap_sass
+region: featured_bottom_second
+weight: -14
+provider: null
+plugin: 'views_block:timeline_phase1-block_1'
+settings:
+  id: 'views_block:timeline_phase1-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: /about
+    negate: false
+    context_mapping: {  }

@@ -9,7 +9,7 @@ _core:
 id: sentinel_bootstrap_sass_local_tasks
 theme: sentinel_bootstrap_sass
 region: content
-weight: -5
+weight: -14
 provider: null
 plugin: local_tasks_block
 settings:
