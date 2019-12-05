@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.news.field_article_type
     - field.field.node.news.field_date
     - field.field.node.news.field_image
+    - field.field.node.news.field_image_caption
     - field.field.node.news.field_video
     - image.style.large
     - node.type.news
@@ -68,6 +69,7 @@ third_party_settings:
         - field_video
         - field_image
         - 'dynamic_token_field:node-caption'
+        - field_image_caption
       right:
         - field_date
         - 'dynamic_token_field:node-author_details'
@@ -135,7 +137,7 @@ content:
     third_party_settings: {  }
   field_date:
     type: timestamp
-    weight: 4
+    weight: 5
     region: right
     label: hidden
     settings:
@@ -180,6 +182,41 @@ content:
             fis: true
             fis-el: div
             fis-cl: clearfix
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
+  field_image_caption:
+    type: text_default
+    weight: 4
+    region: left
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow-el: ''
+            ow-cl: ''
+            ow-at: ''
+            fis: true
+            fis-el: figcaption
+            fis-cl: d-none
             fis-at: ''
             fi-el: ''
             fi-cl: ''

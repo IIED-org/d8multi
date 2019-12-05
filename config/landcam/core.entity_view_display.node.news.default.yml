@@ -7,10 +7,12 @@ dependencies:
     - field.field.node.news.field_article_type
     - field.field.node.news.field_date
     - field.field.node.news.field_image
+    - field.field.node.news.field_image_caption
     - field.field.node.news.field_video
     - node.type.news
   module:
     - field_layout
+    - text
     - user
     - video_embed_field
 third_party_settings:
@@ -29,6 +31,13 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_image_caption:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
     region: content
   field_video:
     weight: 1

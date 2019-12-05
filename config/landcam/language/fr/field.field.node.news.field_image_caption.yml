@@ -1,0 +1,5 @@
+description: 'Titre, auteur, source, licence'
+default_value:
+  -
+    value: "<p>Titre Auteur via: <a href=\"#\">Source</a>&nbsp;<a href=\"https://creativecommons.org/licenses/by/4.0/deed.fr\">CC BY 4.0</a></p>\r\n"
+label: Légende
