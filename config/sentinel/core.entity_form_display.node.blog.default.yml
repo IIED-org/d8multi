@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.blog.field_file_upload
     - field.field.node.blog.field_further
     - field.field.node.blog.field_image
+    - field.field.node.blog.field_image_caption
     - field.field.node.blog.field_theme
     - field.field.node.blog.field_video
     - image.style.thumbnail
@@ -53,7 +54,7 @@ content:
     type: string_textfield
     region: content
   field_file_upload:
-    weight: 13
+    weight: 14
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
@@ -61,7 +62,7 @@ content:
     region: content
   field_further:
     type: entity_reference_paragraphs
-    weight: 11
+    weight: 12
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -79,6 +80,14 @@ content:
     third_party_settings: {  }
     type: image_image
     region: content
+  field_image_caption:
+    weight: 11
+    settings:
+      rows: 2
+      placeholder: 'Title Author via: <a href="#">Source</a>&nbsp;<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>'
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
   field_theme:
     weight: 9
     settings: {  }
@@ -86,7 +95,7 @@ content:
     type: options_buttons
     region: content
   field_video:
-    weight: 12
+    weight: 13
     settings:
       match_operator: CONTAINS
       size: 60
