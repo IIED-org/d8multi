@@ -3,13 +3,13 @@ display:
     display_options:
       exposed_form:
         options:
-          submit_button: Recherche
+          submit_button: Rechercher
           reset_button_label: Réinitialiser
           exposed_sorts_label: 'Trier par'
       filters:
         search_api_fulltext:
           expose:
-            label: 'Rechercher nos ressources'
+            label: 'Parcourir nos publications'
             placeholder: 'Termes de recherche'
       sorts:
         field_pubdate:
@@ -20,5 +20,8 @@ display:
         search_api_relevance:
           expose:
             label: Pertinence
-      title: Bibliothèque
-label: Bibliothèque
+      title: Publications
+      empty:
+        result:
+          content: '<h3>Votre recherche n''a aucun résultat.</h3>'
+label: Publications

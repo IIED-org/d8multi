@@ -1,14 +1,14 @@
-quality: 85
+quality: 90
 binaries: imagemagick
 path_to_binaries: /usr/bin/
 prepend: ''
 prepend_pre_source: false
 log_warnings: true
 debug: false
-use_identify: false
+use_identify: true
 locale: en_GB.UTF-8
 advanced:
-  density: 72
+  density: 0
   colorspace: '0'
   profile: ''
 image_formats:

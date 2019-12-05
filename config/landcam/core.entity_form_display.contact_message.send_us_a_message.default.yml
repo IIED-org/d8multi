@@ -1,0 +1,50 @@
+uuid: f557e97b-fb6d-48e9-8a33-d194ebd864e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.send_us_a_message
+    - field.field.contact_message.send_us_a_message.field_organisation
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: contact_message.send_us_a_message.default
+targetEntityType: contact_message
+bundle: send_us_a_message
+mode: default
+content:
+  copy:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_organisation:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  mail:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  message:
+    type: string_textarea
+    weight: 2
+    settings:
+      rows: 6
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  name: true
+  preview: true
+  subject: true

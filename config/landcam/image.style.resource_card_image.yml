@@ -1,0 +1,23 @@
+uuid: 87a44fd0-59d4-41b7-ad19-6d964bf035b2
+langcode: en
+status: true
+dependencies: {  }
+name: resource_card_image
+label: 'Resource card image'
+effects:
+  36b947ce-7a05-4c5f-8f1f-3bbcd70a2765:
+    uuid: 36b947ce-7a05-4c5f-8f1f-3bbcd70a2765
+    id: image_scale
+    weight: 2
+    data:
+      width: 340
+      height: null
+      upscale: true
+  8e5ffc22-d4f6-4c2e-8dc2-f067ddbb8379:
+    uuid: 8e5ffc22-d4f6-4c2e-8dc2-f067ddbb8379
+    id: image_crop
+    weight: 3
+    data:
+      width: 340
+      height: 227
+      anchor: center-top

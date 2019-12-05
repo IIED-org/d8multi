@@ -7,10 +7,12 @@ dependencies:
     - field.field.node.event.field_daterange
     - field.field.node.event.field_documents
     - field.field.node.event.field_image
+    - field.field.node.event.field_paragraph
     - node.type.event
   module:
     - datetime_range
     - ds
+    - entity_reference_revisions
     - image
     - text
     - user
@@ -82,6 +84,15 @@ content:
     third_party_settings: {  }
     type: image
     region: main
+  field_paragraph:
+    type: entity_reference_revisions_entity_view
+    weight: 106
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
   langcode:
     type: language
     weight: 0

@@ -1,0 +1,28 @@
+uuid: 814fe620-d75d-4c26-981e-56f5191eb291
+langcode: fr
+status: true
+dependencies:
+  module:
+    - language
+    - mailchimp_signup
+  theme:
+    - landcam_bootstrap_sass
+id: formulairedabonnementmailchimponresteencontact
+theme: landcam_bootstrap_sass
+region: featured_bottom_fourth
+weight: -11
+provider: null
+plugin: 'mailchimp_signup_subscribe_block:on_reste_en_contact'
+settings:
+  id: 'mailchimp_signup_subscribe_block:on_reste_en_contact'
+  label: 'On reste en contact ?'
+  provider: mailchimp_signup
+  label_display: visible
+visibility:
+  language:
+    id: language
+    langcodes:
+      fr: fr
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'

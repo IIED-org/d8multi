@@ -8,6 +8,7 @@ dependencies:
   module:
     - search_api
     - text
+    - user
 id: library
 label: Library
 module: views
@@ -24,8 +25,9 @@ display:
     position: 0
     display_options:
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'access content'
       cache:
         type: none
         options: {  }
@@ -251,6 +253,7 @@ display:
           operator: in
           value:
             '***LANGUAGE_language_interface***': '***LANGUAGE_language_interface***'
+            und: und
           group: 1
           exposed: false
           expose:
@@ -319,7 +322,17 @@ display:
       title: Library
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          content: '<h3>Your search yielded no results.</h3>'
+          plugin_id: result
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
@@ -331,6 +344,7 @@ display:
         - url
         - url.query_args
         - 'url.query_args:sort_by'
+        - user.permissions
       tags:
         - 'config:field.storage.node.body'
   page_1:
@@ -350,5 +364,6 @@ display:
         - url
         - url.query_args
         - 'url.query_args:sort_by'
+        - user.permissions
       tags:
         - 'config:field.storage.node.body'

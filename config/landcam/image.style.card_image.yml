@@ -5,26 +5,19 @@ dependencies: {  }
 name: card_image
 label: 'Card image'
 effects:
-  9b251427-768c-4d90-9e48-fb53681bb726:
-    uuid: 9b251427-768c-4d90-9e48-fb53681bb726
+  36b947ce-7a05-4c5f-8f1f-3bbcd70a2765:
+    uuid: 36b947ce-7a05-4c5f-8f1f-3bbcd70a2765
     id: image_scale
-    weight: -10
+    weight: 2
     data:
       width: 400
       height: null
       upscale: true
-  523f0be0-60ed-44a7-bb6d-56995a5262a5:
-    uuid: 523f0be0-60ed-44a7-bb6d-56995a5262a5
-    id: image_crop
-    weight: -8
-    data:
-      width: 400
-      height: 267
-      anchor: center-top
-  ef75224c-378d-4d9f-9f04-5dbdf05e2851:
-    uuid: ef75224c-378d-4d9f-9f04-5dbdf05e2851
-    id: image_resize
-    weight: 3
+  ecbe16c7-7dbd-479d-ab27-ed78c548fad8:
+    uuid: ecbe16c7-7dbd-479d-ab27-ed78c548fad8
+    id: image_scale_and_crop
+    weight: 2
     data:
       width: 340
       height: 227
+      anchor: center-top

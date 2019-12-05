@@ -1,0 +1,12 @@
+uuid: b85f461a-478d-4c5f-a67c-88b336e9d8e3
+langcode: en
+status: true
+dependencies: {  }
+id: send_us_a_message
+label: 'Send us a message'
+recipients:
+  - info@landcam.org
+reply: ''
+weight: 0
+message: 'Thank you, we will respond as soon as possible.'
+redirect: ''

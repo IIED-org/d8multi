@@ -4,12 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
-    - field.field.node.page.field_paragraph
     - node.type.page
   module:
     - ds
     - field_layout
-    - paragraphs
     - path
     - text
 third_party_settings:
@@ -45,18 +43,6 @@ content:
     region: ds_content
     settings: {  }
     third_party_settings: {  }
-  field_paragraph:
-    type: entity_reference_paragraphs
-    weight: 122
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      add_mode: select
-      form_display_mode: default
-      default_paragraph_type: _none
-    third_party_settings: {  }
-    region: ds_content
   langcode:
     type: language_select
     weight: 2

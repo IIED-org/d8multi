@@ -1,0 +1,29 @@
+uuid: f2ba700c-26a2-452c-aaac-00576dd945dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.send_us_a_message
+    - field.field.contact_message.send_us_a_message.field_organisation
+id: contact_message.send_us_a_message.default
+targetEntityType: contact_message
+bundle: send_us_a_message
+mode: default
+content:
+  field_organisation:
+    weight: 99
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  message:
+    type: basic_string
+    weight: 100
+    label: above
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true

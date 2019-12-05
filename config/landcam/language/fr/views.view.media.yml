@@ -35,7 +35,7 @@ display:
           label: Auteur
           separator: ', '
         status:
-          label: Etat
+          label: État
           settings:
             format_custom_true: Publié
             format_custom_false: 'Non publié'
@@ -66,9 +66,6 @@ display:
           expose:
             label: Langue
       title: Média
-      empty:
-        area_text_custom:
-          content: 'Aucun contenu disponible.'
   media_page_list:
     display_title: Média
     display_options:

@@ -26,7 +26,7 @@ display:
         name:
           label: Auteur
         status:
-          label: Etat
+          label: État
           settings:
             format_custom_true: Publié
             format_custom_false: 'Non publié'
@@ -43,7 +43,7 @@ display:
             label: 'Type de contenu'
         status:
           expose:
-            label: Etat
+            label: État
           group_info:
             label: 'Statut de publication'
             group_items:

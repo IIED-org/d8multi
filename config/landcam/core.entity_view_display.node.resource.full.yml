@@ -132,7 +132,7 @@ content:
             lbw-at: ''
             ow: true
             ow-el: div
-            ow-cl: clearfix
+            ow-cl: 'clearfix text-center'
             ow-at: ''
             ow-def-at: true
             ow-def-cl: true
@@ -232,7 +232,7 @@ content:
     weight: 7
     label: inline
     settings:
-      link: false
+      link: true
     third_party_settings:
       ds:
         ft:
@@ -248,7 +248,7 @@ content:
     label: inline
     settings:
       timezone_override: ''
-      date_format: 'F Y'
+      format_type: month
     third_party_settings:
       ds:
         ft:
@@ -257,7 +257,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: datetime_custom
+    type: datetime_default
     region: right
   field_publisher:
     type: text_default

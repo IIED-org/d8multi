@@ -3,6 +3,6 @@ langcode: fr
 status: true
 dependencies: {  }
 id: navigation-prinicpale
-label: 'Navigation principale'
+label: 'Navigation principale (FR)'
 description: ''
 locked: false

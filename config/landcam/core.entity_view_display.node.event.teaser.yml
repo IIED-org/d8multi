@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.event.field_daterange
     - field.field.node.event.field_documents
     - field.field.node.event.field_image
+    - field.field.node.event.field_paragraph
     - node.type.event
   module:
     - text
@@ -34,4 +35,5 @@ hidden:
   field_daterange: true
   field_documents: true
   field_image: true
+  field_paragraph: true
   langcode: true

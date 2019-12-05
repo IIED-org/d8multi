@@ -1,0 +1,10 @@
+display:
+  block_1:
+    display_title: Partenaires
+  block_2:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<h3>À propos de nos bailleurs de fonds</h3>\r\n"
+            format: full_html

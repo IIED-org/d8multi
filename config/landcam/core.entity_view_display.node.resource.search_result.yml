@@ -52,7 +52,7 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
-          wrapper: h2
+          wrapper: h3
           class: ''
           link: false
         ft:
@@ -136,7 +136,7 @@ content:
     label: inline
     settings:
       timezone_override: ''
-      date_format: 'M Y'
+      format_type: month
     third_party_settings:
       ds:
         ft:
@@ -145,7 +145,7 @@ content:
             lb: ''
             lb-col: true
             classes: {  }
-    type: datetime_custom
+    type: datetime_default
     region: ds_content
 hidden:
   body: true

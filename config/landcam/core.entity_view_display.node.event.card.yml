@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.event.field_daterange
     - field.field.node.event.field_documents
     - field.field.node.event.field_image
+    - field.field.node.event.field_paragraph
     - image.style.card_image
     - node.type.event
   module:
@@ -42,11 +43,6 @@ third_party_settings:
         - node_title
         - field_daterange
     fields:
-      'bundle_field:node':
-        plugin_id: 'bundle_field:node'
-        weight: 1
-        label: hidden
-        formatter: default
       node_title:
         plugin_id: node_title
         weight: 2
@@ -56,6 +52,11 @@ third_party_settings:
           wrapper: p
           class: ''
           link: false
+      'bundle_field:node':
+        plugin_id: 'bundle_field:node'
+        weight: 1
+        label: hidden
+        formatter: default
 id: node.event.card
 targetEntityType: node
 bundle: event
@@ -66,9 +67,16 @@ content:
     label: hidden
     settings:
       timezone_override: ''
-      format_type: html_date
-      separator: '-'
-    third_party_settings: {  }
+      format_type: date_only
+      separator: —
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: daterange_default
     region: second
   field_image:
@@ -83,5 +91,6 @@ content:
 hidden:
   body: true
   field_documents: true
+  field_paragraph: true
   langcode: true
   links: true
