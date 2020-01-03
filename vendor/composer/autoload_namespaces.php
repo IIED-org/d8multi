@@ -9,7 +9,6 @@ return array(
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'Stack' => array($vendorDir . '/stack/builder/src'),
     'PatternLab\\TwigNamespaces' => array($vendorDir . '/evanlovely/plugin-twig-namespaces/src'),
-    'PEAR' => array($vendorDir . '/pear/pear_exception'),
     'Mailchimp' => array($baseDir . '/docroot/modules/contrib/mailchimp/src'),
     'EasyRdf_' => array($vendorDir . '/easyrdf/easyrdf/lib'),
     'Dflydev\\PlaceholderResolver' => array($vendorDir . '/dflydev/placeholder-resolver/src'),
