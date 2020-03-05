@@ -5,11 +5,13 @@ dependencies:
   config:
     - core.entity_view_mode.node.search_result
     - field.field.node.resource.body
+    - field.field.node.resource.field_audio_file
     - field.field.node.resource.field_author_s_
     - field.field.node.resource.field_file
     - field.field.node.resource.field_image
     - field.field.node.resource.field_link
     - field.field.node.resource.field_material_type
+    - field.field.node.resource.field_press_center
     - field.field.node.resource.field_pubdate
     - field.field.node.resource.field_publisher
     - image.style.thumbnail
@@ -17,6 +19,7 @@ dependencies:
   module:
     - datetime
     - ds
+    - file
     - image
     - pdfpreview
     - user
@@ -41,6 +44,7 @@ third_party_settings:
       ds_content:
         - field_file
         - field_image
+        - field_audio_file
         - node_title
         - field_author_s_
         - field_pubdate
@@ -48,7 +52,7 @@ third_party_settings:
     fields:
       node_title:
         plugin_id: node_title
-        weight: 2
+        weight: 3
         label: hidden
         formatter: default
         settings:
@@ -66,8 +70,19 @@ targetEntityType: node
 bundle: resource
 mode: search_result
 content:
+  field_audio_file:
+    type: file_audio
+    weight: 2
+    region: ds_content
+    label: hidden
+    settings:
+      controls: true
+      autoplay: false
+      loop: false
+      multiple_file_display_type: tags
+    third_party_settings: {  }
   field_author_s_:
-    weight: 3
+    weight: 4
     label: inline
     settings:
       link_to_entity: false
@@ -117,7 +132,7 @@ content:
     type: image
     region: ds_content
   field_material_type:
-    weight: 5
+    weight: 6
     label: inline
     settings:
       link: false
@@ -132,7 +147,7 @@ content:
     type: entity_reference_label
     region: ds_content
   field_pubdate:
-    weight: 4
+    weight: 5
     label: inline
     settings:
       timezone_override: ''
@@ -150,6 +165,7 @@ content:
 hidden:
   body: true
   field_link: true
+  field_press_center: true
   field_publisher: true
   langcode: true
   links: true

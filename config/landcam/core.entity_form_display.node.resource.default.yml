@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.resource.body
+    - field.field.node.resource.field_audio_file
     - field.field.node.resource.field_author_s_
     - field.field.node.resource.field_file
     - field.field.node.resource.field_image
     - field.field.node.resource.field_link
     - field.field.node.resource.field_material_type
+    - field.field.node.resource.field_press_center
     - field.field.node.resource.field_pubdate
     - field.field.node.resource.field_publisher
     - image.style.thumbnail
@@ -46,6 +48,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_audio_file:
+    weight: 15
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
   field_author_s_:
     weight: 8
     settings:
@@ -62,7 +71,7 @@ content:
     type: file_generic
     region: content
   field_image:
-    weight: 16
+    weight: 18
     settings:
       preview_image_style: thumbnail
       progress_indicator: throbber
@@ -70,7 +79,7 @@ content:
     type: image_image
     region: content
   field_link:
-    weight: 15
+    weight: 17
     settings:
       placeholder_url: 'http://pubs.iied.org/IIEDxxxx'
       placeholder_title: ''
@@ -85,6 +94,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_press_center:
+    weight: 20
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_pubdate:
     weight: 9
@@ -155,5 +171,10 @@ content:
       size: 60
       placeholder: ''
     region: content
+    third_party_settings: {  }
+  url_redirects:
+    weight: 19
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden: {  }

@@ -9,7 +9,7 @@ _core:
 id: landcam_bootstrap_sass_local_tasks
 theme: landcam_bootstrap_sass
 region: content
-weight: -9
+weight: -11
 provider: null
 plugin: local_tasks_block
 settings:

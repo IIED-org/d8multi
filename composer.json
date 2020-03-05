@@ -67,7 +67,8 @@
     "drupal/webform": "^5.2",
     "wikimedia/composer-merge-plugin": "^1.4",
     "symfony/http-foundation": "^3.4",
-    "drupal/username_enumeration_prevention": "^1.0"
+    "drupal/username_enumeration_prevention": "^1.0",
+    "drupal/audiofield": "^1.9"
   },
   "require-dev": {
     "drupal/devel": "^1.0",

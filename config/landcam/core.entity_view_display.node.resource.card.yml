@@ -5,11 +5,13 @@ dependencies:
   config:
     - core.entity_view_mode.node.card
     - field.field.node.resource.body
+    - field.field.node.resource.field_audio_file
     - field.field.node.resource.field_author_s_
     - field.field.node.resource.field_file
     - field.field.node.resource.field_image
     - field.field.node.resource.field_link
     - field.field.node.resource.field_material_type
+    - field.field.node.resource.field_press_center
     - field.field.node.resource.field_pubdate
     - field.field.node.resource.field_publisher
     - image.style.resource_card_image
@@ -17,6 +19,7 @@ dependencies:
   module:
     - datetime
     - ds
+    - file
     - image
     - pdfpreview
     - user
@@ -42,6 +45,7 @@ third_party_settings:
     regions:
       first:
         - field_image
+        - field_audio_file
         - field_file
         - field_material_type
       second:
@@ -51,7 +55,7 @@ third_party_settings:
     fields:
       node_title:
         plugin_id: node_title
-        weight: 3
+        weight: 4
         label: hidden
         formatter: default
         settings:
@@ -63,8 +67,19 @@ targetEntityType: node
 bundle: resource
 mode: card
 content:
+  field_audio_file:
+    type: file_audio
+    weight: 1
+    region: first
+    label: hidden
+    settings:
+      controls: true
+      autoplay: false
+      loop: false
+      multiple_file_display_type: tags
+    third_party_settings: {  }
   field_author_s_:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       link_to_entity: false
@@ -72,7 +87,7 @@ content:
     type: string
     region: second
   field_file:
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       image_style: resource_card_image
@@ -107,7 +122,7 @@ content:
             lb-col: false
             classes: {  }
   field_material_type:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       link: false
@@ -122,7 +137,7 @@ content:
     type: entity_reference_label
     region: first
   field_pubdate:
-    weight: 5
+    weight: 6
     label: hidden
     settings:
       timezone_override: ''
@@ -140,6 +155,7 @@ content:
 hidden:
   body: true
   field_link: true
+  field_press_center: true
   field_publisher: true
   langcode: true
   links: true

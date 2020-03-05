@@ -1,0 +1,18 @@
+uuid: 619daa75-7a6e-4bf8-83c7-a70b5f09b892
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_press_center
+field_name: field_press_center
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

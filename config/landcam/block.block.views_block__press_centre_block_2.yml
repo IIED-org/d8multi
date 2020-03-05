@@ -1,0 +1,30 @@
+uuid: affa6ebd-60df-4642-9c8c-e39df3a90b44
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.press_centre
+  module:
+    - system
+    - views
+  theme:
+    - landcam_bootstrap_sass
+id: views_block__press_centre_block_2
+theme: landcam_bootstrap_sass
+region: content
+weight: -5
+provider: null
+plugin: 'views_block:press_centre-block_2'
+settings:
+  id: 'views_block:press_centre-block_2'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: "/press-centre\r\n/espace-presse"
+    negate: false
+    context_mapping: {  }
