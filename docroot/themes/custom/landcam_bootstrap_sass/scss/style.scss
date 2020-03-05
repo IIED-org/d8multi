@@ -141,7 +141,7 @@ a {
     }
   audio {
     min-height: 150px;
-    padding-bottom: 33%;
+    padding-bottom: 25%;
     @include media-breakpoint-up(md) {
       min-height: 227px;
     }
@@ -184,6 +184,15 @@ a {
 .node--type-resource .node--view-mode-card {
   .field--type-image {
     margin: $spacer auto;
+  }
+}
+
+/*  Search results */
+.node--view-mode-search-result {
+  .field--name-field-audio-file {
+    height: 100px;
+    float: left;
+    margin: 0 $spacer 0 0;
   }
 }
 
