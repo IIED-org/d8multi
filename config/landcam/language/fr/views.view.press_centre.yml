@@ -1,0 +1,11 @@
+display:
+  block_1:
+    display_title: 'Revue de presse'
+    display_options:
+      block_description: 'Revue de presse'
+      title: 'Revue de presse'
+  block_2:
+    display_title: 'Emissions radio'
+    display_options:
+      block_description: 'Emissions radio'
+      title: 'Emissions radio'

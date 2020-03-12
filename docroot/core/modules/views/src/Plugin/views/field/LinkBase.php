@@ -3,8 +3,9 @@
 namespace Drupal\views\Plugin\views\field;
 
 use Drupal\Core\Access\AccessManagerInterface;
-use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Routing\RedirectDestinationTrait;
@@ -48,7 +49,14 @@ abstract class LinkBase extends FieldPluginBase {
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
+
+  /**
+   * The entity repository.
+   *
+   * @var \Drupal\Core\Entity\EntityRepositoryInterface
+   */
+  protected $entityRepository;
 
   /**
    * Constructs a LinkBase object.
@@ -61,15 +69,31 @@ abstract class LinkBase extends FieldPluginBase {
    *   The plugin implementation definition.
    * @param \Drupal\Core\Access\AccessManagerInterface $access_manager
    *   The access manager.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface|null $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface|null $entity_repository
+   *   The entity repository.
+   * @param \Drupal\Core\Language\LanguageManagerInterface|null $language_manager
    *   The language manager.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, AccessManagerInterface $access_manager, EntityTypeManagerInterface $entity_manager, LanguageManagerInterface $language_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, AccessManagerInterface $access_manager, EntityTypeManagerInterface $entity_type_manager = NULL, EntityRepositoryInterface $entity_repository = NULL, LanguageManagerInterface $language_manager = NULL) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->accessManager = $access_manager;
-    $this->entityManager = $entity_manager;
+    if (!$entity_type_manager) {
+      @trigger_error('Passing the entity type manager service to \Drupal\views\Plugin\views\field\LinkBase::__construct is required since 8.7.0, see https://www.drupal.org/node/3023427.', E_USER_DEPRECATED);
+      $entity_type_manager = \Drupal::service('entity_type.manager');
+    }
+    $this->entityTypeManager = $entity_type_manager;
+    if (!$entity_repository) {
+      @trigger_error('Passing the entity repository service to \Drupal\views\Plugin\views\field\LinkBase::__construct is required since 8.7.0, see https://www.drupal.org/node/3023427.', E_USER_DEPRECATED);
+      $entity_repository = \Drupal::service('entity.repository');
+    }
+    $this->entityRepository = $entity_repository;
+
+    if (!$language_manager) {
+      @trigger_error('Passing the language manager service to \Drupal\views\Plugin\views\field\LinkBase::__construct is required since 8.7.0, see https://www.drupal.org/node/3023427.', E_USER_DEPRECATED);
+      $language_manager = \Drupal::service('language_manager');
+    }
     $this->languageManager = $language_manager;
   }
 
@@ -82,7 +106,8 @@ abstract class LinkBase extends FieldPluginBase {
       $plugin_id,
       $plugin_definition,
       $container->get('access_manager'),
-      $container->get('entity.manager'),
+      $container->get('entity_type.manager'),
+      $container->get('entity.repository'),
       $container->get('language_manager')
     );
   }
@@ -225,18 +250,22 @@ abstract class LinkBase extends FieldPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function getEntityTypeId() {
+  protected function getEntityTypeId() {
     return $this->getEntityType();
   }
 
   /**
-   * Returns the entity type manager.
-   *
-   * @return \Drupal\Core\Entity\EntityTypeManagerInterface
-   *   The entity manager.
+   * {@inheritdoc}
    */
-  protected function getEntityManager() {
-    return $this->entityManager;
+  protected function getEntityTypeManager() {
+    return $this->entityTypeManager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getEntityRepository() {
+    return $this->entityRepository;
   }
 
   /**

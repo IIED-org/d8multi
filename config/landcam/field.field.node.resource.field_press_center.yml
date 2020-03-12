@@ -9,8 +9,8 @@ id: node.resource.field_press_center
 field_name: field_press_center
 entity_type: node
 bundle: resource
-label: 'Display in Press Center'
-description: 'Check this box to display the resource on the Press Centre page'
+label: 'Display in Media Centre'
+description: 'Check this box to display the resource on the Media Centre page and prevent it being displayed elsewhere.'
 required: false
 translatable: false
 default_value:
@@ -18,6 +18,6 @@ default_value:
     value: 0
 default_value_callback: ''
 settings:
-  on_label: 'Yes'
-  off_label: 'No'
+  on_label: Oui
+  off_label: Non
 field_type: boolean

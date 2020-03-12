@@ -25,6 +25,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: "/press-centre\r\n/espace-presse"
+    pages: "/media-centre\r\n/espace-medias"
     negate: false
     context_mapping: {  }

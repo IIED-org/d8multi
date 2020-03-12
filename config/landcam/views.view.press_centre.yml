@@ -8,14 +8,15 @@ dependencies:
     - node.type.resource
     - taxonomy.vocabulary.material_type
   content:
-    - 'taxonomy_term:material_type:7d533f03-f6f2-492c-92d3-dfd26894f0b5'
-    - 'taxonomy_term:material_type:fba5b78a-34f7-4e32-b9c4-6b0d43794b23'
+    - 'taxonomy_term:material_type:48157cb9-557f-4621-add9-9bd065f1b66e'
+    - 'taxonomy_term:material_type:7a23eac5-7308-4365-80a0-45b80cd9200e'
+    - 'taxonomy_term:material_type:bdc831cb-0403-4cbd-8bbb-b4e12dd584f4'
   module:
     - node
     - taxonomy
     - user
 id: press_centre
-label: 'Press centre blocks'
+label: 'Media centre blocks'
 module: views
 description: ''
 tag: ''
@@ -317,7 +318,7 @@ display:
           expose:
             label: ''
           granularity: second
-      title: 'Press centre'
+      title: 'Media centre'
       header: {  }
       footer: {  }
       empty: {  }
@@ -337,16 +338,165 @@ display:
   block_1:
     display_plugin: block
     id: block_1
-    display_title: Alerts
+    display_title: 'Press review'
     position: 1
     display_options:
       display_extenders: {  }
-      block_description: 'Google alerts'
+      block_description: 'Press review'
       display_description: ''
-      title: 'Google alerts'
+      title: 'Press review'
       defaults:
         title: false
+        filters: false
+        filter_groups: false
       rendering_language: '***LANGUAGE_language_interface***'
+      block_hide_empty: true
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          value:
+            resource: resource
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+        field_press_center_value:
+          id: field_press_center_value
+          table: node__field_press_center
+          field: field_press_center_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
+        field_material_type_target_id:
+          id: field_material_type_target_id
+          table: node__field_material_type
+          field: field_material_type_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            8: 8
+            48: 48
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: material_type
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        langcode:
+          id: langcode
+          table: node_field_data
+          field: langcode
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            '***LANGUAGE_language_interface***': '***LANGUAGE_language_interface***'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: langcode
+          plugin_id: language
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:
@@ -359,7 +509,7 @@ display:
   block_2:
     display_plugin: block
     id: block_2
-    display_title: 'Audio files'
+    display_title: 'Radio programmes'
     position: 2
     display_options:
       display_extenders: {  }
@@ -473,8 +623,9 @@ display:
         operator: AND
         groups:
           1: AND
-      block_description: 'Audio files'
-      title: 'Radio programmes'
+      block_description: 'Radio programmes'
+      title: 'Radio programmes (in French only)'
+      block_hide_empty: true
     cache_metadata:
       max-age: -1
       contexts:
