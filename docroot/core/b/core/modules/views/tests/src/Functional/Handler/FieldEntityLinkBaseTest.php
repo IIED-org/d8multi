@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\views\Functional\Handler;
 
-use Drupal\Core\Url;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\node\Entity\Node;
 use Drupal\Tests\views\Functional\ViewTestBase;
@@ -22,18 +21,9 @@ class FieldEntityLinkBaseTest extends ViewTestBase {
   public static $testViews = ['test_link_base_links'];
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
-  public static $modules = ['node', 'language', 'views_ui'];
-
-  /**
-   * An array of created entities.
-   *
-   * @var \Drupal\node\Entity\Node[]
-   */
-  protected $entities;
+  public static $modules = ['node', 'language'];
 
   /**
    * {@inheritdoc}
@@ -41,28 +31,25 @@ class FieldEntityLinkBaseTest extends ViewTestBase {
   protected function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);
 
-    // Create Article content type.
     $this->drupalCreateContentType(['type' => 'article', 'name' => 'Article']);
+
     // Add languages and refresh the container so the entity manager will have
     // fresh data.
     ConfigurableLanguage::createFromLangcode('hu')->save();
     ConfigurableLanguage::createFromLangcode('es')->save();
     $this->rebuildContainer();
 
-    // Create some test entities. Every other entity is Hungarian while all
-    // have a Spanish translation.
-    $this->entities = [];
-    for ($i = 0; $i < 5; $i++) {
+    // Create an English and Hungarian nodes and add a Spanish translation.
+    foreach (['en', 'hu'] as $langcode) {
       $entity = Node::create([
-        'title' => $this->randomString(),
+        'title' => $this->randomMachineName(),
         'type' => 'article',
-        'langcode' => $i % 2 === 0 ? 'hu' : 'en',
+        'langcode' => $langcode,
       ]);
       $entity->save();
       $translation = $entity->addTranslation('es');
       $translation->set('title', $entity->getTitle() . ' in Spanish');
       $translation->save();
-      $this->entities[$i] = $entity;
     }
 
     $this->drupalLogin($this->rootUser);
@@ -70,23 +57,35 @@ class FieldEntityLinkBaseTest extends ViewTestBase {
   }
 
   /**
-   * Tests link field.
+   * Tests entity link fields.
    */
   public function testEntityLink() {
     $this->drupalGet('test-link-base-links');
-    foreach ($this->entities as $entity) {
-      /** @var \Drupal\Core\Language\LanguageInterface $language */
-      foreach ($entity->getTranslationLanguages() as $language) {
-        $entity = $entity->getTranslation($language->getId());
-        // Test that the canonical, edit form and delete form links are all
-        // shown in the proper format.
-        $this->assertSession()->linkByHrefExists($entity->toUrl()->toString());
-        $this->assertSession()->linkByHrefExists($entity->toUrl('edit-form')->toString());
-        $this->assertSession()->linkByHrefExists($entity->toUrl('delete-form')->toString());
-        // Test the 'output url as text' output.
-        $this->assertSession()->pageTextContains($entity->toUrl()->toString());
-      }
-    }
+    $session = $this->assertSession();
+
+    // Tests 'Link to Content'.
+    $session->linkByHrefExists('/node/1');
+    $session->linkByHrefExists('/es/node/1');
+    $session->linkByHrefExists('/hu/node/2');
+    $session->linkByHrefExists('/es/node/2');
+
+    // Tests 'Link to delete Content'.
+    $session->linkByHrefExists('/node/1/delete');
+    $session->linkByHrefExists('/es/node/1/delete');
+    $session->linkByHrefExists('/hu/node/2/delete');
+    $session->linkByHrefExists('/es/node/2/delete');
+
+    // Tests 'Link to edit Content'.
+    $session->linkByHrefExists('/node/1/edit');
+    $session->linkByHrefExists('/es/node/1/edit');
+    $session->linkByHrefExists('/hu/node/2/edit');
+    $session->linkByHrefExists('/es/node/2/edit');
+
+    // Tests the second 'Link to Content' rendered as text.
+    $session->pageTextContains('/node/1');
+    $session->pageTextContains('/es/node/1');
+    $session->pageTextContains('/hu/node/2');
+    $session->pageTextContains('/es/node/2');
   }
 
 }

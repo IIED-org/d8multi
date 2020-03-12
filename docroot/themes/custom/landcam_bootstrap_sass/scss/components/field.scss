@@ -129,27 +129,7 @@ figcaption {
   color: $figure-caption-color;
 }
 
-.card-img-top {
-  .field--name-bundle-fieldnode,
-  .field--name-field-material-type,
-  .field--name-field-article-type {
-    display: inline;
-    position: relative;
-    top: -2.8rem;
-    left:0;
-    padding: .5em 1rem;
-    background: $secondary-shade;
-    opacity:0.8;
-    color: $white;
-  }
-  .pdfpreview-image-wrapper,
-  figure {
-    margin: 0;
-  }
-  figcaption {
-    display: none;
-  }
-}
+
 
 .node--view-mode-full,
 .node--view-mode-search-result {

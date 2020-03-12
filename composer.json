@@ -67,7 +67,8 @@
     "drupal/webform": "^5.2",
     "wikimedia/composer-merge-plugin": "^1.4",
     "symfony/http-foundation": "^3.4",
-    "drupal/username_enumeration_prevention": "^1.0"
+    "drupal/username_enumeration_prevention": "^1.0",
+    "drupal/audiofield": "^1.9"
   },
   "require-dev": {
     "drupal/devel": "^1.0",
@@ -88,9 +89,6 @@
       "docroot/themes/contrib/{$name}": ["type:drupal-theme"]
     },
     "patches": {
-      "drupal/core": {
-        "Entity Links fields does not have translation support": "https://www.drupal.org/files/issues/2018-03-23/2877994-22.patch"
-        },
       "drupal/drupal": {
         "Add startup configuration for PHP server": "https://www.drupal.org/files/issues/2018-08-22/2457999-183.patch"
       },

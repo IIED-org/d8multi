@@ -1,0 +1,23 @@
+uuid: 311c1bdc-8152-449d-869b-680143dd050d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_press_center
+    - node.type.resource
+id: node.resource.field_press_center
+field_name: field_press_center
+entity_type: node
+bundle: resource
+label: 'Display in Media Centre'
+description: 'Check this box to display the resource on the Media Centre page and prevent it being displayed elsewhere.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Oui
+  off_label: Non
+field_type: boolean

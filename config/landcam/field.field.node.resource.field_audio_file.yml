@@ -1,0 +1,27 @@
+uuid: 15847f87-6805-4d8d-9706-ccee8279cb17
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_audio_file
+    - node.type.resource
+  module:
+    - file
+id: node.resource.field_audio_file
+field_name: field_audio_file
+entity_type: node
+bundle: resource
+label: 'Audio file'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'audio/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'mp3 mp4 ogg wav aac flac webm m4a aiff'
+  max_filesize: 100MB
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

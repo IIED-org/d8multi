@@ -1,0 +1,5 @@
+label: 'Afficher dans Espace médias'
+description: 'Cochez cette case pour afficher la ressource sur la page Espace médias et empêcher qu''elle ne soit affichée ailleurs.'
+settings:
+  on_label: Oui
+  off_label: Non

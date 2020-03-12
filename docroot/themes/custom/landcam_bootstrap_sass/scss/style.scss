@@ -135,10 +135,39 @@ a {
   .field--name-field-pubdate {
     right: 0;
   }
-  img {
+  img, audio {
       width: 100%;
       height: auto;
     }
+  audio {
+    min-height: 150px;
+    padding-bottom: 25%;
+    @include media-breakpoint-up(md) {
+      min-height: 227px;
+    }
+  }
+}
+
+.card-img-top {
+  .field--name-bundle-fieldnode,
+  .field--name-field-material-type,
+  .field--name-field-article-type {
+    display: inline;
+    position: relative;
+    top: -2.8rem;
+    left:0;
+    padding: .5em 1rem;
+    background: $secondary-shade;
+    opacity:0.8;
+    color: $white;
+  }
+  .pdfpreview-image-wrapper,
+  figure {
+    margin: 0;
+  }
+  figcaption {
+    display: none;
+  }
 }
 
 .slick {
@@ -156,7 +185,15 @@ a {
   .field--type-image {
     margin: $spacer auto;
   }
+}
 
+/*  Search results */
+.node--view-mode-search-result {
+  .field--name-field-audio-file {
+    height: 100px;
+    float: left;
+    margin: 0 $spacer 0 0;
+  }
 }
 
 /* Home page specific
@@ -202,6 +239,10 @@ a {
       color: $primary-shade;
     }
   }
+}
+
+.item-list {
+  width: 100%;
 }
 
 /* Mailchimp signup

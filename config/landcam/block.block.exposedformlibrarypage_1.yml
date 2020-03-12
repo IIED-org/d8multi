@@ -12,7 +12,7 @@ dependencies:
 id: exposedformlibrarypage_1
 theme: landcam_bootstrap_sass
 region: content
-weight: -7
+weight: -9
 provider: null
 plugin: 'views_exposed_filter_block:library-page_1'
 settings:
