@@ -1,9 +1,9 @@
 display:
   block_1:
-    display_title: 'Revue de presse'
+    display_title: 'Revues de presse'
     display_options:
-      block_description: 'Revue de presse'
-      title: 'Revue de presse'
+      block_description: 'Revues de presse'
+      title: 'Revues de presse'
   block_2:
     display_title: 'Emissions radio'
     display_options:

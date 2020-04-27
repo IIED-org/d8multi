@@ -22,7 +22,6 @@ description: ''
 tag: ''
 base_table: node_field_data
 base_field: nid
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -56,10 +55,23 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: some
+        type: mini
         options:
-          items_per_page: 10
+          items_per_page: 3
           offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
       style:
         type: html_list
         options:
@@ -212,6 +224,8 @@ display:
           id: status
           expose:
             operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
           group: 1
         type:
           id: type
@@ -222,6 +236,9 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
         field_press_center_value:
           id: field_press_center_value
           table: node__field_press_center
@@ -245,6 +262,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -283,6 +302,8 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -330,6 +351,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url.query_args
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -344,7 +366,7 @@ display:
       display_extenders: {  }
       block_description: 'Press review'
       display_description: ''
-      title: 'Press review'
+      title: 'Press reviews'
       defaults:
         title: false
         filters: false
@@ -362,6 +384,8 @@ display:
           id: status
           expose:
             operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
           group: 1
         type:
           id: type
@@ -372,6 +396,9 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
         field_press_center_value:
           id: field_press_center_value
           table: node__field_press_center
@@ -395,6 +422,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -434,6 +463,8 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -463,6 +494,8 @@ display:
           operator: in
           value:
             '***LANGUAGE_language_interface***': '***LANGUAGE_language_interface***'
+            und: und
+            zxx: zxx
           group: 1
           exposed: false
           expose:
@@ -471,6 +504,8 @@ display:
             description: ''
             use_operator: false
             operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: ''
             required: false
             remember: false
@@ -501,6 +536,7 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
+        - url.query_args
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -525,6 +561,8 @@ display:
           id: status
           expose:
             operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
           group: 1
         type:
           id: type
@@ -535,6 +573,9 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
         field_press_center_value:
           id: field_press_center_value
           table: node__field_press_center
@@ -558,6 +599,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -596,6 +639,8 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -631,6 +676,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url.query_args
         - user
         - 'user.node_grants:view'
         - user.permissions

@@ -16,7 +16,6 @@ description: ''
 tag: ''
 base_table: search_api_index_index
 base_field: search_api_id
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -186,6 +185,8 @@ display:
               anonymous: '0'
               administrator: '0'
             placeholder: 'Search terms'
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -229,6 +230,8 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -269,6 +272,8 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -305,6 +310,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''

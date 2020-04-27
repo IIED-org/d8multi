@@ -27,7 +27,6 @@ module:
   entity_reference_revisions: 0
   entity_usage: 0
   field: 0
-  field_defaults: 0
   field_layout: 0
   field_ui: 0
   file: 0
@@ -58,6 +57,7 @@ module:
   optional_end_date: 0
   page_cache: 0
   path: 0
+  path_alias: 0
   pdfpreview: 0
   quickedit: 0
   redirect: 0

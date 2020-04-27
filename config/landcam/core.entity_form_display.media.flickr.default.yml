@@ -12,7 +12,8 @@ dependencies:
 third_party_settings:
   field_layout:
     id: layout_onecol
-    settings: {  }
+    settings:
+      label: ''
 _core:
   default_config_hash: OlhR8I9Q-iF_96PT-_2d1JceMRlPp_slV78qOVXAO20
 id: media.flickr.default
@@ -69,6 +70,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     region: content
     third_party_settings: {  }
 hidden: {  }
