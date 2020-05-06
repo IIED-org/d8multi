@@ -3131,17 +3131,17 @@
     },
     {
         "name": "drupal/core",
-        "version": "8.8.3",
-        "version_normalized": "8.8.3.0",
+        "version": "8.8.5",
+        "version_normalized": "8.8.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core.git",
-            "reference": "77971de6d6ade7366cdd3fadfc16c5d02e531446"
+            "reference": "e22cfc3adf1dac7a92452287a7d8602f3c27b68f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drupal/core/zipball/77971de6d6ade7366cdd3fadfc16c5d02e531446",
-            "reference": "77971de6d6ade7366cdd3fadfc16c5d02e531446",
+            "url": "https://api.github.com/repos/drupal/core/zipball/e22cfc3adf1dac7a92452287a7d8602f3c27b68f",
+            "reference": "e22cfc3adf1dac7a92452287a7d8602f3c27b68f",
             "shasum": ""
         },
         "require": {
@@ -3307,7 +3307,7 @@
             "drupal/workflows": "self.version",
             "drupal/workspaces": "self.version"
         },
-        "time": "2020-03-04T18:01:37+00:00",
+        "time": "2020-04-02T19:01:19+00:00",
         "type": "drupal-core",
         "extra": {
             "drupal-scaffold": {
@@ -3336,8 +3336,7 @@
                     "[web-root]/profiles/README.txt": "assets/scaffold/files/profiles.README.txt",
                     "[web-root]/themes/README.txt": "assets/scaffold/files/themes.README.txt"
                 }
-            },
-            "patches_applied": []
+            }
         },
         "installation-source": "dist",
         "autoload": {
@@ -3520,6 +3519,91 @@
         "homepage": "https://www.drupal.org/project/custom_search",
         "support": {
             "source": "http://cgit.drupalcode.org/custom_search"
+        }
+    },
+    {
+        "name": "drupal/devel",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/devel.git",
+            "reference": "8.x-1.2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/devel-8.x-1.2.zip",
+            "reference": "8.x-1.2",
+            "shasum": "01f3349ef75f6e21fceef24be9d3d6506ca29647"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "suggest": {
+            "symfony/var-dumper": "Pretty print complex values better with var-dumper available"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "drupal": {
+                "version": "8.x-1.2",
+                "datestamp": "1507197844",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Moshe Weitzman",
+                "homepage": "https://github.com/weitzman",
+                "email": "weitzman@tejasa.com",
+                "role": "Maintainer"
+            },
+            {
+                "name": "Hans Salvisberg",
+                "homepage": "https://www.drupal.org/u/salvis",
+                "email": "drupal@salvisberg.com",
+                "role": "Maintainer"
+            },
+            {
+                "name": "Luca Lusso",
+                "homepage": "https://www.drupal.org/u/lussoluca",
+                "role": "Maintainer"
+            },
+            {
+                "name": "Marco (willzyx)",
+                "homepage": "https://www.drupal.org/u/willzyx",
+                "role": "Maintainer"
+            },
+            {
+                "name": "See contributors",
+                "homepage": "https://www.drupal.org/node/3236/committers"
+            },
+            {
+                "name": "pcambra",
+                "homepage": "https://www.drupal.org/user/122101"
+            },
+            {
+                "name": "salvis",
+                "homepage": "https://www.drupal.org/user/82964"
+            },
+            {
+                "name": "willzyx",
+                "homepage": "https://www.drupal.org/user/1043862"
+            }
+        ],
+        "description": "Various blocks, pages, and functions for developers.",
+        "homepage": "http://drupal.org/project/devel",
+        "support": {
+            "source": "http://cgit.drupalcode.org/devel",
+            "issues": "http://drupal.org/project/devel",
+            "irc": "irc://irc.freenode.org/drupal-contribute"
         }
     },
     {
@@ -6022,23 +6106,27 @@
     },
     {
         "name": "drupal/search_api",
-        "version": "1.13.0",
-        "version_normalized": "1.13.0.0",
+        "version": "1.16.0",
+        "version_normalized": "1.16.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/search_api.git",
-            "reference": "8.x-1.13"
+            "reference": "8.x-1.16"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.13.zip",
-            "reference": "8.x-1.13",
-            "shasum": "9f03dd5a4d9ee7c58d47aabc33d9229793d1195f"
+            "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.16.zip",
+            "reference": "8.x-1.16",
+            "shasum": "59bf49fd506d532b0da62e30165d06057ab90013"
         },
         "require": {
-            "drupal/core": "^8.5"
+            "drupal/core": "^8.7.4"
+        },
+        "conflict": {
+            "drupal/search_api_solr": "2.* || 3.0 || 3.1"
         },
         "require-dev": {
+            "drupal/language_fallback_fix": "@dev",
             "drupal/search_api_autocomplete": "@dev",
             "drupal/search_api_db": "*"
         },
@@ -6049,12 +6137,9 @@
         },
         "type": "drupal-module",
         "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
             "drupal": {
-                "version": "8.x-1.13",
-                "datestamp": "1557244685",
+                "version": "8.x-1.16",
+                "datestamp": "1588361091",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -6088,9 +6173,83 @@
         "description": "Provides a generic framework for modules offering search capabilities.",
         "homepage": "https://www.drupal.org/project/search_api",
         "support": {
-            "source": "http://git.drupal.org/project/search_api.git",
+            "source": "https://git.drupalcode.org/project/search_api",
             "issues": "https://www.drupal.org/project/issues/search_api",
             "irc": "irc://irc.freenode.org/drupal-search-api"
+        }
+    },
+    {
+        "name": "drupal/stage_file_proxy",
+        "version": "1.0.0-beta1",
+        "version_normalized": "1.0.0.0-beta1",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/stage_file_proxy.git",
+            "reference": "8.x-1.0-beta1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/stage_file_proxy-8.x-1.0-beta1.zip",
+            "reference": "8.x-1.0-beta1",
+            "shasum": "6609a2166509fd7cc2e593ff2efd7c44daeb0e5b"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "drupal": {
+                "version": "8.x-1.0-beta1",
+                "datestamp": "1569500290",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Beta releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "BarisW",
+                "homepage": "https://www.drupal.org/user/107229"
+            },
+            {
+                "name": "geek-merlin",
+                "homepage": "https://www.drupal.org/user/229048"
+            },
+            {
+                "name": "greggles",
+                "homepage": "https://www.drupal.org/user/36762"
+            },
+            {
+                "name": "markdorison",
+                "homepage": "https://www.drupal.org/user/346106"
+            },
+            {
+                "name": "moshe weitzman",
+                "homepage": "https://www.drupal.org/user/23"
+            },
+            {
+                "name": "msonnabaum",
+                "homepage": "https://www.drupal.org/user/75278"
+            },
+            {
+                "name": "netaustin",
+                "homepage": "https://www.drupal.org/user/199298"
+            },
+            {
+                "name": "robwilmshurst",
+                "homepage": "https://www.drupal.org/user/144488"
+            }
+        ],
+        "description": "Provides stage_file_proxy module.",
+        "homepage": "https://www.drupal.org/project/stage_file_proxy",
+        "support": {
+            "source": "https://git.drupalcode.org/project/stage_file_proxy"
         }
     },
     {
@@ -6140,6 +6299,62 @@
         "homepage": "https://www.drupal.org/project/styles_api",
         "support": {
             "source": "http://cgit.drupalcode.org/styles_api"
+        }
+    },
+    {
+        "name": "drupal/svg_image",
+        "version": "1.13.0",
+        "version_normalized": "1.13.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/svg_image.git",
+            "reference": "8.x-1.13"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/svg_image-8.x-1.13.zip",
+            "reference": "8.x-1.13",
+            "shasum": "3b60ab47802bfaa046da54d7179e47889b41a845"
+        },
+        "require": {
+            "drupal/core": "*",
+            "enshrined/svg-sanitize": ">=0.9 <1.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.13",
+                "datestamp": "1585379082",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Yaroslav Lushnikov",
+                "homepage": "https://www.drupal.org/user/2870933",
+                "role": "Maintainer"
+            },
+            {
+                "name": "See contributors",
+                "homepage": "https://www.drupal.org/node/2887125/committers"
+            }
+        ],
+        "description": "Overrides the standard image formatter and widget to support SVG files.",
+        "homepage": "http://drupal.org/project/svg_image",
+        "support": {
+            "source": "http://cgit.drupalcode.org/svg_image",
+            "issues": "http://drupal.org/project/svg_image"
         }
     },
     {
@@ -6658,17 +6873,17 @@
     },
     {
         "name": "drush/drush",
-        "version": "9.7.1",
-        "version_normalized": "9.7.1.0",
+        "version": "9.7.2",
+        "version_normalized": "9.7.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drush-ops/drush.git",
-            "reference": "6f9a8d235daec06fd6f47b2d84da675750566479"
+            "reference": "ab5e345a72c9187a7d770486a09691f6526826aa"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drush-ops/drush/zipball/6f9a8d235daec06fd6f47b2d84da675750566479",
-            "reference": "6f9a8d235daec06fd6f47b2d84da675750566479",
+            "url": "https://api.github.com/repos/drush-ops/drush/zipball/ab5e345a72c9187a7d770486a09691f6526826aa",
+            "reference": "ab5e345a72c9187a7d770486a09691f6526826aa",
             "shasum": ""
         },
         "require": {
@@ -6688,7 +6903,7 @@
             "psr/log": "~1.0",
             "psy/psysh": "~0.6",
             "symfony/console": "^3.4",
-            "symfony/event-dispatcher": "^3.4",
+            "symfony/event-dispatcher": "^3.4 || ^4.0",
             "symfony/finder": "^3.4 || ^4.0",
             "symfony/process": "^3.4",
             "symfony/var-dumper": "^3.4 || ^4.0",
@@ -6710,7 +6925,7 @@
             "webflo/drupal-core-require-dev": "8.7.x-dev",
             "webflo/drupal-core-strict": "8.7.x-dev"
         },
-        "time": "2019-06-30T19:46:39+00:00",
+        "time": "2020-02-09T17:29:51+00:00",
         "bin": [
             "drush"
         ],
@@ -6930,6 +7145,49 @@
             "validation",
             "validator"
         ]
+    },
+    {
+        "name": "enshrined/svg-sanitize",
+        "version": "0.13.3",
+        "version_normalized": "0.13.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/darylldoyle/svg-sanitizer.git",
+            "reference": "bc66593f255b7d2613d8f22041180036979b6403"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/darylldoyle/svg-sanitizer/zipball/bc66593f255b7d2613d8f22041180036979b6403",
+            "reference": "bc66593f255b7d2613d8f22041180036979b6403",
+            "shasum": ""
+        },
+        "require": {
+            "ext-dom": "*",
+            "ext-libxml": "*"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "^0.1.2",
+            "phpunit/phpunit": "^6"
+        },
+        "time": "2020-01-20T01:34:17+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "enshrined\\svgSanitize\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Daryll Doyle",
+                "email": "daryll@enshrined.co.uk"
+            }
+        ],
+        "description": "An SVG sanitizer for PHP"
     },
     {
         "name": "evanlovely/plugin-twig-namespaces",
@@ -7542,7 +7800,8 @@
                 "name": "Jakub Onderka",
                 "email": "jakub.onderka@gmail.com"
             }
-        ]
+        ],
+        "abandoned": "php-parallel-lint/php-console-color"
     },
     {
         "name": "jakub-onderka/php-console-highlighter",
@@ -7590,7 +7849,8 @@
                 "homepage": "http://www.acci.cz/"
             }
         ],
-        "description": "Highlight PHP code in terminal"
+        "description": "Highlight PHP code in terminal",
+        "abandoned": "php-parallel-lint/php-console-highlighter"
     },
     {
         "name": "jquery/chosen",
@@ -8862,6 +9122,51 @@
             }
         ],
         "description": "A polyfill for getallheaders."
+    },
+    {
+        "name": "sebastian/version",
+        "version": "2.0.1",
+        "version_normalized": "2.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sebastianbergmann/version.git",
+            "reference": "99732be0ddb3361e16ad77b68ba41efc8e979019"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/99732be0ddb3361e16ad77b68ba41efc8e979019",
+            "reference": "99732be0ddb3361e16ad77b68ba41efc8e979019",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.6"
+        },
+        "time": "2016-10-03T07:35:21+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Sebastian Bergmann",
+                "email": "sebastian@phpunit.de",
+                "role": "lead"
+            }
+        ],
+        "description": "Library that helps with managing the version number of Git-hosted PHP projects",
+        "homepage": "https://github.com/sebastianbergmann/version"
     },
     {
         "name": "signature_pad/signature_pad",
