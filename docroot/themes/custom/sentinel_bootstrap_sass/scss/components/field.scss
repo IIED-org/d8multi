@@ -51,7 +51,10 @@
         margin: 0 0 0 $spacer;
     }
     .node .field--type-image+.field--type-image {
-        clear: both;
+        clear:field--name-field-paragraph  both;
+    }
+    .field--name-field-paragraph .field--type-image {
+      float:none;
     }
 }
 
