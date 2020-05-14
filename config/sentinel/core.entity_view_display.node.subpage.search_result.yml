@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.search_result
     - field.field.node.subpage.body
+    - field.field.node.subpage.field_paragraph
     - field.field.node.subpage.field_standfirst
     - field.field.node.subpage.field_subtitle
     - node.type.subpage
@@ -67,5 +68,7 @@ content:
     third_party_settings: {  }
 hidden:
   addtoany: true
+  field_paragraph: true
   field_standfirst: true
   field_subtitle: true
+  search_api_excerpt: true

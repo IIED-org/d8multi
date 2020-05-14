@@ -16,7 +16,6 @@ description: ''
 tag: ''
 base_table: search_api_index_default_search_index
 base_field: search_api_id
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -183,6 +182,8 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -223,6 +224,8 @@ display:
               anonymous: '0'
               admin: '0'
             placeholder: 'Search terms'
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -240,18 +243,6 @@ display:
           fields: {  }
           plugin_id: search_api_fulltext
       sorts:
-        title:
-          id: title
-          table: search_api_index_default_search_index
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: true
-          expose:
-            label: Title
-          plugin_id: search_api
         field_pubdate:
           id: field_pubdate
           table: search_api_index_default_search_index
@@ -263,6 +254,18 @@ display:
           exposed: true
           expose:
             label: Date
+          plugin_id: search_api
+        title:
+          id: title
+          table: search_api_index_default_search_index
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: true
+          expose:
+            label: Title
           plugin_id: search_api
         search_api_relevance:
           id: search_api_relevance
@@ -316,8 +319,10 @@ display:
         - url
         - url.query_args
         - 'url.query_args:sort_by'
+        - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.body'
+        - 'config:search_api.index.default_search_index'
   page_1:
     display_plugin: page
     id: page_1
@@ -344,5 +349,7 @@ display:
         - url
         - url.query_args
         - 'url.query_args:sort_by'
+        - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.body'
+        - 'config:search_api.index.default_search_index'

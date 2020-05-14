@@ -5,11 +5,13 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.subpage.body
+    - field.field.node.subpage.field_paragraph
     - field.field.node.subpage.field_standfirst
     - field.field.node.subpage.field_subtitle
     - node.type.subpage
   module:
     - ds
+    - entity_reference_revisions
     - text
     - user
 third_party_settings:
@@ -20,6 +22,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           ds_content: div
         outer_wrapper: div
@@ -38,6 +41,7 @@ third_party_settings:
         - field_subtitle
         - field_standfirst
         - body
+        - field_paragraph
     fields:
       node_title:
         plugin_id: node_title
@@ -66,6 +70,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: ds_content
+  field_paragraph:
+    type: entity_reference_revisions_entity_view
+    weight: 4
+    region: ds_content
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   field_standfirst:
     weight: 2
     label: hidden
@@ -83,3 +96,4 @@ content:
 hidden:
   addtoany: true
   links: true
+  search_api_excerpt: true

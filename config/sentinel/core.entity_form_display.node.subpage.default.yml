@@ -4,18 +4,21 @@ status: true
 dependencies:
   config:
     - field.field.node.subpage.body
+    - field.field.node.subpage.field_paragraph
     - field.field.node.subpage.field_standfirst
     - field.field.node.subpage.field_subtitle
     - node.type.subpage
   module:
     - field_layout
     - layout_discovery
+    - paragraphs
     - path
     - text
 third_party_settings:
   field_layout:
     id: layout_onecol
-    settings: {  }
+    settings:
+      label: ''
 id: node.subpage.default
 targetEntityType: node
 bundle: subpage
@@ -28,6 +31,7 @@ content:
       rows: 9
       summary_rows: 3
       placeholder: ''
+      show_summary: false
     third_party_settings: {  }
     region: content
   created:
@@ -36,6 +40,18 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_paragraph:
+    type: entity_reference_paragraphs
+    weight: 26
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
   field_standfirst:
     weight: 2
     settings:
@@ -94,6 +110,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     region: content
     third_party_settings: {  }
 hidden: {  }
