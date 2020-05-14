@@ -38,3 +38,8 @@ function sentinel_bootstrap_sass_form_alter(&$form, \Drupal\Core\Form\FormStateI
     $form['actions']['submit']['#attributes']['class'][] = 'search-button fas';
   }
 }
+
+function sentinel_bootstrap_sass_preprocess_paragraph__further_images(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $variables['half_width'] = $paragraph->get('field_half_width')->value;
+}

@@ -3,24 +3,33 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.further_images.field_half_width
     - field.field.paragraph.further_images.field_image
     - field.field.paragraph.further_images.field_image_caption
     - image.style.thumbnail
     - paragraphs.paragraphs_type.further_images
   module:
     - field_layout
-    - image
     - layout_discovery
+    - svg_image
     - text
 third_party_settings:
   field_layout:
     id: layout_onecol
-    settings: {  }
+    settings:
+      label: ''
 id: paragraph.further_images.default
 targetEntityType: paragraph
 bundle: further_images
 mode: default
 content:
+  field_half_width:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_image:
     weight: 0
     settings:

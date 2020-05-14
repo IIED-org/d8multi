@@ -20,7 +20,6 @@ return array(
     'Error' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/Error.php',
     'PEAR_Exception' => $vendorDir . '/pear/pear_exception/PEAR/Exception.php',
     'ParseError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
-    'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'SessionUpdateTimestampHandlerInterface' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/SessionUpdateTimestampHandlerInterface.php',
     'TypeError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
 );
