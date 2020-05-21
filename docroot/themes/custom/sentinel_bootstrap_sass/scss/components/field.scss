@@ -162,3 +162,11 @@ figcaption {
   font-style: italic;
   color: $figure-caption-color;
 }
+
+.paragraph--type--further-images,
+.cboxPhoto {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}

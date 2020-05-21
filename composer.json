@@ -98,6 +98,9 @@
       },
       "drupal/eu_cookie_compliance": {
         "Error: Call to a member function __toString()": "https://www.drupal.org/files/issues/2019-03-11/call-to-a-member-function-error-3039103-1.patch"
+      },
+      "drupal/colorbox": {
+        "Check image for support before build Url": "https://www.drupal.org/files/issues/2018-11-19/image_toolkit_support-3014140-2.patch"
       }
     },
     "drupal-scaffold": {

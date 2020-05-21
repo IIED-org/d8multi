@@ -2727,6 +2727,9 @@
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
                 }
+            },
+            "patches_applied": {
+                "Check image for support before build Url": "https://www.drupal.org/files/issues/2018-11-19/image_toolkit_support-3014140-2.patch"
             }
         },
         "installation-source": "dist",

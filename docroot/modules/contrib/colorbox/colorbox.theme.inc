@@ -165,12 +165,12 @@ function template_preprocess_colorbox_formatter(&$variables) {
     $variables['image']['#uri'] = empty($item->uri) ? $image_uri : $item->uri;
   }
 
+  $variables['url'] = file_create_url($image_uri);
   if (!empty($settings['colorbox_image_style'])) {
     $style = ImageStyle::load($settings['colorbox_image_style']);
-    $variables['url'] = $style->buildUrl($image_uri);
-  }
-  else {
-    $variables['url'] = file_create_url($image_uri);
+    if ($style->supportsUri($image_uri)) {
+      $variables['url'] = $style->buildUrl($image_uri);
+    }
   }
 
   // If File Entity module is enabled, load attribute values from file entity.
