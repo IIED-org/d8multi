@@ -13,6 +13,7 @@ use Drupal\Core\DependencyInjection\DependencySerializationTrait;
  * Webform submission log manager.
  */
 class WebformSubmissionLogManager implements WebformSubmissionLogManagerInterface {
+
   use DependencySerializationTrait;
 
   /**
@@ -30,11 +31,11 @@ class WebformSubmissionLogManager implements WebformSubmissionLogManagerInterfac
   /**
    * WebformSubmissionLogManager constructor.
    *
-   * @param \Drupal\Core\Database\Connection $datababse
+   * @param \Drupal\Core\Database\Connection $database
    *   The database service.
    */
-  public function __construct(Connection $datababse) {
-    $this->database = $datababse;
+  public function __construct(Connection $database) {
+    $this->database = $database;
   }
 
   /**

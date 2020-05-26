@@ -244,7 +244,7 @@ class WebformSubmissionDevelGenerate extends DevelGenerateBase implements Contai
 
     $form['kill'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Delete existing submissions in specified webform before generating new submissions.'),
+      '#title' => $this->t('Delete existing submissions in specified webform before generating new submissions'),
       '#default_value' => $this->getSetting('kill'),
     ];
 
@@ -265,7 +265,7 @@ class WebformSubmissionDevelGenerate extends DevelGenerateBase implements Contai
 
     $entity_type = $form_state->getValue('entity-type');
     $entity_id = $form_state->getValue('entity-id');
-    if ($entity_type || $entity_id) {
+    if ($entity_type) {
       if ($error = $this->validateEntity($webform_ids, $entity_type, $entity_id)) {
         $form_state->setErrorByName('entity_type', $error);
       }
