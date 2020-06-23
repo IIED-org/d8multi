@@ -69,7 +69,8 @@
     "symfony/http-foundation": "^3.4",
     "drupal/username_enumeration_prevention": "^1.0",
     "drupal/audiofield": "^1.9",
-    "drupal/svg_image": "^1.13"
+    "drupal/svg_image": "^1.13",
+    "drupal/imagemagick": "^3.1"
   },
   "require-dev": {
     "drupal/devel": "^1.0",
