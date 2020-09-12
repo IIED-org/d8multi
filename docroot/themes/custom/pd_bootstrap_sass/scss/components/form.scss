@@ -1,0 +1,66 @@
+/**
+ * @file
+ * Visual styles for Bootstrap Barrio's form components.
+ */
+
+.form-required::after {
+    content: '';
+    vertical-align: super;
+    display: inline-block;
+    background-image: url(../images/required.svg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    width: 1rem;
+    height: 1rem;
+    margin: 0 0.3em;
+}
+
+.form-type-select {
+  margin-top: .2rem;
+}
+
+form.contact-form {
+  input, textarea, fieldset {
+    max-width: 50rem;
+    min-width: 320px;
+  }
+}
+
+#block-subscribeform {
+  width: 100%;
+  h2 {
+    text-align: center;
+  }
+  .responsiveRow {
+    text-align: center;
+    margin: auto;
+  }
+  .responsiveCellSize1 {
+    width:inherit;
+    min-width: inherit;
+  }
+  .emptyCell {
+    width: 0;
+    min-width: 0;
+  }
+  .buttonContainer {
+    margin:0 !important;
+    text-align: center !important;
+  }
+  #btnSubmit {
+    @extend .btn;
+    @extend .btn-secondary;
+    margin: 1rem !important;
+  }
+  input[type='text'] {
+    height: 34px;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+}
+
+.webform-submission-form label {
+  font-size: large;
+  font-weight: $font-weight-bold;
+}

@@ -1,0 +1,98 @@
+/**
+ * @file
+ * Footer Styling.
+ */
+
+.site-footer {
+    padding: $spacer 0;
+    .layout-container {
+        padding: 0 $spacer;
+    }
+    .content {
+        color: $dark;
+        font-size: 1rem;
+    }
+    .block {
+      border: none;
+    }
+    img {
+      margin: .25rem;
+      max-width: 100%;
+    }
+}
+
+
+/* Footer Top Styling. */
+
+@media all and (min-width: 560px) {
+  .site-footer__top, .site-footer__middle {
+    .region {
+      position: relative;
+      width: 100%;
+    }
+  }
+}
+
+@media all and (min-width: 851px) {
+  .site-footer__top, .site-footer__middle {
+    .region {
+      float: left;
+      width: 50%;
+      padding: 0 1%;
+    }
+  }
+}
+
+.site-footer__top {
+  @extend .container;
+  .content {
+    margin-top: 0;
+    color: $dark;
+  }
+  h2 {
+    color: inherit;
+    text-transform: none;
+    font-size: $h2-font-size;
+  }
+  a {
+    color: inherit !important;
+    font-weight: bold;
+  }
+}
+
+/* Footer Middle Styling. */
+.site-footer__middle {
+  background-color: white;
+  margin: 0 -15px;
+}
+
+
+/* Footer Bottom Styling. */
+
+.site-footer__bottom .block {
+    margin: ($spacer / 2) 0;
+}
+
+.site-footer__bottom {
+  margin-top: 10px;
+  border: none;
+  .content {
+    padding: ($spacer / 2) 0;
+    margin-top: 0;
+    margin: 0 auto;
+  }
+}
+
+#block-topfooterblock p {
+  font-size: $font-size-lg;
+}
+
+.site-footer .navbar-nav {
+  @extend .container;
+  flex-direction: row;
+  .nav-link {
+    padding: .25rem 1rem;
+    color: $dark;
+  }
+
+}

@@ -1,0 +1,261 @@
+/*
+Theme Name: Bootstrap 4 Sass
+Description: Bootstrap 4 with Sass
+*/
+
+// import files
+@import "import";
+
+/* GENERAL STYLES
+-------------------------------------------------*/
+
+body {
+    background: $white;
+}
+
+
+/* COLORS
+--------------------------------------------------*/
+
+a {
+    color: $red;
+}
+
+.bg-inverse {
+    background: $accent-shade !important;
+}
+
+.site-footer {
+  background: $accent-light !important;
+}
+
+/* Custom settings
+-------------------------------------------------- */
+
+.site-name-slogan a {
+    text-decoration: none;
+}
+
+/* Node & taxonomy term views
+-------------------------------------------------- */
+
+.node--view-mode-full, .taxonomy-term--view-mode-full {
+  .field--name-node-title, .field--name-taxonomy-term-title {
+    margin-top: 2rem;
+  }
+}
+
+/* Cards
+--------------------------------------------------*/
+
+.card-group img {
+    margin: 0;
+    width: 100%;
+    height: auto;
+}
+
+.card-group .field--type-image {
+    margin: 0
+}
+
+.card {
+  cursor: pointer;
+  min-height: 27rem;
+  margin-bottom: 1rem;
+  a:hover {
+    text-decoration: none;
+  }
+  .field--name-node-title {
+    display: block;
+    padding: 0 .5rem .5rem;
+  }
+  .field--name-body {
+    padding: .5rem;
+  }
+  .field--name-field-daterange,
+  .field--name-field-date,
+  .field--name-field-pubdate,
+  .field--name-field-author-s-,
+  .field--name-node-post-date,
+  .addtoany_list {
+   position: absolute;
+   bottom: .5rem;
+   padding: 0 .5rem;
+   font-size: $font-size-xs;
+  }
+  .field--type-image {
+    margin: 0;
+  }
+  .field--name-field-pubdate,
+  .field--name-node-post-date {
+    right: 0;
+  }
+  &:hover {
+    background-color: $accent-light;
+  }
+}
+
+.slick {
+    width: 100%;
+}
+
+.slick>div {
+    margin: 0 15px;
+}
+
+/* Home page specific
+--------------------------------------------------*/
+
+.logo {
+  @include text-hide;
+  background-image: url(../logo.png);
+  width: 127px;
+  height: 35px;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+
+/* Banners
+--------------------------------------------------*/
+
+.banner {
+  background-repeat: no-repeat;
+  background-size: 1280px auto;
+  background-position: center top;
+  min-height: 400px;
+}
+
+.path-frontpage .banner {
+  margin-bottom: 3rem;
+  background-image: url(../images/banner.jpg);
+  &.ds {
+    display: none; //Hide display suite title
+  }
+}
+.page-node-11, .page-node-216 {
+  .banner {
+    background-image: url(../images/about.jpg);
+  }
+}
+
+.page-node-14 .banner {
+  background-image: url(../images/image3.png);
+}
+.path-contact .banner {
+  background-image: url(../images/image4.png);
+}
+.path-blogs .banner {
+  background-image: url(../images/BlogsPageBannerOption3.png);
+  .jumbotron {
+    margin-top: 15rem;
+  }
+}
+
+/* Alternating blocks
+--------------------------------------------------*/
+
+.block-views {
+  margin-top: 1rem;
+  padding: 1rem;
+  .views-row:nth-of-type(even) {
+      background-color: $inverse-bg;
+    }
+}
+
+/* Search results
+--------------------------------------------------*/
+
+.node--view-mode-search-result,
+.node--view-mode-teaser {
+  margin-bottom: .5rem;
+  padding: .25rem;
+  cursor: pointer;
+  width: 100%;
+  &:hover, &:focus {
+    background-color: $gray-100;
+    h3 {
+      color: $primary-shade;
+    }
+  }
+}
+
+.block-facets {
+  @extend .form-control;
+  height: auto;
+}
+
+.facets-widget-checkbox ul {
+  margin-left: -2rem;
+  list-style: none;
+  label {
+    display: inline;
+    padding: 0 .5rem;
+  }
+}
+
+
+/* Organisations etc.
+--------------------------------------------------*/
+
+.node--type-organisation .main-content .field--name-body img {
+  margin: 0 1rem 1rem 0;
+  border: solid 1px $gray-100;
+  width: 100px;
+  height: auto;
+}
+
+img.align-left {
+  margin: 0 1rem 1rem 0;
+}
+
+.field-organisation-logo {
+  height:250px;
+  width:250px;
+  float:right;
+  background-color:$body-bg;
+  img {
+    margin: 1rem 0;
+  }
+}
+
+.ds-2col-stacked-fluid > .group-right,
+.ds-2col-stacked-fluid > .group-left {
+  @include media-breakpoint-down(sm) {
+    float: none;
+    width: 100%;
+    .field-organisation-logo {
+      float: none;
+      height: auto;
+      img {
+        margin: 1rem 0;
+      }
+    }
+  }
+}
+
+iframe > html {
+  overflow: hidden;
+}
+
+/* eu_cookie_compliance banner
+--------------------------------------------------*/
+.eu-cookie-compliance-banner  {
+  background-color: #777;
+  .eu-cookie-compliance-message {
+    max-width: 80%;
+    margin-top: 1.5rem;
+  }
+  span {
+    color: white;
+  }
+}
+
+.lead {
+  font-weight: unset;
+}
+
+blockquote {
+  margin-left: 2em;
+  margin-right: 2em;
+  font-size: larger;
+}

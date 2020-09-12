@@ -12,7 +12,7 @@
  * and hide() functions.
  */
 .hidden {
-  display: none;
+  /* display: none !important; */
 }
 
 /**
