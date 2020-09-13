@@ -1,0 +1,112 @@
+uuid: cf1d7fe2-4c36-42c9-a2e5-84d7ff79b14a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.blog.body
+    - field.field.node.blog.field_authors
+    - field.field.node.blog.field_file_upload
+    - field.field.node.blog.field_further
+    - field.field.node.blog.field_image
+    - field.field.node.blog.field_theme
+    - field.field.node.blog.field_video
+    - image.style.card_image
+    - node.type.blog
+  module:
+    - ds
+    - image
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: bb_cardtopimage
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          first: div
+          second: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: content
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          first: {  }
+          second: {  }
+    regions:
+      first:
+        - field_image
+      second:
+        - node_title
+        - body
+        - node_post_date
+    fields:
+      node_post_date:
+        plugin_id: node_post_date
+        weight: 3
+        label: hidden
+        formatter: ds_post_date_short
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: strong
+          class: ''
+          link: false
+id: node.blog.card
+targetEntityType: node
+bundle: blog
+mode: card
+content:
+  body:
+    type: text_summary_or_trimmed
+    weight: 2
+    region: second
+    label: hidden
+    settings:
+      trim_length: 250
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: card_image
+      image_link: ''
+    third_party_settings:
+      ds:
+        ds_limit: '1'
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: image
+    region: first
+hidden:
+  addtoany: true
+  field_authors: true
+  field_file_upload: true
+  field_further: true
+  field_theme: true
+  field_video: true
+  links: true

@@ -1,0 +1,224 @@
+langcode: en
+status: open
+dependencies:
+  module:
+    - honeypot
+open: null
+close: null
+weight: 0
+uid: 1
+template: false
+archive: false
+id: analyse_prospective
+title: 'Analyse prospective'
+description: ''
+category: ''
+elements: "'#attributes':\n  class:\n    - 'col-md-9 justify-content-center'\nmarkup_01:\n  '#type': webform_markup\n  '#markup': \"<h3 class=\\\"text-center\\\">« Garantir la sécurité alimentaire et nutritionnelle, réduire les inégalités et préserver les écosystèmes terrestres : <br />\\r\\n100 questions prioritaires à étudier afin de soutenir les décideurs en Afrique subsaharienne. »</h3>\"\nabout_you:\n  '#type': webform_wizard_page\n  '#title': 'À propos de vous'\n  '#prev_button_label': '« Page précédente'\n  '#next_button_label': 'Page suivante »'\n  view_this_page_in_english:\n    '#type': processed_text\n    '#text': \"<p class=\\\"text-align-right\\\"><a href=\\\"/form/horizon-scanning\\\">View this page in English</a></p>\\r\\n\"\n    '#format': full_html\n  markup:\n    '#type': webform_markup\n    '#markup': \"<p>Ce formulaire vous permet de soumettre vos questions dans le cadre de <a href=\\\"/appel-contribution\\\">l’analyse prospective</a> du projet SENTINEL</p>\\r\\nPour toute question concernant l’utilisation de ce formulaire ou pour obtenir plus de renseignements concernant ce projet, veuillez contacter Adam Devenish : <a href=\\\"mailto:a.devenish@imperial.ac.uk\\\">a.devenish@imperial.ac.uk</a>. &nbsp;<br />\\r\\n<br />\\r\\nMerci d’avoir accepté de participer à ce projet. Votre contribution est particulièrement appréciée et nous espérons pouvoir identifier les questions prioritaires en matière de recherche afin d’aider les décideurs en Afrique subsaharienne dans la réalisation des Objectifs de développement durable.\"\n  name:\n    '#type': textfield\n    '#title': 'Nom et prénom'\n    '#size': 20\n  email_address:\n    '#type': email\n    '#title': 'Address e-mail'\n  job_position:\n    '#type': textfield\n    '#title': 'Poste ou fonction'\n  affiliation:\n    '#type': textfield\n    '#title': Affiliation\n  are_you_a_producer_or_consumer_of_research_:\n    '#type': checkboxes\n    '#title': 'Êtes-vous producteur ou consommateur de recherche ?'\n    '#options':\n      consumer: Consommateur\n      producer: Producteur\n    '#options_display': two_columns\n  please_select_which_of_these_areas_best_describes_your_work:\n    '#type': webform_select_other\n    '#title': 'Veuillez sélectionner l’option qui décrit le mieux votre activité'\n    '#options':\n      'Academic researcher': 'Chercheur universitaire'\n      'Researcher for a private institute': 'Chercheur pour un institut privé'\n      'Public sector - Policy maker': 'Secteur public — Décideur'\n      'Non-state actor - Civil Society Organisation (CSO)': 'Acteur non étatique — Organisation de la société civile (OSC)'\n      'Non-state actor - Non-Governmental Organisation (NGO)': 'Acteur non étatique — Organisation non gouvernementale (ONG)'\n      'Private sector - commercial / industry': 'Secteur privé — Commerce / Industrie'\n      'Governmental Organisation': 'Organisation gouvernementale'\n      'Intergovernmental Organisation': 'Organisation intergouvernementale'\n      Donor: Bailleur\n    '#empty_option': '- Aucune -'\n    '#other__option_label': Autre...\n  please_select_additional_areas_which_you_work_in:\n    '#type': webform_checkboxes_other\n    '#title': 'Veuillez cocher les autres options qui correspondent à votre activité'\n    '#options':\n      'Academic researcher': 'Chercheur universitaire'\n      'Researcher for a private institute': 'Chercheur pour un institut privé'\n      'Public sector - Policy maker': 'Secteur public — Décideur'\n      'Non-state actor - Civil Society Organisation (CSO)': 'Acteur non étatique — Organisation de la société civile (OSC)'\n      'Non-state actor - Non-Governmental Organisation (NGO)': 'Acteur non étatique — Organisation non gouvernementale (ONG)'\n      'Private sector - commercial / industry': 'Secteur privé — Commerce / Industrie'\n      'Governmental Organisation': 'Organisation gouvernementale'\n      'Intergovernmental Organisation': 'Organisation intergouvernementale'\n      Donor: Bailleur\n    '#other__option_label': Autre...\n  in_which_country_is_your_place_of_work_:\n    '#type': select\n    '#title': 'Dans quel pays travaillez-vous ?'\n    '#title_display': before\n    '#options': country_names_fr_\n    '#empty_option': '- Aucun -'\n  what_sector_do_you_work_in_:\n    '#type': textfield\n    '#title': 'Dans quel domaine travaillez-vous ?'\nyour_questions:\n  '#type': webform_wizard_page\n  '#title': 'Vos questions'\n  '#prev_button_label': '« Page précédente'\n  '#next_button_label': 'Page suivante »'\n  markup_02:\n    '#type': webform_markup\n    '#markup': \"Envoyez autant de questions que vous le souhaitez en complétant les champs ci-dessous. Pour ajouter des champs afin de saisir de nouvelles questions, il vous suffit de cliquer sur le bouton « + ». Lorsque vous avez terminé d’écrire vos questions, cliquez sur « Page suivante ».<br />\\r\\n<br />\\r\\nVeuillez soumettre des questions se rapportant à au moins l’une des thématiques suivantes : sécurité alimentaire, nutrition, réduction des inégalités et préservation des écosystèmes.\"\n  question:\n    '#type': textfield\n    '#title': Questions\n    '#multiple': true\n    '#title_display': inline\n    '#size': 25\n    '#placeholder': Question\n    '#autocomplete': 'off'\n    '#multiple__empty_items': 5\n    '#multiple__sorting': false\n    '#multiple__add_more': false\nresearch_priorities:\n  '#type': webform_wizard_page\n  '#title': 'Axes prioritaires de recherche'\n  '#prev_button_label': '« Page précédente'\n  '#next_button_label': 'Page suivante »'\n  markup_03:\n    '#type': webform_markup\n    '#markup': 'Dans cette section, nous vous demandons de classer par ordre d’importance les différents axes de recherche de notre analyse prospective.'\n  how_important_is_preserving_the_terrestrial_ecosystem_when_makin:\n    '#type': range\n    '#title': 'Quel degré d’importance accordez-vous à la préservation des écosystèmes terrestres dans la prise de décisions en matière de développement agricole ?'\n    '#field_prefix': 'Importance minimale'\n    '#field_suffix': 'Importance maximale'\n    '#default_value': '5'\n    '#attributes':\n      style: 'max-width: 40%'\n    '#format': raw\n    '#max': 10\n    '#output': above\n  how_important_is_food_and_nutrition_security_when_making_decisio:\n    '#type': range\n    '#title': 'Quel degré d’importance accordez-vous à la sécurité alimentaire et nutritionnelle dans la prise de décisions en matière de développement agricole ?'\n    '#field_prefix': 'Importance minimale'\n    '#field_suffix': 'Importance maximale'\n    '#default_value': '5'\n    '#attributes':\n      style: 'max-width: 40%'\n    '#format': raw\n    '#max': 10\n    '#output': above\n  how_important_is_reducing_inequality_when_making_decisions_conce:\n    '#type': range\n    '#title': 'Quel degré d’importance accordez-vous à la réduction des inégalités dans la prise de décisions en matière de développement agricole ?'\n    '#field_prefix': 'Importance minimale'\n    '#field_suffix': 'Importance maximale'\n    '#attributes':\n      style: 'max-width: 40%'\n    '#format': raw\n    '#max': 10\n    '#output': above\n  if_you_had_to_prioritise_the_following_what_would_you_consider_t:\n    '#type': select\n    '#title': 'Si vous deviez classer ces domaines par ordre de priorités, lequel considéreriez-vous comme étant le <em>moins</em> important en matière de développement agricole ?'\n    '#options':\n      'Preserving terrestrial ecosystems': 'Préserver les écosystèmes terrestres'\n      'Food and nutrition security': 'Garantir la sécurité alimentaire et nutritionnelle'\n      'Reducing inequality': 'Réduire les inégalités'\n    '#empty_option': '– Aucune –'\n  if_you_had_to_prioritise_the_following_what_would_you_consider:\n    '#type': select\n    '#title': 'Si vous deviez classer ces domaines par ordre de priorités, lequel considéreriez-vous comme étant le <em>plus</em> important en matière de développement agricole ?'\n    '#options':\n      'Preserving terrestrial ecosystems': 'Préserver les écosystèmes terrestres'\n      'Food and nutrition security': 'Garantir la sécurité alimentaire et nutritionnelle '\n      'Reducing inequality': 'Réduire les inégalités'\n    '#empty_option': '– Aucune –'\n  if_you_had_to_prioritise_funding_which_would_you_consider_to_be_:\n    '#type': radios\n    '#title': 'Si vous deviez hiérarchiser ces domaines en vue de l’octroi de financement, lequel considéreriez-vous comme étant le plus important ?'\n    '#options':\n      'Environmental research': 'Sciences de l’environnement'\n      'Food self-sufficiency research': 'Autosuffisance alimentaire'\n      'Social equality research': 'Égalité sociale'\n  how_much_influence_do_you_feel_your_work_has_on_agricultural_dev:\n    '#type': range\n    '#title': 'Selon vous, quel est l’impact de votre travail sur les prises de décisions en matière de développement agricole ?'\n    '#field_prefix': 'Aucune influence'\n    '#field_suffix': 'Influence très importante'\n    '#default_value': '5'\n    '#attributes':\n      style: 'max-width: 40%'\n    '#format': raw\n    '#max': 10\n    '#output': above\nthank_you:\n  '#type': webform_wizard_page\n  '#title': Confirmation\n  '#prev_button_label': '« Page précédente'\n  '#next_button_label': 'Page suivante »'\n  markup_04:\n    '#type': webform_markup\n    '#markup': \"<h3>Merci beaucoup d&rsquo;avoir apport&eacute; votre contribution &agrave; l&rsquo;analyse prospective de SENTINEL.</h3>\\r\\nEn soumettant votre contribution, vous consentez &agrave; ce que vos donn&eacute;es personnelles soient utilis&eacute;es selon les termes de notre <a href=\\\"/politique-de-confidentialite\\\">politique de confidentialit&eacute;</a>. Pour obtenir plus de renseignements, veuillez contacter Adam Devenish : <a href=\\\"mailto:a.devenish@imperial.ac.uk\\\">a.devenish@imperial.ac.uk</a>.<br />\\r\\n<br />\\r\\nSi vous avez indiqu&eacute; votre adresse e-mail, nous vous tiendrons inform&eacute; de l&rsquo;&eacute;volution du projet. Pour l&rsquo;heure, nous vous remercions une nouvelle fois pour votre participation et vous souhaitons une excellente journ&eacute;e.\"\n  i_would_like_to_be_contacted_regarding_future_stages_of_the_hori:\n    '#type': checkbox\n    '#title': 'Je souhaite être recontacté en vue des étapes suivantes de l’analyse prospective'\n    '#description': 'Si vous souhaitez être recontacté, assurez-vous d’avoir indiqué votre adresse e-mail dans la première page du formulaire.'\n    '#description_display': after\n    '#wrapper_attributes':\n      class:\n        - mb-2\n  i_would_be_interested_in_participating_in_the_later_stages_of_th:\n    '#type': checkbox\n    '#title': 'Je suis candidat pour participer aux étapes suivantes de l’analyse prospective.'\n    '#wrapper_attributes':\n      class:\n        - mt-3\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': Soumettre\n"
+css: ''
+javascript: ''
+settings:
+  ajax: true
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_admin_theme: false
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: 'D&eacute;sol&eacute;, ce formulaire est ferm&eacute; aux nouvelles soumissions.'
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_remote_addr: true
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_unsaved: true
+  form_disable_back: false
+  form_submit_back: true
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  submission_label: ''
+  submission_log: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: false
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: url_message
+  confirmation_title: 'Thank you'
+  confirmation_message: 'Votre soumission a &eacute;t&eacute; re&ccedil;ue. Merci beaucoup pour votre participation.'
+  confirmation_url: /
+  confirmation_attributes: {  }
+  confirmation_back: false
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: true
+  confirmation_exclude_token: true
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles:
+      - site_editor
+      - admin
+    users:
+      - 146
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  email:
+    id: email
+    label: Email
+    handler_id: email
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: a.devenish@imperial.ac.uk
+      to_options: {  }
+      cc_mail: _default
+      cc_options: {  }
+      bcc_mail: admin@cbrody.com
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+variants: {  }
+uuid: d7aee898-a0df-4ef7-b1c3-60c923a379b1
+third_party_settings:
+  honeypot:
+    honeypot: true

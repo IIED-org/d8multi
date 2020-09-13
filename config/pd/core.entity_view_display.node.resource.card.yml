@@ -1,0 +1,157 @@
+uuid: cb3a9ddf-95f3-40dc-824f-cf1fa6554672
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.resource.body
+    - field.field.node.resource.field_authors
+    - field.field.node.resource.field_country
+    - field.field.node.resource.field_file_upload
+    - field.field.node.resource.field_image
+    - field.field.node.resource.field_link
+    - field.field.node.resource.field_material_type
+    - field.field.node.resource.field_pubdate
+    - field.field.node.resource.field_publisher
+    - field.field.node.resource.field_theme
+    - image.style.card_image
+    - node.type.resource
+  module:
+    - datetime
+    - ds
+    - image
+    - pdfpreview
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: bb_cardtopimage
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          first: div
+          second: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: content
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          first: {  }
+          second: {  }
+    regions:
+      second:
+        - node_title
+        - field_authors
+        - field_pubdate
+      first:
+        - field_image
+        - field_file_upload
+        - field_material_type
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: p
+          class: ''
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.resource.card
+targetEntityType: node
+bundle: resource
+mode: card
+content:
+  field_authors:
+    weight: 102
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: second
+  field_file_upload:
+    weight: 105
+    label: hidden
+    settings:
+      image_style: card_image
+      image_link: ''
+      tag: span
+      fallback_formatter: file_default
+      show_description: 0
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: pdfpreview
+    region: first
+  field_image:
+    weight: 103
+    label: hidden
+    settings:
+      image_style: card_image
+      image_link: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: image
+    region: first
+  field_material_type:
+    weight: 107
+    label: hidden
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: entity_reference_label
+    region: first
+  field_pubdate:
+    weight: 104
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: html_yearless_date
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: datetime_default
+    region: second
+hidden:
+  addtoany: true
+  body: true
+  field_country: true
+  field_link: true
+  field_publisher: true
+  field_theme: true
+  links: true

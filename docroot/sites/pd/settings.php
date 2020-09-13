@@ -804,3 +804,6 @@ if (isset($_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR']) && file_exists($_SERVER['D
 if (file_exists('/var/www/site-php')) {
   require '/var/www/site-php/landcam/pd-settings.inc';
 }
+
+$settings['config_sync_directory'] = $app_root . '/../config/pd/';
+$settings['config_vcs_directory'] = $settings['config_sync_directory'];

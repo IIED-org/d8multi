@@ -1,0 +1,38 @@
+uuid: ecc60e9d-72f2-47dd-96e2-84c850c06ccf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image
+    - node.type.person
+  module:
+    - image
+id: node.person.field_image
+field_name: field_image
+entity_type: node
+bundle: person
+label: Photo
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'photos/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: '2 MB'
+  max_resolution: ''
+  min_resolution: 150x150
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: 83d750d8-46c9-4f1f-bf76-6141970db206
+    alt: ''
+    title: ''
+    width: 160
+    height: 160
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

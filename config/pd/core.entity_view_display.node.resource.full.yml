@@ -1,0 +1,243 @@
+uuid: f49d3e38-e906-4b9f-8a8c-e19c503c01dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.resource.body
+    - field.field.node.resource.field_authors
+    - field.field.node.resource.field_country
+    - field.field.node.resource.field_file_upload
+    - field.field.node.resource.field_image
+    - field.field.node.resource.field_link
+    - field.field.node.resource.field_material_type
+    - field.field.node.resource.field_pubdate
+    - field.field.node.resource.field_publisher
+    - field.field.node.resource.field_theme
+    - image.style.cover_large
+    - node.type.resource
+  module:
+    - datetime
+    - ds
+    - image
+    - link
+    - pdfpreview
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_2col_stacked
+      library: ds/ds_2col_stacked
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          header: div
+          left: div
+          right: div
+          footer: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
+    regions:
+      header:
+        - node_title
+      right:
+        - field_authors
+        - field_pubdate
+        - field_publisher
+        - field_material_type
+        - body
+      left:
+        - field_file_upload
+        - field_image
+        - field_link
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+id: node.resource.full
+targetEntityType: node
+bundle: resource
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    region: right
+  field_authors:
+    weight: 3
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: right
+  field_file_upload:
+    weight: 7
+    label: hidden
+    settings:
+      image_style: cover_large
+      image_link: ''
+      tag: div
+      fallback_formatter: file_default
+      show_description: 0
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: 'clearfix text-center'
+            ow-at: ''
+            ow-def-at: true
+            ow-def-cl: true
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: '<div class=text-center my-1"><a class="my-2 btn btn-secondary" href=[node:field_file_upload:entity:url]>Download file</a></div>'
+            lbw: false
+            lb-col: false
+            fis: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
+    type: pdfpreview
+    region: left
+  field_image:
+    weight: 8
+    label: hidden
+    settings:
+      image_style: cover_large
+      image_link: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: ''
+            ow-at: ''
+            ow-def-cl: true
+            fis: true
+            fis-el: div
+            fis-cl: 'd-block mx-auto clearfix'
+            fis-at: ''
+            fi: true
+            fi-el: a
+            fi-cl: my-2
+            fi-at: 'href=[node:field_link:uri] title=[node:field_link:title]'
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-at: false
+            fis-def-at: false
+            fi-def-at: false
+    type: image
+    region: left
+  field_link:
+    weight: 9
+    label: hidden
+    settings:
+      trim_length: 100
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: button
+            ow-cl: 'btn btn-secondary d-block mx-auto my-2'
+            ow-at: ''
+            ow-def-at: true
+            ow-def-cl: true
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            fis: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
+    type: link
+    region: left
+  field_material_type:
+    weight: 6
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: right
+  field_pubdate:
+    weight: 4
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: month
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: datetime_default
+    region: right
+  field_publisher:
+    weight: 5
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: right
+hidden:
+  addtoany: true
+  field_country: true
+  field_theme: true
+  links: true

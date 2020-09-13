@@ -1,0 +1,29 @@
+uuid: f6d026ad-ea7d-48a7-87ae-d618b81827d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_theme
+    - node.type.person
+    - taxonomy.vocabulary.research_themes
+id: node.person.field_theme
+field_name: field_theme
+entity_type: node
+bundle: person
+label: Theme
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      research_themes: research_themes
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

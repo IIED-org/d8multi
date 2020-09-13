@@ -1,0 +1,38 @@
+uuid: 4cbbd776-ac46-4b60-a1e5-b5edd2eca327
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.subpage.body
+    - field.field.node.subpage.field_paragraph
+    - field.field.node.subpage.field_standfirst
+    - field.field.node.subpage.field_subtitle
+    - node.type.subpage
+  module:
+    - text
+    - user
+id: node.subpage.teaser
+targetEntityType: node
+bundle: subpage
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  addtoany: true
+  field_paragraph: true
+  field_standfirst: true
+  field_subtitle: true
+  search_api_excerpt: true
