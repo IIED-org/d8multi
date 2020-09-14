@@ -55,7 +55,7 @@ class WebformElementHelper {
    * @var array
    */
   public static $allowedProperties = [
-    # webform_validation.module.
+    // webform_validation.module.
     '#equal_stepwise_validate' => '#equal_stepwise_validate',
   ];
 
@@ -314,10 +314,6 @@ class WebformElementHelper {
    *   A webform element that is missing the 'data-drupal-states' attribute.
    */
   public static function fixStatesWrapper(array &$element) {
-    if (empty($element['#states'])) {
-      return;
-    }
-
     $attributes = [];
 
     // Set .js-form-wrapper which is targeted by states.js hide/show logic.
@@ -336,7 +332,23 @@ class WebformElementHelper {
       }
     }
 
-    $attributes['data-drupal-states'] = Json::encode($element['#states']);
+    // Move the element's #states the wrapper's #states.
+    if (isset($element['#states'])) {
+      $attributes['data-drupal-states'] = Json::encode($element['#states']);
+
+      // Copy #states to #_webform_states property which can be used by the
+      // WebformSubmissionConditionsValidator.
+      // @see \Drupal\webform\WebformSubmissionConditionsValidator
+      $element['#_webform_states'] = $element['#states'];
+
+      // Remove #states property to prevent nesting.
+      unset($element['#states']);
+    }
+
+    // If there are attributes for the wrapper do not add it.
+    if (empty($attributes)) {
+      return;
+    }
 
     $element += ['#prefix' => '', '#suffix' => ''];
 
@@ -349,14 +361,6 @@ class WebformElementHelper {
 
     // Attach library.
     $element['#attached']['library'][] = 'core/drupal.states';
-
-    // Copy #states to #_webform_states property which can be used by the
-    // WebformSubmissionConditionsValidator.
-    // @see \Drupal\webform\WebformSubmissionConditionsValidator
-    $element['#_webform_states'] = $element['#states'];
-
-    // Remove #states property to prevent nesting.
-    unset($element['#states']);
   }
 
   /**
@@ -380,7 +384,7 @@ class WebformElementHelper {
             $ignored_properties[$key] = $key;
           }
         }
-        elseif ($key == '#element' && is_array($value) && isset($element['#type']) && $element['#type'] === 'webform_composite') {
+        elseif ($key === '#element' && is_array($value) && isset($element['#type']) && $element['#type'] === 'webform_composite') {
           foreach ($value as $composite_value) {
 
             // Multiple sub composite elements are not supported.
@@ -452,7 +456,7 @@ class WebformElementHelper {
       $allowedSubProperties = self::$allowedProperties;
       $ignoredSubProperties = self::$ignoredProperties;
       // Allow #weight as sub property. This makes it easier for developer to
-      // sort composite sub-elements
+      // sort composite sub-elements.
       unset($ignoredSubProperties['#weight']);
       self::$ignoredSubPropertiesRegExp = '/__(' . implode('|', array_keys(WebformArrayHelper::removePrefix($ignoredSubProperties))) . ')$/';
       self::$allowedSubPropertiesRegExp = '/__(' . implode('|', array_keys(WebformArrayHelper::removePrefix($allowedSubProperties))) . ')$/';
@@ -578,7 +582,7 @@ class WebformElementHelper {
    */
   public static function &getElement(array &$elements, $name) {
     foreach (Element::children($elements) as $element_name) {
-      if ($element_name == $name) {
+      if ($element_name === $name) {
         return $elements[$element_name];
       }
       elseif (is_array($elements[$element_name])) {

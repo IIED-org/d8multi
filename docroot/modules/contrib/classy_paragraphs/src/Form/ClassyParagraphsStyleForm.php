@@ -20,31 +20,31 @@ class ClassyParagraphsStyleForm extends EntityForm {
 
     /** @var \Drupal\classy_paragraphs\Entity\ClassyParagraphsStyle $style */
     $style = $this->entity;
-    $form['label'] = array(
+    $form['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Label'),
       '#maxlength' => 255,
       '#default_value' => $style->label(),
       '#description' => $this->t("Label for the Classy paragraphs style."),
       '#required' => TRUE,
-    );
+    ];
 
-    $form['id'] = array(
+    $form['id'] = [
       '#type' => 'machine_name',
       '#default_value' => $style->id(),
-      '#machine_name' => array(
+      '#machine_name' => [
         'exists' => '\Drupal\classy_paragraphs\Entity\ClassyParagraphsStyle::load',
-      ),
+      ],
       '#disabled' => !$style->isNew(),
-    );
+    ];
     
-    $form['classes'] = array(
-      '#title' => t('Classes'),
+    $form['classes'] = [
+      '#title' => $this->t('Classes'),
       '#type' => 'textarea',
       '#default_value' => $style->getClasses(),
-      '#description' => t('Enter the CSS classes you want applied. Enter one per-line.'),
+      '#description' => $this->t('Enter the CSS classes you want applied. Enter one per-line.'),
       '#required' => TRUE,
-    );
+    ];
 
     return $form;
   }
@@ -58,13 +58,13 @@ class ClassyParagraphsStyleForm extends EntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label style.', [
+        $this->messenger()->addMessage($this->t('Created the %label style.', [
           '%label' => $style->label(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the %label style.', [
+        $this->messenger()->addMessage($this->t('Saved the %label style.', [
           '%label' => $style->label(),
         ]));
     }

@@ -10,6 +10,8 @@ namespace Drupal\flickr_api\Service;
 class Groups {
 
   /**
+   * Client.
+   *
    * @var \Drupal\flickr_api\Service\Client
    */
   protected $client;
@@ -18,7 +20,9 @@ class Groups {
    * Groups constructor.
    *
    * @param \Drupal\flickr_api\Service\Client $client
+   *   Client.
    * @param \Drupal\flickr_api\Service\Helpers $helpers
+   *   Helpers.
    */
   public function __construct(Client $client, Helpers $helpers) {
     // Flickr API Client.
@@ -33,15 +37,16 @@ class Groups {
    *
    * @param string $id
    *   NSID of the group whose photos you want.
-   *
-   * @param array $other_args
+   * @param array $otherArgs
+   *   Other args.
    * @param bool $cacheable
+   *   Cacheable.
    *
    * @return array
    *   Response from the flickr method flickr.groups.getInfo.
    *   (https://www.flickr.com/services/api/flickr.groups.getInfo.html)
    */
-  public function groupsGetInfo($id, $other_args = [], $cacheable = TRUE) {
+  public function groupsGetInfo($id, array $otherArgs = [], $cacheable = TRUE) {
     if ($this->helpers->isNsid($id)) {
       $args = ['group_id' => $id];
     }
@@ -49,7 +54,7 @@ class Groups {
       $args = ['group_path_alias' => $id];
     }
 
-    $args = array_merge($args, $other_args);
+    $args = array_merge($args, $otherArgs);
 
     $response = $this->client->request(
       'flickr.groups.getInfo',

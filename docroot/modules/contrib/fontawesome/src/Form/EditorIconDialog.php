@@ -21,7 +21,7 @@ class EditorIconDialog extends FormBase {
   /**
    * Drupal configuration service container.
    *
-   * @var Drupal\Core\Config\ConfigFactory
+   * @var \Drupal\Core\Config\ConfigFactory
    */
   protected $configFactory;
 
@@ -51,6 +51,10 @@ class EditorIconDialog extends FormBase {
   /**
    * {@inheritdoc}
    *
+   * @param array $form
+   *   Form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   Form state object.
    * @param \Drupal\editor\Entity\Editor $editor
    *   The text editor to which this dialog corresponds.
    */
@@ -104,6 +108,7 @@ class EditorIconDialog extends FormBase {
         'fas' => $this->t('Solid'),
         'far' => $this->t('Regular'),
         'fal' => $this->t('Light'),
+        'fad' => $this->t('Duotone'),
       ],
       '#default_value' => 'fas',
     ];

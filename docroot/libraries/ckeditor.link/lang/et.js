@@ -1,5 +1,5 @@
 ﻿/*
-Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang( 'link', 'et', {
@@ -35,7 +35,9 @@ CKEDITOR.plugins.setLang( 'link', 'et', {
 	noAnchors: '(Selles dokumendis pole ankruid)',
 	noEmail: 'Palun kirjuta e-posti aadress',
 	noUrl: 'Palun kirjuta lingi URL',
+	noTel: 'Palun sisesta telefoninumber',
 	other: '<muu>',
+	phoneNumber: 'Telefoninumber',
 	popupDependent: 'Sõltuv (Netscape)',
 	popupFeatures: 'Hüpikakna omadused',
 	popupFullScreen: 'Täisekraan (IE)',
@@ -60,6 +62,7 @@ CKEDITOR.plugins.setLang( 'link', 'et', {
 	toAnchor: 'Ankur sellel lehel',
 	toEmail: 'E-post',
 	toUrl: 'URL',
+	toPhone: 'Telefon',
 	toolbar: 'Lingi lisamine/muutmine',
 	type: 'Lingi liik',
 	unlink: 'Lingi eemaldamine',

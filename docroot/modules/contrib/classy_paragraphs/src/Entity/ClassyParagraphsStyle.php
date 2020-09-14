@@ -17,7 +17,8 @@ use Drupal\classy_paragraphs\ClassyParagraphsStyleInterface;
  *       "add" = "Drupal\classy_paragraphs\Form\ClassyParagraphsStyleForm",
  *       "edit" = "Drupal\classy_paragraphs\Form\ClassyParagraphsStyleForm",
  *       "delete" = "Drupal\classy_paragraphs\Form\ClassyParagraphsStyleDeleteForm"
- *     }
+ *     },
+ *     "access" = "Drupal\classy_paragraphs\ClassyParagraphsAccessControlHandler"
  *   },
  *   config_prefix = "classy_paragraphs_style",
  *   admin_permission = "administer site configuration",
@@ -25,6 +26,12 @@ use Drupal\classy_paragraphs\ClassyParagraphsStyleInterface;
  *     "id" = "id",
  *     "label" = "label",
  *     "uuid" = "uuid"
+ *   },
+ *   config_export = {
+ *     "id",
+ *     "label",
+ *     "classes",
+ *     "uuid"
  *   },
  *   links = {
  *     "canonical" = "/admin/structure/classy_paragraphs_style/{classy_paragraphs_style}",

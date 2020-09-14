@@ -26,17 +26,4 @@ class OptionalEndDateDateRangeDatelistWidget extends DateRangeDatelistWidget {
     return $element;
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function validateStartEnd(array &$element, FormStateInterface $form_state, array &$complete_form) {
-    $end_date = $element['end_value']['#value']['object'];
-
-    if (!$this->getFieldSetting('optional_end_date') && $end_date === NULL) {
-      $form_state->setError($element['end_value'], $this->t('The @title end date is required', ['@title' => $element['#title']]));
-    }
-
-    parent::validateStartEnd($element, $form_state, $complete_form);
-  }
-
 }

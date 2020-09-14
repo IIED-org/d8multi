@@ -10,6 +10,8 @@ namespace Drupal\flickr_api\Service;
 class Tags {
 
   /**
+   * Client.
+   *
    * @var \Drupal\flickr_api\Service\Client
    */
   protected $client;
@@ -18,6 +20,7 @@ class Tags {
    * Tags constructor.
    *
    * @param \Drupal\flickr_api\Service\Client $client
+   *   Client.
    */
   public function __construct(Client $client) {
     // Flickr API Client.
@@ -31,8 +34,8 @@ class Tags {
    *   NSID of the user whose tags will be returned.
    * @param string $count
    *   Number of tags to return.
-   *
    * @param bool $cacheable
+   *   Cacheable.
    *
    * @return array
    *   Response from the flickr method flickr.tags.getListUserPopular.
@@ -63,8 +66,8 @@ class Tags {
    *
    * @param string $nsid
    *   NSID of the user whose photoset tags will be returned.
-   *
    * @param bool $cacheable
+   *   Cacheable.
    *
    * @return array
    *   Response from the flickr method flickr.tags.getListUser.

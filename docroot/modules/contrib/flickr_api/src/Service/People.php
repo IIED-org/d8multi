@@ -10,6 +10,8 @@ namespace Drupal\flickr_api\Service;
 class People {
 
   /**
+   * Client.
+   *
    * @var \Drupal\flickr_api\Service\Client
    */
   protected $client;
@@ -18,6 +20,7 @@ class People {
    * People constructor.
    *
    * @param \Drupal\flickr_api\Service\Client $client
+   *   Client.
    */
   public function __construct(Client $client) {
     // Flickr API Client.
@@ -29,8 +32,8 @@ class People {
    *
    * @param string $nsid
    *   The Flickr user's NSID.
-   *
    * @param bool $cacheable
+   *   Cacheable.
    *
    * @return array
    *   Array with person's info from flickr.people.getInfo.
@@ -60,8 +63,8 @@ class People {
    *
    * @param string $username
    *   Username to look for.
-   *
    * @param bool $cacheable
+   *   Cacheable.
    *
    * @return array
    *   Response from the flickr method flickr.people.findByUsername.
@@ -90,8 +93,8 @@ class People {
    *
    * @param string $alias
    *   Username to look for.
-   *
    * @param bool $cacheable
+   *   Cacheable.
    *
    * @return array
    *   Response from the flickr method flickr.people.findByUsername.
@@ -120,8 +123,8 @@ class People {
    *
    * @param string $email
    *   Email to look for.
-   *
    * @param bool $cacheable
+   *   Cacheable.
    *
    * @return array
    *   Response from the flickr method flickr.people.findByEmail.
@@ -150,22 +153,24 @@ class People {
    *
    * @param string $nsid
    *   NSID of the user whose photos you want.
-   *
    * @param int $page
-   * @param array $other_args
+   *   Page.
+   * @param array $otherArgs
+   *   Other args.
    * @param bool $cacheable
+   *   Cacheable.
    *
    * @return array
    *   Response from the flickr method flickr.people.getPublicPhotos.
    *   (https://www.flickr.com/services/api/flickr.people.getPublicPhotos.html)
    */
-  public function peopleGetPublicPhotos($nsid, $page = 1, $other_args = [], $cacheable = TRUE) {
+  public function peopleGetPublicPhotos($nsid, $page = 1, array $otherArgs = [], $cacheable = TRUE) {
     $args = [
       'user_id' => $nsid,
       'page' => $page,
     ];
 
-    $args = array_merge($args, $other_args);
+    $args = array_merge($args, $otherArgs);
 
     // Set per_page to flickr_api module default if not specified in $args.
     if (!isset($args['per_page'])) {

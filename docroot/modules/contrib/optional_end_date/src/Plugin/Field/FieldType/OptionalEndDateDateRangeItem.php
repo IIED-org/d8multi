@@ -49,11 +49,34 @@ class OptionalEndDateDateRangeItem extends DateRangeItem {
 
     $element['optional_end_date'] = [
       '#type' => 'checkbox',
-      '#title' => t('Optional end date'),
+      '#title' => $this->t('Optional end date'),
       '#default_value' => $this->getSetting('optional_end_date'),
     ];
 
     return $element;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getConstraints() {
+    $constraint_manager = \Drupal::typedDataManager()
+      ->getValidationConstraintManager();
+    $constraints = parent::getConstraints();
+
+    if (empty($this->getSetting('optional_end_date'))) {
+      $label = $this->getFieldDefinition()->getLabel();
+      $constraints[] = $constraint_manager
+        ->create('ComplexData', [
+          'end_value' => [
+            'NotNull' => [
+              'message' => $this->t('The @title end date is required', ['@title' => $label]),
+            ],
+          ],
+        ]);
+    }
+
+    return $constraints;
   }
 
 }

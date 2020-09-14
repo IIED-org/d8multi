@@ -13,6 +13,13 @@ use Drupal\Tests\ui_patterns\Traits\TwigDebugTrait;
 class UiPatternsPreviewRenderTest extends BrowserTestBase {
 
   /**
+   * Default theme. See https://www.drupal.org/node/3083055.
+   *
+   * @var string
+   */
+  protected $defaultTheme = 'stark';
+
+  /**
    * Disable schema validation when running tests.
    *
    * @var bool
@@ -51,6 +58,10 @@ class UiPatternsPreviewRenderTest extends BrowserTestBase {
       'pattern-foo--variant-default.html.twig',
       'pattern-foo--preview.html.twig',
       'pattern-foo.html.twig',
+      'pattern-foo-bar--variant-default--preview.html.twig',
+      'pattern-foo-bar--variant-default.html.twig',
+      'pattern-foo-bar--preview.html.twig',
+      'pattern-foo-bar.html.twig',
     ];
     foreach ($suggestions as $suggestion) {
       $assert_session->responseContains($suggestion);

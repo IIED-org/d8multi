@@ -2,12 +2,13 @@
 
 namespace Drupal\ui_patterns_field_group\Plugin\field_group\FieldGroupFormatter;
 
-use Drupal\Core\Entity\ContentEntityBase;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\field_group\FieldGroupFormatterBase;
 use Drupal\ui_patterns\Form\PatternDisplayFormTrait;
 use Drupal\ui_patterns\UiPatternsSourceManager;
 use Drupal\ui_patterns\UiPatternsManager;
+use Drupal\ui_patterns_field_group\Utility\EntityFinder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -27,6 +28,13 @@ class PatternFormatter extends FieldGroupFormatterBase implements ContainerFacto
   use PatternDisplayFormTrait;
 
   /**
+   * Module Handler.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler = NULL;
+
+  /**
    * UI Patterns manager.
    *
    * @var \Drupal\ui_patterns\UiPatternsManager
@@ -41,6 +49,13 @@ class PatternFormatter extends FieldGroupFormatterBase implements ContainerFacto
   protected $sourceManager;
 
   /**
+   * Entity finder utility.
+   *
+   * @var \Drupal\ui_patterns_field_group\Utility\EntityFinder
+   */
+  protected $entityFinder;
+
+  /**
    * Constructs a Drupal\Component\Plugin\PluginBase object.
    *
    * @param array $configuration
@@ -53,12 +68,16 @@ class PatternFormatter extends FieldGroupFormatterBase implements ContainerFacto
    *   UI Patterns manager.
    * @param \Drupal\ui_patterns\UiPatternsSourceManager $source_manager
    *   UI Patterns source manager.
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   *   Module handler.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, UiPatternsManager $patterns_manager, UiPatternsSourceManager $source_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, UiPatternsManager $patterns_manager, UiPatternsSourceManager $source_manager, ModuleHandlerInterface $module_handler) {
     parent::__construct($plugin_id, $plugin_definition, $configuration['group'], $configuration['settings'], $configuration['label']);
     $this->configuration = $configuration;
     $this->patternsManager = $patterns_manager;
     $this->sourceManager = $source_manager;
+    $this->entityFinder = new EntityFinder();
+    $this->moduleHandler = $module_handler;
   }
 
   /**
@@ -70,7 +89,8 @@ class PatternFormatter extends FieldGroupFormatterBase implements ContainerFacto
       $plugin_id,
       $plugin_definition,
       $container->get('plugin.manager.ui_patterns'),
-      $container->get('plugin.manager.ui_patterns_source')
+      $container->get('plugin.manager.ui_patterns_source'),
+      $container->get('module_handler')
     );
   }
 
@@ -99,28 +119,7 @@ class PatternFormatter extends FieldGroupFormatterBase implements ContainerFacto
     $element['#context']['view_mode'] = $this->configuration['group']->mode;
 
     // Pass current entity to pattern context, if any.
-    $element['#context']['entity'] = $this->findEntity($element['#fields']);
-  }
-
-  /**
-   * Look for entity object in fields array.
-   *
-   * @param array $fields
-   *   Fields array.
-   *
-   * @return \Drupal\Core\Entity\ContentEntityBase|null
-   *   Entity object or NULL if none found.
-   */
-  protected function findEntity(array $fields) {
-    foreach ($fields as $field) {
-      if (isset($field['#object']) && is_object($field['#object']) && $field['#object'] instanceof ContentEntityBase) {
-        return $field['#object'];
-      }
-      if (is_array($field)) {
-        return $this->findEntity($field);
-      }
-    }
-    return NULL;
+    $element['#context']['entity'] = $this->entityFinder->findEntityFromFields($element['#fields']);
   }
 
   /**

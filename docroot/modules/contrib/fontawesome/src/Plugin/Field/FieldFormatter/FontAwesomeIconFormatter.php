@@ -27,7 +27,7 @@ class FontAwesomeIconFormatter extends FormatterBase implements ContainerFactory
   /**
    * Drupal configuration service container.
    *
-   * @var Drupal\Core\Config\ConfigFactory
+   * @var \Drupal\Core\Config\ConfigFactory
    */
   protected $configFactory;
 
@@ -118,27 +118,12 @@ class FontAwesomeIconFormatter extends FormatterBase implements ContainerFactory
     // Load the configuration settings.
     $configurationSettings = $this->configFactory->get('fontawesome.settings');
 
-    // Attach the libraries as needed.
-    $fontawesomeLibraries = [];
-    if ($configurationSettings->get('method') == 'webfonts') {
-      // Webfonts method.
-      $fontawesomeLibraries[] = 'fontawesome/fontawesome.webfonts';
-    }
-    else {
-      // SVG method.
-      $fontawesomeLibraries[] = 'fontawesome/fontawesome.svg';
-
-      // Attach the shim file if needed.
-      if ($configurationSettings->get('use_shim')) {
-        $fontawesomeLibraries[] = 'fontawesome/fontawesome.svg.shim';
-      }
-    }
-
     // Loop over each icon and build data.
     $icons = [];
     foreach ($items as $item) {
       // Get the icon settings.
       $iconSettings = unserialize($item->get('settings')->getValue());
+      $cssStyles = [];
 
       // Format mask.
       $iconMask = '';
@@ -157,14 +142,43 @@ class FontAwesomeIconFormatter extends FormatterBase implements ContainerFactory
       }
       unset($iconSettings['power_transforms']);
 
+      // Move duotone settings into the render.
+      if (isset($iconSettings['duotone'])) {
+        // Handle swap opacity flag.
+        if (!empty($iconSettings['duotone']['swap-opacity'])) {
+          $iconSettings['swap-opacity'] = $iconSettings['duotone']['swap-opacity'];
+        }
+        // Handle custom CSS styles.
+        if (!empty($iconSettings['duotone']['opacity']['primary'])) {
+          $cssStyles[] = '--fa-primary-opacity: ' . $iconSettings['duotone']['opacity']['primary'] . ';';
+        }
+        if (!empty($iconSettings['duotone']['opacity']['secondary'])) {
+          $cssStyles[] = '--fa-secondary-opacity: ' . $iconSettings['duotone']['opacity']['secondary'] . ';';
+        }
+        if (!empty($iconSettings['duotone']['color']['primary'])) {
+          $cssStyles[] = '--fa-primary-color: ' . $iconSettings['duotone']['color']['primary'] . ';';
+        }
+        if (!empty($iconSettings['duotone']['color']['secondary'])) {
+          $cssStyles[] = '--fa-secondary-color: ' . $iconSettings['duotone']['color']['secondary'] . ';';
+        }
+
+        unset($iconSettings['duotone']);
+      }
+
+      // Add additional CSS styles if needed.
+      if (isset($iconSettings['additional_classes'])) {
+        $cssStyles[] = $iconSettings['additional_classes'];
+      }
+
       $icons[] = [
         '#theme' => 'fontawesomeicon',
         '#tag' => $configurationSettings->get('tag'),
         '#name' => 'fa-' . $item->get('icon_name')->getValue(),
         '#style' => $item->get('style')->getValue(),
-        '#settings' => implode(' ', $iconSettings),
+        '#settings' => implode(' ', array_filter($iconSettings)),
         '#transforms' => implode(' ', $iconTransforms),
         '#mask' => $iconMask,
+        '#css' => implode(' ', $cssStyles),
       ];
     }
 
@@ -176,9 +190,6 @@ class FontAwesomeIconFormatter extends FormatterBase implements ContainerFactory
         '#theme' => 'fontawesomeicons',
         '#icons' => $icons,
         '#layers' => $settings['layers'],
-      ],
-      '#attached' => [
-        'library' => $fontawesomeLibraries,
       ],
     ];
   }

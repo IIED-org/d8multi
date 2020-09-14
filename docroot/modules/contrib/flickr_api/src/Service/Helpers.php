@@ -18,15 +18,20 @@ class Helpers {
    * Helpers constructor.
    *
    * @param \Drupal\Core\StringTranslation\TranslationInterface $stringTranslation
+   *   String Translation.
    */
   public function __construct(TranslationInterface $stringTranslation) {
     $this->stringTranslation = $stringTranslation;
   }
 
   /**
-   * @param $id
+   * Dectect NSID.
+   *
+   * @param string $id
+   *   Id.
    *
    * @return false|int
+   *   True False.
    */
   public function isNsid($id) {
     return preg_match('/^\d+@N\d+$/', $id);
@@ -125,21 +130,20 @@ class Helpers {
 
   /**
    * Returns TRUE if a value is found in a multidimensional array.
+   *
    * See http://stackoverflow.com/a/4128377.
    *
    * @param string $needle
    *   The value to be matched.
-   *
    * @param array $haystack
    *   The array to match.
-   *
    * @param bool $strict
    *   If set to TRUE also check the types of the needle in the haystack.
    *
    * @return bool
    *   TRUE if match found.
    */
-  public function inArrayR($needle, $haystack, $strict = FALSE) {
+  public function inArrayR($needle, array $haystack, $strict = FALSE) {
     foreach ($haystack as $item) {
       if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && self::inArrayR($needle, $item, $strict))) {
         return TRUE;
@@ -149,7 +153,9 @@ class Helpers {
   }
 
   /**
-   * Returns the URL to $photo with size $size using the correct image farm
+   * Returns the URL to $photo.
+   *
+   * With size $size using the correct image farm
    * from the $photo variable.
    *
    * @param string $photo

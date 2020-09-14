@@ -1,7 +1,7 @@
 services:
   flickr_api.client:
     class: Drupal\flickr_api\Service\Client
-    arguments: ["@config.factory", "@cache.default", "@string_translation"]
+    arguments: ["@config.factory", "@cache.default", "@string_translation", "@messenger"]
   flickr_api.photos:
     class: Drupal\flickr_api\Service\Photos
     arguments: ["@flickr_api.client"]

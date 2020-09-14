@@ -10,6 +10,8 @@ namespace Drupal\flickr_api\Service;
 class Photosets {
 
   /**
+   * Client.
+   *
    * @var \Drupal\flickr_api\Service\Client
    */
   protected $client;
@@ -18,6 +20,7 @@ class Photosets {
    * Photosets constructor.
    *
    * @param \Drupal\flickr_api\Service\Client $client
+   *   Client.
    */
   public function __construct(Client $client) {
     // Flickr API Client.
@@ -27,17 +30,17 @@ class Photosets {
   /**
    * Gets information about a photoset.
    *
-   * @param string $photoset_id
+   * @param string $photosetId
    *   ID of the photoset to get information about.
-   *
    * @param bool $cacheable
+   *   Cacheable.
    *
    * @return array
    *   Response from the flickr method flickr.photosets.getInfo.
    *   (https://www.flickr.com/services/api/flickr.photosets.getInfo.html)
    */
-  public function photosetsGetInfo($photoset_id, $cacheable = TRUE) {
-    $args = ['photoset_id' => $photoset_id];
+  public function photosetsGetInfo($photosetId, $cacheable = TRUE) {
+    $args = ['photoset_id' => $photosetId];
 
     $response = $this->client->request(
       'flickr.photosets.getInfo',
@@ -57,16 +60,18 @@ class Photosets {
    *
    * @param string $nsid
    *   NSID of the user whose photoset list you want.
-   *
-   * @param null $page
-   * @param null $per_page
+   * @param int $page
+   *   Page.
+   * @param int $perPage
+   *   Per Page.
    * @param bool $cacheable
+   *   Cacheable.
    *
    * @return array
    *   Response from the flickr method flickr.photosets.getList.
    *   (https://www.flickr.com/services/api/flickr.photosets.getList.html)
    */
-  public function photosetsGetList($nsid, $page = NULL, $per_page = NULL, $cacheable = TRUE) {
+  public function photosetsGetList($nsid, $page = NULL, $perPage = NULL, $cacheable = TRUE) {
     $args = [
       'user_id' => $nsid,
     ];
@@ -75,8 +80,8 @@ class Photosets {
       $args['page'] = $page;
     }
 
-    if ($per_page != NULL) {
-      $args['per_page'] = $per_page;
+    if ($perPage != NULL) {
+      $args['per_page'] = $perPage;
     }
 
     $response = $this->client->request(
@@ -95,24 +100,26 @@ class Photosets {
   /**
    * Get the list of photos in a set.
    *
-   * @param string $photoset_id
+   * @param string $photosetId
    *   The Flickr API photoset ID.
-   *
-   * @param array $other_args
+   * @param array $otherArgs
+   *   Other args.
    * @param int $page
+   *   Page.
    * @param bool $cacheable
+   *   Cacheable.
    *
    * @return array
    *   Response from the flickr method flickr.photosets.getPhotos.
    *   (https://www.flickr.com/services/api/flickr.photosets.getPhotos.html)
    */
-  public function photosetsGetPhotos($photoset_id, $other_args = [], $page = 1, $cacheable = TRUE) {
+  public function photosetsGetPhotos($photosetId, array $otherArgs = [], $page = 1, $cacheable = TRUE) {
     $args = [
-      'photoset_id' => $photoset_id,
+      'photoset_id' => $photosetId,
       'page' => $page,
     ];
 
-    $args = array_merge($args, $other_args);
+    $args = array_merge($args, $otherArgs);
 
     // Set per_page to flickr_api module default if not specified in $args.
     if (!isset($args['per_page'])) {
@@ -137,7 +144,7 @@ class Photosets {
   }
 
   /**
-   *
+   * Get default extras options.
    */
   public function photosetsGetPhotosExtras() {
     $extras = [

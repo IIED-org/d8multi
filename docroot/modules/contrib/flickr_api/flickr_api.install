@@ -2,7 +2,10 @@
 
 /**
  * @file
+ * Contains install hooks.
  */
+
+use Drupal\Core\Url;
 
 /**
  * Implements hook_requirements().
@@ -20,7 +23,7 @@ function flickr_api_requirements($phase) {
         'value'       => t('Flickr API credentials are not set'),
         'description' => t(
           'It can be set on the <a href=":config_page">configuration page</a>.',
-          [':config_page' => \Drupal::url('flickr_api.settings')]
+          [':config_page' => Url::fromRoute('flickr_api.settings')]
         ),
       ];
     }
