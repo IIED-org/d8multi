@@ -1,0 +1,22 @@
+***************
+*** 558,564 ****
+      }
+  
+      if (!empty($url)) {
+-       $url = Url::fromUri('internal:/' . $url);
+        $variables['attributes']['onclick'] = 'location.href=\'' . $url->toString() . '\'';
+      }
+    }
+--- 559,570 ----
+      }
+  
+      if (!empty($url)) {
++       if (!UrlHelper::isExternal($url)) {
++         $url = Url::fromUri('internal:/' . $url);
++       }
++       else {
++         $url = Url::fromUri($url);
++       }
+        $variables['attributes']['onclick'] = 'location.href=\'' . $url->toString() . '\'';
+      }
+    }

@@ -40,7 +40,7 @@ class FontAwesomeIconMedia extends MediaSourceBase {
       ->first();
 
     // If the source field is not required, it may be empty.
-    if (!$icon) {
+    if (!$icon->isEmpty()) {
       return parent::getMetadata($media, $attribute_name);
     }
     switch ($attribute_name) {
@@ -69,7 +69,7 @@ class FontAwesomeIconMedia extends MediaSourceBase {
   protected function getThumbnail(FontAwesomeIcon $icon) {
 
     // Determine the source folder.
-    switch ($icon->get('style')->getCastedValue()) {
+    switch ($icon->get('style')->getValue()) {
       case 'fab':
         $srcFolder = 'brands';
         break;
@@ -85,6 +85,10 @@ class FontAwesomeIconMedia extends MediaSourceBase {
       case 'far':
       default:
         $srcFolder = 'regular';
+        break;
+
+      case 'fad':
+        $srcFolder = 'duotone';
         break;
     }
 

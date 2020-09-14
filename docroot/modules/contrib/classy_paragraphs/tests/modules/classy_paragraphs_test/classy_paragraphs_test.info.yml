@@ -1,7 +1,7 @@
 name: Classy Paragraphs Test
 type: module
 description: Module used to test classy paragraphs.
-# core: 8.x
+core: 8.x
 package: Testing
 dependencies:
   - field
@@ -12,8 +12,7 @@ dependencies:
   - field_ui
   - classy_paragraphs
 
-# Information added by Drupal.org packaging script on 2016-10-26
-version: '8.x-1.0-beta1'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2020-08-16
+version: '8.x-1.0-beta2'
 project: 'classy_paragraphs'
-datestamp: 1477459141
+datestamp: 1597569626

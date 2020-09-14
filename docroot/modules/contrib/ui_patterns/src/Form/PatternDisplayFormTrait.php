@@ -10,6 +10,7 @@ use Drupal\ui_patterns\Plugin\PatternSourceBase;
  *
  * @property \Drupal\ui_patterns\UiPatternsManager $patternsManager
  * @property \Drupal\ui_patterns\UiPatternsSourceManager $sourceManager
+ * @property \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
  * @method \Drupal\Core\StringTranslation\TranslatableMarkup t($string, array $args = [], array $options = [])
  *
  * @package Drupal\ui_patterns\Form
@@ -39,11 +40,12 @@ trait PatternDisplayFormTrait {
       '#required' => TRUE,
       '#attributes' => ['id' => 'patterns-select'],
     ];
+    $form['variants'] = ['#type' => 'container'];
 
     /** @var \Drupal\ui_patterns\Definition\PatternDefinition $definition */
     foreach ($this->patternsManager->getDefinitions() as $pattern_id => $definition) {
       if ($definition->hasVariants()) {
-        $form['pattern_variant'] = [
+        $form['variants'][$pattern_id] = [
           '#type' => 'select',
           '#title' => $this->t('Variant'),
           '#options' => $definition->getVariantsAsOptions(),
@@ -56,7 +58,6 @@ trait PatternDisplayFormTrait {
           ],
         ];
       }
-
       $form['pattern_mapping'][$pattern_id] = [
         '#type' => 'container',
         '#weight' => 1,
@@ -68,6 +69,8 @@ trait PatternDisplayFormTrait {
         'settings' => $this->getMappingForm($pattern_id, $tag, $context, $configuration),
       ];
     }
+
+    $this->moduleHandler->alter('ui_patterns_display_settings_form', $form, $configuration);
   }
 
   /**
@@ -151,6 +154,11 @@ trait PatternDisplayFormTrait {
    *   Pattern display form values array.
    */
   public static function processFormStateValues(array &$settings) {
+    if (isset($settings['variants']) && isset($settings['variants'][$settings['pattern']])) {
+      $settings['pattern_variant'] = $settings['variants'][$settings['pattern']];
+      unset($settings['variants']);
+    }
+
     // Normalize only when necessary.
     if (isset($settings['pattern_mapping'][$settings['pattern']]['settings'])) {
       $settings['pattern_mapping'] = $settings['pattern_mapping'][$settings['pattern']]['settings'];

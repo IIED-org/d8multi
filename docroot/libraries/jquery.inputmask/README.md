@@ -1,9 +1,9 @@
 # Inputmask
 
-Copyright (c) 2010 - 2019 Robin Herbots Licensed under the MIT license ([http://opensource.org/licenses/mit-license.php](http://opensource.org/licenses/mit-license.php))
+Copyright (c) 2010 - 2020 Robin Herbots Licensed under the MIT license ([http://opensource.org/licenses/mit-license.php](http://opensource.org/licenses/mit-license.php))
 
 [![donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZNR3EB6JTMMSS)
-
+  
 [![NPM Version][npm-image]][npm-url] [![Dependency Status][david-image]][david-url] [![devDependency Status][david-dev-image]][david-dev-url]
 
 Inputmask is a javascript library which creates an input mask.  Inputmask can run against vanilla javascript, jQuery and jqlite.
@@ -29,11 +29,20 @@ Highlights:
 - value formatting / validating without input element
 - AMD/CommonJS support
 - dependencyLibs: vanilla javascript, jQuery, jqlite
-- [Android support](README_android.md)
+- \<input-mask\> htmlelenent
 
 Demo page see [http://robinherbots.github.io/Inputmask](http://robinherbots.github.io/Inputmask)
 
-Thanks to [Jetbrains](https://www.jetbrains.com/) for providing a free license for their excellent Webstorm IDE.
+Thanks to [Jetbrains](https://www.jetbrains.com/?from=inputmask) for providing a free license for their excellent Webstorm IDE.  
+<a href="https://www.jetbrains.com/?from=inputmask">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/JetBrains_Logo_2016.svg" alt="Jetbrains">
+</a>
+    
+Thanks to [Browserstack](https://www.browserstack.com) for providing a free license, so we can start automating test in different browsers and devices.  
+<a href="https://www.browserstack.com">
+  <img src="https://www.browserstack.com/images/layout/browserstack-logo-600x315.png" alt="Browserstack" width="150">
+</a>
+
 
 ## Setup
 ### dependencyLibs
@@ -44,39 +53,24 @@ You can choose between:
 - inputmask.dependencyLib.jqlite
 - .... (others are welcome)
 
-**Warning**: Using any dependency library that relies on the `CustomEvent` object or the `document.createEvent` DOM API will have issues with updating values in disabled inputs, in Firefox 64 and older. This is caused by [an old Firefox bug](https://bugzilla.mozilla.org/show_bug.cgi?id=329509), that has been fixed in Firefox 65. Currently, this means that `inputmask.dependencyLib` and `inputmask.dependencyLib.jqlite` are affected by this bug. See #2045 for more details.
-
 ### Classic web with <script\> tag
 Include the js-files which you can find in the `dist` folder.
 
-If you want to include the Inputmask and all extensions. (with jQuery as dependencylib)
+Inputmask with jQuery as dependencylib.
 ```html
 <script src="jquery.js"></script>
-<script src="dist/jquery.inputmask.bundle.js"></script>
-```
-For individual extensions. (with jQuery as dependencylib)
-```html
-<script src="jquery.js"></script>
-<script src="dist/inputmask/inputmask.js"></script>
-<script src="dist/inputmask/inputmask.extensions.js"></script>
-<script src="dist/inputmask/inputmask.numeric.extensions.js"></script>
-<script src="dist/inputmask/inputmask.date.extensions.js"></script>
-<script src="dist/inputmask/jquery.inputmask.js"></script>
+<script src="dist/jquery.inputmask.js"></script>
 ```
 
-For individual extensions. (with vanilla dependencylib)
+Inputmask with vanilla dependencylib.
 ```html
-<script src="dist/inputmask/dependencyLibs/inputmask.dependencyLib.js"></script>
-<script src="dist/inputmask/inputmask.js"></script>
-<script src="dist/inputmask/inputmask.extensions.js"></script>
-<script src="dist/inputmask/inputmask.numeric.extensions.js"></script>
-<script src="dist/inputmask/inputmask.date.extensions.js"></script>
+<script src="dist/inputmask.js"></script>
 ```
 
 If you like to automatically bind the inputmask to the inputs marked with the data-inputmask- ... attributes you may also want to include the inputmask.binding.js
 
 ```html
-<script src="dist/inputmask/bindings/inputmask.binding.js"></script>
+<script src="dist/bindings/inputmask.binding.js"></script>
 ```
 
 ### webpack
@@ -100,31 +94,7 @@ var Inputmask = require('inputmask');
 import Inputmask from "inputmask";
 ```
 
-For individual extensions.
-Every extension exports the Inputmask, so you only need to import the extensions.
-See example.
-```
-require("inputmask/dist/inputmask/inputmask.numeric.extensions");
-var Inputmask = require("inputmask/dist/inputmask/inputmask.date.extensions");
-
-//es6
-import "inputmask/dist/inputmask/inputmask.numeric.extensions";
-import Inputmask from "inputmask/dist/inputmask/inputmask.date.extensions";
-```
-
-#### Selecting the dependencyLib
-By default the vanilla dependencyLib is used.  You can select another dependency
-by creating an alias in the webpack.config.
-
-```
- resolve: {
-        alias: {
-            "./dependencyLibs/inputmask.dependencyLib": "./dependencyLibs/inputmask.dependencyLib.jquery"
-        }
-    },
-```
 ## Usage
-
 ### via Inputmask class
 
 ```javascript
@@ -183,10 +153,19 @@ $(document).ready(function(){
 });
 ```
 
+### via \<input-mask\> element
+Use the input-mask element in your html code and set the options as attributes.
+
+```html
+<input-mask alias="currency"></input-mask>
+```
+
+
 ### Allowed HTML-elements
 - `<input type="text">`
 - `<input type="search">`
 - `<input type="tel">`
+- `<input type="url">`
 - `<input type="password">`
 - `<div contenteditable="true">` (and all others supported by contenteditable)
 - `<textarea>`
@@ -200,6 +179,11 @@ The allowed input types are defined in the supportsInputType option. Also see ([
 - `*` : alphanumeric
 
 There are more definitions defined within the extensions.<br>You can find info within the js-files or by further exploring the options.
+
+###### Note:
+When your newly mask is acting strange and replaces some static chars with the mask, then there is a definition which uses the char as symbol.
+To solve this you need to [double escape the char](#escape-special-mask-chars).
+
 
 ## Masking types
 ### Static masks
@@ -309,7 +293,7 @@ ex: "a|9" => a or 9
 "(aaa)|(999)" => aaa or 999
 "(aaa|999|9AA)" => aaa or 999 or 9AA
 
-Also make sure to read about the keepStatic option.
+**Also make sure to read about the [keepStatic](#keepStatic) option.**
 
 ```javascript
 $("selector").inputmask("(99.9)|(X)", {
@@ -369,12 +353,16 @@ The return value of a validator can be true,  false or a command object.
   - pos or [pos1, pos2]
 
 - insert : position(s) to add :
-  - { pos : position to insert, c : character to insert }
-  - [{ pos : position to insert, c : character to insert }, { ...}, ... ]
+  - { pos : position to insert, c : character to insert, fromIsValid : true/false, strict : true/false }
+  - [{ pos : position to insert, c : character to insert, fromIsValid : true/false, strict : true/false }, { ...}, ... ]
+  
+  fromIsValid & strict 
 
 - refreshFromBuffer :
   - true => refresh validPositions from the complete buffer
   - { start: , end: } => refresh from start to end
+- rewritePosition: rewrite the maskPos within the isvalid function  
+  See [preValidation option](#preValidation)
 
 ### definitionSymbol
 When you insert or delete characters, they are only shifted when the definition type is the same.  This behavior can be overridden by giving a definitionSymbol. (see example x, y, z, which can be used for ip-address masking, the validation is different, but it is allowed to shift the characters between the definitions)
@@ -717,7 +705,7 @@ Definition of the symbols used to escape a part in the mask.
 escapeChar: "\\"
 ```
 
-See **escape special mask chars**
+See [escape special mask chars](#escape-special-mask-chars)
 
 ### mask
 The mask to use.
@@ -807,6 +795,9 @@ $(document).ready(function(){
 
 ### insertMode
 Toggle to insert or overwrite input.<br>Default: true.<br>This option can be altered by pressing the Insert key.
+
+#### insertModeVisual
+Show selected caret when insertmode = false.
 
 ### clearIncomplete
 Clear the incomplete input on blur
@@ -950,7 +941,7 @@ $(document).ready(function(){
 ```
 
 ### onKeyValidation
-Callback function is executed on every keyvalidation with the key & result as parameter.
+Callback function is executed on every keyvalidation with the key, result as parameter.
 
 ```javascript
 $(document).ready(function(){
@@ -1000,7 +991,7 @@ ex. $(selector).inputmask({ mask: ["+55-99-9999-9999", "+55-99-99999-9999", ], k
 
 typing 1212345123 => should result in +55-12-1234-5123 type extra 4 => switch to +55-12-12345-1234
 
-When passing multiple masks (an array of masks) keepStatic is automatically set to true unless explicitly set through the options.
+**When the option is not set, it will default to false, except for multiple masks it will default to true!!**
 
 ### positionCaretOnTab
 When enabled the caret position is set after the latest valid position on TAB Default: true
@@ -1009,7 +1000,22 @@ When enabled the caret position is set after the latest valid position on TAB De
 Allows for tabbing through the different parts of the masked field.<br>Default: false
 
 ### definitions
-### ignorables
+Pass custom definitions directly in the options.
+
+```
+	Inputmask({
+			mask: "V{13}9{4}",
+			definitions: {
+				"V": {
+					validator: "[A-HJ-NPR-Za-hj-npr-z\\d]",
+					casing: "upper"
+				}
+			},
+			clearIncomplete: true,
+			autoUnmask: true
+		}).mask(selector);
+```
+
 ### isComplete
 With this call-in (hook) you can override the default implementation of the isComplete function.<br>Args => buffer, opts Return => true|false
 
@@ -1023,11 +1029,14 @@ $(selector).inputmask({
 ```
 
 ### postValidation
-Hook to postValidate the result from isValid.  Usefull for validating the entry as a whole.  Args => buffer, pos, currentResult, opts<br>Return => true|false|command object
+Hook to postValidate the result from isValid.  Usefull for validating the entry as a whole.  Args => buffer, pos, c, currentResult, opts, maskset, strict, fromCheckval<br>Return => true|false|command object
 
 ### preValidation
-Hook to preValidate the input.  Useful for validating regardless the definition. Args => buffer, pos, char, isSelection, opts => return true/false/command object
+Hook to preValidate the input.  Useful for validating regardless the definition. Args => buffer, pos, char, isSelection, opts, maskset, caretPos, strict => return true/false/command object
 When return true, the normal validation kicks in, otherwise it is skipped.
+
+When returning a command object the actions are executed and futher validation is stopped.  
+If you want to continue further validation, you need to add the rewritePosition action.
 
 ### staticDefinitionSymbol
 The staticDefinitionSymbol option is used to indicate that the static entries in the mask can match a certain definition.  Especially usefull with alternators so that static element in the mask can match another alternation.
@@ -1084,33 +1093,6 @@ Default: "verbatim"
 Specify the inputmode  - already in place for when browsers start to  support them
 https://html.spec.whatwg.org/#input-modalities:-the-inputmode-attribute
 
-### colorMask
-Default: false
-Create a css styleable mask.
-
-You need to include the inputmask.css in your page to use this option.
-
-See the inputmask.css for more info about the used styling.
-You can override the Inputmask.prototype.positionColorMask`if you need some custom positioning.
-```
- Inputmask.prototype.positionColorMask = function (input, template) {
-                template.style.left = input.offsetLeft + "px";
-                template.zIndex = input.zIndex - 1;
-           }
-```
-
-### disablePredictiveText
-Default: false
-Disables predictive text on mobile devices.
-
-What it does.
-- changes the input type to password => disables predictive text
-- enables the colorMask option which creates a div, which surrounds the input.
-So we type in the hidden password input and render the mask in the a created div.
-
-To use the colorMask, you need to include the inputmask.css you might need to add some css-tweaks to make it all visually correct in your page.
-
-
 ### importDataAttributes
 Specify to use the data-inputmask attributes or to ignore them.
 
@@ -1120,11 +1102,20 @@ If you don't use data attributes you can disable the import by specifying import
 Default: true
 
 ### shiftPositions
-Shift position of the mask entries on entry and deletion.
-In some cases shift the mask enties isn't desired.  
+Alter the behavior of the char shifting on entry or deletion.
+
+In some cases shifting the mask entries or deletion should be more restrictive.  
 Ex. date masks.  Shifting month to day makes no sense
 
 Default: true
+
+true = shift on the "def" match
+false = shift on the "nativeDef" match
+
+### usePrototypeDefinitions
+Use the default defined definitions from the prototype.  
+
+Default: true 
 
 ## General
 ### set a value and apply mask
@@ -1160,6 +1151,7 @@ $(document).ready(function(){
   $("#months").inputmask("m \\months");
 });
 ```
+Extra example see https://github.com/RobinHerbots/Inputmask/issues/2251
 
 ### auto-casing inputmask
 You can define within a definition to automatically apply some casing on the entry in an input by giving the casing.<br>Casing can be null, "upper", "lower" or "title".
@@ -1238,12 +1230,12 @@ $(document).ready(function(){
 ```
 
 ## jQuery.clone
-When cloning a inputmask, the inputmask reactivates on the first event (mouseenter, focus, ...) that happens to the input. If you want to set a value on the cloned inputmask and you want to directly reactivate the masking you have to use $(input).inputmask("setvalue", value)
+When cloning a inputmask, the inputmask reactivates on the first event (mouseenter, focus, ...) that happens to the input. If you want to set a value on the cloned inputmask and you want to directly reactivate the masking you have to use $(input).inputmask("setvalue", value)  
 
-# jquery.inputmask extensions
-## [date & datetime extensions](README_date.md)
-## [numeric extensions](README_numeric.md)
-## [other extensions](README_other.md)
+Be sure to pass true in the jQuery.clone fn to clone with data and events and use jQuery as dependencyLib
+(https://api.jquery.com/clone/)
+
+
 
 [npm-url]: https://npmjs.org/package/inputmask
 [npm-image]: https://img.shields.io/npm/v/inputmask.svg

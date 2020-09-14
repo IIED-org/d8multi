@@ -3,7 +3,6 @@
 namespace Drupal\optional_end_date\Plugin\Field\FieldWidget;
 
 use Drupal\datetime_range\Plugin\Field\FieldWidget\DateRangeDefaultWidget;
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -25,29 +24,6 @@ class OptionalEndDateDateRangeDefaultWidget extends DateRangeDefaultWidget {
     }
 
     return $element;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function validateStartEnd(array &$element, FormStateInterface $form_state, array &$complete_form) {
-    $start_date = $element['value']['#value']['object'];
-    $end_date = $element['end_value']['#value']['object'];
-
-    if ($start_date instanceof DrupalDateTime) {
-      if (!$this->getFieldSetting('optional_end_date') && $end_date === NULL) {
-        $form_state->setError($element['end_value'], $this->t('The @title end date is required', ['@title' => $element['#title']]));
-      }
-
-      if ($end_date instanceof DrupalDateTime) {
-        if ($start_date->getTimestamp() !== $end_date->getTimestamp()) {
-          $interval = $start_date->diff($end_date);
-          if ($interval->invert === 1) {
-            $form_state->setError($element, $this->t('The @title end date cannot be before the start date', ['@title' => $element['#title']]));
-          }
-        }
-      }
-    }
   }
 
 }

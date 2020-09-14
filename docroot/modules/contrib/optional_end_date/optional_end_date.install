@@ -25,6 +25,7 @@ function optional_end_date_install() {
       $table['fields'][$field_name]['not null'] = FALSE;
       $database_schema->changeField($table_name, $field_name, $field_name, $table['fields'][$field_name]);
     }
+    unset($table);
 
     $storage_schema->set($schema_key, $tables);
   }

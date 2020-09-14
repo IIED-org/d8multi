@@ -269,3 +269,54 @@ At the moment the available source plugin tags are the following:
   on an entity display configuration page.
 - ``views_row``: provided by the ``ui_patterns_views`` module and triggered on a Views row setting pane.
 - ``test``: provided by the ``ui_patterns_test`` module and used in tests.
+
+
+Alter pattern configuration forms
+---------------------------------
+
+You can alter UI Patterns configuration forms by implementing ``hook_ui_patterns_display_settings_form_alter()``.
+
+For example, the following implementation adds a CSS class input field to the pattern configuration:
+
+.. code-block:: php
+
+   <?php
+
+   /**
+    * Implements hook_ui_patterns_display_settings_form_alter().
+    *
+    * Add a css class name configuration option.
+    */
+    function my_module_ui_patterns_display_settings_form_alter(array &$form, array $configuration) {
+      $setting_value = isset($configuration['class_name']) ? $configuration[$key] : '';
+      $form['class_name'] = [
+        '#type' => 'input',
+        '#title' => t('Class name'),
+      ];
+    }
+
+This hook alter forms that are built using the ``PatternDisplayFormTrait`` trait, meaning:
+
+- Display Suite field templates
+- Field groups
+- Views
+
+If you want to alter an entity layout form that uses UI Patters for its layout use
+``hook_ui_patterns_layouts_display_settings_form_alter()`` instead, for example:
+
+.. code-block:: php
+
+   <?php
+
+   /**
+    * Implements hook_ui_patterns_layouts_display_settings_form_alter().
+    *
+    * Add a css class name configuration option.
+    */
+    function hook_ui_patterns_layouts_display_settings_form_alter(array &$form, PatternDefinition $definition, array $configuration) {
+      $class_name = isset($configuration['class_name']) ? $configuration['class_name'] : '';
+      $form['class_name'] = [
+        '#type' => 'input',
+        '#title' => t('Class name'),
+      ];
+    }

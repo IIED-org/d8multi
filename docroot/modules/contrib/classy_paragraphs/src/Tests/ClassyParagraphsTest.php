@@ -2,7 +2,7 @@
 
 namespace Drupal\classy_paragraphs\Tests;
 
-use Drupal\simpletest\WebTestBase;
+use Drupal\Tests\BrowserTestBase;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\node\Entity\Node;
 
@@ -11,7 +11,7 @@ use Drupal\node\Entity\Node;
  *
  * @group classy_paragraphs
  */
-class ClassyParagraphsTest extends WebTestBase {
+class ClassyParagraphsTest extends BrowserTestBase {
 
   /**
    * Modules to enable.
