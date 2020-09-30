@@ -5,8 +5,6 @@ dependencies:
   config:
     - media.type.local_video
     - media.type.remote_video
-  content:
-    - 'file:file:8b899ed9-edc3-4b07-be86-bd2fd43a0a4c'
   module:
     - entity_embed
     - media
@@ -22,4 +20,7 @@ type_settings:
   entity_browser: ''
   entity_browser_settings:
     display_review: false
-icon_uuid: 8b899ed9-edc3-4b07-be86-bd2fd43a0a4c
+icon:
+  data: ''
+  uri: 'public://embed_buttons/next.gif'
+icon_uuid: null
