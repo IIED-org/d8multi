@@ -7,9 +7,9 @@ dependencies:
   module:
     - block_content
   theme:
-    - sentinel_bootstrap_sass
+    - pd_bootstrap_sass
 id: topfooterblock
-theme: sentinel_bootstrap_sass
+theme: pd_bootstrap_sass
 region: footer_first
 weight: -15
 provider: null

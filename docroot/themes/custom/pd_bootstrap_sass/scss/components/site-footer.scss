@@ -9,7 +9,7 @@
         padding: 0 $spacer;
     }
     .content {
-        color: $dark;
+        color: $body-bg;
         font-size: 1rem;
     }
     .block {
@@ -19,8 +19,8 @@
       margin: .25rem;
       max-width: 100%;
     }
+    background-color: $accent-shade;
 }
-
 
 /* Footer Top Styling. */
 
@@ -47,23 +47,26 @@
   @extend .container;
   .content {
     margin-top: 0;
-    color: $dark;
+    color: $body-bg;
   }
   h2 {
-    color: inherit;
+    color: $body-bg;
     text-transform: none;
     font-size: $h2-font-size;
   }
-  a {
-    color: inherit !important;
+  a, span {
+    color: $body-bg !important;
     font-weight: bold;
   }
 }
 
 /* Footer Middle Styling. */
 .site-footer__middle {
-  background-color: white;
+  background-color: $primary-shade;
   margin: 0 -15px;
+  .content {
+    color: $dark !important;
+  }
 }
 
 
