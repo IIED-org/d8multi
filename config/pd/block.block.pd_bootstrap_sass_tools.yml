@@ -7,11 +7,11 @@ dependencies:
   module:
     - system
   theme:
-    - sentinel_bootstrap_sass
+    - pd_bootstrap_sass
 _core:
   default_config_hash: xCOijLdB1-UgXxQ9a0D1_pd8vxNEhfMnxXZc8jYhHjs
-id: sentinel_bootstrap_sass_tools
-theme: sentinel_bootstrap_sass
+id: pd_bootstrap_sass_tools
+theme: pd_bootstrap_sass
 region: sidebar_first
 weight: 0
 provider: null

@@ -5,11 +5,11 @@ dependencies:
   module:
     - user
   theme:
-    - sentinel_bootstrap_sass
+    - pd_bootstrap_sass
 _core:
   default_config_hash: 4QlSnWBcxxKMIFRM8sbu_MjSkcp3NjGgnVrc-lynQHI
-id: sentinel_bootstrap_sass_login
-theme: sentinel_bootstrap_sass
+id: pd_bootstrap_sass_login
+theme: pd_bootstrap_sass
 region: sidebar_first
 weight: 0
 provider: null

@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   theme:
-    - sentinel_bootstrap_sass
+    - pd_bootstrap_sass
 _core:
   default_config_hash: PffmQ-ABSz5tFjWmVsR7NesunDnEivvopnJnBjl8KNE
-id: sentinel_bootstrap_sass_local_actions
-theme: sentinel_bootstrap_sass
+id: pd_bootstrap_sass_local_actions
+theme: pd_bootstrap_sass
 region: content
 weight: -13
 provider: null

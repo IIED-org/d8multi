@@ -91,7 +91,7 @@ module:
 theme:
   stark: 0
   bootstrap_barrio: 0
-  sentinel_bootstrap_sass: 0
+  pd_bootstrap_sass: 0
   stable: 0
   classy: 0
   seven: 0

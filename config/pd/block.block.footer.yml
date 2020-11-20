@@ -7,9 +7,9 @@ dependencies:
   module:
     - system
   theme:
-    - sentinel_bootstrap_sass
+    - pd_bootstrap_sass
 id: footer
-theme: sentinel_bootstrap_sass
+theme: pd_bootstrap_sass
 region: footer_fifth
 weight: -15
 provider: null

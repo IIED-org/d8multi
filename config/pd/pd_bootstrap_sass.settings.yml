@@ -23,12 +23,12 @@ features:
   node_user_picture: false
   comment_user_picture: true
   comment_user_verification: true
-  favicon: true
+  favicon: 1
 logo:
-  use_default: false
+  use_default: 0
   path: themes/custom/sentinel_bootstrap_sass/logo.png
 favicon:
-  use_default: true
+  use_default: 1
 bootstrap_barrio_region_clean_top_header: 1
 bootstrap_barrio_region_class_top_header: row
 bootstrap_barrio_region_clean_top_header_form: 0
@@ -91,3 +91,6 @@ bootstrap_barrio_radio: standard
 bootstrap_barrio_checkbox: standard
 bootstrap_barrio_select: standard
 bootstrap_barrio_file: standard
+bootstrap_barrio_navbar_top_class: ''
+bootstrap_barrio_navbar_class: ''
+bootstrap_barrio_bootstrap_icons: 0

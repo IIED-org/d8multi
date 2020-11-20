@@ -8,9 +8,9 @@ dependencies:
     - system
     - views
   theme:
-    - sentinel_bootstrap_sass
+    - pd_bootstrap_sass
 id: views_block__organisations_block_1
-theme: sentinel_bootstrap_sass
+theme: pd_bootstrap_sass
 region: featured_bottom_second
 weight: -15
 provider: null
