@@ -4,7 +4,11 @@
  */
 
 .site-footer {
-    padding: $spacer 0;
+    .container-fluid {
+      padding-right: 0;
+      padding-left: 0;
+    }
+    padding: 0;
     .layout-container {
         padding: 0 $spacer;
     }
@@ -16,7 +20,7 @@
       border: none;
     }
     img {
-      margin: .25rem;
+      margin: 0;
       max-width: 100%;
     }
     background-color: $accent-shade;
@@ -73,14 +77,14 @@
 /* Footer Bottom Styling. */
 
 .site-footer__bottom .block {
-    margin: ($spacer / 2) 0;
+    margin: 0;
 }
 
 .site-footer__bottom {
   margin-top: 10px;
   border: none;
   .content {
-    padding: ($spacer / 2) 0;
+    padding: 0;
     margin-top: 0;
     margin: 0 auto;
   }

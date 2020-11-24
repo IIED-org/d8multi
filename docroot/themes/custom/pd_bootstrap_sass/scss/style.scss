@@ -60,14 +60,13 @@ a {
 
 .card {
   cursor: pointer;
-  min-height: 27rem;
+  min-height: 22rem;
   margin-bottom: 1rem;
   a:hover {
     text-decoration: none;
   }
   .field--name-node-title {
     display: block;
-    padding: 0 .5rem .5rem;
   }
   .field--name-body {
     padding: .5rem;
@@ -115,12 +114,6 @@ a {
   padding: 1rem;
 }
 
-.field--name-field-standfirst {
-  @extend .container;
-  p {
-    @extend .col-md-10;
-  }
-}
 /* Banners
 --------------------------------------------------*/
 
