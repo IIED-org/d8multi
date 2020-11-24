@@ -10,10 +10,10 @@ dependencies:
     - image.style.thumbnail_sq
     - node.type.person
   module:
-    - image
     - link
     - node
     - options
+    - svg_image
     - text
     - user
 id: eag
@@ -399,7 +399,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: external-advisory-group
+      path: our-team
       filters:
         status:
           value: '1'
@@ -427,10 +427,10 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
-        field_external_advisory_group_value:
-          id: field_external_advisory_group_value
-          table: node__field_external_advisory_group
-          field: field_external_advisory_group_value
+        field_project_team_value:
+          id: field_project_team_value
+          table: node__field_project_team
+          field: field_project_team_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -444,14 +444,14 @@ display:
             description: ''
             use_operator: false
             operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: ''
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -469,10 +469,55 @@ display:
         filters: false
         filter_groups: false
         access: true
+        header: false
+        title: false
+        footer: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      header:
+        area_1:
+          id: area_1
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: 'Page title'
+          empty: true
+          tokenize: false
+          content:
+            value: '<h2 class="title">[view:title]</h2>'
+            format: full_html
+          plugin_id: text
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "<p>The research is a collaboration between academics and practitioners from a range of disciplines, with in-depth experience of working with displaced people in camps and urban areas, and with deep understanding of the low-income and informal urban environments where many displaced people live.</p>\r\n<p>&nbsp;</p>"
+            format: full_html
+          plugin_id: text
+      title: 'Our team'
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "<p><a id=\"contact\"></a></p>\r\n&nbsp;\r\n&nbsp;\r\n<p><h3>Contact us</h3></p>\r\n\r\n<p><strong>For general information about the project, please contact:</strong></p>\r\n\r\n<p>Alexandra Norodom (alexandra.norodom@iied.org) or Lucy Earle (lucy.earle@iied.org)</p>\r\n\r\n<p><strong>For country-specific information, please contact:</strong></p>\r\n\r\n<p>Afghanistan - Nassim Majidi (nassim.majidi@samuelhall.org)<br>\r\nEthiopia - Engida Esayas Dube (engidae@du.edu.et)<br>\r\nJordan - Yamen Al-Beitawi (yamen@hu.edu.jo)<br>\r\nKenya - Michael Owiso (mowiso@maseno.ac.ke)</p>"
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:

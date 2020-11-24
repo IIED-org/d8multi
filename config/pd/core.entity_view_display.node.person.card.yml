@@ -10,14 +10,15 @@ dependencies:
     - field.field.node.person.field_external_advisory_group
     - field.field.node.person.field_image
     - field.field.node.person.field_link
+    - field.field.node.person.field_project_team
     - field.field.node.person.field_surname_for_sort
     - field.field.node.person.field_theme
     - image.style.thumbnail
     - node.type.person
   module:
     - ds
-    - image
     - link
+    - svg_image
     - user
 third_party_settings:
   ds:
@@ -101,6 +102,8 @@ hidden:
   body: true
   field_country_advisory_group: true
   field_external_advisory_group: true
+  field_project_team: true
   field_surname_for_sort: true
   field_theme: true
   links: true
+  search_api_excerpt: true

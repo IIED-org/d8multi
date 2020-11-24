@@ -1,16 +1,16 @@
 favicon:
-  mimetype: image/vnd.microsoft.icon
-  path: ''
+  mimetype: image/png
+  path: 'public://favicon.png'
   url: ''
-  use_default: true
+  use_default: false
 features:
   comment_user_picture: true
   comment_user_verification: true
   favicon: true
   node_user_picture: false
 logo:
-  path: ''
+  path: 'public://site logo.png'
   url: ''
-  use_default: true
+  use_default: false
 _core:
   default_config_hash: KHk8rzK2GMRtdfoAeocFrll8Q7gGtiocl2GF5jnX9cY

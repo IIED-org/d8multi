@@ -115,31 +115,42 @@ a {
   padding: 1rem;
 }
 
+.field--name-field-standfirst {
+  @extend .container;
+  p {
+    @extend .col-md-10;
+  }
+}
 /* Banners
 --------------------------------------------------*/
 
 .banner {
   background-repeat: no-repeat;
-  background-size: 1280px auto;
+  background-size: cover;
   background-position: center top;
-  min-height: 400px;
+  min-height: 500px;
 }
 
 .path-frontpage .banner {
   margin-bottom: 3rem;
-  background-image: url(../images/banner.jpg);
+  background-image: url(../images/banner.png);
   &.ds {
     display: none; //Hide display suite title
   }
 }
 .page-node-11, .page-node-216 {
   .banner {
-    background-image: url(../images/about.jpg);
+    background-image: url(../images/about.png);
+    margin-bottom: 2rem;
   }
 }
 
+.path-our-team .banner {
+  background-image: url(../images/16545909693_12a9236761_o.png);
+}
+
 .page-node-14 .banner {
-  background-image: url(../images/image3.png);
+  background-image: url(../images/HSG_UNGA_vid2.png);
 }
 .path-contact .banner {
   background-image: url(../images/image4.png);
@@ -164,6 +175,10 @@ a {
 
 /* Search results
 --------------------------------------------------*/
+
+.path-resources #main {
+  @extend .container;
+}
 
 .node--view-mode-search-result,
 .node--view-mode-teaser {

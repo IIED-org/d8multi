@@ -1,0 +1,23 @@
+uuid: 488e30f1-a877-4d53-a381-7a01eff623d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_team
+    - node.type.person
+id: node.person.field_project_team
+field_name: field_project_team
+entity_type: node
+bundle: person
+label: 'Project team'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

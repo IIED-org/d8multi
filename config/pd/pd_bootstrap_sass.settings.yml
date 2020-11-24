@@ -26,7 +26,7 @@ features:
   favicon: 1
 logo:
   use_default: 0
-  path: themes/custom/sentinel_bootstrap_sass/logo.png
+  path: 'sites/pd/files/site logo.png'
 favicon:
   use_default: 1
 bootstrap_barrio_region_clean_top_header: 1

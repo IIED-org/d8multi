@@ -9,7 +9,7 @@ _core:
 id: pd_bootstrap_sass_local_tasks
 theme: pd_bootstrap_sass
 region: content
-weight: -14
+weight: -12
 provider: null
 plugin: local_tasks_block
 settings:

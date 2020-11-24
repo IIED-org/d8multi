@@ -279,7 +279,7 @@ display:
           expose:
             label: Relevance
           plugin_id: search_api
-      title: Publications
+      title: Resources
       header:
         area:
           id: area
@@ -330,17 +330,36 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: publications
+      path: resources
       menu:
         type: normal
-        title: Publications
+        title: Resources
         menu_name: main
-        weight: -46
+        weight: -45
+        description: ''
+        parent: ''
+        expanded: false
+        enabled: true
       exposed_block: true
       cache:
         type: none
       defaults:
         cache: false
+        header: false
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: '<p><h1>Resources</h1></p>'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:

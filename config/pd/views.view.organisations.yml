@@ -5,11 +5,11 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.storage.node.field_image
-    - image.style.logo_sm
+    - image.style.logo_smallest
     - node.type.organisation
   module:
-    - image
     - node
+    - svg_image
     - user
 id: organisations
 label: Organisations
@@ -181,6 +181,21 @@ display:
       css_class: container
       defaults:
         css_class: false
+        footer: false
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "</p><h3><a id=\"contact\"></a>Contact us</h3></p>\r\n\r\n<p><strong>For general information about the project, please contact:</strong></p>\r\n\r\n<p>Alexandra Norodom (alexandra.norodom@iied.org) or Lucy Earle (lucy.earle@iied.org)</p>\r\n\r\n<p><strong>For country-specific information, please contact:</strong></p>\r\n\r\n<p>Afghanistan - Nassim Majidi (nassim.majidi@samuelhall.org)<br>\r\nEthiopia - Engida Esayas Dube (engidae@du.edu.et)<br>\r\nJordan - Yamen Al-Beitawi (yamen@hu.edu.jo)<br>\r\nKenya - Michael Owiso (mowiso@maseno.ac.ke)</p>"
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
@@ -234,7 +249,7 @@ display:
             alter_text: false
             text: ''
             make_link: true
-            path: /project-team
+            path: /partners
             absolute: false
             external: false
             replace_spaces: false
@@ -272,8 +287,12 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: logo_sm
+            image_style: logo_smallest
             image_link: ''
+            svg_render_as_image: true
+            svg_attributes:
+              width: null
+              height: null
           group_column: ''
           group_columns: {  }
           group_rows: true

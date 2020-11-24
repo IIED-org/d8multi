@@ -9,15 +9,16 @@ dependencies:
     - field.field.node.person.field_external_advisory_group
     - field.field.node.person.field_image
     - field.field.node.person.field_link
+    - field.field.node.person.field_project_team
     - field.field.node.person.field_surname_for_sort
     - field.field.node.person.field_theme
     - image.style.thumbnail_sq
     - node.type.person
   module:
     - ds
-    - image
     - link
     - options
+    - svg_image
     - text
     - user
 id: node.person.default
@@ -93,6 +94,16 @@ content:
     third_party_settings: {  }
     type: link
     region: content
+  field_project_team:
+    weight: 8
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
   field_theme:
     weight: 5
     label: inline
@@ -105,3 +116,4 @@ hidden:
   addtoany: true
   field_surname_for_sort: true
   links: true
+  search_api_excerpt: true

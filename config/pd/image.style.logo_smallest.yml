@@ -1,0 +1,15 @@
+uuid: d19c3d43-ebee-4cd2-95a6-d42a0b4505e5
+langcode: en
+status: true
+dependencies: {  }
+name: logo_smallest
+label: 'Logo smallest'
+effects:
+  3ad23caa-faa3-46f5-8792-281c295119d5:
+    uuid: 3ad23caa-faa3-46f5-8792-281c295119d5
+    id: image_scale
+    weight: 1
+    data:
+      width: 100
+      height: null
+      upscale: false
