@@ -19,8 +19,8 @@ dependencies:
   module:
     - datetime
     - ds
-    - image
     - pdfpreview
+    - svg_image
     - user
 third_party_settings:
   ds:
@@ -30,6 +30,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           first: div
           second: div
@@ -57,7 +58,7 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
-          wrapper: p
+          wrapper: h5
           class: ''
           link: false
         ft:
@@ -105,6 +106,10 @@ content:
     settings:
       image_style: card_image
       image_link: ''
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
     third_party_settings:
       ds:
         ds_limit: ''
@@ -136,7 +141,7 @@ content:
     label: hidden
     settings:
       timezone_override: ''
-      format_type: html_yearless_date
+      format_type: month
     third_party_settings:
       ds:
         ft:
@@ -155,3 +160,4 @@ hidden:
   field_publisher: true
   field_theme: true
   links: true
+  search_api_excerpt: true

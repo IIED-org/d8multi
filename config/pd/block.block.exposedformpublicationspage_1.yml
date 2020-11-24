@@ -12,7 +12,7 @@ dependencies:
 id: exposedformpublicationspage_1
 theme: pd_bootstrap_sass
 region: featured_top
-weight: -9
+weight: -16
 provider: null
 plugin: 'views_exposed_filter_block:publications-page_1'
 settings:

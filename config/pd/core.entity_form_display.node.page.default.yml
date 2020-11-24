@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_form_mode.media.media_library
     - field.field.node.page.body
+    - field.field.node.page.field_para
     - field.field.node.page.field_standfirst
     - field.field.node.page.field_subtitle
     - field.field.node.page.field_video
@@ -14,6 +15,7 @@ dependencies:
     - field_layout
     - inline_entity_form
     - layout_discovery
+    - paragraphs
     - path
     - text
 third_party_settings:
@@ -42,6 +44,18 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_para:
+    type: entity_reference_paragraphs
+    weight: 26
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
   field_standfirst:
     weight: 2
     settings:

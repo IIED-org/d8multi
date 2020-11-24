@@ -1,9 +1,9 @@
-uuid: 6a1c56b3-4186-4167-843a-a5d268a17d65
+uuid: cb04b687-4cd0-490a-adbb-ad0865194ce4
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:html:a53ff4d9-fdd8-4835-b3c7-67cbcbc6e312'
+    - 'block_content:html:6654ac20-b83f-4754-b62c-0a235f7320f3'
   module:
     - block_content
     - system
@@ -12,11 +12,11 @@ dependencies:
 id: ourteambanner
 theme: pd_bootstrap_sass
 region: content
-weight: -15
+weight: -13
 provider: null
-plugin: 'block_content:a53ff4d9-fdd8-4835-b3c7-67cbcbc6e312'
+plugin: 'block_content:6654ac20-b83f-4754-b62c-0a235f7320f3'
 settings:
-  id: 'block_content:a53ff4d9-fdd8-4835-b3c7-67cbcbc6e312'
+  id: 'block_content:6654ac20-b83f-4754-b62c-0a235f7320f3'
   label: 'Our team banner'
   provider: block_content
   label_display: '0'

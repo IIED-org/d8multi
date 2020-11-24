@@ -5,12 +5,14 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.page.body
+    - field.field.node.page.field_para
     - field.field.node.page.field_standfirst
     - field.field.node.page.field_subtitle
     - field.field.node.page.field_video
     - node.type.page
   module:
     - ds
+    - entity_reference_revisions
     - text
     - user
 third_party_settings:
@@ -21,6 +23,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           ds_content: div
         outer_wrapper: div
@@ -35,6 +38,7 @@ third_party_settings:
         - node_title
         - field_standfirst
         - body
+        - field_para
     fields:
       node_title:
         plugin_id: node_title
@@ -89,11 +93,28 @@ content:
           settings:
             lb: ''
             classes:
-              - container
-              - col-12
-              - col-md-10
+              - ''
             lb-col: false
     region: ds_content
+  field_para:
+    type: entity_reference_revisions_entity_view
+    weight: 3
+    region: ds_content
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            classes:
+              - container
+              - my-3
+            lb-col: false
   field_standfirst:
     type: text_default
     weight: 1
@@ -106,3 +127,4 @@ hidden:
   field_subtitle: true
   field_video: true
   links: true
+  search_api_excerpt: true

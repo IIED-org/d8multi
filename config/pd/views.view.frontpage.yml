@@ -31,18 +31,6 @@ display:
         type: tag
         options: {  }
       empty:
-        area_text_custom:
-          admin_label: ''
-          content: 'No front page content has been created yet.<br/>Follow the <a target="_blank" href="https://www.drupal.org/docs/user_guide/en/index.html">User Guide</a> to start building your site.'
-          empty: true
-          field: area_text_custom
-          group_type: group
-          id: area_text_custom
-          label: ''
-          relationship: none
-          table: views
-          tokenize: false
-          plugin_id: text_custom
         node_listing_empty:
           admin_label: ''
           empty: true
@@ -819,7 +807,7 @@ display:
         groups:
           1: AND
       display_description: ''
-      css_class: view-publications
+      css_class: 'container view-publications'
       header:
         area:
           id: area
@@ -845,23 +833,23 @@ display:
           empty: false
           tokenize: false
           content:
-            value: '<span data-align="center" class="mx-auto" ><a href="/publications"><button class="btn btn-secondary">View more publications</button></a></span>'
+            value: '<span data-align="center" class="mx-auto text-center" ><a href="/resources"><button class="btn btn-secondary">View all</button></a></span>'
             format: full_html
           plugin_id: text
       pager:
         type: some
         options:
-          items_per_page: 3
+          items_per_page: 4
           offset: 0
       style:
         type: grid
         options:
           uses_fields: false
-          columns: 3
+          columns: 4
           automatic_width: true
           alignment: horizontal
           col_class_default: false
-          col_class_custom: 'col-12 col-sm-6 col-lg-4'
+          col_class_custom: 'col-12 col-sm-6 col-lg-3'
           row_class_default: false
           row_class_custom: row
       row:

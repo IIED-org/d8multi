@@ -11,8 +11,8 @@ dependencies:
     - pd_bootstrap_sass
 id: views_block__frontpage_block_3
 theme: pd_bootstrap_sass
-region: featured_bottom_first
-weight: -12
+region: content
+weight: -14
 provider: null
 plugin: 'views_block:frontpage-block_3'
 settings:

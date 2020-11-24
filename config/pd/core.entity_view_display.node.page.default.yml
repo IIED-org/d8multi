@@ -4,12 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_para
     - field.field.node.page.field_standfirst
     - field.field.node.page.field_subtitle
     - field.field.node.page.field_video
     - node.type.page
   module:
     - ds
+    - entity_reference_revisions
     - text
     - user
 third_party_settings:
@@ -54,6 +56,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: left
+  field_para:
+    type: entity_reference_revisions_entity_view
+    weight: 5
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
   field_standfirst:
     weight: 4
     label: above
@@ -80,3 +91,4 @@ content:
 hidden:
   addtoany: true
   links: true
+  search_api_excerpt: true
