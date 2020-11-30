@@ -71,5 +71,6 @@ $sites['landcam.dd'] = 'landcam';
 $sites['pd-dev.ac.iied.org'] = 'pd';
 $sites['pd-stage.ac.iied.org'] = 'pd';
 $sites['pd-prod.ac.iied.org'] = 'pd';
+$sites['protracteddisplacement.org'] = 'pd';
 $sites['pd.org'] = 'pd';
 $sites['pd.dd'] = 'pd';
