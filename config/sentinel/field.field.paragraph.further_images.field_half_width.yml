@@ -9,8 +9,8 @@ id: paragraph.further_images.field_half_width
 field_name: field_half_width
 entity_type: paragraph
 bundle: further_images
-label: 'Half width'
-description: 'Select this to display the image two-up on larger screens'
+label: 'Small width'
+description: 'Select this to display the image three-up on larger screens'
 required: false
 translatable: false
 default_value:

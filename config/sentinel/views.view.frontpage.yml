@@ -174,10 +174,15 @@ display:
       pager:
         type: full
         options:
-          items_per_page: 10
+          items_per_page: 3
           offset: 0
           id: 0
           total_pages: 0
+          tags:
+            previous: '‹ Previous'
+            next: 'Next ›'
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -186,11 +191,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: '‹ Previous'
-            next: 'Next ›'
-            first: '« First'
-            last: 'Last »'
           quantity: 9
       query:
         type: views_query
@@ -811,6 +811,7 @@ display:
         css_class: false
         header: false
         footer: false
+        pager: false
       filter_groups:
         operator: AND
         groups:
@@ -845,11 +846,15 @@ display:
             value: '<span data-align="center" class="mx-auto" ><a href="/publications"><button class="btn btn-secondary">View more publications</button></a></span>'
             format: full_html
           plugin_id: text
+      pager:
+        type: some
+        options:
+          items_per_page: 3
+          offset: 0
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_interface'
-        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

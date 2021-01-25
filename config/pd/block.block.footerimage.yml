@@ -1,9 +1,9 @@
-uuid: 52d5e8fc-d2fb-447f-a02e-3a8dedd211f0
+uuid: 553671ba-5362-419a-9436-21c35550c59e
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:html:cee66b0a-84ae-4bfa-85a2-2bf7560add6c'
+    - 'block_content:html:fbefb97f-d680-428f-89c6-77f41c07f0a7'
   module:
     - block_content
   theme:
@@ -13,9 +13,9 @@ theme: pd_bootstrap_sass
 region: footer_fifth
 weight: 0
 provider: null
-plugin: 'block_content:cee66b0a-84ae-4bfa-85a2-2bf7560add6c'
+plugin: 'block_content:fbefb97f-d680-428f-89c6-77f41c07f0a7'
 settings:
-  id: 'block_content:cee66b0a-84ae-4bfa-85a2-2bf7560add6c'
+  id: 'block_content:fbefb97f-d680-428f-89c6-77f41c07f0a7'
   label: 'Footer image'
   provider: block_content
   label_display: '0'

@@ -16,8 +16,6 @@ popup_bg_hex: '777777'
 popup_clicking_confirmation: true
 popup_scrolling_confirmation: false
 popup_delay: 1000
-show_disagree_button: true
-popup_disagree_button_message: 'More information'
 popup_enabled: true
 popup_find_more_button_message: 'More info'
 popup_height: null
@@ -58,3 +56,14 @@ _core:
   default_config_hash: m9leru0wVmD_yCnIJzIkZ9YhvEp3luuqLEx5Sr9CmRk
 cookie_session: 0
 popup_info_template: legacy
+cookie_categories: ''
+enable_save_preferences_button: true
+save_preferences_button_label: 'Save preferences'
+accept_all_categories_button_label: 'Accept all cookies'
+fix_first_cookie_category: true
+select_all_categories_by_default: false
+withdraw_button_on_info_popup: false
+domain_all_sites: false
+uuid: d1d9748c-a118-4d56-b2f5-f3855dceac81
+show_more_info: true
+popup_more_info_button_message: 'More information'

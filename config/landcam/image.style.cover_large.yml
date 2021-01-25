@@ -5,19 +5,11 @@ dependencies: {  }
 name: cover_large
 label: 'Cover large'
 effects:
-  a140cecf-b89d-425b-ab76-c2c9f45c57c0:
-    uuid: a140cecf-b89d-425b-ab76-c2c9f45c57c0
+  f4a2823a-880a-49a9-aa12-a39d0217d809:
+    uuid: f4a2823a-880a-49a9-aa12-a39d0217d809
     id: image_scale
-    weight: 1
-    data:
-      width: null
-      height: 450
-      upscale: true
-  ce8430b3-9a8d-43ee-af58-dcd7bcc05a38:
-    uuid: ce8430b3-9a8d-43ee-af58-dcd7bcc05a38
-    id: image_crop
-    weight: 2
+    weight: 3
     data:
       width: 320
-      height: 450
-      anchor: center-top
+      height: null
+      upscale: false

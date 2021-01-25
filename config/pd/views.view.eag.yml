@@ -500,7 +500,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: "<p>The research is a collaboration between academics and practitioners from a range of disciplines, with in-depth experience of working with displaced people in camps and urban areas, and with deep understanding of the low-income and informal urban environments where many displaced people live.</p>\r\n<p>&nbsp;</p>"
+            value: "&nbsp;\r\n&nbsp;"
             format: full_html
           plugin_id: text
       title: 'Our team'

@@ -13,6 +13,7 @@ permissions:
   - 'access site in maintenance mode'
   - 'access toolbar'
   - 'access video_browser entity browser pages'
+  - 'administer nodes'
   - 'create blog content'
   - 'create local_video media'
   - 'create media'

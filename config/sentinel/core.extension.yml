@@ -2,6 +2,7 @@ module:
   acquia_purge: 0
   addtoany: 0
   admin_toolbar: 0
+  admin_toolbar_search: 0
   admin_toolbar_tools: 0
   big_pipe: 0
   block: 0
@@ -64,6 +65,7 @@ module:
   search: 0
   search_api: 0
   search_api_db: 0
+  sophron: 0
   svg_image: 0
   system: 0
   taxonomy: 0

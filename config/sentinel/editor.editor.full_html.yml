@@ -54,6 +54,8 @@ settings:
             - DrupalImage
             - media_entity_embed
             - videos
+            - PasteText
+            - PasteFromWord
             - node
   plugins:
     language:
