@@ -33,3 +33,6 @@ acquia-files
 
 # Node
 node_modules
+
+# Ignore changelog.txt
+CHANGELOG.txt
