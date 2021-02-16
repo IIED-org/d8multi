@@ -6832,7 +6832,7 @@ input[type="button"].btn-block {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center; }
-
+  
   .btn-group-vertical > .btn,
   #block-subscribeform .btn-group-vertical > #btnSubmit,
   .btn-group-vertical > .btn-group {
