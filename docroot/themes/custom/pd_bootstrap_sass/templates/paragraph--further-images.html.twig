@@ -56,9 +56,9 @@
 {% endif %}
 
 {% block paragraph %}
-  <div{{ attributes.addClass(classes, addClasses) }}>
+  <figure{{ attributes.addClass(classes, addClasses) }}>
     {% block content %}
       {{ content }}
     {% endblock %}
-  </div>
+  </figure>
 {% endblock paragraph %}

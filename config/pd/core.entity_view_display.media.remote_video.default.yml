@@ -6,68 +6,72 @@ dependencies:
     - field.field.media.remote_video.field_description
     - field.field.media.remote_video.field_media_oembed_video
     - field.field.media.remote_video.field_name
-    - image.style.thumbnail
     - media.type.remote_video
   module:
-    - image
+    - ds
     - media
     - text
-    - user
 id: media.remote_video.default
 targetEntityType: media
 bundle: remote_video
 mode: default
 content:
-  created:
-    label: hidden
-    type: timestamp
-    weight: 0
-    region: content
-    settings:
-      date_format: medium
-      custom_date_format: ''
-      timezone: ''
-    third_party_settings: {  }
   field_description:
-    weight: 8
-    label: above
+    weight: 2
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_media_oembed_video:
     type: oembed
-    weight: 6
-    label: above
+    weight: 0
+    label: hidden
     settings:
       max_width: 0
       max_height: 0
     third_party_settings: {  }
     region: content
   field_name:
-    weight: 7
-    label: above
+    weight: 1
+    label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow-el: ''
+            ow-cl: ''
+            ow-at: ''
+            fis: true
+            fis-el: h5
+            fis-cl: field-name
+            fis-at: ''
+            fis-def-at: true
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow: false
+            ow-def-at: false
+            ow-def-cl: false
+            fi: false
+            fi-def-at: false
     type: string
     region: content
-  thumbnail:
-    type: image
-    weight: 5
-    label: hidden
-    settings:
-      image_style: thumbnail
-      image_link: ''
-    region: content
-    third_party_settings: {  }
-  uid:
-    label: hidden
-    type: author
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
   addtoany: true
+  created: true
   name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

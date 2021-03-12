@@ -8,6 +8,9 @@ weight: -8
 is_admin: null
 permissions:
   - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access in-place editing'
   - 'access media overview'
   - 'access media_entity_browser entity browser pages'
   - 'access site in maintenance mode'
@@ -61,6 +64,7 @@ permissions:
   - 'edit terms in country'
   - 'edit terms in material_type'
   - 'edit terms in research_themes'
+  - 'notify of path changes'
   - 'revert blog revisions'
   - 'revert organisation revisions'
   - 'revert page revisions'
@@ -71,6 +75,7 @@ permissions:
   - 'update media'
   - 'use text format full_html'
   - 'view all media revisions'
+  - 'view all revisions'
   - 'view any webform submission'
   - 'view blog revisions'
   - 'view organisation revisions'

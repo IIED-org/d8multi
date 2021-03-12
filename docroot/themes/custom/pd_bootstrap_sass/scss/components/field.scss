@@ -39,12 +39,14 @@
 }
 
 @media all and (min-width: 560px) {
-    .node .field--type-image,
-    .node .pdfpreview-image-wrapper {
+    .node--view-mode-search-result .field--type-image,
+    .node--view-mode-search-result .pdfpreview-image-wrapper,
+    .node--view-mode-search-result .field--name-field-gallery-images {
         float: left;
         /* LTR */
         margin: 0 $spacer 0 0;
         /* LTR */
+        min-width: 150px;
     }
     [dir="rtl"] .node .field--type-image {
         float: right;
@@ -60,7 +62,8 @@
 
 .field--type-image img,
 .field--name-field-user-picture img,
-.field--name-field-file img {
+.field--name-field-file img,
+.field--type-file img {
     margin: 0 0 $spacer;
     max-width: 100%;
     height: auto;
@@ -157,6 +160,12 @@
   }
 }
 
+figure {
+  img {
+    margin-bottom: .5rem !important;
+  }
+}
+
 figcaption {
   @include font-size($figure-caption-font-size);
   font-style: italic;
@@ -168,5 +177,30 @@ figcaption {
   img {
     width: 100%;
     height: auto;
+  }
+  .field--name-field-image-caption {
+    @extend figcaption;
+  }
+}
+
+.field--name-field-video {
+  .field--name-field-name {
+    @extend h4;
+    margin-top: $spacer;
+  }
+}
+
+
+// Search results meta
+
+.node--view-mode-search-result
+  p {
+    margin-bottom: 0;
+  }
+.meta {
+  margin-left: 165px;
+  position: relative;
+  .field-date, .field-type {
+    display: inline;
   }
 }

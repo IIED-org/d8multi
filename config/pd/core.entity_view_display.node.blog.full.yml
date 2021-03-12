@@ -5,17 +5,21 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.blog.body
+    - field.field.node.blog.field_author
     - field.field.node.blog.field_authors
+    - field.field.node.blog.field_country
     - field.field.node.blog.field_file_upload
     - field.field.node.blog.field_further
     - field.field.node.blog.field_image
     - field.field.node.blog.field_image_caption
+    - field.field.node.blog.field_pubdate
     - field.field.node.blog.field_theme
     - field.field.node.blog.field_video
-    - image.style.medium_540px_
+    - image.style.large
     - node.type.blog
   module:
     - colorbox
+    - datetime
     - ds
     - entity_reference_revisions
     - file
@@ -29,6 +33,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           ds_content: div
         outer_wrapper: div
@@ -36,29 +41,28 @@ third_party_settings:
         link_attribute: ''
         link_custom: ''
         classes:
-          layout_class:
-            container: container
-            col-12: col-12
-            col-md-10: col-md-10
+          layout_class: {  }
           ds_content:
             container: container
             col-12: col-12
             col-md-10: col-md-10
     regions:
       ds_content:
+        - field_author
         - node_title
         - field_image
         - field_image_caption
         - addtoany
-        - field_authors
+        - field_pubdate
         - body
         - field_further
+        - field_video
         - links
         - field_file_upload
     fields:
       node_title:
         plugin_id: node_title
-        weight: 0
+        weight: 1
         label: hidden
         formatter: default
         settings:
@@ -77,24 +81,15 @@ bundle: blog
 mode: full
 content:
   addtoany:
-    weight: 3
+    weight: 4
     region: ds_content
     settings: {  }
     third_party_settings: {  }
   body:
     label: hidden
     type: text_default
-    weight: 5
+    weight: 6
     settings: {  }
-    third_party_settings: {  }
-    region: ds_content
-  field_authors:
-    type: string
-    weight: 4
-    region: ds_content
-    label: hidden
-    settings:
-      link_to_entity: false
     third_party_settings:
       ds:
         ft:
@@ -107,13 +102,52 @@ content:
             lbw-at: ''
             ow: true
             ow-el: div
-            ow-cl: my-3
+            ow-cl: float-none
             ow-at: ''
             ow-def-at: true
             ow-def-cl: true
             fis: true
-            fis-el: strong
+            fis-el: div
             fis-cl: ''
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
+    region: ds_content
+  field_author:
+    type: entity_reference_entity_view
+    weight: 0
+    region: ds_content
+    label: hidden
+    settings:
+      view_mode: card
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: ''
+            ow-at: ''
+            ow-def-at: true
+            ow-def-cl: true
+            fis: true
+            fis-el: div
+            fis-cl: float-right
             fis-at: ''
             fi-el: ''
             fi-cl: ''
@@ -126,7 +160,7 @@ content:
             fi-def-at: false
   field_file_upload:
     type: file_default
-    weight: 8
+    weight: 10
     region: ds_content
     label: hidden
     settings:
@@ -134,7 +168,7 @@ content:
     third_party_settings: {  }
   field_further:
     type: entity_reference_revisions_entity_view
-    weight: 6
+    weight: 7
     region: ds_content
     label: hidden
     settings:
@@ -142,10 +176,10 @@ content:
       link: ''
     third_party_settings: {  }
   field_image:
-    weight: 1
+    weight: 2
     label: hidden
     settings:
-      colorbox_node_style: medium_540px_
+      colorbox_node_style: large
       colorbox_node_style_first: ''
       colorbox_image_style: ''
       colorbox_gallery: post
@@ -186,7 +220,7 @@ content:
     region: ds_content
   field_image_caption:
     type: text_default
-    weight: 2
+    weight: 3
     region: ds_content
     label: hidden
     settings: {  }
@@ -219,11 +253,38 @@ content:
             fis-def-at: false
             fi: false
             fi-def-at: false
+  field_pubdate:
+    type: datetime_default
+    weight: 5
+    region: ds_content
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: blog_date
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_video:
+    type: entity_reference_entity_view
+    weight: 8
+    region: ds_content
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
   links:
-    weight: 7
+    weight: 9
     region: ds_content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_authors: true
+  field_country: true
   field_theme: true
-  field_video: true
+  search_api_excerpt: true

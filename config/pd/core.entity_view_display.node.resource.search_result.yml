@@ -19,8 +19,8 @@ dependencies:
   module:
     - datetime
     - ds
-    - image
     - pdfpreview
+    - svg_image
     - user
 third_party_settings:
   ds:
@@ -30,6 +30,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           ds_content: div
         outer_wrapper: div
@@ -81,7 +82,7 @@ content:
           settings:
             lb: ''
             classes:
-              - ''
+              - meta
             lb-col: false
     type: string
     region: ds_content
@@ -112,6 +113,10 @@ content:
     settings:
       image_style: thumbnail
       image_link: ''
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
     third_party_settings:
       ds:
         ds_limit: ''
@@ -136,7 +141,7 @@ content:
           settings:
             lb: ''
             classes:
-              - ''
+              - meta
             lb-col: false
     type: entity_reference_label
     region: ds_content
@@ -153,7 +158,7 @@ content:
           settings:
             lb: ''
             classes:
-              - ''
+              - meta
             lb-col: false
     type: datetime_default
     region: ds_content
@@ -165,3 +170,4 @@ hidden:
   field_publisher: true
   field_theme: true
   links: true
+  search_api_excerpt: true

@@ -64,3 +64,34 @@ form.contact-form {
   font-size: large;
   font-weight: $font-weight-bold;
 }
+
+// Newsletter sign-up
+#clickdform {
+  .responsiveRow {
+    text-align: center;
+    margin: auto;
+  }
+  .responsiveCellSize1 {
+    width:inherit;
+    min-width: inherit;
+  }
+  .emptyCell {
+    width: 0;
+    min-width: 0;
+  }
+  .buttonContainer {
+    margin:0 !important;
+    text-align: center !important;
+  }
+  #btnSubmit {
+    @extend .btn;
+    @extend .btn-outline-primary;
+    margin: 1rem !important;
+  }
+  input[type='text'] {
+    height: 34px;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+}

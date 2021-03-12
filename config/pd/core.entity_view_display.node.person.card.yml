@@ -28,6 +28,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           ds_content: div
         outer_wrapper: div
@@ -39,16 +40,33 @@ third_party_settings:
           ds_content: {  }
     regions:
       ds_content:
+        - node_title
         - field_image
         - field_link
         - field_email
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h5
+          class: ''
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.person.card
 targetEntityType: node
 bundle: person
 mode: card
 content:
   field_email:
-    weight: 2
+    weight: 3
     label: hidden
     settings: {  }
     third_party_settings:
@@ -62,11 +80,15 @@ content:
     type: email_mailto
     region: ds_content
   field_image:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       image_style: thumbnail
       image_link: ''
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
     third_party_settings:
       ds:
         ds_limit: ''
@@ -79,7 +101,7 @@ content:
     type: image
     region: ds_content
   field_link:
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       trim_length: 100

@@ -17,13 +17,13 @@ provider: null
 plugin: 'facet_block:theme'
 settings:
   id: 'facet_block:theme'
-  label: 'Research theme'
+  label: 'Filter by theme'
   provider: facets
   label_display: visible
   block_id: theme
 visibility:
   request_path:
     id: request_path
-    pages: /publications
+    pages: '/resources*'
     negate: false
     context_mapping: {  }

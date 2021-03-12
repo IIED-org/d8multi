@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
     - field.storage.node.field_authors
+    - field.storage.node.body
     - field.storage.node.field_country
-    - field.storage.node.field_material_type
     - field.storage.node.field_pubdate
+    - field.storage.node.field_material_type
     - field.storage.node.field_publisher
     - field.storage.node.field_theme
     - search_api.server.pd_db_server
@@ -20,6 +20,15 @@ name: 'Default search index'
 description: ''
 read_only: false
 field_settings:
+  aggregated_field:
+    label: 'Content/Material type'
+    property_path: aggregated_field
+    type: string
+    configuration:
+      type: union
+      fields:
+        - 'entity:node/field_material_type'
+        - 'entity:node/type'
   body:
     label: Body
     datasource_id: 'entity:node'
@@ -163,6 +172,7 @@ processor_settings:
   html_filter:
     all_fields: true
     fields:
+      - aggregated_field
       - body
       - field_authors
       - field_publisher
@@ -185,6 +195,7 @@ processor_settings:
   ignorecase:
     all_fields: true
     fields:
+      - aggregated_field
       - body
       - field_authors
       - field_publisher

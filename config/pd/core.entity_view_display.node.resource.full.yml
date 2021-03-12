@@ -27,8 +27,8 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: ds_2col_stacked
-      library: ds/ds_2col_stacked
+      id: ds_2col_stacked_fluid
+      library: ds/ds_2col_stacked_fluid
       disable_css: false
       entity_classes: all_classes
       settings:
@@ -51,16 +51,16 @@ third_party_settings:
     regions:
       header:
         - node_title
+      left:
+        - field_file_upload
+        - field_image
+        - field_link
       right:
         - field_authors
         - field_pubdate
         - field_publisher
         - field_material_type
         - body
-      left:
-        - field_file_upload
-        - field_image
-        - field_link
     fields:
       node_title:
         plugin_id: node_title
@@ -85,12 +85,12 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 7
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     region: right
   field_authors:
-    weight: 3
+    weight: 4
     label: inline
     settings:
       link_to_entity: false
@@ -98,7 +98,7 @@ content:
     type: string
     region: right
   field_file_upload:
-    weight: 7
+    weight: 1
     label: hidden
     settings:
       image_style: cover_large
@@ -139,7 +139,7 @@ content:
     type: pdfpreview
     region: left
   field_image:
-    weight: 8
+    weight: 2
     label: hidden
     settings:
       image_style: cover_large
@@ -181,7 +181,7 @@ content:
     type: image
     region: left
   field_link:
-    weight: 9
+    weight: 3
     label: hidden
     settings:
       trim_length: 100
@@ -221,7 +221,7 @@ content:
     type: link
     region: left
   field_material_type:
-    weight: 6
+    weight: 7
     label: inline
     settings:
       link: true
@@ -229,7 +229,7 @@ content:
     type: entity_reference_label
     region: right
   field_pubdate:
-    weight: 4
+    weight: 5
     label: inline
     settings:
       timezone_override: ''
@@ -245,7 +245,7 @@ content:
     type: datetime_default
     region: right
   field_publisher:
-    weight: 5
+    weight: 6
     label: inline
     settings: {  }
     third_party_settings: {  }

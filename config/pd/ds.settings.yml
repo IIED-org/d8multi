@@ -18,6 +18,7 @@ classes:
     - col-12
     - col-md-10
     - my-3
+    - meta
 use_field_names: true
 _core:
   default_config_hash: xfB0qOeoAomOThclNNokdKTrVwXLcXz13SU3-4a5-FY

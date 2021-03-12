@@ -80,10 +80,13 @@ display:
               organisation: search_result
               page: search_result
               person: search_result
+              photo_story: search_result
               resource: search_result
               subpage: search_result
             'entity:taxonomy_term':
+              country: default
               material_type: default
+              research_themes: default
       fields:
         body:
           table: search_api_index_default_search_index
@@ -166,6 +169,8 @@ display:
           admin_label: ''
           operator: or
           value:
+            blog: blog
+            photo_story: photo_story
             resource: resource
           group: 1
           exposed: false
@@ -175,6 +180,8 @@ display:
             description: ''
             use_operator: false
             operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: ''
             required: false
             remember: false
@@ -182,8 +189,6 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''

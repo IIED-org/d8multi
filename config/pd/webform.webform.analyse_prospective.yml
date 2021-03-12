@@ -1,8 +1,12 @@
+uuid: d7aee898-a0df-4ef7-b1c3-60c923a379b1
 langcode: en
 status: open
 dependencies:
   module:
     - honeypot
+third_party_settings:
+  honeypot:
+    honeypot: true
 open: null
 close: null
 weight: 0
@@ -143,6 +147,7 @@ settings:
   results_customize: false
   token_view: false
   token_update: false
+  token_delete: false
   serial_disabled: false
 access:
   create:
@@ -198,6 +203,7 @@ handlers:
   email:
     id: email
     label: Email
+    notes: ''
     handler_id: email
     status: true
     conditions: {  }
@@ -232,7 +238,3 @@ handlers:
       theme_name: ''
       parameters: {  }
 variants: {  }
-uuid: d7aee898-a0df-4ef7-b1c3-60c923a379b1
-third_party_settings:
-  honeypot:
-    honeypot: true

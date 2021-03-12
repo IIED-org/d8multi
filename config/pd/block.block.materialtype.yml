@@ -1,6 +1,6 @@
 uuid: f7fef253-18cd-4198-b8cf-f375408910cd
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - facets.facet.material_type

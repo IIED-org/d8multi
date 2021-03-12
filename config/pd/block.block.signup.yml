@@ -1,0 +1,31 @@
+uuid: f82d4ccd-9ebd-453b-a810-bbe7bb311b6f
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:html:081470ee-73a3-4e38-9218-168383dba174'
+  module:
+    - block_content
+    - system
+  theme:
+    - pd_bootstrap_sass
+id: signup
+theme: pd_bootstrap_sass
+region: footer_first
+weight: -15
+provider: null
+plugin: 'block_content:081470ee-73a3-4e38-9218-168383dba174'
+settings:
+  id: 'block_content:081470ee-73a3-4e38-9218-168383dba174'
+  label: 'Sign up to newsletter'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

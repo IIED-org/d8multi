@@ -267,3 +267,52 @@ blockquote {
   margin-right: 2em;
   font-size: larger;
 }
+
+.node--type-photo-story {
+  #content {
+    padding: 2rem 0;
+  }
+  .gallery {
+    .media--type-image {
+      float: left;
+    }
+    img {
+      margin: 0;
+    }
+  }
+}
+
+// Custom lists etc.
+
+.comma-list {
+  display: inline;
+  list-style: none;
+  padding: 0px;
+}
+
+.comma-list li {
+  display: inline;
+  padding: 0 !important;
+}
+
+.comma-list li::after {
+  content: ", ";
+}
+
+.comma-list li:last-child::after {
+    content: "";
+}
+
+.cleared {
+  clear: both;
+}
+
+.site-footer__top {
+  .region {
+    width: 100%
+  }
+  h2 {
+    text-align: center;
+    border-bottom: none;
+  }
+}
