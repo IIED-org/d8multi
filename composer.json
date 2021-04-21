@@ -70,7 +70,8 @@
     "drupal/username_enumeration_prevention": "^1.0",
     "drupal/audiofield": "^1.9",
     "drupal/svg_image": "^1.13",
-    "drupal/imagemagick": "^3.1"
+    "drupal/imagemagick": "^3.1",
+    "drupal/seckit": "^2.0"
   },
   "require-dev": {
     "drupal/devel": "^1.0",
