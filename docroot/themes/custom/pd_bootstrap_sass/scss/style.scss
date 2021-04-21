@@ -48,6 +48,10 @@ a {
 /* Cards
 --------------------------------------------------*/
 
+.node--type-person.node--view-mode-card .field--name-node-title {
+  margin-top: 0;  
+}
+
 .card-group img {
     margin: 0;
     width: 100%;
