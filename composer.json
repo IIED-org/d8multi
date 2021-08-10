@@ -1,9 +1,22 @@
 {
-  "name": "acquia/acquia-ra-composer",
-  "description": "Project json for Acquia Remote Administration Composer builds",
+  "name": "drupal-composer/drupal-project",
+  "description": "Project template for Drupal 8 projects with composer",
   "type": "project",
-  "license": "proprietary",
+  "license": "GPL-2.0-or-later",
   "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "drupal/media_entity_flickr",
+        "type": "drupal-module",
+        "version": "dev-8.x-4.x",
+        "source": {
+          "type": "git",
+          "url": "https://git.drupalcode.org/project/media_entity_flickr.git",
+          "reference": "3cb0eb02bb124ba743baa21cc67eec2dafbff904"
+        }
+      }
+    },
     {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
@@ -17,8 +30,8 @@
     "composer/installers": "^1.9",
     "cweagans/composer-patches": "^1.7",
     "drupal/admin_toolbar": "^2.0",
-    "drupal/core-composer-scaffold":"^8.9",
-    "drupal/core-recommended":"^8.9",
+    "drupal/core-composer-scaffold":"^9",
+    "drupal/core-recommended":"^9",
     "drush/drush": "^10",
     "drupal/bootstrap": "^3.11",
     "drupal/ds": "^3.1",
@@ -28,8 +41,6 @@
     "drupal/ui_patterns": "^1.0@RC",
     "drupal/components": "^2",
     "drupal/ui_patterns_pattern_lab": "^1.0@alpha",
-    "evanlovely/plugin-twig-namespaces": "^1.1",
-    "drupal/console": "~1.0",
     "drupal/bootstrap_barrio": "^4.14",
     "drupal/fontawesome": "^2.3",
     "drupal/block_styles": "^1.2",
@@ -49,7 +60,6 @@
     "drupal/entity": "^1.0",
     "drupal/addtoany": "^1.10",
     "drupal/contact_block": "^1.4",
-    "drupal/media_entity_flickr": "4.x-dev@dev",
     "drupal/redirect": "^1.3",
     "drupal/google_analytics": "^2.3",
     "drupal/eu_cookie_compliance": "^1.2",
@@ -63,7 +73,6 @@
     "drupal/http_response_headers": "^2.0@alpha",
     "drupal/acquia_purge": "^1.0@beta",
     "drupal/webform": "^6.0",
-    "symfony/http-foundation": "^3.4",
     "drupal/username_enumeration_prevention": "^1.0",
     "drupal/audiofield": "^1.9",
     "drupal/svg_image": "^1.13",
@@ -71,11 +80,14 @@
     "drupal/seckit": "^2.0",
     "drupal/upgrade_status": "^3.8",
     "drupal/flickr_api": "^1.x-dev@dev",
-    "drupal/bootstrap_sass": "^1.13"
+    "drupal/bootstrap_sass": "^1.13",
+    "drupal/core-project-message": "^9",
+    "drupal/core": "^9",
+    "drupal/media_entity_flickr": "dev-8.x-4.x"
   },
   "require-dev": {
     "drupal/stage_file_proxy": "^1.0",
-    "drupal/core-dev": "8.9.17"
+    "drupal/core-dev": "^9"
   },
   "conflict": {
     "drupal/core": "7.*",
