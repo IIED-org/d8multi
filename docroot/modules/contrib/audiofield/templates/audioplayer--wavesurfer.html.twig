@@ -14,7 +14,7 @@
 #}
 <div class="audiofield">
   {% for file in files %}
-    <div class="audiofield-wavesurfer" id="wavesurfer_{{ file.id }}">
+    <div class="audiofield-wavesurfer" id="{{ file.id }}">
       <div id="audiofield-audio-player-{{ file.id }}" class="waveform"></div>
       <div class="player-button playpause play">Play</div>
       <input type="range" class="volume" min="0" max="10" value="{{ settings.audio_player_initial_volume}}">

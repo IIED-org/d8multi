@@ -251,7 +251,6 @@ $databases = array();
  *   );
  * @endcode
  */
-$config_directories = array();
 
 /**
  * Settings:
@@ -771,9 +770,7 @@ $settings['entity_update_batch_size'] = 50;
 
 /* Add config directory */
 
-$config_directories['vcs'] = $app_root . '/../config/' . basename($site_path);
-$config_directories[CONFIG_SYNC_DIRECTORY] = $app_root . '/../config/' . basename($site_path);
-
+$settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_path);
 
 // On Acquia Cloud, this include file configures Drupal to use the correct
 // database in each site environment (Dev, Stage, or Prod). To use this

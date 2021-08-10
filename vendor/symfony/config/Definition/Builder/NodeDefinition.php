@@ -127,7 +127,9 @@ abstract class NodeDefinition implements NodeParentInterface
         }
 
         $node = $this->createNode();
-        $node->setAttributes($this->attributes);
+        if ($node instanceof BaseNode) {
+            $node->setAttributes($this->attributes);
+        }
 
         return $node;
     }
@@ -362,7 +364,7 @@ abstract class NodeDefinition implements NodeParentInterface
                     $child->setPathSeparator($separator);
                 }
             } else {
-                @trigger_error(sprintf('Not implementing the "%s::getChildNodeDefinitions()" method in "%s" is deprecated since Symfony 4.1.', ParentNodeDefinitionInterface::class, static::class), E_USER_DEPRECATED);
+                @trigger_error(sprintf('Not implementing the "%s::getChildNodeDefinitions()" method in "%s" is deprecated since Symfony 4.1.', ParentNodeDefinitionInterface::class, static::class), \E_USER_DEPRECATED);
             }
         }
 

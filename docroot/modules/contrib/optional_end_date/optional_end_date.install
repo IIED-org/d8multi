@@ -30,3 +30,19 @@ function optional_end_date_install() {
     $storage_schema->set($schema_key, $tables);
   }
 }
+
+/**
+ * Update existing field storages to match schema.
+ */
+function optional_end_date_update_8001() {
+  $field_configs = Drupal::entityTypeManager()->getStorage('field_storage_config')->loadByProperties([
+    'type' => 'daterange'
+  ]);
+  foreach ($field_configs as $field_config) {
+    // Saving the config is only needed if the setting is not already a boolean.
+    $setting = $field_config->getSetting('optional_end_date');
+    if (!is_bool($setting)) {
+      $field_config->save();
+    }
+  }
+}

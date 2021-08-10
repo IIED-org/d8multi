@@ -31,8 +31,7 @@ class AudioJsAudioPlayer extends AudioFieldPluginBase {
       $this->showInstallError();
 
       // Simply return the default rendering so the files are still displayed.
-      $default_player = new DefaultMp3Player();
-      return $default_player->renderPlayer($items, $langcode, $settings);
+      return $this->renderDefaultPlayer($items, $settings);
     }
 
     // Start building settings to pass to the javascript audio.js builder.
@@ -67,7 +66,7 @@ class AudioJsAudioPlayer extends AudioFieldPluginBase {
         ],
         'drupalSettings' => [
           'audiofieldaudiojs' => [
-            $renderInfo->id => $player_settings,
+            $this->getUniqueRenderId() => $player_settings,
           ],
         ],
       ],

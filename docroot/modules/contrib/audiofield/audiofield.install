@@ -92,6 +92,21 @@ function audiofield_requirements($phase) {
         }
       }
     }
+    // Check if the audiowaveform command is installed for use with wavesurfer.
+    $requirements['audiowaveform'] = [
+      'title' => t('Audiowaveform'),
+      'severity' => REQUIREMENT_WARNING,
+      'value' => '',
+      'description' => t('Audiowaveform is not currently installed. Audiowaveform is used to pre-render waveform files for the Audiofield Wavesurfer module. See @audiowaveformlink', [
+        '@audiowaveformlink' => Link::fromTextAndUrl(t('the Audiowaveform installation instructions'), Url::fromUri('https://github.com/bbc/audiowaveform'))->toString(),
+      ]),
+    ];
+    if (audiofield_check_audiowaveform_installed()) {
+      $requirements['audiowaveform']['description'] = t('@version is installed.', [
+        '@version' => shell_exec('audiowaveform -v'),
+      ]);
+      $requirements['audiowaveform']['severity'] = REQUIREMENT_INFO;
+    }
   }
 
   return $requirements;

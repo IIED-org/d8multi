@@ -7,7 +7,7 @@ core_version_requirement: ^8 || ^9
 dependencies:
   - drupal:datetime_range
 
-# Information added by Drupal.org packaging script on 2020-06-11
-version: '8.x-1.1'
+# Information added by Drupal.org packaging script on 2021-07-22
+version: '8.x-1.2'
 project: 'optional_end_date'
-datestamp: 1591870657
+datestamp: 1626939289

@@ -16,8 +16,11 @@ class Photos {
    * Photos constructor.
    *
    * @param \Drupal\flickr_api\Service\Photos $flickrApiPhotos
+   *   API Photos.
    * @param \Drupal\flickr\Service\Helpers $helpers
+   *   Helpers.
    * @param \Drupal\flickr_api\Service\Helpers $flickrApiHelpers
+   *   API Helpers.
    */
   public function __construct(FlickrApiPhotos $flickrApiPhotos,
                               Helpers $helpers,
@@ -34,13 +37,21 @@ class Photos {
   }
 
   /**
-   * @param $photo
-   * @param $size
+   * Theme Photos.
+   *
+   * @param array $photo
+   *   Photo.
+   * @param string $size
+   *   Size.
    * @param int $caption
+   *   Caption On Off.
+   * @param string $parent
+   *   Parent.
    *
    * @return array
+   *   Return theme array.
    */
-  public function themePhoto($photo, $size, $caption = 0, $parent = NULL) {
+  public function themePhoto(array $photo, $size, $caption = 0, $parent = NULL) {
     $photoSize = $this->photoGetSize($photo['id'], $size);
     $photoSizeLarge = $this->photoGetSize($photo['id'], 'b');
 
@@ -54,7 +65,9 @@ class Photos {
         '#attributes' => [
           'width' => $photoSize['width'],
           'height' => $photoSize['height'],
+          // @codingStandardsIgnoreStart
           // 'style' => 'width: ' . $photoSize['width'] . 'px; height: ' . $photoSize['width'] . 'px;',.
+          // @codingStandardsIgnoreEnd
         ],
       ];
 
@@ -84,15 +97,21 @@ class Photos {
   }
 
   /**
-   * @param $photos
-   * @param $size
-   * @param int $caption
+   * Theme Photos.
    *
-   * @param null $parent
+   * @param array $photos
+   *   Photos.
+   * @param string $size
+   *   Size.
+   * @param int $caption
+   *   Caption On Off.
+   * @param string $parent
+   *   Parent.
    *
    * @return array
+   *   Return theme array.
    */
-  public function themePhotos($photos, $size, $caption = 0, $parent = NULL) {
+  public function themePhotos(array $photos, $size, $caption = 0, $parent = NULL) {
     foreach ($photos as $photo) {
       $themedPhotos[] = $this->themePhoto(
         $this->flickrApiPhotos->photosGetInfo($photo['id']),
@@ -114,13 +133,19 @@ class Photos {
   }
 
   /**
-   * @param $photo
-   * @param $size
-   * @param $caption
+   * Theme Caption.
+   *
+   * @param array $photo
+   *   Photo.
+   * @param string $size
+   *   Size.
+   * @param int $caption
+   *   Caption.
    *
    * @return array
+   *   Return theme array.
    */
-  public function themeCaption($photo, $size, $caption) {
+  public function themeCaption(array $photo, $size, $caption) {
     return [
       '#theme' => 'flickr_photo_caption',
       '#caption' => $caption,
@@ -134,10 +159,15 @@ class Photos {
   }
 
   /**
-   * @param $photoId
-   * @param $size
+   * Get Photo Size.
    *
-   * @return bool
+   * @param string $photoId
+   *   Photo ID.
+   * @param string $size
+   *   Size.
+   *
+   * @return bool|array
+   *   False or array.
    */
   public function photoGetSize($photoId, $size) {
     $photoSizes = $this->flickrApiPhotos->photosGetSizes($photoId);
@@ -157,10 +187,15 @@ class Photos {
   }
 
   /**
-   * @param $width
-   * @param $height
+   * Calculate aspect.
+   *
+   * @param int $width
+   *   Width.
+   * @param int $height
+   *   Height.
    *
    * @return string
+   *   Return aspect.
    */
   public function photoCalculateAspectRatio($width, $height) {
     $aspectRatio = (int) $width / (int) $height;
