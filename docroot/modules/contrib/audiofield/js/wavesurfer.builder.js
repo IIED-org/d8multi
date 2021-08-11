@@ -28,7 +28,28 @@
         waveColor: settings.waveColor
       });
 
-      wavesurfer.load(file.path);
+      if (typeof file.peakpath !== 'undefined') {
+        fetch(file.peakpath)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("HTTP error " + response.status);
+            }
+            return response.json();
+          })
+          .then(peaks => {
+            Drupal.AudiofieldWavesurfer.normalizePeaks(peaks);
+
+            wavesurfer.load(file.path, peaks.data);
+            $(wavecontainer).find('.player-button.playpause').html('Play');
+          })
+          .catch((e) => {
+            wavesurfer.load(file.path);
+            console.error('error', e);
+          });
+      }
+      else {
+        wavesurfer.load(file.path);
+      }
 
       wavesurfer.setVolume(settings.volume);
 
@@ -43,11 +64,29 @@
       if (!!settings.autoplay) {
         wavesurfer.on('ready', wavesurfer.play.bind(wavesurfer));
       }
+      Drupal.AudiofieldWavesurfer.instance = wavesurfer;
     });
   };
 
+  Drupal.AudiofieldWavesurfer.normalizePeaks = function (peaks) {
+    var max = peaks.data[0], min = peaks.data[0];
+    var X, scale;
+    for (X = 1; X < peaks.data.length; X++) {
+      if (max < peaks.data[X]) {
+        max = peaks.data[X];
+      }
+      if (min > peaks.data[X]) {
+        min = peaks.data[X];
+      }
+    }
+    scale = 1.0 / Math.max(Math.abs(min), Math.abs(max));
+    for (X = 0; X < peaks.data.length; X++) {
+      peaks.data[X] *= scale;
+    }
+  }
+
   Drupal.AudiofieldWavesurfer.generatePlaylist = function (context, settings) {
-    $.each($(context).find('#wavesurfer_playlist').once('generate-waveform'), function (index, wavecontainer) {
+    $.each($(context).find('#wavesurfer_playlist-' + settings.unique_id).once('generate-waveform'), function (index, wavecontainer) {
       var wavesurfer = WaveSurfer.create({
         container: '#' + $(wavecontainer).attr('id') + ' .waveform',
         audioRate: settings.audioRate,
@@ -71,9 +110,7 @@
       var label = $(wavecontainer).find('label').first();
       label.html('Playing: ' + first.html());
 
-      first.addClass('playing');
-
-      wavesurfer.load(first.attr('data-src'));
+      Drupal.AudiofieldWavesurfer.Load(wavecontainer, wavesurfer, first, false);
 
       $(wavecontainer).find('.player-button.playpause').on('click', function (event) {
         Drupal.AudiofieldWavesurfer.PlayPause(wavecontainer, wavesurfer);
@@ -103,9 +140,13 @@
         wavesurfer.on('ready', wavesurfer.play.bind(wavesurfer));
       }
 
-      wavesurfer.on('finish', function (event) {
-        Drupal.AudiofieldWavesurfer.Next(wavecontainer, wavesurfer);
-      });
+      if (settings.autoplayNextTrack) {
+        wavesurfer.on('finish', function (event) {
+          Drupal.AudiofieldWavesurfer.Next(wavecontainer, wavesurfer);
+        });
+      }
+
+      Drupal.AudiofieldWavesurfer.instance = wavesurfer;
     });
   };
 
@@ -121,13 +162,38 @@
     }
   };
 
-  Drupal.AudiofieldWavesurfer.Load = function (wavecontainer, wavesurfer, track) {
-    wavesurfer.load(track.attr('data-src'));
+  Drupal.AudiofieldWavesurfer.Load = function (wavecontainer, wavesurfer, track, playonload = true) {
+
+    var peakpath = track.attr('data-peakpath');
+    if (peakpath !== '') {
+      fetch(peakpath)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("HTTP error " + response.status);
+          }
+          return response.json();
+        })
+        .then(peaks => {
+          Drupal.AudiofieldWavesurfer.normalizePeaks(peaks);
+
+          wavesurfer.load(track.attr('data-src'), peaks.data);
+        })
+        .catch((e) => {
+          wavesurfer.load(track.attr('data-src'));
+          console.error('error', e);
+        });
+    }
+    else {
+      wavesurfer.load(track.attr('data-src'));
+    }
+
     wavesurfer.on('ready', function (event) {
-      $(wavecontainer).removeClass('playing');
-      $(wavecontainer).addClass('playing');
-      $(wavecontainer).find('.player-button.playpause').html('Pause');
-      wavesurfer.play();
+      if (playonload) {
+        $(wavecontainer).removeClass('playing');
+        $(wavecontainer).addClass('playing');
+        $(wavecontainer).find('.player-button.playpause').html('Pause');
+        wavesurfer.play();
+      }
     });
 
     $(wavecontainer).find('.track').removeClass('playing');

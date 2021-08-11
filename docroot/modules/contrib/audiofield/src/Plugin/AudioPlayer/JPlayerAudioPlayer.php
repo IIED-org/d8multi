@@ -32,8 +32,7 @@ class JPlayerAudioPlayer extends AudioFieldPluginBase {
       $this->showInstallError();
 
       // Simply return the default rendering so the files are still displayed.
-      $default_player = new DefaultMp3Player();
-      return $default_player->renderPlayer($items, $langcode, $settings);
+      return $this->renderDefaultPlayer($items, $settings);
     }
 
     // Create arrays to pass to the twig template.
@@ -41,6 +40,7 @@ class JPlayerAudioPlayer extends AudioFieldPluginBase {
     $template_theme = str_replace('audiofield.jplayer.theme_', '', $settings['audio_player_jplayer_theme']);
 
     // JPlayer circle has to render differently - no playlist support, etc.
+    $player_settings = [];
     if ($settings['audio_player_jplayer_theme'] == 'audiofield.jplayer.theme_jplayer_circle') {
       // @todo circle player broken for some reason.
       // Only require the default library.
@@ -70,7 +70,7 @@ class JPlayerAudioPlayer extends AudioFieldPluginBase {
     }
     // This is a normal jPlayer skin, so we render normally.
     else {
-      // Need to derermine quantity of valid items.
+      // Need to determine quantity of valid items.
       $template_settings['item_count'] = 0;
       foreach ($items as $item) {
         if ($this->validateEntityAgainstPlayer($item)) {
@@ -163,7 +163,7 @@ class JPlayerAudioPlayer extends AudioFieldPluginBase {
         ],
         'drupalSettings' => [
           'audiofieldjplayer' => [
-            $renderInfo->id => $player_settings,
+            $this->getUniqueRenderId() => $player_settings,
           ],
         ],
       ],

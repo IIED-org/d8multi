@@ -22,7 +22,7 @@ use Drupal\webform\WebformSubmissionForm;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * Trait class for Webform Ajax support.
+ * Trait for webform ajax support.
  */
 trait WebformAjaxFormTrait {
 
@@ -161,7 +161,7 @@ trait WebformAjaxFormTrait {
     $wrapper_attributes = new Attribute($wrapper_attributes);
 
     $form['#form_wrapper_id'] = $wrapper_id;
-    $form['#prefix'] = '<a id="' . $wrapper_id . '-content" tabindex="-1" aria-hidden="true"></a>';
+    $form['#prefix'] = '<span id="' . $wrapper_id . '-content"></span>';
     $form['#prefix'] .= '<div' . $wrapper_attributes . '>';
     $form['#suffix'] = '</div>';
 

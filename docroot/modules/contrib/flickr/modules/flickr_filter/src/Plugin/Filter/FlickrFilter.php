@@ -27,16 +27,22 @@ use Drupal\flickr\Service\Photos;
 class FlickrFilter extends FilterBase implements ContainerFactoryPluginInterface {
 
   /**
+   * Helpers.
+   *
    * @var \Drupal\flickr\Service\Helpers
    */
   protected $helpers;
 
   /**
+   * Photos.
+   *
    * @var \Drupal\flickr\Service\Photos
    */
   protected $photos;
 
   /**
+   * Photosets.
+   *
    * @var \Drupal\flickr\Service\Photosets
    */
   protected $photosets;
@@ -45,11 +51,17 @@ class FlickrFilter extends FilterBase implements ContainerFactoryPluginInterface
    * FlickrFilter constructor.
    *
    * @param array $configuration
-   * @param $plugin_id
-   * @param $plugin_definition
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
    * @param \Drupal\flickr\Service\Helpers $helpers
+   *   Helpers.
    * @param \Drupal\flickr\Service\Photos $photos
+   *   Photos.
    * @param \Drupal\flickr\Service\Photosets $photosets
+   *   Photosets.
    */
   public function __construct(array $configuration,
                               $plugin_id,
@@ -85,10 +97,13 @@ class FlickrFilter extends FilterBase implements ContainerFactoryPluginInterface
     $text = preg_replace_callback('/\[flickr-photoset:(.+?)\]/', 'self::callbackPhotosets', $text);
 
     // TODO Implement the rest of the options.
-    //    $text = preg_replace_callback('/\[flickr-group:(.+?)\]/', 'flickr_filter_callback_group', $text);
-    //    $text = preg_replace_callback('/\[flickr-gallery:(.+?)\]/', 'flickr_filter_callback_gallery', $text);
-    //    $text = preg_replace_callback('/\[flickr-user:(.+?)\]/', 'flickr_filter_callback_album', $text);
-    //    $text = preg_replace_callback('/\[flickr-favorites:(.+?)\]/', 'flickr_filter_callback_favorites', $text);.
+    // @codingStandardsIgnoreStart
+    // $text = preg_replace_callback('/\[flickr-group:(.+?)\]/', 'flickr_filter_callback_group', $text);
+    // $text = preg_replace_callback('/\[flickr-gallery:(.+?)\]/', 'flickr_filter_callback_gallery', $text);
+    // $text = preg_replace_callback('/\[flickr-user:(.+?)\]/', 'flickr_filter_callback_album', $text);
+    // $text = preg_replace_callback('/\[flickr-favorites:(.+?)\]/', 'flickr_filter_callback_favorites', $text);.
+    // @codingStandardsIgnoreEnd
+
     return new FilterProcessResult($text);
   }
 
@@ -164,7 +179,7 @@ class FlickrFilter extends FilterBase implements ContainerFactoryPluginInterface
         switch ($config['size']) {
           case "x":
           case "y":
-            drupal_set_message(t("Do not use a slideshow for a single image."), 'error');
+            $this->messenger()->addError($this->t("Do not use a slideshow for a single image."));
             $config['size'] = $this->settings['flickr_filter_default_size'];
             break;
         }

@@ -40,8 +40,8 @@ function audiofield_library_info_build() {
  */
 function _audiofield_list_skins($player) {
   $skins = [];
-  if ($player == 'jplayer_audio_player') {
-    $files = file_scan_directory(DRUPAL_ROOT . '/libraries/jplayer/dist/skin/', '#.*\.min\.css#');
+  if (file_exists(DRUPAL_ROOT . '/libraries/jplayer') && $player == 'jplayer_audio_player') {
+    $files = \Drupal::service('file_system')->scanDirectory(DRUPAL_ROOT . '/libraries/jplayer/dist/skin/', '#.*\.min\.css#');
     foreach ($files as $file) {
       // Generate a human readable name.
       $name = preg_replace("/^(jplayer\.)(.*)(\.min)/", '$2', $file->name);
@@ -152,4 +152,11 @@ function audiofield_help($route_name, RouteMatchInterface $route_match) {
 
       return $output;
   }
+}
+
+/**
+ * Check to see if AudioWaveForm is installed.
+ */
+function audiofield_check_audiowaveform_installed() {
+  return (substr(shell_exec('audiowaveform -v'), 0, 13) == 'AudioWaveform');
 }

@@ -37,8 +37,34 @@
         waveColor: settings.waveColor,
       });
 
-      // Load the file.
-      wavesurfer.load(file.path);
+      // Check if a peak file has been provided.
+      if (typeof file.peakpath !== 'undefined') {
+        // Fetch the provided file.
+        fetch(file.peakpath)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("HTTP error " + response.status);
+            }
+            return response.json();
+          })
+          .then(peaks => {
+            // Normalize the provided peaks data.
+            Drupal.AudiofieldWavesurfer.normalizePeaks(peaks);
+
+            // Load the file.
+            wavesurfer.load(file.path, peaks.data);
+            $(wavecontainer).find('.player-button.playpause').html('Play');
+          })
+          .catch((e) => {
+            // Failed to load peaks, just load file normally.
+            wavesurfer.load(file.path);
+            console.error('error', e);
+          });
+      }
+      else {
+        // Load file without peaks.
+        wavesurfer.load(file.path);
+      }
 
       // Set the default volume.
       wavesurfer.setVolume(settings.volume);
@@ -57,8 +83,32 @@
       if (!!settings.autoplay) {
         wavesurfer.on('ready', wavesurfer.play.bind(wavesurfer));
       }
+      Drupal.AudiofieldWavesurfer.instance = wavesurfer;
     });
   };
+
+  /**
+   * Normalize a peak file
+   *
+   * @param {jQuery} peaks
+   *   The Wavesurfer peaks data for which we are normalizing data.
+   */
+  Drupal.AudiofieldWavesurfer.normalizePeaks = function (peaks) {
+    var max = peaks.data[0], min = peaks.data[0];
+    var X, scale;
+    for (X = 1; X < peaks.data.length; X++) {
+      if (max < peaks.data[X]) {
+        max = peaks.data[X];
+      }
+      if (min > peaks.data[X]) {
+        min = peaks.data[X];
+      }
+    }
+    scale = 1.0 / Math.max(Math.abs(min), Math.abs(max));
+    for (X = 0; X < peaks.data.length; X++) {
+      peaks.data[X] *= scale;
+    }
+  }
 
   /**
    * Generate a wavesurfer playlist player.
@@ -69,7 +119,7 @@
    *   The Drupal settings for this player.
    */
   Drupal.AudiofieldWavesurfer.generatePlaylist = (context, settings) => {
-    $.each($(context).find('#wavesurfer_playlist').once('generate-waveform'), (index, wavecontainer) => {
+    $.each($(context).find(`#wavesurfer_playlist-${settings.unique_id}`).once('generate-waveform'), (index, wavecontainer) => {
       // Create waveform.
       const wavesurfer = WaveSurfer.create({
         container: `#${$(wavecontainer).attr('id')} .waveform`,
@@ -97,8 +147,9 @@
       label.html(`Playing: ${first.html()}`);
       // Set the playing class on the first element.
       first.addClass('playing');
+
       // Load the file.
-      wavesurfer.load(first.attr('data-src'));
+      Drupal.AudiofieldWavesurfer.Load(wavecontainer, wavesurfer, first, false);
 
       // Handle play/pause.
       $(wavecontainer).find('.player-button.playpause').on('click', (event) => {
@@ -137,9 +188,12 @@
       }
 
       // Handle track finishing.
-      wavesurfer.on('finish', (event) => {
-        Drupal.AudiofieldWavesurfer.Next(wavecontainer, wavesurfer);
-      });
+      if (settings.autoplayNextTrack) {
+        wavesurfer.on('finish', (event) => {
+          Drupal.AudiofieldWavesurfer.Next(wavecontainer, wavesurfer);
+        });
+      }
+      Drupal.AudiofieldWavesurfer.instance = wavesurfer;
     });
   };
 
@@ -174,14 +228,43 @@
    * @param {jQuery} track
    *   The track being loaded into the player.
    */
-  Drupal.AudiofieldWavesurfer.Load = (wavecontainer, wavesurfer, track) => {
-    // Load the track.
-    wavesurfer.load(track.attr('data-src'));
+  Drupal.AudiofieldWavesurfer.Load = (wavecontainer, wavesurfer, track, playonload = true) => {
+    // Check for peak file.
+    const peakpath = track.attr('data-peakpath');
+    if (peakpath !== '') {
+      // Fetch the peak file.
+      fetch(peakpath)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("HTTP error " + response.status);
+          }
+          return response.json();
+        })
+        .then(peaks => {
+          // Normalize the peaks.
+          Drupal.AudiofieldWavesurfer.normalizePeaks(peaks);
+
+          // Load the file with peaks data.
+          wavesurfer.load(track.attr('data-src'), peaks.data);
+        })
+        .catch((e) => {
+          // Error loading peaks, load file normally.
+          wavesurfer.load(track.attr('data-src'));
+          console.error('error', e);
+        });
+    }
+    else {
+      // Load the track normally.
+      wavesurfer.load(track.attr('data-src'));
+    }
+
     wavesurfer.on('ready', (event) => {
-      $(wavecontainer).removeClass('playing');
-      $(wavecontainer).addClass('playing');
-      $(wavecontainer).find('.player-button.playpause').html('Pause');
-      wavesurfer.play();
+      if (playonload) {
+        $(wavecontainer).removeClass('playing');
+        $(wavecontainer).addClass('playing');
+        $(wavecontainer).find('.player-button.playpause').html('Pause');
+        wavesurfer.play();
+      }
     });
     // Remove playing from all other tracks.
     $(wavecontainer).find('.track').removeClass('playing');

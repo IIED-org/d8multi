@@ -12,6 +12,7 @@ use Drupal\media\MediaTypeInterface;
 use Drupal\media\MediaSourceFieldConstraintsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
+use Drupal\Core\File\FileSystemInterface;
 
 /**
  * Provides media type plugin for Flickr.
@@ -163,7 +164,7 @@ class Flickr extends MediaSourceBase implements MediaSourceFieldConstraintsInter
           else {
             $directory = $this->configFactory->get('media_entity_flickr.settings')->get('local_images');
             if (!file_exists($directory)) {
-              file_prepare_directory($directory, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
+              \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
             }
 
             $image_url = $this->getMetadata($media, 'thumbnail');
@@ -171,7 +172,7 @@ class Flickr extends MediaSourceBase implements MediaSourceFieldConstraintsInter
             // TODO Changeme with Guzzle
             $image_data = file_get_contents($image_url);
             if ($image_data) {
-              return file_unmanaged_save_data($image_data, $local_uri, FILE_EXISTS_REPLACE);
+              return \Drupal::service('file_system')->saveData($image_data, $local_uri, FileSystemInterface::EXISTS_REPLACE);
             }
           }
         }

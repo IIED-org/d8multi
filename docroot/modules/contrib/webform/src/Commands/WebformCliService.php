@@ -6,6 +6,7 @@ use Drupal\Component\Utility\Variable;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Mail\MailFormatHelper;
+use Drupal\Core\Render\RenderContext;
 use Drupal\Core\Serialization\Yaml;
 use Drupal\Core\Site\Settings;
 use Drupal\webform\Controller\WebformResultsExportController;
@@ -17,6 +18,7 @@ use Drupal\webform\Utility\WebformObjectHelper;
 use Drupal\webform\Utility\WebformYaml;
 use Drupal\webform_submission_export_import\Form\WebformSubmissionExportImportUploadForm;
 use Drush\Commands\DrushCommands;
+use Drush\Drush;
 use Psr\Log\LogLevel;
 
 /**
@@ -121,6 +123,7 @@ class WebformCliService implements WebformCliServiceInterface {
         'state' => 'Submission state to be included: "completed", "draft" or "all" (default).',
         'sticky' => 'Flagged/starred submission status.',
         'files' => 'Download files: "1" or "0" (default). If set to 1, the exported CSV file and any submission file uploads will be download in a gzipped tar file.',
+        'attachments' => 'Download attachments: "1" or "0" (default). If set to 1, the exported CSV file and any submission element attachments will be download in a gzipped tar file.',
         // Output options.
         'destination' => 'The full path and filename in which the CSV or archive should be stored. If omitted the CSV file or archive will be outputted to the command line.',
       ],
@@ -195,16 +198,6 @@ class WebformCliService implements WebformCliServiceInterface {
         'webform-libraries-status' => 'Displays the status of third party libraries required by the Webform module.',
       ],
       'aliases' => ['wfls'],
-    ];
-
-    $items['webform-libraries-make'] = [
-      'description' => 'Generates libraries YAML to be included in a drush.make.yml files.',
-      'core' => ['8+'],
-      'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_ROOT,
-      'examples' => [
-        'webform-libraries-make' => 'Generates libraries YAML to be included in a drush.make.yml file.',
-      ],
-      'aliases' => ['wflm'],
     ];
 
     $items['webform-libraries-composer'] = [
@@ -286,7 +279,7 @@ class WebformCliService implements WebformCliServiceInterface {
       'core' => ['8+'],
       'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_ROOT,
       'examples' => [
-        'webform-repair' => 'Generates HTML documentation used by the Webform module\'s documentation pages.',
+        'webform-docs' => 'Generates HTML documentation used by the Webform module\'s documentation pages.',
       ],
       'aliases' => ['wfd'],
     ];
@@ -490,8 +483,6 @@ class WebformCliService implements WebformCliServiceInterface {
     $entity_type_manager = \Drupal::service('entity_type.manager');
     /** @var \Drupal\webform\WebformSubmissionStorageInterface $submission_storage */
     $submission_storage = $entity_type_manager->getStorage('webform_submission');
-    /** @var \Drupal\webform\WebformRequestInterface $request_handler */
-    $request_handler = \Drupal::service('webform.request');
 
     // Make sure there are submissions that need to be deleted.
     if (!$submission_storage->getTotal($webform)) {
@@ -500,7 +491,7 @@ class WebformCliService implements WebformCliServiceInterface {
     }
 
     if (!$webform) {
-      $submission_total = \Drupal::entityQuery('webform_submission')->count()->execute();
+      $submission_total = \Drupal::entityQuery('webform_submission')->count()->accessCheck(FALSE)->execute();
       $form_total = \Drupal::entityQuery('webform')->count()->execute();
 
       $t_args = [
@@ -513,7 +504,7 @@ class WebformCliService implements WebformCliServiceInterface {
         return $this->drush_user_abort();
       }
 
-      $form = new WebformResultsClearForm($entity_type_manager, $request_handler);
+      $form = WebformResultsClearForm::create(\Drupal::getContainer());
       $form->batchSet();
       $this->drush_backend_batch_process();
     }
@@ -530,7 +521,7 @@ class WebformCliService implements WebformCliServiceInterface {
         return $this->drush_user_abort();
       }
 
-      $form = new WebformSubmissionsPurgeForm($entity_type_manager, $request_handler);
+      $form = WebformSubmissionsPurgeForm::create(\Drupal::getContainer());
       $form->batchSet($webform, $source_entity);
       $this->drush_backend_batch_process();
     }
@@ -695,35 +686,6 @@ class WebformCliService implements WebformCliServiceInterface {
   /**
    * {@inheritdoc}
    */
-  public function drush_webform_libraries_make() {
-    /** @var \Drupal\webform\WebformLibrariesManagerInterface $libraries_manager */
-    $libraries_manager = \Drupal::service('webform.libraries_manager');
-    $libraries = $libraries_manager->getLibraries(TRUE);
-
-    $data = [
-      'core' => '8.x',
-      'api' => 2,
-      'libraries' => [],
-    ];
-    foreach ($libraries as $library_name => $library) {
-      $url = $library['download_url']->toString();
-      $data['libraries'][$library_name] = [
-        'directory_name' => $library_name,
-        'destination' => 'libraries',
-        'download' => [
-          'type' => 'get',
-          'url' => $url,
-        ],
-      ];
-    }
-
-    $data = Yaml::encode($data);
-    $this->drush_print($data);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function drush_webform_libraries_composer() {
     // Load existing composer.json file and unset certain properties.
     $composer_path = drupal_get_path('module', 'webform') . '/composer.json';
@@ -767,37 +729,58 @@ class WebformCliService implements WebformCliServiceInterface {
         continue;
       }
 
-      // Download archive to temp directory.
+      $download_location = DRUPAL_ROOT . "/libraries/$library_name";
+
       $download_url = $library['download_url']->toString();
+
+      if (preg_match('/\.zip$/', $download_url)) {
+        $download_type = 'zip';
+      }
+      elseif (preg_match('/\.tgz$/', $download_url)) {
+        $download_type = 'tar';
+      }
+      else {
+        $download_type = 'file';
+      }
+
+      // Download archive to temp directory.
       $this->drush_print("Downloading $download_url");
 
-      $temp_filepath = $temp_dir . '/' . basename(current(explode('?', $download_url, 2)));
-      $this->drush_download_file($download_url, $temp_filepath);
 
-      // Extract ZIP archive.
-      $download_location = DRUPAL_ROOT . "/libraries/$library_name";
-      $this->drush_print("Extracting to $download_location");
-
-      // Extract to temp location.
-      $temp_location = $this->drush_tempdir();
-      if (!$this->drush_tarball_extract($temp_filepath, $temp_location)) {
-        $this->drush_set_error("Unable to extract $library_name");
-        return;
+      if ($download_type === 'file') {
+        $this->drush_mkdir($download_location);
+        $download_filepath = $download_location . '/' . basename($download_url);
+        $this->drush_download_file($download_url, $download_filepath);
       }
+      else {
+        $temp_filepath = $temp_dir . '/' . basename(current(explode('?', $download_url, 2)));
+        $this->drush_download_file($download_url, $temp_filepath);
 
-      // Move files and directories from temp location to download location.
-      // using rename.
-      $files = scandir($temp_location);
-      // Remove directories (. ..)
-      unset($files[0], $files[1]);
-      if ((count($files) === 1) && is_dir($temp_location . '/' . current($files))) {
-        $temp_location .= '/' . current($files);
-      }
-      $this->drush_move_dir($temp_location, $download_location);
+        // Extract ZIP archive.
+        $this->drush_print("Extracting to $download_location");
 
-      // Remove the tarball.
-      if (file_exists($temp_filepath)) {
-        $this->drush_delete_dir($temp_filepath, TRUE);
+        // Extract to temp location.
+        $temp_location = $this->drush_tempdir();
+        if (!$this->drush_tarball_extract($temp_filepath, $temp_location)) {
+          $this->drush_set_error("Unable to extract $library_name");
+          return;
+        }
+
+        // Move files and directories from temp location to download location.
+        // using rename.
+        $files = scandir($temp_location);
+        // Remove directories (. ..)
+        unset($files[0], $files[1]);
+        if ((count($files) === 1) && is_dir($temp_location . '/' . current($files))) {
+          $temp_location .= '/' . current($files);
+        }
+        $this->drush_move_dir($temp_location, $download_location);
+
+        // Remove the tarball.
+        if (file_exists($temp_filepath)) {
+          $this->drush_delete_dir($temp_filepath, TRUE);
+        }
+
       }
     }
 
@@ -886,19 +869,34 @@ class WebformCliService implements WebformCliServiceInterface {
 
     // Validate all webform elements.
     $this->drush_print($this->dt('Validating webform elements…'));
-    /** @var \Drupal\webform\WebformEntityElementsValidatorInterface $elements_validator */
-    $elements_validator = \Drupal::service('webform.elements_validator');
 
-    /** @var \Drupal\webform\WebformInterface[] $webforms */
-    $webforms = Webform::loadMultiple();
-    foreach ($webforms as $webform) {
-      if ($messages = $elements_validator->validate($webform)) {
-        $this->drush_print('  ' . $this->dt('@title (@id): Found element validation errors.', ['@title' => $webform->label(), '@id' => $webform->id()]));
-        foreach ($messages as $message) {
-          $this->drush_print('  - ' . strip_tags($message));
+    \Drupal::moduleHandler()->loadAll();
+
+    /** @var \Drupal\Core\Render\RendererInterface $renderer */
+    $renderer = \Drupal::service('renderer');
+    $render_context = new RenderContext();
+    $renderer->executeInRenderContext($render_context, function () {
+      /** @var \Drupal\webform\WebformEntityElementsValidatorInterface $elements_validator */
+      $elements_validator = \Drupal::service('webform.elements_validator');
+
+      /** @var \Drupal\webform\WebformInterface[] $webforms */
+      $webforms = Webform::loadMultiple();
+      foreach ($webforms as $webform) {
+        // Ignored test files.
+        // @todo Determine why these webforms are throwing error via CLI.
+        if (in_array($webform->id(), ['test_element_managed_file_limit', 'test_composite_custom_file', 'test_element_comp_file_plugin'])) {
+          continue;
+        }
+
+        $messages = $elements_validator->validate($webform);
+        if ($messages) {
+          $this->drush_print('  ' . $this->dt('@title (@id): Found element validation errors.', ['@title' => $webform->label(), '@id' => $webform->id()]));
+          foreach ($messages as $message) {
+            $this->drush_print('  - ' . strip_tags($message));
+          }
         }
       }
-    }
+    });
 
     Cache::invalidateTags(['rendered']);
     // @todo Remove when that is fixed in https://www.drupal.org/node/2773591.
@@ -1083,7 +1081,7 @@ class WebformCliService implements WebformCliServiceInterface {
       return $this->drush_user_abort();
     }
 
-    $drupal_root = $this->drush_get_context('DRUSH_DRUPAL_ROOT');
+    $drupal_root = Drush::bootstrapManager()->getRoot();
     if (file_exists($drupal_root . '/composer.json')) {
       $composer_json = $drupal_root . '/composer.json';
       $composer_directory = '';
@@ -1202,6 +1200,7 @@ class WebformCliService implements WebformCliServiceInterface {
       }
 
       $dist_url = $library['download_url']->toString();
+
       if (preg_match('/\.zip$/', $dist_url)) {
         $dist_type = 'zip';
       }
@@ -1211,8 +1210,19 @@ class WebformCliService implements WebformCliServiceInterface {
       else {
         $dist_type = 'file';
       }
+
       $package_version = $library['version'];
-      $package_name = (strpos($library_name, '.') === FALSE) ? "$library_name/$library_name" : str_replace('.', '/', $library_name);
+
+      if (strpos($library_name, '/') !== FALSE) {
+        $package_name = $library_name;
+      }
+      elseif (strpos($library_name, '.') !== FALSE) {
+        $package_name = str_replace('.', '/', $library_name);
+      }
+      else {
+        $package_name = "$library_name/$library_name";
+      }
+
       $repositories->$library_name = [
         '_webform' => TRUE,
         'type' => 'package',
@@ -1379,7 +1389,7 @@ $functions
    * @hook validate $command_name
    */
   public function $validate_method(CommandData \$commandData) {
-    \$arguments = \$commandData->arguments();
+    \$arguments = array_values(\$commandData->arguments());
     array_shift(\$arguments);
     call_user_func_array([\$this->cliService, '$validate_method'], \$arguments);
   }";

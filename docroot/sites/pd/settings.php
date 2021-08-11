@@ -802,12 +802,10 @@ if (isset($_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR']) && file_exists($_SERVER['D
     'password' => '',
     'host' => '127.0.0.1',
     'port' => 33067 );
-
 }
 // </DDSETTINGS>
 
-$settings['config_sync_directory'] = $app_root . '/../config/pd/';
-$settings['config_vcs_directory'] = $settings['config_sync_directory'];
+$settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_path);
 
 /**
  * Load local development override configuration, if available.

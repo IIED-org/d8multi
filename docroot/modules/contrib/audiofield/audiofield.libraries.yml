@@ -206,8 +206,8 @@ audiofield.projekktor:
     - core/drupalSettings
 
 audiofield.wavesurfer:
-  remote: https://github.com/katspaugh/wavesurfer.js/archive/2.0.0-beta01.zip
-  version: "2.0.0-beta01"
+  remote: https://github.com/katspaugh/wavesurfer.js/archive/4.0.1.zip
+  version: "4.0.1"
   license:
     name: BSD 3-Clause License
     url: https://github.com/katspaugh/wavesurfer.js/blob/master/LICENSE

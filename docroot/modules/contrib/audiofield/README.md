@@ -102,13 +102,18 @@ Wavesurfer Audio Player
   downloaded and placed in /libraries/wavesurfer such that the file
   wavesurfer.min.js is found at /libraries/wavesurfer/dist/.
 
-  Please note that there are two versions of Wavesurfer (> 2.0 and < 2.0).
-  Audioplayer supports both installations (installed to the same directory),
-  but there are small feature differences between the two to be aware of. The
-  drush command will install the latest version.
+  Please note that there are three versions of Wavesurfer (4.0, 3.0, 2.0, and
+  < 2.0). Audioplayer supports all installations (installed to the same
+  directory),  but there are small feature differences between these to be
+  aware of. The drush command will install the latest version.
 
-  Install through drush using command drush audiofield-download waveplayer
+  Install through drush using command drush audiofield-download wavesurfer
   (Drush 8) or drush audiofield:download waveplayer (Drush 9).
+
+  Note that you may have to install/build the plugin using after adding the
+  library if it is not detected ("dist" directory missing). This would occur if
+  you manually installed the wavesurfer directory. See the wavesurfer
+  documentation for more info.
 
 WordPress Audio Player
   WordPress Audio Player requires installation of the Standalone version of

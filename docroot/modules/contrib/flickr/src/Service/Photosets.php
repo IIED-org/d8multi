@@ -16,9 +16,13 @@ class Photosets {
    * Photosets constructor.
    *
    * @param \Drupal\flickr_api\Service\Photosets $flickrApiPhotosets
+   *   API Photosets.
    * @param \Drupal\flickr\Service\Photos $photos
+   *   Photos.
    * @param \Drupal\flickr\Service\Helpers $helpers
+   *   Helpers.
    * @param \Drupal\flickr_api\Service\Helpers $flickrApiHelpers
+   *   API Helpers.
    */
   public function __construct(FlickrApiPhotosets $flickrApiPhotosets,
                               Photos $photos,
@@ -38,12 +42,17 @@ class Photosets {
   }
 
   /**
-   * @param $photos
-   * @param $title
+   * Theme Photos.
+   *
+   * @param array $photos
+   *   Photos.
+   * @param string $title
+   *   Title.
    *
    * @return array
+   *   Theme Array.
    */
-  public function themePhotoset($photos, $title) {
+  public function themePhotoset(array $photos, $title) {
     return [
       '#theme' => 'flickr_photoset',
       '#photos' => $photos,

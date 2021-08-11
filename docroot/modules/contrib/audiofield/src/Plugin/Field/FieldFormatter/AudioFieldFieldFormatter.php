@@ -23,6 +23,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class AudioFieldFieldFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
 
+  /**
+   * Audio player management service.
+   *
+   * @var \Drupal\audiofield\AudioFieldPlayerManager
+   */
   protected $audioPlayerManager;
 
   /**
@@ -271,6 +276,28 @@ class AudioFieldFieldFormatter extends FormatterBase implements ContainerFactory
         ],
       ],
     ];
+    $elements['audio_player_wavesurfer_use_peakfile'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use Peak File'),
+      '#description' => $this->t("Peak files are used to speed up waveform display on the client and reduce the load on the server by pre-rendering the waveform. These are stored alongside your audio files and are automatically generated."),
+      '#default_value' => $this->getSetting('audio_player_wavesurfer_use_peakfile'),
+      '#states' => [
+        'visible' => [
+          [':input[name="fields[' . $fieldname . '][settings_edit_form][settings][audio_player]"]' => ['value' => 'wavesurfer_audio_player']],
+        ],
+      ],
+    ];
+    $elements['audio_player_wavesurfer_playnexttrack'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Automatically skip to next track'),
+      '#description' => $this->t("If checked, next track in playlist will auto-play"),
+      '#default_value' => $this->getSetting('audio_player_wavesurfer_playnexttrack'),
+      '#states' => [
+        'visible' => [
+          [':input[name="fields[' . $fieldname . '][settings_edit_form][settings][audio_player]"]' => ['value' => 'wavesurfer_audio_player']],
+        ],
+      ],
+    ];
 
     // Settings for WordPress.
     // Only show when WordPress is the selected audio player.
@@ -303,10 +330,10 @@ class AudioFieldFieldFormatter extends FormatterBase implements ContainerFactory
       '#title' => $this->t('Select SoundManager Skin'),
       '#default_value' => $this->getSetting('audio_player_soundmanager_theme'),
       '#options' => [
-        'default' => 'Default theme',
-        'player360' => '360 degree player',
-        'barui' => 'Bar UI',
-        'inlineplayer' => 'Inline Player',
+        'default' => $this->t('Default theme'),
+        'player360' => $this->t('360 degree player'),
+        'barui' => $this->t('Bar UI'),
+        'inlineplayer' => $this->t('Inline Player'),
       ],
       '#states' => [
         'visible' => [
@@ -431,6 +458,9 @@ class AudioFieldFieldFormatter extends FormatterBase implements ContainerFactory
       $summary[] = $this->t('Auto Center? <strong>@value</strong>', [
         '@value' => ($settings['audio_player_wavesurfer_autocenter'] ? 'Yes' : 'No'),
       ]);
+      $summary[] = $this->t('Autoplay next track? <strong>@value</strong>', [
+        '@value' => ($settings['audio_player_wavesurfer_playnexttrack'] ? 'Yes' : 'No'),
+      ]);
       $summary[] = $this->t('Bar Gap: <strong>@value</strong>', [
         '@value' => $settings['audio_player_wavesurfer_bargap'],
       ]);
@@ -460,6 +490,9 @@ class AudioFieldFieldFormatter extends FormatterBase implements ContainerFactory
       ]);
       $summary[] = $this->t('Wave Color: <span style="border:1px solid black;height:10px;width:10px;display:inline-block;background:@value;"></span>', [
         '@value' => $settings['audio_player_wavesurfer_wavecolor'],
+      ]);
+      $summary[] = $this->t('Use Peak File? <strong>@value</strong>', [
+        '@value' => ($settings['audio_player_wavesurfer_use_peakfile'] ? 'Yes' : 'No'),
       ]);
     }
     // If this is wordpress, add those settings.
@@ -563,9 +596,11 @@ class AudioFieldFieldFormatter extends FormatterBase implements ContainerFactory
       'audio_player_wavesurfer_cursorwidth' => 1,
       'audio_player_wavesurfer_forcedecode' => FALSE,
       'audio_player_wavesurfer_normalize' => FALSE,
+      'audio_player_wavesurfer_playnexttrack' => TRUE,
       'audio_player_wavesurfer_progresscolor' => '#555',
       'audio_player_wavesurfer_responsive' => FALSE,
       'audio_player_wavesurfer_wavecolor' => '#999',
+      'audio_player_wavesurfer_use_peakfile' => FALSE,
       'audio_player_wordpress_combine_files' => FALSE,
       'audio_player_wordpress_animation' => TRUE,
       'audio_player_soundmanager_theme' => 'default',
