@@ -4,13 +4,7 @@ package: Flickr
 configure: flickr.settings
 
 type: module
-# core: 8.x
-
+core: 8.x
+core_version_requirement: ^8 || ^9
 dependencies:
   - flickr_api:flickr_api
-
-# Information added by Drupal.org packaging script on 2018-03-20
-version: '8.x-1.0-alpha2'
-core: '8.x'
-project: 'flickr'
-datestamp: 1521504802

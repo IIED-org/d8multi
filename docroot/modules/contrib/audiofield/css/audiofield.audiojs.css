@@ -105,7 +105,7 @@
   text-decoration: none;
   padding-bottom: 1px;
   border-bottom: 1px solid #999;
-  white-space: wrap;
+  white-space: normal;
 }
 
 .audiofield-audiojs .playZ {

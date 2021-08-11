@@ -5,6 +5,14 @@ namespace Drupal\audiofield\Plugin\AudioPlayer;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\audiofield\AudioFieldPluginBase;
 use Drupal\Component\Serialization\Json;
+use Drupal\file\Entity\File;
+use Drupal\Core\Link;
+use Drupal\Core\Asset\LibraryDiscovery;
+use Drupal\Core\Messenger\Messenger;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\File\FileSystem;
+use Drupal\Core\Extension\ModuleHandler;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Implements the Wavesurfer Audio Player plugin.
@@ -23,6 +31,38 @@ use Drupal\Component\Serialization\Json;
 class WavesurferAudioPlayer extends AudioFieldPluginBase {
 
   /**
+   * Module handler service.
+   *
+   * @var Drupal\Core\Extension\ModuleHandler
+   */
+  protected $moduleHandler;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LibraryDiscovery $library_discovery, Messenger $messenger, LoggerChannelFactoryInterface $logger_factory, FileSystem $file_system, ModuleHandler $module_handler) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $library_discovery, $messenger, $logger_factory, $file_system);
+
+    $this->moduleHandler = $module_handler;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('library.discovery'),
+      $container->get('messenger'),
+      $container->get('logger.factory'),
+      $container->get('file_system'),
+      $container->get('module_handler')
+    );
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function renderPlayer(FieldItemListInterface $items, $langcode, array $settings) {
@@ -32,12 +72,14 @@ class WavesurferAudioPlayer extends AudioFieldPluginBase {
       $this->showInstallError();
 
       // Simply return the default rendering so the files are still displayed.
-      $default_player = new DefaultMp3Player();
-      return $default_player->renderPlayer($items, $langcode, $settings);
+      return $this->renderDefaultPlayer($items, $settings);
     }
 
     // Create arrays to pass to the twig template.
     $template_files = [];
+
+    // Get a unique render Id.
+    $settings['unique_id'] = $this->getUniqueRenderId();
 
     // Start building settings to pass to the javascript wavesurfer builder.
     $player_settings = [
@@ -57,17 +99,67 @@ class WavesurferAudioPlayer extends AudioFieldPluginBase {
       'progressColor' => $settings['audio_player_wavesurfer_progresscolor'],
       'responsive' => $settings['audio_player_wavesurfer_responsive'],
       'waveColor' => $settings['audio_player_wavesurfer_wavecolor'],
+      'autoplayNextTrack' => $settings['audio_player_wavesurfer_playnexttrack'],
       'autoplay' => $settings['audio_player_autoplay'],
+      'unique_id' => $settings['unique_id'],
     ];
 
     // Format files for output.
     $template_files = $this->getItemRenderList($items);
-    foreach ($template_files as $renderInfo) {
-      // Add this file to the render settings.
-      $player_settings['files'][] = [
-        'id' => 'wavesurfer_' . $renderInfo->id,
+    foreach ($template_files as &$renderInfo) {
+      // Generate settings for this file.
+      $fileSettings = [
+        'id' => $renderInfo->id,
         'path' => $renderInfo->url->toString(),
       ];
+
+      // Check for Peak files.
+      if ($settings['audio_player_wavesurfer_use_peakfile'] && $this->getClassType($renderInfo->item) == 'FileItem') {
+
+        // Load the associated file.
+        $file = File::load($renderInfo->item->get('target_id')->getCastedValue());
+        // Get the file URL.
+        $deliveryUrl = $file->getFileUri();
+        // Get the file information so we can determin extension.
+        $deliveryFileInfo = pathinfo(file_create_url($deliveryUrl));
+        // Generate the URL for finding the peak file.
+        $peakData = [
+          'url' => dirname($deliveryUrl) . '/' . $deliveryFileInfo['filename'] . '.json',
+          'arguments' => '--pixels-per-second 20 --bits 8',
+        ];
+        // Allow other modules to alter path data.
+        $this->moduleHandler->alter('audiofield_wavesurfer_peak', $peakData);
+
+        // Get the real path.
+        $peakPath = $this->fileSystem->realpath($peakData['url']);
+
+        // If the file is missing and Audiowaveform is installed.
+        if (!file_exists($peakPath) && audiofield_check_audiowaveform_installed()) {
+
+          $deliveryPath = escapeshellarg($this->fileSystem->realpath($deliveryUrl));
+          $peakPath = escapeshellarg($peakPath);
+          $peakArguments = $peakData['arguments'];
+
+          // Generate the data file.
+          shell_exec("audiowaveform -i $deliveryPath -o $peakPath $peakArguments");
+          // If the file didn't generate, log/report the error.
+          if (!file_exists($peakData['url'])) {
+            $message_data = [
+              '@status_report' => Link::createFromRoute('status report', 'system.status')->toString(),
+            ];
+            $this->loggerFactory->get('audiofield')->warning('Warning: Unable to generate Waveform peak file. Please check your installation of audiowaveform. More information available in the @status_report.', $message_data);
+            $this->messenger->addWarning($this->t('Warning: Unable to generate Waveform peak file. Please check your installation of audiowaveform. More information available in the @status_report.', $message_data));
+          }
+        }
+
+        // If the file exists, add it to the jQuery and template settings.
+        if (file_exists($peakData['url'])) {
+          $renderInfo->peakpath = $fileSettings['peakpath'] = file_create_url($peakData['url']);
+        }
+      }
+
+      // Add this file to the render settings.
+      $player_settings['files'][] = $fileSettings;
     }
 
     return [
@@ -75,6 +167,7 @@ class WavesurferAudioPlayer extends AudioFieldPluginBase {
         '#theme' => 'audioplayer',
         '#plugin_id' => 'wavesurfer',
         '#plugin_theme' => $player_settings['playertype'],
+        '#settings' => $settings,
         '#files' => $template_files,
       ],
       'downloads' => $this->createDownloadList($items, $settings),
@@ -85,7 +178,7 @@ class WavesurferAudioPlayer extends AudioFieldPluginBase {
         ],
         'drupalSettings' => [
           'audiofieldwavesurfer' => [
-            $renderInfo->id => $player_settings,
+            $settings['unique_id'] => $player_settings,
           ],
         ],
       ],

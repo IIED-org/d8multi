@@ -2,7 +2,7 @@
     "name": "drupal/audiofield",
     "description": "AudioField Module",
     "type": "drupal-module",
-    "license": "GPL-2.0+",
+    "license": "GPL-2.0-or-later",
     "homepage": "https://www.drupal.org/project/audiofield",
     "minimum-stability": "dev",
     "authors": [

@@ -39,7 +39,13 @@ class PatternLabDeriver extends LibraryDeriver {
     // Get a list of the path to /templates in all active modules and themes
     $active_directories = $this->getDirectories();
     foreach ($active_directories as $provider => $path) {
-      $active_directories[$provider] = $path . "/templates";
+      $path = $path . "/templates";
+      if (!is_dir($path)) {
+        unset($active_directories[$provider]);
+      }
+      else {
+        $active_directories[$provider] = $path;
+      }
     }
 
     // Get the list of currently active default theme and related base themes
@@ -107,9 +113,8 @@ class PatternLabDeriver extends LibraryDeriver {
         $documentation = $this->getDocumentation($absolute_base_path, $id);
 
         // Set pattern meta.
-        // Convert hyphens to underscores so that the pattern id will validate.
         // Also strip initial numbers that are ignored by Pattern Lab when naming.
-        $definition['id'] = ltrim(str_replace("-", "_", $id), "0..9_");
+        $definition['id'] = ltrim($id, "0..9_");
         $definition['base path'] = dirname($file_path);
         $definition['file name'] = $absolute_base_path;
         // If pattern is provided by a twig namespace, pass just the theme name
@@ -213,7 +218,7 @@ class PatternLabDeriver extends LibraryDeriver {
         if (is_array($preview) && in_array("include()", array_keys($preview)) && isset($preview["include()"])) {
           $fields[$field]["type"] = "render";
           $fields[$field]["preview"] = $this->includePatternFiles($preview["include()"]);
-          $fields[$field]["description"] = t('Rendering of a @pattern pattern.', 
+          $fields[$field]["description"] = t('Rendering of a @pattern pattern.',
             ['@pattern' =>  $preview["include()"]["pattern"]]);
         }
 
@@ -243,7 +248,7 @@ class PatternLabDeriver extends LibraryDeriver {
   }
 
   /**
-   * 
+   *
    */
   private function getDescription($content, $documentation) {
     // If description was manually overriden, use that.

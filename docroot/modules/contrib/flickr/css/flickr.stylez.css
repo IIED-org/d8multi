@@ -13,19 +13,16 @@
   display: block;
 }
 
-.flickr-photos {
-}
+/*.flickr-photos {}*/
 
 .flickr-photoset {
   clear: both;
   display: table;
 }
 
-.flickr-photoset-title {
-}
+/*.flickr-photoset-title {}*/
 
-.flickr-photo-caption {
-}
+/*.flickr-photo-caption {}*/
 
 .flickr-photo-caption-title {
   font-weight: bold;
@@ -41,7 +38,6 @@
   text-transform: uppercase;
 }
 
-
 .flickr-photo-n-landscape {
   max-width: 320px;
 }
@@ -53,7 +49,6 @@
 .flickr-photo-n-square {
   max-width: 320px;
 }
-
 
 .flickr-photo-m-landscape {
   max-width: 240px;

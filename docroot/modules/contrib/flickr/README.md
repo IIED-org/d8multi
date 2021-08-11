@@ -1,7 +1,11 @@
 # Flickr Drupal Integration
+[![CircleCI](https://circleci.com/gh/dakkusingh/flickr.svg?style=svg)](https://circleci.com/gh/dakkusingh/flickr)
 
-Flickr Integration for Drupal provides fully configurable image galleries from Flickr website. 
-See project page at Project page at https://drupal.org/project/flickr
+Flickr Integration for Drupal provides fully configurable 
+image galleries from Flickr website. 
+
+See project page at Project page at 
+https://drupal.org/project/flickr
 
 ## Flickr Filter Module
 Embed single Flickr images, sets, albums or slideshows (for sets, users or

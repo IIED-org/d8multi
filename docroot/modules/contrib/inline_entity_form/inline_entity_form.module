@@ -15,6 +15,10 @@ use Drupal\inline_entity_form\ElementSubmit;
 use Drupal\inline_entity_form\WidgetSubmit;
 use Drupal\inline_entity_form\Form\EntityInlineForm;
 use Drupal\inline_entity_form\Plugin\Field\FieldWidget\InlineEntityFormComplex;
+use Drupal\inline_entity_form\MigrationHelper;
+use Drupal\migrate\Plugin\MigrateSourceInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\migrate\Row;
 
 /**
  * Implements hook_entity_type_build().
@@ -66,7 +70,7 @@ function inline_entity_form_theme() {
  * @return array
  *   The form array containing the embedded form.
  */
-function inline_entity_form_reference_form($reference_form, &$form_state) {
+function inline_entity_form_reference_form($reference_form, FormStateInterface &$form_state) {
   $labels = $reference_form['#ief_labels'];
   $ief_id = $reference_form['#ief_id'];
   /** @var \Drupal\field\Entity\FieldConfig $instance */
@@ -413,6 +417,7 @@ function template_preprocess_inline_entity_form_entity_table(array &$variables) 
     $rows[] = $cells + ['#attributes' => ['class' => $row_classes]];
     // If the current entity array specifies a form, output it in the next row.
     if (!empty($form[$key]['form'])) {
+      $row = [];
       $row[] = $form[$key]['form'] + ['#wrapper_attributes' => ['colspan' => count($fields) + 1]];
       $rows[] = $row + ['#attributes' => ['class' => ['ief-row-form'], 'no_striping' => TRUE]];
     }
@@ -440,4 +445,22 @@ function template_preprocess_inline_entity_form_entity_table(array &$variables) 
       '#tabledrag' => $tabledrag,
     ] + $rows;
   }
+}
+
+
+/**
+ * Implements hook_migrate_prepare_row().
+ */
+function inline_entity_form_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
+  \Drupal::classResolver(MigrationHelper::class)
+    ->alterRow($row, $source, $migration);
+}
+
+
+/**
+ * Implements hook_migration_plugins_alter().
+ */
+function inline_entity_form_migration_plugins_alter(array &$migrations) {
+  \Drupal::classResolver(MigrationHelper::class)
+    ->alterPlugins($migrations);
 }

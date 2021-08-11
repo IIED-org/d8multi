@@ -24,15 +24,8 @@ class DefaultMp3Player extends AudioFieldPluginBase {
    * {@inheritdoc}
    */
   public function renderPlayer(FieldItemListInterface $items, $langcode, array $settings) {
-    return [
-      'audioplayer' => [
-        '#theme' => 'audioplayer',
-        '#plugin_id' => 'default',
-        '#settings' => $settings,
-        '#files' => $this->getItemRenderList($items),
-      ],
-      'downloads' => $this->createDownloadList($items, $settings),
-    ];
+    // Simply return the default constructor.
+    return $this->renderDefaultPlayer($items, $settings);
   }
 
   /**

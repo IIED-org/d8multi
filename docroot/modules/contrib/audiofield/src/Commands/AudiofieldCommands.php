@@ -3,11 +3,11 @@
 namespace Drupal\audiofield\Commands;
 
 use Drush\Commands\DrushCommands;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Finder\Finder;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
+use Drush\Drush;
+use Drupal\Core\File\FileSystem;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\audiofield\AudioFieldPlayerManager;
+use Drupal\Core\Archiver\ArchiverManager;
 
 /**
  * A Drush commandfile for Audiofield module.
@@ -22,10 +22,28 @@ class AudiofieldCommands extends DrushCommands {
   protected $playerManager;
 
   /**
+   * File system service.
+   *
+   * @var Drupal\Component\FileSystem\FileSystem
+   */
+  protected $fileSystem;
+
+  /**
+   * Archive manager service.
+   *
+   * @var Drupal\Core\Archiver\ArchiverManager
+   */
+  protected $archiverManager;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct(AudioFieldPlayerManager $player_manager) {
+  public function __construct(AudioFieldPlayerManager $player_manager, FileSystem $file_system, ArchiverManager $archiver_manager) {
+    parent::__construct();
+
     $this->playerManager = $player_manager;
+    $this->fileSystem = $file_system;
+    $this->archiverManager = $archiver_manager;
   }
 
   /**
@@ -41,9 +59,6 @@ class AudiofieldCommands extends DrushCommands {
    */
   public function download($installLibrary = '', $print_messages = TRUE) {
 
-    // Declare filesystem container.
-    $fs = new Filesystem();
-
     // Get a list of the audiofield plugins.
     $pluginList = $this->playerManager->getDefinitions();
 
@@ -52,7 +67,7 @@ class AudiofieldCommands extends DrushCommands {
       if (!isset($pluginList[$installLibrary . '_audio_player'])) {
         $this->logger()->error(dt('Error: @library is not a valid Audiofield library.', [
           '@library' => $installLibrary,
-        ], 'error'));
+        ]));
         return;
       }
       // If the argument is valid, we only want to install that plugin.
@@ -75,7 +90,7 @@ class AudiofieldCommands extends DrushCommands {
           $this->logger()->notice(dt('Audiofield library for @library is already installed at @location', [
             '@library' => $pluginInstance->getPluginTitle(),
             '@location' => $pluginInstance->getPluginLibraryPath(),
-          ], 'success'));
+          ]));
         }
         continue;
       }
@@ -84,76 +99,71 @@ class AudiofieldCommands extends DrushCommands {
       $path = DRUPAL_ROOT . $pluginInstance->getPluginLibraryPath();
       // Create the install directory if it does not exist.
       if (!is_dir($path)) {
-        $fs->mkdir($path);
+        $this->fileSystem->mkdir($path);
       }
 
       // Download the file.
-      $client = new Client();
-      $destination = tempnam(sys_get_temp_dir(), 'file.') . "tar.gz";
-      try {
-        $client->get($pluginInstance->getPluginRemoteSource(), ['save_to' => $destination]);
-      }
-      catch (RequestException $e) {
+      $destination = $this->fileSystem->tempnam($this->fileSystem->getTempDirectory(), 'file.') . "tar.gz";
+      system_retrieve_file($pluginInstance->getPluginRemoteSource(), $destination, FALSE);
+      if (!file_exists($destination)) {
         // Remove the directory.
-        $fs->remove($path);
-        $this->logger()->error(dt('Error: unable to download @library. @exception', [
+        $this->fileSystem->rmdir($path);
+        $this->logger()->error(dt('Error: unable to download @library.', [
           '@library' => $pluginInstance->getPluginTitle(),
-          '@exception' => $e->getMessage(),
-        ], 'error'));
+        ]));
         continue;
       }
-      $fs->rename($destination, $path . '/audiofield-dl.zip');
+      $this->fileSystem->move($destination, $path . '/audiofield-dl.zip');
       if (!file_exists($path . '/audiofield-dl.zip')) {
         // Remove the directory where we tried to install.
-        $fs->remove($path);
+        $this->fileSystem->rmdir($path);
         if ($print_messages) {
           $this->logger()->error(dt('Error: unable to download Audiofield library @library', [
             '@library' => $pluginInstance->getPluginTitle(),
-          ], 'error'));
+          ]));
           continue;
         }
       }
 
       // Unzip the file.
-      $zip = new \ZipArchive();
-      $res = $zip->open($path . '/audiofield-dl.zip');
-      if ($res === TRUE) {
-        $zip->extractTo($path);
-        $zip->close();
-      }
-      else {
-        // Remove the directory.
-        $fs->remove($path);
-        $this->logger()->error(dt('Error: unable to unzip @library.', [
-          '@library' => $pluginInstance->getPluginTitle(),
-        ], 'error'));
-        continue;
-      }
+      $zipFile = $this->archiverManager->getInstance(['filepath' => $path . '/audiofield-dl.zip']);
+      $zipFile->extract($path);
 
       // Remove the downloaded zip file.
-      $fs->remove($path . '/audiofield-dl.zip');
+      $this->fileSystem->unlink($path . '/audiofield-dl.zip');
 
       // If the library still is not installed, we need to move files.
       if (!$pluginInstance->checkInstalled()) {
         // Find all folders in this directory and move their
         // subdirectories up to the parent directory.
-        $directories = Finder::create()
-          ->directories()
-          ->depth('< 1')
-          ->in($path)
-          ->ignoreDotFiles(TRUE)
-          ->ignoreVCS(TRUE);
+        $directories = $this->fileSystem->scanDirectory($path, '/.*?/', [
+          'recurse' => FALSE,
+        ]);
         foreach ($directories as $dirName) {
-          $fs->mirror($dirName, $path, NULL, ['override' => TRUE]);
-          $fs->remove($dirName);
+          $this->fileSystem->move($path . '/' . $dirName->filename, $this->fileSystem->getTempDirectory() . '/temp_audiofield', FileSystemInterface::EXISTS_REPLACE);
+          $this->fileSystem->rmdir($path);
+          $this->fileSystem->move($this->fileSystem->getTempDirectory() . '/temp_audiofield', $path, FileSystemInterface::EXISTS_REPLACE);
         }
 
         // Projekktor source files need to be installed.
         if ($pluginInstance->getPluginId() == 'projekktor_audio_player') {
-          drush_op('chdir', '..');
-          drush_op('chdir', $path);
-          drush_shell_exec('npm install');
-          drush_shell_exec('grunt --force');
+          $process = Drush::process('npm install', $path);
+          $process->run();
+          $process = Drush::process('grunt --force', $path);
+          $process->run();
+        }
+        // Wavesurfer source files need to be installed.
+        if ($pluginInstance->getPluginId() == 'wavesurfer_audio_player') {
+          $this->logger()->notice(dt('Installing @library', [
+            '@library' => $pluginInstance->getPluginTitle(),
+          ]));
+          $process = Drush::process('npm install', $path);
+          $process->run();
+          $this->logger()->notice(dt('Building @library', [
+            '@library' => $pluginInstance->getPluginTitle(),
+          ]));
+          $process = Drush::process('npm run build', $path);
+          $process->run();
         }
       }
       if ($pluginInstance->checkInstalled()) {
@@ -161,16 +171,16 @@ class AudiofieldCommands extends DrushCommands {
           $this->logger()->notice(dt('Audiofield library for @library has been successfully installed at @location', [
             '@library' => $pluginInstance->getPluginTitle(),
             '@location' => $pluginInstance->getPluginLibraryPath(),
-          ], 'success'));
+          ]));
         }
       }
       else {
         // Remove the directory where we tried to install.
-        $fs->remove($path);
+        $this->fileSystem->rmdir($path);
         if ($print_messages) {
           $this->logger()->error(dt('Error: unable to install Audiofield library @library', [
             '@library' => $pluginInstance->getPluginTitle(),
-          ], 'error'));
+          ]));
         }
       }
     }
@@ -189,9 +199,6 @@ class AudiofieldCommands extends DrushCommands {
    */
   public function update($updateLibrary = '', $print_messages = TRUE) {
 
-    // Declare filesystem container.
-    $fs = new Filesystem();
-
     // Get a list of the audiofield plugins.
     $pluginList = $this->playerManager->getDefinitions();
 
@@ -200,7 +207,7 @@ class AudiofieldCommands extends DrushCommands {
       if (!isset($pluginList[$updateLibrary . '_audio_player'])) {
         $this->logger()->error(dt('Error: @library is not a valid Audiofield library.', [
           '@library' => $updateLibrary,
-        ], 'error'));
+        ]));
         return;
       }
       // If the argument is valid, we only want to install that plugin.
@@ -230,15 +237,15 @@ class AudiofieldCommands extends DrushCommands {
       if ($pluginInstance->checkVersion(FALSE)) {
         $this->logger()->notice(dt('Audiofield library for @library is already up to date', [
           '@library' => $pluginInstance->getPluginTitle(),
-        ], 'success'));
+        ]));
         continue;
       }
 
       // Move the current installation to the temp directory.
-      $fs->rename($path, file_directory_temp() . '/temp_audiofield', TRUE);
+      $this->fileSystem->move($path, $this->fileSystem->getTempDirectory() . '/temp_audiofield', TRUE);
       // If the directory failed to move, just delete it.
       if (is_dir($path)) {
-        $fs->remove($path);
+        $this->fileSystem->rmdir($path);
       }
 
       // Run the install command now to get the latest version.
@@ -247,20 +254,20 @@ class AudiofieldCommands extends DrushCommands {
       // Check if library has been properly installed.
       if ($pluginInstance->checkInstalled()) {
         // Remove the temporary directory.
-        $fs->remove(file_directory_temp() . '/temp_audiofield');
+        $this->fileSystem->rmdir($this->fileSystem->getTempDirectory() . '/temp_audiofield');
         $this->logger()->notice(dt('Audiofield library for @library has been successfully updated at @location', [
           '@library' => $pluginInstance->getPluginTitle(),
           '@location' => $pluginInstance->getPluginLibraryPath(),
-        ], 'success'));
+        ]));
       }
       else {
         // Remove the directory where we tried to install.
-        $fs->remove($path);
+        $this->fileSystem->rmdir($path);
         $this->logger()->error(dt('Error: unable to update Audiofield library @library', [
           '@library' => $pluginInstance->getPluginTitle(),
-        ], 'error'));
+        ]));
         // Restore the original install since we failed to update.
-        $fs->rename(file_directory_temp() . '/temp_audiofield', $path, TRUE);
+        $this->fileSystem->move($this->fileSystem->getTempDirectory() . '/temp_audiofield', $path, TRUE);
       }
     }
   }

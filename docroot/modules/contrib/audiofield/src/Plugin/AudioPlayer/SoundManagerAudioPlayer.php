@@ -32,8 +32,7 @@ class SoundManagerAudioPlayer extends AudioFieldPluginBase {
       $this->showInstallError();
 
       // Simply return the default rendering so the files are still displayed.
-      $default_player = new DefaultMp3Player();
-      return $default_player->renderPlayer($items, $langcode, $settings);
+      return $this->renderDefaultPlayer($items, $settings);
     }
 
     // Create arrays to pass to the twig template.
@@ -64,7 +63,9 @@ class SoundManagerAudioPlayer extends AudioFieldPluginBase {
           'audiofield/audiofield.' . $this->getPluginLibraryName() . '.' . $settings['audio_player_soundmanager_theme'],
         ],
         'drupalSettings' => [
-          'audiofieldsoundmanager' => $player_settings,
+          'audiofieldsoundmanager' => [
+            $this->getUniqueRenderId() => $player_settings,
+          ],
         ],
       ],
     ];

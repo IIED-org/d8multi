@@ -5,17 +5,19 @@
  * Install, uninstall and update hooks for Media entity Flickr module.
  */
 
+use Drupal\Core\File\FileSystemInterface;
+
 /**
  * Implements hook_install().
  */
 function media_entity_flickr_install() {
   $source = drupal_get_path('module', 'media_entity_flickr') . '/images/icons';
   $destination = \Drupal::config('media.settings')->get('icon_base_uri');
-  file_prepare_directory($destination, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
+  \Drupal::service('file_system')->prepareDirectory($destination, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
   // TODO As we are only copying a single icon file,
   // replace the dir scan with a single file.
-  $files = file_scan_directory($source, '/.*\.(png)$/');
+  $files = \Drupal::service('file_system')->scanDirectory($source, '/.*\.(png)$/');
   foreach ($files as $file) {
     // When reinstalling the Media entity Flickr module we don't want to copy
     // the icons when they already exist. The icons could be replaced (by a
@@ -25,7 +27,7 @@ function media_entity_flickr_install() {
     // was not possible to copy the files is also confusing, we silently do
     // nothing.
     if (!file_exists($destination . DIRECTORY_SEPARATOR . $file->filename)) {
-      file_unmanaged_copy($file->uri, $destination, FILE_EXISTS_ERROR);
+      \Drupal::service('file_system')->copy($file->uri, $destination, FileSystemInterface::EXISTS_ERROR);
     }
   }
 
@@ -47,7 +49,7 @@ function media_entity_flickr_requirements($phase) {
   $requirements = [];
   if ($phase == 'install') {
     $destination = \Drupal::config('media.settings')->get('icon_base_uri');
-    file_prepare_directory($destination, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
+    \Drupal::service('file_system')->prepareDirectory($destination, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
     $is_writable = is_writable($destination);
     $is_directory = is_dir($destination);
     if (!$is_writable || !$is_directory) {

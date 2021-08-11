@@ -15,6 +15,7 @@ class Helpers {
    * Helpers constructor.
    *
    * @param \Drupal\flickr_api\Service\Helpers $flickrApiHelpers
+   *   Helpers.
    */
   public function __construct(FlickrApiHelpers $flickrApiHelpers) {
     // Flickr API Helpers.
@@ -22,10 +23,19 @@ class Helpers {
   }
 
   /**
+   * Split the config.
+   *
    * Parse parameters to the fiter from a format like:
-   * id=26159919@N00, size=m,num=9,class="something",style="float:left;border:1px"
+   * id=26159919@N00, size=m,num=9
    * into an associative array with two sub-arrays. The first sub-array are
-   * parameters for the request, the second are HTML attributes (class and style).
+   * parameters for the request,
+   * the second are HTML attributes (class and style).
+   *
+   * @param string $string
+   *   Param String.
+   *
+   * @return array
+   *   Return array.
    */
   public function splitConfig($string) {
     $config = [];
