@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '32fa4579f69f2d6b3db69ff4775f577578440bb1',
+        'reference' => '4bf8d86f646f4b07def82852cb2cec72e573cd87',
         'name' => 'drupal-composer/drupal-project',
         'dev' => true,
     ),
@@ -280,7 +280,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '32fa4579f69f2d6b3db69ff4775f577578440bb1',
+            'reference' => '4bf8d86f646f4b07def82852cb2cec72e573cd87',
             'dev_requirement' => false,
         ),
         'drupal/acquia_purge' => array(

@@ -1,0 +1,68 @@
+name: d8multi
+recipe: acquia
+config:
+  acli_version: latest
+  ah_application_uuid: a4d2ff77-3324-4faa-847d-6c962dcf7302
+  ah_site_group: d8multi
+  php: '7.4'
+  cache: false
+  inbox: false
+services:
+  landcam:
+    type: mysql:5.7
+    portforward: 33068
+    config:
+      confd: lando/mysql/conf.d
+  sentinel:
+    type: mysql:5.7
+    portforward: 33069
+    config:
+      confd: .lando/mysql/conf.d
+  pd:
+    type: mysql:5.7
+    portforward: 33070
+    config:
+      confd: .lando/mysql/conf.d
+  appserver:
+    webroot: docroot
+  adminer:
+    type: compose
+    services:
+      image: dehy/adminer
+      command: '/bin/s6-svscan /etc/services.d'
+    portforward: true
+  node:
+    type: 'node:14'
+    build:
+      - 'if [ -d $LANDO_MOUNT/web/themes/custom/site_theme ]; then cd $LANDO_MOUNT/web/themes/custom/site_theme && yarn install --production; fi'
+    overrides:
+      ports:
+        - '3051:3051'
+tooling:
+  npm:
+    service: node
+  yarn:
+    service: node
+  node:
+    service: node
+  gulp:
+    service: node
+  backstop:
+    service: node
+  xdebug-on:
+    service: appserver
+    description: Enable xdebug for apache.
+    cmd: "docker-php-ext-enable xdebug && /etc/init.d/apache2 reload"
+    user: root
+  xdebug-off:
+    service: appserver
+    description: Disable xdebug for apache.
+    cmd: "rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && /etc/init.d/apache2 reload"
+    user: root
+proxy:
+  adminer:
+    - adminer.landcam.lndo.site
+  appserver:
+    - landcam.lndo.site
+    - sentinel.lndo.site
+    - pd.lndo.site

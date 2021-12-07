@@ -1,0 +1,34 @@
+local:
+  uri: 'https://sentinel.lndo.site'
+  paths:
+  - files: ~/Sites/d8multi/docroot'
+dev:
+  host: 'srv-6176.devcloud.hosting.acquia.com'
+  user: 'landcam.dev'
+  root: '/var/www/html/landcam.dev/docroot'
+  uri: 'sentinel-dev.ac.iied.org'
+  ac-site: 'd8multi'
+  ac-env: 'dev'
+  ac-realm: 'prod'
+  paths:
+    drush-script: 'drush10'
+test:
+  root: '/var/www/html/landcam.test/docroot'
+  ac-site: 'landcam'
+  ac-env: 'test'
+  ac-realm: 'prod'
+  uri: 'sentinel-stage.ac.iied.org'
+  host: 'srv-6176.devcloud.hosting.acquia.com'
+  user: 'landcam.test'
+  paths:
+    drush-script: 'drush10'
+prod:
+  root: '/var/www/html/landcam.prod/docroot'
+  ac-site: 'landcam'
+  ac-env: 'prod'
+  ac-realm: 'prod'
+  uri: 'sentinel-gcrf.org'
+  host: 'srv-6176.devcloud.hosting.acquia.com'
+  user: 'landcam.prod'
+  paths:
+    drush-script: 'drush10'

@@ -738,6 +738,7 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  */
 
 $settings['trusted_host_patterns'] = array(
+ '^.+\.lndo\.site$',
  '^.+\.dd$',
  '^.+\.devcloud\.acquia-sites\.com$',
  '^.+\.sentinel-gcrf\.org'
@@ -776,7 +777,7 @@ $settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_
 // database in each site environment (Dev, Stage, or Prod). To use this
 // settings.php for development on your local workstation, set $db_url
 // (Drupal 5 or 6) or $databases (Drupal 7 or 8) as described in comments above.
-if (file_exists('/var/www/site-php')) {
+if (file_exists('/var/www/site-php/landcam')) {
   require '/var/www/site-php/landcam/sentinel-settings.inc';
 }
 
