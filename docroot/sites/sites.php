@@ -61,12 +61,14 @@ $sites['sentineld8-stage.ac.iied.org'] = 'sentinel';
 $sites['sentineld8-prod.ac.iied.org'] = 'sentinel';
 $sites['sentinel-gcrf.org'] = 'sentinel';
 $sites['sentinel.dd'] = 'sentinel';
+$sites['sentinel.lndo.site'] = 'sentinel';
 
 $sites['landcam-dev.ac.iied.org'] = 'landcam';
 $sites['landcam-stage.ac.iied.org'] = 'landcam';
 $sites['landcam-prod.ac.iied.org'] = 'landcam';
 $sites['landcam.org'] = 'landcam';
 $sites['landcam.dd'] = 'landcam';
+$sites['landcam.lndo.site'] = 'landcam';
 
 $sites['pd-dev.ac.iied.org'] = 'pd';
 $sites['pd-stage.ac.iied.org'] = 'pd';
@@ -74,3 +76,4 @@ $sites['pd-prod.ac.iied.org'] = 'pd';
 $sites['protracteddisplacement.org'] = 'pd';
 $sites['pd.org'] = 'pd';
 $sites['pd.dd'] = 'pd';
+$sites['pd.lndo.site'] = 'pd';

@@ -732,10 +732,11 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  */
 
  $settings['trusted_host_patterns'] = [
-   '^protracteddisplacement\.org$',
-   '^.+\.protracteddisplacement\.org',
-   '^.+\.dd$',
-   '^.+\.devcloud\.acquia-sites\.com$'
+  '^.+\.lndo\.site$',
+  '^protracteddisplacement\.org$',
+  '^.+\.protracteddisplacement\.org',
+  '^.+\.dd$',
+  '^.+\.devcloud\.acquia-sites\.com$'
   ];
 
 /**
