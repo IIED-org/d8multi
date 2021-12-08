@@ -500,7 +500,9 @@ display:
           empty: false
           tokenize: false
           content:
-            value: "<h3>[view:title]&nbsp;&nbsp;<a href=\"/library\"><button class=\"btn btn-outline-secondary\" type=\"button\">See all</button></a></h3>\n<br />"
+            value: |-
+              <h3>[view:title]&nbsp;&nbsp;<a href="/library"><button class="btn btn-outline-secondary" type="button">See all</button></a></h3>
+              <br />
             format: full_html
           plugin_id: text
       footer: {  }
@@ -1310,7 +1312,10 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: "<div class=\"field--type-image\">{{ field_image }}\n<div class=\"ctype\">{{ type }} </div>\n</div>"
+            text: |-
+              <div class="field--type-image">{{ field_image }}
+              <div class="ctype">{{ type }} </div>
+              </div>
             make_link: false
             path: ''
             absolute: false
@@ -1567,7 +1572,10 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{{ field_image }}\n<h4 class=\"node--title>{{ title }}</h4>\n<span class=\"date\">{{ field_date }}</span>"
+            text: |-
+              {{ field_image }}
+              <h4 class="node--title>{{ title }}</h4>
+              <span class="date">{{ field_date }}</span>
             make_link: true
             path: '{{ view_node_1 }}'
             absolute: true
@@ -1616,7 +1624,9 @@ display:
           empty: false
           tokenize: false
           content:
-            value: "<h3>Latest news&nbsp;&nbsp;<a href=\"/news\"><button class=\"btn btn-outline-secondary\" type=\"button\">See all</button></a></h3>\n<br />"
+            value: |-
+              <h3>Latest news&nbsp;&nbsp;<a href="/news"><button class="btn btn-outline-secondary" type="button">See all</button></a></h3>
+              <br />
             format: full_html
           plugin_id: text
       footer: {  }

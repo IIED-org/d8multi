@@ -17,18 +17,27 @@ dependencies:
     - node.type.resource
   module:
     - datetime
+    - ds
     - field_layout
     - file
-    - layout_discovery
     - link
     - path
     - svg_image
     - text
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: ds_1col
     settings:
       label: ''
+      wrappers:
+        ds_content: div
+      outer_wrapper: div
+      attributes: ''
+      link_attribute: ''
+      link_custom: ''
+      classes:
+        layout_class: {  }
+        ds_content: {  }
 id: node.resource.default
 targetEntityType: node
 bundle: resource
@@ -43,11 +52,11 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
-    region: content
+    region: ds_content
   created:
     type: datetime_timestamp
     weight: 2
-    region: content
+    region: ds_content
     settings: {  }
     third_party_settings: {  }
   field_authors:
@@ -57,48 +66,48 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: ds_content
   field_country:
-    weight: 12
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: ds_content
   field_file_upload:
-    weight: 13
+    weight: 12
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: content
+    region: ds_content
   field_image:
-    weight: 15
+    weight: 14
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: content
+    region: ds_content
   field_link:
-    weight: 14
+    weight: 13
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
+    region: ds_content
   field_material_type:
     weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: ds_content
   field_pubdate:
     weight: 7
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
-    region: content
+    region: ds_content
   field_publisher:
     weight: 8
     settings:
@@ -106,17 +115,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textfield
-    region: content
-  field_theme:
-    weight: 11
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
+    region: ds_content
   path:
     type: path
     weight: 5
-    region: content
+    region: ds_content
     settings: {  }
     third_party_settings: {  }
   promote:
@@ -124,26 +127,26 @@ content:
     settings:
       display_label: true
     weight: 3
-    region: content
+    region: ds_content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 16
-    region: content
+    weight: 15
+    region: ds_content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
     weight: 4
-    region: content
+    region: ds_content
     third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0
-    region: content
+    region: ds_content
     settings:
       size: 60
       placeholder: ''
@@ -156,6 +159,7 @@ content:
       size: 60
       placeholder: ''
       match_limit: 10
-    region: content
+    region: ds_content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_theme: true

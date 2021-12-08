@@ -144,10 +144,10 @@ content:
     settings:
       image_style: cover_large
       image_link: ''
-      svg_render_as_image: true
       svg_attributes:
         width: null
         height: null
+      svg_render_as_image: false
     third_party_settings:
       ds:
         ds_limit: ''
@@ -163,28 +163,28 @@ content:
             ow-el: div
             ow-cl: ''
             ow-at: ''
+            ow-def-at: true
             ow-def-cl: true
             fis: true
             fis-el: div
             fis-cl: 'd-block mx-auto text-center clearfix'
             fis-at: ''
+            fis-def-at: true
             fi: true
             fi-el: a
             fi-cl: my-2
-            fi-at: 'href=[node:field_link:uri] title=[node:field_link:title]'
+            fi-at: 'href="[node:field_link:uri]" title="[node:field_link:title]"'
+            fi-def-at: true
             suffix: ''
             lbw: false
             lb-col: false
-            ow-def-at: false
-            fis-def-at: false
-            fi-def-at: false
     type: image
     region: left
   field_link:
     weight: 3
     label: hidden
     settings:
-      trim_length: 100
+      trim_length: null
       url_only: false
       url_plain: false
       rel: '0'
@@ -224,8 +224,15 @@ content:
     weight: 7
     label: inline
     settings:
-      link: true
-    third_party_settings: {  }
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: entity_reference_label
     region: right
   field_pubdate:

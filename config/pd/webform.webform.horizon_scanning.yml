@@ -17,7 +17,195 @@ id: horizon_scanning
 title: 'Horizon scanning'
 description: ''
 category: ''
-elements: "'#attributes':\n  class:\n    - col-md-9\n    - justify-content-center\nmarkup_01:\n  '#type': webform_markup\n  '#markup': \"<h3 class=\\\"text-center\\\">&quot;Achieving food and nutrition security, reducing inequality, and preserving terrestrial ecosystems:<br />\\r\\n100 critical research questions for decision makers<br />\\r\\nin sub-Saharan Africa&quot;</h3>\"\nabout_you:\n  '#type': webform_wizard_page\n  '#title': 'About you'\n  '#prev_button_label': '« Previous page'\n  '#next_button_label': 'Next page »'\n  processed_text:\n    '#type': processed_text\n    '#text': \"<p class=\\\"text-align-right\\\"><a href=\\\"/form/analyse-prospective\\\">Voir cette page en français</a></p>\\r\\n\"\n    '#format': full_html\n  markup:\n    '#type': webform_markup\n    '#markup': \"<p>Please use this form to contribute your questions to the SENTINEL <a href=\\\"/call-for-participants\\\">Horizon scanning activity</a>.</p>\\r\\nIf you have any questions about how to use this form, or for more information about this project, please get in touch with Adam Devenish: <a href=\\\"mailto:a.devenish@imperial.ac.uk\\\">a.devenish@imperial.ac.uk</a>. &nbsp;<br />\\r\\n<br />\\r\\nThank you very much for participating in this project. We really appreciate your contributions and look forward to identifying research questions that can help decision makers in sub-Saharan Africa to address Sustainable Development Goals.\"\n  name:\n    '#type': textfield\n    '#title': Name\n    '#size': 20\n  email_address:\n    '#type': email\n    '#title': 'Email address'\n  job_position:\n    '#type': textfield\n    '#title': 'Job position'\n  affiliation:\n    '#type': textfield\n    '#title': Affiliation\n  are_you_a_producer_or_consumer_of_research_:\n    '#type': checkboxes\n    '#title': 'Are you a producer or consumer of research?'\n    '#options':\n      consumer: 'Consumer / user'\n      producer: 'Producer / creator'\n    '#options_display': two_columns\n  please_select_which_of_these_areas_best_describes_your_work:\n    '#type': webform_select_other\n    '#title': 'Please select one of these areas which best describes your work'\n    '#options':\n      'Academic researcher': 'Academic researcher'\n      'Researcher for a private institute': 'Researcher for a private institute'\n      'Public sector - Policy maker': 'Public sector - Policy maker'\n      'Non-state actor - Civil Society Organisation (CSO)': 'Non-state actor - Civil Society Organisation (CSO)'\n      'Non-state actor - Non-Governmental Organisation (NGO)': 'Non-state actor - Non-Governmental Organisation (NGO)'\n      'Private sector - commercial / industry': 'Private sector - commercial / industry'\n      'Governmental Organisation': 'Governmental Organisation'\n      'Intergovernmental Organisation': 'Intergovernmental Organisation'\n      Donor: Donor\n    '#other__option_label': Other...\n  please_select_additional_areas_which_you_work_in:\n    '#type': webform_checkboxes_other\n    '#title': 'Please select additional areas which you work in'\n    '#options':\n      'Academic researcher': 'Academic researcher'\n      'Researcher for a private institute': 'Researcher for a private institute'\n      'Public sector - Policy maker': 'Public sector - Policy maker'\n      'Non-state actor - Civil Society Organisation (CSO)': 'Non-state actor - Civil Society Organisation (CSO)'\n      'Non-state actor - Non-Governmental Organisation (NGO)': 'Non-state actor - Non-Governmental Organisation (NGO)'\n      'Private sector - commercial / industry': 'Private sector - commercial / industry'\n      'Governmental Organisation': 'Governmental Organisation'\n      'Intergovernmental Organisation': 'Intergovernmental Organisation'\n      Donor: Donor\n    '#other__option_label': Other...\n  in_which_country_is_your_place_of_work_:\n    '#type': select\n    '#title': 'In which country is your place of work?'\n    '#title_display': before\n    '#options': country_names\n  what_sector_do_you_work_in_:\n    '#type': textfield\n    '#title': 'What sector do you work in?'\nyour_questions:\n  '#type': webform_wizard_page\n  '#title': 'Your questions'\n  '#prev_button_label': '« Previous page'\n  '#next_button_label': 'Next page »'\n  markup_02:\n    '#type': webform_markup\n    '#markup': \"Please contribute as many questions as you would like to in the boxes provided below. You can submit as many questions as you like, just click the &quot;<strong>+&quot;</strong> button to add another. When you have entered all your questions, click &#39;Next page&#39;.<br />\\r\\n<br />\\r\\nPlease contribute questions that aim to address one, some, or all of the following: food security, nutrition, reducing inequality, and preserving ecosystems.\"\n  question:\n    '#type': textfield\n    '#title': Questions\n    '#multiple': true\n    '#title_display': inline\n    '#size': 25\n    '#placeholder': 'Your question'\n    '#autocomplete': 'off'\n    '#multiple__empty_items': 5\n    '#multiple__sorting': false\n    '#multiple__add_more': false\nresearch_priorities:\n  '#type': webform_wizard_page\n  '#title': 'Research priorities'\n  '#prev_button_label': '« Previous page'\n  '#next_button_label': 'Next page »'\n  markup_03:\n    '#type': webform_markup\n    '#markup': 'Here, we ask you to rank the areas of research we are considering in this horizon-scanning activity in order of importance.'\n  how_important_is_preserving_the_terrestrial_ecosystem_when_makin:\n    '#type': range\n    '#title': 'How important is preserving the terrestrial ecosystem when making decisions concerning agricultural development?'\n    '#field_prefix': 'Lowest importance'\n    '#field_suffix': 'Highest importance'\n    '#default_value': '5'\n    '#attributes':\n      style: 'max-width: 40%'\n    '#format': raw\n    '#max': 10\n    '#output': above\n  how_important_is_food_and_nutrition_security_when_making_decisio:\n    '#type': range\n    '#title': 'How important is food and nutrition security when making decisions concerning agricultural development? '\n    '#field_prefix': 'Lowest importance'\n    '#field_suffix': 'Highest importance'\n    '#default_value': '5'\n    '#attributes':\n      style: 'max-width: 40%'\n    '#format': raw\n    '#max': 10\n    '#output': above\n  how_important_is_reducing_inequality_when_making_decisions_conce:\n    '#type': range\n    '#title': 'How important is reducing inequality when making decisions concerning agricultural development?'\n    '#field_prefix': 'Lowest importance'\n    '#field_suffix': 'Highest importance'\n    '#attributes':\n      style: 'max-width: 40%'\n    '#format': raw\n    '#max': 10\n    '#output': above\n  if_you_had_to_prioritise_the_following_what_would_you_consider_t:\n    '#type': select\n    '#title': 'If you had to prioritise the following, what would you consider the <em>least</em> important aspect for agricultural development?'\n    '#options':\n      'Preserving terrestrial ecosystems': 'Preserving terrestrial ecosystems'\n      'Food and nutrition security': 'Food and nutrition security'\n      'Reducing inequality': 'Reducing inequality'\n  if_you_had_to_prioritise_the_following_what_would_you_consider:\n    '#type': select\n    '#title': 'If you had to prioritise the following, what would you consider the <em>most</em> important aspect for agricultural development?'\n    '#options':\n      'Preserving terrestrial ecosystems': 'Preserving terrestrial ecosystems'\n      'Food and nutrition security': 'Food and nutrition security'\n      'Reducing inequality': 'Reducing inequality'\n  if_you_had_to_prioritise_funding_which_would_you_consider_to_be_:\n    '#type': radios\n    '#title': 'If you had to prioritise funding, which would you consider to be the most important? '\n    '#options':\n      'Environmental research': 'Environmental research'\n      'Food self-sufficiency research': 'Food self-sufficiency research'\n      'Social equality research': 'Social equality research'\n  how_much_influence_do_you_feel_your_work_has_on_agricultural_dev:\n    '#type': range\n    '#title': 'How much influence do you feel your work has on agricultural development decision making?'\n    '#field_prefix': 'No influence at all'\n    '#field_suffix': 'A very large amount of influence'\n    '#default_value': '5'\n    '#attributes':\n      style: 'max-width: 40%'\n    '#format': raw\n    '#max': 10\n    '#output': above\nthank_you:\n  '#type': webform_wizard_page\n  '#title': Confirmation\n  '#prev_button_label': '« Previous page'\n  '#next_button_label': 'Next page »'\n  markup_04:\n    '#type': webform_markup\n    '#markup': \"<h3>Thank you very much for contributing to the SENTINEL Horizon scanning activity. &nbsp;</h3>\\r\\nPlease note that, by participating in this activity, you consent to your personal data being used in the way described in our <a href=\\\"/privacy-policy\\\">privacy policy</a>. For further information, please contact&nbsp;Adam Devenish (<a href=\\\"mailto:a.devenish@imperial.ac.uk\\\">a.devenish@imperial.ac.uk</a>).<br />\\r\\n<br />\\r\\nIf you have provided your email address, we look forward to keeping you updated on project progress. In the meantime, have a lovely day and thank you again for your contributions.\"\n  i_would_like_to_be_contacted_regarding_future_stages_of_the_hori:\n    '#type': checkbox\n    '#title': 'I would like to be contacted regarding future stages of the Horizon-scanning activity'\n    '#description': 'Please ensure that you have given your email address on the first page of this form, if you would like to be contacted.'\n    '#description_display': after\n    '#wrapper_attributes':\n      class:\n        - mb-2\n  i_would_be_interested_in_participating_in_the_later_stages_of_th:\n    '#type': checkbox\n    '#title': 'I would be interested in participating in the later stages of the Horizon-scanning activity'\n    '#wrapper_attributes':\n      class:\n        - mt-3\n"
+elements: |
+  '#attributes':
+    class:
+      - col-md-9
+      - justify-content-center
+  markup_01:
+    '#type': webform_markup
+    '#markup': "<h3 class=\"text-center\">&quot;Achieving food and nutrition security, reducing inequality, and preserving terrestrial ecosystems:<br />\r\n100 critical research questions for decision makers<br />\r\nin sub-Saharan Africa&quot;</h3>"
+  about_you:
+    '#type': webform_wizard_page
+    '#title': 'About you'
+    '#prev_button_label': '« Previous page'
+    '#next_button_label': 'Next page »'
+    processed_text:
+      '#type': processed_text
+      '#text': "<p class=\"text-align-right\"><a href=\"/form/analyse-prospective\">Voir cette page en français</a></p>\r\n"
+      '#format': full_html
+    markup:
+      '#type': webform_markup
+      '#markup': "<p>Please use this form to contribute your questions to the SENTINEL <a href=\"/call-for-participants\">Horizon scanning activity</a>.</p>\r\nIf you have any questions about how to use this form, or for more information about this project, please get in touch with Adam Devenish: <a href=\"mailto:a.devenish@imperial.ac.uk\">a.devenish@imperial.ac.uk</a>. &nbsp;<br />\r\n<br />\r\nThank you very much for participating in this project. We really appreciate your contributions and look forward to identifying research questions that can help decision makers in sub-Saharan Africa to address Sustainable Development Goals."
+    name:
+      '#type': textfield
+      '#title': Name
+      '#size': 20
+    email_address:
+      '#type': email
+      '#title': 'Email address'
+    job_position:
+      '#type': textfield
+      '#title': 'Job position'
+    affiliation:
+      '#type': textfield
+      '#title': Affiliation
+    are_you_a_producer_or_consumer_of_research_:
+      '#type': checkboxes
+      '#title': 'Are you a producer or consumer of research?'
+      '#options':
+        consumer: 'Consumer / user'
+        producer: 'Producer / creator'
+      '#options_display': two_columns
+    please_select_which_of_these_areas_best_describes_your_work:
+      '#type': webform_select_other
+      '#title': 'Please select one of these areas which best describes your work'
+      '#options':
+        'Academic researcher': 'Academic researcher'
+        'Researcher for a private institute': 'Researcher for a private institute'
+        'Public sector - Policy maker': 'Public sector - Policy maker'
+        'Non-state actor - Civil Society Organisation (CSO)': 'Non-state actor - Civil Society Organisation (CSO)'
+        'Non-state actor - Non-Governmental Organisation (NGO)': 'Non-state actor - Non-Governmental Organisation (NGO)'
+        'Private sector - commercial / industry': 'Private sector - commercial / industry'
+        'Governmental Organisation': 'Governmental Organisation'
+        'Intergovernmental Organisation': 'Intergovernmental Organisation'
+        Donor: Donor
+      '#other__option_label': Other...
+    please_select_additional_areas_which_you_work_in:
+      '#type': webform_checkboxes_other
+      '#title': 'Please select additional areas which you work in'
+      '#options':
+        'Academic researcher': 'Academic researcher'
+        'Researcher for a private institute': 'Researcher for a private institute'
+        'Public sector - Policy maker': 'Public sector - Policy maker'
+        'Non-state actor - Civil Society Organisation (CSO)': 'Non-state actor - Civil Society Organisation (CSO)'
+        'Non-state actor - Non-Governmental Organisation (NGO)': 'Non-state actor - Non-Governmental Organisation (NGO)'
+        'Private sector - commercial / industry': 'Private sector - commercial / industry'
+        'Governmental Organisation': 'Governmental Organisation'
+        'Intergovernmental Organisation': 'Intergovernmental Organisation'
+        Donor: Donor
+      '#other__option_label': Other...
+    in_which_country_is_your_place_of_work_:
+      '#type': select
+      '#title': 'In which country is your place of work?'
+      '#title_display': before
+      '#options': country_names
+    what_sector_do_you_work_in_:
+      '#type': textfield
+      '#title': 'What sector do you work in?'
+  your_questions:
+    '#type': webform_wizard_page
+    '#title': 'Your questions'
+    '#prev_button_label': '« Previous page'
+    '#next_button_label': 'Next page »'
+    markup_02:
+      '#type': webform_markup
+      '#markup': "Please contribute as many questions as you would like to in the boxes provided below. You can submit as many questions as you like, just click the &quot;<strong>+&quot;</strong> button to add another. When you have entered all your questions, click &#39;Next page&#39;.<br />\r\n<br />\r\nPlease contribute questions that aim to address one, some, or all of the following: food security, nutrition, reducing inequality, and preserving ecosystems."
+    question:
+      '#type': textfield
+      '#title': Questions
+      '#multiple': true
+      '#title_display': inline
+      '#size': 25
+      '#placeholder': 'Your question'
+      '#autocomplete': 'off'
+      '#multiple__empty_items': 5
+      '#multiple__sorting': false
+      '#multiple__add_more': false
+  research_priorities:
+    '#type': webform_wizard_page
+    '#title': 'Research priorities'
+    '#prev_button_label': '« Previous page'
+    '#next_button_label': 'Next page »'
+    markup_03:
+      '#type': webform_markup
+      '#markup': 'Here, we ask you to rank the areas of research we are considering in this horizon-scanning activity in order of importance.'
+    how_important_is_preserving_the_terrestrial_ecosystem_when_makin:
+      '#type': range
+      '#title': 'How important is preserving the terrestrial ecosystem when making decisions concerning agricultural development?'
+      '#field_prefix': 'Lowest importance'
+      '#field_suffix': 'Highest importance'
+      '#default_value': '5'
+      '#attributes':
+        style: 'max-width: 40%'
+      '#format': raw
+      '#max': 10
+      '#output': above
+    how_important_is_food_and_nutrition_security_when_making_decisio:
+      '#type': range
+      '#title': 'How important is food and nutrition security when making decisions concerning agricultural development? '
+      '#field_prefix': 'Lowest importance'
+      '#field_suffix': 'Highest importance'
+      '#default_value': '5'
+      '#attributes':
+        style: 'max-width: 40%'
+      '#format': raw
+      '#max': 10
+      '#output': above
+    how_important_is_reducing_inequality_when_making_decisions_conce:
+      '#type': range
+      '#title': 'How important is reducing inequality when making decisions concerning agricultural development?'
+      '#field_prefix': 'Lowest importance'
+      '#field_suffix': 'Highest importance'
+      '#attributes':
+        style: 'max-width: 40%'
+      '#format': raw
+      '#max': 10
+      '#output': above
+    if_you_had_to_prioritise_the_following_what_would_you_consider_t:
+      '#type': select
+      '#title': 'If you had to prioritise the following, what would you consider the <em>least</em> important aspect for agricultural development?'
+      '#options':
+        'Preserving terrestrial ecosystems': 'Preserving terrestrial ecosystems'
+        'Food and nutrition security': 'Food and nutrition security'
+        'Reducing inequality': 'Reducing inequality'
+    if_you_had_to_prioritise_the_following_what_would_you_consider:
+      '#type': select
+      '#title': 'If you had to prioritise the following, what would you consider the <em>most</em> important aspect for agricultural development?'
+      '#options':
+        'Preserving terrestrial ecosystems': 'Preserving terrestrial ecosystems'
+        'Food and nutrition security': 'Food and nutrition security'
+        'Reducing inequality': 'Reducing inequality'
+    if_you_had_to_prioritise_funding_which_would_you_consider_to_be_:
+      '#type': radios
+      '#title': 'If you had to prioritise funding, which would you consider to be the most important? '
+      '#options':
+        'Environmental research': 'Environmental research'
+        'Food self-sufficiency research': 'Food self-sufficiency research'
+        'Social equality research': 'Social equality research'
+    how_much_influence_do_you_feel_your_work_has_on_agricultural_dev:
+      '#type': range
+      '#title': 'How much influence do you feel your work has on agricultural development decision making?'
+      '#field_prefix': 'No influence at all'
+      '#field_suffix': 'A very large amount of influence'
+      '#default_value': '5'
+      '#attributes':
+        style: 'max-width: 40%'
+      '#format': raw
+      '#max': 10
+      '#output': above
+  thank_you:
+    '#type': webform_wizard_page
+    '#title': Confirmation
+    '#prev_button_label': '« Previous page'
+    '#next_button_label': 'Next page »'
+    markup_04:
+      '#type': webform_markup
+      '#markup': "<h3>Thank you very much for contributing to the SENTINEL Horizon scanning activity. &nbsp;</h3>\r\nPlease note that, by participating in this activity, you consent to your personal data being used in the way described in our <a href=\"/privacy-policy\">privacy policy</a>. For further information, please contact&nbsp;Adam Devenish (<a href=\"mailto:a.devenish@imperial.ac.uk\">a.devenish@imperial.ac.uk</a>).<br />\r\n<br />\r\nIf you have provided your email address, we look forward to keeping you updated on project progress. In the meantime, have a lovely day and thank you again for your contributions."
+    i_would_like_to_be_contacted_regarding_future_stages_of_the_hori:
+      '#type': checkbox
+      '#title': 'I would like to be contacted regarding future stages of the Horizon-scanning activity'
+      '#description': 'Please ensure that you have given your email address on the first page of this form, if you would like to be contacted.'
+      '#description_display': after
+      '#wrapper_attributes':
+        class:
+          - mb-2
+    i_would_be_interested_in_participating_in_the_later_stages_of_th:
+      '#type': checkbox
+      '#title': 'I would be interested in participating in the later stages of the Horizon-scanning activity'
+      '#wrapper_attributes':
+        class:
+          - mt-3
 css: ''
 javascript: ''
 settings:
@@ -38,7 +226,7 @@ settings:
   form_previous_submissions: true
   form_confidential: false
   form_confidential_message: ''
-  form_remote_addr: true
+  form_disable_remote_addr: false
   form_convert_anonymous: false
   form_prepopulate: false
   form_prepopulate_source_entity: false
@@ -120,7 +308,7 @@ settings:
   confirmation_type: url_message
   confirmation_title: 'Thank you'
   confirmation_message: 'Your submission has been received. Many thanks for participating.'
-  confirmation_url: /
+  confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: false
   confirmation_back_label: ''

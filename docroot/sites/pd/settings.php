@@ -290,7 +290,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = 'oiudsfhiohasfw9u8jhoidjoiasjeu8jdaslijd90wrujnd';
 
 /**
  * Deployment identifier.
@@ -786,7 +786,7 @@ $settings['entity_update_backup'] = TRUE;
  */
 $settings['migrate_node_migrate_type_classic'] = FALSE;
 
-if (file_exists('/var/www/site-php')) {
+if (file_exists('/var/www/site-php/landcam')) {
   require '/var/www/site-php/landcam/pd-settings.inc';
 }
 

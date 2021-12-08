@@ -9,8 +9,12 @@ dependencies:
     - node.type.blog
     - node.type.photo_story
     - node.type.resource
+    - taxonomy.vocabulary.material_type
+  content:
+    - 'taxonomy_term:material_type:6e842436-1f42-4fb5-a944-88b59929d714'
   module:
     - node
+    - taxonomy
     - user
 _core:
   default_config_hash: ezK5Dw8P_4bqJdDQIiecSAJak9p1Wf1yDwHzTutGFuQ
@@ -796,6 +800,52 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
+        field_material_type_target_id:
+          id: field_material_type_target_id
+          table: node__field_material_type
+          field: field_material_type_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: not
+          value:
+            116: 116
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: material_type
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       defaults:
         filters: false
         filter_groups: false
@@ -864,6 +914,7 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

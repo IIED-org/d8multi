@@ -17,7 +17,202 @@ id: analyse_prospective
 title: 'Analyse prospective'
 description: ''
 category: ''
-elements: "'#attributes':\n  class:\n    - 'col-md-9 justify-content-center'\nmarkup_01:\n  '#type': webform_markup\n  '#markup': \"<h3 class=\\\"text-center\\\">« Garantir la sécurité alimentaire et nutritionnelle, réduire les inégalités et préserver les écosystèmes terrestres : <br />\\r\\n100 questions prioritaires à étudier afin de soutenir les décideurs en Afrique subsaharienne. »</h3>\"\nabout_you:\n  '#type': webform_wizard_page\n  '#title': 'À propos de vous'\n  '#prev_button_label': '« Page précédente'\n  '#next_button_label': 'Page suivante »'\n  view_this_page_in_english:\n    '#type': processed_text\n    '#text': \"<p class=\\\"text-align-right\\\"><a href=\\\"/form/horizon-scanning\\\">View this page in English</a></p>\\r\\n\"\n    '#format': full_html\n  markup:\n    '#type': webform_markup\n    '#markup': \"<p>Ce formulaire vous permet de soumettre vos questions dans le cadre de <a href=\\\"/appel-contribution\\\">l’analyse prospective</a> du projet SENTINEL</p>\\r\\nPour toute question concernant l’utilisation de ce formulaire ou pour obtenir plus de renseignements concernant ce projet, veuillez contacter Adam Devenish : <a href=\\\"mailto:a.devenish@imperial.ac.uk\\\">a.devenish@imperial.ac.uk</a>. &nbsp;<br />\\r\\n<br />\\r\\nMerci d’avoir accepté de participer à ce projet. Votre contribution est particulièrement appréciée et nous espérons pouvoir identifier les questions prioritaires en matière de recherche afin d’aider les décideurs en Afrique subsaharienne dans la réalisation des Objectifs de développement durable.\"\n  name:\n    '#type': textfield\n    '#title': 'Nom et prénom'\n    '#size': 20\n  email_address:\n    '#type': email\n    '#title': 'Address e-mail'\n  job_position:\n    '#type': textfield\n    '#title': 'Poste ou fonction'\n  affiliation:\n    '#type': textfield\n    '#title': Affiliation\n  are_you_a_producer_or_consumer_of_research_:\n    '#type': checkboxes\n    '#title': 'Êtes-vous producteur ou consommateur de recherche ?'\n    '#options':\n      consumer: Consommateur\n      producer: Producteur\n    '#options_display': two_columns\n  please_select_which_of_these_areas_best_describes_your_work:\n    '#type': webform_select_other\n    '#title': 'Veuillez sélectionner l’option qui décrit le mieux votre activité'\n    '#options':\n      'Academic researcher': 'Chercheur universitaire'\n      'Researcher for a private institute': 'Chercheur pour un institut privé'\n      'Public sector - Policy maker': 'Secteur public — Décideur'\n      'Non-state actor - Civil Society Organisation (CSO)': 'Acteur non étatique — Organisation de la société civile (OSC)'\n      'Non-state actor - Non-Governmental Organisation (NGO)': 'Acteur non étatique — Organisation non gouvernementale (ONG)'\n      'Private sector - commercial / industry': 'Secteur privé — Commerce / Industrie'\n      'Governmental Organisation': 'Organisation gouvernementale'\n      'Intergovernmental Organisation': 'Organisation intergouvernementale'\n      Donor: Bailleur\n    '#empty_option': '- Aucune -'\n    '#other__option_label': Autre...\n  please_select_additional_areas_which_you_work_in:\n    '#type': webform_checkboxes_other\n    '#title': 'Veuillez cocher les autres options qui correspondent à votre activité'\n    '#options':\n      'Academic researcher': 'Chercheur universitaire'\n      'Researcher for a private institute': 'Chercheur pour un institut privé'\n      'Public sector - Policy maker': 'Secteur public — Décideur'\n      'Non-state actor - Civil Society Organisation (CSO)': 'Acteur non étatique — Organisation de la société civile (OSC)'\n      'Non-state actor - Non-Governmental Organisation (NGO)': 'Acteur non étatique — Organisation non gouvernementale (ONG)'\n      'Private sector - commercial / industry': 'Secteur privé — Commerce / Industrie'\n      'Governmental Organisation': 'Organisation gouvernementale'\n      'Intergovernmental Organisation': 'Organisation intergouvernementale'\n      Donor: Bailleur\n    '#other__option_label': Autre...\n  in_which_country_is_your_place_of_work_:\n    '#type': select\n    '#title': 'Dans quel pays travaillez-vous ?'\n    '#title_display': before\n    '#options': country_names_fr_\n    '#empty_option': '- Aucun -'\n  what_sector_do_you_work_in_:\n    '#type': textfield\n    '#title': 'Dans quel domaine travaillez-vous ?'\nyour_questions:\n  '#type': webform_wizard_page\n  '#title': 'Vos questions'\n  '#prev_button_label': '« Page précédente'\n  '#next_button_label': 'Page suivante »'\n  markup_02:\n    '#type': webform_markup\n    '#markup': \"Envoyez autant de questions que vous le souhaitez en complétant les champs ci-dessous. Pour ajouter des champs afin de saisir de nouvelles questions, il vous suffit de cliquer sur le bouton « + ». Lorsque vous avez terminé d’écrire vos questions, cliquez sur « Page suivante ».<br />\\r\\n<br />\\r\\nVeuillez soumettre des questions se rapportant à au moins l’une des thématiques suivantes : sécurité alimentaire, nutrition, réduction des inégalités et préservation des écosystèmes.\"\n  question:\n    '#type': textfield\n    '#title': Questions\n    '#multiple': true\n    '#title_display': inline\n    '#size': 25\n    '#placeholder': Question\n    '#autocomplete': 'off'\n    '#multiple__empty_items': 5\n    '#multiple__sorting': false\n    '#multiple__add_more': false\nresearch_priorities:\n  '#type': webform_wizard_page\n  '#title': 'Axes prioritaires de recherche'\n  '#prev_button_label': '« Page précédente'\n  '#next_button_label': 'Page suivante »'\n  markup_03:\n    '#type': webform_markup\n    '#markup': 'Dans cette section, nous vous demandons de classer par ordre d’importance les différents axes de recherche de notre analyse prospective.'\n  how_important_is_preserving_the_terrestrial_ecosystem_when_makin:\n    '#type': range\n    '#title': 'Quel degré d’importance accordez-vous à la préservation des écosystèmes terrestres dans la prise de décisions en matière de développement agricole ?'\n    '#field_prefix': 'Importance minimale'\n    '#field_suffix': 'Importance maximale'\n    '#default_value': '5'\n    '#attributes':\n      style: 'max-width: 40%'\n    '#format': raw\n    '#max': 10\n    '#output': above\n  how_important_is_food_and_nutrition_security_when_making_decisio:\n    '#type': range\n    '#title': 'Quel degré d’importance accordez-vous à la sécurité alimentaire et nutritionnelle dans la prise de décisions en matière de développement agricole ?'\n    '#field_prefix': 'Importance minimale'\n    '#field_suffix': 'Importance maximale'\n    '#default_value': '5'\n    '#attributes':\n      style: 'max-width: 40%'\n    '#format': raw\n    '#max': 10\n    '#output': above\n  how_important_is_reducing_inequality_when_making_decisions_conce:\n    '#type': range\n    '#title': 'Quel degré d’importance accordez-vous à la réduction des inégalités dans la prise de décisions en matière de développement agricole ?'\n    '#field_prefix': 'Importance minimale'\n    '#field_suffix': 'Importance maximale'\n    '#attributes':\n      style: 'max-width: 40%'\n    '#format': raw\n    '#max': 10\n    '#output': above\n  if_you_had_to_prioritise_the_following_what_would_you_consider_t:\n    '#type': select\n    '#title': 'Si vous deviez classer ces domaines par ordre de priorités, lequel considéreriez-vous comme étant le <em>moins</em> important en matière de développement agricole ?'\n    '#options':\n      'Preserving terrestrial ecosystems': 'Préserver les écosystèmes terrestres'\n      'Food and nutrition security': 'Garantir la sécurité alimentaire et nutritionnelle'\n      'Reducing inequality': 'Réduire les inégalités'\n    '#empty_option': '– Aucune –'\n  if_you_had_to_prioritise_the_following_what_would_you_consider:\n    '#type': select\n    '#title': 'Si vous deviez classer ces domaines par ordre de priorités, lequel considéreriez-vous comme étant le <em>plus</em> important en matière de développement agricole ?'\n    '#options':\n      'Preserving terrestrial ecosystems': 'Préserver les écosystèmes terrestres'\n      'Food and nutrition security': 'Garantir la sécurité alimentaire et nutritionnelle '\n      'Reducing inequality': 'Réduire les inégalités'\n    '#empty_option': '– Aucune –'\n  if_you_had_to_prioritise_funding_which_would_you_consider_to_be_:\n    '#type': radios\n    '#title': 'Si vous deviez hiérarchiser ces domaines en vue de l’octroi de financement, lequel considéreriez-vous comme étant le plus important ?'\n    '#options':\n      'Environmental research': 'Sciences de l’environnement'\n      'Food self-sufficiency research': 'Autosuffisance alimentaire'\n      'Social equality research': 'Égalité sociale'\n  how_much_influence_do_you_feel_your_work_has_on_agricultural_dev:\n    '#type': range\n    '#title': 'Selon vous, quel est l’impact de votre travail sur les prises de décisions en matière de développement agricole ?'\n    '#field_prefix': 'Aucune influence'\n    '#field_suffix': 'Influence très importante'\n    '#default_value': '5'\n    '#attributes':\n      style: 'max-width: 40%'\n    '#format': raw\n    '#max': 10\n    '#output': above\nthank_you:\n  '#type': webform_wizard_page\n  '#title': Confirmation\n  '#prev_button_label': '« Page précédente'\n  '#next_button_label': 'Page suivante »'\n  markup_04:\n    '#type': webform_markup\n    '#markup': \"<h3>Merci beaucoup d&rsquo;avoir apport&eacute; votre contribution &agrave; l&rsquo;analyse prospective de SENTINEL.</h3>\\r\\nEn soumettant votre contribution, vous consentez &agrave; ce que vos donn&eacute;es personnelles soient utilis&eacute;es selon les termes de notre <a href=\\\"/politique-de-confidentialite\\\">politique de confidentialit&eacute;</a>. Pour obtenir plus de renseignements, veuillez contacter Adam Devenish : <a href=\\\"mailto:a.devenish@imperial.ac.uk\\\">a.devenish@imperial.ac.uk</a>.<br />\\r\\n<br />\\r\\nSi vous avez indiqu&eacute; votre adresse e-mail, nous vous tiendrons inform&eacute; de l&rsquo;&eacute;volution du projet. Pour l&rsquo;heure, nous vous remercions une nouvelle fois pour votre participation et vous souhaitons une excellente journ&eacute;e.\"\n  i_would_like_to_be_contacted_regarding_future_stages_of_the_hori:\n    '#type': checkbox\n    '#title': 'Je souhaite être recontacté en vue des étapes suivantes de l’analyse prospective'\n    '#description': 'Si vous souhaitez être recontacté, assurez-vous d’avoir indiqué votre adresse e-mail dans la première page du formulaire.'\n    '#description_display': after\n    '#wrapper_attributes':\n      class:\n        - mb-2\n  i_would_be_interested_in_participating_in_the_later_stages_of_th:\n    '#type': checkbox\n    '#title': 'Je suis candidat pour participer aux étapes suivantes de l’analyse prospective.'\n    '#wrapper_attributes':\n      class:\n        - mt-3\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': Soumettre\n"
+elements: |
+  '#attributes':
+    class:
+      - 'col-md-9 justify-content-center'
+  markup_01:
+    '#type': webform_markup
+    '#markup': "<h3 class=\"text-center\">« Garantir la sécurité alimentaire et nutritionnelle, réduire les inégalités et préserver les écosystèmes terrestres : <br />\r\n100 questions prioritaires à étudier afin de soutenir les décideurs en Afrique subsaharienne. »</h3>"
+  about_you:
+    '#type': webform_wizard_page
+    '#title': 'À propos de vous'
+    '#prev_button_label': '« Page précédente'
+    '#next_button_label': 'Page suivante »'
+    view_this_page_in_english:
+      '#type': processed_text
+      '#text': "<p class=\"text-align-right\"><a href=\"/form/horizon-scanning\">View this page in English</a></p>\r\n"
+      '#format': full_html
+    markup:
+      '#type': webform_markup
+      '#markup': "<p>Ce formulaire vous permet de soumettre vos questions dans le cadre de <a href=\"/appel-contribution\">l’analyse prospective</a> du projet SENTINEL</p>\r\nPour toute question concernant l’utilisation de ce formulaire ou pour obtenir plus de renseignements concernant ce projet, veuillez contacter Adam Devenish : <a href=\"mailto:a.devenish@imperial.ac.uk\">a.devenish@imperial.ac.uk</a>. &nbsp;<br />\r\n<br />\r\nMerci d’avoir accepté de participer à ce projet. Votre contribution est particulièrement appréciée et nous espérons pouvoir identifier les questions prioritaires en matière de recherche afin d’aider les décideurs en Afrique subsaharienne dans la réalisation des Objectifs de développement durable."
+    name:
+      '#type': textfield
+      '#title': 'Nom et prénom'
+      '#size': 20
+    email_address:
+      '#type': email
+      '#title': 'Address e-mail'
+    job_position:
+      '#type': textfield
+      '#title': 'Poste ou fonction'
+    affiliation:
+      '#type': textfield
+      '#title': Affiliation
+    are_you_a_producer_or_consumer_of_research_:
+      '#type': checkboxes
+      '#title': 'Êtes-vous producteur ou consommateur de recherche ?'
+      '#options':
+        consumer: Consommateur
+        producer: Producteur
+      '#options_display': two_columns
+    please_select_which_of_these_areas_best_describes_your_work:
+      '#type': webform_select_other
+      '#title': 'Veuillez sélectionner l’option qui décrit le mieux votre activité'
+      '#options':
+        'Academic researcher': 'Chercheur universitaire'
+        'Researcher for a private institute': 'Chercheur pour un institut privé'
+        'Public sector - Policy maker': 'Secteur public — Décideur'
+        'Non-state actor - Civil Society Organisation (CSO)': 'Acteur non étatique — Organisation de la société civile (OSC)'
+        'Non-state actor - Non-Governmental Organisation (NGO)': 'Acteur non étatique — Organisation non gouvernementale (ONG)'
+        'Private sector - commercial / industry': 'Secteur privé — Commerce / Industrie'
+        'Governmental Organisation': 'Organisation gouvernementale'
+        'Intergovernmental Organisation': 'Organisation intergouvernementale'
+        Donor: Bailleur
+      '#empty_option': '- Aucune -'
+      '#other__option_label': Autre...
+    please_select_additional_areas_which_you_work_in:
+      '#type': webform_checkboxes_other
+      '#title': 'Veuillez cocher les autres options qui correspondent à votre activité'
+      '#options':
+        'Academic researcher': 'Chercheur universitaire'
+        'Researcher for a private institute': 'Chercheur pour un institut privé'
+        'Public sector - Policy maker': 'Secteur public — Décideur'
+        'Non-state actor - Civil Society Organisation (CSO)': 'Acteur non étatique — Organisation de la société civile (OSC)'
+        'Non-state actor - Non-Governmental Organisation (NGO)': 'Acteur non étatique — Organisation non gouvernementale (ONG)'
+        'Private sector - commercial / industry': 'Secteur privé — Commerce / Industrie'
+        'Governmental Organisation': 'Organisation gouvernementale'
+        'Intergovernmental Organisation': 'Organisation intergouvernementale'
+        Donor: Bailleur
+      '#other__option_label': Autre...
+    in_which_country_is_your_place_of_work_:
+      '#type': select
+      '#title': 'Dans quel pays travaillez-vous ?'
+      '#title_display': before
+      '#options': country_names_fr_
+      '#empty_option': '- Aucun -'
+    what_sector_do_you_work_in_:
+      '#type': textfield
+      '#title': 'Dans quel domaine travaillez-vous ?'
+  your_questions:
+    '#type': webform_wizard_page
+    '#title': 'Vos questions'
+    '#prev_button_label': '« Page précédente'
+    '#next_button_label': 'Page suivante »'
+    markup_02:
+      '#type': webform_markup
+      '#markup': "Envoyez autant de questions que vous le souhaitez en complétant les champs ci-dessous. Pour ajouter des champs afin de saisir de nouvelles questions, il vous suffit de cliquer sur le bouton « + ». Lorsque vous avez terminé d’écrire vos questions, cliquez sur « Page suivante ».<br />\r\n<br />\r\nVeuillez soumettre des questions se rapportant à au moins l’une des thématiques suivantes : sécurité alimentaire, nutrition, réduction des inégalités et préservation des écosystèmes."
+    question:
+      '#type': textfield
+      '#title': Questions
+      '#multiple': true
+      '#title_display': inline
+      '#size': 25
+      '#placeholder': Question
+      '#autocomplete': 'off'
+      '#multiple__empty_items': 5
+      '#multiple__sorting': false
+      '#multiple__add_more': false
+  research_priorities:
+    '#type': webform_wizard_page
+    '#title': 'Axes prioritaires de recherche'
+    '#prev_button_label': '« Page précédente'
+    '#next_button_label': 'Page suivante »'
+    markup_03:
+      '#type': webform_markup
+      '#markup': 'Dans cette section, nous vous demandons de classer par ordre d’importance les différents axes de recherche de notre analyse prospective.'
+    how_important_is_preserving_the_terrestrial_ecosystem_when_makin:
+      '#type': range
+      '#title': 'Quel degré d’importance accordez-vous à la préservation des écosystèmes terrestres dans la prise de décisions en matière de développement agricole ?'
+      '#field_prefix': 'Importance minimale'
+      '#field_suffix': 'Importance maximale'
+      '#default_value': '5'
+      '#attributes':
+        style: 'max-width: 40%'
+      '#format': raw
+      '#max': 10
+      '#output': above
+    how_important_is_food_and_nutrition_security_when_making_decisio:
+      '#type': range
+      '#title': 'Quel degré d’importance accordez-vous à la sécurité alimentaire et nutritionnelle dans la prise de décisions en matière de développement agricole ?'
+      '#field_prefix': 'Importance minimale'
+      '#field_suffix': 'Importance maximale'
+      '#default_value': '5'
+      '#attributes':
+        style: 'max-width: 40%'
+      '#format': raw
+      '#max': 10
+      '#output': above
+    how_important_is_reducing_inequality_when_making_decisions_conce:
+      '#type': range
+      '#title': 'Quel degré d’importance accordez-vous à la réduction des inégalités dans la prise de décisions en matière de développement agricole ?'
+      '#field_prefix': 'Importance minimale'
+      '#field_suffix': 'Importance maximale'
+      '#attributes':
+        style: 'max-width: 40%'
+      '#format': raw
+      '#max': 10
+      '#output': above
+    if_you_had_to_prioritise_the_following_what_would_you_consider_t:
+      '#type': select
+      '#title': 'Si vous deviez classer ces domaines par ordre de priorités, lequel considéreriez-vous comme étant le <em>moins</em> important en matière de développement agricole ?'
+      '#options':
+        'Preserving terrestrial ecosystems': 'Préserver les écosystèmes terrestres'
+        'Food and nutrition security': 'Garantir la sécurité alimentaire et nutritionnelle'
+        'Reducing inequality': 'Réduire les inégalités'
+      '#empty_option': '– Aucune –'
+    if_you_had_to_prioritise_the_following_what_would_you_consider:
+      '#type': select
+      '#title': 'Si vous deviez classer ces domaines par ordre de priorités, lequel considéreriez-vous comme étant le <em>plus</em> important en matière de développement agricole ?'
+      '#options':
+        'Preserving terrestrial ecosystems': 'Préserver les écosystèmes terrestres'
+        'Food and nutrition security': 'Garantir la sécurité alimentaire et nutritionnelle '
+        'Reducing inequality': 'Réduire les inégalités'
+      '#empty_option': '– Aucune –'
+    if_you_had_to_prioritise_funding_which_would_you_consider_to_be_:
+      '#type': radios
+      '#title': 'Si vous deviez hiérarchiser ces domaines en vue de l’octroi de financement, lequel considéreriez-vous comme étant le plus important ?'
+      '#options':
+        'Environmental research': 'Sciences de l’environnement'
+        'Food self-sufficiency research': 'Autosuffisance alimentaire'
+        'Social equality research': 'Égalité sociale'
+    how_much_influence_do_you_feel_your_work_has_on_agricultural_dev:
+      '#type': range
+      '#title': 'Selon vous, quel est l’impact de votre travail sur les prises de décisions en matière de développement agricole ?'
+      '#field_prefix': 'Aucune influence'
+      '#field_suffix': 'Influence très importante'
+      '#default_value': '5'
+      '#attributes':
+        style: 'max-width: 40%'
+      '#format': raw
+      '#max': 10
+      '#output': above
+  thank_you:
+    '#type': webform_wizard_page
+    '#title': Confirmation
+    '#prev_button_label': '« Page précédente'
+    '#next_button_label': 'Page suivante »'
+    markup_04:
+      '#type': webform_markup
+      '#markup': "<h3>Merci beaucoup d&rsquo;avoir apport&eacute; votre contribution &agrave; l&rsquo;analyse prospective de SENTINEL.</h3>\r\nEn soumettant votre contribution, vous consentez &agrave; ce que vos donn&eacute;es personnelles soient utilis&eacute;es selon les termes de notre <a href=\"/politique-de-confidentialite\">politique de confidentialit&eacute;</a>. Pour obtenir plus de renseignements, veuillez contacter Adam Devenish : <a href=\"mailto:a.devenish@imperial.ac.uk\">a.devenish@imperial.ac.uk</a>.<br />\r\n<br />\r\nSi vous avez indiqu&eacute; votre adresse e-mail, nous vous tiendrons inform&eacute; de l&rsquo;&eacute;volution du projet. Pour l&rsquo;heure, nous vous remercions une nouvelle fois pour votre participation et vous souhaitons une excellente journ&eacute;e."
+    i_would_like_to_be_contacted_regarding_future_stages_of_the_hori:
+      '#type': checkbox
+      '#title': 'Je souhaite être recontacté en vue des étapes suivantes de l’analyse prospective'
+      '#description': 'Si vous souhaitez être recontacté, assurez-vous d’avoir indiqué votre adresse e-mail dans la première page du formulaire.'
+      '#description_display': after
+      '#wrapper_attributes':
+        class:
+          - mb-2
+    i_would_be_interested_in_participating_in_the_later_stages_of_th:
+      '#type': checkbox
+      '#title': 'Je suis candidat pour participer aux étapes suivantes de l’analyse prospective.'
+      '#wrapper_attributes':
+        class:
+          - mt-3
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Soumettre
 css: ''
 javascript: ''
 settings:
@@ -38,7 +233,7 @@ settings:
   form_previous_submissions: true
   form_confidential: false
   form_confidential_message: ''
-  form_remote_addr: true
+  form_disable_remote_addr: false
   form_convert_anonymous: false
   form_prepopulate: false
   form_prepopulate_source_entity: false
@@ -120,7 +315,7 @@ settings:
   confirmation_type: url_message
   confirmation_title: 'Thank you'
   confirmation_message: 'Votre soumission a &eacute;t&eacute; re&ccedil;ue. Merci beaucoup pour votre participation.'
-  confirmation_url: /
+  confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: false
   confirmation_back_label: ''

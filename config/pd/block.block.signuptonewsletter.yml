@@ -1,22 +1,22 @@
-uuid: f82d4ccd-9ebd-453b-a810-bbe7bb311b6f
+uuid: bf96f283-4417-4982-a2fa-b8306efa0e21
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:html:081470ee-73a3-4e38-9218-168383dba174'
+    - 'block_content:html:8534dfa2-5cc1-43e5-b6bd-5ed8af88c024'
   module:
     - block_content
     - system
   theme:
     - pd_bootstrap_sass
-id: signup
+id: signuptonewsletter
 theme: pd_bootstrap_sass
 region: footer_first
-weight: -15
+weight: 0
 provider: null
-plugin: 'block_content:081470ee-73a3-4e38-9218-168383dba174'
+plugin: 'block_content:8534dfa2-5cc1-43e5-b6bd-5ed8af88c024'
 settings:
-  id: 'block_content:081470ee-73a3-4e38-9218-168383dba174'
+  id: 'block_content:8534dfa2-5cc1-43e5-b6bd-5ed8af88c024'
   label: 'Sign up to newsletter'
   provider: block_content
   label_display: visible

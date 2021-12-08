@@ -22,13 +22,13 @@ popup_height: null
 popup_hide_agreed: false
 popup_hide_button_message: Hide
 popup_info:
-  value: "<span>We use cookies to help improve this website. Clicking any link on this site will be taken as your consent to this.</span>\r\n"
+  value: "<p><span>We use cookies to help improve this website. Clicking any link on this site will be taken as your consent to this.</span></p>\r\n"
   format: full_html
 mobile_popup_info:
   value: ''
   format: full_html
 mobile_breakpoint: 768
-popup_link: '/contact#cookies'
+popup_link: '/privacy-policy#cookies'
 popup_link_new_window: true
 popup_position: false
 fixed_top_position: true
@@ -44,7 +44,6 @@ use_mobile_message: false
 method: default
 disagree_button_label: 'No, thanks'
 disabled_javascripts: ''
-whitelisted_cookies: ''
 consent_storage_method: do_not_store
 withdraw_message:
   value: "<h2>We use cookies on this site to enhance your user experience</h2>\r\n\r\n<p>You have given your consent for us to set cookies.</p>\r\n"
@@ -56,14 +55,19 @@ _core:
   default_config_hash: m9leru0wVmD_yCnIJzIkZ9YhvEp3luuqLEx5Sr9CmRk
 cookie_session: 0
 popup_info_template: legacy
-cookie_categories: ''
 enable_save_preferences_button: true
 save_preferences_button_label: 'Save preferences'
 accept_all_categories_button_label: 'Accept all cookies'
-fix_first_cookie_category: true
-select_all_categories_by_default: false
 withdraw_button_on_info_popup: false
 domain_all_sites: false
 uuid: 56db016f-449a-45e2-b6a7-2ab2558d30cd
 show_more_info: true
 popup_more_info_button_message: 'More information'
+reload_options: 0
+reload_routes_list: ''
+containing_element: body
+settings_tab_enabled: false
+automatic_cookies_removal: true
+set_cookie_session_zero_on_disagree: 0
+cookie_policy_version: 1.0.0
+allowed_cookies: ''
