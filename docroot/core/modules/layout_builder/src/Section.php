@@ -258,7 +258,7 @@ class Section implements ThirdPartySettingsInterface {
       return $component->getRegion() === $region;
     });
     uasort($components, function (SectionComponent $a, SectionComponent $b) {
-      return $a->getWeight() <=> $b->getWeight();
+      return $a->getWeight() > $b->getWeight() ? 1 : -1;
     });
     return $components;
   }
@@ -391,14 +391,14 @@ class Section implements ThirdPartySettingsInterface {
    * {@inheritdoc}
    */
   public function getThirdPartySetting($provider, $key, $default = NULL) {
-    return $this->thirdPartySettings[$provider][$key] ?? $default;
+    return isset($this->thirdPartySettings[$provider][$key]) ? $this->thirdPartySettings[$provider][$key] : $default;
   }
 
   /**
    * {@inheritdoc}
    */
   public function getThirdPartySettings($provider) {
-    return $this->thirdPartySettings[$provider] ?? [];
+    return isset($this->thirdPartySettings[$provider]) ? $this->thirdPartySettings[$provider] : [];
   }
 
   /**

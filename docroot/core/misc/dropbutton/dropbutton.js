@@ -38,18 +38,20 @@
 
   Drupal.behaviors.dropButton = {
     attach: function attach(context, settings) {
-      var dropbuttons = once('dropbutton', '.dropbutton-wrapper', context);
+      var $dropbuttons = $(context).find('.dropbutton-wrapper').once('dropbutton');
 
-      if (dropbuttons.length) {
-        var body = once('dropbutton-click', 'body');
+      if ($dropbuttons.length) {
+        var $body = $('body').once('dropbutton-click');
 
-        if (body.length) {
-          $(body).on('click', '.dropbutton-toggle', dropbuttonClickHandler);
+        if ($body.length) {
+          $body.on('click', '.dropbutton-toggle', dropbuttonClickHandler);
         }
 
-        dropbuttons.forEach(function (dropbutton) {
-          DropButton.dropbuttons.push(new DropButton(dropbutton, settings.dropbutton));
-        });
+        var il = $dropbuttons.length;
+
+        for (var i = 0; i < il; i++) {
+          DropButton.dropbuttons.push(new DropButton($dropbuttons[i], settings.dropbutton));
+        }
       }
     }
   };

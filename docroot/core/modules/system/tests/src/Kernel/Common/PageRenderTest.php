@@ -36,10 +36,8 @@ class PageRenderTest extends KernelTestBase {
    *   The module whose invalid logic in its hooks to enable.
    * @param string $hook
    *   The page render hook to assert expected exceptions for.
-   *
-   * @internal
    */
-  public function assertPageRenderHookExceptions(string $module, string $hook): void {
+  public function assertPageRenderHookExceptions($module, $hook) {
     $html_renderer = \Drupal::getContainer()->get('main_content_renderer.html');
 
     // Assert a valid hook implementation doesn't trigger an exception.

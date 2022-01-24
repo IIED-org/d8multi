@@ -70,10 +70,8 @@ class FieldTranslationSqlStorageTest extends EntityLanguageTestBase {
    *   The entity fields are attached to.
    * @param string $message
    *   (optional) A message to display with the assertion.
-   *
-   * @internal
    */
-  protected function assertFieldStorageLangcode(FieldableEntityInterface $entity, string $message = ''): void {
+  protected function assertFieldStorageLangcode(FieldableEntityInterface $entity, $message = '') {
     $status = TRUE;
     $entity_type = $entity->getEntityTypeId();
     $id = $entity->id();

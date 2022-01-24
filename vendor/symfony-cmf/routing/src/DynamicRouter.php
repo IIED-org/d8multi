@@ -16,6 +16,7 @@ use Symfony\Cmf\Component\Routing\Event\Events;
 use Symfony\Cmf\Component\Routing\Event\RouterGenerateEvent;
 use Symfony\Cmf\Component\Routing\Event\RouterMatchEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\LegacyEventDispatcherProxy;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
@@ -27,6 +28,7 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RequestContextAwareInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * A flexible router accepting matcher and generator through injection and
@@ -35,7 +37,7 @@ use Symfony\Component\Routing\RouteCollection;
  * @author Larry Garfield
  * @author David Buchmann
  */
-class DynamicRouter implements RequestMatcherInterface, ChainedRouterInterface
+class DynamicRouter implements RouterInterface, RequestMatcherInterface, ChainedRouterInterface
 {
     use RouteEnhancerTrait;
 
@@ -103,6 +105,10 @@ class DynamicRouter implements RequestMatcherInterface, ChainedRouterInterface
         $this->eventDispatcher = $eventDispatcher;
         $this->uriFilterRegexp = $uriFilterRegexp;
         $this->provider = $provider;
+
+        if (class_exists(LegacyEventDispatcherProxy::class)) {
+            $this->eventDispatcher = LegacyEventDispatcherProxy::decorate($eventDispatcher);
+        }
 
         $this->generator->setContext($context);
     }

@@ -332,10 +332,8 @@ EOF
    *
    * @param array $actual_permissions
    *   The actual permissions
-   *
-   * @internal
    */
-  protected function assertPermissions(array $actual_permissions): void {
+  protected function assertPermissions(array $actual_permissions) {
     $this->assertCount(4, $actual_permissions);
     $this->assertEquals('single_description', $actual_permissions['access_module_a']['title']);
     $this->assertEquals('module_a', $actual_permissions['access_module_a']['provider']);

@@ -44,7 +44,7 @@
             .find('input:checked')
             .next('label')
             .each(function () {
-              vals.push(Drupal.checkPlain($(this).text().trim()));
+              vals.push(Drupal.checkPlain($.trim($(this).text())));
             });
           return vals.join(', ');
         }

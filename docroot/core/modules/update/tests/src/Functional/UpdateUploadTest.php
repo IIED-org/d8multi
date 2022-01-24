@@ -23,7 +23,7 @@ class UpdateUploadTest extends UpdateTestBase {
    *
    * @var array
    */
-  protected static $modules = ['update', 'update_test', 'file'];
+  protected static $modules = ['update', 'update_test'];
 
   /**
    * {@inheritdoc}
@@ -60,7 +60,7 @@ class UpdateUploadTest extends UpdateTestBase {
     $this->drupalGet('admin/modules/install');
     $this->submitForm($edit, 'Continue');
     $extensions = \Drupal::service('plugin.manager.archiver')->getExtensions();
-    $this->assertSession()->pageTextContains("Only files with the following extensions are allowed: $extensions.");
+    $this->assertSession()->pageTextContains(t('Only files with the following extensions are allowed: @archive_extensions.', ['@archive_extensions' => $extensions]));
     $this->assertSession()->addressEquals('admin/modules/install');
 
     // Check to ensure an existing module can't be reinstalled. Also checks that

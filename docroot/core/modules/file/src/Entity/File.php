@@ -80,9 +80,11 @@ class File extends ContentEntityBase implements FileInterface {
    * {@inheritdoc}
    */
   public function createFileUrl($relative = TRUE) {
-    /** @var \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator */
-    $file_url_generator = \Drupal::service('file_url_generator');
-    return $relative ? $file_url_generator->generateString($this->getFileUri()) : $file_url_generator->generateAbsoluteString($this->getFileUri());
+    $url = file_create_url($this->getFileUri());
+    if ($relative && $url) {
+      $url = file_url_transform_relative($url);
+    }
+    return $url;
   }
 
   /**
@@ -124,7 +126,7 @@ class File extends ContentEntityBase implements FileInterface {
    * {@inheritdoc}
    */
   public function isPermanent() {
-    return $this->get('status')->value == static::STATUS_PERMANENT;
+    return $this->get('status')->value == FILE_STATUS_PERMANENT;
   }
 
   /**
@@ -138,7 +140,7 @@ class File extends ContentEntityBase implements FileInterface {
    * {@inheritdoc}
    */
   public function setPermanent() {
-    $this->get('status')->value = static::STATUS_PERMANENT;
+    $this->get('status')->value = FILE_STATUS_PERMANENT;
   }
 
   /**

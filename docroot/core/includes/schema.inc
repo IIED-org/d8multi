@@ -5,8 +5,6 @@
  * Schema API handling functions.
  */
 
-use Drupal\Core\Update\UpdateHookRegistry;
-
 /**
  * @addtogroup schemaapi
  * @{
@@ -14,14 +12,8 @@ use Drupal\Core\Update\UpdateHookRegistry;
 
 /**
  * Indicates that a module has not been installed yet.
- *
- * @deprecated in drupal:9.3.0 and is removed from drupal:10.0.0. Use
- *   \Drupal\Core\Update\UpdateHookRegistry::SCHEMA_UNINSTALLED constant
- *   instead.
- *
- * @see https://www.drupal.org/node/2444417
  */
-const SCHEMA_UNINSTALLED = UpdateHookRegistry::SCHEMA_UNINSTALLED;
+const SCHEMA_UNINSTALLED = -1;
 
 /**
  * Returns an array of available schema versions for a module.
@@ -32,16 +24,37 @@ const SCHEMA_UNINSTALLED = UpdateHookRegistry::SCHEMA_UNINSTALLED;
  * @return array|bool
  *   If the module has updates, an array of available updates sorted by
  *   version. Otherwise, FALSE.
- *
- * @deprecated in drupal:9.3.0 and is removed from drupal:10.0.0.
- *   Use \Drupal\Core\Update\SchemaDataInterface::getAvailableUpdates() instead.
- *
- * @see https://www.drupal.org/node/2444417
- * @see \Drupal\Core\Update\UpdateHookRegistry::getAvailableUpdates()
  */
 function drupal_get_schema_versions($module) {
-  @trigger_error('drupal_get_schema_versions() is deprecated in drupal:9.3.0 and is removed from drupal:10.0.0. Use \Drupal\Core\Update\UpdateHookRegistry::getAvailableUpdates() instead. See https://www.drupal.org/node/2444417', E_USER_DEPRECATED);
-  return \Drupal::service('update.update_hook_registry')->getAvailableUpdates($module);
+  $updates = &drupal_static(__FUNCTION__, NULL);
+  if (!isset($updates[$module])) {
+    $updates = [];
+    foreach (\Drupal::moduleHandler()->getModuleList() as $loaded_module => $filename) {
+      $updates[$loaded_module] = [];
+    }
+
+    // Prepare regular expression to match all possible defined hook_update_N().
+    $regexp = '/^(?<module>.+)_update_(?<version>\d+)$/';
+    $functions = get_defined_functions();
+    // Narrow this down to functions ending with an integer, since all
+    // hook_update_N() functions end this way, and there are other
+    // possible functions which match '_update_'. We use preg_grep() here
+    // since looping through all PHP functions can take significant page
+    // execution time and this function is called on every administrative page
+    // via system_requirements().
+    foreach (preg_grep('/_\d+$/', $functions['user']) as $function) {
+      // If this function is a module update function, add it to the list of
+      // module updates.
+      if (preg_match($regexp, $function, $matches)) {
+        $updates[$matches['module']][] = (int) $matches['version'];
+      }
+    }
+    // Ensure that updates are applied in numerical order.
+    foreach ($updates as &$module_updates) {
+      sort($module_updates, SORT_NUMERIC);
+    }
+  }
+  return empty($updates[$module]) ? FALSE : $updates[$module];
 }
 
 /**
@@ -58,23 +71,26 @@ function drupal_get_schema_versions($module) {
  * @return string|int
  *   The currently installed schema version, or SCHEMA_UNINSTALLED if the
  *   module is not installed.
- *
- * @deprecated in drupal:9.3.0 and is removed from drupal:10.0.0.
- *   Use \Drupal\Core\Update\UpdateHookRegistry::getInstalledVersion() or
- *   \Drupal\Core\Update\UpdateHookRegistry::getAllInstalledVersions()
- *   instead.
- *
- * @see https://www.drupal.org/node/2444417
- * @see \Drupal\Core\Update\UpdateHookRegistry::getInstalledVersion()
  */
 function drupal_get_installed_schema_version($module, $reset = FALSE, $array = FALSE) {
-  @trigger_error('drupal_get_installed_schema_version() is deprecated in drupal:9.3.0 and is removed from drupal:10.0.0. Use \Drupal\Core\Update\UpdateHookRegistry::getInstalledVersion() or \Drupal\Core\Update\UpdateHookRegistry::getAllInstalledVersions() instead. See https://www.drupal.org/node/2444417', E_USER_DEPRECATED);
-  /** @var \Drupal\Core\Update\UpdateHookRegistry $service */
-  $service = \Drupal::service('update.update_hook_registry');
-  if ($array) {
-    return $service->getAllInstalledVersions();
+  $versions = &drupal_static(__FUNCTION__, []);
+
+  if ($reset) {
+    $versions = [];
   }
-  return $service->getInstalledVersion((string) $module);
+
+  if (!$versions) {
+    if (!$versions = \Drupal::keyValue('system.schema')->getAll()) {
+      $versions = [];
+    }
+  }
+
+  if ($array) {
+    return $versions;
+  }
+  else {
+    return isset($versions[$module]) ? $versions[$module] : SCHEMA_UNINSTALLED;
+  }
 }
 
 /**
@@ -84,17 +100,11 @@ function drupal_get_installed_schema_version($module, $reset = FALSE, $array = F
  *   A module name.
  * @param string $version
  *   The new schema version.
- *
- * @deprecated in drupal:9.3.0 and is removed from drupal:10.0.0.
- *   Use \Drupal\Core\Update\UpdateHookRegistry::setInstalledVersion()
- *   instead.
- *
- * @see https://www.drupal.org/node/2444417
- * @see \Drupal\Core\Update\UpdateHookRegistry::setInstalledVersion()
  */
 function drupal_set_installed_schema_version($module, $version) {
-  @trigger_error('drupal_set_installed_schema_version() is deprecated in drupal:9.3.0 and is removed from drupal:10.0.0. Use \Drupal\Core\Update\UpdateHookRegistry::setInstalledVersion() instead. See https://www.drupal.org/node/2444417', E_USER_DEPRECATED);
-  \Drupal::service('update.update_hook_registry')->setInstalledVersion($module, $version);
+  \Drupal::keyValue('system.schema')->set($module, $version);
+  // Reset the static cache of module schema versions.
+  drupal_get_installed_schema_version(NULL, TRUE);
 }
 
 /**

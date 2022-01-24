@@ -61,7 +61,6 @@ class ColorTest extends MigrateSqlSourceTestBase {
       ],
       [
         'name' => 'color_custom_stylesheets',
-        // cspell:ignore beadedff
         'value' => ['public:://color/custom-beadedff/colors.css'],
       ],
     ];

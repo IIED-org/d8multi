@@ -40,7 +40,7 @@ class FacetsDateHandlerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
 
     $entity_storage = $this->createMock(EntityStorageInterface::class);

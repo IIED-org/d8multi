@@ -1,4 +1,3 @@
-uuid: null
 langcode: en
 status: open
 dependencies:
@@ -79,7 +78,6 @@ elements: |
       '#title': webform_element_multiple_managed_file_two
       '#select2': true
       '#multiple': 2
-  
 css: ''
 javascript: ''
 settings:
@@ -121,9 +119,6 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
-  form_method: ''
-  form_action: ''
-  form_attributes: {  }
   share: false
   share_node: false
   share_theme_name: ''

@@ -6,7 +6,6 @@ use Robo\Contract\CommandInterface;
 use Robo\Exception\TaskException;
 use Robo\Task\BaseTask;
 use Traversable;
-use Robo\Common\ExecOneCommand;
 
 /**
  * Executes ApiGen command to generate documentation
@@ -24,7 +23,7 @@ use Robo\Common\ExecOneCommand;
  */
 class ApiGen extends BaseTask implements CommandInterface
 {
-    use ExecOneCommand;
+    use \Robo\Common\ExecOneCommand;
 
     const BOOL_NO = 'no';
     const BOOL_YES = 'yes';

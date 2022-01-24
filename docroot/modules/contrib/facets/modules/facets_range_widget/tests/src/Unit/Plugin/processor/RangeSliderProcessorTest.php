@@ -33,7 +33,7 @@ class RangeSliderProcessorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
     $this->processor = new RangeSliderProcessor([], 'range_slider', []);
 

@@ -3,9 +3,11 @@
 namespace Drupal\webform;
 
 use Drupal\Core\Entity\BundleEntityFormBase;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\webform\Form\WebformDialogFormTrait;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -181,11 +183,6 @@ class WebformEntityAddForm extends BundleEntityFormBase {
         $this->state->set("webform.webform.$duplicate_id", $state);
       }
     }
-
-    // Reset webform categories cache.
-    /** @var \Drupal\webform\WebformEntityStorageInterface $webform_storage */
-    $webform_storage = $this->entityTypeManager->getStorage('webform');
-    $webform_storage->resetCategoriesCache();
 
     $form_state->setRedirectUrl(Url::fromRoute('entity.webform.edit_form', ['webform' => $this->getEntity()->id()]));
   }

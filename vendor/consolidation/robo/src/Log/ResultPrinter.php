@@ -2,31 +2,23 @@
 
 namespace Robo\Log;
 
-use Consolidation\Log\ConsoleLogLevel;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LogLevel;
-use Robo\Common\ProgressIndicatorAwareTrait;
-use Robo\Contract\OutputAwareInterface;
+use Robo\Result;
 use Robo\Contract\PrintedInterface;
 use Robo\Contract\ProgressIndicatorAwareInterface;
 use Robo\Contract\VerbosityThresholdInterface;
-use Robo\Result;
-use Symfony\Component\Console\Output\OutputInterface;
+use Robo\Common\ProgressIndicatorAwareTrait;
+use Psr\Log\LogLevel;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
+use Consolidation\Log\ConsoleLogLevel;
 
 /**
  * Log the creation of Result objects.
  */
-class ResultPrinter implements LoggerAwareInterface, ProgressIndicatorAwareInterface, OutputAwareInterface
+class ResultPrinter implements LoggerAwareInterface, ProgressIndicatorAwareInterface
 {
     use LoggerAwareTrait;
     use ProgressIndicatorAwareTrait;
-
-    public function setOutput(OutputInterface $output)
-    {
-        $this->logger->setErrorStream(null);
-        $this->logger->setOutputStream($output);
-    }
 
     /**
      * Log the result of a Robo task.

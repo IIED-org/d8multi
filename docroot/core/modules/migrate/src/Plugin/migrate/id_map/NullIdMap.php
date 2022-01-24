@@ -181,7 +181,6 @@ class NullIdMap extends PluginBase implements MigrateIdMapInterface {
   /**
    * {@inheritdoc}
    */
-  #[\ReturnTypeWillChange]
   public function rewind() {
     return NULL;
   }
@@ -189,7 +188,6 @@ class NullIdMap extends PluginBase implements MigrateIdMapInterface {
   /**
    * {@inheritdoc}
    */
-  #[\ReturnTypeWillChange]
   public function current() {
     return NULL;
   }
@@ -197,7 +195,6 @@ class NullIdMap extends PluginBase implements MigrateIdMapInterface {
   /**
    * {@inheritdoc}
    */
-  #[\ReturnTypeWillChange]
   public function key() {
     return '';
   }
@@ -205,7 +202,6 @@ class NullIdMap extends PluginBase implements MigrateIdMapInterface {
   /**
    * {@inheritdoc}
    */
-  #[\ReturnTypeWillChange]
   public function next() {
     return NULL;
   }
@@ -213,7 +209,6 @@ class NullIdMap extends PluginBase implements MigrateIdMapInterface {
   /**
    * {@inheritdoc}
    */
-  #[\ReturnTypeWillChange]
   public function valid() {
     return FALSE;
   }

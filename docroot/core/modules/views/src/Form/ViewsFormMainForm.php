@@ -107,7 +107,12 @@ class ViewsFormMainForm implements FormInterface, TrustedCallbackInterface {
 
       // If the field provides a views form, allow it to modify the $form array.
       $has_form = FALSE;
-      if (method_exists($field, 'viewsForm')) {
+      if (property_exists($field, 'views_form_callback')) {
+        $callback = $field->views_form_callback;
+        $callback($view, $field, $form, $form_state);
+        $has_form = TRUE;
+      }
+      elseif (method_exists($field, 'viewsForm')) {
         $field->viewsForm($form, $form_state);
         $has_form = TRUE;
       }

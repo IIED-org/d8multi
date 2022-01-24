@@ -4,8 +4,6 @@ namespace Drupal\Tests\image\Kernel\Plugin\migrate\source\d7;
 
 use Drupal\Tests\migrate\Kernel\MigrateSqlSourceTestBase;
 
-// cspell:ignore ieid isid
-
 /**
  * Tests the D7 ImageStyles source plugin.
  *

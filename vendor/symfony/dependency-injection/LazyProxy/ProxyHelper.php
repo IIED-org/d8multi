@@ -33,31 +33,22 @@ class ProxyHelper
         }
 
         $types = [];
-        $glue = '|';
-        if ($type instanceof \ReflectionUnionType) {
-            $reflectionTypes = $type->getTypes();
-        } elseif ($type instanceof \ReflectionIntersectionType) {
-            $reflectionTypes = $type->getTypes();
-            $glue = '&';
-        } elseif ($type instanceof \ReflectionNamedType) {
-            $reflectionTypes = [$type];
-        } else {
-            return null;
-        }
 
-        foreach ($reflectionTypes as $type) {
+        foreach ($type instanceof \ReflectionUnionType ? $type->getTypes() : [$type] as $type) {
+            $name = $type instanceof \ReflectionNamedType ? $type->getName() : (string) $type;
+
             if ($type->isBuiltin()) {
                 if (!$noBuiltin) {
-                    $types[] = $type->getName();
+                    $types[] = $name;
                 }
                 continue;
             }
 
-            $lcName = strtolower($type->getName());
+            $lcName = strtolower($name);
             $prefix = $noBuiltin ? '' : '\\';
 
             if ('self' !== $lcName && 'parent' !== $lcName) {
-                $types[] = $prefix.$type->getName();
+                $types[] = '' !== $prefix ? $prefix.$name : $name;
                 continue;
             }
             if (!$r instanceof \ReflectionMethod) {
@@ -70,6 +61,6 @@ class ProxyHelper
             }
         }
 
-        return $types ? implode($glue, $types) : null;
+        return $types ? implode('|', $types) : null;
     }
 }

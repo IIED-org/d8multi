@@ -777,10 +777,8 @@ class ContentModerationStateTest extends KernelTestBase {
    * @param bool|null $published
    *   (optional) Whether to check if the entity is published or not. Defaults
    *   to TRUE.
-   *
-   * @internal
    */
-  protected function assertDefaultRevision(EntityInterface $entity, int $revision_id, $published = TRUE): void {
+  protected function assertDefaultRevision(EntityInterface $entity, $revision_id, $published = TRUE) {
     // Get the default revision.
     $entity = $this->reloadEntity($entity);
     $this->assertEquals($revision_id, $entity->getRevisionId());

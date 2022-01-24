@@ -96,7 +96,9 @@ class UrlConversionTest extends UnitTestCase {
           'password' => 'test_pass',
           'host' => 'test_host',
           'database' => 'test_database',
-          'prefix' => 'bar',
+          'prefix' => [
+            'default' => 'bar',
+          ],
           'port' => 3306,
           'namespace' => 'Drupal\Core\Database\Driver\mysql',
         ],
@@ -108,7 +110,9 @@ class UrlConversionTest extends UnitTestCase {
           'driver' => 'sqlite',
           'host' => 'localhost',
           'database' => '/var/www/d8/test_database',
-          'prefix' => 'foo',
+          'prefix' => [
+            'default' => 'foo',
+          ],
           'namespace' => 'Drupal\Core\Database\Driver\sqlite',
         ],
       ],
@@ -145,7 +149,9 @@ class UrlConversionTest extends UnitTestCase {
           'password' => 'test_pass',
           'host' => 'test_host',
           'database' => 'test_database',
-          'prefix' => 'bar',
+          'prefix' => [
+            'default' => 'bar',
+          ],
           'port' => 3306,
           'namespace' => 'Drupal\driver_test\Driver\Database\DrivertestMysql',
           'autoload' => 'core/modules/system/tests/modules/driver_test/src/Driver/Database/DrivertestMysql/',
@@ -174,7 +180,9 @@ class UrlConversionTest extends UnitTestCase {
           'password' => 'test_pass',
           'host' => 'test_host',
           'database' => 'test_database',
-          'prefix' => 'bar',
+          'prefix' => [
+            'default' => 'bar',
+          ],
           'port' => 5432,
           'namespace' => 'Drupal\driver_test\Driver\Database\DrivertestPgsql',
           'autoload' => 'core/modules/system/tests/modules/driver_test/src/Driver/Database/DrivertestPgsql/',

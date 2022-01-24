@@ -282,10 +282,8 @@ class TermParentsTest extends BrowserTestBase {
    * @param bool $selected
    *   (optional) Whether or not the option should be selected. Defaults to
    *   FALSE.
-   *
-   * @internal
    */
-  protected function assertParentOption(string $option, bool $selected = FALSE): void {
+  protected function assertParentOption($option, $selected = FALSE) {
     $option = $this->assertSession()->optionExists('Parent terms', $option);
     if ($selected) {
       $this->assertTrue($option->hasAttribute('selected'));
@@ -300,10 +298,8 @@ class TermParentsTest extends BrowserTestBase {
    *
    * @param \Drupal\taxonomy\TermInterface $term
    *   The term to check.
-   *
-   * @internal
    */
-  protected function assertParentsUnchanged(TermInterface $term): void {
+  protected function assertParentsUnchanged(TermInterface $term) {
     $saved_term = $this->termStorage->load($term->id());
 
     $expected = $term->get('parent')->getValue();

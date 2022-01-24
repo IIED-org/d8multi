@@ -1,11 +1,9 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace League\Container\Argument;
 
-use League\Container\Container;
-use League\Container\Exception\{ContainerException, NotFoundException};
+use League\Container\Exception\NotFoundException;
 use League\Container\ReflectionContainer;
-use Psr\Container\ContainerInterface;
 use ReflectionFunctionAbstract;
 use ReflectionParameter;
 
@@ -14,88 +12,57 @@ trait ArgumentResolverTrait
     /**
      * {@inheritdoc}
      */
-    public function resolveArguments(array $arguments) : array
+    public function resolveArguments(array $arguments)
     {
-        return array_map(function ($argument) {
-            $justStringValue = false;
-
-            if ($argument instanceof RawArgumentInterface) {
-                return $argument->getValue();
-            } elseif ($argument instanceof ClassNameInterface) {
-                $id = $argument->getClassName();
-            } elseif (!is_string($argument)) {
-                return $argument;
-            } else {
-                $justStringValue = true;
-                $id = $argument;
+        foreach ($arguments as &$arg) {
+            if ($arg instanceof RawArgumentInterface) {
+                $arg = $arg->getValue();
+                continue;
             }
 
-            $container = null;
+            if (! is_string($arg)) {
+                 continue;
+            }
 
-            try {
-                $container = $this->getLeagueContainer();
-            } catch (ContainerException $e) {
-                if ($this instanceof ReflectionContainer) {
-                    $container = $this;
+            $container = $this->getContainer();
+
+            if (is_null($container) && $this instanceof ReflectionContainer) {
+                $container = $this;
+            }
+
+            if (! is_null($container) && $container->has($arg)) {
+                $arg = $container->get($arg);
+
+                if ($arg instanceof RawArgumentInterface) {
+                    $arg = $arg->getValue();
                 }
+
+                continue;
             }
+        }
 
-            if ($container !== null) {
-                try {
-                    return $container->get($id);
-                } catch (NotFoundException $exception) {
-                    if ($argument instanceof ClassNameWithOptionalValue) {
-                        return $argument->getOptionalValue();
-                    }
-
-                    if ($justStringValue) {
-                        return $id;
-                    }
-
-                    throw $exception;
-                }
-            }
-
-            if ($argument instanceof ClassNameWithOptionalValue) {
-                return $argument->getOptionalValue();
-            }
-
-            // Just a string value.
-            return $id;
-        }, $arguments);
+        return $arguments;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function reflectArguments(ReflectionFunctionAbstract $method, array $args = []) : array
+    public function reflectArguments(ReflectionFunctionAbstract $method, array $args = [])
     {
         $arguments = array_map(function (ReflectionParameter $param) use ($method, $args) {
-            $name = $param->getName();
-            $type = $param->getType();
+            $name  = $param->getName();
+            $class = $param->getClass();
 
             if (array_key_exists($name, $args)) {
-                return new RawArgument($args[$name]);
+                return $args[$name];
             }
 
-            if ($type) {
-                if (PHP_VERSION_ID >= 70100) {
-                    $typeName = $type->getName();
-                } else {
-                    $typeName = (string) $type;
-                }
-
-                $typeName = ltrim($typeName, '?');
-
-                if ($param->isDefaultValueAvailable()) {
-                    return new ClassNameWithOptionalValue($typeName, $param->getDefaultValue());
-                }
-
-                return new ClassName($typeName);
+            if (! is_null($class)) {
+                return $class->getName();
             }
 
             if ($param->isDefaultValueAvailable()) {
-                return new RawArgument($param->getDefaultValue());
+                return $param->getDefaultValue();
             }
 
             throw new NotFoundException(sprintf(
@@ -109,12 +76,7 @@ trait ArgumentResolverTrait
     }
 
     /**
-     * @return ContainerInterface
+     * @return \League\Container\ContainerInterface
      */
-    abstract public function getContainer() : ContainerInterface;
-
-    /**
-     * @return Container
-     */
-    abstract public function getLeagueContainer() : Container;
+    abstract public function getContainer();
 }

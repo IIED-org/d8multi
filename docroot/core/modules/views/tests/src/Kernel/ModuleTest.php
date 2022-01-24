@@ -8,7 +8,6 @@ use Drupal\views\Plugin\views\area\Broken as BrokenArea;
 use Drupal\views\Plugin\views\field\Broken as BrokenField;
 use Drupal\views\Plugin\views\filter\Broken as BrokenFilter;
 use Drupal\views\Plugin\views\filter\Standard;
-use Drupal\views\Plugin\views\ViewsHandlerInterface;
 use Drupal\views\Views;
 
 /**
@@ -176,7 +175,7 @@ class ModuleTest extends ViewsKernelTestBase {
     $expected_opt_groups = [];
     foreach ($all_views as $view) {
       foreach ($view->get('display') as $display) {
-        $expected_opt_groups[$view->id()][$view->id() . ':' . $display['id']] = $view->id() . ' : ' . $display['id'];
+        $expected_opt_groups[$view->id()][$view->id() . ':' . $display['id']] = (string) t('@view : @display', ['@view' => $view->id(), '@display' => $display['id']]);
       }
     }
     $this->assertEquals($expected_opt_groups, Views::getViewsAsOptions(FALSE, 'all', NULL, TRUE), 'Expected option array for an option group returned.');
@@ -230,7 +229,7 @@ class ModuleTest extends ViewsKernelTestBase {
     $plugin_list = Views::pluginList();
     // Only plugins used by 'test_view' should be in the plugin list.
     foreach (['display:default', 'pager:none'] as $key) {
-      [$plugin_type, $plugin_id] = explode(':', $key);
+      list($plugin_type, $plugin_id) = explode(':', $key);
       $plugin_def = $this->container->get("plugin.manager.views.$plugin_type")->getDefinition($plugin_id);
 
       $this->assertTrue(isset($plugin_list[$key]), new FormattableMarkup('The expected @key plugin list key was found.', ['@key' => $key]));
@@ -326,7 +325,8 @@ class ModuleTest extends ViewsKernelTestBase {
     $expected_options = [];
     foreach ($views as $view) {
       foreach ($view->get('display') as $display) {
-        $expected_options[$view->id() . ':' . $display['id']] = "View: {$view->id()} - Display: {$display['id']}";
+        $expected_options[$view->id() . ':' . $display['id']] = (string) t('View: @view - Display: @display',
+          ['@view' => $view->id(), '@display' => $display['id']]);
       }
     }
 
@@ -335,10 +335,8 @@ class ModuleTest extends ViewsKernelTestBase {
 
   /**
    * Ensure that a certain handler is an instance of a certain table/field.
-   *
-   * @internal
    */
-  public function assertInstanceHandler(ViewsHandlerInterface $handler, string $table, string $field, string $id): void {
+  public function assertInstanceHandler($handler, $table, $field, $id) {
     $table_data = $this->container->get('views.views_data')->get($table);
     $field_data = $table_data[$field][$id];
 

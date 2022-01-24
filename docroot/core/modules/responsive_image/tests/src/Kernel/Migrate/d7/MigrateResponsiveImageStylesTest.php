@@ -31,24 +31,14 @@ class MigrateResponsiveImageStylesTest extends MigrateDrupal7TestBase {
   public function testResponsiveImageStyles() {
     $expected_image_style_mappings = [
       [
-        'image_mapping_type' => 'image_style',
-        'image_mapping' => 'custom_image_style_1',
         'breakpoint_id' => 'responsive_image.computer',
         'multiplier' => 'multiplier_1',
+        'image_mapping_type' => 'image_style',
+        'image_mapping' => 'custom_image_style_1',
       ],
       [
-        'image_mapping_type' => 'sizes',
-        'image_mapping' => [
-          'sizes' => '2',
-          'sizes_image_styles' => [
-            'custom_image_style_1',
-            'custom_image_style_2',
-          ],
-        ],
         'breakpoint_id' => 'responsive_image.computer',
         'multiplier' => 'multiplier_2',
-      ],
-      [
         'image_mapping_type' => 'sizes',
         'image_mapping' => [
           'sizes' => '2',
@@ -57,8 +47,18 @@ class MigrateResponsiveImageStylesTest extends MigrateDrupal7TestBase {
             'custom_image_style_2',
           ],
         ],
+      ],
+      [
         'breakpoint_id' => 'responsive_image.computertwo',
         'multiplier' => 'multiplier_2',
+        'image_mapping_type' => 'sizes',
+        'image_mapping' => [
+          'sizes' => '2',
+          'sizes_image_styles' => [
+            'custom_image_style_1',
+            'custom_image_style_2',
+          ],
+        ],
       ],
     ];
     $this->assertSame($expected_image_style_mappings, ResponsiveImageStyle::load('narrow')

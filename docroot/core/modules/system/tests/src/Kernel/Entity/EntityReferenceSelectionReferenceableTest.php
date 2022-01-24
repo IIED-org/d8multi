@@ -45,6 +45,7 @@ class EntityReferenceSelectionReferenceableTest extends KernelTestBase {
     'system',
     'user',
     'field',
+    'entity_reference',
     'node',
     'entity_test',
   ];
@@ -113,7 +114,7 @@ class EntityReferenceSelectionReferenceableTest extends KernelTestBase {
 
     // Number of returned items.
     if (empty($count_limited)) {
-      $this->assertArrayNotHasKey($this->bundle, $referenceables);
+      $this->assertTrue(empty($referenceables[$this->bundle]));
     }
     else {
       $this->assertCount($count_limited, $referenceables[$this->bundle]);

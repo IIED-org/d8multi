@@ -241,10 +241,10 @@ class RowEntityRenderersTest extends ViewsKernelTestBase {
    *   An array of expected title translation values, one for each result row.
    * @param string $message
    *   (optional) A message to display with the assertion.
-   *
-   * @internal
+   * @param string $group
+   *   (optional) The group this message is in.
    */
-  protected function assertTranslations(string $display, string $renderer_id, array $expected, string $message = ''): void {
+  protected function assertTranslations($display, $renderer_id, array $expected, $message = '', $group = 'Other') {
     $view = Views::getView('test_entity_row_renderers');
     $view->storage->invalidateCaches();
     $view->setDisplay($display);
@@ -267,7 +267,7 @@ class RowEntityRenderersTest extends ViewsKernelTestBase {
       }
     }
 
-    $this->assertTrue($result, $message);
+    $this->assertTrue($result, $message, $group);
   }
 
 }

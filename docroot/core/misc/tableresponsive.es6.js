@@ -64,11 +64,15 @@
    */
   Drupal.behaviors.tableResponsive = {
     attach(context, settings) {
-      once('tableresponsive', 'table.responsive-enabled', context).forEach(
-        (table) => {
-          TableResponsive.tables.push(new TableResponsive(table));
-        },
-      );
+      const $tables = $(context)
+        .find('table.responsive-enabled')
+        .once('tableresponsive');
+      if ($tables.length) {
+        const il = $tables.length;
+        for (let i = 0; i < il; i++) {
+          TableResponsive.tables.push(new TableResponsive($tables[i]));
+        }
+      }
     },
   };
 

@@ -45,14 +45,14 @@
 }
 /* Default */
 .cke.cke_chrome {
-  border-color: #919297;
+  border-color: #8e929c;
 }
 /* Hover. */
 .cke.cke_chrome:hover,
 .cke:hover .cke_contents,
 .cke:hover .cke_top,
 .cke:hover .cke_bottom {
-  border-color: #232429;
+  border-color: #222330;
 }
 /* Focus. */
 .cke.cke_chrome.cke_focus {

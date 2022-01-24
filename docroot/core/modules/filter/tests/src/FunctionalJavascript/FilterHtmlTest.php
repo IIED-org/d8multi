@@ -28,7 +28,6 @@ class FilterHtmlTest extends WebDriverTestBase {
   public function testTableTags() {
     FilterFormat::create([
       'format' => 'some_html',
-      'name' => 'Some HTML',
       'filters' => [
         'filter_html' => [
           'status' => 1,

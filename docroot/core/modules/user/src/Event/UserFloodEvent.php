@@ -74,7 +74,7 @@ class UserFloodEvent extends Event {
       return;
     }
     if (strpos($identifier, '-') !== FALSE) {
-      [$uid, $ip] = explode('-', $identifier);
+      list($uid, $ip) = explode('-', $identifier);
       $this->uid = $uid;
       $this->ip = $ip;
       return;

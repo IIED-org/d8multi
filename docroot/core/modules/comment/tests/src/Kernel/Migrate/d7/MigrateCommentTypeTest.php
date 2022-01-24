@@ -25,10 +25,8 @@ class MigrateCommentTypeTest extends MigrateDrupal7TestBase {
    *   The entity ID.
    * @param string $label
    *   The entity label.
-   *
-   * @internal
    */
-  protected function assertEntity(string $id, string $label): void {
+  protected function assertEntity($id, $label) {
     $entity = CommentType::load($id);
     $this->assertInstanceOf(CommentType::class, $entity);
     $this->assertSame($label, $entity->label());

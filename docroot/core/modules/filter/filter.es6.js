@@ -25,7 +25,9 @@
           .show();
       }
 
-      $(once('filter-guidelines', '.js-filter-guidelines', context))
+      $(context)
+        .find('.js-filter-guidelines')
+        .once('filter-guidelines')
         .find(':header')
         .hide()
         .closest('.js-filter-wrapper')

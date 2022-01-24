@@ -13,7 +13,7 @@
       var previousStylesSet = drupalSettings.ckeditor.hiddenCKEditorConfig.stylesSet;
       var that = this;
       $context.find('[name="editor[settings][plugins][stylescombo][styles]"]').on('blur.ckeditorStylesComboSettings', function () {
-        var styles = $(this).val().trim();
+        var styles = $.trim($(this).val());
 
         var stylesSet = that._generateStylesSetSetting(styles);
 
@@ -31,7 +31,7 @@
       var lines = styles.split('\n');
 
       for (var i = 0; i < lines.length; i++) {
-        var style = lines[i].trim();
+        var style = $.trim(lines[i]);
 
         if (style.length === 0) {
           continue;
@@ -61,13 +61,13 @@
   Drupal.behaviors.ckeditorStylesComboSettingsSummary = {
     attach: function attach() {
       $('[data-ckeditor-plugin-id="stylescombo"]').drupalSetSummary(function (context) {
-        var styles = $('[data-drupal-selector="edit-editor-settings-plugins-stylescombo-styles"]').val().trim();
+        var styles = $.trim($('[data-drupal-selector="edit-editor-settings-plugins-stylescombo-styles"]').val());
 
         if (styles.length === 0) {
           return Drupal.t('No styles configured');
         }
 
-        var count = styles.split('\n').length;
+        var count = $.trim(styles).split('\n').length;
         return Drupal.t('@count styles configured', {
           '@count': count
         });

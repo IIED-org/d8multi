@@ -108,10 +108,8 @@ class CommentFieldFilterTest extends CommentTestBase {
    *   that translation should be shown on the given page.
    * @param string $message
    *   Message suffix to display.
-   *
-   * @internal
    */
-  protected function assertPageCounts(string $path, array $counts, string $message): void {
+  protected function assertPageCounts($path, $counts, $message) {
     // Get the text of the page.
     $this->drupalGet($path);
     $text = $this->getTextContent();

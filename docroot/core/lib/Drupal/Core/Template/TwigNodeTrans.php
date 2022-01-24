@@ -50,11 +50,11 @@ class TwigNodeTrans extends Node {
   public function compile(Compiler $compiler) {
     $compiler->addDebugInfo($this);
 
-    [$singular, $tokens] = $this->compileString($this->getNode('body'));
+    list($singular, $tokens) = $this->compileString($this->getNode('body'));
     $plural = NULL;
 
     if ($this->hasNode('plural')) {
-      [$plural, $pluralTokens] = $this->compileString($this->getNode('plural'));
+      list($plural, $pluralTokens) = $this->compileString($this->getNode('plural'));
       $tokens = array_merge($tokens, $pluralTokens);
     }
 

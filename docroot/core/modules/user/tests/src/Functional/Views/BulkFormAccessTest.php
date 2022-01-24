@@ -123,7 +123,7 @@ class BulkFormAccessTest extends UserTestBase {
     $edit = [
       'user_cancel_method' => 'user_cancel_delete',
     ];
-    $this->submitForm($edit, 'Confirm');
+    $this->submitForm($edit, 'Cancel accounts');
 
     // Ensure the account "no_delete" still exists.
     $account = User::load($account->id());

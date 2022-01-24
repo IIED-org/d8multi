@@ -220,7 +220,7 @@ trait MigrationConfigurationTrait {
           }
         }
       }
-      catch (DatabaseExceptionWrapper $e) {
+      catch (\PDOException $e) {
         $version_string = FALSE;
       }
     }

@@ -7,7 +7,7 @@ use Drupal\Core\Entity\Entity\EntityFormMode;
 use Drupal\Core\Entity\EntityType;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\StringTranslation\TranslationManager;
+use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -483,11 +483,8 @@ class EntityTypeTest extends UnitTestCase {
    * Asserts there on no public properties on the object instance.
    *
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
-   *   The entity type.
-   *
-   * @internal
    */
-  protected function assertNoPublicProperties(EntityTypeInterface $entity_type): void {
+  protected function assertNoPublicProperties(EntityTypeInterface $entity_type) {
     $reflection = new \ReflectionObject($entity_type);
     $this->assertEmpty($reflection->getProperties(\ReflectionProperty::IS_PUBLIC));
   }
@@ -518,33 +515,16 @@ class EntityTypeTest extends UnitTestCase {
   public function testIsSerializable() {
     $entity_type = $this->setUpEntityType([]);
 
-    $translation_service = new UnserializableTranslationManager();
+    $translation = $this->prophesize(TranslationInterface::class);
+    $translation->willImplement(\Serializable::class);
+    $translation->serialize()->willThrow(\Exception::class);
+    $translation_service = $translation->reveal();
     $translation_service->_serviceId = 'string_translation';
 
     $entity_type->setStringTranslation($translation_service);
     $entity_type = unserialize(serialize($entity_type));
 
     $this->assertEquals('example_entity_type', $entity_type->id());
-  }
-
-}
-
-/**
- * Test class.
- */
-class UnserializableTranslationManager extends TranslationManager {
-
-  /**
-   * Constructs a UnserializableTranslationManager object.
-   */
-  public function __construct() {
-  }
-
-  /**
-   * @return array
-   */
-  public function __serialize(): array {
-    throw new \Exception();
   }
 
 }

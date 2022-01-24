@@ -145,11 +145,7 @@
   };
   Drupal.behaviors.offCanvasEvents = {
     attach: function attach() {
-      if (!once('off-canvas', 'html').length) {
-        return;
-      }
-
-      $(window).on({
+      $(window).once('off-canvas').on({
         'dialog:beforecreate': function dialogBeforecreate(event, dialog, $element, settings) {
           if (Drupal.offCanvas.isOffCanvas($element)) {
             Drupal.offCanvas.beforeCreate({

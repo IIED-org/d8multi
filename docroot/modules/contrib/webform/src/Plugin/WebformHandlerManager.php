@@ -75,7 +75,7 @@ class WebformHandlerManager extends DefaultPluginManager implements WebformHandl
    * {@inheritdoc}
    */
   public function removeExcludeDefinitions(array $definitions) {
-    $definitions = $definitions ?? $this->getDefinitions();
+    $definitions = isset($definitions) ? $definitions : $this->getDefinitions();
 
     // Exclude 'broken' handler.
     unset($definitions['broken']);

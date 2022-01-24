@@ -103,18 +103,16 @@ class GraphTest extends TestCase {
   /**
    * Verify expected paths in a graph.
    *
-   * @param array $graph
+   * @param $graph
    *   A graph array processed by \Drupal\Component\Graph\Graph::searchAndSort()
-   * @param array $expected_paths
+   * @param $expected_paths
    *   An associative array containing vertices with their expected paths.
-   *
-   * @internal
    */
-  protected function assertPaths(array $graph, array $expected_paths): void {
+  protected function assertPaths($graph, $expected_paths) {
     foreach ($expected_paths as $vertex => $paths) {
       // Build an array with keys = $paths and values = TRUE.
       $expected = array_fill_keys($paths, TRUE);
-      $result = $graph[$vertex]['paths'] ?? [];
+      $result = isset($graph[$vertex]['paths']) ? $graph[$vertex]['paths'] : [];
       $this->assertEquals($expected, $result, sprintf('Expected paths for vertex %s: %s, got %s', $vertex, $this->displayArray($expected, TRUE), $this->displayArray($result, TRUE)));
     }
   }
@@ -122,19 +120,17 @@ class GraphTest extends TestCase {
   /**
    * Verify expected reverse paths in a graph.
    *
-   * @param array $graph
+   * @param $graph
    *   A graph array processed by \Drupal\Component\Graph\Graph::searchAndSort()
-   * @param array $expected_reverse_paths
+   * @param $expected_reverse_paths
    *   An associative array containing vertices with their expected reverse
    *   paths.
-   *
-   * @internal
    */
-  protected function assertReversePaths(array $graph, array $expected_reverse_paths): void {
+  protected function assertReversePaths($graph, $expected_reverse_paths) {
     foreach ($expected_reverse_paths as $vertex => $paths) {
       // Build an array with keys = $paths and values = TRUE.
       $expected = array_fill_keys($paths, TRUE);
-      $result = $graph[$vertex]['reverse_paths'] ?? [];
+      $result = isset($graph[$vertex]['reverse_paths']) ? $graph[$vertex]['reverse_paths'] : [];
       $this->assertEquals($expected, $result, sprintf('Expected reverse paths for vertex %s: %s, got %s', $vertex, $this->displayArray($expected, TRUE), $this->displayArray($result, TRUE)));
     }
   }
@@ -142,14 +138,12 @@ class GraphTest extends TestCase {
   /**
    * Verify expected components in a graph.
    *
-   * @param array $graph
+   * @param $graph
    *   A graph array processed by \Drupal\Component\Graph\Graph::searchAndSort().
-   * @param array $expected_components
+   * @param $expected_components
    *   An array containing of components defined as a list of their vertices.
-   *
-   * @internal
    */
-  protected function assertComponents(array $graph, array $expected_components): void {
+  protected function assertComponents($graph, $expected_components) {
     $unassigned_vertices = array_fill_keys(array_keys($graph), TRUE);
     foreach ($expected_components as $component) {
       $result_components = [];
@@ -165,14 +159,12 @@ class GraphTest extends TestCase {
   /**
    * Verify expected order in a graph.
    *
-   * @param array $graph
+   * @param $graph
    *   A graph array processed by \Drupal\Component\Graph\Graph::searchAndSort()
-   * @param array $expected_orders
+   * @param $expected_orders
    *   An array containing lists of vertices in their expected order.
-   *
-   * @internal
    */
-  protected function assertWeights(array $graph, array $expected_orders): void {
+  protected function assertWeights($graph, $expected_orders) {
     foreach ($expected_orders as $order) {
       $previous_vertex = array_shift($order);
       foreach ($order as $vertex) {

@@ -5,7 +5,7 @@ namespace Robo\Contract;
 interface InflectionInterface
 {
     /**
-     * Based on league/container inflection: https://container.thephpleague.com/4.x/inflectors/
+     * Based on league/container inflection: http://container.thephpleague.com/inflectors/
      *
      * This allows us to run:
      *
@@ -28,7 +28,7 @@ interface InflectionInterface
      *
      * @param \Robo\Contract\InflectionInterface $parent
      */
-    public function inflect($parent);
+    public function inflect(InflectionInterface $parent);
 
     /**
      * Take all dependencies availble to this task and inject any that are
@@ -44,9 +44,10 @@ interface InflectionInterface
      * The required dependencies of an object should be provided via constructor
      * injection, not inflection.
      *
-     * @param mixed $child An object with one or more *AwareInterfaces implemented.
+     * @param InflectionInterface $child An object created by this class that
+     *   should have its dependencies injected.
      *
      * @see https://mwop.net/blog/2016-04-26-on-locators.html
      */
-    public function injectDependencies($child);
+    public function injectDependencies(InflectionInterface $child);
 }

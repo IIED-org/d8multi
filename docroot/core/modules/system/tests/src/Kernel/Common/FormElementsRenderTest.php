@@ -139,10 +139,8 @@ class FormElementsRenderTest extends KernelTestBase {
 
   /**
    * Tests that elements are rendered properly.
-   *
-   * @internal
    */
-  protected function assertRenderedElement(array $element, string $xpath, array $xpath_args = []): void {
+  protected function assertRenderedElement(array $element, $xpath, array $xpath_args = []) {
     $this->render($element);
 
     $xpath = $this->buildXPathQuery($xpath, $xpath_args);

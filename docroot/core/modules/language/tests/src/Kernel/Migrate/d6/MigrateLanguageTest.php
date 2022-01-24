@@ -28,10 +28,8 @@ class MigrateLanguageTest extends MigrateDrupal6TestBase {
    *   ConfigurableLanguageInterface). Defaults to LTR.
    * @param int $weight
    *   (optional) The weight of the language. Defaults to 0.
-   *
-   * @internal
    */
-  protected function assertLanguage(string $id, string $label, string $direction = ConfigurableLanguageInterface::DIRECTION_LTR, int $weight = 0): void {
+  protected function assertLanguage($id, $label, $direction = ConfigurableLanguageInterface::DIRECTION_LTR, $weight = 0) {
     /** @var \Drupal\language\ConfigurableLanguageInterface $language */
     $language = ConfigurableLanguage::load($id);
     $this->assertInstanceOf(ConfigurableLanguageInterface::class, $language);

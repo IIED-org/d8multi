@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace League\Container\Argument;
 
@@ -10,9 +10,7 @@ class RawArgument implements RawArgumentInterface
     protected $value;
 
     /**
-     * Construct.
-     *
-     * @param mixed $value
+     * {@inheritdoc}
      */
     public function __construct($value)
     {

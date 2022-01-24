@@ -3,16 +3,12 @@
     "type": "drupal-module",
     "description": "Provides a service to manage file metadata.",
     "require": {
-        "drupal/core": "^9.2",
-        "phenx/php-font-lib": "^0.5.3",
+        "php": ">=7",
+        "drupal/core": "^8.8 || ^9",
+        "phenx/php-font-lib": "^0.5.2",
         "lsolesen/pel": "^0.9.8"
     },
-    "conflict": {
-        "lsolesen/pel": "0.9.10"
-    },
     "require-dev": {
-        "drupal/image_effects": "*",
-        "drupal/vendor_stream_wrapper": "^2",
-        "fileeye/linuxlibertine-fonts": "^5.3"
+        "drupal/image_effects": "*"
     }
 }

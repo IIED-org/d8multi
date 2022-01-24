@@ -668,14 +668,13 @@ class TestConfigNamesMapper extends ConfigNamesMapper {
    *   The language code of this mapper if it is set; NULL otherwise.
    */
   public function getInternalLangcode() {
-    return $this->langcode ?? NULL;
+    return isset($this->langcode) ? $this->langcode : NULL;
   }
 
   /**
    * Sets the list of configuration names.
    *
    * @param array $config_names
-   *   The configuration names.
    */
   public function setConfigNames(array $config_names) {
     $this->pluginDefinition['names'] = $config_names;

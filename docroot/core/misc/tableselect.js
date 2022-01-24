@@ -8,9 +8,7 @@
 (function ($, Drupal) {
   Drupal.behaviors.tableSelect = {
     attach: function attach(context, settings) {
-      once('table-select', $(context).find('th.select-all').closest('table')).forEach(function (table) {
-        return Drupal.tableSelect.call(table);
-      });
+      $(context).find('th.select-all').closest('table').once('table-select').each(Drupal.tableSelect);
     }
   };
 
@@ -86,8 +84,8 @@
           break;
         }
       } else if ($.filter(to, [i]).r.length) {
-        break;
-      }
+          break;
+        }
     }
   };
 })(jQuery, Drupal);

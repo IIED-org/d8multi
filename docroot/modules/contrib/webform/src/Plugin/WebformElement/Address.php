@@ -51,7 +51,7 @@ class Address extends WebformCompositeBase {
   /**
    * The address format repository service.
    *
-   * @var \CommerceGuys\Addressing\AddressFormat\AddressFormatRepositoryInterfacey
+   * @var \CommerceGuys\Addressing\AddressFormat\AddressFormatRepositoryInterface $address_format_repository
    */
   protected $addressFormatRepository;
 
@@ -111,7 +111,7 @@ class Address extends WebformCompositeBase {
     return $properties;
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -345,10 +345,9 @@ class Address extends WebformCompositeBase {
       '#title' => $this->t('Address settings'),
     ];
 
-    /* ********************************************************************** */
-    // Copied from: AddressItem::fieldSettingsForm.
-    // @see \Drupal\address\Plugin\Field\FieldType\AddressItem::fieldSettingsForm
-    /* ********************************************************************** */
+    /**************************************************************************/
+    // Copied from: \Drupal\address\Plugin\Field\FieldType\AddressItem::fieldSettingsForm
+    /**************************************************************************/
 
     $languages = $this->languageManager->getLanguages(LanguageInterface::STATE_ALL);
     $language_options = [];
@@ -391,7 +390,7 @@ class Address extends WebformCompositeBase {
       '#access' => TRUE,
     ];
     foreach (LabelHelper::getGenericFieldLabels() as $field_name => $label) {
-      $override = $field_overrides[$field_name] ?? '';
+      $override = isset($field_overrides[$field_name]) ? $field_overrides[$field_name] : '';
       $form['address']['field_overrides'][$field_name] = [
         '#access' => TRUE,
         'field_label' => [

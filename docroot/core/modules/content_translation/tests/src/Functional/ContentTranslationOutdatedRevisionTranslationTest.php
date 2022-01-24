@@ -85,10 +85,8 @@ class ContentTranslationOutdatedRevisionTranslationTest extends ContentTranslati
 
   /**
    * Checks whether the flag widget is displayed.
-   *
-   * @internal
    */
-  protected function assertFlagWidget(): void {
+  protected function assertFlagWidget() {
     $this->assertSession()->pageTextNotContains('Flag other translations as outdated');
     $this->assertSession()->pageTextContains('Translations cannot be flagged as outdated when content is moderated.');
   }

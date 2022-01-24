@@ -15,10 +15,10 @@
       var $fieldItems = this.$el.find('.quickedit-field');
       var $textElement = $fieldItems.length ? $fieldItems.eq(0) : this.$el;
       this.$textElement = $textElement;
-      editorModel.set('originalValue', this.$textElement.text().trim());
+      editorModel.set('originalValue', $.trim(this.$textElement.text()));
       var previousText = editorModel.get('originalValue');
       $textElement.on('keyup paste', function (event) {
-        var currentText = $textElement.text().trim();
+        var currentText = $.trim($textElement.text());
 
         if (previousText !== currentText) {
           previousText = currentText;

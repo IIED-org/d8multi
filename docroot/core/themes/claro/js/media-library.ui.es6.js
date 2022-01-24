@@ -17,12 +17,9 @@
       // has been added to the Media Library dialog.
       // @todo replace with theme function override in
       //   https://drupal.org/node/3134526
-      if (!once('media-library-selection-info-claro-event', 'html').length) {
-        return;
-      }
-      $(window).on(
-        'dialog:aftercreate',
-        (event, dialog, $element, settings) => {
+      $(window)
+        .once('media-library-selection-info-claro-event')
+        .on('dialog:aftercreate', (event, dialog, $element, settings) => {
           // Since the dialog HTML is not part of the context, we can't use
           // context here.
           const moveCounter = ($selectedCount, $buttonPane) => {
@@ -65,8 +62,7 @@
               subtree: true,
             });
           }
-        },
-      );
+        });
     },
   };
 })(jQuery, Drupal, window);

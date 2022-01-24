@@ -195,7 +195,7 @@ class OverridesSectionStorage extends SectionStorageBase implements ContainerFac
    */
   private function extractEntityFromRoute($value, array $defaults) {
     if (strpos($value, '.') !== FALSE) {
-      [$entity_type_id, $entity_id] = explode('.', $value, 2);
+      list($entity_type_id, $entity_id) = explode('.', $value, 2);
     }
     elseif (isset($defaults['entity_type_id']) && !empty($defaults[$defaults['entity_type_id']])) {
       $entity_type_id = $defaults['entity_type_id'];

@@ -316,14 +316,12 @@ class TransactionTest extends DatabaseTestBase {
   /**
    * Asserts that a given row is present in the test table.
    *
-   * @param string $name
+   * @param $name
    *   The name of the row.
-   * @param string $message
+   * @param $message
    *   The message to log for the assertion.
-   *
-   * @internal
    */
-  public function assertRowPresent(string $name, string $message = NULL): void {
+  public function assertRowPresent($name, $message = NULL) {
     if (!isset($message)) {
       $message = new FormattableMarkup('Row %name is present.', ['%name' => $name]);
     }
@@ -334,14 +332,12 @@ class TransactionTest extends DatabaseTestBase {
   /**
    * Asserts that a given row is absent from the test table.
    *
-   * @param string $name
+   * @param $name
    *   The name of the row.
-   * @param string $message
+   * @param $message
    *   The message to log for the assertion.
-   *
-   * @internal
    */
-  public function assertRowAbsent(string $name, string $message = NULL): void {
+  public function assertRowAbsent($name, $message = NULL) {
     if (!isset($message)) {
       $message = new FormattableMarkup('Row %name is absent.', ['%name' => $name]);
     }

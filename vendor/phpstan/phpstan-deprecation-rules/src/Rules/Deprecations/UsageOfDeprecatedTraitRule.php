@@ -5,7 +5,7 @@ namespace PHPStan\Rules\Deprecations;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\TraitUse;
 use PHPStan\Analyser\Scope;
-use PHPStan\Reflection\ReflectionProvider;
+use PHPStan\Broker\Broker;
 
 /**
  * @implements \PHPStan\Rules\Rule<TraitUse>
@@ -13,12 +13,12 @@ use PHPStan\Reflection\ReflectionProvider;
 class UsageOfDeprecatedTraitRule implements \PHPStan\Rules\Rule
 {
 
-	/** @var ReflectionProvider */
-	private $reflectionProvider;
+	/** @var Broker */
+	private $broker;
 
-	public function __construct(ReflectionProvider $reflectionProvider)
+	public function __construct(Broker $broker)
 	{
-		$this->reflectionProvider = $reflectionProvider;
+		$this->broker = $broker;
 	}
 
 	public function getNodeType(): string
@@ -44,7 +44,7 @@ class UsageOfDeprecatedTraitRule implements \PHPStan\Rules\Rule
 			$traitName = (string) $traitNameNode;
 
 			try {
-				$trait = $this->reflectionProvider->getClass($traitName);
+				$trait = $this->broker->getClass($traitName);
 				if (!$trait->isDeprecated()) {
 					continue;
 				}

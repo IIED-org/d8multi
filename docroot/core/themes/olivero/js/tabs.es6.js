@@ -1,14 +1,14 @@
 /**
  * @file
- * Provides interactivity for showing and hiding the primary tabs at mobile widths.
+ * Provides interactivity for showing and hiding the tabs at mobile widths.
  */
 
 ((Drupal, once) => {
   /**
-   * Initialize the primary tabs.
+   * Initialize the tabs.
    *
    * @param {HTMLElement} el
-   *   The DOM element containing the primary tabs.
+   *   The DOM element containing the tabs.
    */
   function init(el) {
     const tabs = el.querySelector('.tabs');
@@ -16,7 +16,7 @@
     const activeTab = tabs.querySelector('.is-active');
 
     /**
-     * Determines if primary tabs are expanded for mobile layouts.
+     * Determines if tabs are expanded for mobile layouts.
      *
      * @return {boolean}
      *   Whether the tabs trigger element is expanded.
@@ -26,7 +26,7 @@
     }
 
     /**
-     * Controls primary tab visibility on click events.
+     * Controls tab visibility on click events.
      *
      * @param {Event} e
      *   The event object.
@@ -54,18 +54,16 @@
   }
 
   /**
-   * Initialize the primary tabs.
+   * Initialize the tabs.
    *
    * @type {Drupal~behavior}
    *
    * @prop {Drupal~behaviorAttach} attach
-   *   Display primary tabs according to the screen width.
+   *   Display tabs according to the screen width.
    */
-  Drupal.behaviors.primaryTabs = {
+  Drupal.behaviors.tabs = {
     attach(context) {
-      once('olivero-tabs', '[data-drupal-nav-primary-tabs]', context).forEach(
-        init,
-      );
+      once('olivero-tabs', '[data-drupal-nav-tabs]', context).forEach(init);
     },
   };
 })(Drupal, once);

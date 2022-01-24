@@ -115,11 +115,6 @@ Wavesurfer Audio Player
   you manually installed the wavesurfer directory. See the wavesurfer
   documentation for more info.
 
-  Audiowaveform is an additional application which works alongside Wavesurfer
-  to pre-render waveforms ahead of time and reduce on-load wait times when
-  displaying Wavesurfer waveforms. To install, see the instructions at
-  https://github.com/bbc/audiowaveform.
-
 WordPress Audio Player
   WordPress Audio Player requires installation of the Standalone version of
   the WordPress Audio Player located at http://wpaudioplayer.com/standalone

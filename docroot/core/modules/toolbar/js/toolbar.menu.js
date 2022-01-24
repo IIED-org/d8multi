@@ -83,10 +83,9 @@
     }
 
     return this.each(function (selector) {
-      var menu = once('toolbar-menu', this);
+      var $menu = $(this).once('toolbar-menu');
 
-      if (menu.length) {
-        var $menu = $(menu);
+      if ($menu.length) {
         $menu.on('click.toolbar', '.toolbar-box', toggleClickHandler).on('click.toolbar', '.toolbar-box a', linkClickHandler);
         $menu.addClass('root');
         initItems($menu);

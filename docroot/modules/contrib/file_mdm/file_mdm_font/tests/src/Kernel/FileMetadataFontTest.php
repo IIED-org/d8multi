@@ -8,7 +8,7 @@ use Drupal\Tests\file_mdm\Kernel\FileMetadataManagerTestBase;
 /**
  * Tests that the file metadata 'font' plugin works properly.
  *
- * @group file_mdm
+ * @group File Metadata
  */
 class FileMetadataFontTest extends FileMetadataManagerTestBase {
 
@@ -17,12 +17,12 @@ class FileMetadataFontTest extends FileMetadataManagerTestBase {
    *
    * @var array
    */
-  protected static $modules = [
+  public static $modules = [
     'system',
     'file_mdm',
     'file_mdm_font',
     'file_test',
-    'vendor_stream_wrapper',
+    'image_effects',
   ];
 
   /**
@@ -40,7 +40,7 @@ class FileMetadataFontTest extends FileMetadataManagerTestBase {
     // The font files that will be tested.
     $font_files = [
       [
-        'uri' => 'vendor://fileeye/linuxlibertine-fonts/LinLibertine_Rah.ttf',
+        'uri' => drupal_get_path('module', 'image_effects') . '/tests/fonts/LinLibertineTTF_5.3.0_2012_07_02/LinLibertine_Rah.ttf',
         'count_keys' => 15,
         'test_keys' => [
           ['Version', 'Version 5.3.0 ; ttfautohint (v0.9)'],
@@ -50,7 +50,7 @@ class FileMetadataFontTest extends FileMetadataManagerTestBase {
         ],
       ],
       [
-        'uri' => 'vendor://fileeye/linuxlibertine-fonts/LinBiolinum_Kah.ttf',
+        'uri' => drupal_get_path('module', 'image_effects') . '/tests/fonts/LinLibertineTTF_5.3.0_2012_07_02/LinBiolinum_Kah.ttf',
         'count_keys' => 15,
         'test_keys' => [
           ['FullName', 'Linux Biolinum Keyboard'],
@@ -106,7 +106,7 @@ class FileMetadataFontTest extends FileMetadataManagerTestBase {
     ];
 
     $fmdm = $this->container->get('file_metadata_manager');
-    $file_md = $fmdm->uri('vendor://fileeye/linuxlibertine-fonts/LinLibertine_Rah.ttf');
+    $file_md = $fmdm->uri(drupal_get_path('module', 'image_effects') . '/tests/fonts/LinLibertineTTF_5.3.0_2012_07_02/LinLibertine_Rah.ttf');
     $this->assertEquals($expected_keys, $file_md->getSupportedKeys('font'));
   }
 

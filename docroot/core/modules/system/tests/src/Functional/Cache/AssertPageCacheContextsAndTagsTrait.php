@@ -125,7 +125,7 @@ trait AssertPageCacheContextsAndTagsTrait {
    *   (optional) Whether the default contexts should automatically be included.
    *
    * @return bool
-   *   Always returns TRUE.
+   *   TRUE if the assertion succeeded, FALSE otherwise.
    */
   protected function assertCacheContexts(array $expected_contexts, $message = NULL, $include_default_contexts = TRUE) {
     if ($include_default_contexts) {
@@ -142,14 +142,13 @@ trait AssertPageCacheContextsAndTagsTrait {
     sort($expected_contexts);
     sort($actual_contexts);
     $this->assertSame($expected_contexts, $actual_contexts, $message ?? '');
-    return TRUE;
+    return $actual_contexts === $expected_contexts;
   }
 
   /**
    * Asserts the max age header.
    *
    * @param int $max_age
-   *   The maximum age of the cache.
    */
   protected function assertCacheMaxAge($max_age) {
     $this->assertSession()->responseHeaderContains('Cache-Control', 'max-age:' . $max_age);

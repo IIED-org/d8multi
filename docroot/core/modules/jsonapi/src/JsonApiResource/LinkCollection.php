@@ -62,7 +62,6 @@ final class LinkCollection implements \IteratorAggregate {
   /**
    * {@inheritdoc}
    */
-  #[\ReturnTypeWillChange]
   public function getIterator() {
     assert(!is_null($this->context), 'A LinkCollection is invalid unless a context has been established.');
     return new \ArrayIterator($this->links);

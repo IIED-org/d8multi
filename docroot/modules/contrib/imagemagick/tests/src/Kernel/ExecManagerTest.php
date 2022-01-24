@@ -7,7 +7,7 @@ use Drupal\KernelTests\KernelTestBase;
 /**
  * Tests for ImagemagickExecManager.
  *
- * @group imagemagick
+ * @group Imagemagick
  */
 class ExecManagerTest extends KernelTestBase {
 

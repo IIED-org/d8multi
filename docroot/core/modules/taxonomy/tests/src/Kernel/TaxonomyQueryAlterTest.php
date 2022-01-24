@@ -118,7 +118,7 @@ class TaxonomyQueryAlterTest extends KernelTestBase {
    * Sets up the hooks in the test module.
    */
   protected function setupQueryTagTestHooks() {
-    $this->container->get('entity_type.manager')->getStorage('taxonomy_term')->resetCache();
+    taxonomy_terms_static_reset();
     $state = $this->container->get('state');
     $state->set('taxonomy_test_query_alter', 0);
     $state->set('taxonomy_test_query_term_access_alter', 0);
@@ -134,10 +134,8 @@ class TaxonomyQueryAlterTest extends KernelTestBase {
    * @param int $expected_specific_invocations
    *   The number of times the tag-specific query_alter hooks are expected to
    *   have been invoked.
-   *
-   * @internal
    */
-  protected function assertQueryTagTestResult(int $expected_generic_invocations, int $expected_specific_invocations): void {
+  protected function assertQueryTagTestResult($expected_generic_invocations, $expected_specific_invocations) {
     $state = $this->container->get('state');
     $this->assertEquals($expected_generic_invocations, $state->get('taxonomy_test_query_alter'));
     $this->assertEquals($expected_specific_invocations, $state->get('taxonomy_test_query_term_access_alter'));

@@ -21,15 +21,15 @@ use Drupal\layout_builder\Plugin\SectionStorage\OverridesSectionStorage;
 use Drupal\layout_builder\QuickEditIntegration;
 use Drupal\layout_builder\Section;
 use Drupal\layout_builder\SectionComponent;
-use Drupal\layout_builder\SectionListTrait;
+use Drupal\layout_builder\SectionStorage\SectionStorageTrait;
 
 /**
  * Provides an entity view display entity that has a layout.
  */
 class LayoutBuilderEntityViewDisplay extends BaseEntityViewDisplay implements LayoutEntityDisplayInterface {
 
+  use SectionStorageTrait;
   use LayoutEntityHelperTrait;
-  use SectionListTrait;
 
   /**
    * The entity field manager.
@@ -334,12 +334,11 @@ class LayoutBuilderEntityViewDisplay extends BaseEntityViewDisplay implements La
    *   An array of context objects for a given entity.
    */
   protected function getContextsForEntity(FieldableEntityInterface $entity) {
-    $available_context_ids = array_keys($this->contextRepository()->getAvailableContexts());
     return [
       'view_mode' => new Context(ContextDefinition::create('string'), $this->getMode()),
       'entity' => EntityContext::fromEntity($entity),
       'display' => EntityContext::fromEntity($this),
-    ] + $this->contextRepository()->getRuntimeContexts($available_context_ids);
+    ] + $this->contextRepository()->getAvailableContexts();
   }
 
   /**
@@ -436,7 +435,7 @@ class LayoutBuilderEntityViewDisplay extends BaseEntityViewDisplay implements La
       }
 
       $section = $this->getDefaultSection();
-      $region = $options['region'] ?? $section->getDefaultRegion();
+      $region = isset($options['region']) ? $options['region'] : $section->getDefaultRegion();
       $new_component = (new SectionComponent(\Drupal::service('uuid')->generate(), $region, $configuration));
       $section->appendComponent($new_component);
     }
@@ -504,7 +503,7 @@ class LayoutBuilderEntityViewDisplay extends BaseEntityViewDisplay implements La
       // Builder component. It follows the structure prescribed by the
       // documentation of hook_quickedit_render_field().
       if (count($parts) === 6 && $parts[0] === 'layout_builder') {
-        [, $delta, $component_uuid, $entity_id] = QuickEditIntegration::deconstructViewModeId($original_mode);
+        list(, $delta, $component_uuid, $entity_id) = QuickEditIntegration::deconstructViewModeId($original_mode);
         $entity = $this->entityTypeManager()->getStorage($this->getTargetEntityTypeId())->load($entity_id);
         $sections = $this->getEntitySections($entity);
         if (isset($sections[$delta])) {
@@ -539,7 +538,7 @@ class LayoutBuilderEntityViewDisplay extends BaseEntityViewDisplay implements La
         if ($plugin instanceof DerivativeInspectionInterface && in_array($plugin->getBaseId(), ['field_block', 'extra_field_block'], TRUE)) {
           // FieldBlock derivative IDs are in the format
           // [entity_type]:[bundle]:[field].
-          [, , $field_block_field_name] = explode(PluginBase::DERIVATIVE_SEPARATOR, $plugin->getDerivativeId());
+          list(, , $field_block_field_name) = explode(PluginBase::DERIVATIVE_SEPARATOR, $plugin->getDerivativeId());
           if ($field_block_field_name === $field_name) {
             return $component;
           }

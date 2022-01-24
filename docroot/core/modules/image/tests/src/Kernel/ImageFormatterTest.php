@@ -206,10 +206,8 @@ class ImageFormatterTest extends FieldKernelTestBase {
    *   The renderable array. Must have a #cache[tags] element.
    * @param array $cache_tags
    *   The expected cache tags.
-   *
-   * @internal
    */
-  protected function assertCacheTags(array $renderable, array $cache_tags): void {
+  protected function assertCacheTags(array $renderable, array $cache_tags) {
     $diff = array_diff($cache_tags, $renderable['#cache']['tags']);
     $this->assertEmpty($diff);
   }

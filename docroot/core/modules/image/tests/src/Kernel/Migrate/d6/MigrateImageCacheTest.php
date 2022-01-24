@@ -4,7 +4,6 @@ namespace Drupal\Tests\image\Kernel\Migrate\d6;
 
 use Drupal\Core\Database\Database;
 use Drupal\image\Entity\ImageStyle;
-use Drupal\image\ImageEffectPluginCollection;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Exception\RequirementsException;
 use Drupal\Tests\migrate_drupal\Kernel\d6\MigrateDrupal6TestBase;
@@ -142,27 +141,27 @@ class MigrateImageCacheTest extends MigrateDrupal6TestBase {
   /**
    * Assert that a given image effect is migrated.
    *
-   * @param \Drupal\image\ImageEffectPluginCollection $collection
+   * @param array $collection
    *   Collection of effects
-   * @param string $id
+   * @param $id
    *   Id that should exist in the collection.
-   * @param array $config
+   * @param $config
    *   Expected configuration for the collection.
    *
-   * @internal
+   * @return bool
    */
-  protected function assertImageEffect(ImageEffectPluginCollection $collection, string $id, array $config): void {
+  protected function assertImageEffect($collection, $id, $config) {
     /** @var \Drupal\image\ConfigurableImageEffectBase $effect */
     foreach ($collection as $effect) {
       $effect_config = $effect->getConfiguration();
 
       if ($effect_config['id'] == $id && $effect_config['data'] == $config) {
-        // We found this effect so the assertion is successful.
-        return;
+        // We found this effect so succeed and return.
+        return TRUE;
       }
     }
     // The loop did not find the effect so we it was not imported correctly.
-    $this->fail('Effect ' . $id . ' did not import correctly');
+    return $this->fail('Effect ' . $id . ' did not import correctly');
   }
 
 }

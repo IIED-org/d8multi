@@ -61,9 +61,7 @@ class SubformStateTest extends UnitTestCase {
    * @dataProvider providerGetValues
    *
    * @param string[] $parents
-   *   The parents.
    * @param string $expected
-   *   The expected state values.
    */
   public function testGetValues(array $parents, $expected) {
     $parent_form_state = new FormState();
@@ -100,9 +98,7 @@ class SubformStateTest extends UnitTestCase {
    * @dataProvider providerGetValuesBroken
    *
    * @param string[] $parents
-   *   The parents.
    * @param string $expected
-   *   The expected state values.
    */
   public function testGetValuesBroken(array $parents, $expected) {
     $this->expectException(\UnexpectedValueException::class);

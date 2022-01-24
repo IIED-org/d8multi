@@ -1,147 +1,172 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace League\Container;
 
-use League\Container\Definition\{DefinitionAggregate, DefinitionInterface, DefinitionAggregateInterface};
-use League\Container\Exception\{NotFoundException, ContainerException};
-use League\Container\Inflector\{InflectorAggregate, InflectorInterface, InflectorAggregateInterface};
-use League\Container\ServiceProvider\{
-    ServiceProviderAggregate,
-    ServiceProviderAggregateInterface,
-    ServiceProviderInterface
-};
-use Psr\Container\ContainerInterface;
+use Interop\Container\ContainerInterface as InteropContainerInterface;
+use League\Container\Argument\RawArgumentInterface;
+use League\Container\Definition\DefinitionFactory;
+use League\Container\Definition\DefinitionFactoryInterface;
+use League\Container\Definition\DefinitionInterface;
+use League\Container\Exception\NotFoundException;
+use League\Container\Inflector\InflectorAggregate;
+use League\Container\Inflector\InflectorAggregateInterface;
+use League\Container\ServiceProvider\ServiceProviderAggregate;
+use League\Container\ServiceProvider\ServiceProviderAggregateInterface;
 
 class Container implements ContainerInterface
 {
     /**
-     * @var boolean
+     * @var \League\Container\Definition\DefinitionFactoryInterface
      */
-    protected $defaultToShared = false;
+    protected $definitionFactory;
 
     /**
-     * @var DefinitionAggregateInterface
+     * @var \League\Container\Definition\DefinitionInterface[]
      */
-    protected $definitions;
+    protected $definitions = [];
 
     /**
-     * @var ServiceProviderAggregateInterface
+     * @var \League\Container\Definition\DefinitionInterface[]
      */
-    protected $providers;
+    protected $sharedDefinitions = [];
 
     /**
-     * @var InflectorAggregateInterface
+     * @var \League\Container\Inflector\InflectorAggregateInterface
      */
     protected $inflectors;
 
     /**
-     * @var ContainerInterface[]
+     * @var \League\Container\ServiceProvider\ServiceProviderAggregateInterface
+     */
+    protected $providers;
+
+    /**
+     * @var array
+     */
+    protected $shared = [];
+
+    /**
+     * @var \Interop\Container\ContainerInterface[]
      */
     protected $delegates = [];
 
     /**
-     * Construct.
+     * Constructor.
      *
-     * @param DefinitionAggregateInterface|null      $definitions
-     * @param ServiceProviderAggregateInterface|null $providers
-     * @param InflectorAggregateInterface|null       $inflectors
+     * @param \League\Container\ServiceProvider\ServiceProviderAggregateInterface|null $providers
+     * @param \League\Container\Inflector\InflectorAggregateInterface|null             $inflectors
+     * @param \League\Container\Definition\DefinitionFactoryInterface|null             $definitionFactory
      */
     public function __construct(
-        DefinitionAggregateInterface      $definitions = null,
         ServiceProviderAggregateInterface $providers = null,
-        InflectorAggregateInterface       $inflectors = null
+        InflectorAggregateInterface $inflectors = null,
+        DefinitionFactoryInterface $definitionFactory = null
     ) {
-        $this->definitions = $definitions ?? new DefinitionAggregate;
-        $this->providers   = $providers   ?? new ServiceProviderAggregate;
-        $this->inflectors  = $inflectors  ?? new InflectorAggregate;
+        // set required dependencies
+        $this->providers         = (is_null($providers))
+                                 ? (new ServiceProviderAggregate)->setContainer($this)
+                                 : $providers->setContainer($this);
 
-        if ($this->definitions instanceof ContainerAwareInterface) {
-            $this->definitions->setLeagueContainer($this);
-        }
+        $this->inflectors        = (is_null($inflectors))
+                                 ? (new InflectorAggregate)->setContainer($this)
+                                 : $inflectors->setContainer($this);
 
-        if ($this->providers instanceof ContainerAwareInterface) {
-            $this->providers->setLeagueContainer($this);
-        }
-
-        if ($this->inflectors instanceof ContainerAwareInterface) {
-            $this->inflectors->setLeagueContainer($this);
-        }
+        $this->definitionFactory = (is_null($definitionFactory))
+                                 ? (new DefinitionFactory)->setContainer($this)
+                                 : $definitionFactory->setContainer($this);
     }
 
     /**
-     * Add an item to the container.
-     *
-     * @param string  $id
-     * @param mixed   $concrete
-     * @param boolean $shared
-     *
-     * @return DefinitionInterface
+     * {@inheritdoc}
      */
-    public function add(string $id, $concrete = null, bool $shared = null) : DefinitionInterface
+    public function get($alias, array $args = [])
     {
-        $concrete = $concrete ?? $id;
-        $shared = $shared ?? $this->defaultToShared;
+        try {
+            return $this->getFromThisContainer($alias, $args);
+        } catch (NotFoundException $exception) {
+            if ($this->providers->provides($alias)) {
+                $this->providers->register($alias);
 
-        return $this->definitions->add($id, $concrete, $shared);
+                return $this->getFromThisContainer($alias, $args);
+            }
+
+            $resolved = $this->getFromDelegate($alias, $args);
+
+            return $this->inflectors->inflect($resolved);
+        }
     }
 
     /**
-     * Proxy to add with shared as true.
-     *
-     * @param string $id
-     * @param mixed  $concrete
-     *
-     * @return DefinitionInterface
+     * {@inheritdoc}
      */
-    public function share(string $id, $concrete = null) : DefinitionInterface
+    public function has($alias)
     {
-        return $this->add($id, $concrete, true);
-    }
-
-    /**
-     * Whether the container should default to defining shared definitions.
-     *
-     * @param boolean $shared
-     *
-     * @return self
-     */
-    public function defaultToShared(bool $shared = true) : ContainerInterface
-    {
-        $this->defaultToShared = $shared;
-
-        return $this;
-    }
-
-    /**
-     * Get a definition to extend.
-     *
-     * @param string $id [description]
-     *
-     * @return DefinitionInterface
-     */
-    public function extend(string $id) : DefinitionInterface
-    {
-        if ($this->providers->provides($id)) {
-            $this->providers->register($id);
+        if (array_key_exists($alias, $this->definitions) || $this->hasShared($alias)) {
+            return true;
         }
 
-        if ($this->definitions->has($id)) {
-            return $this->definitions->getDefinition($id);
+        if ($this->providers->provides($alias)) {
+            return true;
         }
 
-        throw new NotFoundException(
-            sprintf('Unable to extend alias (%s) as it is not being managed as a definition', $id)
-        );
+        return $this->hasInDelegate($alias);
     }
 
     /**
-     * Add a service provider.
+     * Returns a boolean to determine if the container has a shared instance of an alias.
      *
-     * @param ServiceProviderInterface|string $provider
-     *
-     * @return self
+     * @param  string  $alias
+     * @param  boolean $resolved
+     * @return boolean
      */
-    public function addServiceProvider($provider) : self
+    public function hasShared($alias, $resolved = false)
+    {
+        $shared = ($resolved === false) ? array_merge($this->shared, $this->sharedDefinitions) : $this->shared;
+
+        return (array_key_exists($alias, $shared));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function add($alias, $concrete = null, $share = false)
+    {
+        unset($this->shared[$alias]);
+        unset($this->definitions[$alias]);
+        unset($this->sharedDefinitions[$alias]);
+
+        if (is_null($concrete)) {
+            $concrete = $alias;
+        }
+
+        $definition = $this->definitionFactory->getDefinition($alias, $concrete);
+
+        if ($definition instanceof DefinitionInterface) {
+            if ($share === false) {
+                $this->definitions[$alias] = $definition;
+            } else {
+                $this->sharedDefinitions[$alias] = $definition;
+            }
+
+            return $definition;
+        }
+
+        // dealing with a value that cannot build a definition
+        $this->shared[$alias] = $concrete;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function share($alias, $concrete = null)
+    {
+        return $this->add($alias, $concrete, true);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addServiceProvider($provider)
     {
         $this->providers->add($provider);
 
@@ -151,62 +176,69 @@ class Container implements ContainerInterface
     /**
      * {@inheritdoc}
      */
-    public function get($id, bool $new = false)
+    public function extend($alias)
     {
-        if ($this->definitions->has($id)) {
-            $resolved = $this->definitions->resolve($id, $new);
-            return $this->inflectors->inflect($resolved);
+        if ($this->providers->provides($alias)) {
+            $this->providers->register($alias);
         }
 
-        if ($this->definitions->hasTag($id)) {
-            $arrayOf = $this->definitions->resolveTagged($id, $new);
-
-            array_walk($arrayOf, function (&$resolved) {
-                $resolved = $this->inflectors->inflect($resolved);
-            });
-
-            return $arrayOf;
+        if (array_key_exists($alias, $this->definitions)) {
+            return $this->definitions[$alias];
         }
 
-        if ($this->providers->provides($id)) {
-            $this->providers->register($id);
-
-            if (!$this->definitions->has($id) && !$this->definitions->hasTag($id)) {
-                throw new ContainerException(sprintf('Service provider lied about providing (%s) service', $id));
-            }
-
-            return $this->get($id, $new);
+        if (array_key_exists($alias, $this->sharedDefinitions)) {
+            return $this->sharedDefinitions[$alias];
         }
 
-        foreach ($this->delegates as $delegate) {
-            if ($delegate->has($id)) {
-                $resolved = $delegate->get($id);
-                return $this->inflectors->inflect($resolved);
-            }
-        }
-
-        throw new NotFoundException(sprintf('Alias (%s) is not being managed by the container or delegates', $id));
+        throw new NotFoundException(
+            sprintf('Unable to extend alias (%s) as it is not being managed as a definition', $alias)
+        );
     }
 
     /**
      * {@inheritdoc}
      */
-    public function has($id)
+    public function inflector($type, callable $callback = null)
     {
-        if ($this->definitions->has($id)) {
-            return true;
+        return $this->inflectors->add($type, $callback);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function call(callable $callable, array $args = [])
+    {
+        return (new ReflectionContainer)->setContainer($this)->call($callable, $args);
+    }
+
+    /**
+     * Delegate a backup container to be checked for services if it
+     * cannot be resolved via this container.
+     *
+     * @param  \Interop\Container\ContainerInterface $container
+     * @return $this
+     */
+    public function delegate(InteropContainerInterface $container)
+    {
+        $this->delegates[] = $container;
+
+        if ($container instanceof ImmutableContainerAwareInterface) {
+            $container->setContainer($this);
         }
 
-        if ($this->definitions->hasTag($id)) {
-            return true;
-        }
+        return $this;
+    }
 
-        if ($this->providers->provides($id)) {
-            return true;
-        }
-
-        foreach ($this->delegates as $delegate) {
-            if ($delegate->has($id)) {
+    /**
+     * Returns true if service is registered in one of the delegated backup containers.
+     *
+     * @param  string $alias
+     * @return boolean
+     */
+    public function hasInDelegate($alias)
+    {
+        foreach ($this->delegates as $container) {
+            if ($container->has($alias)) {
                 return true;
             }
         }
@@ -215,34 +247,58 @@ class Container implements ContainerInterface
     }
 
     /**
-     * Allows for manipulation of specific types on resolution.
+     * Attempt to get a service from the stack of delegated backup containers.
      *
-     * @param string        $type
-     * @param callable|null $callback
-     *
-     * @return InflectorInterface
+     * @param  string $alias
+     * @param  array  $args
+     * @return mixed
      */
-    public function inflector(string $type, callable $callback = null) : InflectorInterface
+    protected function getFromDelegate($alias, array $args = [])
     {
-        return $this->inflectors->add($type, $callback);
+        foreach ($this->delegates as $container) {
+            if ($container->has($alias)) {
+                return $container->get($alias, $args);
+            }
+
+            continue;
+        }
+
+        throw new NotFoundException(
+            sprintf('Alias (%s) is not being managed by the container', $alias)
+        );
     }
 
     /**
-     * Delegate a backup container to be checked for services if it
-     * cannot be resolved via this container.
+     * Get a service that has been registered in this container.
      *
-     * @param ContainerInterface $container
-     *
-     * @return self
+     * @param  string $alias
+     * @param  array $args
+     * @return mixed
      */
-    public function delegate(ContainerInterface $container) : self
+    protected function getFromThisContainer($alias, array $args = [])
     {
-        $this->delegates[] = $container;
-
-        if ($container instanceof ContainerAwareInterface) {
-            $container->setLeagueContainer($this);
+        if ($this->hasShared($alias, true)) {
+            $shared = $this->inflectors->inflect($this->shared[$alias]);
+            if ($shared instanceof RawArgumentInterface) {
+                return $shared->getValue();
+            }
+            return $shared;
         }
 
-        return $this;
+        if (array_key_exists($alias, $this->sharedDefinitions)) {
+            $shared = $this->inflectors->inflect($this->sharedDefinitions[$alias]->build());
+            $this->shared[$alias] = $shared;
+            return $shared;
+        }
+
+        if (array_key_exists($alias, $this->definitions)) {
+            return $this->inflectors->inflect(
+                $this->definitions[$alias]->build($args)
+            );
+        }
+
+        throw new NotFoundException(
+            sprintf('Alias (%s) is not being managed by the container', $alias)
+        );
     }
 }

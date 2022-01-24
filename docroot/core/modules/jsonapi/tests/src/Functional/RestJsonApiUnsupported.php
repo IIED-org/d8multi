@@ -112,7 +112,7 @@ class RestJsonApiUnsupported extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function assertNormalizationEdgeCases($method, Url $url, array $request_options): void {}
+  protected function assertNormalizationEdgeCases($method, Url $url, array $request_options) {}
 
   /**
    * {@inheritdoc}

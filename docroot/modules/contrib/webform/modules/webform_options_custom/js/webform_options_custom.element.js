@@ -93,6 +93,7 @@
         // Template event handling.
         $template
           .on('click', setTemplateValue)
+          .on('click', setTemplateValue)
           .on('keydown', function (event) {
             var $templateOption = $(event.target);
             if (!$templateOption.is('[data-option-value]')) {

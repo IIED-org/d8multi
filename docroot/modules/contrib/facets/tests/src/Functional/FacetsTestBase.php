@@ -18,9 +18,11 @@ abstract class FacetsTestBase extends BrowserTestBase {
   use TestHelperTrait;
 
   /**
-   * {@inheritdoc}
+   * Modules to enable for this test.
+   *
+   * @var string[]
    */
-  protected static $modules = [
+  public static $modules = [
     'views',
     'node',
     'search_api',
@@ -66,7 +68,7 @@ abstract class FacetsTestBase extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
 
     // Create the users used for the tests.

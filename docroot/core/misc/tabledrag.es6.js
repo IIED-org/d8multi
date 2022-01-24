@@ -47,7 +47,7 @@
       }
 
       Object.keys(settings.tableDrag || {}).forEach((base) => {
-        initTableDrag($(once('tabledrag', `#${base}`, context)), base);
+        initTableDrag($(context).find(`#${base}`).once('tabledrag'), base);
       });
     },
   };
@@ -370,10 +370,7 @@
 
     // Trigger an event to allow other scripts to react to this display change.
     // Force the extra parameter as a bool.
-    $(once.filter('tabledrag', 'table')).trigger(
-      'columnschange',
-      !!displayWeight,
-    );
+    $('table').findOnce('tabledrag').trigger('columnschange', !!displayWeight);
   };
 
   /**
@@ -399,7 +396,7 @@
    * Undo showColumns().
    */
   Drupal.tableDrag.prototype.hideColumns = function () {
-    const $tables = $(once.filter('tabledrag', 'table'));
+    const $tables = $('table').findOnce('tabledrag');
     // Hide weight/parent cells and headers.
     $tables.find('.tabledrag-hide').css('display', 'none');
     // Show TableDrag handles.
@@ -416,7 +413,7 @@
    * Undo hideColumns().
    */
   Drupal.tableDrag.prototype.showColumns = function () {
-    const $tables = $(once.filter('tabledrag', 'table'));
+    const $tables = $('table').findOnce('tabledrag');
     // Show weight/parent cells and headers.
     $tables.find('.tabledrag-hide').css('display', '');
     // Hide TableDrag handles.
@@ -1320,7 +1317,7 @@
     if (this.indentEnabled) {
       this.indents = $tableRow.find('.js-indentation').length;
       this.children = this.findChildren(addClasses);
-      this.group = this.group.concat(this.children);
+      this.group = $.merge(this.group, this.children);
       // Find the depth of this entire group.
       for (let n = 0; n < this.group.length; n++) {
         this.groupDepth = Math.max(

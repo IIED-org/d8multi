@@ -74,12 +74,12 @@ class ContentTranslationSettingsTest extends BrowserTestBase {
     // Test that the translation settings are ignored if the bundle is marked
     // translatable but the entity type is not.
     $edit = ['settings[comment][comment_article][translatable]' => TRUE];
-    $this->assertSettings('comment', 'comment_article', FALSE, $edit);
+    $this->assertSettings('comment', NULL, FALSE, $edit);
 
     // Test that the translation settings are ignored if only a field is marked
     // as translatable and not the related entity type and bundle.
     $edit = ['settings[comment][comment_article][fields][comment_body]' => TRUE];
-    $this->assertSettings('comment', 'comment_article', FALSE, $edit);
+    $this->assertSettings('comment', NULL, FALSE, $edit);
 
     // Test that the translation settings are not stored if an entity type and
     // bundle are marked as translatable but no field is.
@@ -182,7 +182,7 @@ class ContentTranslationSettingsTest extends BrowserTestBase {
       'settings[node][article][translatable]' => TRUE,
       'settings[node][article][fields][title]' => TRUE,
     ];
-    $this->assertSettings('node', 'article', TRUE, $edit);
+    $this->assertSettings('node', NULL, TRUE, $edit);
 
     foreach ([TRUE, FALSE] as $translatable) {
       // Test that configurable field translatability is correctly switched.
@@ -253,16 +253,14 @@ class ContentTranslationSettingsTest extends BrowserTestBase {
    *
    * @param string $entity_type
    *   The entity type for which to check translatability.
-   * @param string|null $bundle
+   * @param string $bundle
    *   The bundle for which to check translatability.
    * @param bool $enabled
    *   TRUE if translatability should be enabled, FALSE otherwise.
    * @param array $edit
    *   An array of values to submit to the content translation settings page.
-   *
-   * @internal
    */
-  protected function assertSettings(string $entity_type, ?string $bundle, bool $enabled, array $edit): void {
+  protected function assertSettings($entity_type, $bundle, $enabled, $edit) {
     $this->drupalGet('admin/config/regional/content-language');
     $this->submitForm($edit, 'Save configuration');
     $args = ['@entity_type' => $entity_type, '@bundle' => $bundle, '@enabled' => $enabled ? 'enabled' : 'disabled'];

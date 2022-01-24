@@ -73,7 +73,7 @@ class MigrateBlockTest extends MigrateDrupal7TestBase {
    *   The display region.
    * @param string $theme
    *   The theme.
-   * @param int $weight
+   * @param string $weight
    *   The block weight.
    * @param string $label
    *   The block label.
@@ -81,10 +81,8 @@ class MigrateBlockTest extends MigrateDrupal7TestBase {
    *   The block label display setting.
    * @param bool $status
    *   Whether the block is expected to be enabled or disabled.
-   *
-   * @internal
    */
-  public function assertEntity(string $id, string $plugin_id, array $roles, string $pages, string $region, string $theme, int $weight, string $label, string $label_display, bool $status = TRUE): void {
+  public function assertEntity($id, $plugin_id, array $roles, $pages, $region, $theme, $weight, $label, $label_display, $status = TRUE) {
     $block = Block::load($id);
     $this->assertInstanceOf(Block::class, $block);
     /** @var \Drupal\block\BlockInterface $block */
@@ -167,7 +165,7 @@ class MigrateBlockTest extends MigrateDrupal7TestBase {
       'seven_statistics_popular',
       'seven_block_1',
     ];
-    $this->assertEmpty(Block::loadMultiple($non_existent_blocks));
+    $this->assertTrue(empty(Block::loadMultiple($non_existent_blocks)));
   }
 
 }

@@ -4,7 +4,6 @@ namespace Drupal\upgrade_status\Form;
 
 use Composer\Semver\Semver;
 use Drupal\Component\Serialization\Json;
-use Drupal\Core\DrupalKernelInterface;
 use Drupal\Core\Extension\Extension;
 use Drupal\Core\Extension\ModuleHandler;
 use Drupal\Core\Database\Connection;
@@ -107,18 +106,11 @@ class UpgradeStatusForm extends FormBase {
   protected $nextMajor;
 
   /**
-   * Database connection.
+   * Database connection
    *
    * @var \Drupal\Core\Database\Connection
    */
   protected $database;
-
-  /**
-   * Drupal kernel.
-   *
-   * @var \Drupal\Core\DrupalKernelInterface
-   */
-  protected $kernel;
 
   /**
    * {@inheritdoc}
@@ -135,8 +127,7 @@ class UpgradeStatusForm extends FormBase {
       $container->get('state'),
       $container->get('date.formatter'),
       $container->get('redirect.destination'),
-      $container->get('database'),
-      $container->get('kernel')
+      $container->get('database')
     );
   }
 
@@ -164,9 +155,7 @@ class UpgradeStatusForm extends FormBase {
    * @param \Drupal\Core\Routing\RedirectDestination $destination
    *   The destination service.
    * @param \Drupal\Core\Database\Connection $connection
-   *   The database connection.
-   * @param \Drupal\Core\DrupalKernelInterface $kernel
-   *   The Drupal kernel.
+   *   The database connection
    */
   public function __construct(
     ProjectCollector $project_collector,
@@ -179,8 +168,7 @@ class UpgradeStatusForm extends FormBase {
     StateInterface $state,
     DateFormatter $date_formatter,
     RedirectDestination $destination,
-    Connection $database,
-    DrupalKernelInterface $kernel
+    Connection $database
   ) {
     $this->projectCollector = $project_collector;
     $this->releaseStore = $key_value_expirable->get('update_available_releases');
@@ -194,7 +182,6 @@ class UpgradeStatusForm extends FormBase {
     $this->destination = $destination;
     $this->nextMajor = ProjectCollector::getDrupalCoreMajorVersion() + 1;
     $this->database = $database;
-    $this->kernel = $kernel;
   }
 
   /**
@@ -224,23 +211,7 @@ class UpgradeStatusForm extends FormBase {
     }
     catch (\Exception $e) {
       $analyzer_ready = FALSE;
-      // Message and impact description is not translated as the message
-      // is sourced from an exception thrown. Adding it to both the set
-      // of standard Drupal messages and to the bottom around the buttons.
-      $this->messenger()->addError($e->getMessage() . ' Scanning is not possible until this is resolved.');
-      $form['warning'] = [
-        [
-          '#theme' => 'status_messages',
-          '#message_list' => [
-            'error' => [$e->getMessage() . ' Scanning is not possible until this is resolved.'],
-          ],
-          '#status_headings' => [
-            'error' => t('Error message'),
-          ],
-        ],
-        // Set weight lower than the "actions" element's 100.
-        '#weight' => 90,
-      ];
+      $this->messenger()->addError($e->getMessage());
     }
 
     $environment = $this->buildEnvironmentChecks();
@@ -282,23 +253,21 @@ class UpgradeStatusForm extends FormBase {
       }
     }
 
-
-    $form['actions']['#type'] = 'actions';
-    $form['actions']['submit'] = [
+    $form['drupal_upgrade_status_form']['action']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Scan selected'),
       '#weight' => 2,
       '#button_type' => 'primary',
       '#disabled' => !$analyzer_ready,
     ];
-    $form['actions']['export'] = [
+    $form['drupal_upgrade_status_form']['action']['export'] = [
       '#type' => 'submit',
       '#value' => $this->t('Export selected as HTML'),
       '#weight' => 5,
       '#submit' => [[$this, 'exportReport']],
       '#disabled' => !$analyzer_ready,
     ];
-    $form['actions']['export_ascii'] = [
+    $form['drupal_upgrade_status_form']['action']['export_ascii'] = [
       '#type' => 'submit',
       '#value' => $this->t('Export selected as text'),
       '#weight' => 6,
@@ -507,6 +476,7 @@ class UpgradeStatusForm extends FormBase {
         ];
       }
       else {
+        $plan = (string) $this->projectCollector->getPlan($name);
         $option['issues'] = [
           'data' => [
             'label' => [
@@ -723,43 +693,6 @@ MARKUP
         ]
       ];
 
-      // Check database version.
-      $type = $this->database->databaseType();
-      $version = $this->database->version();
-      $addendum = '';
-      if ($type == 'pgsql') {
-        $type = 'PostgreSQL';
-        $requirement = $this->t('When using PostgreSQL, minimum version is 12 <a href=":trgm">with the pg_trgm extension</a> created.', [':trgm' => 'https://www.postgresql.org/docs/10/pgtrgm.html']);
-        $has_trgm = $this->database->query("SELECT installed_version FROM pg_available_extensions WHERE name = 'pg_trgm'")->fetchField();
-        if (version_compare($version, '12') >= 0 && $has_trgm) {
-          $class = 'no-known-error';
-          $addendum = $this->t('Has pg_trgm extension.');
-        }
-        else {
-          $status = FALSE;
-          $class = 'known-error';
-          if (!$has_trgm) {
-            $addendum = $this->t('No pg_trgm extension.');
-          }
-        }
-        $build['data']['#rows'][] = [
-          'class' => [$class],
-          'data' => [
-            'requirement' => [
-              'class' => 'requirement-label',
-              'data' => [
-                '#type' => 'markup',
-                '#markup' => $requirement
-              ],
-            ],
-            'status' => [
-              'data' => trim($type . ' ' . $version . ' ' . $addendum),
-              'class' => 'status-info',
-            ],
-          ]
-        ];
-      }
-
       // Check JSON support in database.
       $class = 'no-known-error';
       $requirement = $this->t('Supported.');
@@ -809,29 +742,6 @@ MARKUP
           ],
           'status' => [
             'data' => join(' ', $requirement),
-            'class' => 'status-info',
-          ],
-        ]
-      ];
-
-      // Check for deprecated or obsolete core extensions.
-      $class = 'no-known-error';
-      $requirement = $this->t('None installed.');
-      $deprecated_or_obsolete = $this->projectCollector->collectCoreDeprecatedAndObsoleteExtensions();
-      if (!empty($deprecated_or_obsolete)) {
-        $class = 'known-error';
-        $status = FALSE;
-        $requirement = join(', ', $deprecated_or_obsolete);
-      }
-      $build['data']['#rows'][] = [
-        'class' => [$class],
-        'data' => [
-          'requirement' => [
-            'class' => 'requirement-label',
-            'data' => $this->t('Deprecated or obsolete core extensions installed. These will be removed in the next major version.'),
-          ],
-          'status' => [
-            'data' => $requirement,
             'class' => 'status-info',
           ],
         ]
@@ -1074,44 +984,32 @@ MARKUP
       ]
     ];
 
-    // Check deprecated $config_directories if after Drupal 8.8.0. On older
-    // Drupal versions, the replacement is not supported and the setting may
-    // be generated by platforms like ddev, leading to false positives that
-    // the user should not even resolve yet before updating core.
-    if (version_compare(\Drupal::VERSION, '8.8.0') >= 0) {
-      $class = 'no-known-error';
-      $requirement = $this->t('Use of $config_directories in settings.php is deprecated.');
-      $label = $this->t('Not used');
-      $is_deprecated = $this->isDeprecatedConfigDirectorySettingUsed();
-      if ($is_deprecated !== FALSE) {
-        $status = FALSE;
-        $class = 'known-error';
-        if ($is_deprecated === TRUE) {
-          $label = $this->t('Deprecated configuration used');
-          $requirement .= ' ' . $this->t('<a href=":settings">Use $settings[\'config_sync_directory\'] instead.</a>', [':settings' => 'https://www.drupal.org/node/3018145']);
-        }
-        else {
-          $label = $this->t('Deprecated and new configuration used');
-          $requirement .= ' ' . $this->t('<a href=":settings">Use $settings[\'config_sync_directory\'] only.</a>', [':settings' => 'https://www.drupal.org/node/3018145']);
-        }
-      }
-      $build['data']['#rows'][] = [
-        'class' => $class,
-        'data' => [
-          'requirement' => [
-            'class' => 'requirement-label',
-            'data' => [
-              '#type' => 'markup',
-              '#markup' => $requirement
-            ],
-          ],
-          'status' => [
-            'data' => $label,
-            'class' => 'status-info',
-          ],
-        ]
-      ];
+    // Check deprecated $config_directories.
+    $class = 'no-known-error';
+    $requirement = $this->t('Use of $config_directories in settings.php is deprecated.');
+    $label = $this->t('Not used');
+    if (!empty($GLOBALS['config_directories'])) {
+      $status = FALSE;
+      $class = 'known-error';
+      $label = $this->t('Deprecated configuration used');
+      $requirement .= ' ' . $this->t('<a href=":settings">Use $settings[\'config_sync_directory\'] instead.</a>', [':settings' => 'https://www.drupal.org/node/3018145']);
     }
+    $build['data']['#rows'][] = [
+      'class' => $class,
+      'data' => [
+        'requirement' => [
+          'class' => 'requirement-label',
+          'data' => [
+            '#type' => 'markup',
+            '#markup' => $requirement
+          ],
+        ],
+        'status' => [
+          'data' => $label,
+          'class' => 'status-info',
+        ],
+      ]
+    ];
 
     // Save the overall status indicator in the build array. It will be
     // popped off later to be used in the summary table.
@@ -1394,46 +1292,6 @@ MARKUP
     }
 
     return [$error, $message, $data];
-  }
-
-  /**
-   * Checks config directory settings for use of deprecated values.
-   *
-   * The $config_directories variable is deprecated in Drupal 8. However,
-   * the Settings object obscures the fact in Settings:initialise(), where
-   * it throws an error but levels the values in the deprecated location
-   * and $settings. So after that, it is not possible to tell if either
-   * were set in settings.php or not.
-   *
-   * Therefore we reproduce loading of settings and check the raw values.
-   *
-   * @return bool|NULL
-   *   TRUE if the deprecated setting is used. FALSE if not used.
-   *   NULL if both values are used.
-   */
-  protected function isDeprecatedConfigDirectorySettingUsed() {
-    $app_root = $this->kernel->getAppRoot();
-    $site_path = $this->kernel->getSitePath();
-    if (is_readable($app_root . '/' . $site_path . '/settings.php')) {
-      // Reset the "global" variables expected to exist for settings.
-      $settings = [];
-      $config = [];
-      $databases = [];
-      $class_loader = require $app_root . '/autoload.php';
-      require $app_root . '/' . $site_path . '/settings.php';
-    }
-
-    if (!empty($config_directories)) {
-      if (!empty($settings['config_sync_directory'])) {
-        // Both are set. The $settings copy will prevail in Settings::initialise().
-        return NULL;
-      }
-      // Only the deprecated variable is set.
-      return TRUE;
-    }
-
-    // The deprecated variable is not set.
-    return FALSE;
   }
 
   /**

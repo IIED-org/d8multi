@@ -207,8 +207,7 @@ class Pack extends BaseTask implements PrintedInterface
 
         $tar_object = new \Archive_Tar($archiveFile);
         if (!empty($this->ignoreList)) {
-            $regexp = '#/' . join('$|/', $this->ignoreList) . '#';
-            $tar_object->setIgnoreRegexp($regexp);
+            $tar_object->setIgnoreList($this->ignoreList);
         }
         foreach ($items as $placementLocation => $filesystemLocation) {
             $p_remove_dir = $filesystemLocation;

@@ -15,8 +15,6 @@ use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Symfony\Component\HttpFoundation\Request;
 
-// cspell:ignore filefield
-
 /**
  * Provides an AJAX/progress aware widget for uploading and saving a file.
  *
@@ -136,11 +134,11 @@ class ManagedFile extends FormElement {
     // default value.
     if ($input === FALSE || $force_default) {
       if ($element['#extended']) {
-        $default_fids = $element['#default_value']['fids'] ?? [];
-        $return = $element['#default_value'] ?? ['fids' => []];
+        $default_fids = isset($element['#default_value']['fids']) ? $element['#default_value']['fids'] : [];
+        $return = isset($element['#default_value']) ? $element['#default_value'] : ['fids' => []];
       }
       else {
-        $default_fids = $element['#default_value'] ?? [];
+        $default_fids = isset($element['#default_value']) ? $element['#default_value'] : [];
         $return = ['fids' => []];
       }
 
@@ -220,7 +218,7 @@ class ManagedFile extends FormElement {
     // This is used sometimes so let's implode it just once.
     $parents_prefix = implode('_', $element['#parents']);
 
-    $fids = $element['#value']['fids'] ?? [];
+    $fids = isset($element['#value']['fids']) ? $element['#value']['fids'] : [];
 
     // Set some default element properties.
     $element['#progress_indicator'] = empty($element['#progress_indicator']) ? 'none' : $element['#progress_indicator'];

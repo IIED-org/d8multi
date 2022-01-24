@@ -46,10 +46,8 @@ class EntityApiTest extends EntityKernelTestBase {
    *   The entity type to run the tests with.
    * @param \Drupal\user\UserInterface $user1
    *   The user to run the tests with.
-   *
-   * @internal
    */
-  protected function assertCRUD(string $entity_type, UserInterface $user1): void {
+  protected function assertCRUD($entity_type, UserInterface $user1) {
     // Create some test entities.
     $entity = $this->container->get('entity_type.manager')
       ->getStorage($entity_type)
@@ -94,7 +92,7 @@ class EntityApiTest extends EntityKernelTestBase {
     $storage->delete($entities);
 
     $all = $storage->loadMultiple();
-    $this->assertEmpty($all, "All entities of type '$entity_type' should have been deleted.");
+    $this->assertTrue(empty($all), new FormattableMarkup('%entity_type: Deleted all entities.', ['%entity_type' => $entity_type]));
 
     // Verify that all data got deleted.
     $definition = \Drupal::entityTypeManager()->getDefinition($entity_type);
@@ -124,7 +122,7 @@ class EntityApiTest extends EntityKernelTestBase {
 
     // Verify that entities got deleted.
     $all = $storage->loadMultiple();
-    $this->assertEmpty($all, "All entities of type '$entity_type' should have been deleted.");
+    $this->assertTrue(empty($all), new FormattableMarkup('%entity_type: Deleted all entities.', ['%entity_type' => $entity_type]));
 
     // Verify that all data got deleted from the tables.
     $definition = \Drupal::entityTypeManager()->getDefinition($entity_type);

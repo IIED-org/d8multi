@@ -11,7 +11,6 @@ use Drupal\Core\StackMiddleware\NegotiationMiddleware;
 use Drupal\Tests\UnitTestCase;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
@@ -36,7 +35,7 @@ class NegotiationMiddlewareTest extends UnitTestCase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->app = $this->prophesize(MockedHttpKernelInterface::class);
+    $this->app = $this->prophesize(HttpKernelInterface::class);
     $this->contentNegotiation = new StubNegotiationMiddleware($this->app->reveal());
   }
 
@@ -122,13 +121,6 @@ class NegotiationMiddlewareTest extends UnitTestCase {
    * @covers ::registerFormat
    */
   public function testSetFormat() {
-    $app = $this->createMock(MockedHttpKernelInterface::class);
-    $app->expects($this->once())
-      ->method('handle')
-      ->will($this->returnValue($this->createMock(Response::class)));
-
-    $content_negotiation = new StubNegotiationMiddleware($app);
-
     $request = $this->prophesize(Request::class);
 
     // Default empty format list should not set any formats.
@@ -143,8 +135,8 @@ class NegotiationMiddlewareTest extends UnitTestCase {
     $request_mock->request = $request_data->reveal();
 
     // Trigger handle.
-    $content_negotiation->registerFormat('david', 'geeky/david');
-    $content_negotiation->handle($request_mock);
+    $this->contentNegotiation->registerFormat('david', 'geeky/david');
+    $this->contentNegotiation->handle($request_mock);
   }
 
 }
@@ -154,16 +146,5 @@ class StubNegotiationMiddleware extends NegotiationMiddleware {
   public function getContentType(Request $request) {
     return parent::getContentType($request);
   }
-
-}
-
-/**
- * Helper interface for the Symfony 6 version of the HttpKernelInterface.
- *
- * @todo Remove this interface when the Symfony 6 is in core.
- */
-interface MockedHttpKernelInterface extends HttpKernelInterface {
-
-  public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = TRUE): Response;
 
 }

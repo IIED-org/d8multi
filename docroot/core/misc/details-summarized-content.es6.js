@@ -54,7 +54,7 @@
        * Update summary.
        */
       onSummaryUpdated() {
-        const text = this.$node.drupalGetSummary();
+        const text = $.trim(this.$node.drupalGetSummary());
         this.$detailsSummarizedContentWrapper.html(
           Drupal.theme('detailsSummarizedContentText', text),
         );
@@ -72,11 +72,13 @@
    */
   Drupal.behaviors.detailsSummary = {
     attach(context) {
+      const $detailsElements = $(context).find('details').once('details');
+
       DetailsSummarizedContent.instances =
         DetailsSummarizedContent.instances.concat(
-          once('details', 'details', context).map(
-            (details) => new DetailsSummarizedContent(details),
-          ),
+          $detailsElements
+            .map((index, details) => new DetailsSummarizedContent(details))
+            .get(),
         );
     },
   };

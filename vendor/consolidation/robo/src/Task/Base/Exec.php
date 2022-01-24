@@ -2,15 +2,13 @@
 
 namespace Robo\Task\Base;
 
-use Closure;
+use Robo\Common\ExecTrait;
 use Robo\Contract\CommandInterface;
 use Robo\Contract\PrintedInterface;
 use Robo\Contract\SimulatedInterface;
 use Robo\Task\BaseTask;
 use Symfony\Component\Process\Process;
 use Robo\Result;
-use Robo\Common\CommandReceiver;
-use Robo\Common\ExecOneCommand;
 
 /**
  * Executes shell script. Closes it when running in background mode.
@@ -32,8 +30,8 @@ use Robo\Common\ExecOneCommand;
  */
 class Exec extends BaseTask implements CommandInterface, PrintedInterface, SimulatedInterface
 {
-    use CommandReceiver;
-    use ExecOneCommand;
+    use \Robo\Common\CommandReceiver;
+    use \Robo\Common\ExecOneCommand;
 
     /**
      * @var static[]
@@ -45,33 +43,12 @@ class Exec extends BaseTask implements CommandInterface, PrintedInterface, Simul
      */
     protected $command;
 
-    private static $isSetupStopRunningJob = false;
-
     /**
      * @param string|\Robo\Contract\CommandInterface $command
      */
     public function __construct($command)
     {
         $this->command = $this->receiveCommand($command);
-
-        $this->setupStopRunningJobs();
-    }
-
-    private function setupStopRunningJobs()
-    {
-        if (self::$isSetupStopRunningJob === true) {
-            return;
-        }
-
-        $stopRunningJobs = Closure::fromCallable(['self', 'stopRunningJobs']);
-
-        if (function_exists('pcntl_signal')) {
-            pcntl_signal(SIGTERM, $stopRunningJobs);
-        }
-
-        register_shutdown_function($stopRunningJobs);
-
-        self::$isSetupStopRunningJob = true;
     }
 
     public function __destruct()
@@ -143,3 +120,9 @@ class Exec extends BaseTask implements CommandInterface, PrintedInterface, Simul
         return $result;
     }
 }
+
+if (function_exists('pcntl_signal')) {
+    pcntl_signal(SIGTERM, ['Robo\Task\Base\Exec', 'stopRunningJobs']);
+}
+
+register_shutdown_function(['Robo\Task\Base\Exec', 'stopRunningJobs']);

@@ -18,7 +18,7 @@ class SliderIntegrationTest extends FacetsTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'views',
     'node',
     'search_api',
@@ -32,7 +32,7 @@ class SliderIntegrationTest extends FacetsTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
 
     $this->drupalLogin($this->adminUser);
@@ -54,8 +54,8 @@ class SliderIntegrationTest extends FacetsTestBase {
 
     $this->assertSession()->checkboxNotChecked('edit-facet-settings-slider-status');
 
-    $this->submitForm(['widget' => 'slider'], 'Configure widget');
-    $this->submitForm(['widget' => 'slider'], 'Save');
+    $this->drupalPostForm(NULL, ['widget' => 'slider'], 'Configure widget');
+    $this->drupalPostForm(NULL, ['widget' => 'slider'], 'Save');
 
     $this->assertSession()->checkboxChecked('edit-facet-settings-slider-status');
 

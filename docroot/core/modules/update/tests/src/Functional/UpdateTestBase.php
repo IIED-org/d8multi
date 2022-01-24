@@ -3,6 +3,7 @@
 namespace Drupal\Tests\update\Functional;
 
 use Drupal\Core\DrupalKernel;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
 
@@ -107,10 +108,8 @@ abstract class UpdateTestBase extends BrowserTestBase {
   protected function standardTests() {
     $this->assertSession()->responseContains('<h3>Drupal core</h3>');
     // Verify that the link to the Drupal project appears.
-    $this->assertSession()->linkExists('Drupal');
-    $this->assertSession()->linkByHrefExists('http://example.com/project/drupal');
+    $this->assertSession()->responseContains(Link::fromTextAndUrl(t('Drupal'), Url::fromUri('http://example.com/project/drupal'))->toString());
     $this->assertSession()->pageTextNotContains('No available releases found');
-    $this->assertSession()->pageTextContains('Last checked:');
   }
 
   /**

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace mglaman\PHPStanDrupal\Rules\Drupal\PluginManager;
+namespace PHPStan\Rules\Drupal\PluginManager;
 
 use PHPStan\Rules\Rule;
 

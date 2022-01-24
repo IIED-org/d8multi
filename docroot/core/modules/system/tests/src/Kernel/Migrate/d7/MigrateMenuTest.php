@@ -24,7 +24,7 @@ class MigrateMenuTest extends MigrateDrupal7TestBase {
   /**
    * Asserts various aspects of a menu.
    *
-   * @param string $id
+   * @param $id
    *   The menu ID.
    * @param string $language
    *   The menu language.
@@ -32,10 +32,8 @@ class MigrateMenuTest extends MigrateDrupal7TestBase {
    *   The menu label.
    * @param $description
    *   The menu description.
-   *
-   * @internal
    */
-  protected function assertEntity(string $id, string $language, string $label, string $description): void {
+  protected function assertEntity($id, $language, $label, $description) {
     $navigation_menu = Menu::load($id);
     $this->assertSame($id, $navigation_menu->id());
     $this->assertSame($language, $navigation_menu->language()->getId());

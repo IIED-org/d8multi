@@ -70,7 +70,6 @@ interface ConfigInstallerInterface {
    * Sets the configuration storage that provides the default configuration.
    *
    * @param \Drupal\Core\Config\StorageInterface $storage
-   *   The storage.
    *
    * @return $this
    */

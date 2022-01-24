@@ -126,7 +126,7 @@ class MimeMapManager implements MimeMapManagerInterface {
     $this->currentMapClass = $map_class;
     if (!isset($this->initializedMapClasses[$map_class])) {
       $event = new MapEvent($map_class);
-      $this->eventDispatcher->dispatch($event, MapEvent::INIT);
+      $this->eventDispatcher->dispatch(MapEvent::INIT, $event);
       $this->initializedMapClasses[$map_class] = $event->getErrors();
     }
     return $this;

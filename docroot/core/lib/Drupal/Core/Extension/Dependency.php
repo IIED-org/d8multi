@@ -124,7 +124,7 @@ class Dependency {
    */
   public static function createFromString($dependency) {
     if (strpos($dependency, ':') !== FALSE) {
-      [$project, $dependency] = explode(':', $dependency);
+      list($project, $dependency) = explode(':', $dependency);
     }
     else {
       $project = '';

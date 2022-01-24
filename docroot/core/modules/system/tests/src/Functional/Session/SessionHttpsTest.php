@@ -159,12 +159,7 @@ class SessionHttpsTest extends BrowserTestBase {
 
     // Follow the location header.
     $path = $this->getPathFromLocationHeader($response, FALSE);
-    $parsed_path = parse_url($path);
-    $query = [];
-    if (isset($parsed_path['query'])) {
-      parse_str($parsed_path['query'], $query);
-    }
-    $this->drupalGet($this->httpUrl($parsed_path['path']), ['query' => $query]);
+    $this->drupalGet($this->httpUrl($path));
     $this->assertSession()->statusCodeEquals(200);
   }
 
@@ -210,12 +205,7 @@ class SessionHttpsTest extends BrowserTestBase {
 
     // Follow the location header.
     $path = $this->getPathFromLocationHeader($response, TRUE);
-    $parsed_path = parse_url($path);
-    $query = [];
-    if (isset($parsed_path['query'])) {
-      parse_str($parsed_path['query'], $query);
-    }
-    $this->drupalGet($this->httpsUrl($parsed_path['path']), ['query' => $query]);
+    $this->drupalGet($this->httpsUrl($path));
     $this->assertSession()->statusCodeEquals(200);
   }
 
@@ -254,14 +244,12 @@ class SessionHttpsTest extends BrowserTestBase {
   /**
    * Tests that there exists a session with two specific session IDs.
    *
-   * @param string $sid
+   * @param $sid
    *   The insecure session ID to search for.
-   * @param string $assertion_text
+   * @param $assertion_text
    *   The text to display when we perform the assertion.
-   *
-   * @internal
    */
-  protected function assertSessionIds(string $sid, string $assertion_text): void {
+  protected function assertSessionIds($sid, $assertion_text) {
     $this->assertNotEmpty(\Drupal::database()->select('sessions', 's')->fields('s', ['timestamp'])->condition('sid', Crypt::hashBase64($sid))->execute()->fetchField(), $assertion_text);
   }
 

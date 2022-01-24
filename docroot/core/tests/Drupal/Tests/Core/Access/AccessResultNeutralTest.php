@@ -19,7 +19,7 @@ class AccessResultNeutralTest extends UnitTestCase {
    */
   public function testConstruction() {
     $a = new AccessResultNeutral();
-    $this->assertEquals('', $a->getReason());
+    $this->assertNull($a->getReason());
 
     $reason = $this->getRandomGenerator()->string();
     $b = new AccessResultNeutral($reason);

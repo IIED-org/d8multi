@@ -2,18 +2,18 @@
 
 namespace PHPStan\Rules\Deprecations;
 
+use PHPStan\Broker\Broker;
 use PHPStan\Reflection\ClassReflection;
-use PHPStan\Reflection\ReflectionProvider;
 
 class DeprecatedClassHelper
 {
 
-	/** @var ReflectionProvider */
-	private $reflectionProvider;
+	/** @var Broker */
+	private $broker;
 
-	public function __construct(ReflectionProvider $reflectionProvider)
+	public function __construct(Broker $broker)
 	{
-		$this->reflectionProvider = $reflectionProvider;
+		$this->broker = $broker;
 	}
 
 	public function getClassType(ClassReflection $class): string
@@ -44,7 +44,7 @@ class DeprecatedClassHelper
 		$deprecatedClasses = [];
 		foreach ($referencedClasses as $referencedClass) {
 			try {
-				$class = $this->reflectionProvider->getClass($referencedClass);
+				$class = $this->broker->getClass($referencedClass);
 			} catch (\PHPStan\Broker\ClassNotFoundException $e) {
 				continue;
 			}

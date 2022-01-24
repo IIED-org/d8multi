@@ -25,10 +25,9 @@
     const navButtons = document.querySelector(
       '[data-drupal-selector="mobile-buttons"]',
     );
-    return navButtons
-      ? window.getComputedStyle(navButtons).getPropertyValue('display') ===
-          'none'
-      : false;
+    return (
+      window.getComputedStyle(navButtons).getPropertyValue('display') === 'none'
+    );
   }
 
   Drupal.olivero.isDesktopNav = isDesktopNav;
@@ -181,25 +180,18 @@
         toggleDesktopNavVisibility,
         options,
       );
-
-      if (primaryNav) {
-        observer.observe(primaryNav);
-      }
+      observer.observe(primaryNav);
     }
 
-    if (stickyHeaderToggleButton) {
-      stickyHeaderToggleButton.addEventListener('click', () => {
-        toggleStickyHeaderState(!stickyHeaderIsEnabled());
-      });
-    }
+    stickyHeaderToggleButton.addEventListener('click', () => {
+      toggleStickyHeaderState(!stickyHeaderIsEnabled());
+    });
 
     // If header is pinned open and a header element gains focus, scroll to the
     // top of the page to ensure that the header elements can be seen.
-    const siteHeaderInner = document.querySelector(
-      '[data-drupal-selector="site-header-inner"]',
-    );
-    if (siteHeaderInner) {
-      siteHeaderInner.addEventListener('focusin', () => {
+    document
+      .querySelector('[data-drupal-selector="site-header-inner"]')
+      .addEventListener('focusin', () => {
         if (isDesktopNav() && !stickyHeaderIsEnabled()) {
           const header = document.querySelector(
             '[data-drupal-selector="site-header"]',
@@ -213,7 +205,6 @@
           }
         }
       });
-    }
 
     monitorNavPosition();
     setStickyHeaderStorage(getStickyHeaderStorage());

@@ -624,12 +624,8 @@ class EntityQueryAggregateTest extends EntityKernelTestBase {
    * @param array $expected
    *   An array of the expected results.
    * @param bool $sorted
-   *   (optiOnal) Whether the array keys of the expected are sorted, defaults to
-   *   FALSE.
-   *
-   * @internal
    */
-  protected function assertResults(array $expected, bool $sorted = FALSE): void {
+  protected function assertResults($expected, $sorted = FALSE) {
     $found = TRUE;
     $expected_keys = array_keys($expected);
     foreach ($this->queryResult as $key => $row) {
@@ -651,11 +647,9 @@ class EntityQueryAggregateTest extends EntityKernelTestBase {
    *
    * @param array $expected
    *   An array of the expected results.
-   *
-   * @internal
    */
-  protected function assertSortedResults(array $expected): void {
-    $this->assertResults($expected, TRUE);
+  protected function assertSortedResults($expected) {
+    return $this->assertResults($expected, TRUE);
   }
 
 }

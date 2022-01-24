@@ -8,10 +8,9 @@
 (function ($, Drupal) {
   Drupal.behaviors.localeTranslateDirty = {
     attach: function attach() {
-      var form = once('localetranslatedirty', '#locale-translate-edit-form');
+      var $form = $('#locale-translate-edit-form').once('localetranslatedirty');
 
-      if (form.length) {
-        var $form = $(form);
+      if ($form.length) {
         $form.one('formUpdated.localeTranslateDirty', 'table', function () {
           var $marker = $(Drupal.theme('localeTranslateChangedWarning')).hide();
           $(this).addClass('changed').before($marker);
@@ -19,32 +18,31 @@
         });
         $form.on('formUpdated.localeTranslateDirty', 'tr', function () {
           var $row = $(this);
-          var rowToMark = once('localemark', $row);
+          var $rowToMark = $row.once('localemark');
           var marker = Drupal.theme('localeTranslateChangedMarker');
           $row.addClass('changed');
 
-          if (rowToMark.length) {
-            $(rowToMark).find('td:first-child .js-form-item').append(marker);
+          if ($rowToMark.length) {
+            $rowToMark.find('td:first-child .js-form-item').append(marker);
           }
         });
       }
     },
     detach: function detach(context, settings, trigger) {
       if (trigger === 'unload') {
-        var form = once.remove('localetranslatedirty', '#locale-translate-edit-form');
+        var $form = $('#locale-translate-edit-form').removeOnce('localetranslatedirty');
 
-        if (form.length) {
-          $(form).off('formUpdated.localeTranslateDirty');
+        if ($form.length) {
+          $form.off('formUpdated.localeTranslateDirty');
         }
       }
     }
   };
   Drupal.behaviors.hideUpdateInformation = {
     attach: function attach(context, settings) {
-      var table = once('expand-updates', '#locale-translation-status-form');
+      var $table = $('#locale-translation-status-form').once('expand-updates');
 
-      if (table.length) {
-        var $table = $(table);
+      if ($table.length) {
         var $tbodies = $table.find('tbody');
         $tbodies.on('click keydown', '.description', function (e) {
           if (e.keyCode && e.keyCode !== 13 && e.keyCode !== 32) {

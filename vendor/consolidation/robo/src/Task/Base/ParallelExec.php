@@ -8,7 +8,6 @@ use Robo\Result;
 use Robo\Task\BaseTask;
 use Symfony\Component\Process\Exception\ProcessTimedOutException;
 use Symfony\Component\Process\Process;
-use Robo\Common\CommandReceiver;
 
 /**
  * Class ParallelExecTask
@@ -25,7 +24,7 @@ use Robo\Common\CommandReceiver;
  */
 class ParallelExec extends BaseTask implements CommandInterface, PrintedInterface
 {
-    use CommandReceiver;
+    use \Robo\Common\CommandReceiver;
 
     /**
      * @var Process[]

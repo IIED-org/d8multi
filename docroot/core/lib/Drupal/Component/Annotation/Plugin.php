@@ -78,7 +78,7 @@ class Plugin implements AnnotationInterface {
    * {@inheritdoc}
    */
   public function getProvider() {
-    return $this->definition['provider'] ?? FALSE;
+    return isset($this->definition['provider']) ? $this->definition['provider'] : FALSE;
   }
 
   /**

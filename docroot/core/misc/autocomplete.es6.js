@@ -38,7 +38,7 @@
       }
     }
     if (value.length > 0) {
-      result.push(current.trim());
+      result.push($.trim(current));
     }
 
     return result;
@@ -212,9 +212,9 @@
   Drupal.behaviors.autocomplete = {
     attach(context) {
       // Act on textfields with the "form-autocomplete" class.
-      const $autocomplete = $(
-        once('autocomplete', 'input.form-autocomplete', context),
-      );
+      const $autocomplete = $(context)
+        .find('input.form-autocomplete')
+        .once('autocomplete');
       if ($autocomplete.length) {
         // Allow options to be overridden per instance.
         const blacklist = $autocomplete.attr(
@@ -240,9 +240,10 @@
     },
     detach(context, settings, trigger) {
       if (trigger === 'unload') {
-        $(
-          once.remove('autocomplete', 'input.form-autocomplete', context),
-        ).autocomplete('destroy');
+        $(context)
+          .find('input.form-autocomplete')
+          .removeOnce('autocomplete')
+          .autocomplete('destroy');
       }
     },
   };

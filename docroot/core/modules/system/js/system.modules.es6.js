@@ -18,11 +18,8 @@
    */
   Drupal.behaviors.tableFilterByText = {
     attach(context, settings) {
-      const [input] = once('table-filter-text', 'input.table-filter-text');
-      if (!input) {
-        return;
-      }
-      const $table = $(input.getAttribute('data-table'));
+      const $input = $('input.table-filter-text').once('table-filter-text');
+      const $table = $($input.attr('data-table'));
       let $rowsAndDetails;
       let $rows;
       let $details;
@@ -95,7 +92,7 @@
         $rows = $table.find('tbody tr');
         $details = $rowsAndDetails.filter('.package-listing');
 
-        $(input).on({
+        $input.on({
           keyup: debounce(filterModuleList, 200),
           keydown: preventEnterKey,
         });

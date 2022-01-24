@@ -193,9 +193,6 @@ abstract class HandlerBase extends PluginBase implements ViewsHandlerInterface {
    * {@inheritdoc}
    */
   public function sanitizeValue($value, $type = NULL) {
-    if ($value === NULL) {
-      return '';
-    }
     switch ($type) {
       case 'xss':
         $value = Xss::filter($value);

@@ -48,7 +48,7 @@
     if (editMode) {
       $editButton.text(Drupal.t('Editing'));
       closeToolbarTrays();
-      $editables = $(once('settingstray', '[data-drupal-settingstray="editable"]'));
+      $editables = $('[data-drupal-settingstray="editable"]').once('settingstray');
 
       if ($editables.length) {
         document.querySelector('[data-off-canvas-main-canvas]').addEventListener('click', preventClick, true);
@@ -73,18 +73,18 @@
         });
       }
     } else {
-      $editables = $(once.remove('settingstray', '[data-drupal-settingstray="editable"]'));
+        $editables = $('[data-drupal-settingstray="editable"]').removeOnce('settingstray');
 
-      if ($editables.length) {
-        document.querySelector('[data-off-canvas-main-canvas]').removeEventListener('click', preventClick, true);
-        $editables.off('.settingstray');
-        $(quickEditItemSelector).off('.settingstray');
+        if ($editables.length) {
+          document.querySelector('[data-off-canvas-main-canvas]').removeEventListener('click', preventClick, true);
+          $editables.off('.settingstray');
+          $(quickEditItemSelector).off('.settingstray');
+        }
+
+        $editButton.text(Drupal.t('Edit'));
+        closeOffCanvas();
+        disableQuickEdit();
       }
-
-      $editButton.text(Drupal.t('Edit'));
-      closeOffCanvas();
-      disableQuickEdit();
-    }
 
     getItemsToToggle().toggleClass('js-settings-tray-edit-mode', editMode);
     $('.edit-mode-inactive').toggleClass('visually-hidden', editMode);
@@ -115,7 +115,7 @@
 
   $(document).on('drupalContextualLinkAdded', function (event, data) {
     prepareAjaxLinks();
-    once('settings_tray.edit_mode_init', 'body').forEach(function () {
+    $('body').once('settings_tray.edit_mode_init').each(function () {
       var editMode = localStorage.getItem('Drupal.contextualToolbar.isViewing') === 'false';
 
       if (editMode) {
@@ -138,7 +138,7 @@
   });
   Drupal.behaviors.toggleEditMode = {
     attach: function attach() {
-      $(once('settingstray', toggleEditSelector)).on('click.settingstray', toggleEditMode);
+      $(toggleEditSelector).once('settingstray').on('click.settingstray', toggleEditMode);
     }
   };
   $(window).on({

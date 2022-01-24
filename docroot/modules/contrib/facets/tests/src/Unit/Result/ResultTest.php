@@ -8,7 +8,7 @@ use Drupal\facets\Result\Result;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Unit test for result.
+ * Class ResultTest.
  *
  * @group facets
  */

@@ -91,8 +91,7 @@ class Field extends DrupalSqlBase {
 
     // Unserialize data.
     $global_settings = unserialize($row->getSourceProperty('global_settings'));
-    $db_columns = $row->getSourceProperty('db_columns');
-    $db_columns = is_string($db_columns) ? unserialize($db_columns) : FALSE;
+    $db_columns = unserialize($row->getSourceProperty('db_columns'));
     $row->setSourceProperty('global_settings', $global_settings);
     $row->setSourceProperty('db_columns', $db_columns);
     return parent::prepareRow($row);

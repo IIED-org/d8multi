@@ -203,8 +203,7 @@ class BatchBuilder {
    * Sets the file that contains the callback functions.
    *
    * The path should be relative to base_path(), and thus should be built using
-   * \Drupal\Core\Extension\ExtensionList::getPath(). Defaults to
-   * {module_name}.module.
+   * drupal_get_path(). Defaults to {module_name}.module.
    *
    * The file needs to be set before using ::addOperation(),
    * ::setFinishCallback(), or any other function that uses callbacks from the

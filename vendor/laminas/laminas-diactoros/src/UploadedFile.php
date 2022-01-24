@@ -80,7 +80,7 @@ class UploadedFile implements UploadedFileInterface
     private $stream;
 
     /**
-     * @param string|resource|StreamInterface $streamOrFile
+     * @param string|resource $streamOrFile
      * @param int $size
      * @param int $errorStatus
      * @param string|null $clientFilename

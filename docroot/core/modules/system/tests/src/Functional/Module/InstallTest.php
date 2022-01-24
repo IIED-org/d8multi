@@ -51,11 +51,9 @@ class InstallTest extends BrowserTestBase {
    * Tests recorded schema versions of early installed modules in the installer.
    */
   public function testRequiredModuleSchemaVersions() {
-    /** @var \Drupal\Core\Update\UpdateHookRegistry $update_registry */
-    $update_registry = \Drupal::service('update.update_hook_registry');
-    $version = $update_registry->getInstalledVersion('system');
+    $version = drupal_get_installed_schema_version('system', TRUE);
     $this->assertGreaterThan(0, $version);
-    $version = $update_registry->getInstalledVersion('user');
+    $version = drupal_get_installed_schema_version('user', TRUE);
     $this->assertGreaterThan(0, $version);
 
     $post_update_key_value = \Drupal::keyValue('post_update');

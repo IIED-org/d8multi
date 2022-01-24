@@ -58,10 +58,8 @@ class MigrateUrlAliasTest extends MigrateDrupal6TestBase {
    *   The path conditions.
    * @param \Drupal\path_alias\PathAliasInterface $path_alias
    *   The path alias.
-   *
-   * @internal
    */
-  private function assertPath(int $pid, array $conditions, PathAliasInterface $path_alias): void {
+  private function assertPath($pid, $conditions, PathAliasInterface $path_alias) {
     $this->assertSame($pid, (int) $path_alias->id());
     $this->assertSame($conditions['alias'], $path_alias->getAlias());
     $this->assertSame($conditions['langcode'], $path_alias->get('langcode')->value);

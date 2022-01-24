@@ -11,8 +11,6 @@ use Consolidation\Config\Util\Interpolator;
 use Consolidation\SiteProcess\Util\Shell;
 use Consolidation\SiteProcess\Util\ShellOperatorInterface;
 use Consolidation\SiteProcess\Util\Escape;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
 
 /**
  * A wrapper around Symfony Process that uses site aliases
@@ -190,7 +188,7 @@ class SiteProcess extends ProcessBase
             $processedArgs = $this->processArgs();
             $commandLine = Escape::argsForSite($this->siteAlias, $processedArgs);
             $commandLine = implode(' ', $commandLine);
-            $this->overrideCommandLine($commandLine);
+            $this->setCommandLine($commandLine);
         }
         return $commandLine;
     }
@@ -202,19 +200,6 @@ class SiteProcess extends ProcessBase
     {
         $cmd = $this->getCommandLine();
         parent::start($callback, $env);
-    }
-
-    public function mustRun(callable $callback = null, array $env = []): \Symfony\Component\Process\Process
-    {
-        if (0 !== $this->run($callback, $env)) {
-            // Be less verbose when there is nothing in stdout or stderr.
-            if (empty($this->getOutput()) && empty($this->getErrorOutput())) {
-                $this->disableOutput();
-            }
-            throw new ProcessFailedException($this);
-        }
-
-        return $this;
     }
 
     /**
@@ -255,24 +240,5 @@ class SiteProcess extends ProcessBase
             },
             $args
         );
-    }
-
-    /**
-     * Overrides the command line to be executed.
-     *
-     * @param string|array $commandline The command to execute
-     *
-     * @return $this
-     *
-     * @todo refactor library so this hack to get around changes in
-     *   symfony/process 5 is unnecessary.
-     */
-    private function overrideCommandLine($commandline)
-    {
-        $commandlineSetter = function ($commandline) {
-            $this->commandline = $commandline;
-        };
-        $commandlineSetter->bindTo($this, Process::class)($commandline);
-        return $this;
     }
 }

@@ -31,7 +31,7 @@
    */
   $.fn.drupalGetSummary = function () {
     const callback = this.data('summaryCallback');
-    return this[0] && callback ? callback(this[0]).trim() : '';
+    return this[0] && callback ? $.trim(callback(this[0])) : '';
   };
 
   /**
@@ -127,11 +127,9 @@
         }
       }
 
-      $(once('form-single-submit', 'body')).on(
-        'submit.singleSubmit',
-        'form:not([method~="GET"])',
-        onFormSubmit,
-      );
+      $('body')
+        .once('form-single-submit')
+        .on('submit.singleSubmit', 'form:not([method~="GET"])', onFormSubmit);
     },
   };
 
@@ -184,8 +182,8 @@
     attach(context) {
       const $context = $(context);
       const contextIsForm = $context.is('form');
-      const $forms = $(
-        once('form-updated', contextIsForm ? $context : $context.find('form')),
+      const $forms = (contextIsForm ? $context : $context.find('form')).once(
+        'form-updated',
       );
       let formFields;
 
@@ -220,15 +218,15 @@
       const $context = $(context);
       const contextIsForm = $context.is('form');
       if (trigger === 'unload') {
-        once
-          .remove(
-            'form-updated',
-            contextIsForm ? $context : $context.find('form'),
-          )
-          .forEach((form) => {
+        const $forms = (
+          contextIsForm ? $context : $context.find('form')
+        ).removeOnce('form-updated');
+        if ($forms.length) {
+          $.makeArray($forms).forEach((form) => {
             form.removeAttribute('data-drupal-form-fields');
             $(form).off('.formUpdated');
           });
+        }
       }
     },
   };
@@ -244,8 +242,8 @@
   Drupal.behaviors.fillUserInfoFromBrowser = {
     attach(context, settings) {
       const userInfo = ['name', 'mail', 'homepage'];
-      const $forms = $(
-        once('user-info-from-browser', '[data-user-info-from-browser]'),
+      const $forms = $('[data-user-info-from-browser]').once(
+        'user-info-from-browser',
       );
       if ($forms.length) {
         userInfo.forEach((info) => {

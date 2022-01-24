@@ -47,9 +47,6 @@ field.formatter.settings.audiofield_audioplayer:
     audio_player_wavesurfer_responsive:
       type: boolean
       label: 'Responsive'
-    audio_player_wavesurfer_use_peakfile:
-      type: boolean
-      label: 'Use peakfile'
     audio_player_wavesurfer_wavecolor:
       type: string
       label: 'Wave color'

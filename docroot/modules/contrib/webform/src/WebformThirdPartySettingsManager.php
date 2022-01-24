@@ -109,7 +109,7 @@ class WebformThirdPartySettingsManager implements WebformThirdPartySettingsManag
    */
   public function getThirdPartySetting($module, $key, $default = NULL) {
     $value = $this->config->get("third_party_settings.$module.$key");
-    return $value ?? $default;
+    return (isset($value)) ? $value : $default;
   }
 
   /**

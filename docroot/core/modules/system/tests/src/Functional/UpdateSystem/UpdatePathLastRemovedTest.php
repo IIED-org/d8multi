@@ -55,11 +55,8 @@ class UpdatePathLastRemovedTest extends BrowserTestBase {
    * Tests that a module with a too old schema version can not be updated.
    */
   public function testLastRemovedVersion() {
-    /** @var \Drupal\Core\Update\UpdateHookRegistry $update_registry */
-    $update_registry = \Drupal::service('update.update_hook_registry');
-
-    $update_registry->setInstalledVersion('update_test_last_removed', 8000);
-    $update_registry->setInstalledVersion('system', 8804);
+    drupal_set_installed_schema_version('update_test_last_removed', 8000);
+    drupal_set_installed_schema_version('system', 8804);
 
     // Access the update page with a schema version that is too old for system
     // and the test module, only the generic core message should be shown.
@@ -75,7 +72,7 @@ class UpdatePathLastRemovedTest extends BrowserTestBase {
 
     // Update the installed version of system and then assert that now,
     // the test module is shown instead.
-    $update_registry->setInstalledVersion('system', 8805);
+    drupal_set_installed_schema_version('system', 8805);
     $this->drupalGet($this->updateUrl);
 
     $assert_session->pageTextNotContains('The version of Drupal you are trying to update from is too old');
@@ -86,12 +83,11 @@ class UpdatePathLastRemovedTest extends BrowserTestBase {
 
     // Set the expected schema version for the node and test module, updates are
     // successful now.
-    $update_registry->setInstalledVersion('update_test_last_removed', 8002);
+    drupal_set_installed_schema_version('update_test_last_removed', 8002);
 
     $this->runUpdates();
-    /** @var \Drupal\Core\Update\UpdateHookRegistry $update_registry */
-    $update_registry = \Drupal::service('update.update_hook_registry');
-    $this->assertEquals(8003, $update_registry->getInstalledVersion('update_test_last_removed'));
+    $this->assertEquals(8003, drupal_get_installed_schema_version('update_test_last_removed'));
+
   }
 
 }

@@ -4,7 +4,6 @@ namespace Drupal\help\Controller;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Extension\ExtensionLifecycle;
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\help\HelpSectionManager;
@@ -133,7 +132,7 @@ class HelpController extends ControllerBase {
       $build['#title'] = $module_name;
 
       $info = $this->moduleExtensionList->getExtensionInfo($name);
-      if ($info[ExtensionLifecycle::LIFECYCLE_IDENTIFIER] === ExtensionLifecycle::EXPERIMENTAL) {
+      if ($info['package'] === 'Core (Experimental)') {
         $this->messenger()->addWarning($this->t('This module is experimental. <a href=":url">Experimental modules</a> are provided for testing purposes only. Use at your own risk.', [':url' => 'https://www.drupal.org/core/experimental']));
       }
 

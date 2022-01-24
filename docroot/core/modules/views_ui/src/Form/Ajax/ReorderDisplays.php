@@ -52,7 +52,10 @@ class ReorderDisplays extends ViewsFormBase {
 
     // Sort the displays.
     uasort($displays, function ($display1, $display2) {
-      return $display1['position'] <=> $display2['position'];
+      if ($display1['position'] != $display2['position']) {
+        return $display1['position'] < $display2['position'] ? -1 : 1;
+      }
+      return 0;
     });
 
     $form['displays'] = [

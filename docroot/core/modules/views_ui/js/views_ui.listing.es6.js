@@ -18,11 +18,8 @@
    */
   Drupal.behaviors.viewTableFilterByText = {
     attach(context, settings) {
-      const [input] = once('views-filter-text', 'input.views-filter-text');
-      if (!input) {
-        return;
-      }
-      const $table = $(input.getAttribute('data-table'));
+      const $input = $('input.views-filter-text').once('views-filter-text');
+      const $table = $($input.attr('data-table'));
       let $rows;
 
       function filterViewList(e) {
@@ -47,7 +44,7 @@
 
       if ($table.length) {
         $rows = $table.find('tbody tr');
-        $(input).on('keyup', filterViewList);
+        $input.on('keyup', filterViewList);
       }
     },
   };

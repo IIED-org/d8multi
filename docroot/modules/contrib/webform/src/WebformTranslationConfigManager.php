@@ -2,7 +2,6 @@
 
 namespace Drupal\webform;
 
-use Drupal\block\Entity\Block;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Config\TypedConfigManagerInterface;
@@ -93,7 +92,7 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
    * @param \Drupal\Core\Config\TypedConfigManagerInterface $typed_config_manager
    *   The typed config manager.
    */
-  public function __construct(ModuleHandlerInterface $module_handler, FormBuilderInterface $form_builder, WebformElementManagerInterface $element_manager, WebformTranslationManagerInterface $translation_manager, TypedConfigManagerInterface $typed_config_manager = NULL) {
+  public function __construct(ModuleHandlerInterface $module_handler, FormBuilderInterface $form_builder, WebformElementManagerInterface $element_manager, WebformTranslationManagerInterface $translation_manager, TypedConfigManagerInterface $typed_config_manager = null) {
     $this->formBuilder = $form_builder;
     $this->moduleHandler = $module_handler;
     $this->elementManager = $element_manager;
@@ -110,7 +109,7 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
       if ($config_name === 'webform.settings') {
         $this->alterConfigSettingsForm($config_name, $config_element);
       }
-      elseif (strpos($config_name, 'block.block.') === 0) {
+      elseif ($config_name === 'block.block.webform') {
         $this->alterConfigBlockForm($config_name, $config_element);
       }
       elseif (strpos($config_name, 'field.field.') === 0) {
@@ -152,11 +151,6 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
    *   The webform block configuration element.
    */
   protected function alterConfigBlockForm($config_name, array &$config_element) {
-    $block = Block::load(str_replace('block.block.', '', $config_name));
-    if (!$block || $block->getPluginId() !== 'webform_block') {
-      return;
-    }
-
     $this->alterTypedConfigElements($config_element['settings'], "block.settings.webform_block");
   }
 
@@ -201,7 +195,7 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
     $this->alterTypedConfigElements($config_element, "webform.webform_options.*");
   }
 
-  /**
+    /**
    * Alter the webform options custom configuration form.
    *
    * @param string $config_name
@@ -212,6 +206,7 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
   protected function alterConfigOptionsCustomForm($config_name, array &$config_element) {
     $this->alterTypedConfigElements($config_element, "webform_options_custom.webform_options_custom.*");
   }
+
 
   /**
    * Alter the webform image select configuration form.
@@ -232,12 +227,12 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
    *   The webform configuration name.
    * @param array $config_element
    *   The webform configuration element.
-   * @param array $form
+   * @param $form
    *   Nested array of form elements that comprise the form.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   * @param $form_state
    *   The current state of the form.
    */
-  protected function alterConfigWebformForm($config_name, array &$config_element, array &$form, FormStateInterface $form_state) {
+  protected function alterConfigWebformForm($config_name, &$config_element, &$form, $form_state) {
     $this->alterConfigWebformFormElements($config_name, $config_element, $form, $form_state);
     $this->alterConfigWebformFormHandlers($config_name, $config_element, $form, $form_state);
 
@@ -284,7 +279,7 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
       $translation_elements[$key] = WebformArrayHelper::addPrefix($element);
       // Handle composite elements.
       if (isset($translation_elements[$key]['#element'])) {
-        foreach ($translation_elements[$key]['#element'] as $composite_key => $composite_element) {
+        foreach ($translation_elements[$key]['#element'] as $composite_key => $composite_element)  {
           $translation_elements[$key]['#element'][$composite_key] = WebformArrayHelper::addPrefix($composite_element);
         }
       }
@@ -307,9 +302,9 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
     $form_state->setValues($values);
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Handler alteration methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * Alter the webform configuration form handlers.
@@ -318,15 +313,15 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
    *   The webform configuration name.
    * @param array $config_element
    *   The webform configuration element.
-   * @param array $form
+   * @param $form
    *   Nested array of form elements that comprise the form.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   * @param $form_state
    *   The current state of the form.
    */
-  protected function alterConfigWebformFormHandlers($config_name, array &$config_element, array &$form, FormStateInterface $form_state) {
-    $handlers = &$config_element['handlers'];
+  protected function alterConfigWebformFormHandlers($config_name, &$config_element, &$form, $form_state) {
+    $handlers =& $config_element['handlers'];
     // Verify if the webform has any handler.
-    if (!isset($handlers)) {
+    if(!isset($handlers)){
       return;
     }
 
@@ -357,9 +352,9 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
     }
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Form and element alteration methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * Alter the webform configuration form elements.
@@ -368,19 +363,19 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
    *   The webform configuration name.
    * @param array $config_element
    *   The webform configuration element.
-   * @param array $form
+   * @param $form
    *   Nested array of form elements that comprise the form.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   * @param $form_state
    *   The current state of the form.
    */
-  protected function alterConfigWebformFormElements($config_name, array &$config_element, array &$form, FormStateInterface $form_state) {
+  protected function alterConfigWebformFormElements($config_name, &$config_element, &$form, $form_state) {
     $webform = $this->loadWebform($config_name);
 
     $translation_langcode = $form_state->get('config_translation_language')->getId();
     $source_elements = $this->translationManager->getSourceElements($webform);
     $translation_elements = $this->translationManager->getTranslationElements($webform, $translation_langcode);
 
-    $elements = &$config_element['elements'];
+    $elements =& $config_element['elements'];
 
     // Remove the #theme and source properties so that just the
     // translation details element is rendered.
@@ -442,7 +437,7 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
       // NOTE: It is possible that all the below code could be moved into
       // the WebformElement plugin but this would create more abstraction.
       // For now, it is easier to keep all the logic in this one class/service.
-      if (is_array($property_value) && !WebformArrayHelper::isMultidimensional($property_value) && !WebformElementHelper::properties($property_value)) {
+      if (is_array($property_value) && !WebformArrayHelper::isMultidimensional($property_value)) {
         // Options.
         $elements[$property_key] = $this->buildConfigWebformFormOptionsPropertyElement(
           $element,
@@ -491,13 +486,13 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
    *   The Webform element's translated properties.
    * @param array $source_element
    *   The Webform element's source properties.
-   * @param array $property_parents
+   * @param array $parents
    *   The Webform element's parents.
    *
    * @return array
    *   A render array containing config webform form options property element.
    */
-  protected function buildConfigWebformFormOptionsPropertyElement(array $element, array $translation_element, array $source_element, array $property_parents) {
+  protected function buildConfigWebformFormOptionsPropertyElement(array $element, array $translation_element, array $source_element, $property_parents) {
     $property_key = end($property_parents);
     $property_name = '#' . $property_key;
 
@@ -505,18 +500,18 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
     $element_property = $this->getWebformElementProperty($webform_element->getPluginId(), $property_name);
 
     $property_value = $translation_element[$property_name];
-    $property_title = $element_property['#title'] ?? $property_name;
+    $property_title = (isset($element_property['#title'])) ? $element_property['#title'] : $property_name;
 
     // Options (key/value pairs).
     $translation_options = $property_value;
     $source_options = $source_element[$property_name];
 
-    $t_args = ['@label' => isset($element['#label']) ? Unicode::ucfirst($element['#label']) : $this->t('Options')];
+    $t_args = ['@label' => isset($element['#label']) ? Unicode::ucfirst($element['#label']) : t('Options')];
     if (!empty($element['#options_description'])) {
-      $options_title = $this->t('@label text', $t_args);
+      $options_title = t('@label text', $t_args);
     }
     else {
-      $options_title = $this->t('@label text -- description', $t_args);
+      $options_title = t('@label text -- description', $t_args);
     }
 
     // Header.
@@ -567,13 +562,13 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
    *   The Webform element's translated properties.
    * @param array $source_element
    *   The Webform element's source properties.
-   * @param array $property_parents
+   * @param array $parents
    *   The Webform element's parents.
    *
    * @return array
    *   A render array containing config webform form image select property element.
    */
-  protected function buildConfigWebformFormImageSelectPropertyElement(array $element, array $translation_element, array $source_element, array $property_parents) {
+  protected function buildConfigWebformFormImageSelectPropertyElement(array $element, array $translation_element, array $source_element, $property_parents) {
     $property_key = end($property_parents);
     $property_name = '#' . $property_key;
 
@@ -581,7 +576,7 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
     $element_property = $this->getWebformElementProperty($webform_element->getPluginId(), $property_name);
 
     $property_value = $translation_element[$property_name];
-    $property_title = $element_property['#title'] ?? $property_name;
+    $property_title = (isset($element_property['#title'])) ? $element_property['#title'] : $property_name;
 
     // Images.
     $translation_images = $property_value;
@@ -665,19 +660,19 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
    *   The Webform element's translated properties.
    * @param array $source_element
    *   The Webform element's source properties.
-   * @param array $property_parents
+   * @param array $parents
    *   The Webform element's parents.
    *
    * @return array
    *   A render array containing config webform form composite property element.
    */
-  protected function buildConfigWebformFormCompositePropertyElement(array $element, array $translation_element, array $source_element, array $property_parents) {
+  protected function buildConfigWebformFormCompositePropertyElement(array $element, array $translation_element, array $source_element, $property_parents) {
     $property_key = end($property_parents);
     $property_name = '#' . $property_key;
 
-    /** @var \Drupal\webform\Plugin\WebformElement\WebformCustomComposite $webform_element */
     $webform_element = $this->elementManager->getElementInstance($element);
-    $webform_element->initializeCompositeElements($element);
+    /** @var \Drupal\webform\Plugin\WebformElement\WebformCustomComposite $webform_element */
+    $webform_element->initializeCompositeElements($element);;
     $composite_elements = $element['#webform_composite_elements'];
 
     $property_value = $translation_element[$property_name];
@@ -712,13 +707,13 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
    *   The Webform element's translated properties.
    * @param array $source_element
    *   The Webform element's source properties.
-   * @param array $property_parents
+   * @param array $parents
    *   The Webform element's parents.
    *
    * @return array
    *   A render array containing config webform form default property element.
    */
-  protected function buildConfigWebformFormDefaultPropertyElement(array $element, array $translation_element, array $source_element, array $property_parents) {
+  protected function buildConfigWebformFormDefaultPropertyElement(array $element, array $translation_element, array $source_element, $property_parents) {
     $property_key = end($property_parents);
     $property_name = '#' . $property_key;
 
@@ -726,8 +721,8 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
     $element_property = $this->getWebformElementProperty($webform_element->getPluginId(), $property_name);
 
     $property_value = $translation_element[$property_name];
-    $property_title = $element_property['#title'] ?? $property_name;
-    $property_type = $element_property['#type'] ?? NULL;
+    $property_title = (isset($element_property['#title'])) ? $element_property['#title'] : $property_name;
+    $property_type = (isset($element_property['#type'])) ? $element_property['#type'] : NULL;
 
     $property_translation_element = [
       '#title' => $property_title,
@@ -828,7 +823,7 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
     }
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * Alter the webform configuration form using type config schema.
@@ -859,8 +854,8 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
         continue;
       }
 
-      $element = &$elements[$element_key];
-      $schema = &$schema_mapping[$element_key];
+      $element =& $elements[$element_key];
+      $schema =& $schema_mapping[$element_key];
 
       if (isset($schema['type']) && $schema['type'] === 'mapping') {
         $this->alterSchemaElementsRecursive($element, $schema['mapping']);
@@ -891,7 +886,7 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
     // Undo nl2br() so that the HTML markup's spacing is correct.
     // @see \Drupal\config_translation\FormElement\FormElementBase::getSourceElement
     // @see https://stackoverflow.com/questions/2494754/opposite-of-nl2br-is-it-str-replace
-    $element['source']['#markup'] = preg_replace("#<br />$#m", "", (string) $element['source']['#markup']);
+    $element['source']['#markup'] = preg_replace("#<br />$#m","", (string) $element['source']['#markup']);
     $element['translation']['#type'] = 'webform_html_editor';
   }
 
@@ -900,7 +895,7 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
    *
    * @param array $element
    *   A element containing 'source' and 'translation'.
-   * @param string $mode
+   * @param string $mode.
    *   Codemirror editor mode. Default to 'yaml'.
    */
   protected function alterTextareaElement(array &$element, $mode = 'yaml') {
@@ -931,7 +926,6 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
       '#mode' => $mode,
       '#value' => $source_value,
       '#disabled' => TRUE,
-      '#skip_validation' => TRUE,
       '#attributes' => ['readonly' => TRUE],
     ];
     unset($element['source']['#markup']);
@@ -943,9 +937,9 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
     $element['#attached']['library'][] = 'webform/webform.admin.translation';
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Utility methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * Flatten a nested array of elements.
@@ -975,8 +969,6 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
    *
    * @param string $type
    *   The webform element type.
-   * @param string $property_name
-   *   The webform element property name.
    *
    * @return array
    *   The webform element type's properties from as a flattened
@@ -985,7 +977,7 @@ class WebformTranslationConfigManager implements WebformTranslationConfigManager
   protected function getWebformElementProperty($type, $property_name) {
     $property_key = ltrim($property_name, '#');
     $properties = $this->getWebformElementProperties($type);
-    return $properties[$property_key] ?? NULL;
+    return (isset($properties[$property_key])) ? $properties[$property_key] : NULL;
 
   }
 

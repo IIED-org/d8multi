@@ -5,7 +5,7 @@ namespace PHPStan\Rules\Deprecations;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
-use PHPStan\Reflection\ReflectionProvider;
+use PHPStan\Broker\Broker;
 
 /**
  * @implements \PHPStan\Rules\Rule<Class_>
@@ -13,12 +13,12 @@ use PHPStan\Reflection\ReflectionProvider;
 class InheritanceOfDeprecatedClassRule implements \PHPStan\Rules\Rule
 {
 
-	/** @var ReflectionProvider */
-	private $reflectionProvider;
+	/** @var Broker */
+	private $broker;
 
-	public function __construct(ReflectionProvider $reflectionProvider)
+	public function __construct(Broker $broker)
 	{
-		$this->reflectionProvider = $reflectionProvider;
+		$this->broker = $broker;
 	}
 
 	public function getNodeType(): string
@@ -43,7 +43,7 @@ class InheritanceOfDeprecatedClassRule implements \PHPStan\Rules\Rule
 			: (string) $node->name;
 
 		try {
-			$class = $this->reflectionProvider->getClass($className);
+			$class = $this->broker->getClass($className);
 		} catch (\PHPStan\Broker\ClassNotFoundException $e) {
 			return [];
 		}
@@ -51,7 +51,7 @@ class InheritanceOfDeprecatedClassRule implements \PHPStan\Rules\Rule
 		$parentClassName = (string) $node->extends;
 
 		try {
-			$parentClass = $this->reflectionProvider->getClass($parentClassName);
+			$parentClass = $this->broker->getClass($parentClassName);
 			$description = $parentClass->getDeprecatedDescription();
 			if ($parentClass->isDeprecated()) {
 				if (!$class->isAnonymous()) {

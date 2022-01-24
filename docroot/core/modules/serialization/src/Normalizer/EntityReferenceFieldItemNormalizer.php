@@ -4,7 +4,6 @@ namespace Drupal\serialization\Normalizer;
 
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
-use Drupal\file\FileInterface;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 
@@ -60,8 +59,8 @@ class EntityReferenceFieldItemNormalizer extends FieldItemNormalizer {
       }
       // @todo Remove in https://www.drupal.org/project/drupal/issues/2925520
       // @see \Drupal\hal\Normalizer\FileEntityNormalizer
-      elseif ($entity instanceof FileInterface) {
-        $values['url'] = $entity->createFileUrl(FALSE);
+      elseif ($entity->getEntityTypeId() === 'file') {
+        $values['url'] = file_create_url($entity->getFileUri());
       }
     }
 

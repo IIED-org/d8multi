@@ -137,7 +137,7 @@ class FacetsSummary extends ConfigEntityBase implements FacetsSummaryInterface {
    */
   public function getFacetSource() {
     if (!$this->facet_source_instance && $this->facet_source_id) {
-      /** @var \Drupal\facets\FacetSource\FacetSourcePluginManager $facet_source_plugin_manager */
+      /* @var $facet_source_plugin_manager \Drupal\facets\FacetSource\FacetSourcePluginManager */
       $facet_source_plugin_manager = \Drupal::service('plugin.manager.facets.facet_source');
       $this->facet_source_instance = $facet_source_plugin_manager->createInstance($this->facet_source_id, ['facets_summary' => $this]);
     }
@@ -178,7 +178,7 @@ class FacetsSummary extends ConfigEntityBase implements FacetsSummaryInterface {
       return $this->processors;
     }
 
-    /** @var \Drupal\facets\Processor\ProcessorPluginManager $processor_plugin_manager */
+    /* @var $processor_plugin_manager \Drupal\facets\Processor\ProcessorPluginManager */
     $processor_plugin_manager = \Drupal::service('plugin.manager.facets_summary.processor');
     $processor_settings = $this->getProcessorConfigs();
 
@@ -188,7 +188,7 @@ class FacetsSummary extends ConfigEntityBase implements FacetsSummaryInterface {
         $settings = empty($processor_settings[$name]['settings']) ? [] : $processor_settings[$name]['settings'];
         $settings['facets_summary'] = $this;
 
-        /** @var \Drupal\facets_summary\Processor\ProcessorInterface $processor */
+        /* @var $processor \Drupal\facets_summary\Processor\ProcessorInterface */
         $processor = $processor_plugin_manager->createInstance($name, $settings);
         $this->processors[$name] = $processor;
       }

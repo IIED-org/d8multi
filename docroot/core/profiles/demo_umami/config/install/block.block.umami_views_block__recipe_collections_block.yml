@@ -16,8 +16,8 @@ plugin: 'views_block:recipe_collections-block'
 settings:
   id: 'views_block:recipe_collections-block'
   label: ''
-  label_display: visible
   provider: views
+  label_display: visible
   views_label: ''
   items_per_page: none
 visibility: {  }

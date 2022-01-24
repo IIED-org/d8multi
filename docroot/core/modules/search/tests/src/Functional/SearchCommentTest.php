@@ -307,10 +307,8 @@ class SearchCommentTest extends BrowserTestBase {
 
   /**
    * Update search index and search for comment.
-   *
-   * @internal
    */
-  public function assertCommentAccess(bool $assume_access, string $message): void {
+  public function assertCommentAccess($assume_access, $message) {
     // Invoke search index update.
     \Drupal::service('search.index')->markForReindex('node_search', $this->node->id());
     $this->cronRun();
@@ -328,7 +326,7 @@ class SearchCommentTest extends BrowserTestBase {
         $this->assertSession()->pageTextContains($this->commentSubject);
       }
       else {
-        $this->assertSession()->pageTextContains('Your search yielded no results.');
+        $this->assertSession()->pageTextContains(t('Your search yielded no results.'));
       }
     }
     catch (ResponseTextException $exception) {

@@ -6,7 +6,7 @@
 **/
 
 (function ($, Drupal) {
-  function init(tab) {
+  function init(i, tab) {
     var $tab = $(tab);
     var $target = $tab.find('[data-drupal-nav-tabs-target]');
     var isCollapsible = $tab.hasClass('is-collapsible');
@@ -37,10 +37,14 @@
 
   Drupal.behaviors.navTabs = {
     attach: function attach(context, settings) {
-      var notSmartPhone = window.matchMedia('(min-width: 300px)');
+      var $tabs = $(context).find('[data-drupal-nav-tabs]');
 
-      if (notSmartPhone.matches) {
-        once('nav-tabs', '[data-drupal-nav-tabs]', context).forEach(init);
+      if ($tabs.length) {
+        var notSmartPhone = window.matchMedia('(min-width: 300px)');
+
+        if (notSmartPhone.matches) {
+          $tabs.once('nav-tabs').each(init);
+        }
       }
     }
   };

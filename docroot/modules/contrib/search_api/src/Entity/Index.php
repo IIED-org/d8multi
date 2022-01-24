@@ -97,13 +97,6 @@ class Index extends ConfigEntityBase implements IndexInterface {
   use LoggerTrait;
 
   /**
-   * The number of currently active "batch tracking" modes for each index.
-   *
-   * @var int[]
-   */
-  protected static $batchTrackingIndexes = [];
-
-  /**
    * The ID of the index.
    *
    * @var string
@@ -278,6 +271,13 @@ class Index extends ConfigEntityBase implements IndexInterface {
    * @see \Drupal\search_api\Entity\Index::getPropertyDefinitions()
    */
   protected $properties = [];
+
+  /**
+   * The number of currently active "batch tracking" modes.
+   *
+   * @var int
+   */
+  protected $batchTracking = 0;
 
   /**
    * {@inheritdoc}
@@ -1030,15 +1030,14 @@ class Index extends ConfigEntityBase implements IndexInterface {
    * {@inheritdoc}
    */
   public function isBatchTracking() {
-    return (static::$batchTrackingIndexes[$this->id] ?? 0) > 0;
+    return (bool) $this->batchTracking;
   }
 
   /**
    * {@inheritdoc}
    */
   public function startBatchTracking() {
-    static::$batchTrackingIndexes += [$this->id => 0];
-    ++static::$batchTrackingIndexes[$this->id];
+    $this->batchTracking++;
     return $this;
   }
 
@@ -1046,10 +1045,10 @@ class Index extends ConfigEntityBase implements IndexInterface {
    * {@inheritdoc}
    */
   public function stopBatchTracking() {
-    if (!$this->isBatchTracking()) {
+    if (!$this->batchTracking) {
       throw new SearchApiException('Trying to leave "batch tracking" mode on index "' . $this->label() . '" which was not entered first.');
     }
-    --static::$batchTrackingIndexes[$this->id];
+    $this->batchTracking--;
     return $this;
   }
 
@@ -1088,8 +1087,7 @@ class Index extends ConfigEntityBase implements IndexInterface {
         $item_ids[] = Utility::createCombinedId($datasource_id, $id);
       }
       $this->getTrackerInstance()->$tracker_method($item_ids);
-      if (!$this->isReadOnly() && $this->getOption('index_directly')
-          && !$this->isBatchTracking()) {
+      if (!$this->isReadOnly() && $this->getOption('index_directly') && !$this->batchTracking) {
         \Drupal::getContainer()->get('search_api.post_request_indexing')
           ->registerIndexingOperation($this->id(), $item_ids);
       }
@@ -1230,7 +1228,6 @@ class Index extends ConfigEntityBase implements IndexInterface {
     $this->options += [
       'cron_limit' => $config->get('default_cron_limit'),
       'index_directly' => TRUE,
-      'track_changes_in_references' => TRUE,
     ];
   }
 
@@ -1273,7 +1270,6 @@ class Index extends ConfigEntityBase implements IndexInterface {
     $this->options += [
       'cron_limit' => $config->get('default_cron_limit'),
       'index_directly' => TRUE,
-      'track_changes_in_references' => TRUE,
     ];
 
     // Reset the static cache for getPropertyDefinitions() to make sure we don't

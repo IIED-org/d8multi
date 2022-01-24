@@ -175,7 +175,7 @@ abstract class FileMediaFormatterBase extends FileFormatterBase implements FileM
    *   TRUE if the MIME type applies, FALSE otherwise.
    */
   protected static function mimeTypeApplies($mime_type) {
-    [$type] = explode('/', $mime_type, 2);
+    list($type) = explode('/', $mime_type, 2);
     return $type === static::getMediaType();
   }
 

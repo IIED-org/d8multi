@@ -8,10 +8,9 @@
 (function ($, Drupal) {
   Drupal.behaviors.menuUiChangeParentItems = {
     attach: function attach(context, settings) {
-      var menu = once('menu-parent', '#edit-menu');
+      var $menu = $('#edit-menu').once('menu-parent');
 
-      if (menu.length) {
-        var $menu = $(menu);
+      if ($menu.length) {
         Drupal.menuUiUpdateParentList();
         $menu.on('change', 'input', Drupal.menuUiUpdateParentList);
       }
@@ -22,7 +21,7 @@
     var $menu = $('#edit-menu');
     var values = [];
     $menu.find('input:checked').each(function () {
-      values.push(Drupal.checkPlain($(this).val()));
+      values.push(Drupal.checkPlain($.trim($(this).val())));
     });
     $.ajax({
       url: "".concat(window.location.protocol, "//").concat(window.location.host).concat(Drupal.url('admin/structure/menu/parents')),

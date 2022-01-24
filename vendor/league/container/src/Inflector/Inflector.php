@@ -1,25 +1,15 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace League\Container\Inflector;
 
+use League\Container\ImmutableContainerAwareTrait;
 use League\Container\Argument\ArgumentResolverInterface;
 use League\Container\Argument\ArgumentResolverTrait;
-use League\Container\ContainerAwareTrait;
 
-class Inflector implements ArgumentResolverInterface, InflectorInterface
+class Inflector implements ArgumentResolverInterface
 {
     use ArgumentResolverTrait;
-    use ContainerAwareTrait;
-
-    /**
-     * @var string
-     */
-    protected $type;
-
-    /**
-     * @var callable|null
-     */
-    protected $callback;
+    use ImmutableContainerAwareTrait;
 
     /**
      * @var array
@@ -32,29 +22,13 @@ class Inflector implements ArgumentResolverInterface, InflectorInterface
     protected $properties = [];
 
     /**
-     * Construct.
+     * Defines a method to be invoked on the subject object.
      *
-     * @param string        $type
-     * @param callable|null $callback
+     * @param  string $name
+     * @param  array  $args
+     * @return $this
      */
-    public function __construct(string $type, callable $callback = null)
-    {
-        $this->type     = $type;
-        $this->callback = $callback;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getType() : string
-    {
-        return $this->type;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function invokeMethod(string $name, array $args) : InflectorInterface
+    public function invokeMethod($name, array $args)
     {
         $this->methods[$name] = $args;
 
@@ -62,9 +36,12 @@ class Inflector implements ArgumentResolverInterface, InflectorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Defines multiple methods to be invoked on the subject object.
+     *
+     * @param  array $methods
+     * @return $this
      */
-    public function invokeMethods(array $methods) : InflectorInterface
+    public function invokeMethods(array $methods)
     {
         foreach ($methods as $name => $args) {
             $this->invokeMethod($name, $args);
@@ -74,19 +51,26 @@ class Inflector implements ArgumentResolverInterface, InflectorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Defines a property to be set on the subject object.
+     *
+     * @param  string $property
+     * @param  mixed  $value
+     * @return $this
      */
-    public function setProperty(string $property, $value) : InflectorInterface
+    public function setProperty($property, $value)
     {
-        $this->properties[$property] = $this->resolveArguments([$value])[0];
+        $this->properties[$property] = $value;
 
         return $this;
     }
 
     /**
-     * {@inheritdoc}
+     * Defines multiple properties to be set on the subject object.
+     *
+     * @param  array $properties
+     * @return $this
      */
-    public function setProperties(array $properties) : InflectorInterface
+    public function setProperties(array $properties)
     {
         foreach ($properties as $property => $value) {
             $this->setProperty($property, $value);
@@ -96,28 +80,24 @@ class Inflector implements ArgumentResolverInterface, InflectorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Apply inflections to an object.
+     *
+     * @param  object $object
+     * @return void
      */
     public function inflect($object)
     {
         $properties = $this->resolveArguments(array_values($this->properties));
         $properties = array_combine(array_keys($this->properties), $properties);
 
-        // array_combine() can technically return false
-        foreach ($properties ?: [] as $property => $value) {
+        foreach ($properties as $property => $value) {
             $object->{$property} = $value;
         }
 
         foreach ($this->methods as $method => $args) {
             $args = $this->resolveArguments($args);
 
-            /** @var callable $callable */
-            $callable = [$object, $method];
-            call_user_func_array($callable, $args);
-        }
-
-        if ($this->callback !== null) {
-            call_user_func($this->callback, $object);
+            call_user_func_array([$object, $method], $args);
         }
     }
 }

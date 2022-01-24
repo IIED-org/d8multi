@@ -57,7 +57,7 @@ class CommentStatusFieldAccessTest extends BrowserTestBase {
     parent::setUp();
     $node_type = NodeType::create([
       'type' => 'article',
-      'name' => 'Article',
+      'name' => t('Article'),
     ]);
     $node_type->save();
     $this->nodeAuthor = $this->drupalCreateUser([

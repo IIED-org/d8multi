@@ -275,14 +275,6 @@ entity.webform.delete_form:
   requirements:
     _entity_access: 'webform.delete'
 
-entity.webform.multiple_delete_confirm:
-  path: '/admin/structure/webform/delete'
-  defaults:
-    _form: '\Drupal\webform\Form\WebformEntityDeleteMultipleForm'
-    entity_type_id: webform
-  requirements:
-    _entity_delete_multiple_access: 'webform'
-
 # Webform settings.
 
 entity.webform.settings:
@@ -629,10 +621,9 @@ entity.webform_submission.sticky_toggle:
 webform_submission.multiple_delete_confirm:
   path: '/admin/structure/webform/results/delete'
   defaults:
-    _form: '\Drupal\webform\Form\WebformSubmissionDeleteMultipleForm'
-    entity_type_id: webform_submission
+    _form: '\Drupal\webform\Form\WebformSubmissionDeleteMultiple'
   requirements:
-    _entity_delete_multiple_access: 'webform_submission'
+    _permission: 'administer webform submission+delete any webform submission+delete own webform submission'
 
 # Handlers.
 

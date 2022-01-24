@@ -60,7 +60,7 @@ class SessionTest extends BrowserTestBase {
     $this->drupalGet('session-test/id');
     $matches = [];
     preg_match('/\s*session_id:(.*)\n/', $this->getSession()->getPage()->getContent(), $matches);
-    $this->assertNotEmpty($matches[1], 'Found session ID before logging in.');
+    $this->assertTrue(!empty($matches[1]), 'Found session ID before logging in.');
     $original_session = $matches[1];
 
     // We cannot use $this->drupalLogin($user); because we exit in
@@ -72,12 +72,13 @@ class SessionTest extends BrowserTestBase {
     $this->drupalGet('user/login');
     $this->submitForm($edit, 'Log in');
     $this->drupalGet('user');
-    $this->assertSession()->pageTextContains($user->getAccountName());
+    $pass = $this->assertSession()->pageTextContains($user->getAccountName());
+    $this->_logged_in = $pass;
 
     $this->drupalGet('session-test/id');
     $matches = [];
     preg_match('/\s*session_id:(.*)\n/', $this->getSession()->getPage()->getContent(), $matches);
-    $this->assertNotEmpty($matches[1], 'Found session ID after logging in.');
+    $this->assertTrue(!empty($matches[1]), 'Found session ID after logging in.');
     $this->assertNotSame($original_session, $matches[1], 'Session ID changed after login.');
   }
 
@@ -372,10 +373,8 @@ class SessionTest extends BrowserTestBase {
 
   /**
    * Assert whether the SimpleTest browser sent a session cookie.
-   *
-   * @internal
    */
-  public function assertSessionCookie(bool $sent): void {
+  public function assertSessionCookie($sent) {
     if ($sent) {
       $this->assertNotEmpty($this->getSessionCookies()->count(), 'Session cookie was sent.');
     }
@@ -386,10 +385,8 @@ class SessionTest extends BrowserTestBase {
 
   /**
    * Assert whether $_SESSION is empty at the beginning of the request.
-   *
-   * @internal
    */
-  public function assertSessionEmpty(bool $empty): void {
+  public function assertSessionEmpty($empty) {
     if ($empty) {
       $this->assertSession()->responseHeaderEquals('X-Session-Empty', '1');
     }

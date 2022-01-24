@@ -2,7 +2,7 @@
 
 namespace Drupal\sophron\Event;
 
-use Symfony\Contracts\EventDispatcher\Event;
+use Symfony\Component\EventDispatcher\Event;
 
 /**
  * Defines the MapEvent.

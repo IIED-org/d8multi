@@ -5,7 +5,6 @@ namespace Robo\Task\Remote;
 use Robo\Contract\CommandInterface;
 use Robo\Task\BaseTask;
 use Robo\Exception\TaskException;
-use Robo\Common\ExecOneCommand;
 
 /**
  * Executes rsync in a flexible manner.
@@ -48,7 +47,7 @@ use Robo\Common\ExecOneCommand;
  */
 class Rsync extends BaseTask implements CommandInterface
 {
-    use ExecOneCommand;
+    use \Robo\Common\ExecOneCommand;
 
     /**
      * @var string

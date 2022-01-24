@@ -9,7 +9,7 @@
   Drupal.behaviors.batch = {
     attach: function attach(context, settings) {
       var batch = settings.batch;
-      var $progress = $(once('batch', '[data-drupal-progress]'));
+      var $progress = $('[data-drupal-progress]').once('batch');
       var progressBar;
 
       function updateCallback(progress, status, pb) {

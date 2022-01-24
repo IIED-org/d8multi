@@ -231,7 +231,7 @@ class WebformAccessGroupListBuilder extends ConfigEntityListBuilder {
    */
   public function load() {
     $entity_ids = $this->getEntityIds();
-    /** @var \Drupal\webform\WebformInterface[] $entities */
+    /* @var $entities \Drupal\webform\WebformInterface[] */
     $entities = $this->storage->loadMultiple($entity_ids);
 
     // If the user is not a webform admin, check access to each access group.
@@ -246,9 +246,9 @@ class WebformAccessGroupListBuilder extends ConfigEntityListBuilder {
     return $entities;
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Helper methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * Build a renderable array of email addresses.
@@ -294,8 +294,7 @@ class WebformAccessGroupListBuilder extends ConfigEntityListBuilder {
   public static function buildEntities(array $entity_references) {
     $items = [];
     foreach ($entity_references as $entity_reference) {
-      // phpcs:ignore DrupalPractice.CodeAnalysis.VariableAnalysis.UnusedVariable
-      [$entity_type, $entity_id, $field_name, $webform_id] = explode(':', $entity_reference);
+      list($entity_type, $entity_id, $field_name, $webform_id) = explode(':', $entity_reference);
       $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($entity_id);
       $webform = \Drupal::entityTypeManager()->getStorage('webform')->load($webform_id);
       if ($entity && $webform) {

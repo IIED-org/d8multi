@@ -225,7 +225,7 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
     $this->doTestWorkflows($this->administrator, $expected_status);
 
     // Check that translation permissions allow the associated operations.
-    $ops = ['create' => 'Add', 'update' => 'Edit', 'delete' => 'Delete'];
+    $ops = ['create' => t('Add'), 'update' => t('Edit'), 'delete' => t('Delete')];
     $translations_url = $this->entity->toUrl('drupal:content-translation-overview');
     foreach ($ops as $current_op => $item) {
       $user = $this->drupalCreateUser([
@@ -414,12 +414,10 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
 
   /**
    * Assert that the current page does not contain shared form elements.
-   *
-   * @internal
    */
-  protected function assertNoSharedElements(): void {
+  protected function assertNoSharedElements() {
     $language_none = LanguageInterface::LANGCODE_NOT_SPECIFIED;
-    $this->assertSession()->fieldNotExists("field_test_text[$language_none][0][value]");
+    return $this->assertSession()->fieldNotExists("field_test_text[$language_none][0][value]");
   }
 
 }

@@ -31,21 +31,21 @@
         // Listen to value:copy events on all dependent fields.
         // We have to use body and not document because of the way jQuery events
         // bubble up the DOM tree.
-        $(once('copy-field-values', 'body')).on(
-          'value:copy',
-          this.valueTargetCopyHandler,
-        );
+        $('body')
+          .once('copy-field-values')
+          .on('value:copy', this.valueTargetCopyHandler);
         // Listen on all source elements.
-        $(once('copy-field-values', `#${ids.join(', #')}`)).on(
-          'blur',
-          this.valueSourceBlurHandler,
-        );
+        $(`#${ids.join(', #')}`)
+          .once('copy-field-values')
+          .on('blur', this.valueSourceBlurHandler);
       }
     },
     detach(context, settings, trigger) {
       if (trigger === 'unload' && ids.length) {
-        $(once.remove('copy-field-values', 'body')).off('value:copy');
-        $(once.remove('copy-field-values', `#${ids.join(', #')}`)).off('blur');
+        $('body').removeOnce('copy-field-values').off('value:copy');
+        $(`#${ids.join(', #')}`)
+          .removeOnce('copy-field-values')
+          .off('blur');
       }
     },
 

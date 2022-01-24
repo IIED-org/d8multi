@@ -25,6 +25,7 @@ class FacetSourcePluginManager extends DefaultPluginManager {
     $this->setCacheBackend($cache_backend, 'facet_source_plugins');
   }
 
+
   /**
    * {@inheritdoc}
    */

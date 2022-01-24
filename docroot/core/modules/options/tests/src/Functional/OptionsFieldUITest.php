@@ -306,18 +306,16 @@ class OptionsFieldUITest extends FieldTestBase {
   /**
    * Tests a string input for the 'allowed values' form element.
    *
-   * @param string $input_string
+   * @param $input_string
    *   The input string, in the pipe-linefeed format expected by the form
    *   element.
-   * @param array|string $result
+   * @param $result
    *   Either an expected resulting array in
    *   $field->getSetting('allowed_values'), or an expected error message.
-   * @param string $message
+   * @param $message
    *   Message to display.
-   *
-   * @internal
    */
-  public function assertAllowedValuesInput(string $input_string, $result, string $message): void {
+  public function assertAllowedValuesInput($input_string, $result, $message) {
     $edit = ['settings[allowed_values]' => $input_string];
     $this->drupalGet($this->adminPath);
     $this->submitForm($edit, 'Save field settings');

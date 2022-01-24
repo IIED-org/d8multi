@@ -265,8 +265,8 @@
       if (!$context.is('form[id^="views-ui-add-handler-form"]')) {
         $form = $context.find('form[id^="views-ui-add-handler-form"]');
       }
-      if (once('views-ui-add-handler-form', $form).length) {
-        // If we have an unprocessed views-ui-add-handler-form, let's
+      if ($form.once('views-ui-add-handler-form').length) {
+        // If we we have an unprocessed views-ui-add-handler-form, let's
         // instantiate.
         new Drupal.viewsUi.AddItemForm($form);
       }
@@ -312,7 +312,7 @@
    */
   Drupal.viewsUi.AddItemForm.prototype.handleCheck = function (event) {
     const $target = $(event.target);
-    const label = $target.closest('td').next().html().trim();
+    const label = $.trim($target.closest('td').next().html());
     // Add/remove the checked item to the list.
     if ($target.is(':checked')) {
       this.$selected_div.show().css('display', 'block');
@@ -361,15 +361,12 @@
   Drupal.behaviors.viewsUiRenderAddViewButton = {
     attach(context) {
       // Build the add display menu and pull the display input buttons into it.
-      const menu = once(
-        'views-ui-render-add-view-button',
-        '#views-display-menu-tabs',
-        context,
-      );
-      if (!menu.length) {
+      const $menu = $(context)
+        .find('#views-display-menu-tabs')
+        .once('views-ui-render-add-view-button');
+      if (!$menu.length) {
         return;
       }
-      const $menu = $(menu);
 
       const $addDisplayDropdown = $(
         `<li class="add"><a href="#"><span class="icon add"></span>${Drupal.t(
@@ -454,7 +451,7 @@
         $form = $context.find('form[id^="views-ui-add-handler-form"]');
       }
       // Make sure we don't add more than one event handler to the same form.
-      if (once('views-ui-filter-options', $form).length) {
+      if ($form.once('views-ui-filter-options').length) {
         new Drupal.viewsUi.OptionsSearch($form);
       }
     },
@@ -621,13 +618,13 @@
 
       // Executes an initial preview.
       if (
-        $(once('edit-displays-live-preview', '#edit-displays-live-preview')).is(
-          ':checked',
-        )
+        $('#edit-displays-live-preview')
+          .once('edit-displays-live-preview')
+          .is(':checked')
       ) {
-        $(once('edit-displays-live-preview', '#preview-submit')).trigger(
-          'click',
-        );
+        $('#preview-submit')
+          .once('edit-displays-live-preview')
+          .trigger('click');
       }
     },
   };
@@ -704,15 +701,13 @@
     // next to the filters in each group, and bind a handler so that they change
     // based on the values of the operator dropdown within that group.
     this.redrawOperatorLabels();
-    $(
-      once(
-        'views-rearrange-filter-handler',
-        $table.find('.views-group-title select'),
-      ),
-    ).on(
-      'change.views-rearrange-filter-handler',
-      $.proxy(this, 'redrawOperatorLabels'),
-    );
+    $table
+      .find('.views-group-title select')
+      .once('views-rearrange-filter-handler')
+      .on(
+        'change.views-rearrange-filter-handler',
+        $.proxy(this, 'redrawOperatorLabels'),
+      );
 
     // Bind handlers so that when a "Remove" link is clicked, we:
     // - Update the rowspans of cells containing an operator dropdown (since
@@ -720,12 +715,9 @@
     // - Redraw the operator labels next to the filters in the group (since the
     //   filter that is currently displayed last in each group is not supposed
     //   to have a label display next to it).
-    $(
-      once(
-        'views-rearrange-filter-handler',
-        $table.find('a.views-groups-remove-link'),
-      ),
-    )
+    $table
+      .find('a.views-groups-remove-link')
+      .once('views-rearrange-filter-handler')
       .on(
         'click.views-rearrange-filter-handler',
         $.proxy(this, 'updateRowspans'),
@@ -748,15 +740,12 @@
         // Since Drupal does not provide a theme function for this markup this is
         // the best we can do.
         $(
-          once(
-            'views-rearrange-filter-handler',
-            // When the link is clicked, dynamically click the hidden form
-            // button for adding a new filter group.
-            $(
-              `<ul class="action-links"><li><a id="views-add-group-link" href="#">${this.addGroupButton.val()}</a></li></ul>`,
-            ).prependTo(this.table.parent()),
-          ),
+          `<ul class="action-links"><li><a id="views-add-group-link" href="#">${this.addGroupButton.val()}</a></li></ul>`,
         )
+          .prependTo(this.table.parent())
+          // When the link is clicked, dynamically click the hidden form button
+          // for adding a new filter group.
+          .once('views-rearrange-filter-handler')
           .find('#views-add-group-link')
           .on(
             'click.views-rearrange-filter-handler',
@@ -771,21 +760,19 @@
           const $removeGroupButton = $(this.removeGroupButtons[i]);
           const buttonId = $removeGroupButton.attr('id');
           $(
-            once(
-              'views-rearrange-filter-handler',
-              // When the link is clicked, dynamically click the corresponding form
-              // button.
-              $(
-                `<a href="#" class="views-remove-group-link">${Drupal.t(
-                  'Remove group',
-                )}</a>`,
-              ).insertBefore($removeGroupButton),
-            ),
-          ).on(
-            'click.views-rearrange-filter-handler',
-            { buttonId },
-            $.proxy(this, 'clickRemoveGroupButton'),
-          );
+            `<a href="#" class="views-remove-group-link">${Drupal.t(
+              'Remove group',
+            )}</a>`,
+          )
+            .insertBefore($removeGroupButton)
+            // When the link is clicked, dynamically click the corresponding form
+            // button.
+            .once('views-rearrange-filter-handler')
+            .on(
+              'click.views-rearrange-filter-handler',
+              { buttonId },
+              $.proxy(this, 'clickRemoveGroupButton'),
+            );
         }
       },
 
@@ -823,9 +810,8 @@
         let newRow;
         let titleRow;
 
-        const titleRows = once(
+        const titleRows = $('tr.views-group-title').once(
           'duplicateGroupsOperator',
-          'tr.views-group-title',
         );
 
         if (!titleRows.length) {
@@ -1091,20 +1077,19 @@
    */
   Drupal.behaviors.viewsFilterConfigSelectAll = {
     attach(context) {
-      const selectAll = once(
-        'filterConfigSelectAll',
-        '.js-form-item-options-value-all',
-        context,
-      );
+      const $context = $(context);
 
-      if (selectAll.length) {
-        const $selectAll = $(selectAll);
-        const $selectAllCheckbox = $selectAll.find('input[type=checkbox]');
-        const $checkboxes = $selectAll
-          .closest('.form-checkboxes')
-          .find(
-            '.js-form-type-checkbox:not(.js-form-item-options-value-all) input[type="checkbox"]',
-          );
+      const $selectAll = $context
+        .find('.js-form-item-options-value-all')
+        .once('filterConfigSelectAll');
+      const $selectAllCheckbox = $selectAll.find('input[type=checkbox]');
+      const $checkboxes = $selectAll
+        .closest('.form-checkboxes')
+        .find(
+          '.js-form-type-checkbox:not(.js-form-item-options-value-all) input[type="checkbox"]',
+        );
+
+      if ($selectAll.length) {
         // Show the select all checkbox.
         $selectAll.show();
         $selectAllCheckbox.on('click', function () {
@@ -1132,7 +1117,9 @@
    */
   Drupal.behaviors.viewsRemoveIconClass = {
     attach(context) {
-      $(once('dropbutton-icon', '.dropbutton', context))
+      $(context)
+        .find('.dropbutton')
+        .once('dropbutton-icon')
         .find('.icon')
         .removeClass('icon');
     },
@@ -1148,10 +1135,14 @@
    */
   Drupal.behaviors.viewsUiCheckboxify = {
     attach(context, settings) {
-      const buttons = once(
-        'views-ui-checkboxify',
+      const $buttons = $(
         '[data-drupal-selector="edit-options-expose-button-button"], [data-drupal-selector="edit-options-group-button-button"]',
-      ).forEach((button) => new Drupal.viewsUi.Checkboxifier(button));
+      ).once('views-ui-checkboxify');
+      const length = $buttons.length;
+      let i;
+      for (i = 0; i < length; i++) {
+        new Drupal.viewsUi.Checkboxifier($buttons[i]);
+      }
     },
   };
 
@@ -1194,7 +1185,7 @@
    *
    * @constructor
    *
-   * @param {Element} button
+   * @param {HTMLElement} button
    *   The DOM object representing the button to be checkboxified.
    */
   Drupal.viewsUi.Checkboxifier = function (button) {
@@ -1229,39 +1220,37 @@
    */
   Drupal.behaviors.viewsUiOverrideSelect = {
     attach(context) {
-      once(
-        'views-ui-override-button-text',
-        '[data-drupal-selector="edit-override-dropdown"]',
-        context,
-      ).forEach((dropdown) => {
-        // Closures! :(
-        const $context = $(context);
-        const $submit = $context.find('[id^=edit-submit]');
-        const oldValue = $submit.val();
+      $(context)
+        .find('[data-drupal-selector="edit-override-dropdown"]')
+        .once('views-ui-override-button-text')
+        .each(function () {
+          // Closures! :(
+          const $context = $(context);
+          const $submit = $context.find('[id^=edit-submit]');
+          const oldValue = $submit.val();
 
-        $(once('views-ui-override-button-text', $submit)).on(
-          'mouseup',
-          function () {
-            $(this).val(oldValue);
-            return true;
-          },
-        );
+          $submit
+            .once('views-ui-override-button-text')
+            .on('mouseup', function () {
+              $(this).val(oldValue);
+              return true;
+            });
 
-        $(dropdown)
-          .on('change', function () {
-            const $this = $(this);
-            if ($this.val() === 'default') {
-              $submit.val(Drupal.t('Apply (all displays)'));
-            } else if ($this.val() === 'default_revert') {
-              $submit.val(Drupal.t('Revert to default'));
-            } else {
-              $submit.val(Drupal.t('Apply (this display)'));
-            }
-            const $dialog = $context.closest('.ui-dialog-content');
-            $dialog.trigger('dialogButtonsChange');
-          })
-          .trigger('change');
-      });
+          $(this)
+            .on('change', function () {
+              const $this = $(this);
+              if ($this.val() === 'default') {
+                $submit.val(Drupal.t('Apply (all displays)'));
+              } else if ($this.val() === 'default_revert') {
+                $submit.val(Drupal.t('Revert to default'));
+              } else {
+                $submit.val(Drupal.t('Apply (this display)'));
+              }
+              const $dialog = $context.closest('.ui-dialog-content');
+              $dialog.trigger('dialogButtonsChange');
+            })
+            .trigger('change');
+        });
     },
   };
 
@@ -1278,27 +1267,27 @@
       const $context = $(context);
       // Handle handler deletion by looking for the hidden checkbox and hiding
       // the row.
-      $(once('views', 'a.views-remove-link', context)).on(
-        'click',
-        function (event) {
+      $context
+        .find('a.views-remove-link')
+        .once('views')
+        .on('click', function (event) {
           const id = $(this).attr('id').replace('views-remove-link-', '');
           $context.find(`#views-row-${id}`).hide();
           $context.find(`#views-removed-${id}`).prop('checked', true);
           event.preventDefault();
-        },
-      );
+        });
 
       // Handle display deletion by looking for the hidden checkbox and hiding
       // the row.
-      $(once('display', 'a.display-remove-link', context)).on(
-        'click',
-        function (event) {
+      $context
+        .find('a.display-remove-link')
+        .once('display')
+        .on('click', function (event) {
           const id = $(this).attr('id').replace('display-remove-link-', '');
           $context.find(`#display-row-${id}`).hide();
           $context.find(`#display-removed-${id}`).prop('checked', true);
           event.preventDefault();
-        },
-      );
+        });
     },
   };
 
@@ -1321,18 +1310,15 @@
       ) {
         return;
       }
-      const table = once(
-        'views-rearrange-filters',
-        '#views-rearrange-filters',
-        context,
-      );
-      const operator = once(
-        'views-rearrange-filters',
-        '.js-form-item-filter-groups-operator',
-        context,
-      );
-      if (table.length) {
-        new Drupal.viewsUi.RearrangeFilterHandler($(table), $(operator));
+      const $context = $(context);
+      const $table = $context
+        .find('#views-rearrange-filters')
+        .once('views-rearrange-filters');
+      const $operator = $context
+        .find('.js-form-item-filter-groups-operator')
+        .once('views-rearrange-filters');
+      if ($table.length) {
+        new Drupal.viewsUi.RearrangeFilterHandler($table, $operator);
       }
     },
   };

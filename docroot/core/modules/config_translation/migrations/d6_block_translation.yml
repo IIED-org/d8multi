@@ -65,7 +65,6 @@ process:
       - admin_theme
 destination:
   plugin: entity:block
-  translations: true
 migration_dependencies:
   required:
     - d6_block

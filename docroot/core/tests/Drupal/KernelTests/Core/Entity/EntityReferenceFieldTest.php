@@ -331,12 +331,10 @@ class EntityReferenceFieldTest extends EntityKernelTestBase {
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The referencing entity.
-   * @param callable $setter_callback
+   * @param $setter_callback
    *   A callback setting the target entity on the referencing entity.
-   *
-   * @internal
    */
-  protected function assertUserAutocreate(EntityInterface $entity, callable $setter_callback): void {
+  protected function assertUserAutocreate(EntityInterface $entity, $setter_callback) {
     $storage = $this->entityTypeManager->getStorage('user');
     $user_id = $this->generateRandomEntityId();
     $user = $storage->create(['uid' => $user_id, 'name' => $this->randomString()]);
@@ -352,12 +350,10 @@ class EntityReferenceFieldTest extends EntityKernelTestBase {
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The referencing entity.
-   * @param callable $setter_callback
+   * @param $setter_callback
    *   A callback setting the target entity on the referencing entity.
-   *
-   * @internal
    */
-  protected function assertUserRoleAutocreate(EntityInterface $entity, callable $setter_callback): void {
+  protected function assertUserRoleAutocreate(EntityInterface $entity, $setter_callback) {
     $storage = $this->entityTypeManager->getStorage('user_role');
     $role_id = $this->generateRandomEntityId(TRUE);
     $role = $storage->create(['id' => $role_id, 'label' => $this->randomString()]);

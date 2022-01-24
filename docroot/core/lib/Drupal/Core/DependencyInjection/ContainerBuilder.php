@@ -5,7 +5,6 @@
 
 namespace Drupal\Core\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder as SymfonyContainerBuilder;
 use Symfony\Component\DependencyInjection\Container as SymfonyContainer;
 use Symfony\Component\DependencyInjection\Definition;
@@ -87,7 +86,7 @@ class ContainerBuilder extends SymfonyContainerBuilder {
   /**
    * {@inheritdoc}
    */
-  public function register($id, $class = null): Definition {
+  public function register($id, $class = null) {
     if (strtolower($id) !== $id) {
       throw new \InvalidArgumentException("Service ID names must be lowercase: $id");
     }
@@ -101,7 +100,7 @@ class ContainerBuilder extends SymfonyContainerBuilder {
   /**
    * {@inheritdoc}
    */
-  public function setAlias($alias, $id): Alias {
+  public function setAlias($alias, $id) {
     $alias = parent::setAlias($alias, $id);
     // As of Symfony 3.4 all aliases are private by default.
     $alias->setPublic(TRUE);
@@ -111,7 +110,7 @@ class ContainerBuilder extends SymfonyContainerBuilder {
   /**
    * {@inheritdoc}
    */
-  public function setDefinition($id, Definition $definition): Definition {
+  public function setDefinition($id, Definition $definition) {
     $definition = parent::setDefinition($id, $definition);
     // As of Symfony 3.4 all definitions are private by default.
     // \Symfony\Component\DependencyInjection\Compiler\ResolvePrivatesPassOnly

@@ -5,7 +5,7 @@ namespace Drupal\Tests\facets_summary\Kernel;
 use Drupal\KernelTests\KernelTestBase;
 
 /**
- * Provides the ProcessorTest class.
+ * Class ProcessorTest.
  *
  * @group facets
  */
@@ -14,7 +14,7 @@ class ProcessorTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'facets',
     'facets_summary',
   ];
@@ -22,7 +22,7 @@ class ProcessorTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
     $this->installEntitySchema('facets_facet');
     $this->installEntitySchema('facets_summary');

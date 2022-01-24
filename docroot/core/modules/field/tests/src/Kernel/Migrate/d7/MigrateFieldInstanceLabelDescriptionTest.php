@@ -21,7 +21,6 @@ class MigrateFieldInstanceLabelDescriptionTest extends MigrateDrupal7TestBase im
     'comment',
     'config_translation',
     'datetime',
-    'datetime_range',
     'field',
     'file',
     'image',

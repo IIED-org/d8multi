@@ -158,9 +158,5 @@ function audiofield_help($route_name, RouteMatchInterface $route_match) {
  * Check to see if AudioWaveForm is installed.
  */
 function audiofield_check_audiowaveform_installed() {
-  // Check if shell_exec is callable (required for audiowaveform);
-  if (is_callable('shell_exec') && stripos(ini_get('disable_functions'), 'shell_exec') === FALSE) {
-    return (substr(shell_exec('audiowaveform -v'), 0, 13) == 'AudioWaveform');
-  }
-  return FALSE;
+  return (substr(shell_exec('audiowaveform -v'), 0, 13) == 'AudioWaveform');
 }

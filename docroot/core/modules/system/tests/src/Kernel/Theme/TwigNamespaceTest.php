@@ -37,10 +37,8 @@ class TwigNamespaceTest extends KernelTestBase {
 
   /**
    * Checks to see if a value is a twig template.
-   *
-   * @internal
    */
-  public function assertTwigTemplate($value, string $message = ''): void {
+  public function assertTwigTemplate($value, $message = '') {
     $this->assertInstanceOf(TemplateWrapper::class, $value, $message);
   }
 

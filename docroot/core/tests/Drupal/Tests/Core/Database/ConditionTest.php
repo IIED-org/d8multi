@@ -194,7 +194,7 @@ class ConditionTest extends UnitTestCase {
     class_alias('MockCondition', $mocked_namespace);
 
     $options['namespace'] = $contrib_namespace;
-    $options['prefix'] = '';
+    $options['prefix']['default'] = '';
 
     $mockPdo = $this->createMock(StubPDO::class);
 

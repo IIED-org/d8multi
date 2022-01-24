@@ -30,7 +30,7 @@
     }
 
     if (value.length > 0) {
-      result.push(current.trim());
+      result.push($.trim(current));
     }
 
     return result;
@@ -116,7 +116,7 @@
 
   Drupal.behaviors.autocomplete = {
     attach: function attach(context) {
-      var $autocomplete = $(once('autocomplete', 'input.form-autocomplete', context));
+      var $autocomplete = $(context).find('input.form-autocomplete').once('autocomplete');
 
       if ($autocomplete.length) {
         var blacklist = $autocomplete.attr('data-autocomplete-first-character-blacklist');
@@ -136,7 +136,7 @@
     },
     detach: function detach(context, settings, trigger) {
       if (trigger === 'unload') {
-        $(once.remove('autocomplete', 'input.form-autocomplete', context)).autocomplete('destroy');
+        $(context).find('input.form-autocomplete').removeOnce('autocomplete').autocomplete('destroy');
       }
     }
   };

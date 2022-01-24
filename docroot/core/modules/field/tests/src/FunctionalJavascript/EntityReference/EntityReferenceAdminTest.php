@@ -352,10 +352,8 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
    *   The field name.
    * @param array $expected_options
    *   An array of expected options.
-   *
-   * @internal
    */
-  protected function assertFieldSelectOptions(string $name, array $expected_options): void {
+  protected function assertFieldSelectOptions($name, array $expected_options) {
     $field = $this->assertSession()->selectExists($name);
     $options = $field->findAll('xpath', 'option');
     $optgroups = $field->findAll('xpath', 'optgroup');

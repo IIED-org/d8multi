@@ -1,120 +1,30 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace League\Container\Definition;
 
-use League\Container\ContainerAwareInterface;
-
-interface DefinitionInterface extends ContainerAwareInterface
+interface DefinitionInterface
 {
     /**
-     * Add a tag to the definition.
+     * Handle instantiation and manipulation of value and return.
      *
-     * @param string $tag
-     *
-     * @return self
-     */
-    public function addTag(string $tag) : DefinitionInterface;
-
-    /**
-     * Does the definition have a tag?
-     *
-     * @param string $tag
-     *
-     * @return boolean
-     */
-    public function hasTag(string $tag) : bool;
-
-    /**
-     * Set the alias of the definition.
-     *
-     * @param string $id
-     *
-     * @return DefinitionInterface
-     */
-    public function setAlias(string $id) : DefinitionInterface;
-
-    /**
-     * Get the alias of the definition.
-     *
-     * @return string
-     */
-    public function getAlias() : string;
-
-    /**
-     * Set whether this is a shared definition.
-     *
-     * @param boolean $shared
-     *
-     * @return self
-     */
-    public function setShared(bool $shared) : DefinitionInterface;
-
-    /**
-     * Is this a shared definition?
-     *
-     * @return boolean
-     */
-    public function isShared() : bool;
-
-    /**
-     * Get the concrete of the definition.
-     *
+     * @param  array $args
      * @return mixed
      */
-    public function getConcrete();
-
-    /**
-     * Set the concrete of the definition.
-     *
-     * @param mixed $concrete
-     *
-     * @return DefinitionInterface
-     */
-    public function setConcrete($concrete) : DefinitionInterface;
+    public function build(array $args = []);
 
     /**
      * Add an argument to be injected.
      *
-     * @param mixed $arg
-     *
-     * @return self
+     * @param  mixed $arg
+     * @return $this
      */
-    public function addArgument($arg) : DefinitionInterface;
+    public function withArgument($arg);
 
     /**
      * Add multiple arguments to be injected.
      *
-     * @param array $args
-     *
-     * @return self
+     * @param  array $args
+     * @return $this
      */
-    public function addArguments(array $args) : DefinitionInterface;
-
-    /**
-     * Add a method to be invoked
-     *
-     * @param string $method
-     * @param array  $args
-     *
-     * @return self
-     */
-    public function addMethodCall(string $method, array $args = []) : DefinitionInterface;
-
-    /**
-     * Add multiple methods to be invoked
-     *
-     * @param array $methods
-     *
-     * @return self
-     */
-    public function addMethodCalls(array $methods = []) : DefinitionInterface;
-
-    /**
-     * Handle instantiation and manipulation of value and return.
-     *
-     * @param boolean $new
-     *
-     * @return mixed
-     */
-    public function resolve(bool $new = false);
+    public function withArguments(array $args);
 }

@@ -134,7 +134,7 @@ class MenuLinkContent extends MenuLinkBase implements ContainerFactoryPluginInte
         // multiple IDs added earlier in each plugin's constructor.
         static::$entityIdsToLoad[$entity_id] = $entity_id;
         $entities = $storage->loadMultiple(array_values(static::$entityIdsToLoad));
-        $entity = $entities[$entity_id] ?? NULL;
+        $entity = isset($entities[$entity_id]) ? $entities[$entity_id] : NULL;
         static::$entityIdsToLoad = [];
       }
       if (!$entity) {

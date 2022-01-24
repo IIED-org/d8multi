@@ -17,15 +17,15 @@ plugin: 'views_block:articles_aside-block_1'
 settings:
   id: 'views_block:articles_aside-block_1'
   label: ''
-  label_display: visible
   provider: views
+  label_display: visible
   views_label: ''
   items_per_page: none
 visibility:
-  'entity_bundle:node':
-    id: 'entity_bundle:node'
+  node_type:
+    id: node_type
+    bundles:
+      article: article
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
-    bundles:
-      article: article

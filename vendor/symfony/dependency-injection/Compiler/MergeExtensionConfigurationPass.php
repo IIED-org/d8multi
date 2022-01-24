@@ -143,7 +143,7 @@ class MergeExtensionConfigurationParameterBag extends EnvPlaceholderParameterBag
      */
     public function getEnvPlaceholders(): array
     {
-        return $this->processedEnvPlaceholders ?? parent::getEnvPlaceholders();
+        return null !== $this->processedEnvPlaceholders ? $this->processedEnvPlaceholders : parent::getEnvPlaceholders();
     }
 
     public function getUnusedEnvPlaceholders(): array
@@ -209,7 +209,7 @@ class MergeExtensionConfigurationContainerBuilder extends ContainerBuilder
         }
 
         foreach ($bag->getEnvPlaceholders() as $env => $placeholders) {
-            if (!str_contains($env, ':')) {
+            if (false === strpos($env, ':')) {
                 continue;
             }
             foreach ($placeholders as $placeholder) {

@@ -69,7 +69,7 @@ class BlockDependenciesTest extends ViewsKernelTestBase {
    *   example:
    *   @code
    *     $this->createBlock('system_powered_by_block', array(
-   *       'label' => 'Hello, world!',
+   *       'label' => t('Hello, world!'),
    *     ));
    *   @endcode
    *   The following defaults are provided:

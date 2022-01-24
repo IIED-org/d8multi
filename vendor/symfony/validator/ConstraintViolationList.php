@@ -110,7 +110,6 @@ class ConstraintViolationList implements \IteratorAggregate, ConstraintViolation
      *
      * @return \ArrayIterator|ConstraintViolationInterface[]
      */
-    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new \ArrayIterator($this->violations);
@@ -119,7 +118,6 @@ class ConstraintViolationList implements \IteratorAggregate, ConstraintViolation
     /**
      * @return int
      */
-    #[\ReturnTypeWillChange]
     public function count()
     {
         return \count($this->violations);
@@ -128,7 +126,6 @@ class ConstraintViolationList implements \IteratorAggregate, ConstraintViolation
     /**
      * @return bool
      */
-    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return $this->has($offset);
@@ -136,10 +133,7 @@ class ConstraintViolationList implements \IteratorAggregate, ConstraintViolation
 
     /**
      * {@inheritdoc}
-     *
-     * @return mixed
      */
-    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->get($offset);
@@ -147,10 +141,7 @@ class ConstraintViolationList implements \IteratorAggregate, ConstraintViolation
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $violation)
     {
         if (null === $offset) {
@@ -162,10 +153,7 @@ class ConstraintViolationList implements \IteratorAggregate, ConstraintViolation
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         $this->remove($offset);

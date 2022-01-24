@@ -10,12 +10,12 @@ use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
  *
  * @group layout_builder
  */
-class LayoutBuilderEntityViewDisplayTest extends SectionListTestBase {
+class LayoutBuilderEntityViewDisplayTest extends SectionStorageTestBase {
 
   /**
    * {@inheritdoc}
    */
-  protected function getSectionList(array $section_data) {
+  protected function getSectionStorage(array $section_data) {
     $display = LayoutBuilderEntityViewDisplay::create([
       'targetEntityType' => 'entity_test',
       'bundle' => 'entity_test',
@@ -37,8 +37,8 @@ class LayoutBuilderEntityViewDisplayTest extends SectionListTestBase {
    */
   public function testInvalidConfiguration() {
     $this->expectException(SchemaIncompleteException::class);
-    $this->sectionList->getSection(0)->getComponent('first-uuid')->setConfiguration(['id' => 'foo', 'bar' => 'baz']);
-    $this->sectionList->save();
+    $this->sectionStorage->getSection(0)->getComponent('first-uuid')->setConfiguration(['id' => 'foo', 'bar' => 'baz']);
+    $this->sectionStorage->save();
   }
 
   /**
@@ -79,15 +79,15 @@ class LayoutBuilderEntityViewDisplayTest extends SectionListTestBase {
    */
   public function testSetOverridable() {
     // Disable Layout Builder.
-    $this->sectionList->disableLayoutBuilder();
+    $this->sectionStorage->disableLayoutBuilder();
 
     // Set Overridable to TRUE and ensure Layout Builder is enabled.
-    $this->sectionList->setOverridable();
-    $this->assertTrue($this->sectionList->isLayoutBuilderEnabled());
+    $this->sectionStorage->setOverridable();
+    $this->assertTrue($this->sectionStorage->isLayoutBuilderEnabled());
 
     // Ensure Layout Builder is still enabled after setting Overridable to FALSE.
-    $this->sectionList->setOverridable(FALSE);
-    $this->assertTrue($this->sectionList->isLayoutBuilderEnabled());
+    $this->sectionStorage->setOverridable(FALSE);
+    $this->assertTrue($this->sectionStorage->isLayoutBuilderEnabled());
   }
 
 }

@@ -23,7 +23,6 @@ interface DelegatorFactoryInterface
      * A factory that creates delegates of a given service
      *
      * @param  string             $name
-     * @psalm-param callable():mixed $callback
      * @param  null|array         $options
      * @return object
      * @throws ServiceNotFoundException If unable to resolve the service.

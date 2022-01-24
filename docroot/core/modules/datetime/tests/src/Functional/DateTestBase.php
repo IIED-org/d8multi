@@ -97,7 +97,6 @@ abstract class DateTestBase extends BrowserTestBase {
       'administer entity_test content',
       'administer entity_test form display',
       'administer content types',
-      'bypass node access',
       'administer node fields',
     ]);
     $this->drupalLogin($web_user);

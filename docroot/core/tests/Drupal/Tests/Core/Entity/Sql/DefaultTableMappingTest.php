@@ -362,24 +362,21 @@ class DefaultTableMappingTest extends UnitTestCase {
       ->expects($this->any())
       ->method('getColumns')
       ->willReturn($columns);
-    $definition->expects($this->any())
-      ->method('getTargetEntityTypeId')
-      ->willReturn('entity_test');
 
     $this->entityType
       ->expects($this->any())
       ->method('getBaseTable')
-      ->willReturn($table_names['base'] ?? 'entity_test');
+      ->willReturn(isset($table_names['base']) ? $table_names['base'] : 'entity_test');
 
     $this->entityType
       ->expects($this->any())
       ->method('getDataTable')
-      ->willReturn($table_names['data'] ?? FALSE);
+      ->willReturn(isset($table_names['data']) ? $table_names['data'] : FALSE);
 
     $this->entityType
       ->expects($this->any())
       ->method('getRevisionTable')
-      ->willReturn($table_names['revision'] ?? FALSE);
+      ->willReturn(isset($table_names['revision']) ? $table_names['revision'] : FALSE);
 
     $this->entityType
       ->expects($this->any())

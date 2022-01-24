@@ -22,20 +22,16 @@ class CommandData
     protected $injectedInstances = [];
     /** @var FormatterOptions */
     protected $formatterOptions;
-    /** @var bool[] */
-    protected $parameterMap;
 
     public function __construct(
         AnnotationData $annotationData,
         InputInterface $input,
-        OutputInterface $output,
-        $parameterMap = []
+        OutputInterface $output
     ) {
         $this->annotationData = $annotationData;
         $this->input = $input;
         $this->output = $output;
         $this->includeOptionsInArgs = true;
-        $this->parameterMap = $parameterMap;
     }
 
     /**
@@ -101,7 +97,7 @@ class CommandData
     {
         // We cannot tell the difference between '--foo' (an option without
         // a value) and the absence of '--foo' when the option has an optional
-        // value, and the current value of the option is 'null' using only
+        // value, and the current vallue of the option is 'null' using only
         // the public methods of InputInterface. We'll try to figure out
         // which is which by other means here.
         $options = $this->getAdjustedOptions();
@@ -197,26 +193,9 @@ class CommandData
     {
         // Get passthrough args, and add the options on the end.
         $args = $this->getArgsWithoutAppName();
-
-        // If this command has a mix of named arguments and options in its
-        // parameter list, then use the parameter map to insert the options
-        // into the correct spot in the parameters list.
-        if (!empty($this->parameterMap)) {
-            $mappedArgs = [];
-            foreach ($this->parameterMap as $name => $isOption) {
-                if ($isOption) {
-                    $mappedArgs[$name] = $this->input->getOption($name);
-                } else {
-                    $mappedArgs[$name] = array_shift($args);
-                }
-            }
-            $args = $mappedArgs;
-        }
-
         if ($this->includeOptionsInArgs) {
             $args['options'] = $this->options();
         }
-
         return $args;
     }
 }

@@ -1,40 +1,31 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace League\Container\Inflector;
 
-use Generator;
-use League\Container\ContainerAwareTrait;
+use League\Container\ImmutableContainerAwareTrait;
 
 class InflectorAggregate implements InflectorAggregateInterface
 {
-    use ContainerAwareTrait;
+    use ImmutableContainerAwareTrait;
 
     /**
-     * @var Inflector[]
+     * @var array
      */
     protected $inflectors = [];
 
     /**
      * {@inheritdoc}
      */
-    public function add(string $type, callable $callback = null) : Inflector
+    public function add($type, callable $callback = null)
     {
-        $inflector          = new Inflector($type, $callback);
-        $this->inflectors[] = $inflector;
+        if (is_null($callback)) {
+            $inflector = new Inflector;
+            $this->inflectors[$type] = $inflector;
 
-        return $inflector;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getIterator() : Generator
-    {
-        $count = count($this->inflectors);
-
-        for ($i = 0; $i < $count; $i++) {
-            yield $this->inflectors[$i];
+            return $inflector;
         }
+
+        $this->inflectors[$type] = $callback;
     }
 
     /**
@@ -42,15 +33,19 @@ class InflectorAggregate implements InflectorAggregateInterface
      */
     public function inflect($object)
     {
-        foreach ($this->getIterator() as $inflector) {
-            $type = $inflector->getType();
-
+        foreach ($this->inflectors as $type => $inflector) {
             if (! $object instanceof $type) {
                 continue;
             }
 
-            $inflector->setLeagueContainer($this->getLeagueContainer());
-            $inflector->inflect($object);
+            if ($inflector instanceof Inflector) {
+                $inflector->setContainer($this->getContainer());
+                $inflector->inflect($object);
+                continue;
+            }
+
+            // must be dealing with a callable as the inflector
+            call_user_func_array($inflector, [$object]);
         }
 
         return $object;

@@ -11,7 +11,7 @@ abstract class EntityViewDisplayResourceTestBase extends EntityResourceTestBase 
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['node', 'field_ui'];
+  protected static $modules = ['node'];
 
   /**
    * {@inheritdoc}

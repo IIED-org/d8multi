@@ -8,8 +8,6 @@
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\webform_access\Entity\WebformAccessType;
 
-// phpcs:disable Drupal.Commenting.InlineComment.InvalidEndChar
-
 /**
  * Implements hook_token_info().
  */
@@ -69,7 +67,7 @@ function webform_access_token_info() {
   }
   $tokens['webform_access'] = $webform_access;
 
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   return ['types' => $types, 'tokens' => $tokens];
 }
@@ -94,9 +92,9 @@ function webform_access_tokens($type, $tokens, array $data, array $options, Bubb
       // Type is always defined (type, admins, users, or emails)
       $type = $parts[0];
       // Access type id is optional.
-      $webform_access_type_id = $parts[1] ?? NULL;
+      $webform_access_type_id = (isset($parts[1])) ? $parts[1] : NULL;
       // Properties can be admins, users, or emails.
-      $property = $parts[2] ?? NULL;
+      $property = (isset($parts[2])) ? $parts[2] : NULL;
 
       /** @var \Drupal\webform_access\WebformAccessGroupInterface $webform_access_group */
       $webform_access_groups = $webform_access_group_storage->loadByEntities($webform, $source_entity, NULL, $webform_access_type_id);

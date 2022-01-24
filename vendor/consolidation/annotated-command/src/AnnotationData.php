@@ -31,7 +31,6 @@ class AnnotationData extends \ArrayObject
         return $this;
     }
 
-    #[\ReturnTypeWillChange]
     public function append($key, $value = '')
     {
         $data = $this->offsetGet($key);

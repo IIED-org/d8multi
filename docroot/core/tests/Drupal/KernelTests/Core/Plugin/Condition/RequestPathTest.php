@@ -58,7 +58,6 @@ class RequestPathTest extends KernelTestBase {
     parent::setUp();
 
     $this->installSchema('system', ['sequences']);
-    $this->installConfig('system');
 
     $this->pluginManager = $this->container->get('plugin.manager.condition');
 

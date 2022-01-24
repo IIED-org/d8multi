@@ -18,7 +18,6 @@ class MigrateFieldInstanceOptionTranslationTest extends MigrateDrupal7TestBase {
     'comment',
     'config_translation',
     'datetime',
-    'datetime_range',
     'file',
     'image',
     'language',

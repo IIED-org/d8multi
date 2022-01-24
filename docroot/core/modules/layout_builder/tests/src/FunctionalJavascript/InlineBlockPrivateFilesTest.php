@@ -97,7 +97,7 @@ class InlineBlockPrivateFilesTest extends InlineBlockTestBase {
     $this->assertSaveLayout();
 
     $this->drupalGet('node/1');
-    $private_href1 = $this->getFileHrefAccessibleOnNode($file);
+    $private_href1 = $this->assertFileAccessibleOnNode($file);
 
     // Remove the inline block with the private file.
     $this->drupalGet('node/1/layout');
@@ -121,7 +121,7 @@ class InlineBlockPrivateFilesTest extends InlineBlockTestBase {
     $this->assertSaveLayout();
 
     $this->drupalGet('node/1');
-    $private_href2 = $this->getFileHrefAccessibleOnNode($file2);
+    $private_href2 = $this->assertFileAccessibleOnNode($file2);
 
     $this->createNewNodeRevision(1);
 
@@ -131,7 +131,7 @@ class InlineBlockPrivateFilesTest extends InlineBlockTestBase {
     $this->assertSaveLayout();
 
     $this->drupalGet('node/1');
-    $private_href3 = $this->getFileHrefAccessibleOnNode($file3);
+    $private_href3 = $this->assertFileAccessibleOnNode($file3);
 
     // $file2 is on a previous revision of the block which is on a previous
     // revision of the node. The user does not have access to view the previous
@@ -154,7 +154,7 @@ class InlineBlockPrivateFilesTest extends InlineBlockTestBase {
     $this->assertSaveLayout();
 
     $this->drupalGet('node/2');
-    $private_href4 = $this->getFileHrefAccessibleOnNode($file4);
+    $private_href4 = $this->assertFileAccessibleOnNode($file4);
 
     $this->createNewNodeRevision(2);
 
@@ -228,15 +228,15 @@ class InlineBlockPrivateFilesTest extends InlineBlockTestBase {
       'filename' => $file_name,
       'uri' => "private://$file_name",
       'filemime' => 'text/plain',
+      'status' => FILE_STATUS_PERMANENT,
     ]);
-    $file->setPermanent();
     file_put_contents($file->getFileUri(), $this->getFileSecret($file));
     $file->save();
     return $file;
   }
 
   /**
-   * Returns the href of a file, asserting it is accessible on the page.
+   * Asserts a file is accessible on the page.
    *
    * @param \Drupal\file\FileInterface $file
    *   The file entity.
@@ -244,16 +244,17 @@ class InlineBlockPrivateFilesTest extends InlineBlockTestBase {
    * @return string
    *   The file href.
    */
-  protected function getFileHrefAccessibleOnNode(FileInterface $file): string {
+  protected function assertFileAccessibleOnNode(FileInterface $file) {
+    $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
-    $this->assertSession()->linkExists($file->label());
+    $assert_session->linkExists($file->label());
     $private_href = $page->findLink($file->label())->getAttribute('href');
     $page->clickLink($file->label());
-    $this->assertSession()->pageTextContains($this->getFileSecret($file));
+    $assert_session->pageTextContains($this->getFileSecret($file));
 
     // Access file directly.
     $this->drupalGet($private_href);
-    $this->assertSession()->pageTextContains($this->getFileSecret($file));
+    $assert_session->pageTextContains($this->getFileSecret($file));
     return $private_href;
   }
 

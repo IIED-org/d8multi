@@ -1,12 +1,10 @@
 <?php declare(strict_types=1);
 
-use mglaman\PHPStanDrupal\Drupal\DrupalAutoloader;
 use PHPStan\DependencyInjection\Container;
+use PHPStan\Drupal\DrupalAutoloader;
 
-if (!isset($container)) {
-    throw new \PHPStan\ShouldNotHappenException('The autoloader did not receive the container.');
-}
-if (!$container instanceof Container) {
+assert($container instanceof Container);
+if ($container === NULL && !($container instanceof Container)) {
     throw new \PHPStan\ShouldNotHappenException('The autoloader did not receive the container.');
 }
 

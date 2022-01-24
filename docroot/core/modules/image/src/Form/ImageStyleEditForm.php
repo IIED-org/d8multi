@@ -153,7 +153,7 @@ class ImageStyleEditForm extends ImageStyleFormBase {
     }
     $form['effects']['new'] = [
       '#tree' => FALSE,
-      '#weight' => $user_input['weight'] ?? NULL,
+      '#weight' => isset($user_input['weight']) ? $user_input['weight'] : NULL,
       '#attributes' => ['class' => ['draggable']],
     ];
     $form['effects']['new']['effect'] = [

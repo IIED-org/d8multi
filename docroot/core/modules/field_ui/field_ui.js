@@ -8,10 +8,9 @@
 (function ($, Drupal, drupalSettings) {
   Drupal.behaviors.fieldUIFieldStorageAddForm = {
     attach: function attach(context) {
-      var form = once('field_ui_add', '[data-drupal-selector="field-ui-field-storage-add-form"]', context);
+      var $form = $(context).find('[data-drupal-selector="field-ui-field-storage-add-form"]').once('field_ui_add');
 
-      if (form.length) {
-        var $form = $(form);
+      if ($form.length) {
         $form.find('.js-form-item-label label,' + '.js-form-item-field-name label,' + '.js-form-item-existing-storage-label label').addClass('js-form-required form-required');
         var $newFieldType = $form.find('select[name="new_storage_type"]');
         var $existingStorageName = $form.find('select[name="existing_storage_name"]');
@@ -37,8 +36,8 @@
   };
   Drupal.behaviors.fieldUIDisplayOverview = {
     attach: function attach(context, settings) {
-      once('field-display-overview', 'table#field-display-overview', context).forEach(function (overview) {
-        Drupal.fieldUIOverview.attach(overview, settings.fieldUIRowsData, Drupal.fieldUIDisplayOverview);
+      $(context).find('table#field-display-overview').once('field-display-overview').each(function () {
+        Drupal.fieldUIOverview.attach(this, settings.fieldUIRowsData, Drupal.fieldUIDisplayOverview);
       });
     }
   };
@@ -105,8 +104,8 @@
         if ($this.next('tr').is(':not(.draggable)') || $this.next('tr').length === 0) {
           $this.removeClass('region-populated').addClass('region-empty');
         } else if ($this.is('.region-empty')) {
-          $this.removeClass('region-empty').addClass('region-populated');
-        }
+            $this.removeClass('region-empty').addClass('region-populated');
+          }
       });
     },
     AJAXRefreshRows: function AJAXRefreshRows(rows) {

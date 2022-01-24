@@ -11,7 +11,7 @@
  */
 
 .accordion {
-  color: #232429;
+  color: #222330;
   border: 1px solid #dedfe4;
   border-radius: 2px;
   background-color: #fff;
@@ -41,6 +41,6 @@
 
 .accordion__item .claro-details__summary .summary {
   display: block;
-  color: #55565b;
+  color: #545560;
   font-weight: normal;
 }

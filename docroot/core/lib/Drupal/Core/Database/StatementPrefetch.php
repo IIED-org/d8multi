@@ -25,11 +25,11 @@ class StatementPrefetch implements \Iterator, StatementInterface {
   protected $driverOptions;
 
   /**
-   * The Drupal database connection object.
+   * Reference to the Drupal database connection object for this statement.
    *
    * @var \Drupal\Core\Database\Connection
    */
-  protected $connection;
+  public $dbh;
 
   /**
    * Reference to the PDO connection object for this statement.
@@ -124,65 +124,13 @@ class StatementPrefetch implements \Iterator, StatementInterface {
    *
    * @var bool
    */
-  protected $rowCountEnabled = FALSE;
+  public $allowRowCount = FALSE;
 
-  /**
-   * Constructs a StatementPrefetch object.
-   *
-   * @param \PDO $pdo_connection
-   *   An object of the PDO class representing a database connection.
-   * @param \Drupal\Core\Database\Connection $connection
-   *   The database connection.
-   * @param string $query
-   *   The query string.
-   * @param array $driver_options
-   *   Driver-specific options.
-   * @param bool $row_count_enabled
-   *   (optional) Enables counting the rows affected. Defaults to FALSE.
-   */
-  public function __construct(\PDO $pdo_connection, Connection $connection, $query, array $driver_options = [], bool $row_count_enabled = FALSE) {
+  public function __construct(\PDO $pdo_connection, Connection $connection, $query, array $driver_options = []) {
     $this->pdoConnection = $pdo_connection;
-    $this->connection = $connection;
+    $this->dbh = $connection;
     $this->queryString = $query;
     $this->driverOptions = $driver_options;
-    $this->rowCountEnabled = $row_count_enabled;
-  }
-
-  /**
-   * Implements the magic __get() method.
-   *
-   * @todo Remove the method before Drupal 10.
-   * @see https://www.drupal.org/i/3210310
-   */
-  public function __get($name) {
-    if ($name === 'dbh') {
-      @trigger_error(__CLASS__ . '::$dbh should not be accessed in drupal:9.3.0 and will error in drupal:10.0.0. Use $this->connection instead. See https://www.drupal.org/node/3186368', E_USER_DEPRECATED);
-      return $this->connection;
-    }
-    if ($name === 'allowRowCount') {
-      @trigger_error(__CLASS__ . '::$allowRowCount should not be accessed in drupal:9.3.0 and will error in drupal:10.0.0. Use $this->rowCountEnabled instead. See https://www.drupal.org/node/3186368', E_USER_DEPRECATED);
-      return $this->rowCountEnabled;
-    }
-  }
-
-  /**
-   * Implements the magic __set() method.
-   *
-   * @todo Remove the method before Drupal 10.
-   * @see https://www.drupal.org/i/3210310
-   */
-  public function __set($name, $value) {
-    if ($name === 'allowRowCount') {
-      @trigger_error(__CLASS__ . '::$allowRowCount should not be written in drupal:9.3.0 and will error in drupal:10.0.0. Enable row counting by passing the appropriate argument to the constructor instead. See https://www.drupal.org/node/3186368', E_USER_DEPRECATED);
-      $this->rowCountEnabled = $value;
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getConnectionTarget(): string {
-    return $this->connection->getTarget();
   }
 
   /**
@@ -201,7 +149,7 @@ class StatementPrefetch implements \Iterator, StatementInterface {
       }
     }
 
-    $logger = $this->connection->getLogger();
+    $logger = $this->dbh->getLogger();
     if (!empty($logger)) {
       $query_start = microtime(TRUE);
     }
@@ -217,7 +165,7 @@ class StatementPrefetch implements \Iterator, StatementInterface {
       $this->throwPDOException();
     }
 
-    if ($this->rowCountEnabled) {
+    if ($options['return'] == Database::RETURN_AFFECTED) {
       $this->rowCount = $statement->rowCount();
     }
     // Fetch all the data from the reply, in order to release any lock
@@ -251,7 +199,7 @@ class StatementPrefetch implements \Iterator, StatementInterface {
    * Throw a PDO Exception based on the last PDO error.
    */
   protected function throwPDOException() {
-    $error_info = $this->connection->errorInfo();
+    $error_info = $this->dbh->errorInfo();
     // We rebuild a message formatted in the same way as PDO.
     $exception = new \PDOException("SQLSTATE[" . $error_info[0] . "]: General error " . $error_info[1] . ": " . $error_info[2]);
     $exception->errorInfo = $error_info;
@@ -273,7 +221,7 @@ class StatementPrefetch implements \Iterator, StatementInterface {
    *   A PDOStatement object.
    */
   protected function getStatement($query, &$args = []) {
-    return $this->connection->prepare($query, $this->driverOptions);
+    return $this->dbh->prepare($query, $this->driverOptions);
   }
 
   /**
@@ -320,7 +268,6 @@ class StatementPrefetch implements \Iterator, StatementInterface {
    * @return mixed
    *   The current row formatted as requested.
    */
-  #[\ReturnTypeWillChange]
   public function current() {
     if (isset($this->currentRow)) {
       switch ($this->fetchStyle) {
@@ -380,7 +327,6 @@ class StatementPrefetch implements \Iterator, StatementInterface {
   /**
    * {@inheritdoc}
    */
-  #[\ReturnTypeWillChange]
   public function key() {
     return $this->currentKey;
   }
@@ -388,7 +334,6 @@ class StatementPrefetch implements \Iterator, StatementInterface {
   /**
    * {@inheritdoc}
    */
-  #[\ReturnTypeWillChange]
   public function rewind() {
     // Nothing to do: our DatabaseStatement can't be rewound.
   }
@@ -396,7 +341,6 @@ class StatementPrefetch implements \Iterator, StatementInterface {
   /**
    * {@inheritdoc}
    */
-  #[\ReturnTypeWillChange]
   public function next() {
     if (!empty($this->data)) {
       $this->currentRow = reset($this->data);
@@ -411,7 +355,6 @@ class StatementPrefetch implements \Iterator, StatementInterface {
   /**
    * {@inheritdoc}
    */
-  #[\ReturnTypeWillChange]
   public function valid() {
     return isset($this->currentRow);
   }
@@ -421,7 +364,7 @@ class StatementPrefetch implements \Iterator, StatementInterface {
    */
   public function rowCount() {
     // SELECT query should not use the method.
-    if ($this->rowCountEnabled) {
+    if ($this->allowRowCount) {
       return $this->rowCount;
     }
     else {
@@ -435,7 +378,7 @@ class StatementPrefetch implements \Iterator, StatementInterface {
   public function fetch($fetch_style = NULL, $cursor_orientation = \PDO::FETCH_ORI_NEXT, $cursor_offset = NULL) {
     if (isset($this->currentRow)) {
       // Set the fetch parameter.
-      $this->fetchStyle = $fetch_style ?? $this->defaultFetchStyle;
+      $this->fetchStyle = isset($fetch_style) ? $fetch_style : $this->defaultFetchStyle;
       $this->fetchOptions = $this->defaultFetchOptions;
 
       // Grab the row in the format specified above.
@@ -521,7 +464,7 @@ class StatementPrefetch implements \Iterator, StatementInterface {
    * {@inheritdoc}
    */
   public function fetchAll($mode = NULL, $column_index = NULL, $constructor_arguments = NULL) {
-    $this->fetchStyle = $mode ?? $this->defaultFetchStyle;
+    $this->fetchStyle = isset($mode) ? $mode : $this->defaultFetchStyle;
     $this->fetchOptions = $this->defaultFetchOptions;
     if (isset($column_index)) {
       $this->fetchOptions['column'] = $column_index;
@@ -586,7 +529,7 @@ class StatementPrefetch implements \Iterator, StatementInterface {
    * {@inheritdoc}
    */
   public function fetchAllAssoc($key, $fetch_style = NULL) {
-    $this->fetchStyle = $fetch_style ?? $this->defaultFetchStyle;
+    $this->fetchStyle = isset($fetch_style) ? $fetch_style : $this->defaultFetchStyle;
     $this->fetchOptions = $this->defaultFetchOptions;
 
     $result = [];

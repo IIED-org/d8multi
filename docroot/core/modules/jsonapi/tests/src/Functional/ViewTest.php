@@ -15,7 +15,7 @@ class ViewTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['views', 'views_ui'];
+  protected static $modules = ['views'];
 
   /**
    * {@inheritdoc}

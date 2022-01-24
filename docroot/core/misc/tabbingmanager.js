@@ -31,17 +31,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       $tabbableElements: $(),
       $disabledElements: $(),
       released: false,
-      active: false,
-      trapFocus: false
+      active: false
     }, options);
   }
 
   $.extend(TabbingManager.prototype, {
     constrain: function constrain(elements) {
-      var _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-          _ref2$trapFocus = _ref2.trapFocus,
-          trapFocus = _ref2$trapFocus === void 0 ? false : _ref2$trapFocus;
-
       var il = this.stack.length;
 
       for (var i = 0; i < il; i++) {
@@ -58,8 +53,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
       var tabbingContext = new TabbingContext({
         level: this.stack.length,
-        $tabbableElements: $(tabbableElements),
-        trapFocus: trapFocus
+        $tabbableElements: $(tabbableElements)
       });
       this.stack.push(tabbingContext);
       tabbingContext.activate();
@@ -98,28 +92,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
 
       $hasFocus.trigger('focus');
-
-      if ($set.length && tabbingContext.trapFocus) {
-        $set.last().on('keydown.focus-trap', function (event) {
-          if (event.key === 'Tab' && !event.shiftKey) {
-            event.preventDefault();
-            $set.first().focus();
-          }
-        });
-        $set.first().on('keydown.focus-trap', function (event) {
-          if (event.key === 'Tab' && event.shiftKey) {
-            event.preventDefault();
-            $set.last().focus();
-          }
-        });
-      }
     },
     deactivate: function deactivate(tabbingContext) {
       var $set = tabbingContext.$disabledElements;
       var level = tabbingContext.level;
       var il = $set.length;
-      tabbingContext.$tabbableElements.first().off('keydown.focus-trap');
-      tabbingContext.$tabbableElements.last().off('keydown.focus-trap');
 
       for (var i = 0; i < il; i++) {
         this.restoreTabindex($set.eq(i), level);
@@ -142,8 +119,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (data.tabindex) {
           $el[0].setAttribute('tabindex', data.tabindex);
         } else {
-          $el[0].removeAttribute('tabindex');
-        }
+            $el[0].removeAttribute('tabindex');
+          }
 
         if (data.autofocus) {
           $el[0].setAttribute('autofocus', 'autofocus');

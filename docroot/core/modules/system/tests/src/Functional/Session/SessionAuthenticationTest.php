@@ -103,10 +103,8 @@ class SessionAuthenticationTest extends BrowserTestBase {
    *   A response object containing the session values and the user ID.
    * @param string $expected
    *   The expected session value.
-   *
-   * @internal
    */
-  protected function assertSessionData(string $response, string $expected): void {
+  protected function assertSessionData($response, $expected) {
     $response = json_decode($response, TRUE);
     $this->assertEquals(['test_value' => $expected], $response['session'], 'The session data matches the expected value.');
 

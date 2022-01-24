@@ -38,7 +38,7 @@ class TermKernelTest extends KernelTestBase {
     // Delete a valid term.
     $valid_term->delete();
     $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['vid' => $vocabulary->id()]);
-    $this->assertEmpty($terms, 'Vocabulary is empty after deletion');
+    $this->assertTrue(empty($terms), 'Vocabulary is empty after deletion');
   }
 
   /**
@@ -57,12 +57,12 @@ class TermKernelTest extends KernelTestBase {
     $term_storage = $this->container->get('entity_type.manager')->getStorage('taxonomy_term');
     $term_storage->resetCache([$child_term_id]);
     $child_term = Term::load($child_term_id);
-    $this->assertNotEmpty($child_term, 'Child term is not deleted if only one of its parents is removed.');
+    $this->assertTrue(!empty($child_term), 'Child term is not deleted if only one of its parents is removed.');
 
     $parent_term2->delete();
     $term_storage->resetCache([$child_term_id]);
     $child_term = Term::load($child_term_id);
-    $this->assertEmpty($child_term, 'Child term is deleted if all of its parents are removed.');
+    $this->assertTrue(empty($child_term), 'Child term is deleted if all of its parents are removed.');
   }
 
   /**
@@ -161,11 +161,11 @@ class TermKernelTest extends KernelTestBase {
     // Confirm we can get the view of unsaved term.
     $render_array = $entity_manager->getViewBuilder('taxonomy_term')
       ->view($term);
-    $this->assertNotEmpty($render_array, 'Term view builder is built.');
+    $this->assertTrue(!empty($render_array), 'Term view builder is built.');
 
     // Confirm we can render said view.
     $rendered = \Drupal::service('renderer')->renderPlain($render_array);
-    $this->assertNotEmpty(trim($rendered), 'Term is able to be rendered.');
+    $this->assertTrue(!empty(trim($rendered)), 'Term is able to be rendered.');
   }
 
 }

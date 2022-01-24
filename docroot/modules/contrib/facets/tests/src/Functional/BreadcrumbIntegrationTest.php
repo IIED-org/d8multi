@@ -14,7 +14,7 @@ class BreadcrumbIntegrationTest extends FacetsTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'views',
     'node',
     'search_api',
@@ -31,7 +31,7 @@ class BreadcrumbIntegrationTest extends FacetsTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
 
     $this->drupalLogin($this->adminUser);
@@ -63,7 +63,7 @@ class BreadcrumbIntegrationTest extends FacetsTestBase {
     $this->createFacet('Type', $id);
     $this->resetAll();
     $this->drupalGet('admin/config/search/facets/' . $id . '/edit');
-    $this->submitForm(['facet_settings[weight]' => '1'], 'Save');
+    $this->drupalPostForm(NULL, ['facet_settings[weight]' => '1'], 'Save');
 
     // Test with a default filter key.
     $this->editFacetConfig(['filter_key' => 'f']);
@@ -93,7 +93,7 @@ class BreadcrumbIntegrationTest extends FacetsTestBase {
     $this->createFacet('Type', $id);
     $this->resetAll();
     $this->drupalGet('admin/config/search/facets/' . $id . '/edit');
-    $this->submitForm(['facet_settings[weight]' => '1'], 'Save');
+    $this->drupalPostForm(NULL, ['facet_settings[weight]' => '1'], 'Save');
     $this->editFacetConfig(['breadcrumb[before]' => FALSE]);
 
     $initial_query = ['search_api_fulltext' => 'foo'];
@@ -129,7 +129,7 @@ class BreadcrumbIntegrationTest extends FacetsTestBase {
       'breadcrumb[group]' => TRUE,
     ];
     $edit = array_merge($default_config, $config);
-    $this->submitForm($edit, 'Save');
+    $this->drupalPostForm(NULL, $edit, 'Save');
   }
 
   /**
@@ -167,10 +167,7 @@ class BreadcrumbIntegrationTest extends FacetsTestBase {
 
     // Check that the current url still has the initial parameters.
     $curr_url = UrlHelper::parse($this->getUrl());
-    foreach ($initial_query as $key => $value) {
-      $this->assertArrayHasKey($key, $curr_url['query']);
-      $this->assertEquals($value, $curr_url['query'][$key]);
-    }
+    $this->assertArraySubset($initial_query, $curr_url['query']);
   }
 
 }

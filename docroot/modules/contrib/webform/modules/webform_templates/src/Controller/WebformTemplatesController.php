@@ -233,7 +233,7 @@ class WebformTemplatesController extends ControllerBase implements ContainerInje
       return [];
     }
 
-    /** @var \Drupal\webform\WebformInterface[] $entities */
+    /* @var $entities \Drupal\webform\WebformInterface[] */
     $entities = $this->getWebformStorage()->loadMultiple($entity_ids);
 
     // If the user is not a webform admin, check view access to each webform.

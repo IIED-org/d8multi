@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\entity_test\Functional\Rest;
 
+use Drupal\entity_test\Entity\EntityTest;
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 use Drupal\Tests\system\Functional\Entity\Traits\EntityDefinitionTestTrait;
 use Drupal\user\Entity\User;
@@ -59,11 +60,9 @@ abstract class EntityTestResourceTestBase extends EntityResourceTestBase {
     $this->container->get('state')->set('entity_test.internal_field', TRUE);
     $this->applyEntityUpdates('entity_test');
 
-    $entity_test = \Drupal::entityTypeManager()
-      ->getStorage(static::$entityTypeId)
-      ->create([
+    $entity_test = EntityTest::create([
       'name' => 'Llama',
-      'type' => static::$entityTypeId,
+      'type' => 'entity_test',
       // Set a value for the internal field to confirm that it will not be
       // returned in normalization.
       // @see entity_test_entity_base_field_info().
@@ -100,7 +99,7 @@ abstract class EntityTestResourceTestBase extends EntityResourceTestBase {
       ],
       'type' => [
         [
-          'value' => static::$entityTypeId,
+          'value' => 'entity_test',
         ],
       ],
       'name' => [
@@ -135,7 +134,7 @@ abstract class EntityTestResourceTestBase extends EntityResourceTestBase {
     return [
       'type' => [
         [
-          'value' => static::$entityTypeId,
+          'value' => 'entity_test',
         ],
       ],
       'name' => [

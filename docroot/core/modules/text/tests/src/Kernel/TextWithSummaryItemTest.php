@@ -46,7 +46,6 @@ class TextWithSummaryItemTest extends FieldKernelTestBase {
     $this->installConfig(['filter']);
     FilterFormat::create([
       'format' => 'no_filters',
-      'name' => 'No filters',
       'filters' => [],
     ])->save();
   }

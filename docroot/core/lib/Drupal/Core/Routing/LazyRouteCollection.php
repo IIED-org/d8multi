@@ -23,7 +23,7 @@ class LazyRouteCollection extends RouteCollection {
   /**
    * {@inheritdoc}
    */
-  public function getIterator(): \ArrayIterator {
+  public function getIterator() {
     return new \ArrayIterator($this->all());
   }
 
@@ -33,7 +33,6 @@ class LazyRouteCollection extends RouteCollection {
    * @return int
    *   The number of routes
    */
-  #[\ReturnTypeWillChange]
   public function count() {
     return count($this->all());
   }

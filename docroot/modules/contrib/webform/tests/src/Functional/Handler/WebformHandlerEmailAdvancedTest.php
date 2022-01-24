@@ -12,11 +12,6 @@ use Drupal\Tests\webform\Functional\WebformBrowserTestBase;
  */
 class WebformHandlerEmailAdvancedTest extends WebformBrowserTestBase {
 
-  /**
-   * Modules to enable.
-   *
-   * @var array
-   */
   public static $modules = ['filter', 'file', 'webform'];
 
   /**
@@ -51,7 +46,7 @@ class WebformHandlerEmailAdvancedTest extends WebformBrowserTestBase {
     /** @var \Drupal\webform\WebformInterface $webform */
     $webform = Webform::load('test_handler_email_advanced');
 
-    /* ********************************************************************** */
+    /**************************************************************************/
 
     // Generate a test submission with a file upload.
     $this->drupalLogin($this->rootUser);
@@ -201,7 +196,7 @@ class WebformHandlerEmailAdvancedTest extends WebformBrowserTestBase {
     // Include empty.
     $email_handler->setSettings([
       'exclude_empty' => FALSE,
-      'exclude_empty_checkbox' => FALSE,
+      'exclude_empty_checkbox' => FALSE
     ]);
     $webform->save();
 

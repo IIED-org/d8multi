@@ -153,6 +153,7 @@
       position: relative; /* Anchor secondary menu */
       display: flex;
       align-items: center;
+      width: -webkit-max-content;
       width: max-content;
       max-width: 12.5rem;
       margin-top: 0;

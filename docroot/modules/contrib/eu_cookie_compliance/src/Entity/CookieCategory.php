@@ -21,7 +21,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *       "delete" = "Drupal\eu_cookie_compliance\Form\CookieCategoryDeleteForm"
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
+ *       "html" = "Drupal\eu_cookie_compliance\CookieCategoryHtmlRouteProvider",
  *     },
  *   },
  *   config_prefix = "cookie_category",

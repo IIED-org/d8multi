@@ -221,13 +221,16 @@ class ProcessingTest extends BrowserTestBase {
    * Triggers a pass if the texts were found in order in the raw content.
    *
    * @param $texts
-   *   Array of raw strings to look for.
+   *   Array of raw strings to look for .
+   * @param $message
+   *   Message to display.
    *
-   * @internal
+   * @return
+   *   TRUE on pass, FALSE on fail.
    */
-  public function assertBatchMessages(array $texts): void {
+  public function assertBatchMessages($texts, $message) {
     $pattern = '|' . implode('.*', $texts) . '|s';
-    $this->assertSession()->responseMatches($pattern);
+    return $this->assertSession()->responseMatches($pattern);
   }
 
   /**

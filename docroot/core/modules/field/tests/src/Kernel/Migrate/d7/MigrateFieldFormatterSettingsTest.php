@@ -16,7 +16,6 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal7TestBase {
   protected static $modules = [
     'comment',
     'datetime',
-    'datetime_range',
     'image',
     'link',
     'menu_ui',
@@ -43,10 +42,8 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal7TestBase {
    *
    * @param string $id
    *   The view display ID.
-   *
-   * @internal
    */
-  protected function assertEntity(string $id): void {
+  protected function assertEntity($id) {
     $display = EntityViewDisplay::load($id);
     $this->assertInstanceOf(EntityViewDisplayInterface::class, $display);
   }
@@ -64,10 +61,8 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal7TestBase {
    *   The expected label of the component.
    * @param int $weight
    *   The expected weight of the component.
-   *
-   * @internal
    */
-  protected function assertComponent(string $display_id, string $component_id, string $type, string $label, int $weight): void {
+  protected function assertComponent($display_id, $component_id, $type, $label, $weight) {
     $component = EntityViewDisplay::load($display_id)->getComponent($component_id);
     $this->assertIsArray($component);
     $this->assertSame($type, $component['type']);
@@ -82,10 +77,8 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal7TestBase {
    *   The display ID.
    * @param string $component_id
    *   The component ID.
-   *
-   * @internal
    */
-  protected function assertComponentNotExists(string $display_id, string $component_id): void {
+  protected function assertComponentNotExists($display_id, $component_id) {
     $component = EntityViewDisplay::load($display_id)->getComponent($component_id);
     $this->assertNull($component);
   }

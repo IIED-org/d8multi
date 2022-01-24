@@ -42,8 +42,8 @@ trait PersonalInformationFormTrait {
       '#type' => 'checkbox',
       '#title' => $this->getGdprWording(),
       '#required' => TRUE,
-      // @todo Would be nice if we could query current consent storage to see
-      // if the user has already agreed to this data collection.
+      // TODO: Would be nice if we could query current consent storage to see if
+      // the user has already agreed to this data collection.
     ];
 
     // Try to inject right before the "actions" element. Otherwise just prepend

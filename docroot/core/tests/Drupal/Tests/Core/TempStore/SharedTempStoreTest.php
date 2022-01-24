@@ -3,7 +3,6 @@
 namespace Drupal\Tests\Core\TempStore;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
-use Drupal\Core\Http\RequestStack;
 use Drupal\Core\KeyValueStore\KeyValueExpirableFactoryInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\TempStore\Lock;
@@ -13,6 +12,7 @@ use Drupal\Core\TempStore\SharedTempStore;
 use Drupal\Core\TempStore\TempStoreException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
@@ -59,14 +59,14 @@ class SharedTempStoreTest extends UnitTestCase {
   /**
    * A tempstore object belonging to the owner.
    *
-   * @var object
+   * @var \stdClass
    */
   protected $ownObject;
 
   /**
    * A tempstore object not belonging to the owner.
    *
-   * @var object
+   * @var \stdClass
    */
   protected $otherObject;
 
@@ -355,9 +355,12 @@ class SharedTempStoreTest extends UnitTestCase {
    */
   public function testSerialization() {
     // Add an unserializable request to the request stack. If the tempstore
-    // didn't use DependencySerializationTrait, an exception would be thrown
+    // didn't use DependencySerializationTrait, the exception would be thrown
     // when we try to serialize the tempstore.
-    $unserializable_request = new UnserializableRequest();
+    $request = $this->prophesize(Request::class);
+    $request->willImplement('\Serializable');
+    $request->serialize()->willThrow(new \LogicException('Oops!'));
+    $unserializable_request = $request->reveal();
 
     $this->requestStack->push($unserializable_request);
     $this->requestStack->_serviceId = 'request_stack';
@@ -421,20 +424,6 @@ class SharedTempStoreTest extends UnitTestCase {
     $expire_property = $reflection_class->getProperty('expire');
     $expire_property->setAccessible(TRUE);
     $this->assertSame(1000, $expire_property->getValue($store));
-  }
-
-}
-
-/**
- * A class for testing.
- */
-class UnserializableRequest extends Request {
-
-  /**
-   * @return array
-   */
-  public function __serialize(): array {
-    throw new \LogicException('Oops!');
   }
 
 }

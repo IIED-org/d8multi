@@ -31,7 +31,7 @@ class HideActiveItemsProcessorTest extends UnitTestCase {
   /**
    * Creates a new processor object for use in the tests.
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $facet = new Facet([], 'facets_facet');

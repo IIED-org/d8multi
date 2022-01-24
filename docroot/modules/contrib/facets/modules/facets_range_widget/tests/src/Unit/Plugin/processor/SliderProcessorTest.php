@@ -28,7 +28,7 @@ class SliderProcessorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
     $this->processor = new SliderProcessor([], 'slider_processor', []);
   }

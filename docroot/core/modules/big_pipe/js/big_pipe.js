@@ -5,7 +5,7 @@
 * @preserve
 **/
 
-(function (Drupal, drupalSettings) {
+(function ($, Drupal, drupalSettings) {
   function mapTextContentToAjaxResponse(content) {
     if (content === '') {
       return false;
@@ -18,15 +18,15 @@
     }
   }
 
-  function bigPipeProcessPlaceholderReplacement(placeholderReplacement) {
+  function bigPipeProcessPlaceholderReplacement(index, placeholderReplacement) {
     var placeholderId = placeholderReplacement.getAttribute('data-big-pipe-replacement-for-placeholder-with-id');
-    var content = placeholderReplacement.textContent.trim();
+    var content = this.textContent.trim();
 
     if (typeof drupalSettings.bigPipePlaceholderIds[placeholderId] !== 'undefined') {
       var response = mapTextContentToAjaxResponse(content);
 
       if (response === false) {
-        once.remove('big-pipe', placeholderReplacement);
+        $(this).removeOnce('big-pipe');
       } else {
         var ajaxObject = Drupal.ajax({
           url: '',
@@ -47,7 +47,7 @@
       return false;
     }
 
-    once('big-pipe', 'script[data-big-pipe-replacement-for-placeholder-with-id]', context).forEach(bigPipeProcessPlaceholderReplacement);
+    $(context).find('script[data-big-pipe-replacement-for-placeholder-with-id]').once('big-pipe').each(bigPipeProcessPlaceholderReplacement);
 
     if (context.querySelector('script[data-big-pipe-event="stop"]')) {
       if (timeoutID) {
@@ -69,11 +69,11 @@
   }
 
   bigPipeProcess();
-  window.addEventListener('load', function () {
+  $(window).on('load', function () {
     if (timeoutID) {
       clearTimeout(timeoutID);
     }
 
     bigPipeProcessDocument(document);
   });
-})(Drupal, drupalSettings);
+})(jQuery, Drupal, drupalSettings);

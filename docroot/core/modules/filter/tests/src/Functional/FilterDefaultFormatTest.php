@@ -43,7 +43,7 @@ class FilterDefaultFormatTest extends BrowserTestBase {
       $this->resetFilterCaches();
       $formats[] = FilterFormat::load($edit['format']);
     }
-    [$first_format, $second_format] = $formats;
+    list($first_format, $second_format) = $formats;
     $second_format_permission = $second_format->getPermissionName();
     $first_user = $this->drupalCreateUser([
       $first_format->getPermissionName(),

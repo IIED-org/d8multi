@@ -111,8 +111,7 @@ class ImagemagickIdentify extends FileMetadataPluginBase {
    * {@inheritdoc}
    */
   protected function doGetMetadataFromFile() {
-    $data = $this->identify();
-    return !empty($data) ? $data : NULL;
+    return $this->identify();
   }
 
   /**
@@ -239,8 +238,8 @@ class ImagemagickIdentify extends FileMetadataPluginBase {
 
     // Allow modules to alter source file and the command line parameters.
     $command = 'identify';
-    $this->eventDispatcher->dispatch(new ImagemagickExecutionEvent($arguments), ImagemagickExecutionEvent::ENSURE_SOURCE_LOCAL_PATH);
-    $this->eventDispatcher->dispatch(new ImagemagickExecutionEvent($arguments), ImagemagickExecutionEvent::PRE_IDENTIFY_EXECUTE);
+    $this->eventDispatcher->dispatch(ImagemagickExecutionEvent::ENSURE_SOURCE_LOCAL_PATH, new ImagemagickExecutionEvent($arguments));
+    $this->eventDispatcher->dispatch(ImagemagickExecutionEvent::PRE_IDENTIFY_EXECUTE, new ImagemagickExecutionEvent($arguments));
 
     // Execute the 'identify' command.
     $output = NULL;

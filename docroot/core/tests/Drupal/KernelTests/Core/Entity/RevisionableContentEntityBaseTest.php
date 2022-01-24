@@ -166,10 +166,8 @@ class RevisionableContentEntityBaseTest extends EntityKernelTestBase {
    *   The number of items expected to be in revisions related tables.
    * @param \Drupal\Core\Entity\EntityTypeInterface $definition
    *   The definition and metadata of the entity being tested.
-   *
-   * @internal
    */
-  protected function assertItemsTableCount(int $count, EntityTypeInterface $definition): void {
+  protected function assertItemsTableCount($count, EntityTypeInterface $definition) {
     $connection = Database::getConnection();
     $this->assertEquals(1, (int) $connection->select($definition->getBaseTable())->countQuery()->execute()->fetchField());
     $this->assertEquals(1, (int) $connection->select($definition->getDataTable())->countQuery()->execute()->fetchField());

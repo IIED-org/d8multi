@@ -8,9 +8,9 @@ use Drupal\Component\Serialization\Json;
 use Drupal\file\Entity\File;
 use Drupal\Core\Link;
 use Drupal\Core\Asset\LibraryDiscovery;
-use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Messenger\Messenger;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\File\FileSystem;
 use Drupal\Core\Extension\ModuleHandler;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -40,7 +40,7 @@ class WavesurferAudioPlayer extends AudioFieldPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LibraryDiscovery $library_discovery, MessengerInterface $messenger, LoggerChannelFactoryInterface $logger_factory, FileSystemInterface $file_system, ModuleHandler $module_handler) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LibraryDiscovery $library_discovery, Messenger $messenger, LoggerChannelFactoryInterface $logger_factory, FileSystem $file_system, ModuleHandler $module_handler) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $library_discovery, $messenger, $logger_factory, $file_system);
 
     $this->moduleHandler = $module_handler;

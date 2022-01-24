@@ -15,10 +15,11 @@
   Drupal.behaviors.tableSelect = {
     attach(context, settings) {
       // Select the inner-most table in case of nested tables.
-      once(
-        'table-select',
-        $(context).find('th.select-all').closest('table'),
-      ).forEach((table) => Drupal.tableSelect.call(table));
+      $(context)
+        .find('th.select-all')
+        .closest('table')
+        .once('table-select')
+        .each(Drupal.tableSelect);
     },
   };
 

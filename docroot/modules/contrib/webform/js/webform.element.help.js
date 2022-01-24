@@ -24,29 +24,6 @@
         return;
       }
 
-      // Hide on escape.
-      // @see https://atomiks.github.io/tippyjs/v6/plugins/#hideonesc
-      var hideOnEsc = {
-        name: 'hideOnEsc',
-        defaultValue: true,
-        fn({hide}) {
-          function onKeyDown(event) {
-            if (event.keyCode === 27) {
-              hide();
-            }
-          }
-
-          return {
-            onShow() {
-              document.addEventListener('keydown', onKeyDown);
-            },
-            onHide() {
-              document.removeEventListener('keydown', onKeyDown);
-            },
-          };
-        },
-      };
-
       $(context).find('.js-webform-element-help').once('webform-element-help').each(function () {
         var $link = $(this);
 
@@ -59,8 +36,7 @@
           content: $link.attr('data-webform-help'),
           delay: 100,
           allowHTML: true,
-          interactive: true,
-          plugins: [hideOnEsc]
+          interactive: true
         }, Drupal.webform.elementHelpIcon.options);
 
         tippy(this, options);

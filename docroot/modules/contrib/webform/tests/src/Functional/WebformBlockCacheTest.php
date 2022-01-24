@@ -6,8 +6,6 @@ use Drupal\node\Entity\Node;
 use Drupal\webform\Entity\Webform;
 
 /**
- * Test block caching.
- *
  * These tests proof that the webform block which
  * renders the webform as a block provides the correct
  * cache tags / cache contexts so that cachability works.

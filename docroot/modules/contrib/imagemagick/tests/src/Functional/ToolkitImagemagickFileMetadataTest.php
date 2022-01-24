@@ -12,7 +12,7 @@ use Drupal\Tests\imagemagick\Kernel\ToolkitSetupTrait;
 /**
  * Tests that Imagemagick integrates properly with File Metadata Manager.
  *
- * @group imagemagick
+ * @group Imagemagick
  */
 class ToolkitImagemagickFileMetadataTest extends BrowserTestBase {
 
@@ -124,6 +124,13 @@ class ToolkitImagemagickFileMetadataTest extends BrowserTestBase {
         'arguments' => ['width' => 20],
         'width' => 20,
         'height' => 10,
+      ],
+      // Fuchsia background.
+      'rotate_5' => [
+        'function' => 'rotate',
+        'arguments' => ['degrees' => 5, 'background' => '#FF00FF'],
+        'width' => 41,
+        'height' => 23,
       ],
       'convert_jpg' => [
         'function' => 'convert',
