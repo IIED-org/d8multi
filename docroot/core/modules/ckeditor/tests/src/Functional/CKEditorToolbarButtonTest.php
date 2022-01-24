@@ -76,9 +76,7 @@ class CKEditorToolbarButtonTest extends BrowserTestBase {
     $json_encode = function ($html) {
       return trim(Json::encode($html), '"');
     };
-    /** @var \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator */
-    $file_url_generator = \Drupal::service('file_url_generator');
-    $markup = $json_encode($file_url_generator->generateString('core/modules/ckeditor/js/plugins/drupalimage/icons/drupalimage.png'));
+    $markup = $json_encode(file_url_transform_relative(file_create_url('core/modules/ckeditor/js/plugins/drupalimage/icons/drupalimage.png')));
     $this->assertSession()->responseContains($markup);
   }
 

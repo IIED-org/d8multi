@@ -3,6 +3,7 @@
 namespace Drupal\Tests;
 
 use Behat\Mink\Driver\BrowserKitDriver;
+use Behat\Mink\Driver\GoutteDriver;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\UrlHelper;
@@ -585,6 +586,10 @@ trait UiHelperTrait {
    */
   protected function isTestUsingGuzzleClient() {
     $driver = $this->getSession()->getDriver();
+    if ($driver instanceof GoutteDriver) {
+      // Legacy support of GoutteDriver.
+      return TRUE;
+    }
     if ($driver instanceof BrowserKitDriver) {
       return $driver->getClient() instanceof DrupalTestBrowser;
     }

@@ -69,16 +69,14 @@ class MigrateBlockTest extends MigrateDrupal6TestBase {
    *   The display region.
    * @param string $theme
    *   The theme.
-   * @param int $weight
+   * @param string $weight
    *   The block weight.
    * @param array $settings
    *   (optional) The block settings.
    * @param bool $status
    *   Whether the block is expected to be enabled or disabled.
-   *
-   * @internal
    */
-  public function assertEntity(string $id, array $visibility, string $region, string $theme, int $weight, array $settings = NULL, bool $status = TRUE): void {
+  public function assertEntity($id, $visibility, $region, $theme, $weight, array $settings = NULL, $status = TRUE) {
     $block = Block::load($id);
     $this->assertInstanceOf(Block::class, $block);
     $this->assertSame($visibility, $block->getVisibility());
@@ -131,13 +129,13 @@ class MigrateBlockTest extends MigrateDrupal6TestBase {
     $visibility = [
       'user_role' => [
         'id' => 'user_role',
-        'negate' => FALSE,
-        'context_mapping' => [
-          'user' => '@user.current_user_context:current_user',
-        ],
         'roles' => [
           'authenticated' => 'authenticated',
         ],
+        'context_mapping' => [
+          'user' => '@user.current_user_context:current_user',
+        ],
+        'negate' => FALSE,
       ],
     ];
     $settings = [
@@ -152,13 +150,13 @@ class MigrateBlockTest extends MigrateDrupal6TestBase {
     $visibility = [
       'user_role' => [
         'id' => 'user_role',
-        'negate' => FALSE,
-        'context_mapping' => [
-          'user' => '@user.current_user_context:current_user',
-        ],
         'roles' => [
           'migrate_test_role_1' => 'migrate_test_role_1',
         ],
+        'context_mapping' => [
+          'user' => '@user.current_user_context:current_user',
+        ],
+        'negate' => FALSE,
       ],
     ];
     $settings = [

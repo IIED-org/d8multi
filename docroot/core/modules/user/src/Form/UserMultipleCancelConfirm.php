@@ -91,14 +91,7 @@ class UserMultipleCancelConfirm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getConfirmText() {
-    return $this->t('Confirm');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getDescription() {
-    return '';
+    return $this->t('Cancel accounts');
   }
 
   /**
@@ -155,7 +148,7 @@ class UserMultipleCancelConfirm extends ConfirmFormBase {
 
     $form['user_cancel_method'] = [
       '#type' => 'radios',
-      '#title' => $this->t('Cancellation method'),
+      '#title' => $this->t('When cancelling these accounts'),
       '#access' => $selectCancel,
     ];
 
@@ -174,7 +167,7 @@ class UserMultipleCancelConfirm extends ConfirmFormBase {
     // Allow to send the account cancellation confirmation mail.
     $form['user_cancel_confirm'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Require email confirmation'),
+      '#title' => $this->t('Require email confirmation to cancel account'),
       '#default_value' => FALSE,
       '#description' => $this->t('When enabled, the user must confirm the account cancellation via email.'),
     ];

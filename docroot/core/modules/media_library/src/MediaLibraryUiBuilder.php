@@ -285,11 +285,7 @@ class MediaLibraryUiBuilder {
   protected function buildMediaTypeAddForm(MediaLibraryState $state) {
     $selected_type_id = $state->getSelectedTypeId();
 
-    $access_handler = $this->entityTypeManager->getAccessControlHandler('media');
-    $context = [
-      'media_library_state' => $state,
-    ];
-    if (!$access_handler->createAccess($selected_type_id, NULL, $context)) {
+    if (!$this->entityTypeManager->getAccessControlHandler('media')->createAccess($selected_type_id)) {
       return [];
     }
 

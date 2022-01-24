@@ -4,7 +4,7 @@ namespace Drupal\facets\Event;
 
 use Drupal\facets\FacetInterface;
 use Drupal\facets\Result\ResultInterface;
-use Drupal\Component\EventDispatcher\Event;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
@@ -14,14 +14,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
  */
 final class QueryStringCreated extends Event {
 
-  /**
-   * The event name.
-   *
-   * @deprecated in facets:2.0.1 and is removed from facets:3.0.0. Use FacetsEvents::QUERY_STRING_CREATED instead.
-   *
-   * @see https://www.drupal.org/project/facets/issues/3257441
-   */
-  public const NAME = FacetsEvents::QUERY_STRING_CREATED;
+  const NAME = 'facets.query_string_created';
 
   /**
    * The get parameters.
@@ -106,7 +99,7 @@ final class QueryStringCreated extends Event {
    * @param array $filterParameters
    *   The filter parameters to set.
    */
-  public function setFilterParameters(array $filterParameters) {
+  public function setFilterParameters($filterParameters) {
     $this->filterParameters = $filterParameters;
   }
 
@@ -130,7 +123,6 @@ final class QueryStringCreated extends Event {
    * changes to the final url.
    *
    * @return array
-   *   The active filters.
    */
   public function getActiveFilters() {
     return $this->activeFilters;
@@ -143,7 +135,6 @@ final class QueryStringCreated extends Event {
    * changes to the final url.
    *
    * @return \Drupal\facets\FacetInterface
-   *   The facet.
    */
   public function getFacet() {
     return $this->facet;

@@ -28,7 +28,6 @@ class WebformEntityPrintAttachment extends WebformAttachmentBase {
    * @var \Drupal\entity_print\Plugin\ExportTypeManagerInterface
    */
   protected $exportTypeManager;
-
   /**
    * {@inheritdoc}
    */
@@ -51,7 +50,7 @@ class WebformEntityPrintAttachment extends WebformAttachmentBase {
     return $properties;
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -60,7 +59,7 @@ class WebformEntityPrintAttachment extends WebformAttachmentBase {
     parent::finalize($element, $webform_submission);
     // Explode element_type:export_type.
     // @see \Drupal\webform_entity_print_attachment\Element\WebformEntityPrintAttachment::getExportTypeId
-    [$element['#type'], $element['#export_type']] = explode(':', $element['#type']);
+    list($element['#type'], $element['#export_type']) = explode(':', $element['#type']);
   }
 
   /**
@@ -118,7 +117,7 @@ class WebformEntityPrintAttachment extends WebformAttachmentBase {
    *   An export type file extension.
    */
   protected function getExportTypeFileExtension() {
-    [, $export_type_id] = explode(':', $this->getPluginId());
+    list(, $export_type_id) = explode(':', $this->getPluginId());
     $definition = $this->exportTypeManager->getDefinition($export_type_id);
     return $definition['file_extension'];
   }

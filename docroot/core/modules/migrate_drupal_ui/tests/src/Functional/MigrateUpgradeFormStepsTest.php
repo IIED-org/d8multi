@@ -63,7 +63,7 @@ class MigrateUpgradeFormStepsTest extends BrowserTestBase {
     // form.
     $session = $this->assertSession();
     // Get the current major version.
-    [$destination_site_version] = explode('.', \Drupal::VERSION, 2);
+    list($destination_site_version) = explode('.', \Drupal::VERSION, 2);
     $expected['initial'] = "Upgrade a site by importing its files and the data from its database into a clean and empty new install of Drupal $destination_site_version.";
     $expected['incremental'] = "An upgrade has already been performed on this site.";
 
@@ -127,10 +127,8 @@ class MigrateUpgradeFormStepsTest extends BrowserTestBase {
    *   The WebAssert object.
    * @param string $expected
    *   The expected response text.
-   *
-   * @internal
    */
-  protected function assertFirstForm(WebAssert $session, string $expected): void {
+  protected function assertFirstForm(WebAssert $session, $expected) {
     $paths = [
       '',
       '/incremental',

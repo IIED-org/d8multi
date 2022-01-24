@@ -123,10 +123,8 @@ class TwigTransTest extends BrowserTestBase {
 
   /**
    * Asserts Twig trans tags.
-   *
-   * @internal
    */
-  protected function assertTwigTransTags(): void {
+  protected function assertTwigTransTags() {
     // Assert that {% trans "Hello sun." %} is translated correctly.
     $this->assertSession()->pageTextContains('OH HAI SUNZ');
 

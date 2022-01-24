@@ -19,7 +19,7 @@ class UrlIntegrationTest extends FacetsTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'views',
     'node',
     'search_api',
@@ -32,7 +32,7 @@ class UrlIntegrationTest extends FacetsTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
 
     $this->drupalLogin($this->adminUser);
@@ -51,8 +51,7 @@ class UrlIntegrationTest extends FacetsTestBase {
     $this->createFacet($name, $id);
 
     $url = Url::fromUserInput('/search-api-test-fulltext', ['query' => ['f[0]' => 'facet:item']]);
-    $this->clickFacet();
-    $this->assertSession()->addressEquals($url);
+    $this->checkClickedFacetUrl($url);
 
     /** @var \Drupal\facets\FacetInterface $facet */
     $facet = Facet::load($id);
@@ -72,7 +71,7 @@ class UrlIntegrationTest extends FacetsTestBase {
       'filter_key' => 'y',
       'url_processor' => 'query_string',
     ];
-    $this->submitForm($edit, 'Save');
+    $this->drupalPostForm(NULL, $edit, 'Save');
 
     /** @var \Drupal\facets\FacetInterface $facet */
     $facet = Facet::load($id);
@@ -84,8 +83,7 @@ class UrlIntegrationTest extends FacetsTestBase {
     $config = NULL;
 
     $url_2 = Url::fromUserInput('/search-api-test-fulltext', ['query' => ['y[0]' => 'facet:item']]);
-    $this->clickFacet();
-    $this->assertSession()->addressEquals($url_2);
+    $this->checkClickedFacetUrl($url_2);
 
     // Go to the only enabled facet source's config and change the url
     // processor.
@@ -96,7 +94,7 @@ class UrlIntegrationTest extends FacetsTestBase {
       'filter_key' => 'y',
       'url_processor' => 'dummy_query',
     ];
-    $this->submitForm($edit, 'Save');
+    $this->drupalPostForm(NULL, $edit, 'Save');
 
     /** @var \Drupal\facets\FacetInterface $facet */
     $facet = Facet::load($id);
@@ -108,8 +106,7 @@ class UrlIntegrationTest extends FacetsTestBase {
     $config = NULL;
 
     $url_3 = Url::fromUserInput('/search-api-test-fulltext', ['query' => ['y[0]' => 'facet||item']]);
-    $this->clickFacet();
-    $this->assertSession()->addressEquals($url_3);
+    $this->checkClickedFacetUrl($url_3);
   }
 
   /**
@@ -162,8 +159,7 @@ class UrlIntegrationTest extends FacetsTestBase {
     $this->createFacet($name, $id);
 
     $url = Url::fromUserInput('/search-api-test-fulltext');
-    $this->clickFacet();
-    $this->assertSession()->addressEquals($url);
+    $this->checkClickedFacetUrl($url);
 
     // Build the path as described in #2871475.
     $path = 'search-api-test-fulltext';
@@ -216,7 +212,7 @@ class UrlIntegrationTest extends FacetsTestBase {
     $this->createFacet('Owl', 'owl');
     $this->createFacet('Another owl', 'another_owl');
     $this->drupalGet('admin/config/search/facets/another_owl/edit');
-    $this->submitForm(['facet_settings[url_alias]' => 'owl'], 'Save');
+    $this->drupalPostForm(NULL, ['facet_settings[url_alias]' => 'owl'], 'Save');
     $this->assertSession()->pageTextContains('This alias is already in use for another facet defined on the same source.');
   }
 
@@ -233,10 +229,8 @@ class UrlIntegrationTest extends FacetsTestBase {
     $name = 'Facet';
     $this->createFacet($name, $id);
 
-    $this->clickFacet();
-    $url = urldecode($this->getSession()->getCurrentUrl());
-    $this->assertStringContainsString('test=fun', $url);
-    $this->assertStringContainsString('f[0]=facet:item', $url);
+    $url = Url::fromUserInput('/search-api-test-fulltext', ['query' => ['f[0]' => 'facet:item', 'test' => 'fun']]);
+    $this->checkClickedFacetUrl($url);
   }
 
 }

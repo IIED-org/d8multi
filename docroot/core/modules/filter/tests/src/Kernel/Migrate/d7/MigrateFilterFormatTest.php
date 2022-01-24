@@ -67,10 +67,8 @@ class MigrateFilterFormatTest extends MigrateDrupal7TestBase implements MigrateD
    *   The weight of the filter.
    * @param bool $status
    *   The status of the filter.
-   *
-   * @internal
    */
-  protected function assertEntity(string $id, string $label, array $enabled_filters, int $weight, bool $status): void {
+  protected function assertEntity($id, $label, array $enabled_filters, $weight, $status) {
     /** @var \Drupal\filter\FilterFormatInterface $entity */
     $entity = FilterFormat::load($id);
     $this->assertInstanceOf(FilterFormatInterface::class, $entity);

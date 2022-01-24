@@ -14,7 +14,7 @@ abstract class PathAliasResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['path', 'path_alias'];
+  protected static $modules = ['path_alias'];
 
   /**
    * {@inheritdoc}
@@ -114,6 +114,13 @@ abstract class PathAliasResourceTestBase extends EntityResourceTestBase {
         ],
       ],
     ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getExpectedCacheContexts() {
+    return ['user.permissions'];
   }
 
 }

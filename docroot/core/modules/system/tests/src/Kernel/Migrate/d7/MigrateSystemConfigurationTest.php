@@ -14,7 +14,9 @@ class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
   protected static $modules = ['action', 'file', 'system'];
 
   protected $expectedConfig = [
-    'system.authorize' => [],
+    'system.authorize' => [
+      'filetransfer_default' => 'ftp',
+    ],
     'system.cron' => [
       'threshold' => [
         // autorun is not handled by the migration.
@@ -25,17 +27,17 @@ class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
       'logging' => 1,
     ],
     'system.date' => [
-      'first_day' => 1,
       'country' => [
         'default' => 'US',
       ],
+      'first_day' => 1,
       'timezone' => [
         'default' => 'America/Chicago',
         'user' => [
           'configurable' => TRUE,
+          'warn' => TRUE,
           // DRUPAL_USER_TIMEZONE_SELECT (D7 API)
           'default' => 2,
-          'warn' => TRUE,
         ],
       ],
     ],
@@ -61,9 +63,9 @@ class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
       ],
     ],
     'system.maintenance' => [
+      'message' => 'This is a custom maintenance mode message.',
       // langcode is not handled by the migration.
       'langcode' => 'en',
-      'message' => 'This is a custom maintenance mode message.',
     ],
     'system.performance' => [
       'cache' => [
@@ -97,8 +99,6 @@ class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
       ],
     ],
     'system.site' => [
-      // langcode and default_langcode are not handled by the migration.
-      'langcode' => 'en',
       // uuid is not handled by the migration.
       'uuid' => '',
       'name' => 'The Site Name',
@@ -111,6 +111,8 @@ class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
       ],
       'admin_compact_mode' => TRUE,
       'weight_select_max' => 40,
+      // langcode and default_langcode are not handled by the migration.
+      'langcode' => 'en',
       'default_langcode' => 'en',
     ],
   ];
@@ -164,9 +166,6 @@ class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
       unset($actual['_core']);
       $this->assertSame($actual, $values, $config_id . ' matches expected values.');
     }
-    // The d7_system_authorize migration should not create the system.authorize
-    // config.
-    $this->assertTrue($this->config('system.authorize')->isNew());
   }
 
 }

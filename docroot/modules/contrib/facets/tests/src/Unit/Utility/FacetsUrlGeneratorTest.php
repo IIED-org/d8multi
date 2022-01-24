@@ -10,7 +10,7 @@ use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
 
 /**
- * Unit test for URL Generator Service.
+ * Class FacetsUrlGeneratorTest.
  *
  * @group facets
  * @coversDefaultClass \Drupal\facets\Utility\FacetsUrlGenerator

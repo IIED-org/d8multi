@@ -397,10 +397,8 @@ class UserRegistrationTest extends BrowserTestBase {
 
   /**
    * Asserts the presence of cache tags on registration form with user fields.
-   *
-   * @internal
    */
-  protected function assertRegistrationFormCacheTagsWithUserFields(): void {
+  protected function assertRegistrationFormCacheTagsWithUserFields() {
     $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'config:core.entity_form_display.user.user.register');
     $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'config:field.field.user.user.test_user_field');
     $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'config:field.storage.user.test_user_field');

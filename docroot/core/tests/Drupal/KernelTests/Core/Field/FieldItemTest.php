@@ -51,7 +51,7 @@ class FieldItemTest extends EntityKernelTestBase {
 
     $this->entityTypeManager->clearCachedDefinitions();
     $definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions($entity_type_id);
-    $this->assertNotEmpty($definitions[$this->fieldName]);
+    $this->assertTrue(!empty($definitions[$this->fieldName]));
   }
 
   /**
@@ -83,12 +83,10 @@ class FieldItemTest extends EntityKernelTestBase {
    *
    * @param \Drupal\entity_test\Entity\EntityTest $entity
    *   The test entity.
-   * @param string $expected_value
+   * @param $expected_value
    *   The expected field item value.
-   *
-   * @internal
    */
-  protected function assertSavedFieldItemValue(EntityTest $entity, string $expected_value): void {
+  protected function assertSavedFieldItemValue(EntityTest $entity, $expected_value) {
     $entity->setNewRevision(TRUE);
     $entity->save();
     $base_field_expected_value = str_replace($this->fieldName, 'field_test_item', $expected_value);

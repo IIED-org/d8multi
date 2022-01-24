@@ -190,7 +190,7 @@ EOD
     ];
 
     $test_cases = array_map(function ($input) use ($defaults) {
-      [$json, $expected, $description, $route_name, $resource_type] = array_values($input + $defaults);
+      list($json, $expected, $description, $route_name, $resource_type) = array_values($input + $defaults);
       return [
         $this->createRequest($route_name, $resource_type),
         $this->createResponse($json),

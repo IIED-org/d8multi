@@ -38,7 +38,6 @@ class NodeAccessMenuLinkTest extends NodeTestBase {
     $this->contentAdminUser = $this->drupalCreateUser([
       'access content',
       'administer content types',
-      'bypass node access',
       'administer menu',
     ]);
 

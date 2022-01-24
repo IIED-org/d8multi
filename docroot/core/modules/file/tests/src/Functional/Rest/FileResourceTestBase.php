@@ -80,7 +80,7 @@ abstract class FileResourceTestBase extends EntityResourceTestBase {
     $file->setFilename('drupal.txt');
     $file->setMimeType('text/plain');
     $file->setFileUri('public://drupal.txt');
-    $file->setPermanent();
+    $file->set('status', FILE_STATUS_PERMANENT);
     $file->save();
 
     file_put_contents($file->getFileUri(), 'Drupal');

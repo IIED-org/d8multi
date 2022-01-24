@@ -140,12 +140,7 @@ class EntityReferenceWidgetTest extends MediaLibraryTestBase {
     $this->assertTrue($menu->hasLink('Type Three'));
     $this->assertTrue($menu->hasLink('Type Four'));
     $this->assertTrue($menu->hasLink('Type Five'));
-
-    // Insert media to test validation with null target_bundles.
-    $this->switchToMediaType('One');
-    $this->assertNotEmpty($assert_session->waitForText('Showing Type One media.'));
-    $this->selectMediaItem(0);
-    $this->pressInsertSelected('Added one media item.');
+    $assert_session->elementExists('css', '.ui-dialog-titlebar-close')->click();
 
     // Assert that the media type menu is not available when only 1 type is
     // configured for the field.

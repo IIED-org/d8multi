@@ -74,7 +74,7 @@ class LinkFieldUITest extends BrowserTestBase {
    */
   public function testFieldUI() {
     foreach ($this->providerTestFieldUI() as $item) {
-      [$cardinality, $link_type, $title, $label, $field_name, $default_uri] = $item;
+      list($cardinality, $link_type, $title, $label, $field_name, $default_uri) = $item;
       $this->runFieldUIItem($cardinality, $link_type, $title, $label, $field_name, $default_uri);
     }
   }
@@ -218,10 +218,8 @@ class LinkFieldUITest extends BrowserTestBase {
    *   The name of the field to check.
    * @param string $text
    *   The text to check.
-   *
-   * @internal
    */
-  protected function assertFieldContainsRawText(string $field_name, string $text): void {
+  protected function assertFieldContainsRawText($field_name, $text) {
     $this->assertTrue((bool) preg_match('/' . preg_quote($text, '/') . '/ui', $this->getFieldHtml($field_name)));
   }
 
@@ -232,10 +230,8 @@ class LinkFieldUITest extends BrowserTestBase {
    *   The name of the field to check.
    * @param string $text
    *   The text to check.
-   *
-   * @internal
    */
-  protected function assertNoFieldContainsRawText(string $field_name, string $text): void {
+  protected function assertNoFieldContainsRawText($field_name, $text) {
     $this->assertFalse((bool) preg_match('/' . preg_quote($text, '/') . '/ui', $this->getFieldHtml($field_name)));
   }
 

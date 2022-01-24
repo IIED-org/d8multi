@@ -6,7 +6,7 @@
 **/
 
 (function ($, Drupal) {
-  function init(tab) {
+  function init(i, tab) {
     var $tab = $(tab);
     var $target = $tab.find('[data-drupal-nav-tabs-target]');
     var $active = $target.find('.js-active-tab');
@@ -66,7 +66,9 @@
 
   Drupal.behaviors.navTabs = {
     attach: function attach(context) {
-      once('nav-tabs', '[data-drupal-nav-tabs].is-collapsible', context).forEach(init);
+      $(context).find('[data-drupal-nav-tabs].is-collapsible').once('nav-tabs').each(function (i, value) {
+        $(value).each(init);
+      });
     }
   };
 })(jQuery, Drupal);

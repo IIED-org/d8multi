@@ -180,12 +180,10 @@ class ControllerResolverTest extends UnitTestCase {
    * @param string|null $class
    *   Either the name of the class the controller represents, or NULL if it is
    *   not an object.
-   * @param string|null $output
+   * @param mixed $output
    *   The output expected for this controller.
-   *
-   * @internal
    */
-  protected function assertCallableController(callable $controller, ?string $class, ?string $output): void {
+  protected function assertCallableController($controller, $class, $output) {
     if ($class) {
       $this->assertIsObject($controller[0]);
       $this->assertInstanceOf($class, $controller[0]);

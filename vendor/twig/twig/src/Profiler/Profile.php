@@ -157,7 +157,6 @@ class Profile implements \IteratorAggregate, \Serializable
         $this->enter();
     }
 
-    #[\ReturnTypeWillChange]
     public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->profiles);

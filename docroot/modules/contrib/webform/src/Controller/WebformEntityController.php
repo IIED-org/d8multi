@@ -93,10 +93,7 @@ class WebformEntityController extends ControllerBase implements ContainerInjecti
       return new WebformUncacheableResponse($assets['css'], 200, ['Content-Type' => 'text/css']);
     }
     else {
-      $response = new CacheableResponse($assets['css'], 200, ['Content-Type' => 'text/css']);
-      return $response
-        ->addCacheableDependency($webform)
-        ->addCacheableDependency($this->config('webform.settings'));
+      return new CacheableResponse($assets['css'], 200, ['Content-Type' => 'text/css']);
     }
   }
 
@@ -117,10 +114,7 @@ class WebformEntityController extends ControllerBase implements ContainerInjecti
       return new WebformUncacheableResponse($assets['javascript'], 200, ['Content-Type' => 'text/javascript']);
     }
     else {
-      $response = new CacheableResponse($assets['javascript'], 200, ['Content-Type' => 'text/javascript']);
-      return $response
-        ->addCacheableDependency($webform)
-        ->addCacheableDependency($this->config('webform.settings'));
+      return new CacheableResponse($assets['javascript'], 200, ['Content-Type' => 'text/javascript']);
     }
   }
 
@@ -140,7 +134,7 @@ class WebformEntityController extends ControllerBase implements ContainerInjecti
   public function confirmation(Request $request, WebformInterface $webform = NULL, WebformSubmissionInterface $webform_submission = NULL) {
     /** @var \Drupal\Core\Entity\EntityInterface $source_entity */
     if (!$webform) {
-      [$webform, $source_entity] = $this->requestHandler->getWebformEntities();
+      list($webform, $source_entity) = $this->requestHandler->getWebformEntities();
     }
     else {
       $source_entity = $this->requestHandler->getCurrentSourceEntity('webform');
@@ -342,7 +336,7 @@ class WebformEntityController extends ControllerBase implements ContainerInjecti
   public function title(WebformInterface $webform = NULL) {
     /** @var \Drupal\Core\Entity\EntityInterface $source_entity */
     if (!$webform) {
-      [$webform, $source_entity] = $this->requestHandler->getWebformEntities();
+      list($webform, $source_entity) = $this->requestHandler->getWebformEntities();
     }
     else {
       $source_entity = $this->requestHandler->getCurrentSourceEntity('webform');

@@ -80,7 +80,10 @@ abstract class ViewTestBase extends BrowserTestBase {
   protected function orderResultSet($result_set, $column, $reverse = FALSE) {
     $order = $reverse ? -1 : 1;
     usort($result_set, function ($a, $b) use ($column, $order) {
-      return $order * ($a[$column] <=> $b[$column]);
+      if ($a[$column] == $b[$column]) {
+        return 0;
+      }
+      return $order * (($a[$column] < $b[$column]) ? -1 : 1);
     });
     return $result_set;
   }

@@ -369,10 +369,13 @@ class Block extends DisplayPluginBase {
   }
 
   /**
-   * {@inheritdoc}
+   * Block views use exposed widgets only if AJAX is set.
    */
-  public function usesExposedFormInBlock() {
-    return TRUE;
+  public function usesExposed() {
+    if ($this->ajaxEnabled()) {
+      return parent::usesExposed();
+    }
+    return FALSE;
   }
 
   /**

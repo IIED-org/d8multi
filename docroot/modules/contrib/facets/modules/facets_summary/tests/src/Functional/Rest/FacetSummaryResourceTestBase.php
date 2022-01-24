@@ -6,14 +6,14 @@ use Drupal\facets_summary\Entity\FacetsSummary;
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 
 /**
- * Provides the FacetSummaryResourceTestBase class.
+ * Class FacetSummaryResourceTestBase.
  */
 abstract class FacetSummaryResourceTestBase extends EntityResourceTestBase {
 
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['facets_summary'];
+  public static $modules = ['facets_summary'];
 
   /**
    * {@inheritdoc}

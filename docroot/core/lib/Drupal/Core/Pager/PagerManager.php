@@ -63,7 +63,7 @@ class PagerManager implements PagerManagerInterface {
    * {@inheritdoc}
    */
   public function getPager($element = 0) {
-    return $this->pagers[$element] ?? NULL;
+    return isset($this->pagers[$element]) ? $this->pagers[$element] : NULL;
   }
 
   /**

@@ -1002,25 +1002,28 @@
    */
   Drupal.behaviors.initializeFilterConfiguration = {
     attach(context, settings) {
-      once(
-        'filter-editor-status',
-        '#filters-status-wrapper input.form-checkbox',
-        context,
-      ).forEach((checkbox) => {
-        const $checkbox = $(checkbox);
-        const nameAttribute = $checkbox.attr('name');
+      const $context = $(context);
 
-        // The filter's checkbox has a name attribute of the form
-        // "filters[<name of filter>][status]", parse "<name of filter>" from
-        // it.
-        const filterID = nameAttribute.substring(8, nameAttribute.indexOf(']'));
+      $context
+        .find('#filters-status-wrapper input.form-checkbox')
+        .once('filter-editor-status')
+        .each(function () {
+          const $checkbox = $(this);
+          const nameAttribute = $checkbox.attr('name');
 
-        // Create a Drupal.FilterStatus object to track the state (whether it's
-        // active or not and its current settings, if any) of each filter.
-        Drupal.filterConfiguration.statuses[filterID] = new Drupal.FilterStatus(
-          filterID,
-        );
-      });
+          // The filter's checkbox has a name attribute of the form
+          // "filters[<name of filter>][status]", parse "<name of filter>"
+          // from it.
+          const filterID = nameAttribute.substring(
+            8,
+            nameAttribute.indexOf(']'),
+          );
+
+          // Create a Drupal.FilterStatus object to track the state (whether it's
+          // active or not and its current settings, if any) of each filter.
+          Drupal.filterConfiguration.statuses[filterID] =
+            new Drupal.FilterStatus(filterID);
+        });
     },
   };
 })(jQuery, _, Drupal, document);

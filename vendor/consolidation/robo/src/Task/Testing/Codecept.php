@@ -6,7 +6,7 @@ use Robo\Contract\PrintedInterface;
 use Robo\Exception\TaskException;
 use Robo\Task\BaseTask;
 use Robo\Contract\CommandInterface;
-use Robo\Common\ExecOneCommand;
+use Symfony\Component\Process\Process;
 
 /**
  * Executes Codeception tests
@@ -28,7 +28,7 @@ use Robo\Common\ExecOneCommand;
  */
 class Codecept extends BaseTask implements CommandInterface, PrintedInterface
 {
-    use ExecOneCommand;
+    use \Robo\Common\ExecOneCommand;
 
     /**
      * @var string
@@ -233,15 +233,6 @@ class Codecept extends BaseTask implements CommandInterface, PrintedInterface
     public function noRebuild()
     {
         $this->option("no-rebuild");
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function noExit()
-    {
-        $this->option("no-exit");
         return $this;
     }
 

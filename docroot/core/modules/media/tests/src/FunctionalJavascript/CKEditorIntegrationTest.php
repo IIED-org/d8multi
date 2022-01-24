@@ -713,9 +713,9 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     $assert_session->fieldValueEquals('attributes[alt]', $cobra_commander_bio);
 
     // Test that setting alt value to two double quotes will signal to the
-    // MediaEmbed filter to unset the attribute on the media image field. We
-    // intentionally add a space after the two double quotes to test the string
-    // is trimmed to two quotes.
+    // MediaEmbed filter to unset the attribute on the media image field.
+    // We intentionally add a space space after the two double quotes to test
+    // the string is trimmed to two quotes.
     $page->fillField('attributes[alt]', '"" ');
     $this->submitDialog();
     $this->getSession()->switchToIFrame('ckeditor');
@@ -868,9 +868,7 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     if ($drupalimage_is_enabled) {
       // Add an image with a link wrapped around it.
       $uri = $this->media->field_media_image->entity->getFileUri();
-      /** @var \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator */
-      $file_url_generator = \Drupal::service('file_url_generator');
-      $src = $file_url_generator->generateString($uri);
+      $src = file_url_transform_relative(file_create_url($uri));
       $this->host->body->value .= '<a href="http://www.drupal.org/association"><img alt="drupalimage test image" data-entity-type="" data-entity-uuid="" src="' . $src . '" /></a></p>';
     }
     $this->host->save();
@@ -1415,13 +1413,11 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
    *
    * @param string $attribute
    *   The attribute to check.
-   * @param string|null $value
+   * @param mixed $value
    *   Either a string value or if NULL, asserts that <drupal-media> element
    *   doesn't have the attribute.
-   *
-   * @internal
    */
-  protected function assertSourceAttributeSame(string $attribute, ?string $value): void {
+  protected function assertSourceAttributeSame($attribute, $value) {
     $this->assertNotEmpty($drupal_media = $this->getDrupalMediaFromSource());
     if ($value === NULL) {
       $this->assertFalse($drupal_media->hasAttribute($attribute));
@@ -1526,10 +1522,8 @@ JS;
    *
    * @param string $label
    *   The `aria-label` attribute value of the context menu item.
-   *
-   * @internal
    */
-  protected function assertContextMenuItemExists(string $label): void {
+  protected function assertContextMenuItemExists($label) {
     $this->assertSession()->elementExists('xpath', '//a[@aria-label="' . $label . '"]');
   }
 
@@ -1538,10 +1532,8 @@ JS;
    *
    * @param string $label
    *   The `aria-label` attribute value of the context menu item.
-   *
-   * @internal
    */
-  protected function assertContextMenuItemNotExists(string $label): void {
+  protected function assertContextMenuItemNotExists($label) {
     $this->assertSession()->elementNotExists('xpath', '//a[@aria-label="' . $label . '"]');
   }
 

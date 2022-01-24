@@ -49,10 +49,8 @@ class MigrateRdfMappingTest extends MigrateDrupal7TestBase {
    *   The expected RDF types.
    * @param array[] $field_mappings
    *   The expected RDF field mappings.
-   *
-   * @internal
    */
-  protected function assertRdfMapping(string $entity_type, string $bundle, array $types, array $field_mappings): void {
+  protected function assertRdfMapping($entity_type, $bundle, $types, $field_mappings) {
     $rdf_mapping = rdf_get_mapping($entity_type, $bundle);
     $this->assertInstanceOf(RdfMappingInterface::class, $rdf_mapping);
     $this->assertSame($types, $rdf_mapping->getBundleMapping());

@@ -5,8 +5,6 @@ namespace Drupal\taxonomy\Plugin\migrate\field;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate_drupal\Plugin\migrate\field\FieldPluginBase;
 
-// cspeLL:ignore entityreference
-
 /**
  * @MigrateField(
  *   id = "taxonomy_term_reference",

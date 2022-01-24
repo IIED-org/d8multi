@@ -1121,17 +1121,6 @@ class DefaultMap extends AbstractMap
         0 => 'sbml',
       ),
     ),
-    'application/schema+json' =>
-    array (
-      'desc' =>
-      array (
-        0 => 'JSON schema',
-      ),
-      'e' =>
-      array (
-        0 => 'json',
-      ),
-    ),
     'application/scvp-cv-request' =>
     array (
       'e' =>
@@ -1312,18 +1301,6 @@ class DefaultMap extends AbstractMap
       'e' =>
       array (
         0 => 'tsd',
-      ),
-    ),
-    'application/toml' =>
-    array (
-      'desc' =>
-      array (
-        0 => 'TOML document',
-        1 => 'TOML: Tom\'s Obvious Minimal Language',
-      ),
-      'e' =>
-      array (
-        0 => 'toml',
       ),
     ),
     'application/trig' =>
@@ -5474,7 +5451,7 @@ class DefaultMap extends AbstractMap
       ),
       'desc' =>
       array (
-        0 => 'desktop entry',
+        0 => 'desktop configuration file',
       ),
       'e' =>
       array (
@@ -6444,7 +6421,6 @@ class DefaultMap extends AbstractMap
       'e' =>
       array (
         0 => 'kra',
-        1 => 'krz',
       ),
     ),
     'application/x-kspread' =>
@@ -7041,7 +7017,6 @@ class DefaultMap extends AbstractMap
       'e' =>
       array (
         0 => 'o',
-        1 => 'mod',
       ),
     ),
     'application/x-oleo' =>
@@ -7053,18 +7028,6 @@ class DefaultMap extends AbstractMap
       'e' =>
       array (
         0 => 'oleo',
-      ),
-    ),
-    'application/x-openzim' =>
-    array (
-      'desc' =>
-      array (
-        0 => 'OpenZIM file',
-        1 => 'ZIM: Zeno IMproved',
-      ),
-      'e' =>
-      array (
-        0 => 'zim',
       ),
     ),
     'application/x-pagemaker' =>
@@ -8578,22 +8541,6 @@ class DefaultMap extends AbstractMap
         3 => 'rmi',
       ),
     ),
-    'audio/mobile-xmf' =>
-    array (
-      'a' =>
-      array (
-        0 => 'audio/vnd.nokia.mobile-xmf',
-      ),
-      'desc' =>
-      array (
-        0 => 'Mobile XMF audio',
-        1 => 'XMF: eXtensible Music Format',
-      ),
-      'e' =>
-      array (
-        0 => 'mxmf',
-      ),
-    ),
     'audio/mp2' =>
     array (
       'a' =>
@@ -9325,6 +9272,7 @@ class DefaultMap extends AbstractMap
       'a' =>
       array (
         0 => 'audio/xmf',
+        1 => 'audio/mobile-xmf',
       ),
       'desc' =>
       array (
@@ -9474,8 +9422,7 @@ class DefaultMap extends AbstractMap
       ),
       'desc' =>
       array (
-        0 => 'AVIF image',
-        1 => 'AVIF: AV1 Image File Format',
+        0 => 'AV1 Image File Format (AVIF)',
       ),
       'e' =>
       array (
@@ -9662,17 +9609,6 @@ class DefaultMap extends AbstractMap
       array (
         0 => 'jpf',
         1 => 'jpx',
-      ),
-    ),
-    'image/jxl' =>
-    array (
-      'desc' =>
-      array (
-        0 => 'JPEG XL image',
-      ),
-      'e' =>
-      array (
-        0 => 'jxl',
       ),
     ),
     'image/ktx' =>
@@ -10087,18 +10023,6 @@ class DefaultMap extends AbstractMap
       'e' =>
       array (
         0 => 'cr2',
-      ),
-    ),
-    'image/x-canon-cr3' =>
-    array (
-      'desc' =>
-      array (
-        0 => 'Canon CR3 raw image',
-        1 => 'CR3: Canon Raw 3',
-      ),
-      'e' =>
-      array (
-        0 => 'cr3',
       ),
     ),
     'image/x-canon-crw' =>
@@ -10768,30 +10692,6 @@ class DefaultMap extends AbstractMap
         1 => 'mime',
       ),
     ),
-    'model/gltf+json' =>
-    array (
-      'desc' =>
-      array (
-        0 => 'glTF model',
-        1 => 'glTF: GL Transmission Format',
-      ),
-      'e' =>
-      array (
-        0 => 'gltf',
-      ),
-    ),
-    'model/gltf-binary' =>
-    array (
-      'desc' =>
-      array (
-        0 => 'glTF model',
-        1 => 'glTF: GL Transmission Format',
-      ),
-      'e' =>
-      array (
-        0 => 'glb',
-      ),
-    ),
     'model/iges' =>
     array (
       'desc' =>
@@ -11018,17 +10918,6 @@ class DefaultMap extends AbstractMap
       'e' =>
       array (
         0 => 'n3',
-      ),
-    ),
-    'text/org' =>
-    array (
-      'desc' =>
-      array (
-        0 => 'Org-mode file',
-      ),
-      'e' =>
-      array (
-        0 => 'org',
       ),
     ),
     'text/plain' =>
@@ -11476,21 +11365,6 @@ class DefaultMap extends AbstractMap
         3 => 'ros',
       ),
     ),
-    'text/x-crystal' =>
-    array (
-      'a' =>
-      array (
-        0 => 'text/crystal',
-      ),
-      'desc' =>
-      array (
-        0 => 'Crystal source code',
-      ),
-      'e' =>
-      array (
-        0 => 'cr',
-      ),
-    ),
     'text/x-csharp' =>
     array (
       'desc' =>
@@ -11586,18 +11460,6 @@ class DefaultMap extends AbstractMap
       array (
         0 => 'e',
         1 => 'eif',
-      ),
-    ),
-    'text/x-elixir' =>
-    array (
-      'desc' =>
-      array (
-        0 => 'Elixir source code',
-      ),
-      'e' =>
-      array (
-        0 => 'ex',
-        1 => 'exs',
       ),
     ),
     'text/x-emacs-lisp' =>
@@ -11962,17 +11824,6 @@ class DefaultMap extends AbstractMap
         0 => 'mof',
       ),
     ),
-    'text/x-mpl2' =>
-    array (
-      'desc' =>
-      array (
-        0 => 'MPlayer2 subtitles',
-      ),
-      'e' =>
-      array (
-        0 => 'mpl',
-      ),
-    ),
     'text/x-mpsub' =>
     array (
       'desc' =>
@@ -12158,7 +12009,6 @@ class DefaultMap extends AbstractMap
         0 => 'py',
         1 => 'py3',
         2 => 'py3x',
-        3 => 'pyi',
       ),
     ),
     'text/x-qml' =>
@@ -12244,7 +12094,6 @@ class DefaultMap extends AbstractMap
       'e' =>
       array (
         0 => 'scala',
-        1 => 'sc',
       ),
     ),
     'text/x-scheme' =>
@@ -12847,17 +12696,6 @@ class DefaultMap extends AbstractMap
       array (
         0 => 'bik',
         1 => 'bk2',
-      ),
-    ),
-    'video/vnd.radgamettools.smacker' =>
-    array (
-      'desc' =>
-      array (
-        0 => 'Smacker Video',
-      ),
-      'e' =>
-      array (
-        0 => 'smk',
       ),
     ),
     'video/vnd.rn-realvideo' =>
@@ -14630,25 +14468,11 @@ class DefaultMap extends AbstractMap
         0 => 'application/mac-compactpro',
       ),
     ),
-    'cr' =>
-    array (
-      't' =>
-      array (
-        0 => 'text/x-crystal',
-      ),
-    ),
     'cr2' =>
     array (
       't' =>
       array (
         0 => 'image/x-canon-cr2',
-      ),
-    ),
-    'cr3' =>
-    array (
-      't' =>
-      array (
-        0 => 'image/x-canon-cr3',
       ),
     ),
     'crd' =>
@@ -15603,13 +15427,6 @@ class DefaultMap extends AbstractMap
         0 => 'application/x-envoy',
       ),
     ),
-    'ex' =>
-    array (
-      't' =>
-      array (
-        0 => 'text/x-elixir',
-      ),
-    ),
     'exe' =>
     array (
       't' =>
@@ -15630,13 +15447,6 @@ class DefaultMap extends AbstractMap
       't' =>
       array (
         0 => 'image/x-exr',
-      ),
-    ),
-    'exs' =>
-    array (
-      't' =>
-      array (
-        0 => 'text/x-elixir',
       ),
     ),
     'ext' =>
@@ -16292,20 +16102,6 @@ class DefaultMap extends AbstractMap
       't' =>
       array (
         0 => 'application/x-glade',
-      ),
-    ),
-    'glb' =>
-    array (
-      't' =>
-      array (
-        0 => 'model/gltf-binary',
-      ),
-    ),
-    'gltf' =>
-    array (
-      't' =>
-      array (
-        0 => 'model/gltf+json',
       ),
     ),
     'gml' =>
@@ -17350,7 +17146,6 @@ class DefaultMap extends AbstractMap
       't' =>
       array (
         0 => 'application/json',
-        1 => 'application/schema+json',
       ),
     ),
     'json-patch' =>
@@ -17372,13 +17167,6 @@ class DefaultMap extends AbstractMap
       't' =>
       array (
         0 => 'application/jsonml+json',
-      ),
-    ),
-    'jxl' =>
-    array (
-      't' =>
-      array (
-        0 => 'image/jxl',
       ),
     ),
     'k25' =>
@@ -17557,13 +17345,6 @@ class DefaultMap extends AbstractMap
       ),
     ),
     'kra' =>
-    array (
-      't' =>
-      array (
-        0 => 'application/x-krita',
-      ),
-    ),
-    'krz' =>
     array (
       't' =>
       array (
@@ -18547,8 +18328,7 @@ class DefaultMap extends AbstractMap
     array (
       't' =>
       array (
-        0 => 'application/x-object',
-        1 => 'audio/x-mod',
+        0 => 'audio/x-mod',
       ),
     ),
     'mods' =>
@@ -18712,8 +18492,7 @@ class DefaultMap extends AbstractMap
     array (
       't' =>
       array (
-        0 => 'text/x-mpl2',
-        1 => 'video/mp2t',
+        0 => 'video/mp2t',
       ),
     ),
     'mpls' =>
@@ -18942,13 +18721,6 @@ class DefaultMap extends AbstractMap
       't' =>
       array (
         0 => 'application/vnd.recordare.musicxml',
-      ),
-    ),
-    'mxmf' =>
-    array (
-      't' =>
-      array (
-        0 => 'audio/mobile-xmf',
       ),
     ),
     'mxml' =>
@@ -19456,7 +19228,6 @@ class DefaultMap extends AbstractMap
       't' =>
       array (
         0 => 'application/vnd.lotus-organizer',
-        1 => 'text/org',
       ),
     ),
     'osf' =>
@@ -20431,13 +20202,6 @@ class DefaultMap extends AbstractMap
         0 => 'application/x-python-bytecode',
       ),
     ),
-    'pyi' =>
-    array (
-      't' =>
-      array (
-        0 => 'text/x-python3',
-      ),
-    ),
     'pyo' =>
     array (
       't' =>
@@ -21119,7 +20883,6 @@ class DefaultMap extends AbstractMap
       't' =>
       array (
         0 => 'application/vnd.ibm.secure-container',
-        1 => 'text/x-scala',
       ),
     ),
     'scala' =>
@@ -21633,13 +21396,6 @@ class DefaultMap extends AbstractMap
       't' =>
       array (
         0 => 'application/smil+xml',
-      ),
-    ),
-    'smk' =>
-    array (
-      't' =>
-      array (
-        0 => 'video/vnd.radgamettools.smacker',
       ),
     ),
     'sml' =>
@@ -22489,13 +22245,6 @@ class DefaultMap extends AbstractMap
       't' =>
       array (
         0 => 'application/x-cdrdao-toc',
-      ),
-    ),
-    'toml' =>
-    array (
-      't' =>
-      array (
-        0 => 'application/toml',
       ),
     ),
     'torrent' =>
@@ -24436,13 +24185,6 @@ class DefaultMap extends AbstractMap
         0 => 'application/vnd.zzazz.deck+xml',
       ),
     ),
-    'zim' =>
-    array (
-      't' =>
-      array (
-        0 => 'application/x-openzim',
-      ),
-    ),
     'zip' =>
     array (
       't' =>
@@ -25552,6 +25294,13 @@ class DefaultMap extends AbstractMap
         0 => 'audio/mp4',
       ),
     ),
+    'audio/mobile-xmf' =>
+    array (
+      't' =>
+      array (
+        0 => 'audio/x-xmf',
+      ),
+    ),
     'audio/mp3' =>
     array (
       't' =>
@@ -25592,13 +25341,6 @@ class DefaultMap extends AbstractMap
       't' =>
       array (
         0 => 'audio/vnd.rn-realaudio',
-      ),
-    ),
-    'audio/vnd.nokia.mobile-xmf' =>
-    array (
-      't' =>
-      array (
-        0 => 'audio/mobile-xmf',
       ),
     ),
     'audio/vnd.wave' =>
@@ -26082,13 +25824,6 @@ class DefaultMap extends AbstractMap
       't' =>
       array (
         0 => 'model/stl',
-      ),
-    ),
-    'text/crystal' =>
-    array (
-      't' =>
-      array (
-        0 => 'text/x-crystal',
       ),
     ),
     'text/directory' =>

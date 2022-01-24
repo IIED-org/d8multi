@@ -150,10 +150,8 @@ class SelectionTest extends KernelTestBase {
    *
    * @param array $result
    *   Query results keyed by node type and nid.
-   *
-   * @internal
    */
-  protected function assertResults(array $result): void {
+  protected function assertResults(array $result) {
     foreach ($result as $node_type => $values) {
       foreach ($values as $nid => $label) {
         $this->assertSame($node_type, $this->nodes[$nid]->bundle());

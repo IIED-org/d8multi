@@ -3,10 +3,7 @@
 namespace Drupal\Tests\migrate_drupal_ui\Functional\d7;
 
 use Drupal\Core\File\FileSystemInterface;
-use Drupal\Tests\ExtensionListTestTrait;
 use Drupal\Tests\migrate_drupal_ui\Functional\MigrateUpgradeTestBase;
-
-// cspell:ignore terok
 
 /**
  * Tests the Drupal 7 public and private file migrations.
@@ -19,8 +16,6 @@ use Drupal\Tests\migrate_drupal_ui\Functional\MigrateUpgradeTestBase;
  * @group migrate_drupal_ui
  */
 class FilePathTest extends MigrateUpgradeTestBase {
-
-  use ExtensionListTestTrait;
 
   /**
    * {@inheritdoc}
@@ -72,7 +67,7 @@ class FilePathTest extends MigrateUpgradeTestBase {
   protected function setUp(): void {
     parent::setUp();
     $this->fs = \Drupal::service('file_system');
-    $this->loadFixture($this->getModulePath('migrate_drupal') . '/tests/fixtures/drupal7.php');
+    $this->loadFixture(drupal_get_path('module', 'migrate_drupal') . '/tests/fixtures/drupal7.php');
   }
 
   /**
@@ -121,6 +116,7 @@ class FilePathTest extends MigrateUpgradeTestBase {
 
     $connection_options = $this->sourceDatabase->getConnectionOptions();
     $driver = $connection_options['driver'];
+    $connection_options['prefix'] = $connection_options['prefix']['default'];
 
     // Use the driver connection form to get the correct options out of the
     // database settings. This supports all of the databases we test against.

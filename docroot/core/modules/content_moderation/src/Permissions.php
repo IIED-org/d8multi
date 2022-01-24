@@ -39,9 +39,6 @@ class Permissions {
               '%to' => $transition->to()->label(),
             ]
           ),
-          'dependencies' => [
-            $workflow->getConfigDependencyKey() => [$workflow->getConfigDependencyName()],
-          ],
         ];
       }
     }

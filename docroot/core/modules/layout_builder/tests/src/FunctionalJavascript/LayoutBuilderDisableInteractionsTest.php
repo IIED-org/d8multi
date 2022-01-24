@@ -6,7 +6,6 @@ use Behat\Mink\Element\NodeElement;
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\block_content\Entity\BlockContentType;
 use Drupal\Component\Render\FormattableMarkup;
-use Drupal\FunctionalJavascriptTests\JSWebAssert;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\contextual\FunctionalJavascript\ContextualLinkClickTrait;
 
@@ -174,26 +173,22 @@ class LayoutBuilderDisableInteractionsTest extends WebDriverTestBase {
    *
    * @param \Behat\Mink\Element\NodeElement $element
    *   Element being checked for.
-   *
-   * @internal
    */
-  protected function assertElementUnclickable(NodeElement $element): void {
+  protected function assertElementUnclickable(NodeElement $element) {
     try {
       $element->click();
       $tag_name = $element->getTagName();
       $this->fail(new FormattableMarkup("@tag_name was clickable when it shouldn't have been", ['@tag_name' => $tag_name]));
     }
     catch (\Exception $e) {
-      $this->assertTrue(JSWebAssert::isExceptionNotClickable($e));
+      $this->assertStringContainsString('is not clickable at point', $e->getMessage());
     }
   }
 
   /**
    * Asserts that forms, links, and iframes in preview are non-interactive.
-   *
-   * @internal
    */
-  protected function assertLinksFormIframeNotInteractive(): void {
+  protected function assertLinksFormIframeNotInteractive() {
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
 
@@ -208,10 +203,8 @@ class LayoutBuilderDisableInteractionsTest extends WebDriverTestBase {
 
   /**
    * Confirms that Layout Builder contextual links remain active.
-   *
-   * @internal
    */
-  protected function assertContextualLinksClickable(): void {
+  protected function assertContextualLinksClickable() {
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
     $this->drupalGet($this->getUrl());
@@ -239,10 +232,8 @@ class LayoutBuilderDisableInteractionsTest extends WebDriverTestBase {
    * This is confirmed by clicking a contextual link then moving the mouse
    * pointer. If mouseup is working properly, the draggable element will not
    * be moved by the pointer moving.
-   *
-   * @internal
    */
-  protected function assertContextualLinkRetainsMouseup(): void {
+  protected function assertContextualLinkRetainsMouseup() {
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
     $body_field_selector = '.block-field-blocknodebundle-with-section-fieldbody';

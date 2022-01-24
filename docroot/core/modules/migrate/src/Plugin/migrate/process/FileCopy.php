@@ -123,7 +123,7 @@ class FileCopy extends FileProcessBase implements ContainerFactoryPluginInterfac
     if ($row->isStub()) {
       return NULL;
     }
-    [$source, $destination] = $value;
+    list($source, $destination) = $value;
 
     // If the source path or URI represents a remote resource, delegate to the
     // download plugin.

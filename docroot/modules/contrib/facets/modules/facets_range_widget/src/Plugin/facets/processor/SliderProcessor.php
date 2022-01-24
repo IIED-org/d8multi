@@ -37,7 +37,10 @@ class SliderProcessor extends ProcessorPluginBase implements PostQueryProcessorI
       ];
     }
     uasort($simple_results, function ($a, $b) {
-      return (int) $a['value'] - $b['value'];
+      if ($a['value'] === $b['value']) {
+        return 0;
+      }
+      return $a['value'] < $b['value'] ? -1 : 1;
     });
 
     $step = $config['step'];

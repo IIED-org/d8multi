@@ -56,7 +56,7 @@ class ImageFieldValidateTest extends ImageFieldTestBase {
       'entity_type' => 'node',
       'bundle' => 'article',
       'field_name' => 'field_dummy_select',
-      'label' => 'Dummy select',
+      'label' => t('Dummy select'),
     ])->save();
 
     \Drupal::entityTypeManager()

@@ -412,10 +412,8 @@ class MenuTreeStorageTest extends KernelTestBase {
    *   An ordered array of the IDs of the menu links that are the parents.
    * @param array $children
    *   Array of child IDs that are visible (enabled == 1).
-   *
-   * @internal
    */
-  protected function assertMenuLink(string $id, array $expected_properties, array $parents = [], array $children = []): void {
+  protected function assertMenuLink($id, array $expected_properties, array $parents = [], array $children = []) {
     $query = $this->connection->select('menu_tree');
     $query->fields('menu_tree');
     $query->condition('id', $id);

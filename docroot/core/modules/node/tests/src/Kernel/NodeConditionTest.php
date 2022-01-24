@@ -10,7 +10,6 @@ use Drupal\node\Entity\NodeType;
  * Tests that conditions, provided by the node module, are working properly.
  *
  * @group node
- * @group legacy
  */
 class NodeConditionTest extends EntityKernelTestBase {
 
@@ -32,7 +31,6 @@ class NodeConditionTest extends EntityKernelTestBase {
    * Tests conditions.
    */
   public function testConditions() {
-    $this->expectDeprecation('\Drupal\node\Plugin\Condition\NodeType is deprecated in drupal:9.3.0 and is removed from drupal:10.0.0. Use \Drupal\Core\Entity\Plugin\Condition\EntityBundle instead. See https://www.drupal.org/node/2983299');
     $manager = $this->container->get('plugin.manager.condition');
     $this->createUser();
 

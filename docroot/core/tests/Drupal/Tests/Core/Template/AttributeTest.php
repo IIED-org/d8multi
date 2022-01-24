@@ -382,10 +382,8 @@ class AttributeTest extends UnitTestCase {
    *   The CSS class to check.
    * @param string $html
    *   The HTML snippet to check.
-   *
-   * @internal
    */
-  protected function assertClass(string $class, string $html): void {
+  protected function assertClass($class, $html) {
     $xpath = "//*[@class='$class']";
     self::assertTrue((bool) $this->getXPathResultCount($xpath, $html));
   }
@@ -397,10 +395,8 @@ class AttributeTest extends UnitTestCase {
    *   The CSS class to check.
    * @param string $html
    *   The HTML snippet to check.
-   *
-   * @internal
    */
-  protected function assertNoClass(string $class, string $html): void {
+  protected function assertNoClass($class, $html) {
     $xpath = "//*[@class='$class']";
     self::assertFalse((bool) $this->getXPathResultCount($xpath, $html));
   }
@@ -412,10 +408,8 @@ class AttributeTest extends UnitTestCase {
    *   The CSS ID to check.
    * @param string $html
    *   The HTML snippet to check.
-   *
-   * @internal
    */
-  protected function assertID(string $id, string $html): void {
+  protected function assertID($id, $html) {
     $xpath = "//*[@id='$id']";
     self::assertTrue((bool) $this->getXPathResultCount($xpath, $html));
   }
@@ -427,10 +421,8 @@ class AttributeTest extends UnitTestCase {
    *   The CSS ID to check.
    * @param string $html
    *   The HTML snippet to check.
-   *
-   * @internal
    */
-  protected function assertNoID(string $id, string $html): void {
+  protected function assertNoID($id, $html) {
     $xpath = "//*[@id='$id']";
     self::assertFalse((bool) $this->getXPathResultCount($xpath, $html));
   }

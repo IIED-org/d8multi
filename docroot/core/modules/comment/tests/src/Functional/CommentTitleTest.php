@@ -19,19 +19,7 @@ class CommentTitleTest extends CommentTestBase {
    * Tests markup for comments with empty titles.
    */
   public function testCommentEmptyTitles() {
-    // Create a node.
-    $this->drupalLogin($this->webUser);
-    $this->node = $this->drupalCreateNode(['type' => 'article', 'promote' => 1, 'uid' => $this->webUser->id()]);
-
-    // Post comment #1 and verify that h3 is rendered.
-    $subject_text = "Test subject";
-    $comment_text = "Test comment";
-    $this->postComment($this->node, $comment_text, $subject_text, TRUE);
-    // Tests that markup is generated for the comment title.
-    $regex_h3 = '|<h3[^>]*>.*?</h3>|';
-    $this->assertSession()->responseMatches($regex_h3);
-
-    // Installs module that sets comment title to an empty string.
+    // Installs module that sets comments to an empty string.
     \Drupal::service('module_installer')->install(['comment_empty_title_test']);
 
     // Set comments to have a subject with preview disabled.
@@ -39,10 +27,11 @@ class CommentTitleTest extends CommentTestBase {
     $this->setCommentForm(TRUE);
     $this->setCommentSubject(TRUE);
 
-    // Create a new node.
+    // Create a node.
+    $this->drupalLogin($this->webUser);
     $this->node = $this->drupalCreateNode(['type' => 'article', 'promote' => 1, 'uid' => $this->webUser->id()]);
 
-    // Post another comment and verify that h3 is not rendered.
+    // Post comment #1 and verify that h3's are not rendered.
     $subject_text = $this->randomMachineName();
     $comment_text = $this->randomMachineName();
     $comment = $this->postComment($this->node, $comment_text, $subject_text, TRUE);
@@ -58,9 +47,8 @@ class CommentTitleTest extends CommentTestBase {
     $regex .= '/s';
     // Verify that the comment is created successfully.
     $this->assertSession()->responseMatches($regex);
-    // Tests that markup is not generated for the comment title.
-    $this->assertSession()->responseNotMatches($regex_h3);
-    $this->assertSession()->pageTextNotContains($subject_text);
+    // Tests that markup is not generated for the comment without header.
+    $this->assertSession()->responseNotMatches('|<h3[^>]*></h3>|');
   }
 
   /**

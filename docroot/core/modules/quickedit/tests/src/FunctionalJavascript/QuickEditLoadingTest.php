@@ -354,7 +354,7 @@ class QuickEditLoadingTest extends WebDriverTestBase {
     FieldConfig::create([
       'field_name' => 'field_image',
       'field_type' => 'image',
-      'label' => 'Image',
+      'label' => t('Image'),
       'entity_type' => 'node',
       'bundle' => 'article',
     ])->save();

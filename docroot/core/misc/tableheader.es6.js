@@ -76,11 +76,13 @@
 
   // Select and initialize sticky table headers.
   function tableHeaderInitHandler(e) {
-    once('tableheader', $(e.data.context).find('table.sticky-enabled')).forEach(
-      (table) => {
-        TableHeader.tables.push(new TableHeader(table));
-      },
-    );
+    const $tables = $(e.data.context)
+      .find('table.sticky-enabled')
+      .once('tableheader');
+    const il = $tables.length;
+    for (let i = 0; i < il; i++) {
+      TableHeader.tables.push(new TableHeader($tables[i]));
+    }
     forTables('onScroll');
   }
 

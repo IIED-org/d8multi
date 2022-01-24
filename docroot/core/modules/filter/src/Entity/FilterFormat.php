@@ -206,7 +206,6 @@ class FilterFormat extends ConfigEntityBase implements FilterFormatInterface, En
 
     parent::preSave($storage);
 
-    assert(is_string($this->label()), 'Filter format label is expected to be a string.');
     $this->name = trim($this->label());
   }
 

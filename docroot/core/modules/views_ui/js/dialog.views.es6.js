@@ -41,23 +41,24 @@
    */
   Drupal.behaviors.viewsModalContent = {
     attach(context) {
-      $(once('viewsDialog', 'body')).on(
-        'dialogContentResize.viewsDialog',
-        '.ui-dialog-content',
-        handleDialogResize,
-      );
+      $('body')
+        .once('viewsDialog')
+        .on(
+          'dialogContentResize.viewsDialog',
+          '.ui-dialog-content',
+          handleDialogResize,
+        );
       // When expanding details, make sure the modal is resized.
-      $(once('detailsUpdate', '.scroll', context)).on(
-        'click',
-        'summary',
-        (e) => {
+      $(context)
+        .find('.scroll')
+        .once('detailsUpdate')
+        .on('click', 'summary', (e) => {
           $(e.currentTarget).trigger('dialogContentResize');
-        },
-      );
+        });
     },
     detach(context, settings, trigger) {
       if (trigger === 'unload') {
-        $(once.remove('viewsDialog', 'body')).off('.viewsDialog');
+        $('body').removeOnce('viewsDialog').off('.viewsDialog');
       }
     },
   };

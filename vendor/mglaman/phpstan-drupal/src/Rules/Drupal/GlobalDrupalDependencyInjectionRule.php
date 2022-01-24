@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace mglaman\PHPStanDrupal\Rules\Drupal;
+namespace PHPStan\Rules\Drupal;
 
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;

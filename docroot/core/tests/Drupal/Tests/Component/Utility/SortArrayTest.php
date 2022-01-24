@@ -314,10 +314,8 @@ class SortArrayTest extends TestCase {
    *   Expected comparison function return value.
    * @param int $result
    *   Actual comparison function return value.
-   *
-   * @internal
    */
-  protected function assertBothNegativePositiveOrZero(int $expected, int $result): void {
+  protected function assertBothNegativePositiveOrZero($expected, $result) {
     $this->assertIsNumeric($expected);
     $this->assertIsNumeric($result);
     $message = "Numbers should be both negative, both positive or both zero. Expected: $expected, actual: $result";

@@ -157,11 +157,10 @@ class Row {
   }
 
   /**
-   * Retrieves all source properties.
+   * Returns the whole source array.
    *
    * @return array
-   *   An array containing all source property values, keyed by the property
-   *   name.
+   *   An array of source plugins.
    */
   public function getSource() {
     return $this->source;

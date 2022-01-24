@@ -81,14 +81,13 @@ abstract class CachePluginBase extends PluginBase {
   }
 
   /**
-   * Determine cache expiration time.
+   * Determine expiration time in the cache table of the cache type
+   * or CACHE_PERMANENT if item shouldn't be removed automatically from cache.
    *
-   * Plugins must override this to implement expiration in the cache table. The
-   * default is CACHE_PERMANENT, indicating that the item will not be removed
-   * automatically from cache.
+   * Plugins must override this to implement expiration in the cache table.
    *
-   * @param string $type
-   *   The cache type.
+   * @param $type
+   *   The cache type, either 'query', 'result'.
    */
   protected function cacheSetMaxAge($type) {
     return Cache::PERMANENT;
@@ -111,7 +110,7 @@ abstract class CachePluginBase extends PluginBase {
       case 'results':
         $data = [
           'result' => $this->prepareViewResult($this->view->result),
-          'total_rows' => $this->view->total_rows ?? 0,
+          'total_rows' => isset($this->view->total_rows) ? $this->view->total_rows : 0,
           'current_page' => $this->view->getCurrentPage(),
         ];
         $expire = ($this->cacheSetMaxAge($type) === Cache::PERMANENT) ? Cache::PERMANENT : (int) $this->view->getRequest()->server->get('REQUEST_TIME') + $this->cacheSetMaxAge($type);

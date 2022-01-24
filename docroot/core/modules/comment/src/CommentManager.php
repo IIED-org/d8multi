@@ -112,7 +112,7 @@ class CommentManager implements CommentManagerInterface {
     }
 
     $map = $this->entityFieldManager->getFieldMapByFieldType('comment');
-    return $map[$entity_type_id] ?? [];
+    return isset($map[$entity_type_id]) ? $map[$entity_type_id] : [];
   }
 
   /**

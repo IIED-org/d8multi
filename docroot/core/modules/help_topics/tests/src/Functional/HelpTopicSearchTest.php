@@ -290,10 +290,8 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
    *
    * @param int $count
    *   The expected number of search results.
-   *
-   * @internal
    */
-  protected function assertSearchResultsCount(int $count): void {
+  protected function assertSearchResultsCount($count) {
     $this->assertSession()->elementsCount('css', '.help_search-results > li', $count);
   }
 

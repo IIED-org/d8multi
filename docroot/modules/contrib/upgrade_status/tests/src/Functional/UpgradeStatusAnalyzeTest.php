@@ -27,8 +27,6 @@ class UpgradeStatusAnalyzeTest extends UpgradeStatusTestBase {
     $this->assertTrue($key_value->has('upgrade_status_test_twig'));
     $this->assertTrue($key_value->has('upgrade_status_test_theme'));
     $this->assertTrue($key_value->has('upgrade_status_test_library'));
-    $this->assertTrue($key_value->has('upgrade_status_test_deprecated'));
-    $this->assertTrue($key_value->has('upgrade_status_test_obsolete'));
 
     // The project upgrade_status_test_submodules_a shouldn't have scan result,
     // because it's a submodule of 'upgrade_status_test_submodules',
@@ -62,7 +60,7 @@ class UpgradeStatusAnalyzeTest extends UpgradeStatusTestBase {
     $file = next($report['data']['files']);
     $this->assertEquals('upgrade_status_test_error.info.yml', basename(key($report['data']['files'])));
     $message = $file['messages'][0];
-    $this->assertEquals("Add core_version_requirement: ^8 || ^9 to designate that the extension is compatible with Drupal 9. See https://drupal.org/node/3070687.", $message['message']);
+    $this->assertEquals("Add core_version_requirement: ^8 || ^9 to designate that the module is compatible with Drupal 9. See https://drupal.org/node/3070687.", $message['message']);
     $this->assertEquals(0, $message['line']);
 
     // The Drupal 9 compatible test modules are not Drupal 10 compatible.
@@ -119,7 +117,7 @@ class UpgradeStatusAnalyzeTest extends UpgradeStatusTestBase {
     $file = next($report['data']['files']);
     $this->assertEquals('upgrade_status_test_contrib_error.info.yml', basename(key($report['data']['files'])));
     $message = $file['messages'][0];
-    $this->assertEquals("Add core_version_requirement: ^8 || ^9 to designate that the extension is compatible with Drupal 9. See https://drupal.org/node/3070687.", $message['message']);
+    $this->assertEquals("Add core_version_requirement: ^8 || ^9 to designate that the module is compatible with Drupal 9. See https://drupal.org/node/3070687.", $message['message']);
     $this->assertEquals(0, $message['line']);
     $this->assertEquals('uncategorized', $message['upgrade_status_category']);
 
@@ -128,20 +126,9 @@ class UpgradeStatusAnalyzeTest extends UpgradeStatusTestBase {
 
     $report = $key_value->get('upgrade_status_test_twig');
     $this->assertNotEmpty($report);
-
-    if ($this->getDrupalCoreMajorVersion() >= 9) {
-      $this->assertEquals(5, $report['data']['totals']['file_errors']);
-      $this->assertCount(3, $report['data']['files']);
-
-      $file = array_shift($report['data']['files']);
-      $this->assertEquals('The spaceless tag in "modules/contrib/upgrade_status/tests/modules/upgrade_status_test_twig/templates/spaceless.html.twig" at line 2 is deprecated since Twig 2.7, use the "spaceless" filter with the "apply" tag instead. See https://drupal.org/node/3071078.', $file['messages'][0]['message']);
-    }
-    else {
-      $this->assertEquals(3, $report['data']['totals']['file_errors']);
-      $this->assertCount(1, $report['data']['files']);
-    }
-
-    $file = array_shift($report['data']['files']);
+    $this->assertEquals(3 + $base_info_error, $report['data']['totals']['file_errors']);
+    $this->assertCount(1 + $base_info_error, $report['data']['files']);
+    $file = reset($report['data']['files']);
     $this->assertEquals('Twig Filter "deprecatedfilter" is deprecated. See https://drupal.org/node/3071078.', $file['messages'][0]['message']);
     $this->assertEquals(10, $file['messages'][0]['line']);
     $this->assertEquals('Template is attaching a deprecated library. The "upgrade_status_test_library/deprecated_library" asset library is deprecated for testing.', $file['messages'][1]['message']);
@@ -215,20 +202,6 @@ class UpgradeStatusAnalyzeTest extends UpgradeStatusTestBase {
     $this->assertNotEmpty($report);
     $this->assertEquals(2, $report['data']['totals']['file_errors']);
     $this->assertCount(2, $report['data']['files']);
-
-    $report = $key_value->get('upgrade_status_test_deprecated');
-    $this->assertNotEmpty($report);
-    $this->assertEquals(1, $report['data']['totals']['file_errors']);
-    $this->assertCount(1, $report['data']['files']);
-    $file = reset($report['data']['files']);
-    $this->assertEquals("This extension is deprecated. Don't use it. See https://drupal.org/project/upgrade_status.", $file['messages'][0]['message']);
-
-    $report = $key_value->get('upgrade_status_test_obsolete');
-    $this->assertNotEmpty($report);
-    $this->assertEquals(1, $report['data']['totals']['file_errors']);
-    $this->assertCount(1, $report['data']['files']);
-    $file = reset($report['data']['files']);
-    $this->assertEquals("This extension is obsolete. Obsolete extensions are usually uninstalled automatically when not needed anymore. You only need to do something about this if the uninstallation was unsuccesful. See https://drupal.org/project/upgrade_status.", $file['messages'][0]['message']);
   }
 
 }

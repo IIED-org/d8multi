@@ -292,12 +292,10 @@ class ResourceIdentifier implements ResourceIdentifierInterface {
     // Remove unwanted properties from the meta value, usually 'entity'
     // and 'target_id'.
     $properties = TypedDataInternalPropertiesHelper::getNonInternalProperties($item);
-    $main_property_name = $item->getDataDefinition()->getMainPropertyName();
-    $meta = array_diff_key($properties, array_flip([$property_name, $main_property_name]));
+    $meta = array_diff_key($properties, array_flip([$property_name, $item->getDataDefinition()->getMainPropertyName()]));
     if (!is_null($arity)) {
       $meta[static::ARITY_KEY] = $arity;
     }
-    $meta["drupal_internal__$main_property_name"] = $properties[$main_property_name];
     return new static($resource_type, $target->uuid(), $meta);
   }
 

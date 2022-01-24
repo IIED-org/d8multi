@@ -60,7 +60,6 @@ class ToolkitGdTest extends KernelTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->installConfig(['system']);
     // Set the image factory service.
     $this->imageFactory = $this->container->get('image.factory');
   }

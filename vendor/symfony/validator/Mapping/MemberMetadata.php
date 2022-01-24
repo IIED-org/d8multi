@@ -188,8 +188,8 @@ abstract class MemberMetadata extends GenericMetadata implements PropertyMetadat
         }
 
         if ($constraint instanceof Composite) {
-            foreach ($constraint->getNestedConstraints() as $nestedConstraint) {
-                $this->checkConstraint($nestedConstraint);
+            foreach ($constraint->getNestedContraints() as $nestedContraint) {
+                $this->checkConstraint($nestedContraint);
             }
         }
     }

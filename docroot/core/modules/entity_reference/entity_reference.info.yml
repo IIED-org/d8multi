@@ -1,8 +1,6 @@
 name: 'Entity Reference'
 type: module
-description: 'Obsolete. All the functionality has been moved to Core.'
-lifecycle: obsolete
-lifecycle_link: 'https://www.drupal.org/about/core/policies/core-change-policies/deprecated-and-obsolete-modules-and-themes#s-entity-reference'
+description: 'Deprecated. All the functionality has been moved to Core.'
 package: Field types
 version: VERSION
 hidden: true

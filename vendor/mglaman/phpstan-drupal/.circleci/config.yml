@@ -1,7 +1,7 @@
 version: 2.1
 defaults: &defaults
   docker:
-    - image: circleci/php:7.4-cli
+    - image: circleci/php:7.3-cli
   working_directory: ~/repo
 aliases:
   - &composer-cache
@@ -61,7 +61,7 @@ jobs:
           command: ./vendor/bin/phpcs src
       - run:
           name: PHPStan Analyze
-          command: php -dmemory_limit=-1 vendor/bin/phpstan.phar
+          command: ./vendor/bin/phpstan analyze src
       - run:
           name: PHPUnit
           command: ./vendor/bin/phpunit

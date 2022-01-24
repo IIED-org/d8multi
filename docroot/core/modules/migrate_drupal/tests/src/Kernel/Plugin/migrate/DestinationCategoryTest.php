@@ -67,10 +67,8 @@ class DestinationCategoryTest extends MigrateDrupalTestBase {
    *
    * @param \Drupal\migrate\Plugin\MigrationInterface[] $migrations
    *   The migrations.
-   *
-   * @internal
    */
-  protected function assertCategories(array $migrations): void {
+  protected function assertCategories($migrations) {
     foreach ($migrations as $id => $migration) {
       $object_classes = class_parents($migration->getDestinationPlugin());
       $object_classes[] = get_class($migration->getDestinationPlugin());

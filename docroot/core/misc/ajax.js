@@ -29,8 +29,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           elementSettings.selector = "#".concat(base);
         }
 
-        once('drupal-ajax', $(elementSettings.selector)).forEach(function (el) {
-          elementSettings.element = el;
+        $(elementSettings.selector).once('drupal-ajax').each(function () {
+          elementSettings.element = this;
           elementSettings.base = base;
           Drupal.ajax(elementSettings);
         });
@@ -40,16 +40,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return loadAjaxBehavior(base);
       });
       Drupal.ajax.bindAjaxLinks(document.body);
-      once('ajax', '.use-ajax-submit').forEach(function (el) {
+      $('.use-ajax-submit').once('ajax').each(function () {
         var elementSettings = {};
-        elementSettings.url = $(el.form).attr('action');
+        elementSettings.url = $(this.form).attr('action');
         elementSettings.setClick = true;
         elementSettings.event = 'click';
         elementSettings.progress = {
           type: 'throbber'
         };
-        elementSettings.base = el.id;
-        elementSettings.element = el;
+        elementSettings.base = $(this).attr('id');
+        elementSettings.element = this;
         Drupal.ajax(elementSettings);
       });
     },
@@ -83,7 +83,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     try {
       statusText = "\n".concat(Drupal.t('StatusText: !statusText', {
-        '!statusText': xmlhttp.statusText.trim()
+        '!statusText': $.trim(xmlhttp.statusText)
       }));
     } catch (e) {}
 
@@ -91,7 +91,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     try {
       responseText = "\n".concat(Drupal.t('ResponseText: !responseText', {
-        '!responseText': xmlhttp.responseText.trim()
+        '!responseText': $.trim(xmlhttp.responseText)
       }));
     } catch (e) {}
 
@@ -139,7 +139,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   };
 
   Drupal.ajax.bindAjaxLinks = function (element) {
-    once('ajax', '.use-ajax', element).forEach(function (ajaxLink) {
+    $(element).find('.use-ajax').once('ajax').each(function (i, ajaxLink) {
       var $linkElement = $(ajaxLink);
       var elementSettings = {
         progress: {

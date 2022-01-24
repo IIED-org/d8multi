@@ -787,7 +787,7 @@ class Collection extends BaseTask implements CollectionInterface, CommandInterfa
             } catch (AbortTasksException $abortTasksException) {
                 // If there's a forced exception, end the loop of tasks.
                 if ($message = $abortTasksException->getMessage()) {
-                    $this->printTaskInfo($message, ['name' => 'Exception']);
+                    $this->logger()->notice($message);
                 }
                 break;
             } catch (\Exception $e) {

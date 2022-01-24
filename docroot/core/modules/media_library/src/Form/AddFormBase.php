@@ -255,7 +255,7 @@ abstract class AddFormBase extends FormBase implements BaseFormIdInterface, Trus
     // triggering element is not set correctly and the wrong media item is
     // removed.
     // @see ::removeButtonSubmit()
-    $parents = $form['#parents'] ?? [];
+    $parents = isset($form['#parents']) ? $form['#parents'] : [];
     $id_suffix = $parents ? '-' . implode('-', $parents) : '';
 
     $element = [

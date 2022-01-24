@@ -9,7 +9,7 @@
   var behaviors = _ref.behaviors;
   behaviors.jqueryCookie = {
     attach: function attach() {
-      if (once('js_cookie_test-init', 'body').length) {
+      if ($('body').once('js_cookie_test-init').length) {
         $('.js_cookie_test_add_button').on('click', function () {
           $.cookie('js_cookie_test', 'red panda');
         });

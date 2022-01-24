@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace mglaman\PHPStanDrupal\Rules\Deprecations;
+namespace PHPStan\Rules\Deprecations;
 
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;

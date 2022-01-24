@@ -9,8 +9,6 @@ use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Row;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 
-// cspell:ignore nzdt
-
 /**
  * Tests the route process plugin.
  *

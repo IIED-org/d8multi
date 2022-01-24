@@ -11,9 +11,7 @@
    *   The message object.
    */
   const closeMessage = (message) => {
-    const messageContainer = message.querySelector(
-      '[data-drupal-selector="messages-container"]',
-    );
+    const messageContainer = message.querySelector('.messages__container');
 
     const closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.setAttribute('class', 'messages__button');
@@ -60,7 +58,6 @@
       'class',
       `messages-list__item messages messages--${type}`,
     );
-    messageWrapper.setAttribute('data-drupal-selector', 'messages');
     messageWrapper.setAttribute(
       'role',
       type === 'error' || type === 'warning' ? 'alert' : 'status',
@@ -94,7 +91,7 @@
     }
 
     messageWrapper.innerHTML = `
-    <div class="messages__container" data-drupal-selector="messages-container">
+    <div class="messages__container">
       <div class="messages__header${!svg ? ' no-icon' : ''}">
         <h2 class="visually-hidden">${messagesTypes[type]}</h2>
         ${svg}
@@ -120,9 +117,7 @@
    */
   Drupal.behaviors.messages = {
     attach(context) {
-      once('messages', '[data-drupal-selector="messages"]', context).forEach(
-        closeMessage,
-      );
+      once('olivero-messages', '.messages', context).forEach(closeMessage);
     },
   };
 })(Drupal, once);

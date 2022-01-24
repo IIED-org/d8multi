@@ -2,10 +2,7 @@
 
 namespace Drupal\eu_cookie_compliance\Controller;
 
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\eu_cookie_compliance\Plugin\ConsentStorageManager;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -14,54 +11,19 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class StoreConsent extends ControllerBase {
 
   /**
-   * Config factory.
-   *
-   * @var \Drupal\Core\Config\ConfigFactoryInterface
-   */
-  protected $configFactory;
-
-  /**
-   * Consent Storage.
-   *
-   * @var \Drupal\eu_cookie_compliance\Plugin\ConsentStorageManager
-   */
-  protected $consentStorage;
-
-  /**
-   * Constructs the SchemaListenerController object.
-   *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The config factory.
-   * @param \Drupal\eu_cookie_compliance\Plugin\ConsentStorageManager $consent_storage
-   *   The consent storage.
-   */
-  public function __construct(ConfigFactoryInterface $config_factory, ConsentStorageManager $consent_storage) {
-    $this->configFactory = $config_factory;
-    $this->consentStorage = $consent_storage;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('config.factory'),
-      $container->get('plugin.manager.eu_cookie_compliance.consent_storage')
-    );
-  }
-
-  /**
    * Store consent.
    *
    * @param string $target
    *   The target.
    *
-   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   * @return JsonResponse
    *   Result of action.
    */
   public function store($target) {
+    // Get list of all plugins.
+    $consent_storages = \Drupal::service('plugin.manager.eu_cookie_compliance.consent_storage');
     // Get the currently active plugin.
-    $consent_storage_method = $this->configFactory
+    $consent_storage_method = \Drupal::configFactory()
       ->get('eu_cookie_compliance.settings')
       ->get('consent_storage_method');
     // If we're not going to log consent, return NULL.
@@ -70,7 +32,8 @@ class StoreConsent extends ControllerBase {
     }
 
     // Get plugin.
-    $consent_storage = $this->consentStorage->createInstance($consent_storage_method);
+    /* @var \Drupal\eu_cookie_compliance\Plugin\ConsentStorageInterface $consent_storage */
+    $consent_storage = $consent_storages->createInstance($consent_storage_method);
     // Register consent.
     $result = $consent_storage->registerConsent($target);
     // Return value.

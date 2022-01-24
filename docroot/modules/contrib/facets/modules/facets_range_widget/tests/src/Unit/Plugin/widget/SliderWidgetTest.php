@@ -21,7 +21,7 @@ class SliderWidgetTest extends WidgetTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
     $this->widget = new SliderWidget([], 'slider_widget', []);
   }

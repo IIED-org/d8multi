@@ -10,15 +10,13 @@ trait InflectionTrait
      * Ask the provided parent class to inject all of the dependencies
      * that it has and we need.
      *
-     * @param \Robo\Contract\InflectionInterface|mixed $parent
+     * @param \Robo\Contract\InflectionInterface $parent
      *
      * @return $this
      */
-    public function inflect($parent)
+    public function inflect(InflectionInterface $parent)
     {
-        if (isset($parent) && ($parent instanceof InflectionInterface)) {
-            $parent->injectDependencies($this);
-        }
+        $parent->injectDependencies($this);
         return $this;
     }
 }

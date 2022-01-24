@@ -81,7 +81,7 @@ class FilterTest extends ViewTestBase {
     $this->executeView($view);
 
     // Make sure the query have where data.
-    $this->assertNotEmpty($view->query->where);
+    $this->assertTrue(!empty($view->query->where));
 
     // Check the data added.
     $where = $view->query->where;

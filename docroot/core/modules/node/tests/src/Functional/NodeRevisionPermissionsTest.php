@@ -8,7 +8,6 @@ use Drupal\Tests\Traits\Core\GeneratePermutationsTrait;
  * Tests user permissions for node revisions.
  *
  * @group node
- * @group legacy
  */
 class NodeRevisionPermissionsTest extends NodeTestBase {
 
@@ -80,7 +79,6 @@ class NodeRevisionPermissionsTest extends NodeTestBase {
    * Tests general revision access permissions.
    */
   public function testNodeRevisionAccessAnyType() {
-    $this->expectDeprecation('NodeRevisionAccessCheck is deprecated in drupal:9.3.0 and will be removed before drupal:10.0.0. Use "_entity_access" requirement with relevant operation instead. See https://www.drupal.org/node/3161210');
     // Create three users, one with each revision permission.
     foreach ($this->map as $op => $permission) {
       // Create the user.
@@ -147,7 +145,6 @@ class NodeRevisionPermissionsTest extends NodeTestBase {
    * Tests revision access permissions for a specific content type.
    */
   public function testNodeRevisionAccessPerType() {
-    $this->expectDeprecation('NodeRevisionAccessCheck is deprecated in drupal:9.3.0 and will be removed before drupal:10.0.0. Use "_entity_access" requirement with relevant operation instead. See https://www.drupal.org/node/3161210');
     // Create three users, one with each revision permission.
     foreach ($this->typeMap as $op => $permission) {
       // Create the user.

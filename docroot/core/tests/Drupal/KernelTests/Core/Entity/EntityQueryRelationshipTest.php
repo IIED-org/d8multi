@@ -224,10 +224,8 @@ class EntityQueryRelationshipTest extends EntityKernelTestBase {
    *
    * @param array $expected
    *   A list of indexes in the $this->entities array.
-   *
-   * @internal
    */
-  protected function assertResults(array $expected): void {
+  protected function assertResults($expected) {
     $expected_count = count($expected);
     $this->assertCount($expected_count, $this->queryResults);
     foreach ($expected as $key) {

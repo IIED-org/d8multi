@@ -285,10 +285,8 @@ class ThemeUiTest extends BrowserTestBase {
    *   The modules listed as being required to install the theme.
    * @param string $theme_name
    *   The name of the theme.
-   *
-   * @internal
    */
-  protected function assertUninstallableTheme(array $expected_requires_list_items, string $theme_name): void {
+  protected function assertUninstallableTheme(array $expected_requires_list_items, $theme_name) {
     $theme_container = $this->getSession()->getPage()->find('css', "h3:contains(\"$theme_name\")")->getParent();
     $requires_list_items = $theme_container->findAll('css', '.theme-info__requires li');
     $this->assertSameSize($expected_requires_list_items, $requires_list_items);

@@ -2,8 +2,10 @@
 
 namespace Drupal\Tests\layout_builder\FunctionalJavascript;
 
+use Behat\Mink\Element\NodeElement;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\contextual\FunctionalJavascript\ContextualLinkClickTrait;
+use WebDriver\Exception\UnknownError;
 
 /**
  * Tests that messages appear in the off-canvas dialog with configuring blocks.
@@ -57,14 +59,14 @@ class BlockFormMessagesTest extends WebDriverTestBase {
     // Enable layout builder.
     $this->drupalGet($field_ui_prefix . '/display/default');
     $this->submitForm(['layout[enabled]' => TRUE], 'Save');
-    $page->findLink('Manage layout')->click();
+    $this->clickElementWhenClickable($page->findLink('Manage layout'));
     $assert_session->addressEquals($field_ui_prefix . '/display/default/layout');
-    $page->findLink('Add block')->click();
+    $this->clickElementWhenClickable($page->findLink('Add block'));
     $this->assertNotEmpty($assert_session->waitForElementVisible('css', '#drupal-off-canvas .block-categories'));
-    $page->findLink('Powered by Drupal')->click();
+    $this->clickElementWhenClickable($page->findLink('Powered by Drupal'));
     $this->assertNotEmpty($assert_session->waitForElementVisible('css', '#drupal-off-canvas [name="settings[label]"]'));
     $page->findField('Title')->setValue('');
-    $page->findButton('Add block')->click();
+    $this->clickElementWhenClickable($page->findButton('Add block'));
     $this->assertMessagesDisplayed();
     $page->findField('Title')->setValue('New title');
     $page->pressButton('Add block');
@@ -74,7 +76,7 @@ class BlockFormMessagesTest extends WebDriverTestBase {
     $assert_session->assertNoElementAfterWait('css', '#drupal-off-canvas');
     $assert_session->assertWaitOnAjaxRequest();
     $this->drupalGet($this->getUrl());
-    $page->findButton('Save layout')->click();
+    $this->clickElementWhenClickable($page->findButton('Save layout'));
     $this->assertNotEmpty($assert_session->waitForElement('css', 'div:contains("The layout has been saved")'));
 
     // Ensure that message are displayed when configuring an existing block.
@@ -83,16 +85,14 @@ class BlockFormMessagesTest extends WebDriverTestBase {
     $this->clickContextualLink($block_css_locator, 'Configure', TRUE);
     $this->assertNotEmpty($assert_session->waitForElementVisible('css', '#drupal-off-canvas [name="settings[label]"]'));
     $page->findField('Title')->setValue('');
-    $page->findButton('Update')->click();
+    $this->clickElementWhenClickable($page->findButton('Update'));
     $this->assertMessagesDisplayed();
   }
 
   /**
    * Asserts that the validation messages are shown correctly.
-   *
-   * @internal
    */
-  protected function assertMessagesDisplayed(): void {
+  protected function assertMessagesDisplayed() {
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
     $messages_locator = '#drupal-off-canvas .messages--error';
@@ -104,6 +104,36 @@ class BlockFormMessagesTest extends WebDriverTestBase {
     // Ensure the messages are the first top level element of the form.
     $this->assertStringContainsStringIgnoringCase('Title field is required.', $top_form_elements[0]->getText());
     $this->assertGreaterThan(4, count($top_form_elements));
+  }
+
+  /**
+   * Attempts to click an element until it is in a clickable state.
+   *
+   * @param \Behat\Mink\Element\NodeElement $element
+   *   The element to click.
+   * @param int $timeout
+   *   (Optional) Timeout in milliseconds, defaults to 10000.
+   *
+   * @todo Replace this method with general solution for random click() test
+   *   failures in https://www.drupal.org/node/3032275.
+   */
+  protected function clickElementWhenClickable(NodeElement $element, $timeout = 10000) {
+    $page = $this->getSession()->getPage();
+
+    $result = $page->waitFor($timeout / 1000, function () use ($element) {
+      try {
+        $element->click();
+        return TRUE;
+      }
+      catch (UnknownError $exception) {
+        if (strstr($exception->getMessage(), 'not clickable') === FALSE) {
+          // Rethrow any unexpected UnknownError exceptions.
+          throw $exception;
+        }
+        return NULL;
+      }
+    });
+    $this->assertTrue($result);
   }
 
 }

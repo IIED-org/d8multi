@@ -110,6 +110,7 @@
     background: transparent none repeat 0 0 / auto auto padding-box border-box scroll;
     border: medium none currentColor;
     border-collapse: separate;
+    -o-border-image: none;
     border-image: none;
     border-radius: 0;
     border-spacing: 0;
@@ -170,6 +171,7 @@
     position: static;
     right: auto;
     -moz-tab-size: 8;
+    -o-tab-size: 8;
     tab-size: 8;
     table-layout: auto;
     text-align: left;
@@ -374,6 +376,7 @@
       background: transparent none repeat 0 0 / auto auto padding-box border-box scroll;
       border: medium none currentColor;
       border-collapse: separate;
+      -o-border-image: none;
       border-image: none;
       border-radius: 0;
       border-spacing: 0;
@@ -434,6 +437,7 @@
       position: static;
       right: auto;
       -moz-tab-size: 8;
+      -o-tab-size: 8;
       tab-size: 8;
       table-layout: auto;
       text-align: left;
@@ -799,12 +803,8 @@
   box-shadow: none;
 }
 
-#drupal-off-canvas input:-ms-input-placeholder, #drupal-off-canvas textarea:-ms-input-placeholder {
-  color: gray;
-}
-
-#drupal-off-canvas input::placeholder,
-#drupal-off-canvas textarea::placeholder {
+#drupal-off-canvas input:placeholder,
+#drupal-off-canvas textarea:placeholder {
   color: gray;
 }
 

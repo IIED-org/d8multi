@@ -7,6 +7,8 @@ use Drupal\Core\Serialization\Yaml;
 use Drupal\webform\EntityStorage\WebformEntityStorageTrait;
 use Drupal\webform\Utility\WebformArrayHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Drupal\Component\Datetime\TimeInterface;
 
 /**
  * Provides a WebformSubmissionDevelGenerate plugin.
@@ -237,7 +239,7 @@ trait WebformSubmissionDevelGenerateTrait {
         $this->generateSubmission($values);
         $feedback = isset($values['feedback']) && is_int($values['feedback']) ? $values['feedback'] : 1000;
         if ($i % $feedback === 0) {
-          $now = $this->time->getCurrentTime();
+          $now = $this->time->getRequestTime();
           $dt_args = [
             '@feedback' => $feedback,
             '@rate' => ($feedback * 60) / ($now - $start),
@@ -332,7 +334,7 @@ trait WebformSubmissionDevelGenerateTrait {
   /**
    * {@inheritdoc}
    */
-  public function _validateDrushParams($args) { // phpcs:ignore
+  public function _validateDrushParams($args) {
     $webform_id = array_shift($args);
     $webform_ids = [$webform_id => $webform_id];
     $values = [

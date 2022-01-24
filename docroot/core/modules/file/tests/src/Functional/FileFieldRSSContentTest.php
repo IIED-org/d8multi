@@ -65,7 +65,7 @@ class FileFieldRSSContentTest extends FileFieldTestBase {
     $this->drupalGet('rss.xml');
     $selector = sprintf(
       '//enclosure[@url="%s" and @length="%s" and @type="%s"]',
-      $node_file->createFileUrl(FALSE),
+      file_create_url($node_file->getFileUri()),
       $node_file->getSize(),
       $node_file->getMimeType()
     );

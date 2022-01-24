@@ -19,17 +19,6 @@ class UserTranslationUITest extends ContentTranslationUITestBase {
   protected $name;
 
   /**
-   * {@inheritdoc}
-   */
-  protected $defaultCacheContexts = [
-    'languages:language_interface',
-    'theme',
-    'url.query_args:_wrapper_format',
-    'user.permissions',
-    'url.site',
-  ];
-
-  /**
    * Modules to enable.
    *
    * @var array
@@ -44,7 +33,7 @@ class UserTranslationUITest extends ContentTranslationUITestBase {
   /**
    * {@inheritdoc}
    */
-  protected $defaultTheme = 'stark';
+  protected $defaultTheme = 'classy';
 
   protected function setUp(): void {
     $this->entityTypeId = 'user';

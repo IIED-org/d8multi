@@ -18,11 +18,6 @@ use Drupal\webform\Utility\WebformElementHelper;
  */
 class WebformActions extends Container {
 
-  /**
-   * Buttons.
-   *
-   * @var string[]
-   */
   public static $buttons = [
     'submit',
     'reset',
@@ -157,7 +152,7 @@ class WebformActions extends Container {
           else {
             $element[$button_name]['#attributes'][$attribute_name] = $attribute_value;
           }
-        }
+        };
       }
 
       if (Element::isVisibleElement($element[$button_name])) {

@@ -6,7 +6,7 @@ use Drupal\facets\Entity\Facet;
 use Drupal\KernelTests\KernelTestBase;
 
 /**
- * Provides the DefaultFacetManager test.
+ * Class DefaultFacetManagerTest.
  *
  * @group facets
  * @coversDefaultClass Drupal\facets\FacetManager\DefaultFacetManager
@@ -16,7 +16,7 @@ class DefaultFacetManagerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'facets',
     'search_api',
     'system',
@@ -26,7 +26,7 @@ class DefaultFacetManagerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
     $this->installEntitySchema('facets_facet');
   }

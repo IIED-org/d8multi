@@ -209,13 +209,13 @@
     })) {
       initializeField(fieldElement, fieldID, entityID, entityInstanceID);
     } else {
-      fieldsAvailableQueue.push({
-        el: fieldElement,
-        fieldID: fieldID,
-        entityID: entityID,
-        entityInstanceID: entityInstanceID
-      });
-    }
+        fieldsAvailableQueue.push({
+          el: fieldElement,
+          fieldID: fieldID,
+          entityID: entityID,
+          entityInstanceID: entityInstanceID
+        });
+      }
   }
 
   function deleteContainedModelsAndQueues($context) {
@@ -283,15 +283,19 @@
 
   Drupal.behaviors.quickedit = {
     attach: function attach(context) {
-      once('quickedit-init', 'body').forEach(initQuickEdit);
-      var fields = once('quickedit', '[data-quickedit-field-id]', context);
+      $('body').once('quickedit-init').each(initQuickEdit);
+      var $fields = $(context).find('[data-quickedit-field-id]').once('quickedit');
 
-      if (fields.length === 0) {
+      if ($fields.length === 0) {
         return;
       }
 
-      once('quickedit', '[data-quickedit-entity-id]', context).forEach(processEntity);
-      fields.forEach(processField);
+      $(context).find('[data-quickedit-entity-id]').once('quickedit').each(function (index, entityElement) {
+        processEntity(entityElement);
+      });
+      $fields.each(function (index, fieldElement) {
+        processField(fieldElement);
+      });
       contextualLinksQueue = _.filter(contextualLinksQueue, function (contextualLink) {
         return !initializeEntityContextualLink(contextualLink);
       });
@@ -363,7 +367,7 @@
   $(document).on('drupalContextualLinkAdded', function (event, data) {
     if (data.$region.is('[data-quickedit-entity-id]')) {
       if (!data.$region.is('[data-quickedit-entity-instance-id]')) {
-        once('quickedit', data.$region);
+        data.$region.once('quickedit');
         processEntity(data.$region.get(0));
       }
 

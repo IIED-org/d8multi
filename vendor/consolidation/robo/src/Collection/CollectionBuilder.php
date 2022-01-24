@@ -3,23 +3,21 @@
 namespace Robo\Collection;
 
 use Consolidation\Config\Inject\ConfigForSetters;
-use Psr\Log\LogLevel;
-use ReflectionClass;
-use Robo\Common\InputAwareTrait;
 use Robo\Config\Config;
-use Robo\Contract\BuilderAwareInterface;
-use Robo\Contract\CommandInterface;
-use Robo\Contract\CompletionInterface;
+use Psr\Log\LogLevel;
 use Robo\Contract\InflectionInterface;
 use Robo\Contract\TaskInterface;
-use Robo\Contract\VerbosityThresholdInterface;
+use Robo\Contract\CompletionInterface;
 use Robo\Contract\WrappedTaskInterface;
-use Robo\Result;
+use Robo\Task\Simulator;
+use ReflectionClass;
+use Robo\Task\BaseTask;
+use Robo\Contract\BuilderAwareInterface;
+use Robo\Contract\CommandInterface;
+use Robo\Contract\VerbosityThresholdInterface;
 use Robo\State\StateAwareInterface;
 use Robo\State\StateAwareTrait;
-use Robo\Task\BaseTask;
-use Robo\Task\Simulator;
-use Symfony\Component\Console\Input\InputAwareInterface;
+use Robo\Result;
 
 /**
  * Creates a collection, and adds tasks to it.  The collection builder
@@ -48,10 +46,9 @@ use Symfony\Component\Console\Input\InputAwareInterface;
  * In the example above, the `taskDeleteDir` will be called if
  * ```
  */
-class CollectionBuilder extends BaseTask implements NestedCollectionInterface, WrappedTaskInterface, CommandInterface, StateAwareInterface, InputAwareInterface
+class CollectionBuilder extends BaseTask implements NestedCollectionInterface, WrappedTaskInterface, CommandInterface, StateAwareInterface
 {
     use StateAwareTrait;
-    use InputAwareTrait; // BaseTask has OutputAwareTrait
 
     /**
      * @var \Robo\Tasks
@@ -83,7 +80,7 @@ class CollectionBuilder extends BaseTask implements NestedCollectionInterface, W
     }
 
     /**
-     * @param \Psr\Container\ContainerInterface $container
+     * @param \League\Container\ContainerInterface $container
      * @param \Robo\Tasks $commandFile
      *
      * @return static
@@ -494,18 +491,6 @@ class CollectionBuilder extends BaseTask implements NestedCollectionInterface, W
         $task = $this->fixTask($task, $args);
         $this->configureTask($name, $task);
         return $this->addTaskToCollection($task);
-    }
-
-    public function injectDependencies($child)
-    {
-        parent::injectDependencies($child);
-
-        if ($child instanceof InputAwareInterface) {
-            $child->setInput($this->input());
-        }
-        if ($child instanceof OutputAwareInterface) {
-            $child->setOutput($this->output());
-        }
     }
 
     /**

@@ -108,10 +108,8 @@ class JsMessageTest extends WebDriverTestBase {
    *   Expected messages.
    * @param string $messagesSelector
    *   The css selector for the containing messages element.
-   *
-   * @internal
    */
-  protected function assertCurrentMessages(array $expected_messages, string $messagesSelector): void {
+  protected function assertCurrentMessages(array $expected_messages, $messagesSelector) {
     $expected_messages = array_values($expected_messages);
     $current_messages = [];
     if ($message_divs = $this->getSession()->getPage()->findAll('css', "$messagesSelector .messages")) {
@@ -120,13 +118,7 @@ class JsMessageTest extends WebDriverTestBase {
         $current_messages[] = $message_div->getText();
       }
     }
-    // Check that each message text contains the expected text.
-    if (count($expected_messages) !== count($current_messages)) {
-      $this->fail('The expected messages array contains a different number of values than the current messages array.');
-    }
-    for ($i = 0; $i < count($expected_messages); $i++) {
-      $this->assertStringContainsString($expected_messages[$i], $current_messages[$i]);
-    }
+    $this->assertEquals($expected_messages, $current_messages);
   }
 
 }

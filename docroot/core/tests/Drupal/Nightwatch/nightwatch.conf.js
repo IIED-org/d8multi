@@ -76,7 +76,6 @@ module.exports = {
         path: `${process.env.DRUPAL_NIGHTWATCH_OUTPUT}/screenshots`,
       },
       end_session_on_fail: false,
-      skip_testcases_on_fail: false,
     },
     local: {
       webdriver: {
@@ -101,7 +100,6 @@ module.exports = {
         path: `${process.env.DRUPAL_NIGHTWATCH_OUTPUT}/screenshots`,
       },
       end_session_on_fail: false,
-      skip_testcases_on_fail: false,
     },
   },
 };

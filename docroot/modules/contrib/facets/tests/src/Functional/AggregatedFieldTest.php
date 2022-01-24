@@ -9,7 +9,7 @@ use Drupal\search_api\Utility\Utility;
 use Drupal\user\Entity\User;
 
 /**
- * Provides the Aggregated Field test.
+ * Class AggregatedFieldTest.
  *
  * @group facets
  */
@@ -25,7 +25,7 @@ class AggregatedFieldTest extends FacetsTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
 
     $this->drupalLogin($this->adminUser);
@@ -99,8 +99,8 @@ class AggregatedFieldTest extends FacetsTestBase {
     ];
 
     // Try filling out the form, and configure it to use the aggregated field.
-    $this->submitForm(['facet_source_id' => 'search_api:views_page__search_api_test_view__page_1'], 'Configure facet source');
-    $this->submitForm($form_values, 'Save');
+    $this->drupalPostForm(NULL, ['facet_source_id' => 'search_api:views_page__search_api_test_view__page_1'], 'Configure facet source');
+    $this->drupalPostForm(NULL, $form_values, 'Save');
 
     // Check that nothing breaks.
     $this->assertSession()->statusCodeEquals(200);

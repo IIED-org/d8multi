@@ -7,7 +7,7 @@ use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
-use PHPStan\Reflection\ReflectionProvider;
+use PHPStan\Broker\Broker;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\ErrorType;
 
@@ -17,15 +17,15 @@ use PHPStan\Type\ErrorType;
 class InstantiationOfDeprecatedClassRule implements \PHPStan\Rules\Rule
 {
 
-	/** @var ReflectionProvider */
-	private $reflectionProvider;
+	/** @var Broker */
+	private $broker;
 
 	/** @var RuleLevelHelper */
 	private $ruleLevelHelper;
 
-	public function __construct(ReflectionProvider $reflectionProvider, RuleLevelHelper $ruleLevelHelper)
+	public function __construct(Broker $broker, RuleLevelHelper $ruleLevelHelper)
 	{
-		$this->reflectionProvider = $reflectionProvider;
+		$this->broker = $broker;
 		$this->ruleLevelHelper = $ruleLevelHelper;
 	}
 
@@ -71,7 +71,7 @@ class InstantiationOfDeprecatedClassRule implements \PHPStan\Rules\Rule
 
 		foreach ($referencedClasses as $referencedClass) {
 			try {
-				$class = $this->reflectionProvider->getClass($referencedClass);
+				$class = $this->broker->getClass($referencedClass);
 			} catch (\PHPStan\Broker\ClassNotFoundException $e) {
 				continue;
 			}

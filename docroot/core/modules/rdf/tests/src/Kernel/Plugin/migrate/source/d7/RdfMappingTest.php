@@ -4,8 +4,6 @@ namespace Drupal\Tests\rdf\Kernel\Plugin\migrate\source\d7;
 
 use Drupal\Tests\migrate\Kernel\MigrateSqlSourceTestBase;
 
-// cspell:ignore rdftype
-
 /**
  * Tests Drupal 7 RDF mappings source plugin.
  *

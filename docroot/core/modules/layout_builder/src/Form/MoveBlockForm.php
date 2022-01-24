@@ -121,7 +121,7 @@ class MoveBlockForm extends FormBase {
     $form['#attributes']['data-layout-builder-target-highlight-id'] = $this->blockUpdateHighlightId($uuid);
 
     $sections = $section_storage->getSections();
-    $contexts = $this->getPopulatedContexts($section_storage);
+    $contexts = $this->getAvailableContexts($section_storage);
     $region_options = [];
     foreach ($sections as $section_delta => $section) {
       $layout = $section->getLayout($contexts);

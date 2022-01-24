@@ -27,7 +27,7 @@ class MainContentViewSubscriber implements EventSubscriberInterface {
   /**
    * The class resolver service.
    *
-   * @var \Drupal\Core\DependencyInjection\ClassResolverInterface
+   * @var \Drupal\Core\Controller\ControllerResolverInterface
    */
   protected $classResolver;
 

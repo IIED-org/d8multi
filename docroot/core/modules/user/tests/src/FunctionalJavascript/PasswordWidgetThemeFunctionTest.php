@@ -17,13 +17,6 @@ class PasswordWidgetThemeFunctionTest extends WebDriverTestBase {
 
   /**
    * {@inheritdoc}
-   *
-   * @todo Remove this class property in https://www.drupal.org/node/3217947.
-   */
-  protected $failOnJavascriptConsoleErrors = FALSE;
-
-  /**
-   * {@inheritdoc}
    */
   protected static $modules = ['user'];
 

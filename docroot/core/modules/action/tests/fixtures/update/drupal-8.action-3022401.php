@@ -39,15 +39,3 @@ $connection->update('config')
   ])
   ->condition('name', 'core.extension')
   ->execute();
-$connection->insert('key_value')
-  ->fields([
-    'collection',
-    'name',
-    'value',
-  ])
-  ->values([
-    'collection' => 'system.schema',
-    'name' => 'action',
-    'value' => serialize(8000),
-  ])
-  ->execute();

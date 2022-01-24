@@ -1,9 +1,7 @@
 <?php
 
-namespace mglaman\PHPStanDrupal\Reflection;
+namespace PHPStan\Reflection;
 
-use PHPStan\Reflection\ClassReflection;
-use PHPStan\Reflection\PropertyReflection;
 use PHPStan\Type\NullType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
@@ -45,7 +43,6 @@ class FieldItemListPropertyReflection implements PropertyReflection
         if ($this->propertyName === 'target_id') {
             return new StringType();
         }
-        // @todo this is wrong, integer/bool/decimal/etc all use single value property.
         if ($this->propertyName === 'value') {
             return new StringType();
         }

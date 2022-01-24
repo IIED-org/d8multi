@@ -92,10 +92,8 @@ class TourLegacyTest extends WebDriverTestBase {
    *   The expected position of the nub arrow.
    * @param string $joyride_content_container_name
    *   For identifying classnames specific to a tip type.
-   *
-   * @internal
    */
-  private function assertToolTipMarkup(int $index, string $nub_position, string $joyride_content_container_name = 'body'): void {
+  private function assertToolTipMarkup($index, $nub_position, $joyride_content_container_name = 'body') {
     $assert_session = $this->assertSession();
     $tip = $assert_session->waitForElementVisible('css', ".joyride-tip-guide[data-index=\"$index\"]");
     $this->assertNotNull($tip, 'The tour tip element is present.');

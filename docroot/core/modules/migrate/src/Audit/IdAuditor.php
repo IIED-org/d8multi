@@ -6,8 +6,6 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\migrate\Plugin\migrate\destination\EntityContentComplete;
 use Drupal\migrate\Plugin\MigrationInterface;
 
-// cspell:ignore destid
-
 /**
  * Audits migrations that create content entities in the destination system.
  */

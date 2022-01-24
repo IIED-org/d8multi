@@ -161,7 +161,7 @@ class WriteSafeSessionHandlerTest extends UnitTestCase {
       ['read', 'some-session-data', ['a-session-id']],
       ['close', TRUE, []],
       ['destroy', TRUE, ['old-session-id']],
-      ['gc', 0, [42]],
+      ['gc', TRUE, [42]],
     ];
   }
 

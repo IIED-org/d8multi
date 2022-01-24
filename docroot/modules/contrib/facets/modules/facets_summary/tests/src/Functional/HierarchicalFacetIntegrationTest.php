@@ -22,7 +22,7 @@ class HierarchicalFacetIntegrationTest extends FacetsTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'facets_summary',
   ];
 
@@ -64,7 +64,7 @@ class HierarchicalFacetIntegrationTest extends FacetsTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
 
     // Make absolutely sure the ::$blocks variable doesn't pass information
@@ -126,16 +126,15 @@ class HierarchicalFacetIntegrationTest extends FacetsTestBase {
       'facet_settings[use_hierarchy]' => '1',
       'facet_settings[translate_entity][status]' => TRUE,
     ];
-    $this->submitForm($edit, 'Save');
+    $this->drupalPostForm(NULL, $edit, 'Save');
 
     $values = [
       'name' => 'Owl',
       'id' => 'owl',
       'facet_source_id' => 'search_api:views_page__search_api_test_view__page_1',
     ];
-    $this->drupalGet('admin/config/search/facets/add-facet-summary');
-    $this->submitForm($values, 'Save');
-    $this->submitForm([], 'Save');
+    $this->drupalPostForm('admin/config/search/facets/add-facet-summary', $values, 'Save');
+    $this->drupalPostForm(NULL, [], 'Save');
 
     $block = [
       'region' => 'footer',

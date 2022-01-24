@@ -3,7 +3,7 @@
 namespace Drupal\imagemagick\Event;
 
 use Drupal\imagemagick\ImagemagickExecArguments;
-use Symfony\Contracts\EventDispatcher\Event;
+use Symfony\Component\EventDispatcher\Event;
 
 /**
  * Defines the ImagemagickExecutionEvent.

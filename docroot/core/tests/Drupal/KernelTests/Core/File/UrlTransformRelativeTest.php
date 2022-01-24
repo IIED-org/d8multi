@@ -15,7 +15,7 @@ class UrlTransformRelativeTest extends KernelTestBase {
   protected static $modules = ['file_test'];
 
   /**
-   * Tests transformRelative() function.
+   * Tests file_url_transform_relative function.
    *
    * @dataProvider providerFileUrlTransformRelative
    */
@@ -37,7 +37,7 @@ class UrlTransformRelativeTest extends KernelTestBase {
     $request = Request::createFromGlobals();
     \Drupal::requestStack()->push($request);
 
-    $this->assertSame($expected, \Drupal::service('file_url_generator')->transformRelative($url));
+    $this->assertSame($expected, file_url_transform_relative($url));
   }
 
   public function providerFileUrlTransformRelative() {

@@ -92,7 +92,7 @@ function hook_file_validate(\Drupal\file\FileInterface $file) {
  * @param \Drupal\file\FileInterface $source
  *   The original file before the copy.
  *
- * @see \Drupal\file\FileRepositoryInterface::copy()
+ * @see file_copy()
  */
 function hook_file_copy(\Drupal\file\FileInterface $file, \Drupal\file\FileInterface $source) {
   // Make sure that the file name starts with the owner's user name.
@@ -112,7 +112,7 @@ function hook_file_copy(\Drupal\file\FileInterface $file, \Drupal\file\FileInter
  * @param \Drupal\file\FileInterface $source
  *   The original file entity before the move.
  *
- * @see \Drupal\file\FileRepositoryInterface::move()
+ * @see file_move()
  */
 function hook_file_move(\Drupal\file\FileInterface $file, \Drupal\file\FileInterface $source) {
   // Make sure that the file name starts with the owner's user name.

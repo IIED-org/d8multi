@@ -59,7 +59,7 @@
    */
   Drupal.behaviors.contextualToolbar = {
     attach(context) {
-      if (once('contextualToolbar-init', 'body').length) {
+      if ($('body').once('contextualToolbar-init').length) {
         initContextualToolbar(context);
       }
     },

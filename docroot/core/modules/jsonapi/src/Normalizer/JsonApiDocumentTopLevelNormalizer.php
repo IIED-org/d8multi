@@ -150,9 +150,7 @@ class JsonApiDocumentTopLevelNormalizer extends NormalizerBase implements Denorm
           if (isset($relationship['data'][$delta]['meta'])) {
             $reference_item += $relationship['data'][$delta]['meta'];
           }
-          $canonical_ids[] = array_filter($reference_item, function ($key) {
-            return substr($key, 0, strlen('drupal_internal__')) !== 'drupal_internal__';
-          }, ARRAY_FILTER_USE_KEY);
+          $canonical_ids[] = $reference_item;
         }
 
         return array_filter($canonical_ids);

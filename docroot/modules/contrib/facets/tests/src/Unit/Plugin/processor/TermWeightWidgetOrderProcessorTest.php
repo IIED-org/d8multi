@@ -62,7 +62,7 @@ class TermWeightWidgetOrderProcessorTest extends UnitTestCase {
   /**
    * Creates a new processor object for use in the tests.
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     // Build up a chain of mocks that we will have the processor use to fetch

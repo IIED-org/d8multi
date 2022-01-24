@@ -6,8 +6,6 @@ use Robo\Contract\CommandInterface;
 use Robo\Exception\TaskException;
 use Robo\Task\BaseTask;
 use Robo\Contract\SimulatedInterface;
-use Robo\Common\CommandReceiver;
-use Robo\Common\ExecOneCommand;
 
 /**
  * Runs multiple commands on a remote server.
@@ -45,8 +43,8 @@ use Robo\Common\ExecOneCommand;
  */
 class Ssh extends BaseTask implements CommandInterface, SimulatedInterface
 {
-    use CommandReceiver;
-    use ExecOneCommand;
+    use \Robo\Common\CommandReceiver;
+    use \Robo\Common\ExecOneCommand;
 
     /**
      * @var null|string

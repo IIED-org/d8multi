@@ -24,7 +24,7 @@
         return;
       }
 
-      once('toolbar', '#toolbar-administration', context).forEach(function (toolbar) {
+      $(context).find('#toolbar-administration').once('toolbar').each(function () {
         var model = new Drupal.toolbar.ToolbarModel({
           locked: JSON.parse(localStorage.getItem('Drupal.toolbar.trayVerticalLocked')),
           activeTab: document.getElementById(JSON.parse(localStorage.getItem('Drupal.toolbar.activeTabID'))),
@@ -39,17 +39,17 @@
           Drupal.toolbar.mediaQueryChangeHandler.call(null, model, label, mql);
         });
         Drupal.toolbar.views.toolbarVisualView = new Drupal.toolbar.ToolbarVisualView({
-          el: toolbar,
+          el: this,
           model: model,
           strings: options.strings
         });
         Drupal.toolbar.views.toolbarAuralView = new Drupal.toolbar.ToolbarAuralView({
-          el: toolbar,
+          el: this,
           model: model,
           strings: options.strings
         });
         Drupal.toolbar.views.bodyVisualView = new Drupal.toolbar.BodyVisualView({
-          el: toolbar,
+          el: this,
           model: model
         });
         model.trigger('change:isFixed', model, model.get('isFixed'));
@@ -57,7 +57,7 @@
         var menuModel = new Drupal.toolbar.MenuModel();
         Drupal.toolbar.models.menuModel = menuModel;
         Drupal.toolbar.views.menuVisualView = new Drupal.toolbar.MenuVisualView({
-          el: $(toolbar).find('.toolbar-menu-administration').get(0),
+          el: $(this).find('.toolbar-menu-administration').get(0),
           model: menuModel,
           strings: options.strings
         });

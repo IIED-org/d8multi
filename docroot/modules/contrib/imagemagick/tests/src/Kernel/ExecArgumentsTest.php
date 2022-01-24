@@ -8,7 +8,7 @@ use Drupal\imagemagick\ImagemagickExecArguments;
 /**
  * Tests for ImagemagickExecArguments.
  *
- * @group imagemagick
+ * @group Imagemagick
  */
 class ExecArgumentsTest extends KernelTestBase {
 

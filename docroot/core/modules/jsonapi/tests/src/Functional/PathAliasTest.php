@@ -16,7 +16,7 @@ class PathAliasTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['path'];
+  protected static $modules = ['user'];
 
   /**
    * {@inheritdoc}

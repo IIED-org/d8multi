@@ -34,28 +34,28 @@ class TypedDataMetadata implements MetadataInterface {
   /**
    * {@inheritdoc}
    */
-  public function findConstraints($group): array {
+  public function findConstraints($group) {
     return $this->getConstraints();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getConstraints(): array {
+  public function getConstraints() {
     return $this->typedData->getConstraints();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getTraversalStrategy(): int {
+  public function getTraversalStrategy() {
     return TraversalStrategy::NONE;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getCascadingStrategy(): int {
+  public function getCascadingStrategy() {
     // By default, never cascade into validating referenced data structures.
     return CascadingStrategy::NONE;
   }

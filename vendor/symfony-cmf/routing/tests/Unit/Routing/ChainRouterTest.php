@@ -476,19 +476,14 @@ class ChainRouterTest extends TestCase
     public function testMatchWithRequestMatchersNotFound()
     {
         $url = '/test';
-        $expected = Request::create('/test');
-        $expected->server->remove('REQUEST_TIME_FLOAT');
+        $request = Request::create('/test');
 
         $high = $this->createMock(RequestMatcher::class);
 
         $high
             ->expects($this->once())
             ->method('matchRequest')
-            ->with($this->callback(function (Request $actual) use ($expected): bool {
-                $actual->server->remove('REQUEST_TIME_FLOAT');
-
-                return $actual == $expected;
-            }))
+            ->with($request)
             ->will($this->throwException(new ResourceNotFoundException()))
         ;
 

@@ -29,7 +29,7 @@ class TestPageTestController {
    * Returns a test page and with the call to the dump() function.
    */
   public function testPageVarDump() {
-    $role = Role::create(['id' => 'test_role', 'label' => 'Test role']);
+    $role = Role::create(['id' => 'test_role']);
     dump($role);
     return [
       '#title' => t('Test page with var dump'),

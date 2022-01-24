@@ -56,7 +56,7 @@ class KernelTestBaseTest extends KernelTestBase {
    */
   public function testGetDatabaseConnectionInfoWithOutManualSetDbUrl() {
     $options = $this->container->get('database')->getConnectionOptions();
-    $this->assertSame($this->databasePrefix, $options['prefix']);
+    $this->assertSame($this->databasePrefix, $options['prefix']['default']);
   }
 
   /**
@@ -175,13 +175,10 @@ class KernelTestBaseTest extends KernelTestBase {
     // which checks the DRUPAL_TEST_IN_CHILD_SITE constant, that is not defined
     // in Kernel tests.
     try {
-      /** @var \GuzzleHttp\Psr7\Response $response */
-      $response = $this->container->get('http_client')->head('http://example.com');
-      self::assertEquals(200, $response->getStatusCode());
+      $this->container->get('http_client')->get('http://example.com');
     }
-    catch (\Throwable $e) {
-      // Ignore any HTTP errors, any other exception is considered an error.
-      self::assertInstanceOf(GuzzleException::class, $e, sprintf('Asserting that a possible exception is thrown. Got "%s" with message: "%s".', get_class($e), $e->getMessage()));
+    catch (GuzzleException $e) {
+      // Ignore any HTTP errors.
     }
   }
 
@@ -320,11 +317,11 @@ class KernelTestBaseTest extends KernelTestBase {
         ':table_name' => '%',
         ':pattern' => 'sqlite_%',
       ])->fetchAllKeyed(0, 0);
-      $this->assertEmpty($result, 'All test tables have been removed.');
+      $this->assertTrue(empty($result), 'All test tables have been removed.');
     }
     else {
       $tables = $connection->schema()->findTables($this->databasePrefix . '%');
-      $this->assertEmpty($tables, 'All test tables have been removed.');
+      $this->assertTrue(empty($tables), 'All test tables have been removed.');
     }
   }
 
@@ -433,7 +430,7 @@ class KernelTestBaseTest extends KernelTestBase {
 
     // Dump some variables.
     $this->enableModules(['system', 'user']);
-    $role = Role::create(['id' => 'test_role', 'label' => 'Test role']);
+    $role = Role::create(['id' => 'test_role']);
     dump($role);
     dump($role->id());
 

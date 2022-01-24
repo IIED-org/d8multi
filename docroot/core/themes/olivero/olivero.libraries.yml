@@ -40,6 +40,10 @@ global-styling:
       css/components/links.css: {}
       css/components/messages.css: {}
       css/components/navigation/nav-button-mobile.css: {}
+      css/components/navigation/nav-primary-button.css: {}
+      css/components/navigation/nav-primary.css: {}
+      css/components/navigation/nav-primary-wide.css: {}
+      css/components/navigation/nav-secondary.css: {}
       css/components/node.css: {}
       css/components/node-teaser.css: {}
       css/components/page-title.css: {}
@@ -54,7 +58,8 @@ global-styling:
   js:
     js/checkbox.js: {}
     js/navigation-utils.js: {}
-
+    js/navigation.js: {}
+    js/second-level-navigation.js: {}
   dependencies:
     - core/drupal.element.closest
     - core/drupal.element.matches
@@ -64,19 +69,15 @@ global-styling:
     - core/tabbable
 
 book:
-  version: VERSION
   css:
     theme:
       css/components/book.css: {}
 
-cke-dialog:
-  version: VERSION
+local-actions:
   css:
     component:
-      css/components/cke-dialog.css: {}
-
+      css/components/action-links.css: {}
 comments:
-  version: VERSION
   css:
     component:
       css/components/comments.css: {}
@@ -84,187 +85,66 @@ comments:
     js/comments.js: {}
 
 content-below:
-  version: VERSION
   css:
     layout:
       css/layout/region-content-below.css: {}
 
 content_moderation:
-  version: VERSION
   css:
     component:
       css/components/content-moderation.css: {}
 
-details:
-  version: VERSION
-  css:
-    theme:
-      css/components/details.css: {}
-
-dialog.off_canvas:
-  version: VERSION
-  css:
-    component:
-      css/components/off-canvas.css: {}
-
-dropbutton:
-  version: VERSION
-  css:
-    component:
-      css/components/dropbutton.css: {}
-
-drupal.dialog:
-  version: VERSION
-  css:
-    theme:
-      css/components/ui-dialog.css: {}
-
-drupal.node.preview:
-  version: VERSION
-  css:
-    theme:
-      css/components/node-preview-container.css: {}
-
-feed:
-  version: VERSION
-  css:
-    theme:
-      css/components/feed.css: {}
-
 filter.theme:
-  version: VERSION
   css:
     component:
       css/theme/filter.theme.css: {}
 
-forum:
-  version: VERSION
+details:
   css:
-    component:
-      css/components/forum.css: {}
+    theme:
+      css/components/details.css: {}
 
-layout_builder_fourcol_section:
-  version: VERSION
+layout_discovery_section:
   css:
     layout:
-      css/layout/layout-builder-fourcol-section.css: {}
-  dependencies:
-    - olivero/layout_discovery_section
-
-layout_builder_threecol_section:
-  version: VERSION
-  css:
-    layout:
-      css/layout/layout-builder-threecol-section.css: {}
-  dependencies:
-    - olivero/layout_discovery_section
+      css/layout/layout-discovery-section-layout.css: {}
 
 layout_builder_twocol_section:
-  version: VERSION
   css:
     layout:
       css/layout/layout-builder-twocol-section.css: {}
   dependencies:
     - olivero/layout_discovery_section
 
-layout_discovery_section:
-  version: VERSION
+layout_builder_threecol_section:
   css:
     layout:
-      css/layout/layout-discovery-section-layout.css: {}
+      css/layout/layout-builder-threecol-section.css: {}
+  dependencies:
+    - olivero/layout_discovery_section
 
-layout-views-grid-horizontal:
-  version: VERSION
+layout_builder_fourcol_section:
   css:
     layout:
-      css/layout/layout-views-grid-horizontal.css: {}
+      css/layout/layout-builder-fourcol-section.css: {}
+  dependencies:
+    - olivero/layout_discovery_section
 
-layout-views-grid-vertical:
-  version: VERSION
-  css:
-    layout:
-      css/layout/layout-views-grid-vertical.css: {}
-
-local-actions:
-  version: VERSION
-  css:
-    component:
-      css/components/action-links.css: {}
-
-maintenance-page:
-  version: VERSION
-  css:
-    component:
-      css/components/maintenance-page.css: {}
+messages:
+  js:
+    js/messages.js: {}
 
 menu-sidebar:
-  version: VERSION
   css:
     component:
       css/components/navigation/menu-sidebar.css: {}
 
-messages:
-  version: VERSION
-  js:
-    js/messages.js: {}
-
-navigation-primary:
-  version: VERSION
-  css:
-    component:
-      css/components/navigation/nav-primary.css: {}
-      css/components/navigation/nav-primary-button.css: {}
-      css/components/navigation/nav-primary-wide.css: {}
-  js:
-    js/navigation.js: {}
-    js/second-level-navigation.js: {}
-
-navigation-secondary:
-  version: VERSION
-  css:
-    component:
-      css/components/navigation/nav-secondary.css: {}
-
-powered-by-block:
-  version: VERSION
-  css:
-    theme:
-      css/components/powered-by-block.css: {}
-
-progress:
-  version: VERSION
-  css:
-    component:
-      css/components/progress.css: {}
-
-search-narrow:
-  version: VERSION
-  css:
-    component:
-      css/components/header-search-narrow.css: {}
-
-search-results:
-  version: VERSION
-  css:
-    theme:
-      css/components/search-results.css: {}
-
-search-wide:
-  version: VERSION
-  css:
-    component:
-      css/components/header-search-wide.css: {}
-  js:
-    js/search.js: {}
-
 sidebar:
-  version: VERSION
   css:
     layout:
       css/layout/layout-sidebar.css: {}
 
 tabs:
-  version: VERSION
   css:
     theme:
       css/components/tabs.css: {}
@@ -272,7 +152,73 @@ tabs:
     js/tabs.js: {}
 
 tags:
-  version: VERSION
   css:
     theme:
       css/components/tags.css: {}
+
+feed:
+  css:
+    theme:
+      css/components/feed.css: {}
+
+search-narrow:
+  css:
+    component:
+      css/components/header-search-narrow.css: {}
+
+search-wide:
+  css:
+    component:
+      css/components/header-search-wide.css: {}
+  js:
+    js/search.js: {}
+
+search-results:
+  css:
+    theme:
+      css/components/search-results.css: {}
+
+drupal.node.preview:
+  css:
+    theme:
+      css/components/node-preview-container.css: {}
+
+powered-by-block:
+  css:
+    theme:
+      css/components/powered-by-block.css: {}
+
+layout-views-grid-horizontal:
+  css:
+    layout:
+      css/layout/layout-views-grid-horizontal.css: {}
+
+layout-views-grid-vertical:
+  css:
+    layout:
+      css/layout/layout-views-grid-vertical.css: {}
+
+cke-dialog:
+  css:
+    component:
+      css/components/cke-dialog.css: {}
+
+progress:
+  css:
+    component:
+      css/components/progress.css: {}
+
+forum:
+  css:
+    component:
+      css/components/forum.css: {}
+
+dropbutton:
+  css:
+    component:
+      css/components/dropbutton.css: {}
+
+dialog.off_canvas:
+  css:
+    component:
+      css/components/off-canvas.css: {}

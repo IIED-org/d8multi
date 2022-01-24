@@ -11,7 +11,6 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Drush\Config\ConfigAwareTrait;
-use Drush\Exec\ExecTrait;
 use Robo\Contract\ConfigAwareInterface;
 use Robo\Contract\IOAwareInterface;
 use Robo\Common\IO;
@@ -23,7 +22,6 @@ use Webmozart\PathUtil\Path;
 abstract class DrushCommands implements IOAwareInterface, LoggerAwareInterface, ConfigAwareInterface, ProcessManagerAwareInterface
 {
     use ProcessManagerAwareTrait;
-    use ExecTrait;
 
     // This is more readable.
     const REQ=InputOption::VALUE_REQUIRED;
@@ -87,14 +85,19 @@ abstract class DrushCommands implements IOAwareInterface, LoggerAwareInterface, 
         }
 
         if (self::input()->isInteractive()) {
-            if (self::programExists('less')) {
-                $process = $this->processManager()->process(['less', $file])->setTty(true);
+            ;
+            $process = $this->processManager()->process(['less', $file])->setTty(true);
+            if ($process->run() === 0) {
+                return;
+            } else {
+                $process = $this->processManager()->process(['more', $file]);
                 if ($process->run() === 0) {
                     return;
+                } else {
+                    $this->output()->writeln(file_get_contents($file));
                 }
             }
         }
-        $this->output()->writeln(file_get_contents($file));
     }
 
     /**

@@ -1,4 +1,3 @@
-uuid: null
 langcode: en
 status: open
 dependencies:
@@ -234,7 +233,6 @@ elements: |
       '#default_value': '{default_value}'
       '#required': '{default_value}'
       '#description': '<b>Required:</b> page_01_trigger_checkbox:checked'
-  
 css: ''
 javascript: ''
 settings:
@@ -276,9 +274,6 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
-  form_method: ''
-  form_action: ''
-  form_attributes: {  }
   share: false
   share_node: false
   share_theme_name: ''

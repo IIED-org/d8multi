@@ -47,7 +47,6 @@ class VersionParser
      * @param string $version
      *
      * @return string
-     * @phpstan-return 'stable'|'RC'|'beta'|'alpha'|'dev'
      */
     public static function parseStability($version)
     {

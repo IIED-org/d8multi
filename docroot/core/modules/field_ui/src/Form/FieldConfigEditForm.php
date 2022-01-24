@@ -79,7 +79,6 @@ class FieldConfigEditForm extends EntityForm {
       '#title' => $this->t('Label'),
       '#default_value' => $this->entity->getLabel() ?: $field_storage->getName(),
       '#required' => TRUE,
-      '#maxlength' => 255,
       '#weight' => -20,
     ];
 

@@ -115,7 +115,6 @@ class RecursiveExtensionFilterIterator extends \RecursiveFilterIterator {
   /**
    * {@inheritdoc}
    */
-  #[\ReturnTypeWillChange]
   public function getChildren() {
     $filter = parent::getChildren();
     // Pass on the skipped folders list.
@@ -128,7 +127,6 @@ class RecursiveExtensionFilterIterator extends \RecursiveFilterIterator {
   /**
    * {@inheritdoc}
    */
-  #[\ReturnTypeWillChange]
   public function accept() {
     $name = $this->current()->getFilename();
     // FilesystemIterator::SKIP_DOTS only skips '.' and '..', but not hidden

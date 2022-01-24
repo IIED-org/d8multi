@@ -8,7 +8,7 @@
 (function ($, Drupal, debounce) {
   $.fn.drupalGetSummary = function () {
     var callback = this.data('summaryCallback');
-    return this[0] && callback ? callback(this[0]).trim() : '';
+    return this[0] && callback ? $.trim(callback(this[0])) : '';
   };
 
   $.fn.drupalSetSummary = function (callback) {
@@ -41,7 +41,7 @@
         }
       }
 
-      $(once('form-single-submit', 'body')).on('submit.singleSubmit', 'form:not([method~="GET"])', onFormSubmit);
+      $('body').once('form-single-submit').on('submit.singleSubmit', 'form:not([method~="GET"])', onFormSubmit);
     }
   };
 
@@ -60,7 +60,7 @@
     attach: function attach(context) {
       var $context = $(context);
       var contextIsForm = $context.is('form');
-      var $forms = $(once('form-updated', contextIsForm ? $context : $context.find('form')));
+      var $forms = (contextIsForm ? $context : $context.find('form')).once('form-updated');
       var formFields;
 
       if ($forms.length) {
@@ -89,17 +89,21 @@
       var contextIsForm = $context.is('form');
 
       if (trigger === 'unload') {
-        once.remove('form-updated', contextIsForm ? $context : $context.find('form')).forEach(function (form) {
-          form.removeAttribute('data-drupal-form-fields');
-          $(form).off('.formUpdated');
-        });
+        var $forms = (contextIsForm ? $context : $context.find('form')).removeOnce('form-updated');
+
+        if ($forms.length) {
+          $.makeArray($forms).forEach(function (form) {
+            form.removeAttribute('data-drupal-form-fields');
+            $(form).off('.formUpdated');
+          });
+        }
       }
     }
   };
   Drupal.behaviors.fillUserInfoFromBrowser = {
     attach: function attach(context, settings) {
       var userInfo = ['name', 'mail', 'homepage'];
-      var $forms = $(once('user-info-from-browser', '[data-user-info-from-browser]'));
+      var $forms = $('[data-user-info-from-browser]').once('user-info-from-browser');
 
       if ($forms.length) {
         userInfo.forEach(function (info) {

@@ -5,7 +5,7 @@ namespace PHPStan\Rules\Deprecations;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
-use PHPStan\Reflection\ReflectionProvider;
+use PHPStan\Broker\Broker;
 
 /**
  * @implements \PHPStan\Rules\Rule<Class_>
@@ -13,12 +13,12 @@ use PHPStan\Reflection\ReflectionProvider;
 class ImplementationOfDeprecatedInterfaceRule implements \PHPStan\Rules\Rule
 {
 
-	/** @var ReflectionProvider */
-	private $reflectionProvider;
+	/** @var Broker */
+	private $broker;
 
-	public function __construct(ReflectionProvider $reflectionProvider)
+	public function __construct(Broker $broker)
 	{
-		$this->reflectionProvider = $reflectionProvider;
+		$this->broker = $broker;
 	}
 
 	public function getNodeType(): string
@@ -39,7 +39,7 @@ class ImplementationOfDeprecatedInterfaceRule implements \PHPStan\Rules\Rule
 			: (string) $node->name;
 
 		try {
-			$class = $this->reflectionProvider->getClass($className);
+			$class = $this->broker->getClass($className);
 		} catch (\PHPStan\Broker\ClassNotFoundException $e) {
 			return [];
 		}
@@ -52,7 +52,7 @@ class ImplementationOfDeprecatedInterfaceRule implements \PHPStan\Rules\Rule
 			$interfaceName = (string) $implement;
 
 			try {
-				$interface = $this->reflectionProvider->getClass($interfaceName);
+				$interface = $this->broker->getClass($interfaceName);
 
 				if ($interface->isDeprecated()) {
 					$description = $interface->getDeprecatedDescription();

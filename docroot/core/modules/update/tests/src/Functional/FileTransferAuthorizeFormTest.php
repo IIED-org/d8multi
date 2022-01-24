@@ -26,6 +26,7 @@ class FileTransferAuthorizeFormTest extends UpdateTestBase {
     $admin_user = $this->drupalCreateUser([
       'administer modules',
       'administer software updates',
+      'administer site configuration',
     ]);
     $this->drupalLogin($admin_user);
 

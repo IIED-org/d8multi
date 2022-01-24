@@ -21,14 +21,15 @@ use function sprintf;
  */
 final class LazyServiceFactory implements DelegatorFactoryInterface
 {
-    private LazyLoadingValueHolderFactory $proxyFactory;
+    /** @var LazyLoadingValueHolderFactory */
+    private $proxyFactory;
 
-    /** @var array<string, class-string> map of service names to class names */
-    private array $servicesMap;
+    /** @var string[] map of service names to class names */
+    private $servicesMap;
 
     /**
-     * @param array<string, class-string> $servicesMap A map of service names to
-     *     class names of their respective classes
+     * @param string[]                      $servicesMap  a map of service names to class names of their
+     *                                                    respective classes
      */
     public function __construct(LazyLoadingValueHolderFactory $proxyFactory, array $servicesMap)
     {
@@ -39,7 +40,6 @@ final class LazyServiceFactory implements DelegatorFactoryInterface
     /**
      * {@inheritDoc}
      *
-     * @param string $name
      * @return VirtualProxyInterface
      */
     public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)

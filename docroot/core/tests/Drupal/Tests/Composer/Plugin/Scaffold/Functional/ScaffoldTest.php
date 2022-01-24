@@ -356,10 +356,8 @@ include __DIR__ . "/settings-custom-additions.php";',
    *   The path to the System-under-Test's docroot.
    * @param bool $is_link
    *   Whether or not symlinking is used.
-   *
-   * @internal
    */
-  protected function assertDefaultSettingsFromScaffoldOverride(string $docroot, bool $is_link): void {
+  protected function assertDefaultSettingsFromScaffoldOverride($docroot, $is_link) {
     $this->assertScaffoldedFile($docroot . '/sites/default/default.settings.php', $is_link, 'scaffolded from the scaffold-override-fixture');
   }
 
@@ -368,10 +366,8 @@ include __DIR__ . "/settings-custom-additions.php";',
    *
    * @param string $docroot
    *   The path to the System-under-Test's docroot.
-   *
-   * @internal
    */
-  protected function assertHtaccessExcluded(string $docroot): void {
+  protected function assertHtaccessExcluded($docroot) {
     // Ensure that the .htaccess.txt file was not written, as our
     // top-level composer.json excludes it from the files to scaffold.
     $this->assertFileDoesNotExist($docroot . '/.htaccess');
@@ -388,10 +384,8 @@ include __DIR__ . "/settings-custom-additions.php";',
    *   The path to the System-under-Test's docroot.
    * @param bool $is_link
    *   Whether or not symlinking is used.
-   *
-   * @internal
    */
-  protected function assertCommonDrupalAssetsWereScaffolded(string $docroot, bool $is_link): void {
+  protected function assertCommonDrupalAssetsWereScaffolded($docroot, $is_link) {
     // Assert scaffold files are written in the correct locations.
     $this->assertScaffoldedFile($docroot . '/.csslintrc', $is_link, 'Test version of .csslintrc from drupal/core.');
     $this->assertScaffoldedFile($docroot . '/.editorconfig', $is_link, 'Test version of .editorconfig from drupal/core.');
@@ -414,10 +408,8 @@ include __DIR__ . "/settings-custom-additions.php";',
    *   Location of the doc root, where autoload.php should be written.
    * @param bool $relocated_docroot
    *   Whether the document root is relocated or now.
-   *
-   * @internal
    */
-  protected function assertAutoloadFileCorrect(string $docroot, bool $relocated_docroot = FALSE): void {
+  protected function assertAutoloadFileCorrect($docroot, $relocated_docroot = FALSE) {
     $autoload_path = $docroot . '/autoload.php';
 
     // Ensure that the autoload.php file was written.

@@ -276,11 +276,11 @@ class EntityUsage implements EntityUsageInterface {
   /**
    * {@inheritdoc}
    */
-  public function listTargets(EntityInterface $source_entity, $vid = NULL) {
+  public function listTargets(EntityInterface $source_entity) {
     // Entities can have string IDs. We support that by using different columns
     // on each case.
     $source_id_column = $this->isInt($source_entity->id()) ? 'source_id' : 'source_id_string';
-    $query = $this->connection->select($this->tableName, 'e')
+    $result = $this->connection->select($this->tableName, 'e')
       ->fields('e', [
         'target_id',
         'target_id_string',
@@ -292,13 +292,8 @@ class EntityUsage implements EntityUsageInterface {
       ->condition($source_id_column, $source_entity->id())
       ->condition('source_type', $source_entity->getEntityTypeId())
       ->condition('count', 0, '>')
-      ->orderBy('target_id', 'DESC');
-
-    if ($vid) {
-      $query->condition('source_vid', $vid);
-    }
-
-    $result = $query->execute();
+      ->orderBy('target_id', 'DESC')
+      ->execute();
 
     $references = [];
     foreach ($result as $usage) {

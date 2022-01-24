@@ -94,7 +94,7 @@ class VariableTranslation extends DrupalSqlBase {
   /**
    * {@inheritdoc}
    */
-  protected function doCount() {
+  public function count($refresh = FALSE) {
     return $this->initializeIterator()->count();
   }
 

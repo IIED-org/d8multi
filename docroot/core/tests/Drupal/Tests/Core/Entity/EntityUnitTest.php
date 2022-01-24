@@ -406,10 +406,10 @@ class EntityUnitTest extends UnitTestCase {
       ],
       [
         [
-          // List cache tag.
-          $this->entityTypeId . '_list',
           // Own cache tag.
           $this->entityTypeId . ':' . $this->values['id'],
+          // List cache tag.
+          $this->entityTypeId . '_list',
         ],
       ]);
 
@@ -438,11 +438,11 @@ class EntityUnitTest extends UnitTestCase {
       ],
       [
         [
+          // Own cache tag.
+          $this->entityTypeId . ':' . $this->values['id'],
           // List cache tag.
           $this->entityTypeId . '_list',
           $this->entityTypeId . '_list:' . $this->entity->bundle(),
-          // Own cache tag.
-          $this->entityTypeId . ':' . $this->values['id'],
         ],
       ]);
 
@@ -500,8 +500,8 @@ class EntityUnitTest extends UnitTestCase {
     $this->cacheTagsInvalidator->expects($this->once())
       ->method('invalidateTags')
       ->with([
-        $this->entityTypeId . '_list',
         $this->entityTypeId . ':' . $this->values['id'],
+        $this->entityTypeId . '_list',
       ]);
     $storage = $this->createMock('\Drupal\Core\Entity\EntityStorageInterface');
     $storage->expects($this->once())
@@ -518,16 +518,11 @@ class EntityUnitTest extends UnitTestCase {
   public function testPostDeleteBundle() {
     $this->cacheTagsInvalidator->expects($this->once())
       ->method('invalidateTags')
-      // with() also asserts on the order of array values and array keys that
-      // is something we should avoid here.
-      ->willReturnCallback(function (array $tags) {
-        self::assertEqualsCanonicalizing([
-          $this->entityTypeId . '_list',
-          $this->entityTypeId . ':' . $this->values['id'],
-          $this->entityTypeId . '_list:' . $this->entity->bundle(),
-        ], $tags);
-        return NULL;
-      });
+      ->with([
+        $this->entityTypeId . ':' . $this->values['id'],
+        $this->entityTypeId . '_list',
+        $this->entityTypeId . '_list:' . $this->entity->bundle(),
+      ]);
     $this->entityType->expects($this->atLeastOnce())
       ->method('hasKey')
       ->with('bundle')
@@ -566,8 +561,8 @@ class EntityUnitTest extends UnitTestCase {
    */
   public function testCacheTags() {
     // Ensure that both methods return the same by default.
-    $this->assertEqualsCanonicalizing([$this->entityTypeId . ':' . 1], $this->entity->getCacheTags());
-    $this->assertEqualsCanonicalizing([$this->entityTypeId . ':' . 1], $this->entity->getCacheTagsToInvalidate());
+    $this->assertEquals([$this->entityTypeId . ':' . 1], $this->entity->getCacheTags());
+    $this->assertEquals([$this->entityTypeId . ':' . 1], $this->entity->getCacheTagsToInvalidate());
 
     // Add an additional cache tag and make sure only getCacheTags() returns
     // that.
@@ -575,9 +570,10 @@ class EntityUnitTest extends UnitTestCase {
 
     // EntityTypeId is random so it can shift order. We need to duplicate the
     // sort from \Drupal\Core\Cache\Cache::mergeTags().
-    $tags = [$this->entityTypeId . ':' . 1, 'additional_cache_tag'];
-    $this->assertEqualsCanonicalizing($tags, $this->entity->getCacheTags());
-    $this->assertEqualsCanonicalizing([$this->entityTypeId . ':' . 1], $this->entity->getCacheTagsToInvalidate());
+    $tags = ['additional_cache_tag', $this->entityTypeId . ':' . 1];
+    sort($tags);
+    $this->assertEquals($tags, $this->entity->getCacheTags());
+    $this->assertEquals([$this->entityTypeId . ':' . 1], $this->entity->getCacheTagsToInvalidate());
   }
 
   /**
@@ -595,11 +591,11 @@ class EntityUnitTest extends UnitTestCase {
     \Drupal::setContainer($container);
 
     // There are no cache contexts by default.
-    $this->assertEqualsCanonicalizing([], $this->entity->getCacheContexts());
+    $this->assertEquals([], $this->entity->getCacheContexts());
 
     // Add an additional cache context.
     $this->entity->addCacheContexts(['user']);
-    $this->assertEqualsCanonicalizing(['user'], $this->entity->getCacheContexts());
+    $this->assertEquals(['user'], $this->entity->getCacheContexts());
   }
 
   /**

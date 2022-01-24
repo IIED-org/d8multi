@@ -209,7 +209,6 @@ class Entity extends ArgumentValidatorPluginBase {
    * Validates an individual entity against class access settings.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   The entity.
    *
    * @return bool
    *   True if validated.

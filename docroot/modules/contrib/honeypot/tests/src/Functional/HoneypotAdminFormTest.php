@@ -29,9 +29,11 @@ class HoneypotAdminFormTest extends BrowserTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-   * {@inheritdoc}
+   * Modules to enable.
+   *
+   * @var array
    */
-  protected static $modules = ['honeypot'];
+  public static $modules = ['honeypot'];
 
   /**
    * Setup before test.
@@ -56,16 +58,14 @@ class HoneypotAdminFormTest extends BrowserTestBase {
 
     // Set up form and submit it.
     $edit['element_name'] = "test";
-    $this->drupalGet('admin/config/content/honeypot');
-    $this->submitForm($edit, 'Save configuration');
+    $this->drupalPostForm('admin/config/content/honeypot', $edit, $this->t('Save configuration'));
 
     // Form should have been submitted successfully.
     $this->assertSession()->pageTextContains('The configuration options have been saved.');
 
     // Set up form and submit it.
     $edit['element_name'] = "test-1";
-    $this->drupalGet('admin/config/content/honeypot');
-    $this->submitForm($edit, 'Save configuration');
+    $this->drupalPostForm('admin/config/content/honeypot', $edit, $this->t('Save configuration'));
 
     // Form should have been submitted successfully.
     $this->assertSession()->pageTextContains('The configuration options have been saved.');
@@ -80,8 +80,7 @@ class HoneypotAdminFormTest extends BrowserTestBase {
 
     // Set up form and submit it.
     $edit['element_name'] = "1test";
-    $this->drupalGet('admin/config/content/honeypot');
-    $this->submitForm($edit, 'Save configuration');
+    $this->drupalPostForm('admin/config/content/honeypot', $edit, $this->t('Save configuration'));
 
     // Form submission should fail.
     $this->assertSession()->pageTextContains('The element name must start with a letter.');
@@ -96,16 +95,14 @@ class HoneypotAdminFormTest extends BrowserTestBase {
 
     // Set up form and submit it.
     $edit['element_name'] = "special-character-&";
-    $this->drupalGet('admin/config/content/honeypot');
-    $this->submitForm($edit, 'Save configuration');
+    $this->drupalPostForm('admin/config/content/honeypot', $edit, $this->t('Save configuration'));
 
     // Form submission should fail.
     $this->assertSession()->pageTextContains('The element name cannot contain spaces or other special characters.');
 
     // Set up form and submit it.
     $edit['element_name'] = "space in name";
-    $this->drupalGet('admin/config/content/honeypot');
-    $this->submitForm($edit, 'Save configuration');
+    $this->drupalPostForm('admin/config/content/honeypot', $edit, $this->t('Save configuration'));
 
     // Form submission should fail.
     $this->assertSession()->pageTextContains('The element name cannot contain spaces or other special characters.');

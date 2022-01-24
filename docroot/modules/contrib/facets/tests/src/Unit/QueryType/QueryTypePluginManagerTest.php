@@ -8,6 +8,7 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\facets\QueryType\QueryTypePluginManager;
 use Drupal\Tests\UnitTestCase;
+use Zend\Stdlib\ArrayObject;
 
 /**
  * Unit test for the query type plugin manager.
@@ -54,7 +55,7 @@ class QueryTypePluginManagerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     $this->discovery = $this->createMock(DiscoveryInterface::class);
 
     $this->factory = $this->getMockBuilder(DefaultFactory::class)
@@ -65,7 +66,7 @@ class QueryTypePluginManagerTest extends UnitTestCase {
 
     $this->cache = $this->createMock(CacheBackendInterface::class);
 
-    $namespaces = new \ArrayObject();
+    $namespaces = new ArrayObject();
 
     $this->sut = new QueryTypePluginManager($namespaces, $this->cache, $this->moduleHandler);
     $discovery_property = new \ReflectionProperty($this->sut, 'discovery');
@@ -80,7 +81,7 @@ class QueryTypePluginManagerTest extends UnitTestCase {
    * Tests plugin manager constructor.
    */
   public function testConstruct() {
-    $namespaces = new \ArrayObject();
+    $namespaces = new ArrayObject();
     $sut = new QueryTypePluginManager($namespaces, $this->cache, $this->moduleHandler);
     $this->assertInstanceOf(QueryTypePluginManager::class, $sut);
   }

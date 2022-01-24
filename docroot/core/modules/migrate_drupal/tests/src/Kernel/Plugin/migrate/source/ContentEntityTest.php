@@ -186,10 +186,8 @@ class ContentEntityTest extends KernelTestBase {
    *   The source plugin.
    * @param array $configuration
    *   The source plugin configuration (Nope, no getter available).
-   *
-   * @internal
    */
-  protected function assertIds(MigrateSourceInterface $source, array $configuration): void {
+  protected function assertIds(MigrateSourceInterface $source, array $configuration) {
     $ids = $source->getIds();
     [, $entity_type_id] = explode(PluginBase::DERIVATIVE_SEPARATOR, $source->getPluginId());
     $entity_type = \Drupal::entityTypeManager()->getDefinition($entity_type_id);

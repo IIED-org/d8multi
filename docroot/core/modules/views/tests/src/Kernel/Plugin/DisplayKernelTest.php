@@ -130,10 +130,7 @@ class DisplayKernelTest extends ViewsKernelTestBase {
         'table' => 'views_test_data',
         'plugin_id' => 'standard',
         'order' => 'asc',
-        'expose' => [
-          'label' => 'Id',
-          'field_identifier' => 'name',
-        ],
+        'expose' => ['label' => 'id'],
         'exposed' => TRUE,
       ],
     ];
@@ -159,16 +156,10 @@ class DisplayKernelTest extends ViewsKernelTestBase {
     ];
     $view->display_handler->setOption('sorts', $sorts);
     $view->display_handler->setOption('filters', $filters);
+    $view->save();
 
     $this->assertTrue($view->display_handler->isIdentifierUnique('some_id', 'some_id'));
     $this->assertFalse($view->display_handler->isIdentifierUnique('some_id', 'id'));
-
-    // Check that an exposed filter is able to use the same identifier as an
-    // exposed sort.
-    $sorts['name']['expose']['field_identifier'] = 'id';
-    $view->display_handler->handlers = [];
-    $view->display_handler->setOption('sorts', $sorts);
-    $this->assertTrue($view->display_handler->isIdentifierUnique('id', 'id'));
   }
 
 }

@@ -357,10 +357,8 @@ class RequestSanitizerTest extends UnitTestCase {
    *   The error message.
    * @param int $errno
    *   The severity level of the error.
-   *
-   * @internal
    */
-  protected function assertError(string $errstr, int $errno): void {
+  protected function assertError($errstr, $errno) {
     foreach ($this->errors as $error) {
       if ($error['errstr'] === $errstr && $error['errno'] === $errno) {
         return;

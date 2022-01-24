@@ -287,10 +287,8 @@ class FieldRenderedEntityTranslationTest extends ViewTestBase {
    *
    * @param array $expected
    *   The expected rows of the result.
-   *
-   * @internal
    */
-  protected function assertRows(array $expected = []): void {
+  protected function assertRows(array $expected = []) {
     $actual = [];
     $rows = $this->cssSelect('div.views-row');
     foreach ($rows as $row) {

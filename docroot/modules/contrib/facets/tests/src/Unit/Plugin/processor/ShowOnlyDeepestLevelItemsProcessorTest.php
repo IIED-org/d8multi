@@ -8,7 +8,7 @@ use Drupal\facets\Result\Result;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Unit test for processor.
+ * Class ShowOnlyDeepestLevelItemsProcessorTest.
  *
  * @group facets
  * @coversDefaultClass \Drupal\facets\Plugin\facets\processor\ShowOnlyDeepestLevelItemsProcessor
@@ -25,7 +25,7 @@ class ShowOnlyDeepestLevelItemsProcessorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
     $this->processor = new ShowOnlyDeepestLevelItemsProcessor([], 'test', []);
   }

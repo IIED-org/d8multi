@@ -233,6 +233,8 @@ abstract class ConstraintValidatorTestCase extends TestCase
     }
 
     /**
+     * @param $message
+     *
      * @return ConstraintViolationAssertion
      */
     protected function buildViolation($message)

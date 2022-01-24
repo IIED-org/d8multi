@@ -4,11 +4,10 @@ namespace Robo\Task\Bower;
 
 use Robo\Task\BaseTask;
 use Robo\Exception\TaskException;
-use Robo\Common\ExecOneCommand;
 
 abstract class Base extends BaseTask
 {
-    use ExecOneCommand;
+    use \Robo\Common\ExecOneCommand;
 
     /**
      * @var array

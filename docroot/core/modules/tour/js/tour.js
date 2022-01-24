@@ -9,7 +9,7 @@
   var queryString = decodeURI(window.location.search);
   Drupal.behaviors.tour = {
     attach: function attach(context) {
-      once('tour', 'body').forEach(function () {
+      $('body').once('tour').each(function () {
         var model = new Drupal.tour.models.StateModel();
         new Drupal.tour.views.ToggleTourView({
           el: $(context).find('#toolbar-tab-tour'),

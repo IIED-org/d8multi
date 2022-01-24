@@ -7,17 +7,17 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Session\AccountInterface;
 
 /**
- * Controller for EUCC Access.
+ * Class AdminController.
  */
 class AdminController extends ControllerBase {
 
   /**
    * Access.
    *
-   * @param \Drupal\Core\Session\AccountInterface $account
+   * @param AccountInterface $account
    *   The account.
    *
-   * @return \Drupal\Core\Access\AccessResult
+   * @return AccessResult
    *   Whether the user has access.
    */
   public function access(AccountInterface $account) {

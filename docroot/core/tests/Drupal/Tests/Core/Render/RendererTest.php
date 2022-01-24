@@ -298,7 +298,7 @@ class RendererTest extends RendererTestBase {
           if ($theme == 'container') {
             return '<div' . (string) (new Attribute($vars['#attributes'])) . '>' . $vars['#children'] . "</div>\n";
           }
-          $attributes = new Attribute(['href' => $vars['#url']] + ($vars['#attributes'] ?? []));
+          $attributes = new Attribute(['href' => $vars['#url']] + (isset($vars['#attributes']) ? $vars['#attributes'] : []));
           return '<a' . (string) $attributes . '>' . $vars['#title'] . '</a>';
         });
     };
@@ -633,7 +633,7 @@ class RendererTest extends RendererTestBase {
 
     $this->renderer->renderPlain($build);
 
-    $this->assertEqualsCanonicalizing(['languages:language_interface', 'theme', 'user'], $build['#cache']['contexts']);
+    $this->assertEquals(['languages:language_interface', 'theme', 'user'], $build['#cache']['contexts']);
   }
 
   /**
@@ -731,12 +731,10 @@ class RendererTest extends RendererTestBase {
    *
    * @param array $build
    *   A render array with either #access or #access_callback.
-   * @param \Drupal\Core\Access\AccessResultInterface|bool $access
+   * @param bool $access
    *   Whether the render array is accessible or not.
-   *
-   * @internal
    */
-  protected function assertAccess(array $build, $access): void {
+  protected function assertAccess($build, $access) {
     $sensitive_content = $this->randomContextValue();
     $build['#markup'] = $sensitive_content;
     if (($access instanceof AccessResultInterface && $access->isAllowed()) || $access === TRUE) {

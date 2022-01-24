@@ -116,9 +116,7 @@ class WorkspaceListBuilder extends EntityListBuilder {
       'label' => [
         'data' => [
           '#prefix' => isset($indentation) ? $this->renderer->render($indentation) : '',
-          '#type' => 'link',
-          '#title' => $entity->label(),
-          '#url' => $entity->toUrl(),
+          '#markup' => $entity->label(),
         ],
       ],
       'owner' => $entity->getOwner()->getDisplayname(),
@@ -184,12 +182,6 @@ class WorkspaceListBuilder extends EntityListBuilder {
         ),
       ];
     }
-
-    $operations['manage'] = [
-      'title' => $this->t('Manage'),
-      'weight' => 5,
-      'url' => $entity->toUrl(),
-    ];
 
     return $operations;
   }
@@ -287,7 +279,7 @@ class WorkspaceListBuilder extends EntityListBuilder {
       $build['active_workspace']['label']['manage'] = [
         '#type' => 'link',
         '#title' => $this->t('Manage workspace'),
-        '#url' => $active_workspace->toUrl('canonical'),
+        '#url' => $active_workspace->toUrl('edit-form'),
         '#attributes' => [
           'class' => ['active-workspace__manage'],
         ],
@@ -339,7 +331,7 @@ class WorkspaceListBuilder extends EntityListBuilder {
         $url = Url::fromRoute('entity.workspace.activate_form', ['workspace' => $id], ['query' => $this->getDestinationArray()]);
         $items[] = [
           '#type' => 'link',
-          '#title' => ltrim($row['data']['label']['data']['#title']),
+          '#title' => ltrim($row['data']['label']['data']['#markup']),
           '#url' => $url,
           '#attributes' => [
             'class' => ['use-ajax', 'workspaces__item', 'workspaces__item--not-default'],

@@ -42,12 +42,11 @@ interface AliasManagerInterface {
   public function getAliasByPath($path, $langcode = NULL);
 
   /**
-   * Clears the static caches in alias manager and rebuilds the whitelist.
+   * Clear internal caches in alias manager.
    *
    * @param $source
-   *   Source path of the alias that is being inserted/updated. If omitted, the
-   *   entire lookup static cache will be cleared and the whitelist will be
-   *   rebuilt.
+   *   Source path of the alias that is being inserted/updated. Can be omitted
+   *   if entire cache needs to be flushed.
    */
   public function cacheClear($source = NULL);
 

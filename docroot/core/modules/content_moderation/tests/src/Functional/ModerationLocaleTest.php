@@ -505,10 +505,8 @@ class ModerationLocaleTest extends ModerationStateTestBase {
    *
    * @param \Drupal\node\NodeInterface $node
    *   A node object.
-   *
-   * @internal
    */
-  public function assertLatestVersionPage(NodeInterface $node): void {
+  public function assertLatestVersionPage(NodeInterface $node) {
     $this->assertEquals($node->toUrl('latest-version')->setAbsolute()->toString(), $this->getSession()->getCurrentUrl());
     $this->assertModerationForm($node);
   }
@@ -521,10 +519,8 @@ class ModerationLocaleTest extends ModerationStateTestBase {
    * @param bool $moderation_form
    *   (optional) Whether the page should contain the moderation form. Defaults
    *   to FALSE.
-   *
-   * @internal
    */
-  public function assertNotLatestVersionPage(NodeInterface $node, bool $moderation_form = FALSE): void {
+  public function assertNotLatestVersionPage(NodeInterface $node, $moderation_form = FALSE) {
     $this->assertNotEquals($node->toUrl('latest-version')->setAbsolute()->toString(), $this->getSession()->getCurrentUrl());
     if ($moderation_form) {
       $this->assertModerationForm($node, FALSE);
@@ -542,10 +538,8 @@ class ModerationLocaleTest extends ModerationStateTestBase {
    * @param bool $latest_tab
    *   (optional) Whether the node form is expected to be displayed on the
    *   latest version page or on the node view page. Defaults to the former.
-   *
-   * @internal
    */
-  public function assertModerationForm(NodeInterface $node, bool $latest_tab = TRUE): void {
+  public function assertModerationForm(NodeInterface $node, $latest_tab = TRUE) {
     $this->drupalGet($node->toUrl());
     $this->assertEquals(!$latest_tab, $this->hasModerationForm());
     $this->drupalGet($node->toUrl('latest-version'));
@@ -557,10 +551,8 @@ class ModerationLocaleTest extends ModerationStateTestBase {
    *
    * @param \Drupal\node\NodeInterface $node
    *   A node object.
-   *
-   * @internal
    */
-  public function assertNoModerationForm(NodeInterface $node): void {
+  public function assertNoModerationForm(NodeInterface $node) {
     $this->drupalGet($node->toUrl());
     $this->assertFalse($this->hasModerationForm());
     $this->drupalGet($node->toUrl('latest-version'));

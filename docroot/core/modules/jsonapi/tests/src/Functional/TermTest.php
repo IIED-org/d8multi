@@ -155,9 +155,6 @@ class TermTest extends ResourceTestBase {
           'data' => [
             [
               'id' => Term::load(2)->uuid(),
-              'meta' => [
-                'drupal_internal__target_id' => 2,
-              ],
               'type' => 'taxonomy_term--camelids',
             ],
           ],
@@ -187,9 +184,6 @@ class TermTest extends ResourceTestBase {
             ],
             [
               'id' => Term::load(2)->uuid(),
-              'meta' => [
-                'drupal_internal__target_id' => 2,
-              ],
               'type' => 'taxonomy_term--camelids',
             ],
           ],
@@ -205,16 +199,10 @@ class TermTest extends ResourceTestBase {
           'data' => [
             [
               'id' => Term::load(3)->uuid(),
-              'meta' => [
-                'drupal_internal__target_id' => 3,
-              ],
               'type' => 'taxonomy_term--camelids',
             ],
             [
               'id' => Term::load(2)->uuid(),
-              'meta' => [
-                'drupal_internal__target_id' => 2,
-              ],
               'type' => 'taxonomy_term--camelids',
             ],
           ],
@@ -273,9 +261,6 @@ class TermTest extends ResourceTestBase {
           'vid' => [
             'data' => [
               'id' => Vocabulary::load('camelids')->uuid(),
-              'meta' => [
-                'drupal_internal__target_id' => 'camelids',
-              ],
               'type' => 'taxonomy_vocabulary--taxonomy_vocabulary',
             ],
             'links' => [

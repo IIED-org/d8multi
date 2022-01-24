@@ -138,11 +138,11 @@ class AjaxResponseAttachmentsProcessor implements AttachmentsResponseProcessorIn
 
     // Resolve the attached libraries into asset collections.
     $assets = new AttachedAssets();
-    $assets->setLibraries($attachments['library'] ?? [])
+    $assets->setLibraries(isset($attachments['library']) ? $attachments['library'] : [])
       ->setAlreadyLoadedLibraries(isset($ajax_page_state['libraries']) ? explode(',', $ajax_page_state['libraries']) : [])
-      ->setSettings($attachments['drupalSettings'] ?? []);
+      ->setSettings(isset($attachments['drupalSettings']) ? $attachments['drupalSettings'] : []);
     $css_assets = $this->assetResolver->getCssAssets($assets, $optimize_css);
-    [$js_assets_header, $js_assets_footer] = $this->assetResolver->getJsAssets($assets, $optimize_js);
+    list($js_assets_header, $js_assets_footer) = $this->assetResolver->getJsAssets($assets, $optimize_js);
 
     // First, AttachedAssets::setLibraries() ensures duplicate libraries are
     // removed: it converts it to a set of libraries if necessary. Second,

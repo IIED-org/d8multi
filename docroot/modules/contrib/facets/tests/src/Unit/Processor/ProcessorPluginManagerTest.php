@@ -10,6 +10,7 @@ use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\facets\Processor\ProcessorInterface;
 use Drupal\facets\Processor\ProcessorPluginManager;
 use Drupal\Tests\UnitTestCase;
+use Zend\Stdlib\ArrayObject;
 
 /**
  * Unit test for Processor plugin manager.
@@ -63,7 +64,7 @@ class ProcessorPluginManagerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     $this->discovery = $this->createMock(DiscoveryInterface::class);
 
     $this->factory = $this->getMockBuilder(DefaultFactory::class)
@@ -76,7 +77,7 @@ class ProcessorPluginManagerTest extends UnitTestCase {
 
     $this->translator = $this->createMock(TranslationInterface::class);
 
-    $namespaces = new \ArrayObject();
+    $namespaces = new ArrayObject();
 
     $this->sut = new ProcessorPluginManager($namespaces, $this->cache, $this->moduleHandler, $this->translator);
     $discovery_property = new \ReflectionProperty($this->sut, 'discovery');
@@ -91,7 +92,7 @@ class ProcessorPluginManagerTest extends UnitTestCase {
    * Tests plugin manager constructor.
    */
   public function testConstruct() {
-    $namespaces = new \ArrayObject();
+    $namespaces = new ArrayObject();
     $sut = new ProcessorPluginManager($namespaces, $this->cache, $this->moduleHandler, $this->translator);
     $this->assertInstanceOf(ProcessorPluginManager::class, $sut);
   }
@@ -115,7 +116,7 @@ class ProcessorPluginManagerTest extends UnitTestCase {
    * Tests processing stages.
    */
   public function testGetProcessingStages() {
-    $namespaces = new \ArrayObject();
+    $namespaces = new ArrayObject();
     $sut = new ProcessorPluginManager($namespaces, $this->cache, $this->moduleHandler, $this->translator);
 
     $stages = [

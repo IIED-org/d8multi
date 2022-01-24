@@ -38,26 +38,16 @@ class ExposedFormTest extends ViewTestBase {
    */
   protected $defaultTheme = 'classy';
 
-  /**
-   * Nodes to test.
-   *
-   * @var \Drupal\node\NodeInterface[]
-   */
-  protected $nodes = [];
-
   protected function setUp($import_test_views = TRUE): void {
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
 
     $this->drupalCreateContentType(['type' => 'article']);
-    $this->drupalCreateContentType(['type' => 'page']);
 
-    $this->nodes = [];
     // Create some random nodes.
     for ($i = 0; $i < 5; $i++) {
-      $this->nodes[] = $this->drupalCreateNode(['type' => 'article']);
-      $this->nodes[] = $this->drupalCreateNode(['type' => 'page']);
+      $this->drupalCreateNode(['type' => 'article']);
     }
   }
 
@@ -208,13 +198,12 @@ class ExposedFormTest extends ViewTestBase {
 
   /**
    * Tests the exposed block functionality.
-   *
-   * @dataProvider providerTestExposedBlock
    */
-  public function testExposedBlock($display) {
+  public function testExposedBlock() {
+    $this->drupalCreateContentType(['type' => 'page']);
     $view = Views::getView('test_exposed_block');
-    $view->setDisplay($display);
-    $block = $this->drupalPlaceBlock('views_exposed_filter_block:test_exposed_block-' . $display);
+    $view->setDisplay('page_1');
+    $block = $this->drupalPlaceBlock('views_exposed_filter_block:test_exposed_block-page_1');
 
     // Set label to display on the exposed filter form block.
     $block->getPlugin()->setConfigurationValue('label_display', TRUE);
@@ -265,33 +254,11 @@ class ExposedFormTest extends ViewTestBase {
     // Test that the correct option is selected after form submission.
     $this->assertCacheContext('url');
     $this->assertTrue($this->assertSession()->optionExists('Content: Type', 'All')->isSelected());
-    $arguments = [
-      'All' => ['article', 'page'],
-      'article' => ['article'],
-      'page' => ['page'],
-    ];
-    foreach ($arguments as $argument => $bundles) {
-      $elements[0]->find('css', 'select')->selectOption($argument);
-      $elements[0]->findButton('Apply')->click();
+    foreach (['All', 'article', 'page'] as $argument) {
+      $this->drupalGet('test_exposed_block', ['query' => ['type' => $argument]]);
       $this->assertCacheContext('url');
       $this->assertTrue($this->assertSession()->optionExists('Content: Type', $argument)->isSelected());
-      $this->assertNodesExist($bundles);
     }
-    $elements[0]->findButton('Reset')->click();
-    $this->assertNodesExist($arguments['All']);
-  }
-
-  /**
-   * Data provider for testing different types of displays.
-   *
-   * @return array
-   *   Array of display names to test.
-   */
-  public function providerTestExposedBlock() {
-    return [
-      'page_display' => ['page_1'],
-      'block_display' => ['block_1'],
-    ];
   }
 
   /**
@@ -374,24 +341,18 @@ class ExposedFormTest extends ViewTestBase {
     $this->assertCacheContexts($contexts);
     $this->assertIds(range(40, 16, 1));
 
+    // Change the label to something with special characters.
     $view = Views::getView('test_exposed_form_sort_items_per_page');
     $view->setDisplay();
     $sorts = $view->display_handler->getOption('sorts');
-    // Change the label to something with special characters.
     $sorts['id']['expose']['label'] = $expected_label = "<script>alert('unsafe&dangerous');</script>";
-    // Use a custom sort field identifier.
-    $sorts['id']['expose']['field_identifier'] = $field_identifier = $this->randomMachineName() . '-_.~';
     $view->display_handler->setOption('sorts', $sorts);
     $view->save();
 
-    // Test label escaping.
     $this->drupalGet('test_exposed_form_sort_items_per_page');
     $options = $this->assertSession()->selectExists('edit-sort-by')->findAll('css', 'option');
     $this->assertCount(1, $options);
-    // Check option existence by option label.
-    $this->assertSession()->optionExists('Sort by', $expected_label);
-    // Check option existence by option value.
-    $this->assertSession()->optionExists('Sort by', $field_identifier);
+    $this->assertSession()->optionExists('edit-sort-by', $expected_label);
     $escape_1 = Html::escape($expected_label);
     $escape_2 = Html::escape($escape_1);
     // Make sure we see the single-escaped string in the raw output.
@@ -400,13 +361,6 @@ class ExposedFormTest extends ViewTestBase {
     $this->assertSession()->responseNotContains($escape_2);
     // And not the raw label, either.
     $this->assertSession()->responseNotContains($expected_label);
-
-    // Check that the custom field identifier is used in the URL query string.
-    $this->submitForm(['sort_order' => 'DESC'], 'Apply');
-    $this->assertCacheContexts($contexts);
-    $this->assertIds(range(50, 41));
-    $url = $this->getSession()->getCurrentUrl();
-    $this->assertStringContainsString('sort_by=' . urlencode($field_identifier), $url);
   }
 
   /**
@@ -414,10 +368,8 @@ class ExposedFormTest extends ViewTestBase {
    *
    * @param int[] $ids
    *   The ids to check.
-   *
-   * @internal
    */
-  protected function assertIds(array $ids): void {
+  protected function assertIds(array $ids) {
     $elements = $this->cssSelect('div.view-test-exposed-form-sort-items-per-page div.views-row span.field-content');
     $actual_ids = [];
     foreach ($elements as $element) {
@@ -487,25 +439,6 @@ class ExposedFormTest extends ViewTestBase {
     $this->assertTrue($this->assertSession()->optionExists('type[]', 'post')->isSelected());
     $this->assertSession()->fieldValueEquals('created[min]', '-1 month');
     $this->assertSession()->fieldValueEquals('created[max]', '+1 month');
-  }
-
-  /**
-   * Asserts that nodes of only given bundles exist.
-   *
-   * @param array $bundles
-   *   Bundles of nodes.
-   *
-   * @internal
-   */
-  protected function assertNodesExist(array $bundles): void {
-    foreach ($this->nodes as $node) {
-      if (in_array($node->bundle(), $bundles)) {
-        $this->assertSession()->pageTextContains($node->label());
-      }
-      else {
-        $this->assertSession()->pageTextNotContains($node->label());
-      }
-    }
   }
 
 }

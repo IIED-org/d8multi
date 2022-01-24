@@ -44,14 +44,18 @@ class AdminController extends ControllerBase {
    *   A render array containing the listing.
    */
   public function index() {
-    $extensions = array_intersect_key($this->moduleExtensionList->getList(), $this->moduleHandler()->getModuleList());
+    $module_info = $this->moduleExtensionList->getAllInstalledInfo();
+    foreach ($module_info as $module => $info) {
+      $module_info[$module] = new \stdClass();
+      $module_info[$module]->info = $info;
+    }
 
-    uasort($extensions, [ModuleExtensionList::class, 'sortByName']);
+    uasort($module_info, 'system_sort_modules_by_info_name');
     $menu_items = [];
 
-    foreach ($extensions as $module => $extension) {
+    foreach ($module_info as $module => $info) {
       // Only display a section if there are any available tasks.
-      if ($admin_tasks = system_get_module_admin_tasks($module, $extension->info)) {
+      if ($admin_tasks = system_get_module_admin_tasks($module, $info->info)) {
         // Sort links by title.
         uasort($admin_tasks, ['\Drupal\Component\Utility\SortArray', 'sortByTitleElement']);
         // Move 'Configure permissions' links to the bottom of each section.
@@ -62,7 +66,7 @@ class AdminController extends ControllerBase {
           $admin_tasks[$permission_key] = $permission_task;
         }
 
-        $menu_items[$extension->info['name']] = [$extension->info['description'], $admin_tasks];
+        $menu_items[$info->info['name']] = [$info->info['description'], $admin_tasks];
       }
     }
 

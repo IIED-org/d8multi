@@ -673,11 +673,10 @@ class GenerateMarkdownDoc extends BaseTask implements BuilderAwareInterface
     protected function documentParam(\ReflectionParameter $param)
     {
         $text = "";
-        $paramType = $param->getType();
-        if (($paramType != null) && ($paramType->getName() == 'array')) {
+        if ($param->isArray()) {
             $text .= 'array ';
         }
-        if (($paramType != null) && ($paramType->getName() == 'callable')) {
+        if ($param->isCallable()) {
             $text .= 'callable ';
         }
         $text .= '$' . $param->name;

@@ -15,6 +15,7 @@ class ViewsMenuLinkTest extends ViewsKernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
+    'menu_ui',
     'user',
     'views',
   ];

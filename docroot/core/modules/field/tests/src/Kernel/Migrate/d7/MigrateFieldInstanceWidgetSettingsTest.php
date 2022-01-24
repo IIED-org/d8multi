@@ -21,7 +21,6 @@ class MigrateFieldInstanceWidgetSettingsTest extends MigrateDrupal7TestBase {
   protected static $modules = [
     'comment',
     'datetime',
-    'datetime_range',
     'image',
     'link',
     'menu_ui',
@@ -49,10 +48,8 @@ class MigrateFieldInstanceWidgetSettingsTest extends MigrateDrupal7TestBase {
    *   The expected entity type to which the display settings are attached.
    * @param string $expected_bundle
    *   The expected bundle to which the display settings are attached.
-   *
-   * @internal
    */
-  protected function assertEntity(string $id, string $expected_entity_type, string $expected_bundle): void {
+  protected function assertEntity($id, $expected_entity_type, $expected_bundle) {
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $entity */
     $entity = EntityFormDisplay::load($id);
     $this->assertInstanceOf(EntityFormDisplayInterface::class, $entity);
@@ -69,12 +66,10 @@ class MigrateFieldInstanceWidgetSettingsTest extends MigrateDrupal7TestBase {
    *   The component ID.
    * @param string $widget_type
    *   The expected widget type.
-   * @param int $weight
+   * @param string $weight
    *   The expected weight of the component.
-   *
-   * @internal
    */
-  protected function assertComponent(string $display_id, string $component_id, string $widget_type, int $weight): void {
+  protected function assertComponent($display_id, $component_id, $widget_type, $weight) {
     $component = EntityFormDisplay::load($display_id)->getComponent($component_id);
     $this->assertIsArray($component);
     $this->assertSame($widget_type, $component['type']);

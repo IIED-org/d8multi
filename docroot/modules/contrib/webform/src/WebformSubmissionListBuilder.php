@@ -301,7 +301,7 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
     $this->state = $this->request->query->get('state');
     $this->sourceEntityTypeId = $this->request->query->get('entity');
 
-    [$this->webform, $this->sourceEntity] = $this->requestHandler->getWebformEntities();
+    list($this->webform, $this->sourceEntity) = $this->requestHandler->getWebformEntities();
 
     $this->messageManager->setWebform($this->webform);
     $this->messageManager->setSourceEntity($this->sourceEntity);
@@ -469,7 +469,7 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
     $settings = $this->submissionViews[$this->submissionView];
 
     // Get view name and display id.
-    [$name, $display_id] = explode(':', $settings['view']);
+    list($name, $display_id) = explode(':', $settings['view']);
 
     // Load the view and set custom property used to fix the exposed
     // filter action.
@@ -547,7 +547,7 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
 
     // Customize buttons.
     if ($this->customize) {
-      $build['customize'] = $this->buildCustomizeButton();
+      $build['custom_top'] = $this->buildCustomizeButton();
     }
 
     // Display info.
@@ -560,16 +560,15 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
     $build['table']['#sticky'] = TRUE;
     $build['table']['#attributes']['class'][] = 'webform-results-table';
 
-    // Bulk operations only visible on webform submissions pages.
-    $webform_submission_bulk_form = $this->configFactory->get('webform.settings')->get('settings.webform_submission_bulk_form');
-    if ($webform_submission_bulk_form
-      && !$this->account
-      && $this->webform
-      && $this->webform->access('submission_update_any')) {
-      $build['table'] = \Drupal::formBuilder()->getForm('\Drupal\webform\Form\WebformSubmissionBulkForm', $build['table'], $this->webform->access('submission_delete_any'));
+    // Customize.
+    // Only displayed when more than 20 submissions are being displayed.
+    if ($this->customize && isset($build['table']['#rows']) && count($build['table']['#rows']) >= 20) {
+      $build['custom_bottom'] = $this->buildCustomizeButton();
+      if (isset($build['pager'])) {
+        $build['pager']['#weight'] = 10;
+      }
     }
 
-    // Must preload libraries required by (modal) dialogs.
     // Must preload libraries required by (modal) dialogs.
     WebformDialogHelper::attachLibraries($build);
 
@@ -660,7 +659,7 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
       elseif ($this->sourceEntityTypeId && strpos($this->sourceEntityTypeId, ':') !== FALSE) {
         $source_entity_options = $this->webform;
         try {
-          [$source_entity_type, $source_entity_id] = explode(':', $this->sourceEntityTypeId);
+          list($source_entity_type, $source_entity_id) = explode(':', $this->sourceEntityTypeId);
           $source_entity = $this->entityTypeManager->getStorage($source_entity_type)->load($source_entity_id);
           $source_entity_default_value = $source_entity->label() . " ($source_entity_type:$source_entity_id)";
         }
@@ -733,9 +732,9 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
     ];
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Header functions.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -786,7 +785,7 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
   protected function buildHeaderColumn(array $column) {
     $name = $column['name'];
     if ($this->format['header_format'] === 'key') {
-      $title = $column['key'] ?? $column['name'];
+      $title = isset($column['key']) ? $column['key'] : $column['name'];
     }
     else {
       $title = $column['title'];
@@ -817,9 +816,9 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
     }
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Row functions.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -974,7 +973,7 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
         ];
 
       case 'uid':
-        return ($is_raw) ? $entity->getOwner()->id() : ($entity->getOwner()->getAccountName() ?: $this->t('Anonymous'));
+        return ($is_raw) ? $entity->getOwner()->id() : ($entity->getOwner()->getAccountName() ?: t('Anonymous'));
 
       case 'uuid':
         return $entity->uuid();
@@ -998,9 +997,9 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
     }
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Operations.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -1124,9 +1123,9 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
     return $operations;
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Route functions.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * Get submission route name based on the current route.
@@ -1166,9 +1165,9 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
     return $route_parameters;
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Submission views functions.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * Get the submission view type for the current route.
@@ -1261,7 +1260,7 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
         continue;
       }
 
-      [$view_name, $view_display_id] = explode(':', $submission_view['view']);
+      list($view_name, $view_display_id) = explode(':', $submission_view['view']);
       $view = Views::getView($view_name);
       if (!$view || !$view->access($view_display_id)) {
         unset($submission_views[$name]);
@@ -1272,9 +1271,9 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
     return $submission_views;
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Query functions.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -1415,7 +1414,7 @@ class WebformSubmissionListBuilder extends EntityListBuilder {
 
     // Filter by source entity.
     if ($source_entity && strpos($source_entity, ':') !== FALSE) {
-      [$entity_type, $entity_id] = explode(':', $source_entity);
+      list($entity_type, $entity_id) = explode(':', $source_entity);
       $query->condition('entity_type', $entity_type);
       $query->condition('entity_id', $entity_id);
     }

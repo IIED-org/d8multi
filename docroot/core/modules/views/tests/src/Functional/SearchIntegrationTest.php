@@ -144,13 +144,15 @@ class SearchIntegrationTest extends ViewTestBase {
    * @param string $label
    *   Link label to assert.
    *
-   * @internal
+   * @return bool
+   *   TRUE if the assertion succeeded.
    */
-  protected function assertOneLink(string $label): void {
+  protected function assertOneLink($label) {
     $xpath = $this->assertSession()->buildXPathQuery('//a[normalize-space(text())=:label]', [
       ':label' => $label,
     ]);
     $this->assertSession()->elementsCount('xpath', $xpath, 1);
+    return TRUE;
   }
 
 }

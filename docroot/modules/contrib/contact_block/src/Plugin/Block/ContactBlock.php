@@ -5,7 +5,6 @@ namespace Drupal\contact_block\Plugin\Block;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Entity\EntityDisplayRepository;
 use Drupal\Core\Entity\EntityFormBuilderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -75,12 +74,6 @@ class ContactBlock extends BlockBase implements ContainerFactoryPluginInterface 
    */
   protected $checkContactPageAccess;
 
-  /**
-   * The entity display repository.
-   *
-   * @var \Drupal\Core\Entity\EntityDisplayRepository
-   */
-  protected $entityDisplayRepository;
 
   /**
    * Constructor for ContactBlock block class.
@@ -103,17 +96,14 @@ class ContactBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The route match service.
    * @param \Drupal\contact\Access\ContactPageAccess $check_contact_page_access
    *   Check the access of personal contact.
-   * @param \Drupal\Core\Entity\EntityDisplayRepository $entity_display_repository
-   *   The entity display repository.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, EntityFormBuilderInterface $entity_form_builder, RendererInterface $renderer, CurrentRouteMatch $route_match, ContactPageAccess $check_contact_page_access, EntityDisplayRepository $entity_display_repository) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, EntityFormBuilderInterface $entity_form_builder, RendererInterface $renderer, CurrentRouteMatch $route_match, ContactPageAccess $check_contact_page_access) {
     $this->entityTypeManager = $entity_type_manager;
     $this->configFactory = $config_factory;
     $this->entityFormBuilder = $entity_form_builder;
     $this->renderer = $renderer;
     $this->routeMatch = $route_match;
     $this->checkContactPageAccess = $check_contact_page_access;
-    $this->entityDisplayRepository = $entity_display_repository;
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
@@ -131,8 +121,7 @@ class ContactBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $container->get('entity.form_builder'),
       $container->get('renderer'),
       $container->get('current_route_match'),
-      $container->get('access_check.contact_personal'),
-      $container->get('entity_display.repository')
+      $container->get('access_check.contact_personal')
     );
   }
 
@@ -176,7 +165,6 @@ class ContactBlock extends BlockBase implements ContainerFactoryPluginInterface 
     return [
       'label' => $this->t('Contact block'),
       'contact_form' => $default_form,
-      'form_display' => 'default',
     ];
   }
 
@@ -200,13 +188,6 @@ class ContactBlock extends BlockBase implements ContainerFactoryPluginInterface 
       '#required' => TRUE,
     ];
 
-    $form['form_display'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Form display'),
-      '#options' => $this->entityDisplayRepository->getFormModeOptions('contact_message'),
-      '#default_value' => $this->configuration['form_display'],
-    ];
-
     return $form;
   }
 
@@ -215,7 +196,6 @@ class ContactBlock extends BlockBase implements ContainerFactoryPluginInterface 
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
     $this->configuration['contact_form'] = $form_state->getValue('contact_form');
-    $this->configuration['form_display'] = $form_state->getValue('form_display');
   }
 
   /**
@@ -237,9 +217,7 @@ class ContactBlock extends BlockBase implements ContainerFactoryPluginInterface 
         $contact_message->set('recipient', $user);
       }
 
-      $form_display = $this->configuration['form_display'];
-      $form = $this->entityFormBuilder->getForm($contact_message, $form_display);
-      $form['#form_display'] = $form_display;
+      $form = $this->entityFormBuilder->getForm($contact_message);
       $form['#cache']['contexts'][] = 'user.permissions';
       $this->renderer->addCacheableDependency($form, $contact_form);
 

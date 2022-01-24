@@ -101,7 +101,7 @@ class FileFieldAttributesTest extends FileFieldTestBase {
     $html = \Drupal::service('renderer')->renderRoot($node_render_array);
 
     $node_uri = $this->node->toUrl('canonical', ['absolute' => TRUE])->toString();
-    $file_uri = $this->file->createFileUrl(FALSE);
+    $file_uri = file_create_url($this->file->getFileUri());
 
     // Node relation to attached file.
     $expected_value = [

@@ -8,7 +8,7 @@ use Drupal\facets\Result\Result;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Unit test for processor.
+ * Class HideOnlyOneItemProcessorTest.
  *
  * @coversDefaultClass Drupal\facets\Plugin\facets\processor\HideOnlyOneItemProcessor
  * @group facets

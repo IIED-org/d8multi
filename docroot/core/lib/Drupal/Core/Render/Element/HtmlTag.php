@@ -95,15 +95,8 @@ class HtmlTag extends RenderElement {
     // Construct all other elements.
     else {
       $open_tag .= '>';
-      if ($element['#value'] === NULL) {
-        $element['#markup'] = '';
-      }
-      elseif ($element['#value'] instanceof MarkupInterface) {
-        $element['#markup'] = $element['#value'];
-      }
-      else {
-        $element['#markup'] = Markup::create(Xss::filterAdmin($element['#value']));
-      }
+      $markup = $element['#value'] instanceof MarkupInterface ? $element['#value'] : Xss::filterAdmin($element['#value']);
+      $element['#markup'] = Markup::create($markup);
     }
     $prefix = isset($element['#prefix']) ? $element['#prefix'] . $open_tag : $open_tag;
     $suffix = isset($element['#suffix']) ? $close_tag . $element['#suffix'] : $close_tag;
@@ -146,7 +139,7 @@ class HtmlTag extends RenderElement {
    *   added to '#prefix' and '#suffix'.
    */
   public static function preRenderConditionalComments($element) {
-    $browsers = $element['#browsers'] ?? [];
+    $browsers = isset($element['#browsers']) ? $element['#browsers'] : [];
     $browsers += [
       'IE' => TRUE,
       '!IE' => TRUE,
@@ -181,11 +174,11 @@ class HtmlTag extends RenderElement {
 
     // Ensure what we are dealing with is safe. This would be done later anyway
     // in \Drupal::service('renderer')->render().
-    $prefix = $element['#prefix'] ?? '';
+    $prefix = isset($element['#prefix']) ? $element['#prefix'] : '';
     if ($prefix && !($prefix instanceof MarkupInterface)) {
       $prefix = Xss::filterAdmin($prefix);
     }
-    $suffix = $element['#suffix'] ?? '';
+    $suffix = isset($element['#suffix']) ? $element['#suffix'] : '';
     if ($suffix && !($suffix instanceof MarkupInterface)) {
       $suffix = Xss::filterAdmin($suffix);
     }

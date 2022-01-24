@@ -5,7 +5,6 @@ namespace Robo\Task\Testing;
 use Robo\Contract\CommandInterface;
 use Robo\Contract\PrintedInterface;
 use Robo\Task\BaseTask;
-use Robo\Common\ExecOneCommand;
 
 /**
  * Executes Behat tests
@@ -22,7 +21,7 @@ use Robo\Common\ExecOneCommand;
  */
 class Behat extends BaseTask implements CommandInterface, PrintedInterface
 {
-    use ExecOneCommand;
+    use \Robo\Common\ExecOneCommand;
 
     /**
      * @var string

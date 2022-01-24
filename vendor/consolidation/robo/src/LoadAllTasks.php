@@ -6,37 +6,38 @@ trait LoadAllTasks
 {
     use TaskAccessor;
 
-    use Collection\Tasks;
+    use Collection\loadTasks;
 
     // standard tasks
-    use Task\Base\Tasks;
-    use Task\Development\Tasks;
-    use Task\Filesystem\Tasks;
-    use Task\File\Tasks;
-    use Task\Archive\Tasks;
-    use Task\Vcs\Tasks;
+
+    use Task\Base\loadTasks;
+    use Task\Development\loadTasks;
+    use Task\Filesystem\loadTasks;
+    use Task\File\loadTasks;
+    use Task\Archive\loadTasks;
+    use Task\Vcs\loadTasks;
     use Task\Logfile\Tasks;
 
     // package managers
-    use Task\Composer\Tasks;
-    use Task\Bower\Tasks;
-    use Task\Npm\Tasks;
+    use Task\Composer\loadTasks;
+    use Task\Bower\loadTasks;
+    use Task\Npm\loadTasks;
 
     // assets
-    use Task\Assets\Tasks;
+    use Task\Assets\loadTasks;
 
     // 3rd-party tools
-    use Task\Remote\Tasks;
-    use Task\Testing\Tasks;
-    use Task\ApiGen\Tasks;
-    use Task\Docker\Tasks;
+    use Task\Remote\loadTasks;
+    use Task\Testing\loadTasks;
+    use Task\ApiGen\loadTasks;
+    use Task\Docker\loadTasks;
 
     // task runners
-    use Task\Gulp\Tasks;
+    use Task\Gulp\loadTasks;
 
     // shortcuts
-    use Task\Base\Shortcuts;
-    use Task\Filesystem\Shortcuts;
-    use Task\Vcs\Shortcuts;
+    use Task\Base\loadShortcuts;
+    use Task\Filesystem\loadShortcuts;
+    use Task\Vcs\loadShortcuts;
     use Task\Logfile\Shortcuts;
 }

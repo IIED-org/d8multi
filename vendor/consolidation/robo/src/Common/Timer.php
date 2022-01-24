@@ -5,7 +5,7 @@ namespace Robo\Common;
 trait Timer
 {
     /**
-     * @var \Robo\Common\TimeKeeper|null
+     * @var \Robo\Common\TimeKeeper
      */
     protected $timer;
 
@@ -23,11 +23,6 @@ trait Timer
             return;
         }
         $this->timer->stop();
-    }
-
-    protected function resetTimer()
-    {
-        $this->timer->reset();
     }
 
     /**

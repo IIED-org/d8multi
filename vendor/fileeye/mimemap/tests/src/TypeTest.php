@@ -2,10 +2,7 @@
 
 namespace FileEye\MimeMap\Test;
 
-use FileEye\MimeMap\MalformedTypeException;
-use FileEye\MimeMap\MappingException;
 use FileEye\MimeMap\Type;
-use FileEye\MimeMap\TypeParameter;
 
 class TypeTest extends MimeMapTestBase
 {
@@ -445,7 +442,7 @@ class TypeTest extends MimeMapTestBase
         $this->assertSame(count($expectedParameters), count($mt->getParameters()));
         foreach ($expectedParameters as $name => $param) {
             $this->assertTrue(isset($mt->getParameters()[$name]));
-            $this->assertInstanceOf(TypeParameter::class, $mt->getParameter($name));
+            $this->assertInstanceOf('FileEye\MimeMap\TypeParameter', $mt->getParameter($name));
             $this->assertSame($name, $mt->getParameter($name)->getName());
             $this->assertSame($param[0], $mt->getParameter($name)->getValue());
             $this->assertSame($param[1], $mt->getParameter($name)->getComment());
@@ -475,7 +472,7 @@ class TypeTest extends MimeMapTestBase
      */
     public function testParseMalformed($type)
     {
-        $this->expectException(MalformedTypeException::class);
+        $this->expectException('FileEye\MimeMap\MalformedTypeException');
         new Type($type);
     }
 
@@ -596,13 +593,13 @@ class TypeTest extends MimeMapTestBase
 
     public function testGetAliasesOnAliasStrict()
     {
-        $this->bcSetExpectedException(MappingException::class, "Cannot get aliases for 'image/x-wmf', it is an alias itself");
+        $this->bcSetExpectedException('FileEye\MimeMap\MappingException', "Cannot get aliases for 'image/x-wmf', it is an alias itself");
         $this->assertSame([], (new Type('image/x-wmf'))->getAliases());
     }
 
     public function testGetAliasesOnMissingTypeStrict()
     {
-        $this->bcSetExpectedException(MappingException::class, "No MIME type found for foo/bar in map");
+        $this->bcSetExpectedException('FileEye\MimeMap\MappingException', "No MIME type found for foo/bar in map");
         $this->assertSame([], (new Type('foo/bar'))->getAliases());
     }
 
@@ -620,7 +617,7 @@ class TypeTest extends MimeMapTestBase
 
     public function testGetExtensionsFail()
     {
-        $this->expectException(MappingException::class);
+        $this->expectException('FileEye\MimeMap\MappingException');
         $this->assertEquals([], (new Type('application/a000'))->getExtensions());
     }
 
@@ -651,7 +648,7 @@ class TypeTest extends MimeMapTestBase
      */
     public function testGetDefaultExtensionFail($type)
     {
-        $this->expectException(MappingException::class);
+        $this->expectException('FileEye\MimeMap\MappingException');
         $this->assertNull((new Type($type))->getDefaultExtension());
     }
 }

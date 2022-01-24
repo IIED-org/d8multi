@@ -24,11 +24,6 @@ interface WebformEntityStorageInterface extends ConfigEntityStorageInterface, Im
   public function getCategories($template = NULL);
 
   /**
-   * Resets the internal, categories cache.
-   */
-  public function resetCategoriesCache();
-
-  /**
    * Get all webforms grouped by category.
    *
    * @param null|bool $template

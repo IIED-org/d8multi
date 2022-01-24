@@ -1,30 +1,21 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace League\Container;
-
-use League\Container\Exception\ContainerException;
-use Psr\Container\ContainerInterface;
 
 trait ContainerAwareTrait
 {
     /**
-     * @var ContainerInterface
+     * @var \League\Container\ContainerInterface
      */
     protected $container;
 
     /**
-     * @var Container
-     */
-    protected $leagueContainer;
-
-    /**
      * Set a container.
      *
-     * @param ContainerInterface $container
-     *
-     * @return ContainerAwareInterface
+     * @param  \League\Container\ContainerInterface $container
+     * @return $this
      */
-    public function setContainer(ContainerInterface $container) : ContainerAwareInterface
+    public function setContainer(ContainerInterface $container)
     {
         $this->container = $container;
 
@@ -34,43 +25,10 @@ trait ContainerAwareTrait
     /**
      * Get the container.
      *
-     * @return ContainerInterface
+     * @return \League\Container\ContainerInterface
      */
-    public function getContainer() : ContainerInterface
+    public function getContainer()
     {
-        if ($this->container instanceof ContainerInterface) {
-            return $this->container;
-        }
-
-        throw new ContainerException('No container implementation has been set.');
-    }
-
-    /**
-     * Set a container.
-     *
-     * @param Container $container
-     *
-     * @return self
-     */
-    public function setLeagueContainer(Container $container) : ContainerAwareInterface
-    {
-        $this->container = $container;
-        $this->leagueContainer = $container;
-
-        return $this;
-    }
-
-    /**
-     * Get the container.
-     *
-     * @return Container
-     */
-    public function getLeagueContainer() : Container
-    {
-        if ($this->leagueContainer instanceof Container) {
-            return $this->leagueContainer;
-        }
-
-        throw new ContainerException('No container implementation has been set.');
+        return $this->container;
     }
 }

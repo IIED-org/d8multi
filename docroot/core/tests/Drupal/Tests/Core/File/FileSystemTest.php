@@ -133,15 +133,10 @@ class FileSystemTest extends UnitTestCase {
    * Asserts that the file permissions of a given URI matches.
    *
    * @param int $expected_mode
-   *   The expected file mode.
    * @param string $uri
-   *   The URI to test.
    * @param string $message
-   *   An optional error message.
-   *
-   * @internal
    */
-  protected function assertFilePermissions(int $expected_mode, string $uri, string $message = ''): void {
+  protected function assertFilePermissions($expected_mode, $uri, $message = '') {
     // Mask out all but the last three octets.
     $actual_mode = fileperms($uri) & 0777;
 

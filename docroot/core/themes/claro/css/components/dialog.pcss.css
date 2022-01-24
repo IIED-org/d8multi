@@ -95,7 +95,7 @@
   color: var(--color-text);
   border-bottom-right-radius: var(--jui-dialog-border-radius);
   border-bottom-left-radius: var(--jui-dialog-border-radius);
-  background: var(--color-gray-050);
+  background: var(--color-whitesmoke);
 }
 
 .ui-dialog-buttonpane .ui-dialog-buttonset {

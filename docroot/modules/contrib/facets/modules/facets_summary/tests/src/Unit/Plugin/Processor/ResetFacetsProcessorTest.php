@@ -9,7 +9,7 @@ use Drupal\facets_summary\Plugin\facets_summary\processor\ResetFacetsProcessor;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Provides the ResetFacetsProcessorTest class.
+ * Class ResetFacetsProcessorTest.
  *
  * @group facets
  * @coversDefaultClass \Drupal\facets_summary\Plugin\facets_summary\processor\ResetFacetsProcessor
@@ -26,7 +26,7 @@ class ResetFacetsProcessorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
     $string_translation = $this->prophesize(TranslationInterface::class);
 

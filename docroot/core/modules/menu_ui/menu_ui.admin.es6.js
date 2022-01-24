@@ -10,9 +10,8 @@
    */
   Drupal.behaviors.menuUiChangeParentItems = {
     attach(context, settings) {
-      const menu = once('menu-parent', '#edit-menu');
-      if (menu.length) {
-        const $menu = $(menu);
+      const $menu = $('#edit-menu').once('menu-parent');
+      if ($menu.length) {
         // Update the list of available parent menu items to match the initial
         // available menus.
         Drupal.menuUiUpdateParentList();
@@ -32,7 +31,7 @@
 
     $menu.find('input:checked').each(function () {
       // Get the names of all checked menus.
-      values.push(Drupal.checkPlain($(this).val()));
+      values.push(Drupal.checkPlain($.trim($(this).val())));
     });
 
     $.ajax({

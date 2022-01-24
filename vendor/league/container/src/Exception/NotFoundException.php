@@ -2,7 +2,7 @@
 
 namespace League\Container\Exception;
 
-use Psr\Container\NotFoundExceptionInterface;
+use Interop\Container\Exception\NotFoundException as NotFoundExceptionInterface;
 use InvalidArgumentException;
 
 class NotFoundException extends InvalidArgumentException implements NotFoundExceptionInterface

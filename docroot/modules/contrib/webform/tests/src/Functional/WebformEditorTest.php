@@ -4,6 +4,7 @@ namespace Drupal\Tests\webform\Functional;
 
 use Drupal\file\Entity\File;
 use Drupal\Tests\TestFileCreationTrait;
+use Drupal\webform\Entity\Webform;
 
 /**
  * Tests for webform editor.
@@ -167,7 +168,7 @@ class WebformEditorTest extends WebformBrowserTestBase {
     $this->assertFalse($images[0]->isTemporary());
 
     // Delete the webform.
-    $this->reloadWebform('contact')->delete();
+    Webform::load('contact')->delete();
     $this->reloadImages($images);
 
     // Check that file is temporary after the webform is deleted.
@@ -253,9 +254,9 @@ class WebformEditorTest extends WebformBrowserTestBase {
     $this->assertTrue($images[2]->isTemporary());
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Helper functions.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * Reload images.

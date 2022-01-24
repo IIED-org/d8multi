@@ -153,12 +153,8 @@ class UsageTest extends FileManagedUnitTestBase {
    * timestamp.
    */
   public function createTempFiles() {
-    /** @var \Drupal\file\FileRepositoryInterface $fileRepository */
-    $fileRepository = \Drupal::service('file.repository');
-
     // Temporary file that is old.
-    $destination = "public://";
-    $temp_old = $fileRepository->writeData('', $destination);
+    $temp_old = file_save_data('');
     $connection = Database::getConnection();
     $connection->update('file_managed')
       ->fields([
@@ -170,7 +166,7 @@ class UsageTest extends FileManagedUnitTestBase {
     $this->assertFileExists($temp_old->getFileUri());
 
     // Temporary file that is new.
-    $temp_new = $fileRepository->writeData('', $destination);
+    $temp_new = file_save_data('');
     $connection->update('file_managed')
       ->fields(['status' => 0])
       ->condition('fid', $temp_new->id())
@@ -178,7 +174,7 @@ class UsageTest extends FileManagedUnitTestBase {
     $this->assertFileExists($temp_new->getFileUri());
 
     // Permanent file that is old.
-    $perm_old = $fileRepository->writeData('', $destination);
+    $perm_old = file_save_data('');
     $connection->update('file_managed')
       ->fields(['changed' => REQUEST_TIME - $this->config('system.file')->get('temporary_maximum_age') - 1])
       ->condition('fid', $temp_old->id())
@@ -186,7 +182,7 @@ class UsageTest extends FileManagedUnitTestBase {
     $this->assertFileExists($perm_old->getFileUri());
 
     // Permanent file that is new.
-    $perm_new = $fileRepository->writeData('', $destination);
+    $perm_new = file_save_data('');
     $this->assertFileExists($perm_new->getFileUri());
     return [$temp_old, $temp_new, $perm_old, $perm_new];
   }
@@ -195,7 +191,7 @@ class UsageTest extends FileManagedUnitTestBase {
    * Ensure that temporary files are removed by default.
    */
   public function testTempFileCleanupDefault() {
-    [$temp_old, $temp_new, $perm_old, $perm_new] = $this->createTempFiles();
+    list($temp_old, $temp_new, $perm_old, $perm_new) = $this->createTempFiles();
 
     // Run cron and then ensure that only the old, temp file was deleted.
     $this->container->get('cron')->run();
@@ -209,7 +205,7 @@ class UsageTest extends FileManagedUnitTestBase {
    * Ensure that temporary files are kept as configured.
    */
   public function testTempFileNoCleanup() {
-    [$temp_old, $temp_new, $perm_old, $perm_new] = $this->createTempFiles();
+    list($temp_old, $temp_new, $perm_old, $perm_new) = $this->createTempFiles();
 
     // Set the max age to 0, meaning no temporary files will be deleted.
     $this->config('system.file')
@@ -228,7 +224,7 @@ class UsageTest extends FileManagedUnitTestBase {
    * Ensure that temporary files are kept as configured.
    */
   public function testTempFileCustomCleanup() {
-    [$temp_old, $temp_new, $perm_old, $perm_new] = $this->createTempFiles();
+    list($temp_old, $temp_new, $perm_old, $perm_new) = $this->createTempFiles();
 
     // Set the max age to older than default.
     $this->config('system.file')

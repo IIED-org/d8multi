@@ -25,7 +25,7 @@ class ResponseGeneratorSubscriber implements EventSubscriberInterface {
     $response = $event->getResponse();
 
     // Set the generator in the HTTP header.
-    [$version] = explode('.', \Drupal::VERSION, 2);
+    list($version) = explode('.', \Drupal::VERSION, 2);
     $response->headers->set('X-Generator', 'Drupal ' . $version . ' (https://www.drupal.org)');
   }
 

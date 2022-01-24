@@ -510,8 +510,8 @@ class ConfigEntityQueryTest extends KernelTestBase {
    */
   public function testTableSort() {
     $header = [
-      ['data' => 'ID', 'specifier' => 'id'],
-      ['data' => 'Number', 'specifier' => 'number'],
+      ['data' => t('ID'), 'specifier' => 'id'],
+      ['data' => t('Number'), 'specifier' => 'number'],
     ];
 
     // Sort key: id
@@ -726,10 +726,8 @@ class ConfigEntityQueryTest extends KernelTestBase {
    *
    * @param array $expected
    *   Array of expected entity IDs.
-   *
-   * @internal
    */
-  protected function assertResults(array $expected): void {
+  protected function assertResults($expected) {
     $expected_count = count($expected);
     $this->assertCount($expected_count, $this->queryResults);
     foreach ($expected as $value) {

@@ -119,9 +119,6 @@ class EntityTestMapFieldTest extends ResourceTestBase {
           'user_id' => [
             'data' => [
               'id' => $author->uuid(),
-              'meta' => [
-                'drupal_internal__target_id' => (int) $author->id(),
-              ],
               'type' => 'user--user',
             ],
             'links' => [

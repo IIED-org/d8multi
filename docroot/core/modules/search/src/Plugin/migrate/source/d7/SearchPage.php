@@ -73,7 +73,7 @@ class SearchPage extends Variable {
   /**
    * {@inheritdoc}
    */
-  protected function doCount() {
+  public function count($refresh = FALSE) {
     return $this->initializeIterator()->count();
   }
 

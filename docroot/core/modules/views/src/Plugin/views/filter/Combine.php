@@ -150,7 +150,6 @@ class Combine extends StringFilter {
    * expressions.
    *
    * @param string $expression
-   *   The expression to add to the query.
    */
   protected function opContainsWord($expression) {
     $placeholder = $this->placeholder();

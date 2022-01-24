@@ -29,7 +29,6 @@ class MigrateNodeCompleteTest extends MigrateDrupal7TestBase {
     'content_translation',
     'comment',
     'datetime',
-    'datetime_range',
     'image',
     'language',
     'link',
@@ -194,10 +193,8 @@ class MigrateNodeCompleteTest extends MigrateDrupal7TestBase {
    *   An array of revision data matching a node_field_revision table row.
    * @param array $data
    *   An array of revision data.
-   *
-   * @internal
    */
-  protected function assertRevision(array $revision, array $data): void {
+  protected function assertRevision(array $revision, array $data) {
     /** @var  \Drupal\node\NodeInterface $actual */
     $actual = $this->nodeStorage->loadRevision($revision['vid'])
       ->getTranslation($revision['langcode']);

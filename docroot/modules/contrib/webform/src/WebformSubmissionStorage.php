@@ -315,9 +315,9 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
     return $result->fetchAssoc() ? TRUE : FALSE;
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Source entity methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -380,9 +380,9 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
     return (count($options) === 1) ? reset($options) : $options;
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Query methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * Add condition to submission query.
@@ -454,9 +454,9 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
     }
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Paging methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -548,7 +548,6 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
   protected function getTerminusSubmission(WebformInterface $webform, EntityInterface $source_entity = NULL, AccountInterface $account = NULL, array $options = [], $terminus = 'first') {
     $options += ['in_draft' => FALSE];
     $query = $this->getQuery();
-    $query->accessCheck(TRUE);
     $this->addQueryConditions($query, $webform, $source_entity, $account, $options);
     $query->sort('sid', ($terminus === 'first') ? 'ASC' : 'DESC');
     $query->range(0, 1);
@@ -576,7 +575,6 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
     $webform = $webform_submission->getWebform();
 
     $query = $this->getQuery();
-    $query->accessCheck(TRUE);
     $this->addQueryConditions($query, $webform, $source_entity, $account, $options);
 
     if ($direction === 'previous') {
@@ -600,9 +598,9 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
     return $submission;
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // WebformSubmissionEntityList methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -874,9 +872,9 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
     return $filtered_columns;
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Custom settings methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -917,9 +915,9 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
     }
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Invoke WebformElement and WebformHandler plugin methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -1191,16 +1189,16 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
       $this->loggerFactory->get('webform')
         ->notice('Deleted @form: Submission #@id.', [
           '@id' => $entity->id(),
-          '@form' => ($webform) ? $webform->label() : '[' . $this->t('Webform') . ']',
+          '@form' => ($webform) ? $webform->label() : '[' . t('Webform') . ']',
         ]);
     }
 
     return $return;
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Invoke methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -1222,9 +1220,9 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
     }
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Purge methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -1281,9 +1279,9 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
     }
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Data handlers.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -1299,7 +1297,7 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
 
     $rows = [];
     foreach ($data as $name => $item) {
-      $element = $elements[$name] ?? ['#webform_multiple' => FALSE, '#webform_composite' => FALSE];
+      $element = (isset($elements[$name])) ? $elements[$name] : ['#webform_multiple' => FALSE, '#webform_composite' => FALSE];
 
       // Check if this is a computed element which is not
       // stored in the database.
@@ -1394,7 +1392,7 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
         /** @var \Drupal\webform\WebformInterface $webform */
         $webform = $webform_submissions[$sid]->getWebform();
         $elements = ($webform) ? $webform->getElementsInitializedFlattenedAndHasValue() : [];
-        $element = $elements[$name] ?? ['#webform_multiple' => FALSE, '#webform_composite' => FALSE];
+        $element = (isset($elements[$name])) ? $elements[$name] : ['#webform_multiple' => FALSE, '#webform_composite' => FALSE];
 
         if ($element['#webform_composite']) {
           if ($element['#webform_multiple']) {
@@ -1437,9 +1435,9 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
       ->execute();
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Draft methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -1464,9 +1462,9 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
     return ($sids = $query->execute()) ? $this->load(reset($sids)) : NULL;
   }
 
-  /* ************************************************************************ */
+  /****************************************************************************/
   // Anonymous submission methods.
-  /* ************************************************************************ */
+  /****************************************************************************/
 
   /**
    * {@inheritdoc}
@@ -1518,8 +1516,8 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
     // Cleanup sids because drafts could have been purged or the webform
     // submission could have been deleted.
     $_SESSION['webform_submissions'] = $this->getQuery()
-      // Disable access check because user having 'sid' in their $_SESSION already
-      // implies they have access to it.
+      // Disable access check because user having 'sid' in his $_SESSION already
+      // implies he has access to it.
       ->accessCheck(FALSE)
       ->condition('sid', $_SESSION['webform_submissions'], 'IN')
       ->sort('sid')

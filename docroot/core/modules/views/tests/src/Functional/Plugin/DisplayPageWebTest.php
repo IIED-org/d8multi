@@ -27,7 +27,7 @@ class DisplayPageWebTest extends ViewTestBase {
    *
    * @var array
    */
-  protected static $modules = ['block', 'views_ui'];
+  protected static $modules = ['menu_ui', 'block', 'views_ui'];
 
   /**
    * {@inheritdoc}
@@ -115,7 +115,6 @@ class DisplayPageWebTest extends ViewTestBase {
 
     $menu_link = $this->cssSelect('nav.block-menu ul.menu a');
     $this->assertEquals('Test menu link', $menu_link[0]->getText());
-    $this->container->get('module_installer')->install(['menu_ui', 'menu_link_content']);
 
     // Update the menu link.
     $this->drupalGet("admin/structure/menu/link/views_view:views.test_page_display_menu.page_3/edit");
@@ -153,9 +152,10 @@ class DisplayPageWebTest extends ViewTestBase {
    * @param string $path
    *   Path that will be set as the view page display path.
    *
-   * @internal
+   * @return bool
+   *   Assertion result.
    */
-  public function assertPagePath(string $path): void {
+  public function assertPagePath($path) {
     $view = Views::getView('test_page_display_path');
     $view->initDisplay('page_1');
     $view->displayHandlers->get('page_1')->overrideOption('path', $path);
@@ -163,10 +163,10 @@ class DisplayPageWebTest extends ViewTestBase {
     $this->container->get('router.builder')->rebuild();
     // Check if we successfully changed the path.
     $this->drupalGet($path);
-    $this->assertSession()->statusCodeEquals(200);
+    $success = $this->assertSession()->statusCodeEquals(200);
     // Check if we don't get any error on the view edit page.
     $this->drupalGet('admin/structure/views/view/test_page_display_path');
-    $this->assertSession()->statusCodeEquals(200);
+    return $success && $this->assertSession()->statusCodeEquals(200);
   }
 
 }

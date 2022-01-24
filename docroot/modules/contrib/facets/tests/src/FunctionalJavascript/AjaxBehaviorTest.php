@@ -14,7 +14,7 @@ class AjaxBehaviorTest extends JsBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
 
     // Force ajax.

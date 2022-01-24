@@ -118,7 +118,7 @@ class PagerTest extends BrowserTestBase {
     $test_data = [
       // With no query, all pagers set to first page.
       [
-        'input_query' => '',
+        'input_query' => NULL,
         'expected_page' => [0 => '1', 1 => '1', 4 => '1'],
         'expected_query' => '?page=0,0,,,0',
       ],
@@ -216,10 +216,8 @@ class PagerTest extends BrowserTestBase {
    *
    * @param int $current_page
    *   The current pager page the internal browser is on.
-   *
-   * @internal
    */
-  protected function assertPagerItems(int $current_page): void {
+  protected function assertPagerItems($current_page) {
     $elements = $this->xpath('//ul[contains(@class, :class)]/li', [':class' => 'pager__items']);
     $this->assertNotEmpty($elements, 'Pager found.');
 
@@ -321,10 +319,8 @@ class PagerTest extends BrowserTestBase {
    *   The class to assert.
    * @param string $message
    *   (optional) A verbose message to output.
-   *
-   * @internal
    */
-  protected function assertClass(NodeElement $element, string $class, string $message = NULL): void {
+  protected function assertClass(NodeElement $element, $class, $message = NULL) {
     if (!isset($message)) {
       $message = "Class .$class found.";
     }
@@ -340,10 +336,8 @@ class PagerTest extends BrowserTestBase {
    *   The class to assert.
    * @param string $message
    *   (optional) A verbose message to output.
-   *
-   * @internal
    */
-  protected function assertNoClass(NodeElement $element, string $class, string $message = NULL): void {
+  protected function assertNoClass(NodeElement $element, $class, $message = NULL) {
     if (!isset($message)) {
       $message = "Class .$class not found.";
     }

@@ -286,7 +286,7 @@ abstract class JsonApiFunctionalTestBase extends BrowserTestBase {
       }
       if ($article_has_image) {
         $file = File::create([
-          'uri' => 'public://' . $random->name() . '.png',
+          'uri' => 'vfs://' . $random->name() . '.png',
         ]);
         $file->setPermanent();
         $file->save();

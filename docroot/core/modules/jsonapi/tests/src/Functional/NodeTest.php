@@ -187,9 +187,6 @@ class NodeTest extends ResourceTestBase {
           'node_type' => [
             'data' => [
               'id' => NodeType::load('camelids')->uuid(),
-              'meta' => [
-                'drupal_internal__target_id' => 'camelids',
-              ],
               'type' => 'node_type--node_type',
             ],
             'links' => [
@@ -204,9 +201,6 @@ class NodeTest extends ResourceTestBase {
           'uid' => [
             'data' => [
               'id' => $author->uuid(),
-              'meta' => [
-                'drupal_internal__target_id' => (int) $author->id(),
-              ],
               'type' => 'user--user',
             ],
             'links' => [
@@ -221,9 +215,6 @@ class NodeTest extends ResourceTestBase {
           'revision_uid' => [
             'data' => [
               'id' => $author->uuid(),
-              'meta' => [
-                'drupal_internal__target_id' => (int) $author->id(),
-              ],
               'type' => 'user--user',
             ],
             'links' => [
@@ -370,10 +361,8 @@ class NodeTest extends ResourceTestBase {
    * Asserts that normalizations are cached in an incremental way.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
-   *
-   * @internal
    */
-  protected function assertCacheableNormalizations(): void {
+  protected function assertCacheableNormalizations() {
     // Save the entity to invalidate caches.
     $this->entity->save();
     $uuid = $this->entity->uuid();
@@ -409,10 +398,8 @@ class NodeTest extends ResourceTestBase {
    *
    * @param string[] $field_names
    *   The field names.
-   *
-   * @internal
    */
-  protected function assertNormalizedFieldsAreCached(array $field_names): void {
+  protected function assertNormalizedFieldsAreCached($field_names) {
     $cache = \Drupal::service('render_cache')->get([
       '#cache' => [
         'keys' => ['node--camelids', $this->entity->uuid()],

@@ -19,13 +19,10 @@
   Drupal.behaviors.ckeditorAdmin = {
     attach(context) {
       // Process the CKEditor configuration fragment once.
-      const configurationForm = once(
-        'ckeditor-configuration',
-        '.ckeditor-toolbar-configuration',
-        context,
-      );
-      if (configurationForm.length) {
-        const $configurationForm = $(configurationForm);
+      const $configurationForm = $(context)
+        .find('.ckeditor-toolbar-configuration')
+        .once('ckeditor-configuration');
+      if ($configurationForm.length) {
         const $textarea = $configurationForm
           // Hide the textarea that contains the serialized representation of the
           // CKEditor configuration.
@@ -69,13 +66,11 @@
       // really means that all CKEditor toolbar buttons have been removed.
       // Hence,all editor features will be removed, so any reactions from
       // filters will be undone.
-      const configurationForm = once.filter(
-        'ckeditor-configuration',
-        '.ckeditor-toolbar-configuration',
-        context,
-      );
+      const $configurationForm = $(context)
+        .find('.ckeditor-toolbar-configuration')
+        .findOnce('ckeditor-configuration');
       if (
-        configurationForm.length &&
+        $configurationForm.length &&
         Drupal.ckeditor.models &&
         Drupal.ckeditor.models.Model
       ) {
@@ -422,13 +417,10 @@
   Drupal.behaviors.ckeditorAdminButtonPluginSettings = {
     attach(context) {
       const $context = $(context);
-      const ckeditorPluginSettings = once(
-        'ckeditor-plugin-settings',
-        '#ckeditor-plugin-settings',
-        context,
-      );
-      if (ckeditorPluginSettings.length) {
-        const $ckeditorPluginSettings = $(ckeditorPluginSettings);
+      const $ckeditorPluginSettings = $context
+        .find('#ckeditor-plugin-settings')
+        .once('ckeditor-plugin-settings');
+      if ($ckeditorPluginSettings.length) {
         // Hide all button-dependent plugin settings initially.
         $ckeditorPluginSettings
           .find('[data-ckeditor-buttons]')

@@ -37,10 +37,8 @@ class TwigRegistryLoaderTest extends BrowserTestBase {
 
   /**
    * Checks to see if a value is a Twig template.
-   *
-   * @internal
    */
-  public function assertTwigTemplate($value, string $message = ''): void {
+  public function assertTwigTemplate($value, $message = '') {
     $this->assertInstanceOf(TemplateWrapper::class, $value, $message);
   }
 

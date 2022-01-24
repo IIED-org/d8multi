@@ -9,6 +9,7 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\facets\Widget\WidgetPluginManager;
 use Drupal\Tests\UnitTestCase;
+use Zend\Stdlib\ArrayObject;
 
 /**
  * Unit test for widget plugin manager.
@@ -62,7 +63,7 @@ class WidgetPluginManagerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     $this->discovery = $this->createMock(DiscoveryInterface::class);
 
     $this->factory = $this->getMockBuilder(DefaultFactory::class)
@@ -75,7 +76,7 @@ class WidgetPluginManagerTest extends UnitTestCase {
 
     $this->translator = $this->createMock(TranslationInterface::class);
 
-    $namespaces = new \ArrayObject();
+    $namespaces = new ArrayObject();
 
     $this->sut = new WidgetPluginManager($namespaces, $this->cache, $this->moduleHandler, $this->translator);
     $discovery_property = new \ReflectionProperty($this->sut, 'discovery');
@@ -90,7 +91,7 @@ class WidgetPluginManagerTest extends UnitTestCase {
    * Tests plugin manager constructor.
    */
   public function testConstruct() {
-    $namespaces = new \ArrayObject();
+    $namespaces = new ArrayObject();
     $sut = new WidgetPluginManager($namespaces, $this->cache, $this->moduleHandler, $this->translator);
     $this->assertInstanceOf(WidgetPluginManager::class, $sut);
   }

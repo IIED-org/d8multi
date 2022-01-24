@@ -153,7 +153,7 @@ class MailFormatHelper {
 
       // Process HTML tags (but don't output any literally).
       if ($tag) {
-        [$tagname] = explode(' ', strtolower($value), 2);
+        list($tagname) = explode(' ', strtolower($value), 2);
         switch ($tagname) {
           // List counters.
           case 'ul':
@@ -334,7 +334,7 @@ class MailFormatHelper {
         static::$regexp = '@^' . preg_quote($base_path, '@') . '@';
       }
       if ($match) {
-        [, , $url, $label] = $match;
+        list(, , $url, $label) = $match;
         // Ensure all URLs are absolute.
         static::$urls[] = strpos($url, '://') ? $url : preg_replace(static::$regexp, $base_url . '/', $url);
         return $label . ' [' . count(static::$urls) . ']';

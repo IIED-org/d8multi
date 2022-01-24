@@ -43,7 +43,6 @@ class InlineTemplate extends RenderElement {
    * Renders a twig string directly.
    *
    * @param array $element
-   *   The element.
    *
    * @return array
    */

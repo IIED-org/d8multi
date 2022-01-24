@@ -58,7 +58,7 @@ class FrameworkTest extends BrowserTestBase {
     $build['#attached']['library'][] = 'ajax_test/order-header-js-command';
     $build['#attached']['library'][] = 'ajax_test/order-footer-js-command';
     $assets = AttachedAssets::createFromRenderArray($build);
-    [$js_assets_header, $js_assets_footer] = $asset_resolver->getJsAssets($assets, FALSE);
+    list($js_assets_header, $js_assets_footer) = $asset_resolver->getJsAssets($assets, FALSE);
     $js_header_render_array = $js_collection_renderer->render($js_assets_header);
     $js_footer_render_array = $js_collection_renderer->render($js_assets_footer);
     $expected_commands[2] = new PrependCommand('head', $js_header_render_array);
@@ -107,14 +107,12 @@ class FrameworkTest extends BrowserTestBase {
    * the actual command contains additional settings that aren't part of
    * $needle.
    *
-   * @param array $haystack
+   * @param $haystack
    *   An array of rendered Ajax commands returned by the server.
-   * @param array $needle
+   * @param $needle
    *   Array of info we're expecting in one of those commands.
-   *
-   * @internal
    */
-  protected function assertCommand(array $haystack, array $needle): void {
+  protected function assertCommand($haystack, $needle) {
     $found = FALSE;
     foreach ($haystack as $command) {
       // If the command has additional settings that we're not testing for, do

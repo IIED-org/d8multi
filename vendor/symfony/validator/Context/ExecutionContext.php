@@ -56,7 +56,7 @@ class ExecutionContext implements ExecutionContextInterface
     private $translator;
 
     /**
-     * @var string|null
+     * @var string
      */
     private $translationDomain;
 
@@ -112,21 +112,21 @@ class ExecutionContext implements ExecutionContextInterface
     /**
      * Stores which objects have been validated in which group.
      *
-     * @var bool[][]
+     * @var array
      */
     private $validatedObjects = [];
 
     /**
      * Stores which class constraint has been validated for which object.
      *
-     * @var bool[]
+     * @var array
      */
     private $validatedConstraints = [];
 
     /**
      * Stores which objects have been initialized.
      *
-     * @var bool[]
+     * @var array
      */
     private $initializedObjects;
     private $cachedObjectsRefs;

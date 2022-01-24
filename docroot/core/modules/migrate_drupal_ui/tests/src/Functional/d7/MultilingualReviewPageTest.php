@@ -4,7 +4,7 @@ namespace Drupal\Tests\migrate_drupal_ui\Functional\d7;
 
 use Drupal\Tests\migrate_drupal_ui\Functional\MultilingualReviewPageTestBase;
 
-// cspell:ignore Filefield Flexslider Multiupload Imagefield
+// cspell:ignore Multiupload Imagefield
 
 /**
  * Tests migrate upgrade review page for Drupal 7.
@@ -20,7 +20,6 @@ class MultilingualReviewPageTest extends MultilingualReviewPageTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
-    'datetime_range',
     'language',
     'content_translation',
     'telephone',
@@ -41,7 +40,7 @@ class MultilingualReviewPageTest extends MultilingualReviewPageTestBase {
    */
   protected function setUp(): void {
     parent::setUp();
-    $this->loadFixture($this->getModulePath('migrate_drupal') . '/tests/fixtures/drupal7.php');
+    $this->loadFixture(drupal_get_path('module', 'migrate_drupal') . '/tests/fixtures/drupal7.php');
   }
 
   /**

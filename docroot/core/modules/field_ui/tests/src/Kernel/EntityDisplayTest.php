@@ -595,7 +595,7 @@ class EntityDisplayTest extends KernelTestBase {
     // Reload the form display.
     $form_display = EntityFormDisplay::load($form_display->id());
     // The display exists.
-    $this->assertNotEmpty($form_display);
+    $this->assertFalse(empty($form_display));
     // The form display should not depend on $role[0] anymore.
     $this->assertNoDependency('config', $dependencies[0], $form_display);
     // The form display should depend on 'anonymous' user role.
@@ -612,7 +612,7 @@ class EntityDisplayTest extends KernelTestBase {
     // Reload the form display.
     $form_display = EntityFormDisplay::load($form_display->id());
     // The display exists.
-    $this->assertNotEmpty($form_display);
+    $this->assertFalse(empty($form_display));
     // The component is still enabled.
     $this->assertNotNull($form_display->getComponent($field_name));
     // The form display should not depend on 'color' module anymore.
@@ -624,12 +624,12 @@ class EntityDisplayTest extends KernelTestBase {
     // Reload the form display.
     $form_display = EntityFormDisplay::load($form_display->id());
     // The display exists.
-    $this->assertNotEmpty($form_display);
+    $this->assertFalse(empty($form_display));
     // The component has been disabled.
     $this->assertNull($form_display->getComponent($field_name));
     $this->assertTrue($form_display->get('hidden')[$field_name]);
     // The correct warning message has been logged.
-    $arguments = ['@display' => 'Entity form display', '@id' => $form_display->id(), '@name' => $field_name];
+    $arguments = ['@display' => (string) t('Entity form display'), '@id' => $form_display->id(), '@name' => $field_name];
     $variables = Database::getConnection()->select('watchdog', 'w')
       ->fields('w', ['variables'])
       ->condition('type', 'system')
@@ -649,10 +649,11 @@ class EntityDisplayTest extends KernelTestBase {
    * @param \Drupal\Core\Entity\Display\EntityDisplayInterface $display
    *   The entity display object to get dependencies from.
    *
-   * @internal
+   * @return bool
+   *   TRUE if the assertion succeeded, FALSE otherwise.
    */
-  protected function assertDependency(string $type, string $key, EntityDisplayInterface $display): void {
-    $this->assertDependencyHelper(TRUE, $type, $key, $display);
+  protected function assertDependency($type, $key, EntityDisplayInterface $display) {
+    return $this->assertDependencyHelper(TRUE, $type, $key, $display);
   }
 
   /**
@@ -665,10 +666,11 @@ class EntityDisplayTest extends KernelTestBase {
    * @param \Drupal\Core\Entity\Display\EntityDisplayInterface $display
    *   The entity display object to get dependencies from.
    *
-   * @internal
+   * @return bool
+   *   TRUE if the assertion succeeded, FALSE otherwise.
    */
-  protected function assertNoDependency(string $type, string $key, EntityDisplayInterface $display): void {
-    $this->assertDependencyHelper(FALSE, $type, $key, $display);
+  protected function assertNoDependency($type, $key, EntityDisplayInterface $display) {
+    return $this->assertDependencyHelper(FALSE, $type, $key, $display);
   }
 
   /**
@@ -683,9 +685,10 @@ class EntityDisplayTest extends KernelTestBase {
    * @param \Drupal\Core\Entity\Display\EntityDisplayInterface $display
    *   The entity display object to get dependencies from.
    *
-   * @internal
+   * @return bool
+   *   TRUE if the assertion succeeded.
    */
-  protected function assertDependencyHelper(bool $assertion, string $type, string $key, EntityDisplayInterface $display): void {
+  protected function assertDependencyHelper($assertion, $type, $key, EntityDisplayInterface $display) {
     $all_dependencies = $display->getDependencies();
     $dependencies = !empty($all_dependencies[$type]) ? $all_dependencies[$type] : [];
     $context = $display instanceof EntityViewDisplayInterface ? 'View' : 'Form';
@@ -693,6 +696,7 @@ class EntityDisplayTest extends KernelTestBase {
     $args = ['@context' => $context, '@id' => $display->id(), '@type' => $type, '@key' => $key];
     $message = $assertion ? new FormattableMarkup("@context display '@id' depends on @type '@key'.", $args) : new FormattableMarkup("@context display '@id' do not depend on @type '@key'.", $args);
     $this->assertTrue($value, $message);
+    return TRUE;
   }
 
 }

@@ -44,13 +44,8 @@
         show: Drupal.t('Show media item weights'),
         hide: Drupal.t('Hide media item weights'),
       };
-      $(
-        once(
-          'media-library-toggle',
-          '.js-media-library-widget-toggle-weight',
-          context,
-        ),
-      )
+      $('.js-media-library-widget-toggle-weight', context)
+        .once('media-library-toggle')
         .on('click', (e) => {
           e.preventDefault();
           $(e.currentTarget)
@@ -66,7 +61,8 @@
             .toggle();
         })
         .text(strings.show);
-      $(once('media-library-toggle', '.js-media-library-item-weight', context))
+      $('.js-media-library-item-weight', context)
+        .once('media-library-toggle')
         .parent()
         .hide();
     },
@@ -87,20 +83,18 @@
       // more items, the button needs to be disabled. Since we can't shift the
       // focus to disabled elements, the focus is set back to the open button
       // via JavaScript by adding the 'data-disabled-focus' attribute.
-      once(
-        'media-library-disable',
-        '.js-media-library-open-button[data-disabled-focus="true"]',
-        context,
-      ).forEach((button) => {
-        $(button).focus();
+      $('.js-media-library-open-button[data-disabled-focus="true"]', context)
+        .once('media-library-disable')
+        .each(function () {
+          $(this).focus();
 
-        // There is a small delay between the focus set by the browser and the
-        // focus of screen readers. We need to give screen readers time to shift
-        // the focus as well before the button is disabled.
-        setTimeout(() => {
-          $(button).attr('disabled', 'disabled');
-        }, 50);
-      });
+          // There is a small delay between the focus set by the browser and the
+          // focus of screen readers. We need to give screen readers time to
+          // shift the focus as well before the button is disabled.
+          setTimeout(() => {
+            $(this).attr('disabled', 'disabled');
+          }, 50);
+        });
     },
   };
 })(jQuery, Drupal, Sortable);

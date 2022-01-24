@@ -74,9 +74,9 @@ class FieldFile extends ProcessPluginBase implements ContainerFactoryPluginInter
       return [
         'target_id' => $lookup_result[0]['fid'],
         'display' => $value['list'],
-        'description' => $options['description'] ?? '',
-        'alt' => $options['alt'] ?? '',
-        'title' => $options['title'] ?? '',
+        'description' => isset($options['description']) ? $options['description'] : '',
+        'alt' => isset($options['alt']) ? $options['alt'] : '',
+        'title' => isset($options['title']) ? $options['title'] : '',
       ];
     }
     else {

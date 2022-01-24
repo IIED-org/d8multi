@@ -7,7 +7,6 @@
 
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
-use Drupal\update\ProjectRelease;
 use Drupal\update\UpdateFetcherInterface;
 use Drupal\update\UpdateManagerInterface;
 
@@ -114,17 +113,17 @@ function template_preprocess_update_report(&$variables) {
  *   - version: An array of information about the release version.
  */
 function template_preprocess_update_version(array &$variables) {
-  $release = ProjectRelease::createFromArray($variables['version']);
-  if (!$release->getCoreCompatibilityMessage()) {
+  $version = $variables['version'];
+  if (empty($version['core_compatibility_message'])) {
     return;
   }
-  $core_compatible = $release->isCoreCompatible();
+  $core_compatible = !empty($version['core_compatible']);
   $variables['core_compatibility_details'] = [
     '#type' => 'details',
     '#title' => $core_compatible ? t('Compatible') : t('Not compatible'),
     '#open' => !$core_compatible,
     'message' => [
-      '#markup' => $release->getCoreCompatibilityMessage(),
+      '#markup' => $version['core_compatibility_message'],
     ],
     '#attributes' => [
       'class' => [

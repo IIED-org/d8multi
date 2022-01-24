@@ -32,14 +32,14 @@
 
   Drupal.behaviors.viewsModalContent = {
     attach: function attach(context) {
-      $(once('viewsDialog', 'body')).on('dialogContentResize.viewsDialog', '.ui-dialog-content', handleDialogResize);
-      $(once('detailsUpdate', '.scroll', context)).on('click', 'summary', function (e) {
+      $('body').once('viewsDialog').on('dialogContentResize.viewsDialog', '.ui-dialog-content', handleDialogResize);
+      $(context).find('.scroll').once('detailsUpdate').on('click', 'summary', function (e) {
         $(e.currentTarget).trigger('dialogContentResize');
       });
     },
     detach: function detach(context, settings, trigger) {
       if (trigger === 'unload') {
-        $(once.remove('viewsDialog', 'body')).off('.viewsDialog');
+        $('body').removeOnce('viewsDialog').off('.viewsDialog');
       }
     }
   };
