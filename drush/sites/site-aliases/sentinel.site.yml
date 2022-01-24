@@ -6,7 +6,7 @@ dev:
   host: 'srv-6176.devcloud.hosting.acquia.com'
   user: 'landcam.dev'
   root: '/var/www/html/landcam.dev/docroot'
-  uri: 'sentinel-dev.ac.iied.org'
+  uri: 'sentineld8-dev.ac.iied.org'
   ac-site: 'd8multi'
   ac-env: 'dev'
   ac-realm: 'prod'
@@ -17,7 +17,7 @@ test:
   ac-site: 'landcam'
   ac-env: 'test'
   ac-realm: 'prod'
-  uri: 'sentinel-stage.ac.iied.org'
+  uri: 'sentineld8-stage.ac.iied.org'
   host: 'srv-6176.devcloud.hosting.acquia.com'
   user: 'landcam.test'
   paths:
