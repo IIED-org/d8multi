@@ -95,9 +95,9 @@ function audiofield_requirements($phase) {
     // Check if the audiowaveform command is installed for use with wavesurfer.
     $requirements['audiowaveform'] = [
       'title' => t('Audiowaveform'),
-      'severity' => REQUIREMENT_WARNING,
+      'severity' => REQUIREMENT_INFO,
       'value' => '',
-      'description' => t('Audiowaveform is not currently installed. Audiowaveform is used to pre-render waveform files for the Audiofield Wavesurfer module. See @audiowaveformlink', [
+      'description' => t('Audiowaveform is not currently installed or the PHP function shell_exec is unavailable on this server. Audiowaveform is used to pre-render waveform files for the Audiofield Wavesurfer module. See @audiowaveformlink', [
         '@audiowaveformlink' => Link::fromTextAndUrl(t('the Audiowaveform installation instructions'), Url::fromUri('https://github.com/bbc/audiowaveform'))->toString(),
       ]),
     ];
@@ -105,7 +105,7 @@ function audiofield_requirements($phase) {
       $requirements['audiowaveform']['description'] = t('@version is installed.', [
         '@version' => shell_exec('audiowaveform -v'),
       ]);
-      $requirements['audiowaveform']['severity'] = REQUIREMENT_INFO;
+      $requirements['audiowaveform']['severity'] = REQUIREMENT_OK;
     }
   }
 
