@@ -168,5 +168,16 @@ $databases['default'] = array (
     )
   );
   
+  $databases['sentinel'] = array (
+    'default' => array (
+      'driver' => 'mysql',
+      'database' => 'database',
+      'username' => 'mysql',
+      'password' => 'mysql',
+      'prefix' => '',
+      'port' => 3306,
+    )
+  );
 // The only thing to add from the out-of-the-box Lando db is the special host for each subsite
 $databases['default']['default']['host'] = 'sentinel';
+$databases['sentinel']['default']['host'] = 'sentinel';
