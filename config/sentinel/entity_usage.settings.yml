@@ -1,8 +1,7 @@
-track_enabled_base_fields: false
-local_task_enabled_entity_types:
-  - media
 _core:
   default_config_hash: D0RcOA_aIiwSPXOZSHQOTm5FXzziEsJHdfXGaF4nhIQ
+local_task_enabled_entity_types:
+  - media
 track_enabled_source_entity_types:
   - block_content
   - media
@@ -25,5 +24,6 @@ track_enabled_plugins:
   - entity_embed
   - html_link
   - block_field
+track_enabled_base_fields: false
 site_domains: {  }
 usage_controller_items_per_page: 25

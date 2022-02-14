@@ -1,7 +1,52 @@
 uuid: 94230769-3018-46e5-b9c0-89117ed31a93
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.full_html
+    - media.type.local_video
+    - media.type.remote_video
+    - node.type.blog
+    - node.type.organisation
+    - node.type.page
+    - node.type.person
+    - node.type.resource
+    - node.type.subpage
+  module:
+    - addtoany
+    - block
+    - block_content
+    - captcha
+    - config
+    - contact
+    - contextual
+    - ds
+    - embed
+    - entity_browser
+    - entity_usage
+    - eu_cookie_compliance
+    - facets
+    - field_ui
+    - file
+    - filter
+    - google_analytics
+    - honeypot
+    - image
+    - media
+    - node
+    - paragraphs
+    - path
+    - pathauto
+    - quickedit
+    - readonlymode
+    - recaptcha
+    - search
+    - search_api
+    - system
+    - taxonomy
+    - toolbar
+    - views_ui
+    - webform
 id: admin
 label: Admin
 weight: -7

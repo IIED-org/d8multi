@@ -18,14 +18,14 @@ plugin: 'block_content:06167515-9c5d-458b-9c5e-9c72491fa038'
 settings:
   id: 'block_content:06167515-9c5d-458b-9c5e-9c72491fa038'
   label: 'Home banner'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
     negate: false
     context_mapping: {  }
+    pages: '<front>'

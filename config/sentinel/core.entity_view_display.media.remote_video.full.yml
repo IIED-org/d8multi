@@ -17,14 +17,12 @@ bundle: remote_video
 mode: full
 content:
   addtoany:
-    weight: 1
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 1
+    region: content
   field_media_oembed_video:
     type: oembed
-    weight: 0
-    region: content
     label: hidden
     settings:
       max_width: 400
@@ -37,6 +35,8 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 0
+    region: content
 hidden:
   created: true
   field_description: true

@@ -29,15 +29,15 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          ds_content: {  }
         wrappers:
           ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
-          ds_content: {  }
     regions:
       ds_content:
         - node_title
@@ -69,45 +69,43 @@ bundle: person
 mode: teaser
 content:
   body:
-    label: hidden
     type: text_summary_or_trimmed
-    weight: 2
+    label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
+    weight: 2
     region: ds_content
   field_country_advisory_group:
     type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
     weight: 6
     region: ds_content
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
   field_email:
     type: email_mailto
-    weight: 3
-    region: ds_content
     label: inline
     settings: {  }
     third_party_settings: {  }
+    weight: 3
+    region: ds_content
   field_external_advisory_group:
     type: boolean
-    weight: 5
-    region: ds_content
     label: inline
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
+    weight: 5
+    region: ds_content
   field_image:
     type: image
-    weight: 1
-    region: ds_content
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
     third_party_settings:
       ds:
         ds_limit: ''
@@ -117,10 +115,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 1
+    region: ds_content
   field_link:
     type: link
-    weight: 4
-    region: ds_content
     label: inline
     settings:
       trim_length: 80
@@ -129,6 +127,8 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+    weight: 4
+    region: ds_content
 hidden:
   addtoany: true
   field_surname_for_sort: true

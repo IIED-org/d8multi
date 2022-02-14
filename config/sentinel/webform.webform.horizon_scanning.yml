@@ -7,9 +7,9 @@ dependencies:
 third_party_settings:
   honeypot:
     honeypot: true
+weight: 0
 open: null
 close: null
-weight: 0
 uid: 1
 template: false
 archive: false
@@ -17,14 +17,13 @@ id: horizon_scanning
 title: 'Horizon scanning'
 description: ''
 category: ''
-elements: |
-  '#attributes':
-    class:
-      - col-md-9
-      - justify-content-center
+elements: |-
   markup_01:
     '#type': webform_markup
-    '#markup': "<h3 class=\"text-center\">&quot;Achieving food and nutrition security, reducing inequality, and preserving terrestrial ecosystems:<br />\r\n100 critical research questions for decision makers<br />\r\nin sub-Saharan Africa&quot;</h3>"
+    '#markup': |-
+      <h3 class="text-center">&quot;Achieving food and nutrition security, reducing inequality, and preserving terrestrial ecosystems:<br />
+      100 critical research questions for decision makers<br />
+      in sub-Saharan Africa&quot;</h3>
   about_you:
     '#type': webform_wizard_page
     '#title': 'About you'
@@ -32,11 +31,16 @@ elements: |
     '#next_button_label': 'Next page »'
     processed_text:
       '#type': processed_text
-      '#text': "<p class=\"text-align-right\"><a href=\"/form/analyse-prospective\">Voir cette page en français</a></p>\r\n"
+      '#text': |
+        <p class="text-align-right"><a href="/form/analyse-prospective">Voir cette page en français</a></p>
       '#format': full_html
     markup:
       '#type': webform_markup
-      '#markup': "<p>Please use this form to contribute your questions to the SENTINEL <a href=\"/call-for-participants\">Horizon scanning activity</a>.</p>\r\nIf you have any questions about how to use this form, or for more information about this project, please get in touch with Adam Devenish: <a href=\"mailto:a.devenish@imperial.ac.uk\">a.devenish@imperial.ac.uk</a>. &nbsp;<br />\r\n<br />\r\nThank you very much for participating in this project. We really appreciate your contributions and look forward to identifying research questions that can help decision makers in sub-Saharan Africa to address Sustainable Development Goals."
+      '#markup': |-
+        <p>Please use this form to contribute your questions to the SENTINEL <a href="/call-for-participants">Horizon scanning activity</a>.</p>
+        If you have any questions about how to use this form, or for more information about this project, please get in touch with Adam Devenish: <a href="mailto:a.devenish@imperial.ac.uk">a.devenish@imperial.ac.uk</a>. &nbsp;<br />
+        <br />
+        Thank you very much for participating in this project. We really appreciate your contributions and look forward to identifying research questions that can help decision makers in sub-Saharan Africa to address Sustainable Development Goals.
     name:
       '#type': textfield
       '#title': Name
@@ -100,7 +104,10 @@ elements: |
     '#next_button_label': 'Next page »'
     markup_02:
       '#type': webform_markup
-      '#markup': "Please contribute as many questions as you would like to in the boxes provided below. You can submit as many questions as you like, just click the &quot;<strong>+&quot;</strong> button to add another. When you have entered all your questions, click &#39;Next page&#39;.<br />\r\n<br />\r\nPlease contribute questions that aim to address one, some, or all of the following: food security, nutrition, reducing inequality, and preserving ecosystems."
+      '#markup': |-
+        Please contribute as many questions as you would like to in the boxes provided below. You can submit as many questions as you like, just click the &quot;<strong>+&quot;</strong> button to add another. When you have entered all your questions, click &#39;Next page&#39;.<br />
+        <br />
+        Please contribute questions that aim to address one, some, or all of the following: food security, nutrition, reducing inequality, and preserving ecosystems.
     question:
       '#type': textfield
       '#title': Questions
@@ -191,7 +198,11 @@ elements: |
     '#next_button_label': 'Next page »'
     markup_04:
       '#type': webform_markup
-      '#markup': "<h3>Thank you very much for contributing to the SENTINEL Horizon scanning activity. &nbsp;</h3>\r\nPlease note that, by participating in this activity, you consent to your personal data being used in the way described in our <a href=\"/privacy-policy\">privacy policy</a>. For further information, please contact&nbsp;Adam Devenish (<a href=\"mailto:a.devenish@imperial.ac.uk\">a.devenish@imperial.ac.uk</a>).<br />\r\n<br />\r\nIf you have provided your email address, we look forward to keeping you updated on project progress. In the meantime, have a lovely day and thank you again for your contributions."
+      '#markup': |-
+        <h3>Thank you very much for contributing to the SENTINEL Horizon scanning activity. &nbsp;</h3>
+        Please note that, by participating in this activity, you consent to your personal data being used in the way described in our <a href="/privacy-policy">privacy policy</a>. For further information, please contact&nbsp;Adam Devenish (<a href="mailto:a.devenish@imperial.ac.uk">a.devenish@imperial.ac.uk</a>).<br />
+        <br />
+        If you have provided your email address, we look forward to keeping you updated on project progress. In the meantime, have a lovely day and thank you again for your contributions.
     i_would_like_to_be_contacted_regarding_future_stages_of_the_hori:
       '#type': checkbox
       '#title': 'I would like to be contacted regarding future stages of the Horizon-scanning activity'
@@ -220,9 +231,9 @@ settings:
   page_theme_name: ''
   form_title: source_entity_webform
   form_submit_once: false
-  form_exception_message: ''
   form_open_message: ''
   form_close_message: ''
+  form_exception_message: ''
   form_previous_submissions: true
   form_confidential: false
   form_confidential_message: ''
@@ -232,28 +243,39 @@ settings:
   form_prepopulate_source_entity: false
   form_prepopulate_source_entity_required: false
   form_prepopulate_source_entity_type: ''
-  form_reset: false
+  form_unsaved: true
+  form_disable_back: false
+  form_submit_back: true
   form_disable_autocomplete: false
   form_novalidate: false
   form_disable_inline_errors: false
   form_required: false
-  form_unsaved: true
-  form_disable_back: false
-  form_submit_back: true
   form_autofocus: false
   form_details_toggle: false
+  form_reset: false
   form_access_denied: default
   form_access_denied_title: ''
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_attributes:
+    class:
+      - col-md-9
+      - justify-content-center
+  form_method: ''
+  form_action: ''
   share: false
   share_node: false
   share_theme_name: ''
   share_title: true
   share_page_body_attributes: {  }
   submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
   submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
   submission_views: {  }
   submission_views_replace: {  }
   submission_user_columns: {  }
@@ -262,11 +284,6 @@ settings:
   submission_access_denied_title: ''
   submission_access_denied_message: ''
   submission_access_denied_attributes: {  }
-  submission_exception_message: ''
-  submission_locked_message: ''
-  submission_excluded_elements: {  }
-  submission_exclude_empty: false
-  submission_exclude_empty_checkbox: false
   previous_submission_message: ''
   previous_submissions_message: ''
   autofill: false
@@ -277,13 +294,13 @@ settings:
   wizard_progress_percentage: false
   wizard_progress_link: false
   wizard_progress_states: false
-  wizard_auto_forward: true
-  wizard_auto_forward_hide_next_button: false
-  wizard_keyboard: true
   wizard_start_label: ''
   wizard_preview_link: false
   wizard_confirmation: false
   wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
   wizard_track: ''
   wizard_prev_button_label: ''
   wizard_next_button_label: ''
@@ -306,9 +323,9 @@ settings:
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
   confirmation_type: url_message
+  confirmation_url: ''
   confirmation_title: 'Thank you'
   confirmation_message: 'Your submission has been received. Many thanks for participating.'
-  confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: false
   confirmation_back_label: ''
@@ -390,9 +407,9 @@ access:
 handlers:
   email:
     id: email
+    handler_id: email
     label: Email
     notes: ''
-    handler_id: email
     status: true
     conditions: {  }
     weight: 0
@@ -401,13 +418,17 @@ handlers:
         - completed
       to_mail: a.devenish@imperial.ac.uk
       to_options: {  }
-      cc_mail: _default
-      cc_options: {  }
       bcc_mail: admin@cbrody.com
       bcc_options: {  }
+      cc_mail: _default
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -418,11 +439,7 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
 variants: {  }

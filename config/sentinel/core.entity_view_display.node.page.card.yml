@@ -21,6 +21,12 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
         wrappers:
           header: div
           left: div
@@ -30,12 +36,6 @@ third_party_settings:
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
-          header: {  }
-          left: {  }
-          right: {  }
-          footer: {  }
     regions:
       header:
         - field_subtitle
@@ -48,26 +48,26 @@ bundle: page
 mode: card
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 2
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 2
     region: left
   field_standfirst:
-    weight: 1
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 1
     region: header
   field_subtitle:
     type: text_default
-    weight: 0
-    region: header
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: header
 hidden:
   addtoany: true
   field_video: true

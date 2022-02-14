@@ -26,15 +26,15 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          ds_content: {  }
         wrappers:
           ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: content
         link_custom: ''
-        classes:
-          layout_class: {  }
-          ds_content: {  }
     regions:
       ds_content:
         - field_image
@@ -52,10 +52,11 @@ third_party_settings:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
             ow: true
             ow-el: div
             ow-cl: 'inline-block mr-3'
@@ -67,23 +68,22 @@ third_party_settings:
             fis-cl: ''
             fis-at: ''
             fis-def-at: true
+            fi: false
             fi-el: ''
             fi-cl: ''
             fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            fi: false
             fi-def-at: false
+            prefix: ''
+            suffix: ''
       node_title:
         plugin_id: node_title
         weight: 1
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: h3
           class: ''
-          link: false
         ft:
           id: default
           settings:
@@ -96,9 +96,8 @@ bundle: blog
 mode: search_result
 content:
   body:
-    label: hidden
     type: text_summary_or_trimmed
-    weight: 2
+    label: hidden
     settings:
       trim_length: 250
     third_party_settings:
@@ -107,14 +106,13 @@ content:
           id: default
           settings:
             lb: ''
+            lb-col: false
             classes:
               - media-body
-            lb-col: false
+    weight: 2
     region: ds_content
   field_authors:
     type: string
-    weight: 4
-    region: ds_content
     label: hidden
     settings:
       link_to_entity: false
@@ -124,15 +122,17 @@ content:
           id: default
           settings:
             lb: ''
+            lb-col: false
             classes:
               - media-body
-            lb-col: false
+    weight: 4
+    region: ds_content
   field_image:
-    weight: 0
+    type: image
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
     third_party_settings:
       ds:
         ds_limit: ''
@@ -142,7 +142,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: image
+    weight: 0
     region: ds_content
 hidden:
   addtoany: true

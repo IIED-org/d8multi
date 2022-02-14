@@ -27,15 +27,15 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          ds_content: {  }
         wrappers:
           ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
-          ds_content: {  }
     regions:
       ds_content:
         - field_image
@@ -47,7 +47,7 @@ bundle: person
 mode: card
 content:
   field_email:
-    weight: 2
+    type: email_mailto
     label: hidden
     settings: {  }
     third_party_settings:
@@ -58,14 +58,14 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: email_mailto
+    weight: 2
     region: ds_content
   field_image:
-    weight: 0
+    type: image
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
     third_party_settings:
       ds:
         ds_limit: ''
@@ -75,10 +75,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: image
+    weight: 0
     region: ds_content
   field_link:
-    weight: 1
+    type: link
     label: hidden
     settings:
       trim_length: 100
@@ -94,7 +94,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: link
+    weight: 1
     region: ds_content
 hidden:
   addtoany: true

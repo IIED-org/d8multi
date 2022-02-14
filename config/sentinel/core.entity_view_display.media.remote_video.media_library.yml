@@ -19,15 +19,15 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          ds_content: {  }
         wrappers:
           ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
-          ds_content: {  }
     regions:
       ds_content:
         - field_media_oembed_video
@@ -40,8 +40,6 @@ mode: media_library
 content:
   field_media_oembed_video:
     type: oembed
-    weight: 0
-    region: ds_content
     label: hidden
     settings:
       max_width: 500
@@ -54,6 +52,8 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 0
+    region: ds_content
 hidden:
   addtoany: true
   created: true

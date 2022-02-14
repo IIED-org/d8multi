@@ -18,12 +18,12 @@ widget_selector: tabs
 widget_selector_configuration: {  }
 widgets:
   cdf03d2c-11b3-4902-b061-d65aa75c03ae:
+    id: entity_form
+    uuid: cdf03d2c-11b3-4902-b061-d65aa75c03ae
+    label: entity_form
+    weight: 1
     settings:
+      submit_text: 'Save entity'
       entity_type: media
       bundle: remote_video
       form_mode: media_library
-      submit_text: 'Save entity'
-    uuid: cdf03d2c-11b3-4902-b061-d65aa75c03ae
-    weight: 1
-    label: entity_form
-    id: entity_form

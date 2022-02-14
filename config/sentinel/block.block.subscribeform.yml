@@ -17,8 +17,8 @@ plugin: 'block_content:7f398516-f400-48b1-93d2-ac353915104e'
 settings:
   id: 'block_content:7f398516-f400-48b1-93d2-ac353915104e'
   label: 'Stay connected'
-  provider: block_content
   label_display: visible
+  provider: block_content
   status: true
   info: ''
   view_mode: full

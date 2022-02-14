@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: xfB0qOeoAomOThclNNokdKTrVwXLcXz13SU3-4a5-FY
 disabled: false
 field_template: true
 ft-default: default
@@ -17,5 +19,3 @@ classes:
     - col-12
     - col-md-10
 use_field_names: true
-_core:
-  default_config_hash: xfB0qOeoAomOThclNNokdKTrVwXLcXz13SU3-4a5-FY

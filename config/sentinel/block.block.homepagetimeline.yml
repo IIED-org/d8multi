@@ -18,14 +18,14 @@ plugin: 'block_content:e2214e8b-cac5-465e-99db-9afa5b236008'
 settings:
   id: 'block_content:e2214e8b-cac5-465e-99db-9afa5b236008'
   label: 'Home page timeline'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
     negate: false
     context_mapping: {  }
+    pages: '<front>'

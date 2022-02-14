@@ -18,7 +18,7 @@ bundle: further_images
 mode: default
 content:
   field_image:
-    weight: 0
+    type: colorbox
     label: hidden
     settings:
       colorbox_node_style: large
@@ -36,10 +36,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: colorbox
+    weight: 0
     region: content
   field_image_caption:
-    weight: 1
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings:
@@ -50,7 +50,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: text_default
+    weight: 1
     region: content
 hidden:
   field_half_width: true

@@ -18,14 +18,14 @@ plugin: 'block_content:9b0dd0b2-bdc9-4d96-8a06-f0fa364ca1fb'
 settings:
   id: 'block_content:9b0dd0b2-bdc9-4d96-8a06-f0fa364ca1fb'
   label: 'Privacy policy'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: /contact
     negate: false
     context_mapping: {  }
+    pages: /contact
