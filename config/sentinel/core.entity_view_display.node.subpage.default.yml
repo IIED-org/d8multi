@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.node.subpage.body
+    - field.field.node.subpage.field_add_paragraph
+    - field.field.node.subpage.field_add_paragraph_s_
     - field.field.node.subpage.field_paragraph
     - field.field.node.subpage.field_standfirst
     - field.field.node.subpage.field_subtitle
@@ -23,6 +25,24 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 101
+    region: content
+  field_add_paragraph:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_add_paragraph_s_:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 106
     region: content
   field_paragraph:
     type: entity_reference_revisions_entity_view

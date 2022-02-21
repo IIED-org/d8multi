@@ -1,0 +1,39 @@
+uuid: 8a6d2a6d-af0f-4641-84ad-09953b1ccd40
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_add_paragraph
+    - node.type.subpage
+    - paragraphs.paragraphs_type.further_images
+    - paragraphs.paragraphs_type.further_videos
+  module:
+    - entity_reference_revisions
+id: node.subpage.field_add_paragraph
+field_name: field_add_paragraph
+entity_type: node
+bundle: subpage
+label: 'Add paragraph(s) - Image, Video'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      further_images: further_images
+      further_videos: further_videos
+    negate: 0
+    target_bundles_drag_drop:
+      further_images:
+        weight: 4
+        enabled: true
+      further_text:
+        weight: 5
+        enabled: false
+      further_videos:
+        weight: 6
+        enabled: true
+field_type: entity_reference_revisions
