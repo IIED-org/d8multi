@@ -1,0 +1,31 @@
+uuid: f8299661-19e7-424a-93dd-ce3a3b3c1c08
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.further_videos.field_video
+    - paragraphs.paragraphs_type.further_videos
+  module:
+    - field_layout
+    - layout_discovery
+    - media_library
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: paragraph.further_videos.default
+targetEntityType: paragraph
+bundle: further_videos
+mode: default
+content:
+  field_video:
+    type: media_library_widget
+    weight: 0
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -11,7 +11,7 @@ id: node.subpage.field_paragraph
 field_name: field_paragraph
 entity_type: node
 bundle: subpage
-label: Paragraph
+label: 'Add paragraph(s) - Image, Video, Text'
 description: ''
 required: false
 translatable: false
@@ -24,6 +24,12 @@ settings:
     negate: 0
     target_bundles_drag_drop:
       further_images:
-        weight: 2
+        weight: -7
+        enabled: false
+      further_text:
+        weight: -5
+        enabled: false
+      further_videos:
+        weight: -6
         enabled: false
 field_type: entity_reference_revisions

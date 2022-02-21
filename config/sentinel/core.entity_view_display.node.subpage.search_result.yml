@@ -5,6 +5,8 @@ dependencies:
   config:
     - core.entity_view_mode.node.search_result
     - field.field.node.subpage.body
+    - field.field.node.subpage.field_add_paragraph
+    - field.field.node.subpage.field_add_paragraph_s_
     - field.field.node.subpage.field_paragraph
     - field.field.node.subpage.field_standfirst
     - field.field.node.subpage.field_subtitle
@@ -68,6 +70,8 @@ content:
     region: ds_content
 hidden:
   addtoany: true
+  field_add_paragraph: true
+  field_add_paragraph_s_: true
   field_paragraph: true
   field_standfirst: true
   field_subtitle: true
