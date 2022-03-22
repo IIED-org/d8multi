@@ -16,9 +16,9 @@ provider: null
 plugin: 'views_block:organisations-block_2'
 settings:
   id: 'views_block:organisations-block_2'
-  label: ''
-  provider: views
+  label: Partners
   label_display: '0'
-  views_label: ''
+  provider: views
+  views_label: Partners
   items_per_page: none
 visibility: {  }

@@ -24,15 +24,15 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          ds_content: {  }
         wrappers:
           ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
-          ds_content: {  }
     regions:
       ds_content:
         - field_image
@@ -62,22 +62,20 @@ bundle: partner
 mode: teaser
 content:
   body:
-    label: hidden
     type: text_summary_or_trimmed
-    weight: 2
+    label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
+    weight: 2
     region: ds_content
   field_funder:
     type: boolean
-    weight: 4
-    region: ds_content
     label: inline
     settings:
       format: unicode-yes-no
-      format_custom_true: ''
       format_custom_false: ''
+      format_custom_true: ''
     third_party_settings:
       ds:
         ft:
@@ -86,14 +84,14 @@ content:
             lb: 'Funder: '
             lb-col: false
             classes: {  }
+    weight: 4
+    region: ds_content
   field_image:
     type: image
-    weight: 0
-    region: ds_content
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
     third_party_settings:
       ds:
         ft:
@@ -102,10 +100,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 0
+    region: ds_content
   field_link:
     type: link
-    weight: 3
-    region: ds_content
     label: inline
     settings:
       trim_length: 100
@@ -121,6 +119,8 @@ content:
             lb: 'Link: '
             lb-col: true
             classes: {  }
+    weight: 3
+    region: ds_content
 hidden:
   langcode: true
   links: true

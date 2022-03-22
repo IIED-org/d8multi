@@ -31,6 +31,10 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          first: {  }
+          second: {  }
         wrappers:
           first: div
           second: div
@@ -38,10 +42,6 @@ third_party_settings:
         attributes: ''
         link_attribute: content
         link_custom: ''
-        classes:
-          layout_class: {  }
-          first: {  }
-          second: {  }
     regions:
       first:
         - field_image
@@ -59,9 +59,9 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: p
           class: ''
-          link: false
 id: node.resource.card
 targetEntityType: node
 bundle: resource
@@ -69,8 +69,6 @@ mode: card
 content:
   field_audio_file:
     type: file_audio
-    weight: 1
-    region: first
     label: hidden
     settings:
       controls: true
@@ -78,16 +76,18 @@ content:
       loop: false
       multiple_file_display_type: tags
     third_party_settings: {  }
+    weight: 1
+    region: first
   field_author_s_:
-    weight: 5
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 5
     region: second
   field_file:
-    weight: 2
+    type: pdfpreview
     label: hidden
     settings:
       image_style: resource_card_image
@@ -103,16 +103,14 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: pdfpreview
+    weight: 2
     region: first
   field_image:
     type: image
-    weight: 0
-    region: first
     label: hidden
     settings:
-      image_style: resource_card_image
       image_link: ''
+      image_style: resource_card_image
     third_party_settings:
       ds:
         ft:
@@ -121,8 +119,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 0
+    region: first
   field_material_type:
-    weight: 3
+    type: entity_reference_label
     label: hidden
     settings:
       link: false
@@ -134,10 +134,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: entity_reference_label
+    weight: 3
     region: first
   field_pubdate:
-    weight: 6
+    type: datetime_default
     label: hidden
     settings:
       timezone_override: ''
@@ -150,7 +150,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: datetime_default
+    weight: 6
     region: second
 hidden:
   body: true

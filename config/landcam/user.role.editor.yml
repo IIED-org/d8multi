@@ -1,7 +1,35 @@
 uuid: 4a670be9-bf07-40e7-bd89-e5268f9035e4
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.full_html
+    - media.type.flickr
+    - node.type.event
+    - node.type.news
+    - node.type.page
+    - node.type.partner
+    - node.type.resource
+    - taxonomy.vocabulary.article_type
+    - taxonomy.vocabulary.material_type
+  module:
+    - block
+    - block_content
+    - comment
+    - content_translation
+    - contextual
+    - entity_clone
+    - eu_cookie_compliance
+    - file
+    - filter
+    - media
+    - node
+    - paragraphs
+    - path
+    - pathauto
+    - system
+    - taxonomy
+    - toolbar
 id: editor
 label: Editor
 weight: -8

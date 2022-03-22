@@ -23,15 +23,15 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          ds_content: {  }
         wrappers:
           ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: tokens
         link_custom: '[node:field_link:uri]'
-        classes:
-          layout_class: {  }
-          ds_content: {  }
     regions:
       ds_content:
         - field_image
@@ -44,9 +44,9 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: h3
           class: ''
-          link: false
         ft:
           id: default
           settings:
@@ -59,20 +59,18 @@ bundle: partner
 mode: search_result
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 2
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 2
     region: ds_content
   field_image:
     type: image
-    weight: 0
-    region: ds_content
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
     third_party_settings:
       ds:
         ft:
@@ -81,6 +79,8 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 0
+    region: ds_content
 hidden:
   field_funder: true
   field_link: true

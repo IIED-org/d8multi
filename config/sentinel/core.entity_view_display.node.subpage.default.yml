@@ -28,7 +28,7 @@ content:
     region: content
   field_add_paragraph:
     type: entity_reference_revisions_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''
@@ -37,7 +37,7 @@ content:
     region: content
   field_add_paragraph_s_:
     type: entity_reference_revisions_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''
@@ -46,7 +46,7 @@ content:
     region: content
   field_paragraph:
     type: entity_reference_revisions_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''

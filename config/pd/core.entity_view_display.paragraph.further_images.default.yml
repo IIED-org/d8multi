@@ -18,7 +18,7 @@ bundle: further_images
 mode: default
 content:
   field_image:
-    weight: 0
+    type: colorbox
     label: hidden
     settings:
       colorbox_node_style: large
@@ -34,10 +34,11 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: '<figure>'
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
             ow: true
             ow-el: div
             ow-cl: ''
@@ -49,18 +50,17 @@ content:
             fis-cl: ''
             fis-at: ''
             fis-def-at: true
+            fi: false
             fi-el: ''
             fi-cl: ''
             fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            fi: false
             fi-def-at: false
-    type: colorbox
+            prefix: '<figure>'
+            suffix: ''
+    weight: 0
     region: content
   field_image_caption:
-    weight: 1
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings:
@@ -69,30 +69,30 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
+            ow: false
             ow-el: ''
             ow-cl: ''
             ow-at: ''
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
             fis-el: ''
             fis-cl: ''
             fis-at: ''
+            fis-def-at: false
             fi: true
             fi-el: figcaption
             fi-cl: ''
             fi-at: ''
             fi-def-at: true
+            prefix: ''
             suffix: ''
-            lbw: false
-            lb-col: false
-            ow: false
-            ow-def-at: false
-            ow-def-cl: false
-            fis: false
-            fis-def-at: false
-    type: text_default
+    weight: 1
     region: content
 hidden:
   field_half_width: true

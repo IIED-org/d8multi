@@ -18,14 +18,14 @@ plugin: 'block_content:4cef927b-1dc2-49b9-a32b-b8e3d15096cf'
 settings:
   id: 'block_content:4cef927b-1dc2-49b9-a32b-b8e3d15096cf'
   label: 'Who are we?'
-  provider: block_content
   label_display: visible
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: "/about-us\r\n/contact\r\n/propos"
     negate: false
     context_mapping: {  }
+    pages: "/about-us\r\n/contact\r\n/propos"

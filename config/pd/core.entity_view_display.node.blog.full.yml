@@ -33,19 +33,19 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
-        label: ''
-        wrappers:
-          ds_content: div
-        outer_wrapper: div
-        attributes: ''
-        link_attribute: ''
-        link_custom: ''
         classes:
           layout_class: {  }
           ds_content:
             container: container
             col-12: col-12
             col-md-10: col-md-10
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        label: ''
     regions:
       ds_content:
         - node_title
@@ -66,9 +66,9 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: h2
           class: ''
-          link: false
         ft:
           id: default
           settings:
@@ -81,14 +81,13 @@ bundle: blog
 mode: full
 content:
   addtoany:
-    weight: 4
-    region: ds_content
     settings: {  }
     third_party_settings: {  }
+    weight: 4
+    region: ds_content
   body:
-    label: hidden
     type: text_default
-    weight: 6
+    label: hidden
     settings: {  }
     third_party_settings:
       ds:
@@ -96,10 +95,11 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
             ow: true
             ow-el: div
             ow-cl: float-none
@@ -110,20 +110,18 @@ content:
             fis-el: div
             fis-cl: ''
             fis-at: ''
+            fis-def-at: false
+            fi: false
             fi-el: ''
             fi-cl: ''
             fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            fis-def-at: false
-            fi: false
             fi-def-at: false
+            prefix: ''
+            suffix: ''
+    weight: 6
     region: ds_content
   field_author:
     type: entity_reference_entity_view
-    weight: 1
-    region: ds_content
     label: hidden
     settings:
       view_mode: card
@@ -135,10 +133,11 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
             ow: true
             ow-el: div
             ow-cl: ''
@@ -150,33 +149,34 @@ content:
             fis-cl: 'float-md-right d-inline'
             fis-at: ''
             fis-def-at: true
+            fi: false
             fi-el: div
             fi-cl: mt-0
             fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            fi: false
             fi-def-at: false
+            prefix: ''
+            suffix: ''
+    weight: 1
+    region: ds_content
   field_file_upload:
     type: file_default
-    weight: 10
-    region: ds_content
     label: hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
+    weight: 10
+    region: ds_content
   field_further:
     type: entity_reference_revisions_entity_view
-    weight: 7
-    region: ds_content
     label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    weight: 7
+    region: ds_content
   field_image:
-    weight: 2
+    type: colorbox
     label: hidden
     settings:
       colorbox_node_style: large
@@ -193,10 +193,11 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: '<figure>'
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
             ow: true
             ow-el: div
             ow-cl: ''
@@ -208,20 +209,17 @@ content:
             fis-cl: ''
             fis-at: ''
             fis-def-at: true
+            fi: false
             fi-el: ''
             fi-cl: ''
             fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            fi: false
             fi-def-at: false
-    type: colorbox
+            prefix: '<figure>'
+            suffix: ''
+    weight: 2
     region: ds_content
   field_image_caption:
     type: text_default
-    weight: 3
-    region: ds_content
     label: hidden
     settings: {  }
     third_party_settings:
@@ -230,33 +228,33 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
+            ow: false
             ow-el: ''
             ow-cl: ''
             ow-at: ''
+            ow-def-at: false
+            ow-def-cl: false
             fis: true
             fis-el: figcaption
             fis-cl: ''
             fis-at: ''
+            fis-def-at: false
+            fi: false
             fi-el: ''
             fi-cl: ''
             fi-at: ''
-            suffix: '</figure>'
-            lbw: false
-            lb-col: false
-            ow: false
-            ow-def-at: false
-            ow-def-cl: false
-            fis-def-at: false
-            fi: false
             fi-def-at: false
+            prefix: ''
+            suffix: '</figure>'
+    weight: 3
+    region: ds_content
   field_pubdate:
     type: datetime_default
-    weight: 5
-    region: ds_content
     label: hidden
     settings:
       timezone_override: ''
@@ -269,20 +267,22 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 5
+    region: ds_content
   field_video:
     type: entity_reference_entity_view
-    weight: 8
-    region: ds_content
     label: hidden
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
-  links:
-    weight: 9
+    weight: 8
     region: ds_content
+  links:
     settings: {  }
     third_party_settings: {  }
+    weight: 9
+    region: ds_content
 hidden:
   field_authors: true
   field_country: true

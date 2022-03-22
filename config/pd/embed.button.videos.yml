@@ -21,6 +21,6 @@ type_settings:
   entity_browser_settings:
     display_review: false
 icon:
-  data: ''
   uri: 'public://embed_buttons/next.gif'
+  data: ''
 icon_uuid: null

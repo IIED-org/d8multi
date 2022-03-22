@@ -18,8 +18,8 @@ bundle: image
 mode: full
 content:
   field_media_image:
+    type: colorbox
     label: visually_hidden
-    weight: 0
     settings:
       colorbox_node_style: thumbnail_sq
       colorbox_node_style_first: large
@@ -34,30 +34,30 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
+            ow: false
             ow-el: ''
             ow-cl: ''
             ow-at: ''
+            ow-def-at: false
+            ow-def-cl: false
             fis: true
             fis-el: div
             fis-cl: gallery
             fis-at: ''
+            fis-def-at: false
+            fi: false
             fi-el: ''
             fi-cl: ''
             fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            ow: false
-            ow-def-at: false
-            ow-def-cl: false
-            fis-def-at: false
-            fi: false
             fi-def-at: false
-    type: colorbox
+            prefix: ''
+            suffix: ''
+    weight: 0
     region: content
 hidden:
   addtoany: true

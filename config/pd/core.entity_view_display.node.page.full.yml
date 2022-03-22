@@ -23,16 +23,16 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
-        label: ''
+        classes:
+          layout_class: {  }
+          ds_content: {  }
         wrappers:
           ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
-          ds_content: {  }
+        label: ''
     regions:
       ds_content:
         - node_title
@@ -46,45 +46,44 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: ''
           class: ''
-          link: false
         ft:
           id: expert
           settings:
             lb: ''
-            prefix: '<div class="banner ds"><div class="container"><div class="row"><div class="col-md-6"><div class="jumbotron">'
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
+            ow: false
             ow-el: div
             ow-cl: page-title-banner
             ow-at: ''
+            ow-def-at: false
+            ow-def-cl: false
             fis: true
             fis-el: h4
             fis-cl: ''
             fis-at: ''
+            fis-def-at: false
+            fi: false
             fi-el: ''
             fi-cl: ''
             fi-at: ''
-            suffix: '[node:field_subtitle]</div></div></div></div></div>'
-            lbw: false
-            lb-col: false
-            ow: false
-            ow-def-at: false
-            ow-def-cl: false
-            fis-def-at: false
-            fi: false
             fi-def-at: false
+            prefix: '<div class="banner ds"><div class="container"><div class="row"><div class="col-md-6"><div class="jumbotron">'
+            suffix: '[node:field_subtitle]</div></div></div></div></div>'
 id: node.page.full
 targetEntityType: node
 bundle: page
 mode: full
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 2
+    label: hidden
     settings: {  }
     third_party_settings:
       ds:
@@ -92,14 +91,13 @@ content:
           id: default
           settings:
             lb: ''
+            lb-col: false
             classes:
               - ''
-            lb-col: false
+    weight: 2
     region: ds_content
   field_para:
     type: entity_reference_revisions_entity_view
-    weight: 3
-    region: ds_content
     label: hidden
     settings:
       view_mode: default
@@ -111,17 +109,19 @@ content:
           id: default
           settings:
             lb: ''
+            lb-col: false
             classes:
               - container
               - my-3
-            lb-col: false
+    weight: 3
+    region: ds_content
   field_standfirst:
     type: text_default
-    weight: 1
-    region: ds_content
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 1
+    region: ds_content
 hidden:
   addtoany: true
   field_subtitle: true

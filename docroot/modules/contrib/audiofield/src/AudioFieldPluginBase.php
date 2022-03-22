@@ -13,9 +13,9 @@ use Drupal\Component\Plugin\PluginBase;
 use Drupal\Core\Asset\LibraryDiscovery;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Messenger\Messenger;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-use Drupal\Core\File\FileSystem;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
@@ -36,14 +36,14 @@ abstract class AudioFieldPluginBase extends PluginBase implements ContainerFacto
   /**
    * Messenger service.
    *
-   * @var Drupal\Core\Messenger\Messenger
+   * @var Drupal\Core\Messenger\MessengerInterface
    */
   protected $messenger;
 
   /**
    * File System service.
    *
-   * @var Drupal\Core\File\FileSystem
+   * @var Drupal\Core\File\FileSystemInterface
    */
   protected $fileSystem;
 
@@ -57,7 +57,7 @@ abstract class AudioFieldPluginBase extends PluginBase implements ContainerFacto
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LibraryDiscovery $library_discovery, Messenger $messenger, LoggerChannelFactoryInterface $logger_factory, FileSystem $file_system) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LibraryDiscovery $library_discovery, MessengerInterface $messenger, LoggerChannelFactoryInterface $logger_factory, FileSystemInterface $file_system) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->libraryDiscovery = $library_discovery;

@@ -1,11 +1,11 @@
 id: author_details
 label: 'Author details'
 ui_limit: ''
-properties:
-  content:
-    value: "<p>[node:author:display-name] [node:author:mail]<br />\r\n[node:author:field_description]</p>\r\n"
-    format: full_html
 type: token
 type_label: 'Token field'
 entities:
   node: node
+properties:
+  content:
+    value: "<p>[node:author:display-name] [node:author:mail]<br />\r\n[node:author:field_description]</p>\r\n"
+    format: full_html

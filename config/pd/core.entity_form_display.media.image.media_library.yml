@@ -29,18 +29,18 @@ content:
     region: content
     settings:
       rows: 5
-      placeholder: ''
       summary_rows: 3
+      placeholder: ''
       show_summary: false
     third_party_settings: {  }
   field_media_image:
+    type: image_image
     weight: 0
+    region: content
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
-    type: image_image
-    region: content
 hidden:
   created: true
   name: true

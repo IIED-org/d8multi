@@ -15,15 +15,15 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          ds_content: {  }
         wrappers:
           ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
-          ds_content: {  }
     regions:
       ds_content:
         - taxonomy_term_title
@@ -40,10 +40,10 @@ bundle: research_themes
 mode: default
 content:
   description:
-    label: hidden
     type: text_default
-    weight: 1
-    region: ds_content
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 1
+    region: ds_content
 hidden: {  }

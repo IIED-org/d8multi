@@ -11,7 +11,7 @@ dependencies:
   - field_ui
   - classy_paragraphs
 
-# Information added by Drupal.org packaging script on 2020-09-17
-version: '8.x-1.0-beta3'
+# Information added by Drupal.org packaging script on 2022-01-29
+version: '8.x-1.0-rc1'
 project: 'classy_paragraphs'
-datestamp: 1600324499
+datestamp: 1643475282

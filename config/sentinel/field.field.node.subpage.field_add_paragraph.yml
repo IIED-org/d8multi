@@ -13,7 +13,7 @@ id: node.subpage.field_add_paragraph
 field_name: field_add_paragraph
 entity_type: node
 bundle: subpage
-label: 'Add paragraph(s) - Image, Video'
+label: 'Add paragraph(s) 1 - Image, Video'
 description: ''
 required: false
 translatable: false

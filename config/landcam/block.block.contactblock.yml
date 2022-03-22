@@ -18,12 +18,12 @@ plugin: contact_block
 settings:
   id: contact_block
   label: 'Contact us'
-  provider: contact_block
   label_display: visible
+  provider: contact_block
   contact_form: send_us_a_message
 visibility:
   request_path:
     id: request_path
-    pages: "/about-us\r\n/contact\r\n/propos"
     negate: false
     context_mapping: {  }
+    pages: "/about-us\r\n/contact\r\n/propos"

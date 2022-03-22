@@ -22,14 +22,14 @@ bundle: event
 mode: search_index
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 101
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 101
     region: content
   field_daterange:
-    weight: 104
+    type: daterange_default
     label: above
     settings:
       timezone_override: ''
@@ -43,30 +43,30 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: daterange_default
+    weight: 104
     region: content
   field_documents:
-    weight: 105
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 105
     region: content
   field_image:
-    weight: 102
+    type: image
     label: above
     settings:
-      image_style: ''
       image_link: ''
+      image_style: ''
     third_party_settings: {  }
-    type: image
+    weight: 102
     region: content
   links:
-    weight: 100
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   field_paragraph: true
   langcode: true

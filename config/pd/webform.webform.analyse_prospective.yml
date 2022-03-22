@@ -7,9 +7,9 @@ dependencies:
 third_party_settings:
   honeypot:
     honeypot: true
+weight: 0
 open: null
 close: null
-weight: 0
 uid: 1
 template: false
 archive: false
@@ -17,13 +17,12 @@ id: analyse_prospective
 title: 'Analyse prospective'
 description: ''
 category: ''
-elements: |
-  '#attributes':
-    class:
-      - 'col-md-9 justify-content-center'
+elements: |-
   markup_01:
     '#type': webform_markup
-    '#markup': "<h3 class=\"text-center\">« Garantir la sécurité alimentaire et nutritionnelle, réduire les inégalités et préserver les écosystèmes terrestres : <br />\r\n100 questions prioritaires à étudier afin de soutenir les décideurs en Afrique subsaharienne. »</h3>"
+    '#markup': |-
+      <h3 class="text-center">« Garantir la sécurité alimentaire et nutritionnelle, réduire les inégalités et préserver les écosystèmes terrestres : <br />
+      100 questions prioritaires à étudier afin de soutenir les décideurs en Afrique subsaharienne. »</h3>
   about_you:
     '#type': webform_wizard_page
     '#title': 'À propos de vous'
@@ -31,11 +30,16 @@ elements: |
     '#next_button_label': 'Page suivante »'
     view_this_page_in_english:
       '#type': processed_text
-      '#text': "<p class=\"text-align-right\"><a href=\"/form/horizon-scanning\">View this page in English</a></p>\r\n"
+      '#text': |
+        <p class="text-align-right"><a href="/form/horizon-scanning">View this page in English</a></p>
       '#format': full_html
     markup:
       '#type': webform_markup
-      '#markup': "<p>Ce formulaire vous permet de soumettre vos questions dans le cadre de <a href=\"/appel-contribution\">l’analyse prospective</a> du projet SENTINEL</p>\r\nPour toute question concernant l’utilisation de ce formulaire ou pour obtenir plus de renseignements concernant ce projet, veuillez contacter Adam Devenish : <a href=\"mailto:a.devenish@imperial.ac.uk\">a.devenish@imperial.ac.uk</a>. &nbsp;<br />\r\n<br />\r\nMerci d’avoir accepté de participer à ce projet. Votre contribution est particulièrement appréciée et nous espérons pouvoir identifier les questions prioritaires en matière de recherche afin d’aider les décideurs en Afrique subsaharienne dans la réalisation des Objectifs de développement durable."
+      '#markup': |-
+        <p>Ce formulaire vous permet de soumettre vos questions dans le cadre de <a href="/appel-contribution">l’analyse prospective</a> du projet SENTINEL</p>
+        Pour toute question concernant l’utilisation de ce formulaire ou pour obtenir plus de renseignements concernant ce projet, veuillez contacter Adam Devenish : <a href="mailto:a.devenish@imperial.ac.uk">a.devenish@imperial.ac.uk</a>. &nbsp;<br />
+        <br />
+        Merci d’avoir accepté de participer à ce projet. Votre contribution est particulièrement appréciée et nous espérons pouvoir identifier les questions prioritaires en matière de recherche afin d’aider les décideurs en Afrique subsaharienne dans la réalisation des Objectifs de développement durable.
     name:
       '#type': textfield
       '#title': 'Nom et prénom'
@@ -101,7 +105,10 @@ elements: |
     '#next_button_label': 'Page suivante »'
     markup_02:
       '#type': webform_markup
-      '#markup': "Envoyez autant de questions que vous le souhaitez en complétant les champs ci-dessous. Pour ajouter des champs afin de saisir de nouvelles questions, il vous suffit de cliquer sur le bouton « + ». Lorsque vous avez terminé d’écrire vos questions, cliquez sur « Page suivante ».<br />\r\n<br />\r\nVeuillez soumettre des questions se rapportant à au moins l’une des thématiques suivantes : sécurité alimentaire, nutrition, réduction des inégalités et préservation des écosystèmes."
+      '#markup': |-
+        Envoyez autant de questions que vous le souhaitez en complétant les champs ci-dessous. Pour ajouter des champs afin de saisir de nouvelles questions, il vous suffit de cliquer sur le bouton « + ». Lorsque vous avez terminé d’écrire vos questions, cliquez sur « Page suivante ».<br />
+        <br />
+        Veuillez soumettre des questions se rapportant à au moins l’une des thématiques suivantes : sécurité alimentaire, nutrition, réduction des inégalités et préservation des écosystèmes.
     question:
       '#type': textfield
       '#title': Questions
@@ -194,7 +201,11 @@ elements: |
     '#next_button_label': 'Page suivante »'
     markup_04:
       '#type': webform_markup
-      '#markup': "<h3>Merci beaucoup d&rsquo;avoir apport&eacute; votre contribution &agrave; l&rsquo;analyse prospective de SENTINEL.</h3>\r\nEn soumettant votre contribution, vous consentez &agrave; ce que vos donn&eacute;es personnelles soient utilis&eacute;es selon les termes de notre <a href=\"/politique-de-confidentialite\">politique de confidentialit&eacute;</a>. Pour obtenir plus de renseignements, veuillez contacter Adam Devenish : <a href=\"mailto:a.devenish@imperial.ac.uk\">a.devenish@imperial.ac.uk</a>.<br />\r\n<br />\r\nSi vous avez indiqu&eacute; votre adresse e-mail, nous vous tiendrons inform&eacute; de l&rsquo;&eacute;volution du projet. Pour l&rsquo;heure, nous vous remercions une nouvelle fois pour votre participation et vous souhaitons une excellente journ&eacute;e."
+      '#markup': |-
+        <h3>Merci beaucoup d&rsquo;avoir apport&eacute; votre contribution &agrave; l&rsquo;analyse prospective de SENTINEL.</h3>
+        En soumettant votre contribution, vous consentez &agrave; ce que vos donn&eacute;es personnelles soient utilis&eacute;es selon les termes de notre <a href="/politique-de-confidentialite">politique de confidentialit&eacute;</a>. Pour obtenir plus de renseignements, veuillez contacter Adam Devenish : <a href="mailto:a.devenish@imperial.ac.uk">a.devenish@imperial.ac.uk</a>.<br />
+        <br />
+        Si vous avez indiqu&eacute; votre adresse e-mail, nous vous tiendrons inform&eacute; de l&rsquo;&eacute;volution du projet. Pour l&rsquo;heure, nous vous remercions une nouvelle fois pour votre participation et vous souhaitons une excellente journ&eacute;e.
     i_would_like_to_be_contacted_regarding_future_stages_of_the_hori:
       '#type': checkbox
       '#title': 'Je souhaite être recontacté en vue des étapes suivantes de l’analyse prospective'
@@ -227,9 +238,9 @@ settings:
   page_theme_name: ''
   form_title: source_entity_webform
   form_submit_once: false
-  form_exception_message: ''
   form_open_message: ''
   form_close_message: 'D&eacute;sol&eacute;, ce formulaire est ferm&eacute; aux nouvelles soumissions.'
+  form_exception_message: ''
   form_previous_submissions: true
   form_confidential: false
   form_confidential_message: ''
@@ -239,28 +250,38 @@ settings:
   form_prepopulate_source_entity: false
   form_prepopulate_source_entity_required: false
   form_prepopulate_source_entity_type: ''
-  form_reset: false
+  form_unsaved: true
+  form_disable_back: false
+  form_submit_back: true
   form_disable_autocomplete: false
   form_novalidate: false
   form_disable_inline_errors: false
   form_required: false
-  form_unsaved: true
-  form_disable_back: false
-  form_submit_back: true
   form_autofocus: false
   form_details_toggle: false
+  form_reset: false
   form_access_denied: default
   form_access_denied_title: ''
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_attributes:
+    class:
+      - 'col-md-9 justify-content-center'
+  form_method: ''
+  form_action: ''
   share: false
   share_node: false
   share_theme_name: ''
   share_title: true
   share_page_body_attributes: {  }
   submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
   submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
   submission_views: {  }
   submission_views_replace: {  }
   submission_user_columns: {  }
@@ -269,11 +290,6 @@ settings:
   submission_access_denied_title: ''
   submission_access_denied_message: ''
   submission_access_denied_attributes: {  }
-  submission_exception_message: ''
-  submission_locked_message: ''
-  submission_excluded_elements: {  }
-  submission_exclude_empty: false
-  submission_exclude_empty_checkbox: false
   previous_submission_message: ''
   previous_submissions_message: ''
   autofill: false
@@ -284,13 +300,13 @@ settings:
   wizard_progress_percentage: false
   wizard_progress_link: false
   wizard_progress_states: false
-  wizard_auto_forward: true
-  wizard_auto_forward_hide_next_button: false
-  wizard_keyboard: true
   wizard_start_label: ''
   wizard_preview_link: false
   wizard_confirmation: false
   wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
   wizard_track: ''
   wizard_prev_button_label: ''
   wizard_next_button_label: ''
@@ -313,9 +329,9 @@ settings:
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
   confirmation_type: url_message
+  confirmation_url: ''
   confirmation_title: 'Thank you'
   confirmation_message: 'Votre soumission a &eacute;t&eacute; re&ccedil;ue. Merci beaucoup pour votre participation.'
-  confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: false
   confirmation_back_label: ''
@@ -397,9 +413,9 @@ access:
 handlers:
   email:
     id: email
+    handler_id: email
     label: Email
     notes: ''
-    handler_id: email
     status: true
     conditions: {  }
     weight: 0
@@ -408,13 +424,17 @@ handlers:
         - completed
       to_mail: a.devenish@imperial.ac.uk
       to_options: {  }
-      cc_mail: _default
-      cc_options: {  }
       bcc_mail: admin@cbrody.com
       bcc_options: {  }
+      cc_mail: _default
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -425,11 +445,7 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
 variants: {  }

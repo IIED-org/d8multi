@@ -28,32 +28,32 @@ widget_selector: tabs
 widget_selector_configuration: {  }
 widgets:
   6586703a-6976-4124-8a49-cbb07ceaa3b1:
+    id: view
+    uuid: 6586703a-6976-4124-8a49-cbb07ceaa3b1
+    label: view
+    weight: 1
     settings:
-      view: media_entity_browser
-      view_display: entity_browser_1
       submit_text: 'Select entities'
       auto_select: true
-    uuid: 6586703a-6976-4124-8a49-cbb07ceaa3b1
-    weight: 1
-    label: view
-    id: view
+      view: media_entity_browser
+      view_display: entity_browser_1
   a6457fa0-3c47-48a6-bf23-f8e8bb1abf8e:
+    id: upload
+    uuid: a6457fa0-3c47-48a6-bf23-f8e8bb1abf8e
+    label: upload
+    weight: 2
     settings:
+      submit_text: 'Select files'
       upload_location: 'public://media/'
       multiple: true
-      submit_text: 'Select files'
       extensions: 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp avi mp4 mov'
-    uuid: a6457fa0-3c47-48a6-bf23-f8e8bb1abf8e
-    weight: 2
-    label: upload
-    id: upload
   b2f7a16b-f9fe-416a-9da4-49629069bb0b:
+    id: entity_form
+    uuid: b2f7a16b-f9fe-416a-9da4-49629069bb0b
+    label: entity_form
+    weight: 3
     settings:
+      submit_text: 'Save remote video entity'
       entity_type: media
       bundle: remote_video
       form_mode: default
-      submit_text: 'Save remote video entity'
-    uuid: b2f7a16b-f9fe-416a-9da4-49629069bb0b
-    weight: 3
-    label: entity_form
-    id: entity_form

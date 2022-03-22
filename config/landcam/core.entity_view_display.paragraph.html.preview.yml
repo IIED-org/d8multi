@@ -17,15 +17,15 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          ds_content: {  }
         wrappers:
           ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
-          ds_content: {  }
     regions:
       ds_content:
         - field_text
@@ -36,10 +36,10 @@ mode: preview
 content:
   field_text:
     type: text_trimmed
-    weight: 0
-    region: ds_content
     label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
+    weight: 0
+    region: ds_content
 hidden: {  }

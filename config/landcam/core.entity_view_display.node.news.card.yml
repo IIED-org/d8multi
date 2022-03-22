@@ -28,6 +28,10 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          first: {  }
+          second: {  }
         wrappers:
           first: div
           second: div
@@ -35,10 +39,6 @@ third_party_settings:
         attributes: ''
         link_attribute: content
         link_custom: ''
-        classes:
-          layout_class: {  }
-          first: {  }
-          second: {  }
     regions:
       first:
         - field_video
@@ -54,9 +54,9 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: p
           class: ''
-          link: false
         ft:
           id: default
           settings:
@@ -70,8 +70,6 @@ mode: card
 content:
   field_article_type:
     type: entity_reference_label
-    weight: 2
-    region: first
     label: hidden
     settings:
       link: false
@@ -83,10 +81,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 2
+    region: first
   field_date:
     type: timestamp
-    weight: 4
-    region: second
     label: hidden
     settings:
       date_format: date_only
@@ -100,14 +98,14 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 4
+    region: second
   field_image:
     type: image
-    weight: 1
-    region: first
     label: hidden
     settings:
-      image_style: card_image
       image_link: ''
+      image_style: card_image
     third_party_settings:
       ds:
         ds_limit: ''
@@ -117,10 +115,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 1
+    region: first
   field_video:
     type: video_embed_field_thumbnail
-    weight: 0
-    region: first
     label: hidden
     settings:
       image_style: card_image
@@ -134,6 +132,8 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 0
+    region: first
 hidden:
   body: true
   langcode: true

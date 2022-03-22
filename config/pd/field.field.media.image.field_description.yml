@@ -17,8 +17,8 @@ required: false
 translatable: true
 default_value:
   -
-    summary: ''
     value: "<p><meta charset=\"UTF-8\" />Title Author via:&nbsp;<a href=\"#\">Source</a>&nbsp;<a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a></p>\r\n"
+    summary: ''
     format: full_html
 default_value_callback: ''
 settings:

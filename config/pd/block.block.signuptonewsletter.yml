@@ -18,14 +18,14 @@ plugin: 'block_content:8534dfa2-5cc1-43e5-b6bd-5ed8af88c024'
 settings:
   id: 'block_content:8534dfa2-5cc1-43e5-b6bd-5ed8af88c024'
   label: 'Sign up to newsletter'
-  provider: block_content
   label_display: visible
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
     negate: false
     context_mapping: {  }
+    pages: '<front>'

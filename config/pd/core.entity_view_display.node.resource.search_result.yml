@@ -30,16 +30,16 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
-        label: ''
+        classes:
+          layout_class: {  }
+          ds_content: {  }
         wrappers:
           ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: content
         link_custom: ''
-        classes:
-          layout_class: {  }
-          ds_content: {  }
+        label: ''
     regions:
       ds_content:
         - field_file_upload
@@ -55,23 +55,23 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: h3
           class: ''
-          link: false
         ft:
           id: default
           settings:
             lb: ''
+            lb-col: false
             classes:
               - ''
-            lb-col: false
 id: node.resource.search_result
 targetEntityType: node
 bundle: resource
 mode: search_result
 content:
   field_authors:
-    weight: 3
+    type: string
     label: inline
     settings:
       link_to_entity: false
@@ -81,13 +81,13 @@ content:
           id: default
           settings:
             lb: ''
+            lb-col: false
             classes:
               - meta
-            lb-col: false
-    type: string
+    weight: 3
     region: ds_content
   field_file_upload:
-    weight: 0
+    type: pdfpreview
     label: hidden
     settings:
       image_style: thumbnail
@@ -102,17 +102,17 @@ content:
           id: default
           settings:
             lb: ''
+            lb-col: false
             classes:
               - ''
-            lb-col: false
-    type: pdfpreview
+    weight: 0
     region: ds_content
   field_image:
-    weight: 1
+    type: image
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
       svg_attributes:
         width: null
         height: null
@@ -124,13 +124,13 @@ content:
           id: default
           settings:
             lb: ''
+            lb-col: false
             classes:
               - ''
-            lb-col: false
-    type: image
+    weight: 1
     region: ds_content
   field_material_type:
-    weight: 5
+    type: entity_reference_label
     label: inline
     settings:
       link: false
@@ -140,13 +140,13 @@ content:
           id: default
           settings:
             lb: ''
+            lb-col: false
             classes:
               - meta
-            lb-col: false
-    type: entity_reference_label
+    weight: 5
     region: ds_content
   field_pubdate:
-    weight: 4
+    type: datetime_default
     label: inline
     settings:
       timezone_override: ''
@@ -157,10 +157,10 @@ content:
           id: default
           settings:
             lb: ''
+            lb-col: false
             classes:
               - meta
-            lb-col: false
-    type: datetime_default
+    weight: 4
     region: ds_content
 hidden:
   addtoany: true

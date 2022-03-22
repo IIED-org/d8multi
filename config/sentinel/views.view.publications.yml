@@ -342,7 +342,7 @@ display:
       menu:
         type: normal
         title: Publications
-        weight: -46
+        weight: -44
         menu_name: main
     cache_metadata:
       max-age: -1

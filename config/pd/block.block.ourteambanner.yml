@@ -18,14 +18,14 @@ plugin: 'block_content:6654ac20-b83f-4754-b62c-0a235f7320f3'
 settings:
   id: 'block_content:6654ac20-b83f-4754-b62c-0a235f7320f3'
   label: 'Our team banner'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: /our-team
     negate: false
     context_mapping: {  }
+    pages: /our-team

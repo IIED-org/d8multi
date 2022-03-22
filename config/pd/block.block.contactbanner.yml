@@ -18,14 +18,14 @@ plugin: 'block_content:45ba1774-fa7f-488b-9ace-6db5eac5649c'
 settings:
   id: 'block_content:45ba1774-fa7f-488b-9ace-6db5eac5649c'
   label: 'Contact banner'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: /contact
     negate: false
     context_mapping: {  }
+    pages: /contact

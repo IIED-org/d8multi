@@ -17,8 +17,8 @@ plugin: 'block_content:fbefb97f-d680-428f-89c6-77f41c07f0a7'
 settings:
   id: 'block_content:fbefb97f-d680-428f-89c6-77f41c07f0a7'
   label: 'Footer image'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full

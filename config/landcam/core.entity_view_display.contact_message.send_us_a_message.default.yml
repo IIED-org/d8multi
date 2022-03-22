@@ -11,19 +11,19 @@ bundle: send_us_a_message
 mode: default
 content:
   field_organisation:
-    weight: 99
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 99
     region: content
   message:
     type: basic_string
-    weight: 100
     label: above
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   langcode: true

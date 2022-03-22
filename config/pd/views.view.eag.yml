@@ -25,57 +25,12 @@ base_table: node_field_data
 base_field: nid
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Master
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: perm
-        options:
-          perm: 'access content'
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          disable_sql_rewrite: false
-          distinct: false
-          replica: false
-          query_comment: ''
-          query_tags: {  }
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        type: none
-        options:
-          items_per_page: 0
-          offset: 0
-      style:
-        type: default
-        options:
-          grouping: {  }
-          row_class: 'border-bottom mb-3'
-          default_row_class: false
-      row:
-        type: fields
-        options:
-          default_field_elements: true
-          inline:
-            field_image: field_image
-            title: title
-            body: body
-          separator: ''
-          hide_empty: false
+      title: 'External Advisory Group'
       fields:
         field_image:
           id: field_image
@@ -84,6 +39,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -128,8 +84,8 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: thumbnail_sq
             image_link: ''
+            image_style: thumbnail_sq
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -140,7 +96,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -148,6 +103,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -203,9 +161,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         body:
           id: body
           table: node__body
@@ -213,6 +168,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -267,30 +223,67 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
+      pager:
+        type: none
+        options:
+          offset: 0
+          items_per_page: 0
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty: {  }
+      sorts:
+        field_surname_for_sort_value:
+          id: field_surname_for_sort_value
+          table: node__field_surname_for_sort
+          field: field_surname_for_sort_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: field_surname_for_sort_value
+          exposed: false
+      arguments: {  }
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            person: person
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            person: person
           expose:
             operator_limit_selection: false
             operator_list: {  }
@@ -301,6 +294,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: list_field
           operator: or
           value:
             - '0'
@@ -312,6 +306,8 @@ display:
             description: ''
             use_operator: false
             operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: ''
             required: false
             remember: false
@@ -319,8 +315,6 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -334,21 +328,32 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          plugin_id: list_field
-      sorts:
-        field_surname_for_sort_value:
-          id: field_surname_for_sort_value
-          table: node__field_surname_for_sort
-          field: field_surname_for_sort_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: standard
-      title: 'External Advisory Group'
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: 'border-bottom mb-3'
+          default_row_class: false
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline:
+            field_image: field_image
+            title: title
+            body: body
+          separator: ''
+          hide_empty: false
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships: {  }
+      css_class: 'container my-5 block-views'
       header:
         area_1:
           id: area_1
@@ -357,12 +362,12 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Page title'
+          plugin_id: text
           empty: true
-          tokenize: false
           content:
             value: '<h2 class="title">[view:title]</h2>'
             format: full_html
-          plugin_id: text
+          tokenize: false
         area:
           id: area
           table: views
@@ -370,18 +375,14 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: text
           empty: false
-          tokenize: false
           content:
             value: "<p>Sentinel’s External Advisory Group (EAG) is made up of leading experts in key thematic areas of the project (agricultural development, biodiversity conservation, social and environmental impacts of agriculture, research capacity development, research uptake and use) as well as one member with specific programme management expertise and one observer from our funders.</p>\r\n\r\n<p>The EAG plays an advisory and monitoring role, providing strategic advice, critical and constructive feedback at key points throughout the project, and providing links and outreach with key regional and international processes that will contribute to achieving Sentinel’s goals.</p>\r\n\r\n<p>The EAG includes the chairs of the three Country Advisory Groups to ensure that the overall project strategy considers the specific requirements of each country. </p>\r\n<p>&nbsp;</p>"
             format: full_html
-          plugin_id: text
+          tokenize: false
       footer: {  }
-      empty: {  }
-      relationships: {  }
-      arguments: {  }
       display_extenders: {  }
-      css_class: 'container my-5 block-views'
     cache_metadata:
       max-age: -1
       contexts:
@@ -393,36 +394,35 @@ display:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_image'
   page_1:
-    display_plugin: page
     id: page_1
     display_title: Page
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
-      path: our-team
+      title: 'Our team'
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            person: person
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            person: person
           group: 1
           expose:
             operator_limit_selection: false
@@ -434,6 +434,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: boolean
           operator: '='
           value: '1'
           group: 1
@@ -464,18 +465,17 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: boolean
-      defaults:
-        filters: false
-        filter_groups: false
-        access: true
-        header: false
-        title: false
-        footer: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        access: true
+        title: false
+        filters: false
+        filter_groups: false
+        header: false
+        footer: false
       header:
         area_1:
           id: area_1
@@ -484,12 +484,12 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Page title'
+          plugin_id: text
           empty: true
-          tokenize: false
           content:
             value: '<h2 class="title">[view:title]</h2>'
             format: full_html
-          plugin_id: text
+          tokenize: false
         area:
           id: area
           table: views
@@ -497,13 +497,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: text
           empty: false
-          tokenize: false
           content:
             value: "&nbsp;\r\n&nbsp;"
             format: full_html
-          plugin_id: text
-      title: 'Our team'
+          tokenize: false
       footer:
         area:
           id: area
@@ -512,12 +511,14 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: false
-          tokenize: false
-          content:
-            value: "<p><a id=\"contact\"></a></p>\r\n&nbsp;\r\n&nbsp;\r\n<p><h3>Contact us</h3></p>\r\n\r\n<p><strong>For general information about the project, please contact:</strong></p>\r\n\r\n<p>Alexandra Norodom (alexandra.norodom@iied.org) or Lucy Earle (lucy.earle@iied.org)</p>\r\n\r\n<p><strong>For country-specific information, please contact:</strong></p>\r\n\r\n<p>Afghanistan - Nassim Majidi (nassim.majidi@samuelhall.org)<br>\r\nEthiopia - Engida Esayas Dube (engidae@du.edu.et)<br>\r\nJordan - Yamen Al-Beitawi (yamen@hu.edu.jo)<br>\r\nKenya - Michael Owiso (mowiso@maseno.ac.ke)</p>"
-            format: full_html
           plugin_id: text
+          empty: false
+          content:
+            value: "<p><a id=\"contact\"></a></p>\r\n&nbsp;\r\n&nbsp;\r\n<p><h3>Contact us</h3></p>\r\n\r\n<p><strong>For general information about the project, please contact:</strong></p>\r\n\r\n<p>Jessica Stewart (jessica.stewart@iied.org) or Lucy Earle (lucy.earle@iied.org)</p>\r\n\r\n<p><strong>For country-specific information, please contact:</strong></p>\r\n\r\n<p>Afghanistan - Nassim Majidi (nassim.majidi@samuelhall.org)<br>\r\nEthiopia - Engida Esayas Dube (engidae@du.edu.et)<br>\r\nJordan - Yamen Al-Beitawi (yamen@hu.edu.jo)<br>\r\nKenya - Michael Owiso (mowiso@maseno.ac.ke)</p>"
+            format: full_html
+          tokenize: false
+      display_extenders: {  }
+      path: our-team
     cache_metadata:
       max-age: -1
       contexts:
@@ -529,119 +530,12 @@ display:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_image'
   page_2:
-    display_plugin: page
     id: page_2
     display_title: Page
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
-      path: country-advisory-groups
       title: 'Country Advisory Groups'
-      defaults:
-        title: false
-        filters: false
-        filter_groups: false
-        header: false
-        fields: false
-        sorts: false
-      filters:
-        status:
-          value: '1'
-          table: node_field_data
-          field: status
-          plugin_id: boolean
-          entity_type: node
-          entity_field: status
-          id: status
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-          group: 1
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          value:
-            person: person
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          group: 1
-          expose:
-            operator_limit_selection: false
-            operator_list: {  }
-        field_country_advisory_group_value:
-          id: field_country_advisory_group_value
-          table: node__field_country_advisory_group
-          field: field_country_advisory_group_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: 'not empty'
-          value: {  }
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: list_field
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      header:
-        area_1:
-          id: area_1
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: 'Page title'
-          empty: true
-          tokenize: false
-          content:
-            value: '<h2 class="title">[view:title]</h2>'
-            format: full_html
-          plugin_id: text
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: false
-          content:
-            value: "<p>Sentinel’s Country Advisory Groups (CAGs) in our three African focal countries, Ethiopia, Ghana and Zambia, include members representing a range of national stakeholders within each country – e.g. from key line ministries, civil society organisations, the private sector, and academia / higher education. The CAGs play an advisory and monitoring role at country-specific level, and also feed into project-level strategy via their chairs who sit on the External Advisory Group (EAG). </p>\r\n<p>Similar to the EAG, the CAGs also play an advisory and monitoring role but at country-specific level, providing strategic advice, critical and constructive feedback at key points throughout the project, and providing links and outreach with key national and regional processes that will contribute to achieving Sentinel’s goals.</p>\r\n<p>&nbsp;</p>"
-            format: full_html
-          plugin_id: text
       fields:
         field_image:
           id: field_image
@@ -650,6 +544,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -694,8 +589,8 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: thumbnail_sq
             image_link: ''
+            image_style: thumbnail_sq
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -706,7 +601,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -714,6 +608,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -769,9 +666,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         body:
           id: body
           table: node__body
@@ -779,6 +673,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -833,7 +728,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_country_advisory_group:
           id: field_country_advisory_group
           table: node__field_country_advisory_group
@@ -841,6 +735,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: ''
           exclude: true
           alter:
@@ -895,7 +790,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
       sorts:
         field_country_advisory_group_value:
           id: field_country_advisory_group_value
@@ -904,11 +798,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: standard
           order: ASC
-          exposed: false
           expose:
             label: ''
-          plugin_id: standard
+            field_identifier: field_country_advisory_group_value
+          exposed: false
         sticky:
           id: sticky
           table: node_field_data
@@ -916,13 +811,14 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
           entity_type: node
           entity_field: sticky
           plugin_id: standard
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: sticky
+          exposed: false
         field_surname_for_sort_value:
           id: field_surname_for_sort_value
           table: node__field_surname_for_sort
@@ -930,111 +826,39 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: standard
           order: ASC
-          exposed: false
           expose:
             label: ''
-          plugin_id: standard
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - 'user.node_grants:view'
-        - user.permissions
-      tags:
-        - 'config:field.storage.node.body'
-        - 'config:field.storage.node.field_country_advisory_group'
-        - 'config:field.storage.node.field_image'
-  page_3:
-    display_plugin: page
-    id: page_3
-    display_title: 'All people (admin view)'
-    position: 3
-    display_options:
-      display_extenders: {  }
-      title: 'Edit people'
-      defaults:
-        title: false
-        filters: false
-        filter_groups: false
-        header: false
-        style: false
-        row: false
-        fields: false
-        sorts: false
-        access: false
+            field_identifier: field_surname_for_sort_value
+          exposed: false
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            person: person
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            person: person
           group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-        field_external_advisory_group_value:
-          id: field_external_advisory_group_value
-          table: node__field_external_advisory_group
-          field: field_external_advisory_group_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value: All
-          group: 1
-          exposed: true
-          expose:
-            operator_id: ''
-            label: 'External Advisory Group'
-            description: ''
-            use_operator: false
-            operator: field_external_advisory_group_value_op
-            identifier: field_external_advisory_group_value
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              site_editor: '0'
-              admin: '0'
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: 'External Advisory Group (field_external_advisory_group)'
-            description: null
-            identifier: field_external_advisory_group_value
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items:
-              1: {  }
-              2: {  }
-              3: {  }
-          plugin_id: boolean
         field_country_advisory_group_value:
           id: field_country_advisory_group_value
           table: node__field_country_advisory_group
@@ -1042,28 +866,26 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: or
+          plugin_id: list_field
+          operator: 'not empty'
           value: {  }
           group: 1
-          exposed: true
+          exposed: false
           expose:
-            operator_id: field_country_advisory_group_value_op
-            label: 'Country Advisory Group'
+            operator_id: ''
+            label: ''
             description: ''
             use_operator: false
-            operator: field_country_advisory_group_value_op
-            identifier: field_country_advisory_group_value
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              site_editor: '0'
-              admin: '0'
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1077,66 +899,64 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          plugin_id: list_field
       filter_groups:
         operator: AND
         groups:
           1: AND
-      display_description: ''
-      path: admin-people
-      header: {  }
-      style:
-        type: table
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            field_image: field_image
-            title: title
-            body: body
-            edit_node: edit_node
-          info:
-            field_image:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            title:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            body:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            edit_node:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: '-1'
-          empty_table: false
-      row:
-        type: fields
-        options:
-          default_field_elements: true
-          inline: {  }
-          separator: ''
-          hide_empty: false
+      defaults:
+        title: false
+        fields: false
+        sorts: false
+        filters: false
+        filter_groups: false
+        header: false
+      header:
+        area_1:
+          id: area_1
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: 'Page title'
+          plugin_id: text
+          empty: true
+          content:
+            value: '<h2 class="title">[view:title]</h2>'
+            format: full_html
+          tokenize: false
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: "<p>Sentinel’s Country Advisory Groups (CAGs) in our three African focal countries, Ethiopia, Ghana and Zambia, include members representing a range of national stakeholders within each country – e.g. from key line ministries, civil society organisations, the private sector, and academia / higher education. The CAGs play an advisory and monitoring role at country-specific level, and also feed into project-level strategy via their chairs who sit on the External Advisory Group (EAG). </p>\r\n<p>Similar to the EAG, the CAGs also play an advisory and monitoring role but at country-specific level, providing strategic advice, critical and constructive feedback at key points throughout the project, and providing links and outreach with key national and regional processes that will contribute to achieving Sentinel’s goals.</p>\r\n<p>&nbsp;</p>"
+            format: full_html
+          tokenize: false
+      display_extenders: {  }
+      path: country-advisory-groups
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.body'
+        - 'config:field.storage.node.field_country_advisory_group'
+        - 'config:field.storage.node.field_image'
+  page_3:
+    id: page_3
+    display_title: 'All people (admin view)'
+    display_plugin: page
+    position: 3
+    display_options:
+      title: 'Edit people'
       fields:
         nid:
           id: nid
@@ -1145,6 +965,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
           label: ID
           exclude: true
           alter:
@@ -1201,9 +1024,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: nid
-          plugin_id: field
         field_image:
           id: field_image
           table: node__field_image
@@ -1211,6 +1031,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -1255,8 +1076,8 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: thumbnail_sq
             image_link: ''
+            image_style: thumbnail_sq
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -1267,7 +1088,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -1275,6 +1095,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Name
           exclude: false
           alter:
@@ -1330,9 +1153,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         body:
           id: body
           table: node__body
@@ -1340,6 +1160,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Bio
           exclude: false
           alter:
@@ -1394,7 +1215,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_link:
           id: field_link
           table: node__field_link
@@ -1402,6 +1222,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Link
           exclude: false
           alter:
@@ -1461,7 +1282,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
+      access:
+        type: perm
+        options:
+          perm: 'edit any person content'
       sorts:
         field_surname_for_sort_value:
           id: field_surname_for_sort_value
@@ -1470,15 +1294,196 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: standard
           order: ASC
-          exposed: false
           expose:
             label: ''
-          plugin_id: standard
-      access:
-        type: perm
+            field_identifier: field_surname_for_sort_value
+          exposed: false
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            person: person
+          group: 1
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_external_advisory_group_value:
+          id: field_external_advisory_group_value
+          table: node__field_external_advisory_group
+          field: field_external_advisory_group_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: 'External Advisory Group'
+            description: ''
+            use_operator: false
+            operator: field_external_advisory_group_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_external_advisory_group_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              site_editor: '0'
+              admin: '0'
+          is_grouped: false
+          group_info:
+            label: 'External Advisory Group (field_external_advisory_group)'
+            description: null
+            identifier: field_external_advisory_group_value
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1: {  }
+              2: {  }
+              3: {  }
+        field_country_advisory_group_value:
+          id: field_country_advisory_group_value
+          table: node__field_country_advisory_group
+          field: field_country_advisory_group_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: list_field
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_country_advisory_group_value_op
+            label: 'Country Advisory Group'
+            description: ''
+            use_operator: false
+            operator: field_country_advisory_group_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_country_advisory_group_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              site_editor: '0'
+              admin: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: table
         options:
-          perm: 'edit any person content'
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            field_image: field_image
+            title: title
+            body: body
+            edit_node: edit_node
+          default: '-1'
+          info:
+            field_image:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            title:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            body:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            edit_node:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      defaults:
+        access: false
+        title: false
+        style: false
+        row: false
+        fields: false
+        sorts: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header: {  }
+      display_extenders: {  }
+      path: admin-people
     cache_metadata:
       max-age: -1
       contexts:

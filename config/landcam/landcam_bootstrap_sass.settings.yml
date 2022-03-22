@@ -1,3 +1,15 @@
+_core:
+  default_config_hash: 78qpB4gShKy__Mqle_dzCnNVnSf-dprQszBls-TYr5Q
+favicon:
+  use_default: true
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+  node_user_picture: false
+logo:
+  path: 'public://LClogo@280x80.png'
+  use_default: false
 bootstrap_barrio_library: production
 bootstrap_barrio_sidebar_position: both
 bootstrap_barrio_content_offset: '0'
@@ -17,18 +29,6 @@ bootstrap_barrio_navbar_position: ''
 bootstrap_barrio_navbar_color: ''
 bootstrap_barrio_navbar_background: bg-white
 bootstrap_barrio_table_hover: 1
-_core:
-  default_config_hash: 78qpB4gShKy__Mqle_dzCnNVnSf-dprQszBls-TYr5Q
-features:
-  node_user_picture: false
-  comment_user_picture: true
-  comment_user_verification: true
-  favicon: true
-logo:
-  use_default: false
-  path: 'public://LClogo@280x80.png'
-favicon:
-  use_default: true
 bootstrap_barrio_region_clean_top_header: 0
 bootstrap_barrio_region_class_top_header: ''
 bootstrap_barrio_region_clean_top_header_form: 0

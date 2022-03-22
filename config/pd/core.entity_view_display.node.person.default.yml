@@ -27,9 +27,8 @@ bundle: person
 mode: default
 content:
   body:
-    label: hidden
     type: text_summary_or_trimmed
-    weight: 2
+    label: hidden
     settings:
       trim_length: 300
     third_party_settings:
@@ -40,37 +39,38 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 2
     region: content
   field_country_advisory_group:
-    weight: 4
+    type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 4
     region: content
   field_email:
-    weight: 7
+    type: email_mailto
     label: inline
     settings: {  }
     third_party_settings: {  }
-    type: email_mailto
+    weight: 7
     region: content
   field_external_advisory_group:
-    weight: 3
+    type: boolean
     label: inline
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
+    weight: 3
     region: content
   field_image:
-    weight: 0
+    type: image
     label: hidden
     settings:
-      image_style: thumbnail_sq
       image_link: content
+      image_style: thumbnail_sq
     third_party_settings:
       ds:
         ds_limit: ''
@@ -80,10 +80,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: image
+    weight: 0
     region: content
   field_link:
-    weight: 6
+    type: link
     label: inline
     settings:
       trim_length: 80
@@ -92,25 +92,25 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 6
     region: content
   field_project_team:
-    weight: 8
+    type: boolean
     label: above
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
+    weight: 8
     region: content
   field_theme:
-    weight: 5
+    type: entity_reference_label
     label: inline
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 5
     region: content
 hidden:
   addtoany: true

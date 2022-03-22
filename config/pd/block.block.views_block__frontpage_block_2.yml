@@ -18,13 +18,13 @@ plugin: 'views_block:frontpage-block_2'
 settings:
   id: 'views_block:frontpage-block_2'
   label: ''
-  provider: views
   label_display: '0'
+  provider: views
   views_label: ''
   items_per_page: '40'
 visibility:
   request_path:
     id: request_path
-    pages: /blogs
     negate: false
     context_mapping: {  }
+    pages: /blogs

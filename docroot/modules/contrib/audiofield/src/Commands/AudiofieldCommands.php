@@ -24,7 +24,7 @@ class AudiofieldCommands extends DrushCommands {
   /**
    * File system service.
    *
-   * @var Drupal\Component\FileSystem\FileSystem
+   * @var Drupal\Component\FileSystem\FileSystemInterface
    */
   protected $fileSystem;
 
@@ -38,7 +38,7 @@ class AudiofieldCommands extends DrushCommands {
   /**
    * {@inheritdoc}
    */
-  public function __construct(AudioFieldPlayerManager $player_manager, FileSystem $file_system, ArchiverManager $archiver_manager) {
+  public function __construct(AudioFieldPlayerManager $player_manager, FileSystemInterface $file_system, ArchiverManager $archiver_manager) {
     parent::__construct();
 
     $this->playerManager = $player_manager;

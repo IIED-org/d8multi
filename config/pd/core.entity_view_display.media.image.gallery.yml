@@ -19,16 +19,16 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
-        label: ''
+        classes:
+          layout_class: {  }
+          ds_content: {  }
         wrappers:
           ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
-          ds_content: {  }
+        label: ''
     regions:
       ds_content:
         - field_media_image
@@ -38,8 +38,8 @@ bundle: image
 mode: gallery
 content:
   field_media_image:
+    type: colorbox
     label: hidden
-    weight: 0
     settings:
       colorbox_node_style: thumbnail_sq
       colorbox_node_style_first: thumbnail_sq
@@ -56,7 +56,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: colorbox
+    weight: 0
     region: ds_content
 hidden:
   addtoany: true

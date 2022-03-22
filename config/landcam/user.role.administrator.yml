@@ -1,7 +1,55 @@
 uuid: 199577f2-26e3-4db9-bdc7-24b5178e682e
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.full_html
+    - media.type.flickr
+    - node.type.event
+    - node.type.news
+    - node.type.page
+    - node.type.partner
+    - node.type.resource
+    - taxonomy.vocabulary.article_type
+    - taxonomy.vocabulary.material_type
+  module:
+    - block
+    - block_content
+    - comment
+    - config
+    - config_translation
+    - contact
+    - content_translation
+    - contextual
+    - ds
+    - entity_browser
+    - entity_clone
+    - entity_usage
+    - eu_cookie_compliance
+    - field_ui
+    - file
+    - filter
+    - google_analytics
+    - image
+    - language
+    - locale
+    - mailchimp
+    - mailchimp_signup
+    - media
+    - node
+    - paragraphs
+    - path
+    - pathauto
+    - quickedit
+    - readonlymode
+    - redirect
+    - responsive_image
+    - search
+    - search_api
+    - system
+    - taxonomy
+    - toolbar
+    - views_ui
 id: administrator
 label: Administrator
 weight: -7
@@ -11,7 +59,6 @@ permissions:
   - 'access comments'
   - 'access content overview'
   - 'access contextual links'
-  - 'access devel information'
   - 'access entity usage statistics'
   - 'access files overview'
   - 'access in-place editing'
@@ -30,7 +77,6 @@ permissions:
   - 'admin display suite'
   - 'admin fields'
   - 'administer account settings'
-  - 'administer at_theme_generator'
   - 'administer block_content display'
   - 'administer block_content fields'
   - 'administer block_content form display'
@@ -69,12 +115,8 @@ permissions:
   - 'administer paragraph display'
   - 'administer paragraph fields'
   - 'administer paragraph form display'
-  - 'administer paragraphs library'
   - 'administer paragraphs settings'
   - 'administer paragraphs types'
-  - 'administer paragraphs_library_item display'
-  - 'administer paragraphs_library_item fields'
-  - 'administer paragraphs_library_item form display'
   - 'administer pathauto'
   - 'administer permissions'
   - 'administer redirect settings'
@@ -96,13 +138,11 @@ permissions:
   - 'administer users'
   - 'administer views'
   - 'bypass node access'
-  - 'bypass paragraphs type content access'
   - 'clone action entity'
   - 'clone base_field_override entity'
   - 'clone block entity'
   - 'clone block_content entity'
   - 'clone block_content_type entity'
-  - 'clone classy_paragraphs_style entity'
   - 'clone comment entity'
   - 'clone comment_type entity'
   - 'clone configurable_language entity'
@@ -129,7 +169,6 @@ permissions:
   - 'clone node entity'
   - 'clone node_type entity'
   - 'clone paragraph entity'
-  - 'clone paragraphs_library_item entity'
   - 'clone paragraphs_type entity'
   - 'clone pathauto_pattern entity'
   - 'clone redirect entity'
@@ -149,11 +188,6 @@ permissions:
   - 'create media'
   - 'create news content'
   - 'create page content'
-  - 'create paragraph content from_library'
-  - 'create paragraph content text_image'
-  - 'create paragraph content text_on_background_image'
-  - 'create paragraph content view'
-  - 'create paragraph library item'
   - 'create partner content'
   - 'create resource content'
   - 'create url aliases'
@@ -176,10 +210,6 @@ permissions:
   - 'delete own partner content'
   - 'delete own resource content'
   - 'delete page revisions'
-  - 'delete paragraph content from_library'
-  - 'delete paragraph content text_image'
-  - 'delete paragraph content text_on_background_image'
-  - 'delete paragraph content view'
   - 'delete partner revisions'
   - 'delete resource revisions'
   - 'display eu cookie compliance popup'
@@ -197,8 +227,6 @@ permissions:
   - 'edit own page content'
   - 'edit own partner content'
   - 'edit own resource content'
-  - 'edit paragraph library item'
-  - 'execute php code'
   - 'export configuration'
   - 'import configuration'
   - 'link to any page'
@@ -215,7 +243,6 @@ permissions:
   - 'revert resource revisions'
   - 'select account cancellation method'
   - 'skip comment approval'
-  - 'switch users'
   - 'synchronize configuration'
   - 'translate any entity'
   - 'translate article_type taxonomy_term'
@@ -231,10 +258,6 @@ permissions:
   - 'update any media'
   - 'update content translations'
   - 'update media'
-  - 'update paragraph content from_library'
-  - 'update paragraph content text_image'
-  - 'update paragraph content text_on_background_image'
-  - 'update paragraph content view'
   - 'use PHP for google analytics tracking visibility'
   - 'use advanced search'
   - 'use text format full_html'
@@ -244,10 +267,6 @@ permissions:
   - 'view news revisions'
   - 'view own unpublished content'
   - 'view page revisions'
-  - 'view paragraph content from_library'
-  - 'view paragraph content text_image'
-  - 'view paragraph content text_on_background_image'
-  - 'view paragraph content view'
   - 'view partner revisions'
   - 'view resource revisions'
   - 'view the administration theme'

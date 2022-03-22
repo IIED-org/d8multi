@@ -21,7 +21,12 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
-        label: ''
+        classes:
+          layout_class: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
         wrappers:
           header: div
           left: div
@@ -31,12 +36,7 @@ third_party_settings:
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
-          header: {  }
-          left: {  }
-          right: {  }
-          footer: {  }
+        label: ''
     regions:
       header:
         - node_title
@@ -56,22 +56,22 @@ bundle: organisation
 mode: full
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 1
     region: left
   field_image:
-    weight: 2
+    type: image
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
-      svg_render_as_image: true
+      image_style: thumbnail
       svg_attributes:
         width: null
         height: null
+      svg_render_as_image: true
     third_party_settings:
       ds:
         ds_limit: ''
@@ -79,30 +79,30 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
+            ow: false
             ow-el: ''
             ow-cl: ''
             ow-at: ''
+            ow-def-at: false
+            ow-def-cl: false
             fis: true
             fis-el: div
             fis-cl: field-organisation-logo
             fis-at: ''
+            fis-def-at: false
             fi: true
             fi-el: div
             fi-cl: text-center
             fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            ow: false
-            ow-def-at: false
-            ow-def-cl: false
-            fis-def-at: false
             fi-def-at: false
-    type: image
+            prefix: ''
+            suffix: ''
+    weight: 2
     region: right
 hidden:
   addtoany: true

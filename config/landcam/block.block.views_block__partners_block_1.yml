@@ -18,13 +18,13 @@ plugin: 'views_block:partners-block_1'
 settings:
   id: 'views_block:partners-block_1'
   label: Partners
-  provider: views
   label_display: visible
+  provider: views
   views_label: Partners
   items_per_page: none
 visibility:
   request_path:
     id: request_path
-    pages: "/about-us\r\n*/propos"
     negate: false
     context_mapping: {  }
+    pages: "/about-us\r\n*/propos"

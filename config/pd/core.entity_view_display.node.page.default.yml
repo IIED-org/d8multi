@@ -22,6 +22,12 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
         wrappers:
           header: div
           left: div
@@ -31,12 +37,6 @@ third_party_settings:
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
-          header: {  }
-          left: {  }
-          right: {  }
-          footer: {  }
     regions:
       header:
         - field_subtitle
@@ -50,43 +50,43 @@ bundle: page
 mode: default
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 1
     region: left
   field_para:
     type: entity_reference_revisions_entity_view
-    weight: 5
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    weight: 5
     region: content
   field_standfirst:
-    weight: 4
+    type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 4
     region: header
   field_subtitle:
     type: text_default
-    weight: 0
-    region: header
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: header
   field_video:
     type: entity_reference_entity_view
-    weight: 3
     label: above
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
+    weight: 3
     region: header
 hidden:
   addtoany: true

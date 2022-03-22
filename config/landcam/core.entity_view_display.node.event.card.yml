@@ -24,6 +24,10 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
+          first: {  }
+          second: {  }
         wrappers:
           first: div
           second: div
@@ -31,10 +35,6 @@ third_party_settings:
         attributes: ''
         link_attribute: content
         link_custom: ''
-        classes:
-          layout_class: {  }
-          first: {  }
-          second: {  }
     regions:
       first:
         - field_image
@@ -49,9 +49,9 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: p
           class: ''
-          link: false
       'bundle_field:node':
         plugin_id: 'bundle_field:node'
         weight: 1
@@ -63,7 +63,7 @@ bundle: event
 mode: card
 content:
   field_daterange:
-    weight: 3
+    type: daterange_default
     label: hidden
     settings:
       timezone_override: ''
@@ -77,16 +77,16 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: daterange_default
+    weight: 3
     region: second
   field_image:
-    weight: 0
+    type: image
     label: hidden
     settings:
-      image_style: card_image
       image_link: ''
+      image_style: card_image
     third_party_settings: {  }
-    type: image
+    weight: 0
     region: first
 hidden:
   body: true

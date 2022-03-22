@@ -17,8 +17,8 @@ plugin: 'block_content:327e5b5b-b717-4f3d-bea7-2835b11b0353'
 settings:
   id: 'block_content:327e5b5b-b717-4f3d-bea7-2835b11b0353'
   label: 'Footer block'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full

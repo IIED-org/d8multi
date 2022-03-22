@@ -55,12 +55,12 @@ class PluginManager
     protected $registeredPlugins = array();
 
     /**
-     * @var array<string, bool>|null
+     * @var array<non-empty-string, bool>|null
      */
     private $allowPluginRules;
 
     /**
-     * @var array<string, bool>|null
+     * @var array<non-empty-string, bool>|null
      */
     private $allowGlobalPluginRules;
 
@@ -477,7 +477,18 @@ class PluginManager
     private function loadRepository(RepositoryInterface $repo, $isGlobalRepo)
     {
         $packages = $repo->getPackages();
-        $sortedPackages = PackageSorter::sortPackages($packages);
+
+        $weights = array();
+        foreach ($packages as $package) {
+            if ($package->getType() === 'composer-plugin') {
+                $extra = $package->getExtra();
+                if ($package->getName() === 'composer/installers' || (isset($extra['plugin-modifies-install-path']) && $extra['plugin-modifies-install-path'] === true)) {
+                    $weights[$package->getName()] = -10000;
+                }
+            }
+        }
+
+        $sortedPackages = PackageSorter::sortPackages($packages, $weights);
         foreach ($sortedPackages as $package) {
             if (!($package instanceof CompletePackage)) {
                 continue;
@@ -643,7 +654,7 @@ class PluginManager
 
     /**
      * @param  array<string, bool>|bool|null $allowPluginsConfig
-     * @return array<string, bool>|null
+     * @return array<non-empty-string, bool>|null
      */
     private function parseAllowedPlugins($allowPluginsConfig)
     {
@@ -656,7 +667,7 @@ class PluginManager
         }
 
         if (false === $allowPluginsConfig) {
-            return array('{^$}D' => false);
+            return array('{}' => false);
         }
 
         $rules = array();

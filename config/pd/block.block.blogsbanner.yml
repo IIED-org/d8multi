@@ -18,14 +18,14 @@ plugin: 'block_content:403c8721-46d9-43dd-bacc-614e772b9c40'
 settings:
   id: 'block_content:403c8721-46d9-43dd-bacc-614e772b9c40'
   label: 'Blogs banner'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: /blogs
     negate: false
     context_mapping: {  }
+    pages: /blogs

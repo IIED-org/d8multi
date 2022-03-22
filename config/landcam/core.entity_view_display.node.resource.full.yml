@@ -86,31 +86,29 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: h2
           class: ''
-          link: false
 id: node.resource.full
 targetEntityType: node
 bundle: resource
 mode: full
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 9
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 9
     region: right
   field_audio_file:
     type: file_audio
-    weight: 2
-    region: left
     label: hidden
     settings:
       controls: true
-      multiple_file_display_type: tags
       autoplay: false
       loop: false
+      multiple_file_display_type: tags
     third_party_settings:
       ds:
         ft:
@@ -119,8 +117,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 2
+    region: left
   field_author_s_:
-    weight: 5
+    type: string
     label: inline
     settings:
       link_to_entity: false
@@ -132,10 +132,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: string
+    weight: 5
     region: right
   field_file:
-    weight: 1
+    type: pdfpreview
     label: hidden
     settings:
       image_style: cover_large
@@ -149,37 +149,37 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
             ow: true
             ow-el: div
             ow-cl: 'clearfix text-center'
             ow-at: ''
             ow-def-at: true
             ow-def-cl: true
+            fis: false
             fis-el: ''
             fis-cl: ''
             fis-at: ''
+            fis-def-at: false
+            fi: false
             fi-el: ''
             fi-cl: ''
             fi-at: ''
-            suffix: '<div class=text-center my-1"><a class="btn btn-secondary" href=[node:field_file:entity:url]>Download file</a></div>'
-            lbw: false
-            lb-col: false
-            fis: false
-            fis-def-at: false
-            fi: false
             fi-def-at: false
-    type: pdfpreview
+            prefix: ''
+            suffix: '<div class=text-center my-1"><a class="btn btn-secondary" href=[node:field_file:entity:url]>Download file</a></div>'
+    weight: 1
     region: left
   field_image:
-    weight: 3
+    type: image
     label: hidden
     settings:
-      image_style: cover_large
       image_link: ''
+      image_style: cover_large
     third_party_settings:
       ds:
         ds_limit: ''
@@ -187,33 +187,33 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
             ow: true
             ow-el: div
             ow-cl: ''
             ow-at: ''
+            ow-def-at: false
             ow-def-cl: true
             fis: true
             fis-el: div
             fis-cl: 'd-block mx-auto clearfix'
             fis-at: ''
+            fis-def-at: false
             fi: true
             fi-el: a
             fi-cl: ''
             fi-at: 'href=[node:field_link:uri] title=[node:field_link:title]'
-            suffix: ''
-            lbw: false
-            lb-col: false
-            ow-def-at: false
-            fis-def-at: false
             fi-def-at: false
-    type: image
+            prefix: ''
+            suffix: ''
+    weight: 3
     region: left
   field_link:
-    weight: 4
+    type: link
     label: hidden
     settings:
       trim_length: 100
@@ -227,33 +227,33 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
             ow: true
             ow-el: button
             ow-cl: 'btn btn-secondary d-block mx-auto my-1'
             ow-at: ''
-            fis-el: ''
-            fis-cl: ''
-            fis-at: ''
-            fi-el: ''
-            fi-cl: ''
-            fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
             ow-def-at: false
             ow-def-cl: false
             fis: false
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
             fis-def-at: false
             fi: false
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
             fi-def-at: false
-    type: link
+            prefix: ''
+            suffix: ''
+    weight: 4
     region: left
   field_material_type:
-    weight: 8
+    type: entity_reference_label
     label: inline
     settings:
       link: true
@@ -265,10 +265,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: entity_reference_label
+    weight: 8
     region: right
   field_pubdate:
-    weight: 6
+    type: datetime_default
     label: inline
     settings:
       timezone_override: ''
@@ -281,12 +281,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: datetime_default
+    weight: 6
     region: right
   field_publisher:
     type: text_default
-    weight: 7
-    region: right
     label: inline
     settings: {  }
     third_party_settings:
@@ -297,6 +295,8 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    weight: 7
+    region: right
 hidden:
   field_press_center: true
   langcode: true

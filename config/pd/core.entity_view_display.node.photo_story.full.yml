@@ -41,9 +41,9 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: h2
           class: ''
-          link: false
         ft:
           id: default
           settings:
@@ -56,16 +56,14 @@ bundle: photo_story
 mode: full
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 4
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 4
     region: content
   field_author:
     type: entity_reference_entity_view
-    weight: 1
-    region: content
     label: hidden
     settings:
       view_mode: card
@@ -77,10 +75,11 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
             ow: true
             ow-el: div
             ow-cl: ''
@@ -92,17 +91,17 @@ content:
             fis-cl: 'float-md-right d-inline'
             fis-at: ''
             fis-def-at: true
+            fi: false
             fi-el: ''
             fi-cl: ''
             fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            fi: false
             fi-def-at: false
+            prefix: ''
+            suffix: ''
+    weight: 1
+    region: content
   field_gallery_images:
     type: entity_reference_entity_view
-    weight: 5
     label: hidden
     settings:
       view_mode: gallery
@@ -114,34 +113,33 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
             ow: true
             ow-el: div
             ow-cl: gallery
             ow-at: ''
+            ow-def-at: false
+            ow-def-cl: false
             fis: true
             fis-el: div
             fis-cl: gallery-item
             fis-at: ''
             fis-def-at: true
+            fi: false
             fi-el: ''
             fi-cl: ''
             fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            ow-def-at: false
-            ow-def-cl: false
-            fi: false
             fi-def-at: false
+            prefix: ''
+            suffix: ''
+    weight: 5
     region: content
   field_image:
     type: colorbox
-    weight: 2
-    region: content
     label: hidden
     settings:
       colorbox_node_style: large
@@ -158,10 +156,11 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: '<figure class="w-100">'
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
             ow: true
             ow-el: div
             ow-cl: ''
@@ -173,18 +172,17 @@ content:
             fis-cl: ''
             fis-at: ''
             fis-def-at: true
+            fi: false
             fi-el: ''
             fi-cl: ''
             fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            fi: false
             fi-def-at: false
+            prefix: '<figure class="w-100">'
+            suffix: ''
+    weight: 2
+    region: content
   field_image_caption:
     type: text_default
-    weight: 3
-    region: content
     label: hidden
     settings: {  }
     third_party_settings:
@@ -193,29 +191,31 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: ''
+            lbw: false
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
+            lb-col: false
+            ow: false
             ow-el: ''
             ow-cl: ''
             ow-at: ''
+            ow-def-at: false
+            ow-def-cl: false
             fis: true
             fis-el: figcaption
             fis-cl: ''
             fis-at: ''
+            fis-def-at: false
+            fi: false
             fi-el: ''
             fi-cl: ''
             fi-at: ''
-            suffix: '</figure>'
-            lbw: false
-            lb-col: false
-            ow: false
-            ow-def-at: false
-            ow-def-cl: false
-            fis-def-at: false
-            fi: false
             fi-def-at: false
+            prefix: ''
+            suffix: '</figure>'
+    weight: 3
+    region: content
 hidden:
   addtoany: true
   field_pubdate: true
