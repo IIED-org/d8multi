@@ -13,9 +13,9 @@ seckit_xss:
     style-src: ''
     img-src: '*'
     media-src: ''
-    frame-src: ''
+    frame-src: '*.youtube.com'
     frame-ancestors: ''
-    child-src: ''
+    child-src: '*.youtube.com'
     font-src: '*'
     connect-src: ''
     report-uri: /report-csp-violation
