@@ -104,9 +104,6 @@
       "docroot/themes/contrib/{$name}": ["type:drupal-theme"]
     },
     "patches": {
-      "drupal/drupal": {
-        "Add startup configuration for PHP server": "https://www.drupal.org/files/issues/2018-08-22/2457999-183.patch"
-      },
       "drupal/colorbox": {
         "Check image for support before build Url": "https://www.drupal.org/files/issues/2018-11-19/image_toolkit_support-3014140-2.patch"
       },
@@ -144,7 +141,8 @@
       "composer/installers": true,
       "cweagans/composer-patches": true,
       "drupal/core-composer-scaffold": true,
-      "drupal/core-project-message": true
+      "drupal/core-project-message": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
     }
   }
 }
