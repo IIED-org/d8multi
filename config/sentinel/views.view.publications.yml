@@ -128,7 +128,7 @@ display:
         type: none
         options: {  }
       cache:
-        type: tag
+        type: none
         options: {  }
       empty:
         result:
@@ -291,7 +291,7 @@ display:
             'entity:taxonomy_term':
               material_type: default
       query:
-        type: views_query
+        type: search_api_query
         options:
           bypass_access: false
           skip_access: false

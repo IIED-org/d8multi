@@ -16,7 +16,7 @@ dependencies:
     - node.type.person
   module:
     - ds
-    - image
+    - svg_image
     - text
     - user
 id: node.person.search_result
@@ -45,6 +45,12 @@ content:
     settings:
       image_link: content
       image_style: thumbnail
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
     third_party_settings:
       ds:
         ds_limit: ''
@@ -65,3 +71,4 @@ hidden:
   field_surname_for_sort: true
   field_theme: true
   links: true
+  search_api_excerpt: true

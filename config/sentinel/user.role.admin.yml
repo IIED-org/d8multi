@@ -45,6 +45,7 @@ dependencies:
     - system
     - taxonomy
     - toolbar
+    - update
     - views_ui
     - webform
 id: admin
@@ -236,3 +237,4 @@ permissions:
   - 'view subpage revisions'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
+  - 'view update notifications'

@@ -49,6 +49,7 @@ dependencies:
     - system
     - taxonomy
     - toolbar
+    - update
     - views_ui
 id: administrator
 label: Administrator
@@ -271,3 +272,4 @@ permissions:
   - 'view resource revisions'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
+  - 'view update notifications'

@@ -16,8 +16,8 @@ dependencies:
     - ds
     - entity_reference_revisions
     - file
-    - image
     - media
+    - svg_image
     - text
     - user
 third_party_settings:
@@ -88,6 +88,12 @@ content:
     settings:
       image_link: ''
       image_style: ''
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
     third_party_settings: {  }
     weight: 102
     region: content
@@ -130,3 +136,4 @@ content:
     region: content
 hidden:
   addtoany: true
+  search_api_excerpt: true

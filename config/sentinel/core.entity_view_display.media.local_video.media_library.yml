@@ -8,7 +8,7 @@ dependencies:
     - image.style.medium
     - media.type.local_video
   module:
-    - image
+    - svg_image
 id: media.local_video.media_library
 targetEntityType: media
 bundle: local_video
@@ -20,6 +20,12 @@ content:
     settings:
       image_link: ''
       image_style: medium
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
     third_party_settings: {  }
     weight: 0
     region: content
@@ -28,4 +34,5 @@ hidden:
   created: true
   field_media_video_file: true
   name: true
+  search_api_excerpt: true
   uid: true

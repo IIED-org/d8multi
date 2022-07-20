@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.news.field_article_type
     - field.field.node.news.field_date
     - field.field.node.news.field_image
+    - field.field.node.news.field_image_caption
     - field.field.node.news.field_video
     - image.style.card_image
     - node.type.news
@@ -106,6 +107,8 @@ content:
     settings:
       image_link: ''
       image_style: card_image
+      image_loading:
+        attribute: lazy
     third_party_settings:
       ds:
         ds_limit: ''
@@ -136,5 +139,7 @@ content:
     region: first
 hidden:
   body: true
+  field_image_caption: true
   langcode: true
   links: true
+  search_api_excerpt: true

@@ -19,9 +19,9 @@ dependencies:
   module:
     - datetime
     - ds
-    - image
     - link
     - pdfpreview
+    - svg_image
     - text
     - user
 third_party_settings:
@@ -133,6 +133,12 @@ content:
     settings:
       image_link: ''
       image_style: cover_large
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
     third_party_settings:
       ds:
         ds_limit: ''
@@ -241,3 +247,4 @@ hidden:
   field_country: true
   field_theme: true
   links: true
+  search_api_excerpt: true

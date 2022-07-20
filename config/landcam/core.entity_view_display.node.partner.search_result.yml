@@ -71,6 +71,8 @@ content:
     settings:
       image_link: ''
       image_style: thumbnail
+      image_loading:
+        attribute: lazy
     third_party_settings:
       ds:
         ft:
@@ -86,3 +88,4 @@ hidden:
   field_link: true
   langcode: true
   links: true
+  search_api_excerpt: true

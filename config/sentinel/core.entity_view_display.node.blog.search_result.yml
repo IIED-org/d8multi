@@ -9,13 +9,14 @@ dependencies:
     - field.field.node.blog.field_file_upload
     - field.field.node.blog.field_further
     - field.field.node.blog.field_image
+    - field.field.node.blog.field_image_caption
     - field.field.node.blog.field_theme
     - field.field.node.blog.field_video
     - image.style.thumbnail
     - node.type.blog
   module:
     - ds
-    - image
+    - svg_image
     - text
     - user
 third_party_settings:
@@ -133,6 +134,12 @@ content:
     settings:
       image_link: ''
       image_style: thumbnail
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
     third_party_settings:
       ds:
         ds_limit: ''
@@ -148,6 +155,8 @@ hidden:
   addtoany: true
   field_file_upload: true
   field_further: true
+  field_image_caption: true
   field_theme: true
   field_video: true
   links: true
+  search_api_excerpt: true
