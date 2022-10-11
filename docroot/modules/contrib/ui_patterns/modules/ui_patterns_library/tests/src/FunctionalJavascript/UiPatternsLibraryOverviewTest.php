@@ -3,6 +3,7 @@
 namespace Drupal\Tests\ui_patterns_library\FunctionalJavascript;
 
 use Drupal\Core\Serialization\Yaml;
+use Drupal\Core\Url;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 
 /**
@@ -11,6 +12,15 @@ use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
  * @group ui_patterns_library
  */
 class UiPatternsLibraryOverviewTest extends WebDriverTestBase {
+
+  /**
+   * Module extension list.
+   *
+   * Currently no interface to rely on.
+   *
+   * @var \Drupal\Core\Extension\ModuleExtensionList
+   */
+  protected $moduleExtensionList;
 
   /**
    * Default theme.
@@ -33,6 +43,8 @@ class UiPatternsLibraryOverviewTest extends WebDriverTestBase {
    */
   protected function setUp(): void {
     parent::setUp();
+
+    $this->moduleExtensionList = $this->container->get('extension.list.module');
 
     $user = $this->drupalCreateUser(['access patterns page']);
     $this->drupalLogin($user);
@@ -86,11 +98,14 @@ class UiPatternsLibraryOverviewTest extends WebDriverTestBase {
     $session = $this->assertSession();
 
     $this->drupalGet('/patterns/with_local_libraries');
-    $session->responseContains('href="/modules/custom/ui_patterns/modules/ui_patterns_library/tests/modules/ui_patterns_library_module_test/templates/with_local_libraries/css/library_one.css');
-    $session->responseContains('href="/modules/custom/ui_patterns/modules/ui_patterns_library/tests/modules/ui_patterns_library_module_test/templates/with_local_libraries/css/library_two.css');
-    $session->responseContains('src="/modules/custom/ui_patterns/modules/ui_patterns_library/tests/modules/ui_patterns_library_module_test/templates/with_local_libraries/js/library_two_1.js');
-    $session->responseContains('src="/modules/custom/ui_patterns/modules/ui_patterns_library/tests/modules/ui_patterns_library_module_test/templates/with_local_libraries/js/library_two_2.js');
-    $session->responseContains('src="/core/misc/tabledrag.js');
+
+    $ui_patterns_library_module_test_path = $this->moduleExtensionList->getPath('ui_patterns_library_module_test');
+
+    $session->responseContains('href="' . Url::fromUserInput('/' . $ui_patterns_library_module_test_path . '/templates/with_local_libraries/css/library_one.css')->toString());
+    $session->responseContains('href="' . Url::fromUserInput('/' . $ui_patterns_library_module_test_path . '/templates/with_local_libraries/css/library_two.css')->toString());
+    $session->responseContains('src="' . Url::fromUserInput('/' . $ui_patterns_library_module_test_path . '/templates/with_local_libraries/js/library_two_1.js')->toString());
+    $session->responseContains('src="' . Url::fromUserInput('/' . $ui_patterns_library_module_test_path . '/templates/with_local_libraries/js/library_two_2.js')->toString());
+    $session->responseContains('src="' . Url::fromUserInput('/core/misc/tabledrag.js')->toString());
   }
 
   /**

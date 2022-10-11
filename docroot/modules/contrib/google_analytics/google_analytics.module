@@ -82,7 +82,7 @@ function google_analytics_page_attachments(array &$page) {
   // 2. Track page views based on visibility value.
   // 3. Check if we should track the currently active user's role.
   // 4. Ignore pages visibility filter for 404 or 403 status codes.
-  if (preg_match('/^UA-\d+-\d+$/', $id) && (_google_analytics_visibility_pages() || in_array($status, $trackable_status_codes)) && _google_analytics_visibility_user($account)) {
+  if (preg_match('/^UA-\d+-\d+$/', (string)$id) && (_google_analytics_visibility_pages() || in_array($status, $trackable_status_codes)) && _google_analytics_visibility_user($account)) {
     // Init variables.
     $debug = $config->get('debug');
     $url_custom = '';
@@ -276,7 +276,7 @@ function google_analytics_page_attachments(array &$page) {
     // Per RFC 2109, cookie domains must contain at least one dot other than the
     // first. For hosts such as 'localhost' or IP Addresses we don't set a
     // cookie domain.
-    if ($domain_mode == 1 && count(explode('.', $cookie_domain)) > 2 && !is_numeric(str_replace('.', '', $cookie_domain))) {
+    if ($domain_mode == 1 && count(explode('.', (string)$cookie_domain)) > 2 && !is_numeric(str_replace('.', '', $cookie_domain))) {
       $create_only_fields = array_merge($create_only_fields, ['cookieDomain' => $cookie_domain]);
       $googleanalytics_adsense_script .= 'window.google_analytics_domain_name = ' . Json::encode($cookie_domain) . ';';
     }

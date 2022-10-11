@@ -1,13 +1,12 @@
-name: UI Patterns Library
+name: 'UI Patterns Library'
 type: module
-description: Exposed patterns in you modules and themes and display them in a pattern library page.
-core: 8.x
-core_version_requirement: ^8 || ^9
-package: User interface
+description: 'Exposed patterns in you modules and themes and display them in a pattern library page.'
+core_version_requirement: ^9 || ^10
+package: 'User interface'
 dependencies:
   - ui_patterns:ui_patterns
 
-# Information added by Drupal.org packaging script on 2020-06-11
-version: '8.x-1.2'
+# Information added by Drupal.org packaging script on 2022-09-22
+version: '8.x-1.3'
 project: 'ui_patterns'
-datestamp: 1591882157
+datestamp: 1663861918

@@ -1,14 +1,13 @@
-name: UI Patterns Layouts
+name: 'UI Patterns Layouts'
 type: module
-description: Use patterns as layouts via the Layout Discovery module.
-core: 8.x
-core_version_requirement: ^8 || ^9
-package: User interface
+description: 'Use patterns as layouts via the Layout Discovery module.'
+core_version_requirement: ^9 || ^10
+package: 'User interface'
 dependencies:
   - drupal:layout_discovery
   - ui_patterns:ui_patterns
 
-# Information added by Drupal.org packaging script on 2020-06-11
-version: '8.x-1.2'
+# Information added by Drupal.org packaging script on 2022-09-22
+version: '8.x-1.3'
 project: 'ui_patterns'
-datestamp: 1591882157
+datestamp: 1663861918

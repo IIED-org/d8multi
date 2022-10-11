@@ -104,6 +104,11 @@ class MailchimpCampaignController extends ControllerBase {
   public function overview() {
     $content = [];
 
+    $content['description'] = [
+      '#markup' => $this->t('<p>Add a campaign to use entities as campaign content.</p>
+ <p>Importing campaigns from Mailchimp is not possible.</p>'),
+    ];
+
     $content['campaigns_table'] = [
       '#type' => 'table',
       '#header' => [
@@ -145,9 +150,11 @@ class MailchimpCampaignController extends ControllerBase {
       $campaign_url = Url::fromRoute('entity.mailchimp_campaign.view', ['mailchimp_campaign' => $campaign_id]);
       $list_url = Url::fromUri('https://admin.mailchimp.com/lists/dashboard/overview?id=' . $campaign->list->id, ['attributes' => ['target' => '_blank']]);
       $send_url = Url::fromRoute('entity.mailchimp_campaign.send', ['mailchimp_campaign' => $campaign_id]);
+      $edit_url = Url::fromRoute('entity.mailchimp_campaign.edit_form', ['mailchimp_campaign' => $campaign_id]);
 
       if ($campaign->mc_data->status === "save") {
         $send_link = Link::fromTextAndUrl($this->t("Send"), $send_url)->toString();
+        $edit_link = Link::fromTextAndUrl($this->t("Edit"), $edit_url)->toString();
       }
       // "Sent" campaigns were not being cached, so we needed to reload to get
       // the latest status.
@@ -155,9 +162,11 @@ class MailchimpCampaignController extends ControllerBase {
         $campaigns = mailchimp_campaign_load_multiple([$campaign_id], TRUE);
         $campaign = $campaigns[$campaign_id];
         $send_link = $this->t("Sent");
+        unset($edit_link);
       }
       else {
         $send_link = $this->t("Sent");
+        unset($edit_link);
       }
 
       $actions = [
@@ -165,6 +174,10 @@ class MailchimpCampaignController extends ControllerBase {
         Link::fromTextAndUrl(('View'), $campaign_url)->toString(),
         $send_link,
       ];
+
+      if (isset($edit_link)) {
+        array_unshift($actions, $edit_link);
+      }
 
       $content['campaigns_table'][$campaign_id]['title'] = [
         '#markup' => Link::fromTextAndUrl($campaign->mc_data->settings->title, $campaign_url)->toString(),

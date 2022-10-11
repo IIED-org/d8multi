@@ -1,6 +1,6 @@
-# PHP library for v3 of the MailChimp API
+# PHP library for v3 of the Mailchimp API
 
-This library provides convenient wrapper functions for MailChimp's REST API.
+This library provides convenient wrapper functions for Mailchimp's REST API.
 The API is [documented here](http://developer.mailchimp.com/documentation/mailchimp/guides/get-started-with-mailchimp-api-3/).
 
 ## Requirements
@@ -19,6 +19,60 @@ installing Composer, run the following command from the library root:
 Or to install with phpunit:
 
 `composer install`
+
+## Usage
+
+### Get your account information
+
+A basic test to confirm the library is set up and functional.
+
+```php
+<?php
+require 'PATH_TO_LIBRARY/mailchimp-api-php/vendor/autoload.php';
+$api_key = 'YOUR_API_KEY';
+$mailchimp = new Mailchimp\Mailchimp($api_key);
+
+// Get the account details of the authenticated user.
+$response = $mailchimp->getAccount();
+
+// Output the account details.
+if (!empty($response) && isset($response->account_id)) {
+  echo "ID: {$response->account_id}\n"
+  . "Name: {$response->account_name}\n";
+}
+```
+
+### Get lists and their interest categories
+
+A more complicated example that takes the response from one API call and
+uses that data to make another.
+
+```php
+<?php
+require 'PATH_TO_LIBRARY/mailchimp-api-php/vendor/autoload.php';
+$api_key = 'YOUR_API_KEY';
+$mailchimp_lists = new Mailchimp\MailchimpLists($api_key);
+
+// Get all lists.
+$response = $mailchimp_lists->getLists();
+
+if (!empty($response) && isset($response->lists)) {
+  foreach ($response->lists as $list) {
+    // Output the list name.
+    echo "List name: {$list->name}\n";
+
+    // Get the list's interest categories.
+    $interests = $mailchimp_lists->getInterestCategories($list->id);
+
+    // Output the names of the list's interest categories.
+    if (!empty($interests) && isset($interests->categories)) {
+      foreach ($interests->categories as $category) {
+        echo "Interest category: {$category->title}\n";
+      }
+    }
+  }
+}
+```
 
 ## Testing
 
@@ -43,8 +97,8 @@ Then run PHPUnit:
 
 `phpunit`
 
-### MailChimp API Playground
+### Mailchimp API Playground
 
-MailChimp's [API Playground](https://us1.api.mailchimp.com/playground/) provides
+Mailchimp's [API Playground](https://us1.api.mailchimp.com/playground/) provides
 access to all API methods via a web-based UI. You can use this to test API calls
-and review data you've sent to MailChimp.
+and review data you've sent to Mailchimp.

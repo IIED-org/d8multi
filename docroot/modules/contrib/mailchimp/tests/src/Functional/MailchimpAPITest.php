@@ -17,7 +17,7 @@ class MailchimpAPITest extends FunctionalMailchimpTestBase {
 
     $this->assertNotNull($mailchimp_api);
 
-    $this->assertEqual(get_class($mailchimp_api), 'Mailchimp\Tests\Mailchimp');
+    $this->assertSame(get_class($mailchimp_api), 'Mailchimp\Tests\Mailchimp');
   }
 
 }

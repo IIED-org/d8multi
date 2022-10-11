@@ -466,6 +466,8 @@ class MailchimpSignupForm extends EntityForm {
 
     $signup->save();
 
+    mailchimp_signup_invalidate_cache();
+
     $this->routerBuilder->setRebuildNeeded();
 
     $form_state->setRedirect('mailchimp_signup.admin');
