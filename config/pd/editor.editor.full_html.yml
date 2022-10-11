@@ -58,8 +58,6 @@ settings:
             - PasteFromWord
             - node
   plugins:
-    language:
-      language_list: un
     stylescombo:
       styles: "div.container|Container\r\ndiv.col.col-sm-6|6 column div\r\ndiv.row|Row\r\np.lead|Lead (standfirst)"
 image_upload:
