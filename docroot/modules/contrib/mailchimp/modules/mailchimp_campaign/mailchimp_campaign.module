@@ -274,11 +274,11 @@ function mailchimp_campaign_list_templates($reset = FALSE, $count = 30) {
   $all_templates = [];
   $template_parameters = ['count' => $count];
 
-  // Return cached lists.
+  // Return cached templates.
   if (!$reset && !empty($cached_templates)) {
     $all_templates = $cached_templates->data;
   }
-  // Query lists from the Mailchimp API and store in cache.
+  // Query templates from the Mailchimp API and store in cache.
   else {
     try {
       /* @var \Mailchimp\MailchimpTemplates $mc_templates */

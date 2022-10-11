@@ -180,7 +180,7 @@ class MailchimpListsSubscription extends FieldItemBase {
       '#default_value' => $instance_settings['show_interest_groups'],
     ];
     $element['hide_subscribe_checkbox'] = [
-      '#title' => $this->t('Hide Subscribe Checkbox'),
+      '#title' => $this->t('Hide Subscribe Checkbox for new subscribers'),
       '#type' => 'checkbox',
       '#default_value' => $instance_settings['hide_subscribe_checkbox'],
       '#description' => $this->t('When Interest Groups are enabled, the "subscribe" checkbox is hidden and selecting any interest group will subscribe a user to the audience.'),
@@ -270,32 +270,7 @@ class MailchimpListsSubscription extends FieldItemBase {
   public function postSave($update) {
     parent::postSave($update);
 
-    $choices = $this->values;
-
-    // Only act if the field has a value to prevent unintended unsubscription.
-    if (!empty($choices)) {
-      $field_settings = $this->definition->getSettings();
-
-      // Automatically subscribe if the field is configured to hide the
-      // Subscribe checkbox and at least one interest group checkbox is checked.
-      if ($field_settings['show_interest_groups'] && $field_settings['hide_subscribe_checkbox']) {
-        if (!empty($choices['interest_groups'])) {
-          $subscribe_from_interest_groups = FALSE;
-          foreach ($choices['interest_groups'] as $group_id => $interests) {
-            foreach ($interests as $interest_id => $value) {
-              if (!empty($value)) {
-                $subscribe_from_interest_groups = TRUE;
-                continue;
-              }
-            }
-          }
-
-          $choices['subscribe'] = $subscribe_from_interest_groups;
-        }
-      }
-
-      mailchimp_lists_process_subscribe_form_choices($choices, $this, $this->getEntity());
-    }
+    mailchimp_lists_process_subscribe_form_choices($this->values, $this, $this->getEntity());
   }
 
   /**

@@ -235,7 +235,7 @@ class MailchimpSignupPageForm extends FormBase {
       }
     }
     // Include the GDPR consent checkbox if necessary
-    if ($this->signup->settings['gdpr_consent']) {
+    if (!empty($this->signup->settings['gdpr_consent'])) {
       $form['gdpr_consent'] = [
         '#type' => 'checkbox',
         '#default_value' => FALSE,

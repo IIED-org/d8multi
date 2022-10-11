@@ -201,18 +201,38 @@ class MailchimpCampaignForm extends ContentEntityForm {
     ];
     $template_type_labels = [
       'user' => 'My Custom Templates',
-      'basic' => 'Basic Templates',
+      'base' => 'Basic Templates',
       'gallery' => 'Themes',
     ];
+
+    $is_new = empty($campaign->getMcCampaignId());
+    $no_selection_label = NULL;
+
+    if ($is_new || $form_state->getValue('template_id') === '') {
+      $no_selection_label = 'No Template';
+    }
 
     $form['template_id'] = [
       '#type' => 'select',
       '#title' => $this->t('Template'),
-      '#description' => $this->t('Select a Mailchimp user template to use. Due to a limitation in the API, only templates that do not contain repeating sections are available. If empty, the default template will be applied.'),
-      '#options' => $this->buildOptionList(mailchimp_campaign_list_templates(), '-- Select --', $template_type_labels),
+      '#description' => '<p>' . $this->t('Select an email template to use.') . '</p><p>' . $this->t('Only a new campaign can be created without a template. A template must use custom HTML, have editable content areas, and not repeat.') . '</p>',
+      '#options' => $this->buildOptionList(mailchimp_campaign_list_templates(), $no_selection_label, $template_type_labels),
       '#default_value' => (!empty($campaign->mc_data)) ? $campaign->mc_data->settings->template_id : -1,
       '#ajax' => [
         'callback' => 'Drupal\mailchimp_campaign\Form\MailchimpCampaignForm::templateCallback',
+      ],
+    ];
+
+    $form['template_refresh'] = [
+      '#value' => $this->t('Refresh current template and template list from Mailchimp'),
+      '#type' => 'submit',
+      '#submit' => ['::submitForm', '::refreshTemplates'],
+      '#attributes'=>[
+        'class' => [
+          'button',
+          'button-action',
+          'button--small',
+        ],
       ],
     ];
 
@@ -220,18 +240,20 @@ class MailchimpCampaignForm extends ContentEntityForm {
       '#id' => 'content-sections',
       '#type' => 'fieldset',
       '#title' => $this->t('Content sections'),
-      '#description' => $this->t('The HTML content or, if a template is selected, the content for each section.'),
+      '#description' => $this->t('The editable content areas from your template or a generic HTML container if no template is selected.'),
       '#tree' => TRUE,
     ];
 
+    $selected_template = $form_state->getValue('template_id');
     $mc_template = NULL;
-    if (!empty($form_state->getValue('template_id'))) {
-      $mc_template = mailchimp_campaign_get_template($form_state->getValue('template_id'));
-    }
-    else {
-      if (($campaign) && $campaign->mc_template) {
+
+    if (empty($selected_template)) {
+      if ($selected_template !== '') {
         $mc_template = $campaign->mc_template;
       }
+    }
+    else {
+      $mc_template = mailchimp_campaign_get_template($selected_template);
     }
 
     if (isset($list_id)) {
@@ -243,47 +265,78 @@ class MailchimpCampaignForm extends ContentEntityForm {
     }
 
     $campaign_template = $campaign->getTemplate();
-
     $campaign_content = $form_state->getValue('content');
 
     $entity_type = NULL;
 
     if ($mc_template) {
-      foreach ($mc_template->info->sections as $section => $content) {
-        if (substr($section, 0, 6) == 'repeat') {
-          $this->messenger->addWarning($this->t('WARNING: This template has repeating sections, which are not supported. You may want to select a different template.'));
-        }
+      $template_name = $mc_template->name;
+
+      if ($mc_template->drag_and_drop){
+        $form['content'] = [
+          '#id' => 'content-sections',
+          '#type' => 'fieldset',
+          '#title' => $this->t('The \':template_name\' template is drag and drop',[
+            ':template_name' =>  $template_name ,
+          ]),
+          '#description' => $this->t('Only Custom HTML Templates can provide editable content areas.<p><strong>Related Mailchimp documentation:</strong><br><a href=":custom_link" target="_blank">Custom HTML Templates</a><br><a href=":editable_link" target="_blank">Editable Content Areas</a></p>' ,[
+            ':custom_link' => 'https://mailchimp.com/help/import-a-custom-html-template/',
+            ':editable_link' => 'https://mailchimp.com/help/create-editable-content-areas-with-mailchimps-template-language/',
+          ]),
+          '#tree' => TRUE,
+        ];
       }
-      foreach ($mc_template->info->sections as $section => $content) {
-        // Set the default value and text format to either saved campaign values
-        // or defaults coming from the Mailchimp template.
-        $default_value = $content;
-        $format = 'mailchimp_campaign';
-
-        if (($campaign_template != NULL) && isset($campaign_template[$section])) {
-          $default_value = $campaign_template[$section]['value'];
-          $format = $campaign_template[$section]['format'];
-        }
-        $form['content'][$section . '_wrapper'] = [
-          '#type' => 'details',
-          '#title' => Html::escape(ucfirst($section)),
-          '#open' => FALSE,
+      elseif (empty((array)$mc_template->info->sections)){
+        $form['content'] = [
+          '#id' => 'content-sections',
+          '#type' => 'fieldset',
+          '#title' => $this->t('The \':template_name\' template has no editable content areas',[
+            ':template_name' =>  $template_name ,
+          ]),
+          '#description' => $this->t('If you add one through Mailchimp, use the Refresh button above. <p><a href=":link" target="_blank">Mailchimp documentation on Editable Content Areas</a>.</p>' ,[
+            ':link' => 'https://mailchimp.com/help/create-editable-content-areas-with-mailchimps-template-language/',
+          ]),
+          '#tree' => TRUE,
         ];
-        $form['content'][$section . '_wrapper'][$section] = [
-          '#type' => 'text_format',
-          '#format' => $format,
-          '#title' => Html::escape(ucfirst($section)),
-          '#default_value' => $default_value,
-        ];
+      }
 
-        if (isset($campaign_content[$section . '_wrapper']['entity_import']['entity_type'])) {
-          $entity_type = $campaign_content[$section . '_wrapper']['entity_import']['entity_type'];
+      else {
+        foreach ($mc_template->info->sections as $section => $content) {
+          if (substr($section, 0, 6) == 'repeat') {
+            $this->messenger->addWarning($this->t('WARNING: This template has repeating sections, which are not supported. You may want to select a different template.'));
+          }
         }
+        foreach ($mc_template->info->sections as $section => $content) {
+          // Set the default value and text format to either saved campaign values
+          // or defaults coming from the Mailchimp template.
+          $default_value = $content;
+          $format = 'mailchimp_campaign';
 
-        $form['content'][$section . '_wrapper'] += $this->getEntityImportFormElements($entity_type, $section);
+          if (($campaign_template != NULL) && isset($campaign_template[$section])) {
+            $default_value = $campaign_template[$section]['value'];
+            $format = $campaign_template[$section]['format'];
+          }
+          $form['content'][$section . '_wrapper'] = [
+            '#type' => 'details',
+            '#title' => Html::escape(ucfirst($section)),
+            '#open' => FALSE,
+          ];
+          $form['content'][$section . '_wrapper'][$section] = [
+            '#type' => 'text_format',
+            '#format' => $format,
+            '#title' => Html::escape(ucfirst($section)),
+            '#default_value' => $default_value,
+          ];
 
-        if (!empty($list_id)) {
-          $form['content'][$section . '_wrapper'] += $this->getMergeVarsFormElements($merge_vars, $mailchimp_lists[$list_id]->name);
+          if (isset($campaign_content[$section . '_wrapper']['entity_import']['entity_type'])) {
+            $entity_type = $campaign_content[$section . '_wrapper']['entity_import']['entity_type'];
+          }
+
+          $form['content'][$section . '_wrapper'] += $this->getEntityImportFormElements($entity_type, $section);
+
+          if (!empty($list_id)) {
+            $form['content'][$section . '_wrapper'] += $this->getMergeVarsFormElements($merge_vars, $mailchimp_lists[$list_id]->name);
+          }
         }
       }
     }
@@ -352,6 +405,12 @@ class MailchimpCampaignForm extends ContentEntityForm {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
 
+    $template_content = $this->parseTemplateContent($form_state->getValue('content') ?: []);
+
+    if (empty($template_content)) {
+      $form_state->setErrorByName('template_id', t('The chosen template has no editable content areas' ));
+    }
+
     if ($form_state->getValue('op') == $form['actions']['submit']['#value']) {
       // Try to save form to campaign in MailChimp.
       $values = $form_state->getValues();
@@ -373,8 +432,6 @@ class MailchimpCampaignForm extends ContentEntityForm {
         'preview_text' => $values['preview_text'],
       ];
 
-      $template_content = $this->parseTemplateContent($form_state->getValue('content') ?: []);
-
       /* @var \Drupal\mailchimp_campaign\Entity\MailchimpCampaign $campaign */
       $campaign = $this->getEntity();
       $campaign_id = mailchimp_campaign_save_campaign($template_content, $recipients, $settings, $values['template_id'], $campaign->getMcCampaignId());
@@ -384,10 +441,10 @@ class MailchimpCampaignForm extends ContentEntityForm {
       // This would result in a SQL exception that leaves the user puzzled.
       // It's better to inform the user and abort the save operation.
       if (empty($campaign_id)) {
-        $form_state->setErrorByName('submit', t('An error occured while saving this campaign to MailChimp service.'));
+        $form_state->setErrorByName('submit', t('An error occurred while saving this campaign to MailChimp service.'));
       }
       else {
-        // Save campaign id to entity
+        // Save campaign id to entity.
         $campaign->setMcCampaignId($campaign_id);
         $campaign->setTemplate($template_content);
       }
@@ -413,18 +470,23 @@ class MailchimpCampaignForm extends ContentEntityForm {
    * Generates a preview of the campaign template content.
    */
   public function preview(array $form, FormStateInterface $form_state) {
-    $text = '';
-    $template_content = $this->parseTemplateContent($form_state->getValue('content'));
-    $content = mailchimp_campaign_render_template($template_content);
-    foreach ($content as $key => $section) {
-      $text .= "<h3>$key</h3>" . $section;
+    $raw_template_content = $form_state->getValue('content');
+    if (empty($raw_template_content)) {
+      $this->messenger->addWarning(t('The chosen template has no editable content areas to preview. Update the template from Mailchimp or try a different template.'));
     }
-
-    $form_state->setValue('mailchimp_campaign_campaign_preview', $text);
+    else {
+      $text = '';
+      $template_content = $this->parseTemplateContent($raw_template_content);
+      $content = mailchimp_campaign_render_template($template_content);
+      foreach ($content as $key => $section) {
+        $text .= "<h3>$key</h3>" . $section;
+      }
+      $form_state->setValue('mailchimp_campaign_campaign_preview', $text);
+    }
     $form_state->setRebuild(TRUE);
   }
 
-  /**
+    /**
    * Ajax callback to render audience segments when an audience is selected.
    *
    * @param array $form
@@ -495,6 +557,16 @@ class MailchimpCampaignForm extends ContentEntityForm {
     $response->addCommand(new ReplaceCommand('#' . $entity_import_wrapper, $html));
 
     return $response;
+  }
+
+  /**
+   * Fetches list of templates from Mailchimp, and replaces cache
+   * Defaults to most recent 30 templates
+   */
+
+  public function refreshTemplates(array $form, FormStateInterface $form_state){
+    mailchimp_campaign_get_template($form_state->getValue('template_id'), TRUE);
+    $form_state->setRebuild(TRUE);
   }
 
   /**
