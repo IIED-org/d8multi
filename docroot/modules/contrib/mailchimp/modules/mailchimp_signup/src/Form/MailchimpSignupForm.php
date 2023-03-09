@@ -156,9 +156,17 @@ class MailchimpSignupForm extends EntityForm {
 
     $form['mc_lists_config'] = [
       '#type' => 'details',
-      '#title' => $this->t('Mailchimp Audience Selection & Configuration'),
+      '#title' => $this->t('Mailchimp Tags & Audience Selection/Configuration'),
       '#open' => TRUE,
     ];
+
+    $form['mc_lists_config']['tags'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Member tags'),
+      '#default_value' => isset($signup->settings['tags']) ? $signup->settings['tags'] : FALSE,
+      '#description' => $this->t('Optionally add one or more member tags. Separate multiple tags with a comma.'),
+    ];
+
     $lists = mailchimp_get_lists();
     $options = [];
     foreach ($lists as $mc_list) {
@@ -451,6 +459,7 @@ class MailchimpSignupForm extends EntityForm {
     $signup->settings['gdpr_consent'] = $form_state->getValue('gdpr_consent');
     $signup->settings['gdpr_checkbox_label'] = $form_state->getValue('gdpr_checkbox_label');
     $signup->settings['gdpr_consent_required'] = $form_state->getValue('gdpr_consent_required');
+    $signup->settings['tags'] = $form_state->getValue('tags');
 
     $groups_items = [];
     $groups_settings = $form_state->getValue('groups_container');

@@ -227,6 +227,38 @@ function mailchimp_campaign_send_campaign(MailchimpCampaign $campaign) {
 }
 
 /**
+ * Sends a test mail Mailchimp campaign.
+ *
+ * @param \Drupal\mailchimp_campaign\Entity\MailchimpCampaign $campaign
+ *   The Mailchimp campaign to send.
+ *
+ * @return bool
+ *   TRUE if campaign is sent successfully.
+ */
+function mailchimp_campaign_sendtestmail_campaign(MailchimpCampaign $campaign, $testemail) {
+  /* @var \Mailchimp\MailchimpCampaigns $mc_campaign */
+  $mc_campaign = mailchimp_get_api_object('MailchimpCampaigns');
+
+  // Send campaign.
+  try {
+    if (!$mc_campaign) {
+      throw new Exception('Cannot send campaign without Mailchimp API. Check API key has been entered.');
+    }
+
+    $mc_campaign->sendTest($campaign->mc_data->id, explode(',', $testemail), 'html');
+    return TRUE;
+  }
+  catch (\Exception $e) {
+    \Drupal::messenger()->addError($e->getMessage());
+    \Drupal::logger('mailchimp_campaign')
+      ->error('An error occurred while sending to this campaign: {message}', [
+        'message' => $e->getMessage(),
+      ]);
+  }
+  return FALSE;
+}
+
+/**
  * Delete a Mailchimp campaign and the local entity.
  */
 function mailchimp_campaign_delete_campaign(MailchimpCampaign $campaign) {

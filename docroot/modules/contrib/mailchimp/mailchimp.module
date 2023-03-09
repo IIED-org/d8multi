@@ -8,6 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
+use GuzzleHttp\Exception\ClientException;
 use Mailchimp\MailchimpLists;
 
 define('MAILCHIMP_QUEUE_CRON', 'mailchimp');
@@ -37,7 +38,7 @@ function mailchimp_apikey_ready_access($permission) {
  * @return \Mailchimp\Mailchimp
  *   Drupal Mailchimp library object.
  */
-function mailchimp_get_api_object($classname = 'Mailchimp') {
+function mailchimp_get_api_object($classname = 'MailchimpApiUser') {
   $object = \Drupal::service('mailchimp.client_factory')->getByClassNameOrNull($classname);
 
   if (!$object) {
@@ -379,7 +380,7 @@ function mailchimp_is_subscribed($list_id, $email, $reset = FALSE) {
  *
  * @see Mailchimp_Lists::subscribe()
  */
-function mailchimp_subscribe($list_id, $email, $merge_vars = NULL, $interests = [], $double_optin = FALSE, $format = 'html', $language = NULL, $gdpr_consent = FALSE) {
+function mailchimp_subscribe($list_id, $email, $merge_vars = NULL, $interests = [], $double_optin = FALSE, $format = 'html', $language = NULL, $gdpr_consent = FALSE, $tags = []) {
   $config = \Drupal::config('mailchimp.settings');
 
   if (empty($language)) {
@@ -396,12 +397,13 @@ function mailchimp_subscribe($list_id, $email, $merge_vars = NULL, $interests = 
       'format' => $format,
       'language' => $language,
       'gdpr_consent' => $gdpr_consent,
+      'tags' => $tags,
     ];
 
     return mailchimp_addto_queue('mailchimp_subscribe_process', $args);
   }
 
-  return mailchimp_subscribe_process($list_id, $email, $merge_vars, $interests, $double_optin, $format, $language, $gdpr_consent);
+  return mailchimp_subscribe_process($list_id, $email, $merge_vars, $interests, $double_optin, $format, $language, $gdpr_consent, $tags);
 }
 
 /**
@@ -409,7 +411,7 @@ function mailchimp_subscribe($list_id, $email, $merge_vars = NULL, $interests = 
  *
  * @see Mailchimp_Lists::subscribe()
  */
-function mailchimp_subscribe_process($list_id, $email, $merge_vars = NULL, $interests = [], $double_optin = FALSE, $format = 'html', $language = NULL, $gdpr_consent = FALSE) {
+function mailchimp_subscribe_process($list_id, $email, $merge_vars = NULL, $interests = [], $double_optin = FALSE, $format = 'html', $language = NULL, $gdpr_consent = FALSE, $tags = NULL) {
   $config = \Drupal::config('mailchimp.settings');
   $result = FALSE;
 
@@ -518,7 +520,27 @@ function mailchimp_subscribe_process($list_id, $email, $merge_vars = NULL, $inte
       }
 
       if ($double_optin) {
-        \Drupal::messenger()->addStatus(t('Please check your email to confirm your subscription.'), FALSE);
+        $msg = $config->get('optin_check_email_msg');
+        if ($msg) {
+          \Drupal::messenger()->addStatus($msg, FALSE);
+        }
+      }
+
+      // Add or update member tags
+      if ($tags) {
+        $tags = explode(',', $tags);
+        $tags = array_map('trim', $tags);
+
+        try {
+          $mc_lists->addTagsMember($list_id, $tags, $email);
+        }
+
+        catch (ClientException $e) {
+          \Drupal::logger('mailchimp')->error('An error occurred while adding tags for this email({email}) to Mailchimp: {message}', [
+            'message' => $e->getMessage(),
+            'email' => $email,
+          ]);
+        }
       }
     }
     else {
@@ -536,7 +558,7 @@ function mailchimp_subscribe_process($list_id, $email, $merge_vars = NULL, $inte
         'email' => $email,
         'list' => $list_id,
       ]);
-      return mailchimp_subscribe_process($list_id, $email, $merge_vars, $interests, TRUE, $format, $language, $gdpr_consent);
+      return mailchimp_subscribe_process($list_id, $email, $merge_vars, $interests, TRUE, $format, $language, $gdpr_consent, $tags);
     }
 
     \Drupal::logger('mailchimp')->error('An error occurred subscribing {email} to list {list}. "{message}"', [
@@ -575,7 +597,7 @@ function mailchimp_addto_queue($function, array $args) {
  *
  * @see Mailchimp_Lists::updateMember()
  */
-function mailchimp_update_member($list_id, $email, $merge_vars, $interests = [], $format = 'html', $double_optin = FALSE, $gdpr_consent = FALSE) {
+function mailchimp_update_member($list_id, $email, $merge_vars, $interests = [], $format = 'html', $double_optin = FALSE, $gdpr_consent = FALSE, $tags = []) {
   $config = \Drupal::config('mailchimp.settings');
 
   if ($config->get('cron')) {
@@ -584,6 +606,7 @@ function mailchimp_update_member($list_id, $email, $merge_vars, $interests = [],
       'email' => $email,
       'merge_vars' => $merge_vars,
       'interests' => $interests,
+      'tags' => $tags,
       'format' => $format,
       'double_optin' => $double_optin,
       'gdpr_consent' => $gdpr_consent,
@@ -592,7 +615,7 @@ function mailchimp_update_member($list_id, $email, $merge_vars, $interests = [],
     return mailchimp_addto_queue('mailchimp_update_member_process', $args);
   }
 
-  return mailchimp_update_member_process($list_id, $email, $merge_vars, $interests, $format, $double_optin, $gdpr_consent);
+  return mailchimp_update_member_process($list_id, $email, $merge_vars, $interests, $format, $double_optin, $gdpr_consent, $tags);
 }
 
 /**
@@ -601,6 +624,7 @@ function mailchimp_update_member($list_id, $email, $merge_vars, $interests = [],
  * @see Mailchimp_Lists::updateMember()
  */
 function mailchimp_update_member_process($list_id, $email, $merge_vars, $interests, $format, $double_optin = FALSE, $gdpr_consent = FALSE) {
+  $config = \Drupal::config('mailchimp.settings');
   $result = FALSE;
 
   try {
@@ -683,7 +707,10 @@ function mailchimp_update_member_process($list_id, $email, $merge_vars, $interes
   }
 
   if ($double_optin) {
-    \Drupal::messenger()->addStatus(t('Please check your email to confirm your subscription.'), FALSE);
+    $msg = $config->get('optin_check_email_msg');
+    if ($msg) {
+      \Drupal::messenger()->addStatus($msg, FALSE);
+    }
   }
 
   return $result;

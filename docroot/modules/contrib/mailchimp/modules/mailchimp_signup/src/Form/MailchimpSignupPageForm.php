@@ -300,20 +300,16 @@ class MailchimpSignupPageForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    global $base_url;
-
     $list_details = mailchimp_get_lists($this->signup->mc_lists);
 
     $subscribe_lists = [];
 
     // Filter out blank fields so we don't erase values on the Mailchimp side.
     $mergevars = array_filter($form_state->getValue('mergevars'));
-
     $email = $mergevars['EMAIL'];
-
     $gdpr_consent = $form_state->getValue('gdpr_consent');
-
     $mailchimp_lists = $form_state->getValue('mailchimp_lists');
+    $tags = $this->signup->settings["tags"];
 
     // If we only have one list we won't have checkbox values to investigate.
     if (count(array_filter($this->signup->mc_lists)) == 1) {
@@ -350,7 +346,7 @@ class MailchimpSignupPageForm extends FormBase {
           $interests[] = $current_interests;
         }
       }
-      $result = mailchimp_subscribe($list_id, $email, $mergevars, $interests, $this->signup->settings['doublein'], 'html', NULL, $gdpr_consent);
+      $result = mailchimp_subscribe($list_id, $email, $mergevars, $interests, $this->signup->settings['doublein'], 'html', NULL, $gdpr_consent, $tags);
 
       if (empty($result)) {
         $this->messenger->addWarning($this->t('There was a problem with your newsletter signup to %list.', [
@@ -372,7 +368,7 @@ class MailchimpSignupPageForm extends FormBase {
       $destination_url = Url::fromRoute('<current>');
     }
     else {
-      $destination_url = Url::fromUri($base_url . '/' . $this->signup->settings['destination']);
+      $destination_url = Url::fromUserInput($this->signup->settings['destination']);
     }
 
     $form_state->setRedirectUrl($destination_url);

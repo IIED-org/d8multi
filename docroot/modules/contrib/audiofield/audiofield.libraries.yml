@@ -166,8 +166,19 @@ audiofield.soundmanager.inlineplayer:
   dependencies:
     - audiofield/audiofield.soundmanager
 
+audiofield.soundmanager.pageplayer:
+  version: *audiofield_soundmanager_version
+  license: *audiofield_soundmanager_license
+  css:
+    component:
+     /libraries/soundmanager/demo/page-player/css/page-player.css: {}
+  js:
+    /libraries/soundmanager/demo/page-player/script/page-player.js: {}
+  dependencies:
+    - audiofield/audiofield.soundmanager
+
 audiofield.audiojs:
-  remote: http://kolber.github.com/audiojs/audiojs.zip
+  remote: https://kolber.github.io/audiojs/audiojs.zip
   version: "1"
   license:
     name: MIT

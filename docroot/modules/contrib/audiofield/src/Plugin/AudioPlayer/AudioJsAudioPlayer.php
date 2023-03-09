@@ -16,7 +16,7 @@ use Drupal\audiofield\AudioFieldPluginBase;
  *     "mp3",
  *   },
  *   libraryName = "audiojs",
- *   website = "http://kolber.github.io/audiojs/",
+ *   website = "https://kolber.github.io/audiojs/",
  * )
  */
 class AudioJsAudioPlayer extends AudioFieldPluginBase {

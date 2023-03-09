@@ -1,6 +1,10 @@
-api_key: ''
+api_key:
 api_timeout: 10
+domain: ''
+use_oauth: FALSE
+oauth_middleware_url: 'https://drupal-mailchimp-oauth.uw.r.appspot.com'
 cron: FALSE
 batch_limit: 100
 api_classname: 'Mailchimp\Mailchimp'
 test_mode: FALSE
+optin_check_email_msg: 'Please check your email to confirm your subscription.'

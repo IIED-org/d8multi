@@ -166,6 +166,25 @@ class AudioFieldFieldFormatter extends FormatterBase implements ContainerFactory
         ],
       ],
     ];
+    /**
+     * Let user select the wavesurfer backend.
+     * @see https://github.com/katspaugh/wavesurfer.js/issues/1382
+     */
+    $elements['audio_player_wavesurfer_backend'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Select Backend'),
+      '#description' => $this->t("WebAudio is the default backend for Wavesurfer. Choose MediaElement if you need to play long audio files. See https://github.com/katspaugh/wavesurfer.js/issues/1382."),
+      '#options' => [
+        'WebAudio' => $this->t('WebAudio'),
+        'MediaElement' => $this->t('MediaElement'),
+      ],
+      '#default_value' => $this->getSetting('audio_player_wavesurfer_backend'),
+      '#states' => [
+        'visible' => [
+          [':input[name="fields[' . $fieldname . '][settings_edit_form][settings][audio_player]"]' => ['value' => 'wavesurfer_audio_player']],
+        ],
+      ],
+    ];
     $elements['audio_player_wavesurfer_bargap'] = [
       '#type' => 'number',
       '#title' => $this->t('Bar Gap'),
@@ -334,6 +353,7 @@ class AudioFieldFieldFormatter extends FormatterBase implements ContainerFactory
         'player360' => $this->t('360 degree player'),
         'barui' => $this->t('Bar UI'),
         'inlineplayer' => $this->t('Inline Player'),
+        'pageplayer' => $this->t('Page Player'),
       ],
       '#states' => [
         'visible' => [
@@ -461,6 +481,9 @@ class AudioFieldFieldFormatter extends FormatterBase implements ContainerFactory
       $summary[] = $this->t('Autoplay next track? <strong>@value</strong>', [
         '@value' => ($settings['audio_player_wavesurfer_playnexttrack'] ? 'Yes' : 'No'),
       ]);
+      $summary[] = $this->t('Backend: <strong>@value</strong>', [
+        '@value' => $settings['audio_player_wavesurfer_backend'],
+      ]);
       $summary[] = $this->t('Bar Gap: <strong>@value</strong>', [
         '@value' => $settings['audio_player_wavesurfer_bargap'],
       ]);
@@ -511,6 +534,7 @@ class AudioFieldFieldFormatter extends FormatterBase implements ContainerFactory
         'player360' => '360 degree player',
         'barui' => 'Bar UI',
         'inlineplayer' => 'Inline Player',
+        'pageplayer' => 'Page Player',
       ];
       $summary[] = $this->t('Skin: <strong>@skin</strong>', [
         '@skin' => $skins[$settings['audio_player_soundmanager_theme']],
@@ -589,6 +613,7 @@ class AudioFieldFieldFormatter extends FormatterBase implements ContainerFactory
       'audio_player_wavesurfer_combine_files' => FALSE,
       'audio_player_wavesurfer_audiorate' => 1,
       'audio_player_wavesurfer_autocenter' => TRUE,
+      'audio_player_wavesurfer_backend' => 'WebAudio',
       'audio_player_wavesurfer_bargap' => 0,
       'audio_player_wavesurfer_barheight' => 1,
       'audio_player_wavesurfer_barwidth' => NULL,

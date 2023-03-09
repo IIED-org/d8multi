@@ -192,7 +192,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: "</p><h3><a id=\"contact\"></a>Contact us</h3></p>\r\n\r\n<p><strong>For general information about the project, please contact:</strong></p>\r\n\r\n<p>Alexandra Norodom (alexandra.norodom@iied.org) or Lucy Earle (lucy.earle@iied.org)</p>\r\n\r\n<p><strong>For country-specific information, please contact:</strong></p>\r\n\r\n<p>Afghanistan - Nassim Majidi (nassim.majidi@samuelhall.org)<br>\r\nEthiopia - Engida Esayas Dube (engidae@du.edu.et)<br>\r\nJordan - Yamen Al-Beitawi (yamen@hu.edu.jo)<br>\r\nKenya - Michael Owiso (mowiso@maseno.ac.ke)</p>"
+            value: "</p><h3><a id=\"contact\"></a>Contact us</h3></p>\r\n\r\n<p><strong>For general information about the project, please contact:</strong></p>\r\n\r\n<p>Jessica Stewart (jessica.stewart@iied.org) or Lucy Earle (lucy.earle@iied.org)</p>\r\n\r\n<p><strong>For country-specific information, please contact:</strong></p>\r\n\r\n<p>Afghanistan - Nassim Majidi (nassim.majidi@samuelhall.org)<br>\r\nEthiopia - Engida Esayas Dube (engidae@du.edu.et)<br>\r\nJordan - Yamen Al-Beitawi (yamen@hu.edu.jo)<br>\r\nKenya - Michael Owiso (mowiso@maseno.ac.ke)</p>"
             format: full_html
           tokenize: false
       display_extenders: {  }

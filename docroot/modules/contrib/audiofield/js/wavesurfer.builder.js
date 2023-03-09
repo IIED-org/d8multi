@@ -14,6 +14,7 @@
     $.each($(context).find('#' + file.id).once('generate-waveform'), function (index, wavecontainer) {
       var wavesurfer = WaveSurfer.create({
         container: '#' + $(wavecontainer).attr('id') + ' .waveform',
+        backend: settings.backend,
         audioRate: settings.audioRate,
         autoCenter: settings.autoCenter,
         barGap: settings.barGap,
