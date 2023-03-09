@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - filter.format.full_html
-    - media.type.flickr
     - node.type.event
     - node.type.news
     - node.type.page
@@ -52,7 +51,6 @@ permissions:
   - 'clone node entity'
   - 'create content translations'
   - 'create event content'
-  - 'create flickr media'
   - 'create media'
   - 'create news content'
   - 'create page content'
@@ -61,7 +59,6 @@ permissions:
   - 'create url aliases'
   - 'delete all revisions'
   - 'delete any event content'
-  - 'delete any flickr media'
   - 'delete any media'
   - 'delete any news content'
   - 'delete any page content'
@@ -70,20 +67,17 @@ permissions:
   - 'delete content translations'
   - 'delete media'
   - 'delete own event content'
-  - 'delete own flickr media'
   - 'delete own news content'
   - 'delete own page content'
   - 'delete own partner content'
   - 'delete own resource content'
   - 'display eu cookie compliance popup'
   - 'edit any event content'
-  - 'edit any flickr media'
   - 'edit any news content'
   - 'edit any page content'
   - 'edit any partner content'
   - 'edit any resource content'
   - 'edit own event content'
-  - 'edit own flickr media'
   - 'edit own news content'
   - 'edit own page content'
   - 'edit own partner content'

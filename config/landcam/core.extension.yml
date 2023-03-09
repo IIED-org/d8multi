@@ -53,7 +53,6 @@ module:
   mailchimp_signup: 0
   media: 0
   media_entity_browser: 0
-  media_entity_flickr: 0
   menu_ui: 0
   mysql: 0
   node: 0
