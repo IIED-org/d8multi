@@ -5,7 +5,7 @@ package: Field types
 core: '8.x'
 core_version_requirement: ^8 || ^9
 
-# Information added by Drupal.org packaging script on 2021-08-27
-version: '8.x-1.11'
+# Information added by Drupal.org packaging script on 2022-10-14
+version: '8.x-1.12'
 project: 'audiofield'
-datestamp: 1630089339
+datestamp: 1665769896

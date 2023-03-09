@@ -18,6 +18,7 @@ use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\File\FileUrlGenerator;
 
 /**
  * Base class for audiofield plugins. Includes global functions.
@@ -55,15 +56,23 @@ abstract class AudioFieldPluginBase extends PluginBase implements ContainerFacto
   protected $loggerFactory;
 
   /**
+   * File URL generator service.
+   *
+   * @var Drupal\Core\File\FileUrlGenerator
+   */
+  protected $fileUrlGenerator;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LibraryDiscovery $library_discovery, MessengerInterface $messenger, LoggerChannelFactoryInterface $logger_factory, FileSystemInterface $file_system) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LibraryDiscovery $library_discovery, MessengerInterface $messenger, LoggerChannelFactoryInterface $logger_factory, FileSystemInterface $file_system, FileUrlGenerator $file_url_generator) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->libraryDiscovery = $library_discovery;
     $this->messenger = $messenger;
     $this->loggerFactory = $logger_factory;
     $this->fileSystem = $file_system;
+    $this->fileUrlGenerator = $file_url_generator;
   }
 
   /**
@@ -77,7 +86,8 @@ abstract class AudioFieldPluginBase extends PluginBase implements ContainerFacto
       $container->get('library.discovery'),
       $container->get('messenger'),
       $container->get('logger.factory'),
-      $container->get('file_system')
+      $container->get('file_system'),
+      $container->get('file_url_generator')
     );
   }
 
@@ -460,7 +470,7 @@ abstract class AudioFieldPluginBase extends PluginBase implements ContainerFacto
       // Load the associated file.
       $file = $this->loadFileFromItem($item);
       // Get the file URL.
-      return Url::fromUri(file_create_url($file->getFileUri()));
+      return $this->fileUrlGenerator->generate($file->getFileUri());
     }
     // Handle Link entity.
     elseif ($this->getClassType($item) == 'LinkItem') {
@@ -541,7 +551,6 @@ abstract class AudioFieldPluginBase extends PluginBase implements ContainerFacto
       if ($this->validateEntityAgainstPlayer($item)) {
         // Get render information for this item.
         $renderInfo = $this->getAudioRenderInfo($item);
-
         // Add the file to the render array.
         $template_files[] = $renderInfo;
 

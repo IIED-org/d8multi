@@ -25,4 +25,4 @@ services:
 
   mailchimp.client_factory:
     class: Drupal\mailchimp\ClientFactory
-    arguments: ['@mailchimp.settings', '@logger.channel.mailchimp', '@messenger']
+    arguments: ['@mailchimp.settings', '@logger.channel.mailchimp', '@messenger', '@state']

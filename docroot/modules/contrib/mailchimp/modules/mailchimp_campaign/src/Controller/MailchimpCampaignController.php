@@ -151,9 +151,11 @@ class MailchimpCampaignController extends ControllerBase {
       $list_url = Url::fromUri('https://admin.mailchimp.com/lists/dashboard/overview?id=' . $campaign->list->id, ['attributes' => ['target' => '_blank']]);
       $send_url = Url::fromRoute('entity.mailchimp_campaign.send', ['mailchimp_campaign' => $campaign_id]);
       $edit_url = Url::fromRoute('entity.mailchimp_campaign.edit_form', ['mailchimp_campaign' => $campaign_id]);
+      $send_test_mail = Url::fromRoute('entity.mailchimp_campaign.sendtestmail', ['mailchimp_campaign' => $campaign_id]);
 
       if ($campaign->mc_data->status === "save") {
         $send_link = Link::fromTextAndUrl($this->t("Send"), $send_url)->toString();
+        $send_test_link = Link::fromTextAndUrl(t("Send Test Email"), $send_test_mail)->toString();
         $edit_link = Link::fromTextAndUrl($this->t("Edit"), $edit_url)->toString();
       }
       // "Sent" campaigns were not being cached, so we needed to reload to get
@@ -173,6 +175,7 @@ class MailchimpCampaignController extends ControllerBase {
         Link::fromTextAndUrl(('View Archive'), $archive_url)->toString(),
         Link::fromTextAndUrl(('View'), $campaign_url)->toString(),
         $send_link,
+        $send_test_link,
       ];
 
       if (isset($edit_link)) {

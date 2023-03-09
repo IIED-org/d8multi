@@ -23,6 +23,7 @@
       // Create waveform.
       const wavesurfer = WaveSurfer.create({
         container: `#${$(wavecontainer).attr('id')} .waveform`,
+        backend: settings.backend,
         audioRate: settings.audioRate,
         autoCenter: settings.autoCenter,
         barGap: settings.barGap,

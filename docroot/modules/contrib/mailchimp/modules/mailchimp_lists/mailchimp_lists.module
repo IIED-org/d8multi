@@ -499,7 +499,7 @@ function mailchimp_lists_execute_mergevar_batch_update($list_id, &$context) {
     $result = mailchimp_batch_update_members($list_id, $batch, FALSE, TRUE, FALSE);
 
     if ($result) {
-      /* @var \Mailchimp\Mailchimp $mc */
+      /* @var \Mailchimp\MailchimpApiUser $mc */
       $mc = mailchimp_get_api_object();
       $batch_result = $mc->getBatchOperation($result->id);
 

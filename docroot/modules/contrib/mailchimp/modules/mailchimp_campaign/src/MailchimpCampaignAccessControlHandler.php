@@ -28,6 +28,7 @@ class MailchimpCampaignAccessControlHandler extends EntityAccessControlHandler {
     $return = NULL;
     switch ($operation) {
       case 'send':
+      case 'sendtestmail':
       case 'edit':
       case 'delete':
         $return = ($status == MAILCHIMP_STATUS_SENT) ? AccessResult::forbidden() : AccessResult::allowed();

@@ -2,6 +2,7 @@
 
 namespace Drupal\audiofield\Plugin\AudioPlayer;
 
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\audiofield\AudioFieldPluginBase;
 use Drupal\Component\Serialization\Json;
@@ -11,7 +12,7 @@ use Drupal\Core\Asset\LibraryDiscovery;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\File\FileSystemInterface;
-use Drupal\Core\Extension\ModuleHandler;
+use Drupal\Core\File\FileUrlGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -33,15 +34,15 @@ class WavesurferAudioPlayer extends AudioFieldPluginBase {
   /**
    * Module handler service.
    *
-   * @var Drupal\Core\Extension\ModuleHandler
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
    */
   protected $moduleHandler;
 
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LibraryDiscovery $library_discovery, MessengerInterface $messenger, LoggerChannelFactoryInterface $logger_factory, FileSystemInterface $file_system, ModuleHandler $module_handler) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $library_discovery, $messenger, $logger_factory, $file_system);
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LibraryDiscovery $library_discovery, MessengerInterface $messenger, LoggerChannelFactoryInterface $logger_factory, FileSystemInterface $file_system, ModuleHandlerInterface $module_handler, FileUrlGenerator $file_url_generator) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $library_discovery, $messenger, $logger_factory, $file_system, $file_url_generator);
 
     $this->moduleHandler = $module_handler;
   }
@@ -58,7 +59,8 @@ class WavesurferAudioPlayer extends AudioFieldPluginBase {
       $container->get('messenger'),
       $container->get('logger.factory'),
       $container->get('file_system'),
-      $container->get('module_handler')
+      $container->get('module_handler'),
+      $container->get('file_url_generator')
     );
   }
 
@@ -89,6 +91,7 @@ class WavesurferAudioPlayer extends AudioFieldPluginBase {
       'files' => [],
       'audioRate' => $settings['audio_player_wavesurfer_audiorate'],
       'autoCenter' => $settings['audio_player_wavesurfer_autocenter'],
+      'backend' => $settings['audio_player_wavesurfer_backend'],
       'barGap' => $settings['audio_player_wavesurfer_bargap'],
       'barHeight' => $settings['audio_player_wavesurfer_barheight'],
       'barWidth' => $settings['audio_player_wavesurfer_barwidth'],
@@ -121,7 +124,7 @@ class WavesurferAudioPlayer extends AudioFieldPluginBase {
         // Get the file URL.
         $deliveryUrl = $file->getFileUri();
         // Get the file information so we can determin extension.
-        $deliveryFileInfo = pathinfo(file_create_url($deliveryUrl));
+        $deliveryFileInfo = pathinfo($this->fileUrlGenerator->generateAbsoluteString($deliveryUrl));
         // Generate the URL for finding the peak file.
         $peakData = [
           'url' => dirname($deliveryUrl) . '/' . $deliveryFileInfo['filename'] . '.json',
@@ -154,7 +157,7 @@ class WavesurferAudioPlayer extends AudioFieldPluginBase {
 
         // If the file exists, add it to the jQuery and template settings.
         if (file_exists($peakData['url'])) {
-          $renderInfo->peakpath = $fileSettings['peakpath'] = file_create_url($peakData['url']);
+          $renderInfo->peakpath = $fileSettings['peakpath'] = $this->fileUrlGenerator->generateAbsoluteString($peakData['url']);
         }
       }
 

@@ -6,7 +6,7 @@ package: 'Mailchimp'
 dependencies:
   - mailchimp:mailchimp_events
 
-# Information added by Drupal.org packaging script on 2021-07-14
-version: '2.1.0-rc1'
+# Information added by Drupal.org packaging script on 2023-02-10
+version: '2.2.0-rc1'
 project: 'mailchimp'
-datestamp: 1626302240
+datestamp: 1676071584
