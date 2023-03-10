@@ -765,7 +765,6 @@ $settings['file_scan_ignore_directories'] = [
 $settings['entity_update_batch_size'] = 50;
 
 /* Add config directory */
-
 $settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_path);
 
 // On Acquia Cloud, this include file configures Drupal to use the correct

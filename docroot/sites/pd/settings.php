@@ -790,6 +790,7 @@ if (file_exists('/var/www/site-php/landcam')) {
   require '/var/www/site-php/landcam/pd-settings.inc';
 }
 
+/* Add config directory */
 $settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_path);
 
 /**
