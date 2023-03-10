@@ -769,9 +769,6 @@ $settings['file_scan_ignore_directories'] = [
  */
 $settings['entity_update_batch_size'] = 50;
 
-/* Add config directory */
-$settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_path);
-
 // On Acquia Cloud, this include file configures Drupal to use the correct
 // database in each site environment (Dev, Stage, or Prod). To use this
 // settings.php for development on your local workstation, set $db_url
@@ -779,6 +776,8 @@ $settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_
 if (file_exists('/var/www/site-php/landcam')) {
   require '/var/www/site-php/landcam/landcam-settings.inc';
 }
+/* Add config directory */
+$settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_path);
 
 /**
  * Load local development override configuration, if available.
