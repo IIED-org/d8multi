@@ -293,7 +293,7 @@ function _mailchimp_lists_mergevars_populate($merge_fields, EntityInterface $ent
 
     $data = $entity->getTypedData();
     $value = NULL;
-    foreach (explode(':', $property_path) as $name) {
+    foreach (explode(':', (string) $property_path) as $name) {
 
       if ($data instanceof ListInterface) {
         if (!is_numeric($name)) {

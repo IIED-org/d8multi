@@ -37,6 +37,8 @@ class MailchimpOAuthController extends ControllerBase {
       ],
     ];
     $client = $this->client();
+    $url = Url::fromRoute('mailchimp.admin.oauth');
+
     try {
       $middleware_url = $this->config('mailchimp.settings')->get('oauth_middleware_url');
       $response = $client->request('POST', $middleware_url . '/access-token', $post_params);
@@ -52,19 +54,16 @@ class MailchimpOAuthController extends ControllerBase {
           // Save authentication values to state.
           $this->stateService->set('mailchimp_access_token', $access_token);
           $this->stateService->set('mailchimp_data_center', $data_center);
-          $url = Url::fromRoute('mailchimp.admin.oauth');
           return new RedirectResponse($url->toString());
         }
-      }
-      else {
-        $message = 'There was an error communincating with the authentication server.';
-        $this->messenger()->addMessage('%message', ['%message' => $message]);
-        return;
       }
     }
     catch (\GuzzleHttp\Exception\GuzzleException $e) {
       $this->messenger()->addError($e->getMessage());
     }
+
+    return new RedirectResponse($url->toString());
+
   }
 
   /**

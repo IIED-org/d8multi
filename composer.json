@@ -115,9 +115,6 @@
       },
       "drupal/google_analytics": {
         "3258588":"https://www.drupal.org/files/issues/2022-05-18/google_analytics_fix_deprecated_code-3258588-16.diff"
-      },
-      "drupal/mailchimp": {
-        "3279948":"https://www.drupal.org/files/issues/2022-05-11/mailchimp-preg-quote-php81-null-3279948-2.patch"
       }
     },
     "drupal-scaffold": {

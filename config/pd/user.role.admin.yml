@@ -121,6 +121,7 @@ permissions:
   - 'administer recaptcha'
   - 'administer search'
   - 'administer search_api'
+  - 'administer seckit'
   - 'administer site configuration'
   - 'administer software updates'
   - 'administer taxonomy'
@@ -239,4 +240,3 @@ permissions:
   - 'view the administration theme'
   - 'view unpublished paragraphs'
   - 'view update notifications'
-  - 'administer seckit'

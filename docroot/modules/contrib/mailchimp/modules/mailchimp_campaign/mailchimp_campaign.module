@@ -245,7 +245,7 @@ function mailchimp_campaign_sendtestmail_campaign(MailchimpCampaign $campaign, $
       throw new Exception('Cannot send campaign without Mailchimp API. Check API key has been entered.');
     }
 
-    $mc_campaign->sendTest($campaign->mc_data->id, explode(',', $testemail), 'html');
+    $mc_campaign->sendTest($campaign->mc_data->id, explode(',', (string) $testemail), 'html');
     return TRUE;
   }
   catch (\Exception $e) {
@@ -541,6 +541,7 @@ function mailchimp_campaign_load_multiple($campaign_ids = [], $reset = FALSE) {
   if (empty($campaign_ids)) {
     $campaign_ids = Drupal::entityQuery('mailchimp_campaign')
       ->sort('created', 'DESC')
+      ->accessCheck(TRUE)
       ->execute();
   }
 

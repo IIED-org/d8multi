@@ -116,6 +116,17 @@ https://www.drupal.org/docs/contributed-modules/ludwig/installation-and-usage
 CONFIGURATION
 -------------
 
+### Using OAuth
+1. From the Global Settings tab check the box for “Use OAuth Authentication."
+2. Leave all other fields they are and click “Save Configuration.”
+3. Visit the OAuth Settings Tab.
+4. Enter a domain (or leave the default value).
+5. Click "Authenticate."
+6. This will trigger a new window (or tab) to open where you will be prompted to log in to Mailchimp and grant access to Mailchimp for Drupal.
+7. Follow the prompts to do so and then you will be returned to the OAuth Settings tab. That page will automatically refresh and present a success message stating that you are connected to the Mailchimp API.
+8. That's it! Now that you have granted access to Mailchimp for Drupal. You can configure your Mailchimp audiences, campaigns, forms, and pages.
+
+### Using API Key (Deprecated)
   1. Direct your browser to admin/config/services/mailchimp to configure the
     module.
 

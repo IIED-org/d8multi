@@ -108,7 +108,7 @@ class MailchimpAdminOauthSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
       '#title' => $this->t('Website domain'),
       '#description' => $this->t('Enter the domain you want to authenticate. Example: mydrupalsite.com'),
-      '#default_value' => $this->config('mailchimp.settings')->get('domain') ?? $_SERVER['HTTP_HOST'],
+      '#default_value' => !empty($this->config('mailchimp.settings')->get('domain')) ? $this->config('mailchimp.settings')->get('domain') : $_SERVER['HTTP_HOST'],
     ];
 
     $form['#attached']['library'][] = 'mailchimp/authentication';
@@ -179,17 +179,14 @@ class MailchimpAdminOauthSettingsForm extends ConfigFormBase {
         $pending_message = 'An authentication request has been opened in a new window. Please follow the prompts to login and grant Drupal access to your Mailchimp account. NOTE: a pop-up blocker might prevent this action.';
         $response->addCommand(new MessageCommand($pending_message, '#mailchimp-authentication-status', ['type' => 'warning']));
         return $response;
-
+      }
+      else {
+        $response = new AjaxResponse();
+        $pending_message = 'There was an error connecting to the authentication server. Please try again later.';
+        $response->addCommand(new MessageCommand($pending_message, '#mailchimp-authentication-status', ['type' => 'error']));
+        return $response;
       }
     }
-    else {
-      // @todo update to display actual error messages.
-      $response = new AjaxResponse();
-      $error_message = 'There was an error communicating with the authentication server. Please try again.';
-      $response->addCommand(new MessageCommand($error_message, '#mailchimp-authentication-status', ['type' => 'error']));
-      return $response;
-    }
-
   }
 
   /**

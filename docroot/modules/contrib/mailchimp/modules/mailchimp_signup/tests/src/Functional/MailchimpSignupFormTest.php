@@ -20,7 +20,7 @@ class MailchimpSignupFormTest extends FunctionalMailchimpTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $rid = $this->adminUser->getRoles()[1];
@@ -56,7 +56,7 @@ class MailchimpSignupFormTest extends FunctionalMailchimpTestBase {
       'settings[submit_button]' => 'Sign up',
       'settings[path]' => 'newsletter/signup',
       'settings[confirmation_message]' => 'You have signed up',
-      'settings[destination]' => 'home',
+      'settings[destination]' => '/home',
       'mc_lists[57afe96172]' => TRUE,
     ], 'Save');
     $this->assertSession()->addressEquals('/admin/config/services/mailchimp/signup');
@@ -81,7 +81,7 @@ class MailchimpSignupFormTest extends FunctionalMailchimpTestBase {
     $manager->clearCachedDefinitions();
 
     // Test the block.
-    $this->assertNoText('My signup block');
+    $this->assertSession()->pageTextNotContains('My signup block');
     $this->drupalPlaceBlock('mailchimp_signup_subscribe_block:my_signup_form', ['label' => 'My signup block']);
     $this->drupalGet('/foo');
     $this->assertSession()->pageTextContains('My signup block');
