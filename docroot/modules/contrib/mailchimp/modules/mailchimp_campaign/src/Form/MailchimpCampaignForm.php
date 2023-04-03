@@ -17,7 +17,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
-use Drupal\Core\Render;
+use Drupal\Core\Render\RendererInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -63,6 +63,13 @@ class MailchimpCampaignForm extends ContentEntityForm {
   protected $cache;
 
   /**
+   * Render service.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $render;
+
+  /**
    * Constructs a MailchimpCampaignForm object.
    *
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
@@ -77,18 +84,31 @@ class MailchimpCampaignForm extends ContentEntityForm {
    *   The entity display repository.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The Mailchimp cache backend interface.
+   * @param \Drupal\Core\Render\RendererInterface $render
+   *   The render service.
    * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entity_type_bundle_info
    *   The entity type bundle service.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   The time service.
    */
-  public function __construct(EntityRepositoryInterface $entity_repository, ConfigFactoryInterface $config_factory, MessengerInterface $messenger, EntityTypeManagerInterface $entityTypeManager, EntityDisplayRepositoryInterface $entity_display_repository, CacheBackendInterface $cache, EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL, TimeInterface $time = NULL) {
+  public function __construct(
+    EntityRepositoryInterface $entity_repository,
+    ConfigFactoryInterface $config_factory,
+    MessengerInterface $messenger,
+    EntityTypeManagerInterface $entityTypeManager,
+    EntityDisplayRepositoryInterface $entity_display_repository,
+    CacheBackendInterface $cache,
+    RendererInterface $render,
+    EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL,
+    TimeInterface $time = NULL
+  ) {
     parent::__construct($entity_repository, $entity_type_bundle_info, $time);
     $this->config = $config_factory;
     $this->messenger = $messenger;
     $this->entityTypeManager = $entityTypeManager;
     $this->entityDisplayRepository = $entity_display_repository;
     $this->cache = $cache;
+    $this->render = $render;
   }
 
   /**
@@ -102,6 +122,7 @@ class MailchimpCampaignForm extends ContentEntityForm {
       $container->get('entity_type.manager'),
       $container->get('entity_display.repository'),
       $container->get('cache.mailchimp'),
+      $container->get('renderer'),
       $container->get('entity_type.bundle.info'),
       $container->get('datetime.time')
     );
@@ -847,7 +868,7 @@ class MailchimpCampaignForm extends ContentEntityForm {
         }
       }
 
-      return render($element);
+      return $this->render->render($element);
     }
     else {
       return $this->t('No custom merge vars exist for the current audience.');

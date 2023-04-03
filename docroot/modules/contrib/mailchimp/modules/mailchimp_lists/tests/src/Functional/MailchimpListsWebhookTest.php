@@ -14,7 +14,7 @@ class MailchimpListsWebhookTest extends MailchimpListsTestBase {
    *
    * @var array
    */
-  public static $modules = ['mailchimp', 'mailchimp_lists', 'mailchimp_test'];
+  protected static $modules = ['mailchimp', 'mailchimp_lists', 'mailchimp_test'];
 
   /**
    * Tests retrieval of webhooks for a list.

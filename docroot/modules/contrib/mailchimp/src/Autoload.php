@@ -36,7 +36,7 @@ class Autoload {
       $library_dir = dirname(dirname($reflector->getFileName()));
 
       // Compose expected path to the test class.
-      $parts = explode('\\', $class);
+      $parts = explode('\\', (string) $class);
       $class_without_base = implode('\\', array_slice($parts, 2));
       $file = $library_dir . '/tests/src/' . strtr($class_without_base, '\\', '/') . '.php';
 

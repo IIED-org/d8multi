@@ -116,8 +116,8 @@ class ListMailchimpEventsForMember extends FormBase {
     $list = $form_state->getValue('list');
     $count = $form_state->getValue('count');
     $offset = $form_state->getValue('offset');
-    $fields = explode(',', $form_state->getValue('fields'));
-    $exclude_fields = explode(',', $form_state->getValue('exclude_fields'));
+    $fields = explode(',', (string) $form_state->getValue('fields'));
+    $exclude_fields = explode(',', (string) $form_state->getValue('exclude_fields'));
 
     $events = mailchimp_events_list_member_events($list, $email, $count, $offset, $fields, $exclude_fields);
     $form_state->set('events', $events);

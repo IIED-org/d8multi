@@ -42,6 +42,7 @@ dependencies:
     - recaptcha
     - search
     - search_api
+    - seckit
     - system
     - taxonomy
     - toolbar
@@ -120,6 +121,7 @@ permissions:
   - 'administer recaptcha'
   - 'administer search'
   - 'administer search_api'
+  - 'administer seckit'
   - 'administer site configuration'
   - 'administer software updates'
   - 'administer taxonomy'

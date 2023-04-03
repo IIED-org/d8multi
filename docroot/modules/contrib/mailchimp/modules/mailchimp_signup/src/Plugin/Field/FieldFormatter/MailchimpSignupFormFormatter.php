@@ -46,7 +46,7 @@ class MailchimpSignupFormFormatter extends EntityReferenceFormatterBase {
 
       $messenger = \Drupal::messenger();
 
-      $form = new \Drupal\mailchimp_signup\Form\MailchimpSignupPageForm($messenger);
+      $form = new MailchimpSignupPageForm($messenger);
 
       $form->setFormID($this->getFormId($signup));
       $form->setSignup($signup);

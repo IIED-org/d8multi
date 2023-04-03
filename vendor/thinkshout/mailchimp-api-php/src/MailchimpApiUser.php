@@ -113,5 +113,47 @@ class MailchimpApiUser {
     }
   }
 
+  /**
+   * Check if key or token is in place.
+   *
+   * @return bool
+   *   If the access_token or api_key is set.
+   */
+  public function hasApiAccess() {
+    switch (get_class($this->api_class)) {
+      case 'Mailchimp\Mailchimp':
+        return isset($this->api_class->api_key);
+        break;
+      case 'Mailchimp\Mailchimp2':
+        return isset($this->api_class->access_token);
+        break;
+    }
+  }
+
+  /**
+   * Passes on request to Mailchimp Api Interface.
+   * This allows backwards compatibilty with existing calls.
+   *
+   * @param string $method
+   *   The REST method to use when making the request.
+   * @param string $path
+   *   The API path to request.
+   * @param array $tokens
+   *   Associative array of tokens and values to replace in the path.
+   * @param array $parameters
+   *   Associative array of parameters to send in the request body.
+   * @param bool $batch
+   *   TRUE if this request should be added to pending batch operations.
+   * @param bool $returnAssoc
+   *   TRUE to return Mailchimp API response as an associative array.
+   *
+   * @return mixed
+   *   Object or Array if $returnAssoc is TRUE.
+   *
+   * @throws MailchimpAPIException
+   */
+  public function request($method, $path, $tokens = NULL, $parameters = [], $batch = FALSE, $returnAssoc = FALSE) {
+    return $this->api_class->request($method, $path, $tokens = NULL, $parameters = [], $batch = FALSE, $returnAssoc = FALSE);
+  }
 
 }

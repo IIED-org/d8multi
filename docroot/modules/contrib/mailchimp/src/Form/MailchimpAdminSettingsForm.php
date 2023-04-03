@@ -84,7 +84,7 @@ class MailchimpAdminSettingsForm extends ConfigFormBase {
     $mc_api_url = Url::fromUri('http://admin.mailchimp.com/account/api', ['attributes' => ['target' => '_blank']]);
     $form['api_key'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Mailchimp API Key'),
+      '#title' => $this->t('Mailchimp API Key (deprecated)'),
       '#required' => FALSE,
       '#default_value' => $config->get('api_key'),
       '#description' => $this->t('The API key for your Mailchimp account. Get or generate a valid API key at your @apilink.', ['@apilink' => Link::fromTextAndUrl($this->t('Mailchimp API Dashboard'), $mc_api_url)->toString()]),
@@ -258,12 +258,7 @@ class MailchimpAdminSettingsForm extends ConfigFormBase {
     // Check for proper OAuth config and report problems.
     $mc_oauth_url = Url::fromRoute('mailchimp.admin.oauth');
     if (!$config->get('use_oauth')) {
-      $this->messenger()->addWarning('Your site is authenticating with an API key and that method of authentication is deprecated. Use OAuth instead');
-    }
-    else {
-      if (!$this->stateService->get('mailchimp_access_token')) {
-        $this->messenger()->addWarning($this->t('You are not properly authenticated visit @oauth_settings_page', ['@oauth_settings_page' => Link::fromTextAndUrl($this->t('OAuth Settings page'), $mc_oauth_url)->toString()]));
-      }
+      $this->messenger()->addWarning('Your site is authenticating with an API key and that method of authentication is deprecated. Oauth is now the preferred method of authentication.');
     }
 
     parent::submitForm($form, $form_state);

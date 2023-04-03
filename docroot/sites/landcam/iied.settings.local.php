@@ -164,8 +164,6 @@ $databases['default'] = array (
       'password' => 'mysql',
       'prefix' => '',
       'port' => 3306,
+      'host' => 'landcam'
     )
   );
-
-// The only thing to add from the out-of-the-box Lando db is the special host for each subsite
-$databases['default']['default']['host'] = 'landcam';

@@ -6,8 +6,10 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
+use function GuzzleHttp\default_user_agent;
 use GuzzleHttp\Exception\ClientException;
 use Mailchimp\MailchimpLists;
 
@@ -45,6 +47,11 @@ function mailchimp_get_api_object($classname = 'MailchimpApiUser') {
     \Drupal::messenger()->addError('Failed to load Mailchimp PHP library. Please refer to the installation requirements.');
     return NULL;
   }
+  if ($object && !$object->hasApiAccess()) {
+    $mc_oauth_url = Url::fromRoute('mailchimp.admin.oauth');
+    \Drupal::messenger()->addError(t('Unable to connect to Mailchimp API. Visit @oauth_settings_page to authenticate or uncheck "Use OAuth Authentication" and add an api_key below (deprecated).', ['@oauth_settings_page' => Link::fromTextAndUrl(t('OAuth Settings page'), $mc_oauth_url)->toString()]));
+    return NULL;
+  }
 
   return $object;
 }
@@ -67,7 +74,7 @@ function _mailchimp_get_user_agent() {
     }
   }
 
-  $user_agent = "DrupalMailchimp/$version " . \GuzzleHttp\default_user_agent();
+  $user_agent = "DrupalMailchimp/$version " . default_user_agent();
 
   return $user_agent;
 }
@@ -528,7 +535,7 @@ function mailchimp_subscribe_process($list_id, $email, $merge_vars = NULL, $inte
 
       // Add or update member tags
       if ($tags) {
-        $tags = explode(',', $tags);
+        $tags = explode(',', (string) $tags);
         $tags = array_map('trim', $tags);
 
         try {
@@ -1454,7 +1461,7 @@ function mailchimp_page_bottom(array &$page_bottom) {
     $current_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
 
     if ($connected_site_paths && (\Drupal::service('path.matcher')->matchPath($current_path, $connected_site_paths) ||
-        \Drupal::service('path.matcher')->matchPath($current_alias, $connected_site_paths))) {
+      \Drupal::service('path.matcher')->matchPath($current_alias, $connected_site_paths))) {
       $connected_site_id = $config->get('connected_id');
 
       if (!empty($connected_site_id)) {

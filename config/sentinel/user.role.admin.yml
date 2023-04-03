@@ -42,6 +42,7 @@ dependencies:
     - recaptcha
     - search
     - search_api
+    - seckit
     - system
     - taxonomy
     - toolbar
@@ -238,3 +239,4 @@ permissions:
   - 'view the administration theme'
   - 'view unpublished paragraphs'
   - 'view update notifications'
+  - 'administer seckit'
