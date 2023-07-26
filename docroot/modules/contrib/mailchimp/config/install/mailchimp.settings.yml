@@ -2,7 +2,6 @@ api_key:
 api_timeout: 10
 domain: ''
 use_oauth: FALSE
-oauth_middleware_url: 'https://drupal-mailchimp-oauth.uw.r.appspot.com'
 cron: FALSE
 batch_limit: 100
 api_classname: 'Mailchimp\Mailchimp'

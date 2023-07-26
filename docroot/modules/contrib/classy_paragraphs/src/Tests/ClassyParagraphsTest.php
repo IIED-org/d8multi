@@ -18,12 +18,12 @@ class ClassyParagraphsTest extends BrowserTestBase {
    *
    * @var array
    */
-  public static $modules = ['classy_paragraphs', 'node', 'classy_paragraphs_test'];
+  protected static $modules = ['classy_paragraphs', 'node', 'classy_paragraphs_test'];
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $admin_user = $this->drupalCreateUser(['access content',
@@ -70,7 +70,7 @@ class ClassyParagraphsTest extends BrowserTestBase {
    */
   public function testStyleConfigurationPage() {
     $this->drupalGet('admin/structure/classy_paragraphs_style');
-    $this->assertText('Classy paragraphs style');
+    $this->assertSession()->pageTextContains('Classy paragraphs style');
   }
 
   /**
@@ -79,11 +79,11 @@ class ClassyParagraphsTest extends BrowserTestBase {
   public function testClassyParagraphsTestModule() {
     // Check the test text paragraph type.
     $this->drupalGet('admin/structure/paragraphs_type');
-    $this->assertText('Text (CP Test)');
+    $this->assertSession()->pageTextContains('Text (CP Test)');
 
     // Check the test content type type.
     $this->drupalGet('admin/structure/types');
-    $this->assertText('CP Test');
+    $this->assertSession()->pageTextContains('CP Test');
   }
 
   /**

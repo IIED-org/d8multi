@@ -8,7 +8,7 @@ use Drupal\views\Entity\View;
 /**
  * Test that UI Patterns Views display formatter can be properly configured.
  *
- * @group ui_patterns_field_group
+ * @group ui_patterns_views
  */
 class UiPatternsViewsSettingsTest extends WebDriverTestBase {
 

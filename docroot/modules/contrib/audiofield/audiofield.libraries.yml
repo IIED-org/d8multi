@@ -15,7 +15,7 @@ audiofield.jplayer:
     js/jplayer.builder.js: {}
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/once
     - core/drupal
     - core/drupalSettings
 
@@ -80,7 +80,7 @@ audiofield.wordpress:
     js/wordpress.builder.js: {}
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/once
     - core/drupal
     - core/drupalSettings
 
@@ -101,7 +101,7 @@ audiofield.mediaelement:
     js/mediaelement.builder.js: {}
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/once
     - core/drupal
     - core/drupalSettings
 
@@ -117,7 +117,7 @@ audiofield.soundmanager:
     js/soundmanager.builder.js: {}
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/once
     - core/drupal
     - core/drupalSettings
 
@@ -192,7 +192,7 @@ audiofield.audiojs:
     js/audiojs.builder.js: {}
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/once
     - core/drupal
     - core/drupalSettings
 
@@ -212,7 +212,7 @@ audiofield.projekktor:
     js/projekktor.builder.js: {}
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/once
     - core/drupal
     - core/drupalSettings
 
@@ -231,6 +231,6 @@ audiofield.wavesurfer:
     js/wavesurfer.builder.js: {}
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/once
     - core/drupal
     - core/drupalSettings

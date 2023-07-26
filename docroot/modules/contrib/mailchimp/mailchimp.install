@@ -83,3 +83,12 @@ function mailchimp_update_8004(&$sandbox) {
   $config->set('oauth_middleware_url', 'https://drupal-mailchimp-oauth.uw.r.appspot.com');
   $config->save();
 }
+
+/**
+ * Removes oauth middleware url
+ */
+function mailchimp_update_8005(&$sandbox) {
+  $config = \Drupal::configFactory()->getEditable('mailchimp.settings');
+  $config->clear('oauth_middleware_url');
+  $config->save();
+}

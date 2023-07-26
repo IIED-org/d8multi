@@ -35,7 +35,7 @@ class PatternDefinitionTest extends AbstractUiPatternsTest {
    */
   public function testGettersSetters($getter, $name, $value) {
     $pattern_definition = new PatternDefinition([$name => $value]);
-    $this->assertEquals(call_user_func([$pattern_definition, $getter]), $value);
+    $this->assertEquals($value, call_user_func([$pattern_definition, $getter]));
   }
 
   /**
@@ -155,6 +155,90 @@ class PatternDefinitionTest extends AbstractUiPatternsTest {
    */
   public function variantsProcessingProvider() {
     return Yaml::decode(file_get_contents($this->getFixturePath() . '/definition/variants_processing.yml'));
+  }
+
+  /**
+   * Test hasUse method.
+   *
+   * @dataProvider hasUseProvider
+   *
+   * @covers ::hasUse
+   */
+  public function testHasUse(array $pattern, bool $expected): void {
+    $patternDefinition = new PatternDefinition($pattern);
+    $this->assertEquals($expected, $patternDefinition->hasUse());
+  }
+
+  /**
+   * Provider.
+   *
+   * @return array
+   *   Data.
+   */
+  public function hasUseProvider(): array {
+    return [
+      'pattern_without_use' => [
+        [
+          'id' => 'test',
+        ],
+        FALSE,
+      ],
+      'pattern_with_use' => [
+        [
+          'id' => 'test',
+          'use' => 'my use',
+        ],
+        TRUE,
+      ],
+      'pattern_with_use_with_variant' => [
+        [
+          'id' => 'test',
+          'use' => 'my use',
+          'variants' => [
+            'default' => [
+              'label' => 'Default',
+            ],
+          ],
+        ],
+        TRUE,
+      ],
+      'pattern_with_variant' => [
+        [
+          'id' => 'test',
+          'variants' => [
+            'default' => [
+              'label' => 'Default',
+            ],
+          ],
+        ],
+        FALSE,
+      ],
+      'pattern_with_variant_with_use' => [
+        [
+          'id' => 'test',
+          'variants' => [
+            'default' => [
+              'label' => 'Default',
+              'use' => 'my use',
+            ],
+          ],
+        ],
+        TRUE,
+      ],
+      'pattern_with_use_with_variant_with_use' => [
+        [
+          'id' => 'test',
+          'use' => 'my use',
+          'variants' => [
+            'default' => [
+              'label' => 'Default',
+              'use' => 'my use',
+            ],
+          ],
+        ],
+        TRUE,
+      ],
+    ];
   }
 
 }

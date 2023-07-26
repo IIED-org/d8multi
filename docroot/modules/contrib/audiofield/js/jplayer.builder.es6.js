@@ -3,7 +3,7 @@
  * Audiofield build jPlayer audio players of various types.
  */
 
-(($, Drupal) => {
+(($, Drupal, once) => {
   'use strict';
 
   Drupal.AudiofieldJplayer = {};
@@ -18,7 +18,8 @@
    */
   Drupal.AudiofieldJplayer.generate = (context, settings) => {
     // Create the media player.
-    $(`#jquery_jplayer_${settings.unique_id}`, context).once('generate-jplayer').jPlayer(
+    const element = once('generate-jplayer', '#jquery_jplayer_' + settings.unique_id, context);
+    $(element).jPlayer(
       {
         cssSelectorAncestor: `#jp_container_${settings.unique_id}`,
       },
@@ -60,7 +61,8 @@
    *   The Drupal settings for this player.
    */
   Drupal.AudiofieldJplayer.generatePlaylist = (context, settings) => {
-    $.each($(context).find(`#jquery_jplayer_${settings.unique_id}`).once('generate-jplayer'), (index, item) => {
+    var elements = once('generate-jplayer', '#jquery_jplayer_' + settings.unique_id, context);
+    $.each(elements, (index, item) => {
       // Initialize the container audio player.
       const thisPlaylist = new jPlayerPlaylist({
         jPlayer: $(item),
@@ -108,7 +110,8 @@
    */
   Drupal.AudiofieldJplayer.generateCircle = (context, file) => {
     // Create the media player.
-    $.each($(context).find(`#jquery_jplayer_${file.fid}`).once('generate-jplayer'), (index, item) => {
+    var elements = once('generate-jplayer', '#jquery_jplayer_' + file.fid, context);
+    $.each(elements, (index, item) => {
       // Build the media array for this player.
       const mediaArray = {};
       mediaArray[file.filetype] = file.file;
@@ -166,4 +169,4 @@
       });
     },
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

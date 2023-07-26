@@ -5,13 +5,14 @@
 * @preserve
 **/
 
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.AudiofieldWavesurfer = {};
 
   Drupal.AudiofieldWavesurfer.generate = function (context, file, settings) {
-    $.each($(context).find('#' + file.id).once('generate-waveform'), function (index, wavecontainer) {
+    var elements = once('generate-waveform', '#' + file.id, context);
+    $.each(elements, function (index, wavecontainer) {
       var wavesurfer = WaveSurfer.create({
         container: '#' + $(wavecontainer).attr('id') + ' .waveform',
         backend: settings.backend,
@@ -87,7 +88,8 @@
   }
 
   Drupal.AudiofieldWavesurfer.generatePlaylist = function (context, settings) {
-    $.each($(context).find('#wavesurfer_playlist-' + settings.unique_id).once('generate-waveform'), function (index, wavecontainer) {
+    var elements = once('generate-waveform', '#wavesurfer_playlist-' + settings.unique_id, context);
+    $.each(elements, function (index, wavecontainer) {
       var wavesurfer = WaveSurfer.create({
         container: '#' + $(wavecontainer).attr('id') + ' .waveform',
         audioRate: settings.audioRate,
@@ -243,4 +245,4 @@
       });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

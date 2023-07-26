@@ -5,7 +5,7 @@
 * @preserve
 **/
 
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.AudiofieldWordpress = {};
@@ -15,7 +15,8 @@
     if (!!settings.autoplay) {
       autostartSetting = 'yes';
     }
-    $.each($(context).find('#wordpressaudioplayer_' + file.unique_id).once('generate-waveform'), function (index, item) {
+    var elements = once('generate-waveform', '#wordpressaudioplayer_' + file.unique_id, context);
+    $.each(elements, function (index, item) {
       AudioPlayer.embed($(item).attr('id'), {
         soundFile: file.file,
         titles: file.title,
@@ -43,4 +44,4 @@
       });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

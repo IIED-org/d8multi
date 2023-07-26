@@ -4,7 +4,7 @@ description: 'Mailchimp Campaign Test Module.'
 package: Testing
 core_version_requirement: ^8.7.7 || ^9
 
-# Information added by Drupal.org packaging script on 2023-03-13
-version: '2.2.0'
+# Information added by Drupal.org packaging script on 2023-06-28
+version: '2.2.2'
 project: 'mailchimp'
-datestamp: 1678751432
+datestamp: 1687910932

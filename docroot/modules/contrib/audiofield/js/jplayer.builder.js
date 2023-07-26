@@ -5,13 +5,14 @@
 * @preserve
 **/
 
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.AudiofieldJplayer = {};
 
   Drupal.AudiofieldJplayer.generate = function (context, settings) {
-    $('#jquery_jplayer_' + settings.unique_id, context).once('generate-jplayer').jPlayer({
+    var element = once('generate-jplayer', '#jquery_jplayer_' + settings.unique_id, context);
+    $(element).jPlayer({
       cssSelectorAncestor: '#jp_container_' + settings.unique_id
     }, {
       ready: function ready() {
@@ -41,7 +42,8 @@
   };
 
   Drupal.AudiofieldJplayer.generatePlaylist = function (context, settings) {
-    $.each($(context).find('#jquery_jplayer_' + settings.unique_id).once('generate-jplayer'), function (index, item) {
+    var elements = once('generate-jplayer', '#jquery_jplayer_' + settings.unique_id, context);
+    $.each(elements, function (index, item) {
       var thisPlaylist = new jPlayerPlaylist({
         jPlayer: $(item),
         cssSelectorAncestor: '#jp_container_' + settings.unique_id
@@ -76,7 +78,8 @@
   };
 
   Drupal.AudiofieldJplayer.generateCircle = function (context, file) {
-    $.each($(context).find('#jquery_jplayer_' + file.fid).once('generate-jplayer'), function (index, item) {
+    var elements = once('generate-jplayer', '#jquery_jplayer_' + file.fid, context);
+    $.each(elements, function (index, item) {
       var mediaArray = {};
       mediaArray[file.filetype] = file.file;
 
@@ -111,4 +114,4 @@
       });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

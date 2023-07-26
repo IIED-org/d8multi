@@ -135,6 +135,13 @@ class Pattern extends RenderElement {
       $element['#use'] = $definition->getUse();
     }
 
+    if (isset($element['#variant'])) {
+      $variant_definition = $definition->getVariant($element['#variant']);
+      if ($variant_definition && $variant_definition->hasUse()) {
+        $element['#use'] = $variant_definition->getUse();
+      }
+    }
+
     return $element;
   }
 

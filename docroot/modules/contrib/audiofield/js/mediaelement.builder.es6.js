@@ -3,7 +3,7 @@
  * Audiofield build MediaElement audio player.
  */
 
-(($, Drupal) => {
+(($, Drupal, once) => {
   'use strict';
 
   Drupal.AudiofieldMediaelement = {};
@@ -20,7 +20,8 @@
    */
   Drupal.AudiofieldMediaelement.generate = (context, file, settings) => {
     // Create the media player.
-    $(file, context).once('generate-mediaelement').mediaelementplayer({
+    const element = once('generate-mediaelement', file, context);
+    $(element).mediaelementplayer({
       startVolume: settings.volume,
       loop: false,
       enableAutosize: true,
@@ -47,4 +48,4 @@
       });
     },
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

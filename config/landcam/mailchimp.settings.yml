@@ -1,7 +1,6 @@
 _core:
   default_config_hash: x8k6uOqmSHPqpp71jYGxHF3_SAs3U-Pha3YCntQIhPU
 api_key: 2804c1f6f24d8dab810c8de2995dc55f-us20
-oauth_middleware_url: 'https://drupal-mailchimp-oauth.uw.r.appspot.com'
 api_timeout: 10
 cron: false
 batch_limit: 500

@@ -5,13 +5,14 @@
 * @preserve
 **/
 
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.AudiofieldMediaelement = {};
 
   Drupal.AudiofieldMediaelement.generate = function (context, file, settings) {
-    $(file, context).once('generate-mediaelement').mediaelementplayer({
+    var element = once('generate-mediaelement', file, context);
+    $(element).mediaelementplayer({
       startVolume: settings.volume,
       loop: false,
       enableAutosize: true,
@@ -28,4 +29,4 @@
       });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);
