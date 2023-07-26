@@ -3,7 +3,7 @@
  * Audiofield build Wavesurfer audio player.
  */
 
-(($, Drupal) => {
+(($, Drupal, once) => {
   'use strict';
 
   Drupal.AudiofieldWavesurfer = {};
@@ -19,7 +19,8 @@
    *   The Drupal settings for this player..
    */
   Drupal.AudiofieldWavesurfer.generate = (context, file, settings) => {
-    $.each($(context).find(`#${file.id}`).once('generate-waveform'), (index, wavecontainer) => {
+    const elements = once('generate-waveform', `#${file.id}`, context);
+    $.each(elements, (index, wavecontainer) => {
       // Create waveform.
       const wavesurfer = WaveSurfer.create({
         container: `#${$(wavecontainer).attr('id')} .waveform`,
@@ -120,7 +121,8 @@
    *   The Drupal settings for this player.
    */
   Drupal.AudiofieldWavesurfer.generatePlaylist = (context, settings) => {
-    $.each($(context).find(`#wavesurfer_playlist-${settings.unique_id}`).once('generate-waveform'), (index, wavecontainer) => {
+    const elements = once('generate-waveform', `#wavesurfer_playlist-${settings.unique_id}`, context);
+    $.each(elements, (index, wavecontainer) => {
       // Create waveform.
       const wavesurfer = WaveSurfer.create({
         container: `#${$(wavecontainer).attr('id')} .waveform`,
@@ -341,4 +343,4 @@
       });
     },
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

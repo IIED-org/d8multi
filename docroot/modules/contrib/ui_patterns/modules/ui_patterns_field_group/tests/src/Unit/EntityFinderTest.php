@@ -9,7 +9,7 @@ use Drupal\ui_patterns_field_group\Utility\EntityFinder;
 /**
  * Test entity finder utility.
  *
- * @group ui_patterns
+ * @group ui_patterns_field_group
  */
 class EntityFinderTest extends UnitTestCase {
 

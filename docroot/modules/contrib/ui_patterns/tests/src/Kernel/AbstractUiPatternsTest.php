@@ -9,8 +9,6 @@ use Drupal\KernelTests\KernelTestBase;
  * Abstract base test class.
  *
  * @group ui_patterns
- *
- * @package Drupal\Tests\ui_patterns\Kernel
  */
 abstract class AbstractUiPatternsTest extends KernelTestBase {
 

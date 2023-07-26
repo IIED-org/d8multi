@@ -3,7 +3,7 @@
  * Audiofield build SoundManager audio player.
  */
 
-(($, Drupal) => {
+(($, Drupal, once) => {
   'use strict';
 
   /**
@@ -27,4 +27,4 @@
       });
     },
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

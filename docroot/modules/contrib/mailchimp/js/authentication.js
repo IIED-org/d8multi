@@ -45,7 +45,7 @@
 
           case 'accepted':
             formWrapper.classList.remove('pending');
-            const url = `${window.location.href}/retrieve-token/token/${response.temp_token}`;
+            const url = `${window.location.href}/retrieve-token/token/${response.temp_token}/${drupalSettings.mailchimp.csrf_token}`;
             window.location.href = url;
             break;
         }

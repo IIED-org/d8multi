@@ -5,13 +5,14 @@
 * @preserve
 **/
 
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.AudiofieldProjekktor = {};
 
   Drupal.AudiofieldProjekktor.generate = function (context, file, settings) {
-    $.each($(context).find('#' + file).once('generate-projekktor'), function (index, item) {
+    var elements = once('generate-projekktor', '#' + file, context);
+    $.each(elements, function (index, item) {
       projekktor($(item), {
         debug: false,
         playerFlashMP4: settings.swfpath,
@@ -38,4 +39,4 @@
       });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

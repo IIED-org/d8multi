@@ -2,6 +2,7 @@
 
 namespace Drupal\mailchimp\Controller;
 
+use Drupal\Core\Access\CsrfTokenGenerator;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use GuzzleHttp\Client;
@@ -13,6 +14,15 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 class MailchimpOAuthController extends ControllerBase {
 
+  const OAUTH_MIDDLEWARE_URL = 'https://drupal-oauth.mailchimp.com';
+
+  /**
+   * The CSRF token generator service.
+   *
+   * @var \Drupal\Core\Access\CsrfTokenGenerator
+   */
+  protected CsrfTokenGenerator $csrfService;
+
   /**
    * {@inheritDoc}
    */
@@ -20,6 +30,7 @@ class MailchimpOAuthController extends ControllerBase {
     $instance = parent::create($container);
     $instance->configFactory = $container->get('config.factory');
     $instance->stateService = $container->get('state');
+    $instance->csrfService = $container->get('csrf_token');
     return $instance;
   }
 
@@ -28,8 +39,10 @@ class MailchimpOAuthController extends ControllerBase {
    *
    * @param string $temp_token
    *   The temporary token that was issued from the initial request.
+   * @param string $csrf_token
+   *   CSRF token.
    */
-  public function getAccessToken(string $temp_token) {
+  public function getAccessToken(string $temp_token, string $csrf_token) {
     $post_params = [
       'form_params' => [
         'type' => 'access_token',
@@ -39,8 +52,13 @@ class MailchimpOAuthController extends ControllerBase {
     $client = $this->client();
     $url = Url::fromRoute('mailchimp.admin.oauth');
 
+    if (!$this->csrfService->validate($csrf_token, "mailchimp_admin_oauth_settings")) {
+      $this->messenger()->addError("Could not validate CSRF token.");
+      return new RedirectResponse($url->toString());
+    }
+
     try {
-      $middleware_url = $this->config('mailchimp.settings')->get('oauth_middleware_url');
+      $middleware_url = self::OAUTH_MIDDLEWARE_URL;
       $response = $client->request('POST', $middleware_url . '/access-token', $post_params);
       // Check for response with access_token, and store in database.
       if ($response->getStatusCode() == '200') {

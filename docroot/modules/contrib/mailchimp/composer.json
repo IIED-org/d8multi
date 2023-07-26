@@ -11,6 +11,6 @@
     }
   ],
   "require": {
-    "thinkshout/mailchimp-api-php": "3.0.0-rc4"
+    "thinkshout/mailchimp-api-php": "3.0.0"
   }
 }

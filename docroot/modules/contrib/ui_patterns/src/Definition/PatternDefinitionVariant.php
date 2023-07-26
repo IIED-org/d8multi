@@ -20,6 +20,7 @@ class PatternDefinitionVariant implements \ArrayAccess {
     'name' => NULL,
     'label' => NULL,
     'description' => NULL,
+    'use' => NULL,
   ];
 
   /**
@@ -31,8 +32,7 @@ class PatternDefinitionVariant implements \ArrayAccess {
       $this->definition['label'] = $value;
     }
     else {
-      $this->definition['name'] = !isset($value['name']) ? $name : $value['name'];
-      $this->definition['label'] = $value['label'];
+      $this->definition['name'] = $value['name'] ?? $name;
       $this->definition = $value + $this->definition;
     }
   }
@@ -90,4 +90,36 @@ class PatternDefinitionVariant implements \ArrayAccess {
     return $this;
   }
 
+  /**
+   * Getter.
+   *
+   * @return bool
+   *   Whereas definition uses the "use:" property.
+   */
+  public function hasUse() {
+    return !empty($this->definition['use']);
+  }
+
+  /**
+   * Getter.
+   *
+   * @return string
+   *   Property value.
+   */
+  public function getUse() {
+    return $this->definition['use'];
+  }
+
+  /**
+   * Setter.
+   *
+   * @param string $use
+   *   Property value.
+   *
+   * @return $this
+   */
+  public function setUse($use) {
+    $this->definition['use'] = $use;
+    return $this;
+  }
 }

@@ -3,7 +3,7 @@
  * Audiofield build AudioJs audio player.
  */
 
-(($, Drupal) => {
+(($, Drupal, once) => {
   'use strict';
 
   Drupal.AudiofieldAudiojs = {};
@@ -18,7 +18,8 @@
    */
   Drupal.AudiofieldAudiojs.generate = (context, settings) => {
     // Create the media player.
-    $.each($(context).find(`#${settings.element}`).once('generate-audiojs'), (index, item) => {
+    const elements = once('generate-audiojs', `#${settings.element}`, context);
+    $.each(elements, (index, item) => {
       // Initialize the audio player.
       const audioPlayer = audiojs.create($(item).find('audio').get(0), {
         css: false,
@@ -77,4 +78,4 @@
       });
     },
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

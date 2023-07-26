@@ -13,9 +13,6 @@ mailchimp.settings:
     use_oauth:
       type: boolean
       label: 'Use OAuth for Authentication to Mailchimp API'
-    oauth_middleware_url:
-      type: string
-      label: 'The Middleware URL to use for authenticating with OAuth'
     api_timeout:
       type: integer
       label: 'Mailchimp API Timeout'

@@ -5,13 +5,14 @@
 * @preserve
 **/
 
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.AudiofieldAudiojs = {};
 
   Drupal.AudiofieldAudiojs.generate = function (context, settings) {
-    $.each($(context).find('#' + settings.element).once('generate-audiojs'), function (index, item) {
+    var elements = once('generate-audiojs', '#' + settings.element, context);
+    $.each(elements, function (index, item) {
       var audioPlayer = audiojs.create($(item).find('audio').get(0), {
         css: false,
         createPlayer: {
@@ -59,4 +60,4 @@
       });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

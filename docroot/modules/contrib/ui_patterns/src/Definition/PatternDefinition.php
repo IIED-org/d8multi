@@ -304,7 +304,7 @@ class PatternDefinition extends PluginDefinition implements DerivablePluginDefin
    * @param string $name
    *   Field name.
    *
-   * @return PatternDefinitionField|null
+   * @return \Drupal\ui_patterns\Definition\PatternDefinitionVariant|null
    *   Definition field.
    */
   public function getVariant($name) {
@@ -442,7 +442,18 @@ class PatternDefinition extends PluginDefinition implements DerivablePluginDefin
    *   Whereas definition uses the "use:" property.
    */
   public function hasUse() {
-    return !empty($this->definition['use']);
+    $pattern_has_use = !empty($this->definition['use']);
+
+    if (!$pattern_has_use) {
+      $pattern_variants = $this->getVariants();
+      foreach ($pattern_variants as $pattern_variant) {
+        if ($pattern_variant->hasUse()) {
+          $pattern_has_use = TRUE;
+          break;
+        }
+      }
+    }
+    return $pattern_has_use;
   }
 
   /**

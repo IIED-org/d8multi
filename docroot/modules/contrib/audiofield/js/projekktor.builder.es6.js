@@ -3,7 +3,7 @@
  * Audiofield build Projekktor audio player.
  */
 
-(($, Drupal) => {
+(($, Drupal, once) => {
   'use strict';
 
   Drupal.AudiofieldProjekktor = {};
@@ -19,7 +19,8 @@
    *   The Drupal settings for this player..
    */
   Drupal.AudiofieldProjekktor.generate = (context, file, settings) => {
-    $.each($(context).find(`#${file}`).once('generate-projekktor'), (index, item) => {
+    const elements = once('generate-projekktor', `#${file}`, context);
+    $.each(elements, (index, item) => {
       projekktor($(item), {
         debug: false,
         playerFlashMP4: settings.swfpath,
@@ -57,4 +58,4 @@
       });
     },
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

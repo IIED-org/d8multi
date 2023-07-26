@@ -2,6 +2,7 @@
 
 namespace Drupal\mailchimp\Form;
 
+use Drupal\Core\Access\CsrfTokenGenerator;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\MessageCommand;
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -9,6 +10,7 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\State\State;
 use Drupal\mailchimp\Ajax\MailchimpAuthenticationCommand;
+use Drupal\mailchimp\Controller\MailchimpOAuthController;
 use GuzzleHttp\Client;
 use Mailchimp\MailchimpAPIException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -26,16 +28,26 @@ class MailchimpAdminOauthSettingsForm extends ConfigFormBase {
   protected State $stateService;
 
   /**
+   * CsrfService.
+   *
+   * @var \Drupal\Core\Access\CsrfTokenGenerator
+   */
+  protected CsrfTokenGenerator $csrfService;
+
+  /**
    * Mailchimp OAuth Settings form constructor.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   Config factory.
    * @param \Drupal\Core\State $stateService
    *   State service
+   * @param \Drupal\Core\Access\CsrfTokenGenerator $csrfService
+   *   CSRF service.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, State $stateService) {
+  public function __construct(ConfigFactoryInterface $config_factory, State $stateService, CsrfTokenGenerator $csrfService) {
     parent::__construct($config_factory);
     $this->stateService = $stateService;
+    $this->csrfService = $csrfService;
   }
 
   /**
@@ -45,6 +57,7 @@ class MailchimpAdminOauthSettingsForm extends ConfigFormBase {
     return new static(
       $container->get('config.factory'),
       $container->get('state'),
+      $container->get('csrf_token'),
     );
   }
 
@@ -113,6 +126,7 @@ class MailchimpAdminOauthSettingsForm extends ConfigFormBase {
 
     $form['#attached']['library'][] = 'mailchimp/authentication';
     $form['#attached']['drupalSettings']['mailchimp']['middleware_url'] = $this->getMiddlewareUrl();
+    $form['#attached']['drupalSettings']['mailchimp']['csrf_token'] = $this->csrfService->get("mailchimp_admin_oauth_settings");
 
     $form['actions'] = [
       '#type' => 'button',
@@ -254,8 +268,8 @@ class MailchimpAdminOauthSettingsForm extends ConfigFormBase {
    *   Middleware url.
    */
   protected function getMiddlewareUrl() {
-    $config = $this->config('mailchimp.settings');
-    return $config->get('oauth_middleware_url');
+    $url = MailchimpOAuthController::OAUTH_MIDDLEWARE_URL;
+    return $url;
   }
 
 }
