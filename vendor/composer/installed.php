@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '653c9fdb73e0cbd1158fcf52be18e9d6ad762283',
+        'reference' => 'd5707f0e2eb834d51d201e341d2435c6f660413c',
         'name' => 'drupal-composer/drupal-project',
         'dev' => true,
     ),
@@ -289,7 +289,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '653c9fdb73e0cbd1158fcf52be18e9d6ad762283',
+            'reference' => 'd5707f0e2eb834d51d201e341d2435c6f660413c',
             'dev_requirement' => false,
         ),
         'drupal/acquia_purge' => array(
@@ -777,15 +777,6 @@
             'install_path' => __DIR__ . '/../../docroot/modules/contrib/fontawesome',
             'aliases' => array(),
             'reference' => '8.x-2.26',
-            'dev_requirement' => false,
-        ),
-        'drupal/google_analytics' => array(
-            'pretty_version' => '2.5.0',
-            'version' => '2.5.0.0',
-            'type' => 'drupal-module',
-            'install_path' => __DIR__ . '/../../docroot/modules/contrib/google_analytics',
-            'aliases' => array(),
-            'reference' => '8.x-2.5',
             'dev_requirement' => false,
         ),
         'drupal/google_tag' => array(
