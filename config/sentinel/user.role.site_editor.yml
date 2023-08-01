@@ -17,6 +17,7 @@ dependencies:
     - taxonomy.vocabulary.research_themes
   module:
     - entity_browser
+    - eu_cookie_compliance
     - filter
     - media
     - node
@@ -65,6 +66,7 @@ permissions:
   - 'delete own subpage content'
   - 'delete person revisions'
   - 'delete resource revisions'
+  - 'display eu cookie compliance popup'
   - 'edit any blog content'
   - 'edit any local_video media'
   - 'edit any organisation content'
