@@ -11,7 +11,7 @@ dev:
   ac-env: 'dev'
   ac-realm: 'prod'
   paths:
-    drush-script: 'drush10'
+    drush-script: '/var/www/html/landcam.dev/vendor/drush/drush/drush'
 test:
   root: '/var/www/html/landcam.test/docroot'
   ac-site: 'landcam'
@@ -21,7 +21,7 @@ test:
   host: 'srv-6176.devcloud.hosting.acquia.com'
   user: 'landcam.test'
   paths:
-    drush-script: 'drush10'
+    drush-script: '/var/www/html/landcam.test/vendor/drush/drush/drush'
 prod:
   root: '/var/www/html/landcam.prod/docroot'
   ac-site: 'landcam'
@@ -31,4 +31,4 @@ prod:
   host: 'srv-6176.devcloud.hosting.acquia.com'
   user: 'landcam.prod'
   paths:
-    drush-script: 'drush10'
+    drush-script: '/var/www/html/landcam.prod/vendor/drush/drush/drush'
