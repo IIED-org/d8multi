@@ -262,6 +262,19 @@ iframe > html {
   }
 }
 
+.eu-cookie-compliance-secondary-button {
+  @extend .btn;
+  @extend .btn-primary;
+}
+
+.eu-cookie-compliance-default-button, .eu-cookie-compliance-default-button:hover {
+  border: none;
+  box-shadow: none;
+  color: white;
+  background: none;
+  text-shadow: none;
+}
+
 .lead {
   font-weight: unset;
 }
