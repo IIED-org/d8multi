@@ -63,12 +63,12 @@ $sites['sentinel-gcrf.org'] = 'sentinel';
 $sites['sentinel.dd'] = 'sentinel';
 $sites['sentinel.lndo.site'] = 'sentinel';
 
-$sites['landcam-dev.ac.iied.org'] = 'landcam';
-$sites['landcam-stage.ac.iied.org'] = 'landcam';
-$sites['landcam-prod.ac.iied.org'] = 'landcam';
-$sites['landcam.org'] = 'landcam';
-$sites['landcam.dd'] = 'landcam';
-$sites['landcam.lndo.site'] = 'landcam';
+// $sites['landcam-dev.ac.iied.org'] = 'landcam';
+// $sites['landcam-stage.ac.iied.org'] = 'landcam';
+// $sites['landcam-prod.ac.iied.org'] = 'landcam';
+// $sites['landcam.org'] = 'landcam';
+// $sites['landcam.dd'] = 'landcam';
+// $sites['landcam.lndo.site'] = 'landcam';
 
 $sites['pd-dev.ac.iied.org'] = 'pd';
 $sites['pd-stage.ac.iied.org'] = 'pd';

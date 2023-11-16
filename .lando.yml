@@ -4,15 +4,10 @@ config:
   acli_version: latest
   ah_application_uuid: a4d2ff77-3324-4faa-847d-6c962dcf7302
   ah_site_group: d8multi
-  php: '8.1'
+  php: '8.2'
   cache: false
   inbox: false
 services:
-  landcam:
-    type: mysql:5.7
-    portforward: 33068
-    config:
-      confd: lando/mysql/conf.d
   sentinel:
     type: mysql:5.7
     portforward: 33069
@@ -61,8 +56,7 @@ tooling:
     user: root
 proxy:
   adminer:
-    - adminer.landcam.lndo.site
+    - adminer.sentinel.lndo.site
   appserver:
-    - landcam.lndo.site
     - sentinel.lndo.site
     - pd.lndo.site
