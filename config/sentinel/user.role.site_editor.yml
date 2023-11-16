@@ -18,6 +18,7 @@ dependencies:
   module:
     - entity_browser
     - eu_cookie_compliance
+    - file
     - filter
     - media
     - node
@@ -58,6 +59,7 @@ permissions:
   - 'delete media'
   - 'delete organisation revisions'
   - 'delete own blog content'
+  - 'delete own files'
   - 'delete own local_video media'
   - 'delete own organisation content'
   - 'delete own person content'

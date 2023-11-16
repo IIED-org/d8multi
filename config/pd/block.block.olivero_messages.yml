@@ -1,17 +1,17 @@
-uuid: 4b391119-f878-4c51-9de6-37716343167f
+uuid: c7f6efd8-bf0e-4445-8a64-a990429ac222
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - seven
+    - olivero
 _core:
-  default_config_hash: 5MNdk3fpMKx_xxBTcz2T11DL4XEU1H5SgHl8BsYdFsA
-id: seven_messages
-theme: seven
+  default_config_hash: BZ5tpW7H8X4PVGRm3MImTIHd2tN0eF7zOtp4SpRYUA0
+id: olivero_messages
+theme: olivero
 region: highlighted
-weight: 0
+weight: -5
 provider: null
 plugin: system_messages_block
 settings:

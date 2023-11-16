@@ -36,7 +36,6 @@ dependencies:
     - paragraphs
     - path
     - pathauto
-    - quickedit
     - readonlymode
     - recaptcha
     - search
@@ -55,11 +54,11 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access any webform configuration'
+  - 'access block library'
   - 'access content overview'
   - 'access contextual links'
   - 'access entity usage statistics'
   - 'access files overview'
-  - 'access in-place editing'
   - 'access media overview'
   - 'access media_entity_browser entity browser pages'
   - 'access own webform configuration'
@@ -79,6 +78,8 @@ permissions:
   - 'administer CAPTCHA settings'
   - 'administer account settings'
   - 'administer addtoany'
+  - 'administer block content'
+  - 'administer block types'
   - 'administer block_content display'
   - 'administer block_content fields'
   - 'administer block_content form display'
@@ -165,6 +166,7 @@ permissions:
   - 'delete media'
   - 'delete organisation revisions'
   - 'delete own blog content'
+  - 'delete own files'
   - 'delete own local_video media'
   - 'delete own organisation content'
   - 'delete own page content'

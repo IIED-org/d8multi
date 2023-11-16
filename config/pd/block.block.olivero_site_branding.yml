@@ -1,17 +1,17 @@
-uuid: 5c84605a-34a5-4752-b04c-b69bfd480df3
+uuid: c100a682-9c55-4cd7-a2ea-54bd221a20d5
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - seven
+    - olivero
 _core:
-  default_config_hash: fRKXNB91UxDvEMkzCR8ZBsawfC6Fqbme2gtobei3gu4
-id: seven_branding
-theme: seven
+  default_config_hash: n_nlgjggHVfQt2H__zvLOKB2YtjPDbQ5tHijF9LE1aM
+id: olivero_site_branding
+theme: olivero
 region: header
-weight: -3
+weight: 0
 provider: null
 plugin: system_branding_block
 settings:
@@ -20,6 +20,6 @@ settings:
   label_display: '0'
   provider: system
   use_site_logo: true
-  use_site_name: false
+  use_site_name: true
   use_site_slogan: false
 visibility: {  }
