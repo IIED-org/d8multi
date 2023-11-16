@@ -21,7 +21,7 @@ cd ../../custom
 cp -r ../contrib/bootstrap_sass $CUSTOM_BOOTSTRAP_SASS
 cd $CUSTOM_BOOTSTRAP_SASS
 for file in *bootstrap_sass.*; do mv $file ${file//bootstrap_sass/$CUSTOM_BOOTSTRAP_SASS}; done
-for file in config/*/*bootstrap_sass.*; do mv $file ${file//bootstrap_sass/$CUSTOM_BOOTSTRAP_SASS}; done
+for file in config/*/*bootstrap_sass*.*; do mv $file ${file//bootstrap_sass/$CUSTOM_BOOTSTRAP_SASS}; done
 
 # Remove create_subtheme.sh file, we do not need it in customized subtheme.
 rm scripts/create_subtheme.sh
