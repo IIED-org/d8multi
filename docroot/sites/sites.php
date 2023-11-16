@@ -56,9 +56,9 @@
  * @see https://www.drupal.org/documentation/install/multi-site
  */
 
-$sites['sentineld8-dev.ac.iied.org'] = 'sentinel';
-$sites['sentineld8-stage.ac.iied.org'] = 'sentinel';
-$sites['sentineld8-prod.ac.iied.org'] = 'sentinel';
+$sites['sentinel-dev.ac.iied.org'] = 'sentinel';
+$sites['sentinel-stage.ac.iied.org'] = 'sentinel';
+$sites['sentinel-prod.ac.iied.org'] = 'sentinel';
 $sites['sentinel-gcrf.org'] = 'sentinel';
 $sites['sentinel.dd'] = 'sentinel';
 $sites['sentinel.lndo.site'] = 'sentinel';
