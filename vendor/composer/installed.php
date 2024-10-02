@@ -3,7 +3,7 @@
         'name' => 'drupal-composer/drupal-project',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'e38fb8f9c1c342fb674c9035ba887c210a033826',
+        'reference' => 'e3084d357985439175747d9deb4d819190479045',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -292,7 +292,7 @@
         'drupal-composer/drupal-project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'e38fb8f9c1c342fb674c9035ba887c210a033826',
+            'reference' => 'e3084d357985439175747d9deb4d819190479045',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -991,6 +991,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'drupal/varnish_purge' => array(
+            'pretty_version' => '2.2.0',
+            'version' => '2.2.0.0',
+            'reference' => '8.x-2.2',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../docroot/modules/contrib/varnish_purge',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'drupal/video_embed_field' => array(
             'pretty_version' => '2.5.0',
             'version' => '2.5.0.0',
@@ -1535,8 +1544,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psy/psysh' => array(

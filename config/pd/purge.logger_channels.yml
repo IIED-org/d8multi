@@ -16,7 +16,7 @@ channels:
     grants:
       - 3
   -
-    id: purger_acquia_purge_57c3dc9438
+    id: purger_varnish_7672b00fe6
     grants:
       - 0
       - 2
