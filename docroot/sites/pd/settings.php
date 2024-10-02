@@ -261,7 +261,7 @@ $databases = [];
  * directory in the public files path. The setting below allows you to set
  * its location.
  */
-# $settings['config_sync_directory'] = '/directory/outside/webroot';
+$settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_path);
 
 /**
  * Settings:
@@ -730,7 +730,6 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  * will allow the site to run off of all variants of example.com and
  * example.org, with all subdomains included.
  */
-
  $settings['trusted_host_patterns'] = [
   '^.+\.lndo\.site$',
   '^protracteddisplacement\.org$',
@@ -786,13 +785,6 @@ $settings['entity_update_backup'] = TRUE;
  */
 $settings['migrate_node_migrate_type_classic'] = FALSE;
 
-if (file_exists('/var/www/site-php/landcam')) {
-  require '/var/www/site-php/landcam/pd-settings.inc';
-}
-
-/* Add config directory */
-$settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_path);
-
 /**
  * Load local development override configuration, if available.
  *
@@ -803,8 +795,9 @@ $settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_
  *
  * Keep this code block at the end of this file to take full effect.
  */
-#
-
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-   include $app_root . '/' . $site_path . '/settings.local.php';
+  include $app_root . '/' . $site_path . '/settings.local.php';
+}
+elseif (getenv('LANDO_SERVICE_NAME') == 'appserver' && file_exists($app_root . '/' . $site_path . '/settings.lando.php')) {
+  include $app_root . '/' . $site_path . '/settings.lando.php';
 }

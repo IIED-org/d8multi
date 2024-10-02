@@ -33,7 +33,6 @@
  * @see https://wiki.php.net/rfc/expectations
  */
 assert_options(ASSERT_ACTIVE, TRUE);
-\Drupal\Component\Assertion\Handle::register();
 
 /**
  * Enable local development services.
@@ -66,7 +65,7 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  *
  * Only use this setting once the site has been installed.
  */
-# $settings['cache']['bins']['render'] = 'cache.backend.null';
+$settings['cache']['bins']['render'] = 'cache.backend.null';
 
 /**
  * Disable caching for migrations.
@@ -88,7 +87,7 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  *
  * Only use this setting once the site has been installed.
  */
-# $settings['cache']['bins']['page'] = 'cache.backend.null';
+$settings['cache']['bins']['page'] = 'cache.backend.null';
 
 /**
  * Disable Dynamic Page Cache.
@@ -97,7 +96,7 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  * cacheability metadata is present (and hence the expected behavior). However,
  * in the early stages of development, you may want to disable it.
  */
-# $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
+$settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
 
 /**
  * Allow test modules and themes to be installed.
@@ -131,40 +130,29 @@ $settings['rebuild_access'] = TRUE;
 $settings['skip_permissions_hardening'] = TRUE;
 
 /**
- * Exclude modules from configuration synchronization.
- *
- * On config export sync, no config or dependent config of any excluded module
- * is exported. On config import sync, any config of any installed excluded
- * module is ignored. In the exported configuration, it will be as if the
- * excluded module had never been installed. When syncing configuration, if an
- * excluded module is already installed, it will not be uninstalled by the
- * configuration synchronization, and dependent configuration will remain
- * intact. This affects only configuration synchronization; single import and
- * export of configuration are not affected.
- *
- * Drupal does not validate or sanity check the list of excluded modules. For
- * instance, it is your own responsibility to never exclude required modules,
- * because it would mean that the exported configuration can not be imported
- * anymore.
- *
- * This is an advanced feature and using it means opting out of some of the
- * guarantees the configuration synchronization provides. It is not recommended
- * to use this feature with modules that affect Drupal in a major way such as
- * the language or field module.
+ * Lando database credentials.
  */
-# $settings['config_exclude_modules'] = ['devel', 'stage_file_proxy'];
+$databases['default']['default'] = [
+  'database' => 'database',
+  'username' => 'database',
+  'password' => 'database',
+  'host' => 'pd',
+  'port' => '3306',
+  'driver' => 'mysql',
+  'prefix' => '',
+  'collation' => 'utf8mb4_general_ci',
+];
+$databases['pd']['default'] = $databases['default']['default'];
 
 /**
- * Database configuration.
+ * Error reporting.
+ *
+ * As a developer it is useful to see all errors. If the site you are working
+ * on has a lot of notice errors and you aren't able to fix them you can
+ * suppress them by modifying E_ALL in error_reporting to:
+ * E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED
  */
-$databases['default'] = array (
-  'default' => array (
-    'driver' => 'mysql',
-    'database' => 'database',
-    'username' => 'mysql',
-    'password' => 'mysql',
-    'prefix' => '',
-    'port' => 3306,
-    'host' => 'pd'
-  )
-);
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
+
