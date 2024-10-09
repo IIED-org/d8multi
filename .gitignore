@@ -40,6 +40,9 @@ CHANGELOG.txt
 #Ignore MacOS files
 .DS_Store
 
-#Ignore SQL dumps
+# Ignore IDE files
+.idea
+
+# Ignore SQL dumps
 *.sql
 *.sql.gz

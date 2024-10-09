@@ -158,13 +158,13 @@ $settings['skip_permissions_hardening'] = TRUE;
  * Database configuration.
  */
 $databases['default'] = array (
-    'default' => array (
-      'driver' => 'mysql',
-      'database' => 'database',
-      'username' => 'mysql',
-      'password' => 'mysql',
-      'prefix' => '',
-      'port' => 3306,
-      'host' => 'pd'
-    )
-  );
+  'default' => array (
+    'driver' => 'mysql',
+    'database' => 'database',
+    'username' => 'mysql',
+    'password' => 'mysql',
+    'prefix' => '',
+    'port' => 3306,
+    'host' => 'pd'
+  )
+);

@@ -1,25 +1,36 @@
 name: d8multi
-recipe: acquia
+recipe: drupal10
 config:
-  acli_version: latest
-  ah_application_uuid: a4d2ff77-3324-4faa-847d-6c962dcf7302
-  ah_site_group: d8multi
   php: '8.2'
-  cache: false
-  inbox: false
-services:
-  sentinel:
-    type: mysql:5.7
-    portforward: 33069
-    config:
-      confd: .lando/mysql/conf.d
-  pd:
-    type: mysql:5.7
-    portforward: 33070
-    config:
-      confd: .lando/mysql/conf.d
+  webroot: docroot
+proxy:
+  adminer:
+    - adminer.d8multi.lndo.site
   appserver:
-    webroot: docroot
+    - sentinel.lndo.site
+    - pd.lndo.site
+  mailhog:
+    - mail.d8multi.lndo.site
+services:
+  appserver:
+    overrides:
+      environment:
+        DRUSH_OPTIONS_ROOT: '/app/docroot'
+  database: disabled
+  pd:
+    type: mariadb:10.11
+    creds:
+      user: database
+      password: database
+      database: database
+    portforward: 33069
+  sentinel:
+    type: mariadb:10.11
+    creds:
+      user: database
+      password: database
+      database: database
+    portforward: 33070
   adminer:
     type: compose
     services:
@@ -28,12 +39,18 @@ services:
     portforward: true
   node:
     type: 'node:14'
-    build:
-      - 'if [ -d $LANDO_MOUNT/web/themes/custom/site_theme ]; then cd $LANDO_MOUNT/web/themes/custom/site_theme && yarn install --production; fi'
     overrides:
       ports:
         - '3051:3051'
+  mailhog:
+    type: mailhog
+    hogfrom:
+      - appserver
+    portforward: true
 tooling:
+  composer:
+    service: appserver
+    cmd: '/usr/local/bin/composer'
   npm:
     service: node
   yarn:
@@ -54,9 +71,3 @@ tooling:
     description: Disable xdebug for apache.
     cmd: "rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && /etc/init.d/apache2 reload"
     user: root
-proxy:
-  adminer:
-    - adminer.sentinel.lndo.site
-  appserver:
-    - sentinel.lndo.site
-    - pd.lndo.site

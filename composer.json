@@ -74,7 +74,8 @@
     "drupal/imagemagick": "^3.1",
     "drupal/seckit": "^2.0",
     "drupal/bootstrap_sass": "^5.0",
-    "drupal/core-project-message": "^10"
+    "drupal/core-project-message": "^10",
+    "drupal/varnish_purge": "^2.2"
   },
   "require-dev": {
     "drupal/stage_file_proxy": "^2.1",
