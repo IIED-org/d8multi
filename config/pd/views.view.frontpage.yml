@@ -55,6 +55,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -916,7 +917,6 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

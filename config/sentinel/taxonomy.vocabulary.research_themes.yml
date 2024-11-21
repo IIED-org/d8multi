@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Research theme'
 vid: research_themes
-description: ''
+description: null
 weight: 0
+new_revision: false

@@ -11,7 +11,7 @@ third_party_settings:
 name: Organisation
 type: organisation
 description: 'Partner content type with logo'
-help: ''
+help: null
 new_revision: true
 preview_mode: 1
 display_submitted: false

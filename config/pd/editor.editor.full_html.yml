@@ -94,8 +94,10 @@ settings:
     ckeditor5_imageResize:
       allow_resize: true
     ckeditor5_list:
-      reversed: true
-      startIndex: true
+      properties:
+        reversed: true
+        startIndex: true
+      multiBlock: true
     ckeditor5_sourceEditing:
       allowed_tags: {  }
     ckeditor5_style:
@@ -118,5 +120,5 @@ image_upload:
   directory: inline-images
   max_size: '4 MB'
   max_dimensions:
-    width: 0
-    height: 0
+    width: null
+    height: null

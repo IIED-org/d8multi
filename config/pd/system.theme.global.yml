@@ -12,5 +12,5 @@ features:
   node_user_picture: false
 logo:
   path: 'public://site logo.png'
-  url: ''
+  url: null
   use_default: false
