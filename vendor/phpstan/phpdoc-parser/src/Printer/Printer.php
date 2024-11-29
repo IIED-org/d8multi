@@ -31,6 +31,7 @@ use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTagNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTextNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PropertyTagValueNode;
+use PHPStan\PhpDocParser\Ast\PhpDoc\PureUnlessCallableIsImpureTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\RequireExtendsTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\RequireImplementsTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\ReturnTagValueNode;
@@ -43,6 +44,7 @@ use PHPStan\PhpDocParser\Ast\PhpDoc\UsesTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\VarTagValueNode;
 use PHPStan\PhpDocParser\Ast\Type\ArrayShapeItemNode;
 use PHPStan\PhpDocParser\Ast\Type\ArrayShapeNode;
+use PHPStan\PhpDocParser\Ast\Type\ArrayShapeUnsealedTypeNode;
 use PHPStan\PhpDocParser\Ast\Type\ArrayTypeNode;
 use PHPStan\PhpDocParser\Ast\Type\CallableTypeNode;
 use PHPStan\PhpDocParser\Ast\Type\CallableTypeParameterNode;
@@ -141,7 +143,6 @@ final class Printer
 			CallableTypeNode::class,
 			UnionTypeNode::class,
 			IntersectionTypeNode::class,
-			ConstTypeNode::class,
 			NullableTypeNode::class,
 		],
 	];
@@ -230,6 +231,12 @@ final class Printer
 			$isOptional = $node->isOptional ? '=' : '';
 			return trim("{$type}{$isReference}{$isVariadic}{$node->parameterName}") . $isOptional;
 		}
+		if ($node instanceof ArrayShapeUnsealedTypeNode) {
+			if ($node->keyType !== null) {
+				return sprintf('<%s, %s>', $this->printType($node->keyType), $this->printType($node->valueType));
+			}
+			return sprintf('<%s>', $this->printType($node->valueType));
+		}
 		if ($node instanceof DoctrineAnnotation) {
 			return (string) $node;
 		}
@@ -316,6 +323,9 @@ final class Printer
 		if ($node instanceof ParamClosureThisTagValueNode) {
 			return trim("{$node->type} {$node->parameterName} {$node->description}");
 		}
+		if ($node instanceof PureUnlessCallableIsImpureTagValueNode) {
+			return trim("{$node->parameterName} {$node->description}");
+		}
 		if ($node instanceof PropertyTagValueNode) {
 			$type = $this->printType($node->type);
 			return trim("{$type} {$node->propertyName} {$node->description}");
@@ -329,9 +339,10 @@ final class Printer
 			return trim($type . ' ' . $node->description);
 		}
 		if ($node instanceof TemplateTagValueNode) {
-			$bound = $node->bound !== null ? ' of ' . $this->printType($node->bound) : '';
+			$upperBound = $node->bound !== null ? ' of ' . $this->printType($node->bound) : '';
+			$lowerBound = $node->lowerBound !== null ? ' super ' . $this->printType($node->lowerBound) : '';
 			$default = $node->default !== null ? ' = ' . $this->printType($node->default) : '';
-			return trim("{$node->name}{$bound}{$default} {$node->description}");
+			return trim("{$node->name}{$upperBound}{$lowerBound}{$default} {$node->description}");
 		}
 		if ($node instanceof ThrowsTagValueNode) {
 			$type = $this->printType($node->type);
@@ -367,7 +378,7 @@ final class Printer
 			}, $node->items);
 
 			if (! $node->sealed) {
-				$items[] = '...';
+				$items[] = '...' . ($node->unsealedType === null ? '' : $this->print($node->unsealedType));
 			}
 
 			return $node->kind . '{' . implode(', ', $items) . '}';
@@ -512,7 +523,6 @@ final class Printer
 			$type instanceof CallableTypeNode
 			|| $type instanceof UnionTypeNode
 			|| $type instanceof IntersectionTypeNode
-			|| $type instanceof ConstTypeNode
 			|| $type instanceof NullableTypeNode
 		) {
 			return $this->wrapInParentheses($type);

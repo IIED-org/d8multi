@@ -31,7 +31,7 @@
     "cweagans/composer-patches": "^1.7",
     "drupal/admin_toolbar": "^3.3",
     "drupal/core-composer-scaffold":"^10",
-    "drupal/core-recommended":"^10",
+    "drupal/core-recommended":"^10.3",
     "drush/drush": "^12",
     "drupal/bootstrap": "^3.11",
     "drupal/ds": "^3.1",
@@ -78,7 +78,7 @@
     "drupal/varnish_purge": "^2.2"
   },
   "require-dev": {
-    "drupal/stage_file_proxy": "^2.1",
+    "drupal/stage_file_proxy": "^3.1",
     "drupal/core-dev": "^10"
   },
   "conflict": {

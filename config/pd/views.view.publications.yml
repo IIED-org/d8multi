@@ -100,6 +100,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 10
           total_pages: null
           id: 0
@@ -302,7 +303,7 @@ display:
           skip_access: false
       relationships: {  }
       css_class: ''
-      use_ajax: true
+      use_ajax: false
       header:
         area:
           id: area
@@ -331,6 +332,7 @@ display:
       tags:
         - 'config:field.storage.node.body'
         - 'config:search_api.index.default_search_index'
+        - 'search_api_list:default_search_index'
   page_1:
     id: page_1
     display_title: Page
@@ -380,3 +382,4 @@ display:
       tags:
         - 'config:field.storage.node.body'
         - 'config:search_api.index.default_search_index'
+        - 'search_api_list:default_search_index'
