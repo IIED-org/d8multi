@@ -671,7 +671,7 @@ class ComposerStaticInitb5c093e3cb970d7bc99ba6e2b24a7198
         ),
         'FontLib\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phenx/php-font-lib/src/FontLib',
+            0 => __DIR__ . '/..' . '/dompdf/php-font-lib/src/FontLib',
         ),
         'FileEye\\MimeMap\\' => 
         array (
