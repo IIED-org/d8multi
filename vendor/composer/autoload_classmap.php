@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AllowDynamicProperties' => $vendorDir . '/symfony/polyfill-php82/Resources/stubs/AllowDynamicProperties.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'CURLStringFile' => $vendorDir . '/symfony/polyfill-php81/Resources/stubs/CURLStringFile.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
@@ -41,6 +42,7 @@ return array(
     'Drupal\\Core\\Installer\\InstallerRedirectTrait' => $baseDir . '/docroot/core/lib/Drupal/Core/Installer/InstallerRedirectTrait.php',
     'Drupal\\Core\\Site\\Settings' => $baseDir . '/docroot/core/lib/Drupal/Core/Site/Settings.php',
     'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+    'Nevay\\SPI\\GeneratedServiceProviderData' => $vendorDir . '/composer/GeneratedServiceProviderData.php',
     'Normalizer' => $vendorDir . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
     'OS_Guess' => $vendorDir . '/pear/pear-core-minimal/src/OS/Guess.php',
     'Override' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/Override.php',
@@ -470,6 +472,12 @@ return array(
     'PharIo\\Version\\VersionConstraintValue' => $vendorDir . '/phar-io/version/src/VersionConstraintValue.php',
     'PharIo\\Version\\VersionNumber' => $vendorDir . '/phar-io/version/src/VersionNumber.php',
     'PhpToken' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
+    'Random\\BrokenRandomEngineError' => $vendorDir . '/symfony/polyfill-php82/Resources/stubs/Random/BrokenRandomEngineError.php',
+    'Random\\CryptoSafeEngine' => $vendorDir . '/symfony/polyfill-php82/Resources/stubs/Random/CryptoSafeEngine.php',
+    'Random\\Engine' => $vendorDir . '/symfony/polyfill-php82/Resources/stubs/Random/Engine.php',
+    'Random\\Engine\\Secure' => $vendorDir . '/symfony/polyfill-php82/Resources/stubs/Random/Engine/Secure.php',
+    'Random\\RandomError' => $vendorDir . '/symfony/polyfill-php82/Resources/stubs/Random/RandomError.php',
+    'Random\\RandomException' => $vendorDir . '/symfony/polyfill-php82/Resources/stubs/Random/RandomException.php',
     'ReturnTypeWillChange' => $vendorDir . '/symfony/polyfill-php81/Resources/stubs/ReturnTypeWillChange.php',
     'SQLite3Exception' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/SQLite3Exception.php',
     'SebastianBergmann\\CliParser\\AmbiguousOptionException' => $vendorDir . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',
@@ -672,6 +680,8 @@ return array(
     'SebastianBergmann\\Type\\UnknownType' => $vendorDir . '/sebastian/type/src/type/UnknownType.php',
     'SebastianBergmann\\Type\\VoidType' => $vendorDir . '/sebastian/type/src/type/VoidType.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
+    'SensitiveParameter' => $vendorDir . '/symfony/polyfill-php82/Resources/stubs/SensitiveParameter.php',
+    'SensitiveParameterValue' => $vendorDir . '/symfony/polyfill-php82/Resources/stubs/SensitiveParameterValue.php',
     'Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
     'System' => $vendorDir . '/pear/pear-core-minimal/src/System.php',
     'TheSeer\\Tokenizer\\Exception' => $vendorDir . '/theseer/tokenizer/src/Exception.php',
