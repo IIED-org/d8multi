@@ -10,6 +10,7 @@ id: sentinel_gtm
 label: 'Sentinel GTM'
 weight: 0
 container_id: GTM-PSV3NX9
+hostname: null
 data_layer: dataLayer
 include_classes: false
 whitelist_classes: |-

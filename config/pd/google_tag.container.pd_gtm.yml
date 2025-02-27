@@ -10,6 +10,7 @@ id: pd_gtm
 label: 'PD GTM'
 weight: 0
 container_id: GTM-NL8DQ4J
+hostname: null
 data_layer: dataLayer
 include_classes: false
 whitelist_classes: |-

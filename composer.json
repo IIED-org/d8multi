@@ -77,7 +77,12 @@
     "drupal/core-project-message": "^10",
     "drupal/varnish_purge": "^2.2",
     "drupal/file_mdm": "^3.1",
-    "drupal/sophron": "^2.2"
+    "drupal/sophron": "^2.2",
+    "drupal/clamav": "^2.1",
+    "drupal/tfa": "^1.9",
+    "drupal/session_limit": "^2.0",
+    "drupal/better_passwords": "^2.2",
+    "drupal/password_policy": "^4.0"
   },
   "require-dev": {
     "drupal/stage_file_proxy": "^3.1",
