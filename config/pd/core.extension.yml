@@ -11,6 +11,7 @@ module:
   breakpoint: 0
   captcha: 0
   ckeditor5: 0
+  clamav: 0
   colorbox: 0
   components: 0
   config: 0
@@ -53,6 +54,10 @@ module:
   node: 0
   options: 0
   page_cache: 0
+  password_policy_character_types: 0
+  password_policy_history: 0
+  password_policy_length: 0
+  password_policy_username: 0
   path: 0
   path_alias: 0
   pdfpreview: 0
@@ -68,6 +73,7 @@ module:
   search_api: 0
   search_api_db: 0
   seckit: 0
+  session_limit: 0
   sophron: 0
   svg_image: 0
   system: 0
@@ -88,6 +94,7 @@ module:
   pathauto: 1
   webform_bootstrap: 1
   ds_extras: 2
+  password_policy: 10
   views: 10
   paragraphs: 11
   minimal: 1000
