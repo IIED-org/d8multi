@@ -16,6 +16,7 @@ module:
   colorbox: 0
   components: 0
   config: 0
+  config_split: 0
   contact: 0
   contextual: 0
   ctools: 0
@@ -99,6 +100,7 @@ module:
   password_policy: 10
   views: 10
   paragraphs: 11
+  password_policy_extras: 20
   minimal: 1000
   readonlymode: 9999
   eu_cookie_compliance: 10000
