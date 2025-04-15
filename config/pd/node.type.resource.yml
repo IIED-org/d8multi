@@ -1,14 +1,10 @@
 uuid: 02802dad-002e-4873-8dfc-19e2e8cf3bc0
 langcode: en
 status: true
-dependencies:
-  module:
-    - menu_ui
+dependencies: {  }
 third_party_settings:
   menu_ui:
-    available_menus:
-      - main
-    parent: 'main:'
+    available_menus: {  }
 name: Resource
 type: resource
 description: null
