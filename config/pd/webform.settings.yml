@@ -1,5 +1,3 @@
-_core:
-  default_config_hash: zGi6Kl2hhwJ2BVvbvVGykC2-NPShwQolX--wfmRTOfA
 langcode: en
 settings:
   default_status: open
@@ -72,11 +70,23 @@ settings:
   default_previous_submission_message: 'You have already submitted this webform. <a href="#">View your previous submission</a>.'
   default_previous_submissions_message: 'You have already submitted this webform. <a href="#">View your previous submissions</a>.'
   default_autofill_message: 'This submission has been autofilled with your previous submission.'
-  form_classes: "container-inline clearfix\r\nform--inline clearfix\r\nmessages messages--error\r\nmessages messages--warning\r\nmessages messages--status\r\n"
+  form_classes: |
+    container-inline clearfix
+    form--inline clearfix
+    messages messages--error
+    messages messages--warning
+    messages messages--status
   button_classes: ''
-  preview_classes: "messages messages--error\r\nmessages messages--warning\r\nmessages messages--status\r\n"
-  confirmation_classes: "messages messages--error\r\nmessages messages--warning\r\nmessages messages--status\r\n"
-  confirmation_back_classes: "button\r\n"
+  preview_classes: |
+    messages messages--error
+    messages messages--warning
+    messages messages--status
+  confirmation_classes: |
+    messages messages--error
+    messages messages--warning
+    messages messages--status
+  confirmation_back_classes: |
+    button
   default_share: false
   default_share_node: false
   default_share_theme_name: ''
@@ -147,8 +157,6 @@ element:
   excluded_elements:
     password: password
     password_confirm: password_confirm
-  default_icheck: ''
-  default_google_maps_api_key: ''
 html_editor:
   disabled: false
   element_format: webform_default
@@ -319,7 +327,7 @@ libraries:
     - jquery.icheck
     - jquery.toggles
 requirements:
-  cdn: true
+  cdn: false
   clientside_validation: true
   bootstrap: true
   spam: true

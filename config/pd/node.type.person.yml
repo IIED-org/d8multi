@@ -1,14 +1,10 @@
 uuid: 43d45811-e005-4acd-9796-d99b7ca0dde5
 langcode: en
 status: true
-dependencies:
-  module:
-    - menu_ui
+dependencies: {  }
 third_party_settings:
   menu_ui:
-    available_menus:
-      - main
-    parent: 'main:'
+    available_menus: {  }
 name: Person
 type: person
 description: 'For display on Advisory Group pages'

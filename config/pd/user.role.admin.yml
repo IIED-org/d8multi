@@ -26,7 +26,6 @@ dependencies:
     - entity_usage
     - eu_cookie_compliance
     - facets
-    - field_ui
     - file
     - filter
     - honeypot
@@ -45,7 +44,6 @@ dependencies:
     - taxonomy
     - toolbar
     - update
-    - views_ui
     - webform
 id: admin
 label: Admin
@@ -80,16 +78,9 @@ permissions:
   - 'administer addtoany'
   - 'administer block content'
   - 'administer block types'
-  - 'administer block_content display'
-  - 'administer block_content fields'
-  - 'administer block_content form display'
   - 'administer blocks'
   - 'administer contact forms'
-  - 'administer contact_message display'
-  - 'administer contact_message fields'
-  - 'administer contact_message form display'
   - 'administer content types'
-  - 'administer display modes'
   - 'administer embed buttons'
   - 'administer entity browsers'
   - 'administer entity usage'
@@ -99,19 +90,10 @@ permissions:
   - 'administer honeypot'
   - 'administer image styles'
   - 'administer media'
-  - 'administer media display'
-  - 'administer media fields'
-  - 'administer media form display'
   - 'administer media types'
   - 'administer menu'
   - 'administer modules'
-  - 'administer node display'
-  - 'administer node fields'
-  - 'administer node form display'
   - 'administer nodes'
-  - 'administer paragraph display'
-  - 'administer paragraph fields'
-  - 'administer paragraph form display'
   - 'administer paragraphs settings'
   - 'administer paragraphs types'
   - 'administer pathauto'
@@ -123,16 +105,9 @@ permissions:
   - 'administer site configuration'
   - 'administer software updates'
   - 'administer taxonomy'
-  - 'administer taxonomy_term display'
-  - 'administer taxonomy_term fields'
-  - 'administer taxonomy_term form display'
   - 'administer themes'
   - 'administer url aliases'
-  - 'administer user display'
-  - 'administer user fields'
-  - 'administer user form display'
   - 'administer users'
-  - 'administer views'
   - 'administer webform'
   - 'administer webform element access'
   - 'administer webform submission'

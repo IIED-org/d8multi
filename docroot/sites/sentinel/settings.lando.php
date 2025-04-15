@@ -156,3 +156,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
 
+/**
+ * Use "local" config split
+ */
+$config['config_split.config_split.local']['status'] = TRUE;
+$config['config_split.config_split.dev']['status'] = FALSE;
+$config['config_split.config_split.stage']['status'] = FALSE;
+$config['config_split.config_split.prod']['status'] = FALSE;
