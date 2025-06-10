@@ -8,7 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'org\\bovigo\\vfs\\' => array($vendorDir . '/mikey179/vfsstream/src/main/php'),
     'WebDriver' => array($vendorDir . '/lullabot/php-webdriver/lib'),
-    'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
     'Console' => array($vendorDir . '/pear/console_getopt'),
     'Archive_Tar' => array($vendorDir . '/pear/archive_tar'),
 );

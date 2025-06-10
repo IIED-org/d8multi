@@ -6,6 +6,176 @@ The file documents changes to the PHP_CodeSniffer project.
 
 _Nothing yet._
 
+## [3.13.0] - 2025-05-11
+
+### Added
+- Added support for PHP 8.4 asymmetric visibility modifiers to the tokenizer. [#871]
+    - Thanks to [Daniel Scherzer][@DanielEScherzer] for the patch.
+- Added support for PHP 8.4 `final` properties to the following sniffs:
+    - PSR2.Classes.PropertyDeclaration [#950]
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patches.
+
+### Changed
+- Generic.WhiteSpace.LanguageConstructSpacing: will now also check the spacing after the `goto` language construct keyword. [#917]
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- The PSR2.Classes.PropertyDeclaration will now check that the `final` modifier keyword is placed before a visibility keyword. [#950]
+    - Errors will be reported via a new `FinalAfterVisibility` error code.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Improved Help information about the `--reports` CLI flag. [#1078]
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- The documentation for the following sniffs has been improved:
+    - PSR1.Files.SideEffects
+    - PSR2.ControlStructures.SwitchDeclaration
+    - PSR2.Namespaces.NamespaceDeclaration
+    - Thanks to [Rodrigo Primo][@rodrigoprimo] for the patches.
+- Various housekeeping, including improvements to the tests and documentation.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for their contributions.
+
+### Deprecated
+
+- Nearly everything which was soft deprecated before is now hard deprecated and will show deprecation notices:
+    - This applies to:
+        - All sniffs which will be removed in 4.0. [#888]
+        - The deprecated Generator methods. [#889]
+        - The old array property setting format (via comma separated strings). [#890]
+        - Sniffs not implementing the `PHP_CodeSniffer\Sniffs\Sniff` interface. [#891]
+        - Sniffs not following the naming conventions. [#892]
+        - Standards called Internal. [#893]
+        - Sniffs which don't listen for PHP, like JS/CSS specific sniffs. [#894]
+    - The deprecation notices can be silenced by using the `-q` (=quiet) CLI flag.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patches.
+
+### Fixed
+- Fixed bug [#1040] : Generic.Strings.UnnecessaryHeredoc - false positive for heredocs containing escape sequences.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#1040] : Generic.Strings.UnnecessaryHeredoc - fixer would not clean up escape sequences which aren't necessary in nowdocs.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#1048] : A file under scan would sometimes be updated with partial fixes, even though the file "failed to fix".
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+
+### Other
+**Calling all testers!**
+
+The first beta release for PHP_CodeSniffer 4.0 has been tagged. Please help by testing the beta release and reporting any issues you run into.
+Upgrade guides for both [ruleset maintainers/end-users][wiki-upgrade-guide-users-40], as well as for [sniff developers and integrators][wiki-upgrade-guide-devs-40], have been published to the Wiki to help smooth the transition.
+
+[wiki-upgrade-guide-users-40]: https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Version-4.0-User-Upgrade-Guide
+[wiki-upgrade-guide-devs-40]:  https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Version-4.0-Developer-Upgrade-Guide
+
+[#871]:  https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/871
+[#888]:  https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/888
+[#889]:  https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/889
+[#890]:  https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/890
+[#891]:  https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/891
+[#892]:  https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/892
+[#893]:  https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/893
+[#894]:  https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/894
+[#917]:  https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/917
+[#950]:  https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/950
+[#1040]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/1040
+[#1048]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/1048
+[#1078]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/1078
+
+## [3.12.2] - 2025-04-13
+
+### Added
+- Added support for PHP 8.4 `final` properties to the following sniffs:
+    - Generic.PHP.LowerCaseConstant [#948]
+    - Generic.PHP.UpperCaseConstant [#948]
+    - Squiz.Commenting.DocCommentAlignment [#951]
+    - Squiz.Commenting.VariableComment [#949]
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patches.
+
+### Changed
+- Tokenizer/PHP: a PHP open tag at the very end of a file will now always be tokenized as T_OPEN_TAG, independently of the PHP version. [#937]
+    - Previously, a PHP open tag at the end of a file was not tokenized as an open tag on PHP < 7.4 and the tokenization would depend on the `short_open_tag` setting.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- PEAR.Commenting.FunctionComment: improved message for "blank lines between docblock and declaration" check. [#830]
+- The documentation for the following sniffs has been improved:
+    - Generic.Functions.OpeningFunctionBraceBsdAllman
+    - Generic.Functions.OpeningFunctionBraceKernighanRitchie
+    - Generic.WhiteSpace.LanguageConstructSpacing
+    - Thanks to [Rodrigo Primo][@rodrigoprimo] for the patches.
+- Various housekeeping, including improvements to the tests and documentation.
+    - Thanks to [Rodrigo Primo][@rodrigoprimo] and [Juliette Reinders Folmer][@jrfnl] for their contributions.
+
+### Fixed
+- Fixed bug [#830] : PEAR.Commenting.FunctionComment will no longer remove blank lines within attributes.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#929] : Generic.PHP.ForbiddenFunctions: prevent false positives/negatives for code interlaced with comments.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#934] : Generic.PHP.LowerCaseConstant and Generic.PHP.UpperCaseConstant will now correctly ignore DNF types for properties.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#936] : Squiz.Commenting.FunctionCommentThrowTag: sniff would bow out when function has attributes attached, leading to false negatives.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#940] : Squiz.Commenting.VariableComment: false positive for missing docblock for properties using DNF types.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#944] : Squiz.Commenting.FunctionComment did not support DNF/intersection types in `@param` tags.
+    - Thanks to [Jeffrey Angenent][@devfrey] for the patch.
+- Fixed bug [#945] : Squiz.WhiteSpace.FunctionSpacing would get confused when there are two docblocks above a function declaration.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#947] : Squiz.Commenting.FunctionCommentThrowTag: prevent false positives/negatives for code interlaced with comments.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#951] : Squiz.Commenting.DocCommentAlignment did not examine docblocks for `final` classes.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#955] : Potential race condition, leading to a fatal error, when both the `Diff` + the `Code` reports are requested and caching is on.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#956] : Generic.WhiteSpace.ScopeIndent: undefined array index notice when running in debug mode.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+
+[#830]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/830
+[#929]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/929
+[#934]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/934
+[#936]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/936
+[#937]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/937
+[#940]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/940
+[#944]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/944
+[#945]: https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/945
+[#947]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/947
+[#948]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/948
+[#949]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/949
+[#951]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/951
+[#955]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/955
+[#956]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/956
+
+## [3.12.1] - 2025-04-04
+
+### Added
+- Documentation for the following sniffs:
+    - Squiz.Commenting.BlockComment
+    - Thanks to [Colin Stewart][@costdev] for the patch.
+
+### Changed
+- Generic.WhiteSpace.HereNowdocIdentifierSpacing: improved error message text.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Various housekeeping, including improvements to the tests and documentation.
+    - Thanks to [Rodrigo Primo][@rodrigoprimo] and [Juliette Reinders Folmer][@jrfnl] for their contributions.
+
+### Deprecated
+- The `Generic.Functions.CallTimePassByReference` sniff. See [#921].
+    - This sniff will be removed in version 4.0.0.
+
+### Fixed
+- Fixed bug [#906] : Fixer: prevent `InvalidArgumentException`s when displaying verbose information.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#907] : Tokenizer/PHP: tokenization of tokens related to union, intersection and DNF types in combination with PHP 8.4 final properties.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#908] : Tokenizer/PHP: tokenization of `?` in nullable types for readonly properties.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+- Fixed bug [#916] : Tokenizer/PHP: `goto` was not recognized as a terminating statement for a case/default in a switch control structure.
+    - Thanks to [Juliette Reinders Folmer][@jrfnl] for the patch.
+
+### Other
+- PHP_CodeSniffer 4.0 is coming soon! Interested in a sneak peek ? Join the live stream at any time on April 14, 15, 17 or 18.
+    Read the open invitation ([#924]) for all the details.
+
+[#906]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/906
+[#907]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/907
+[#908]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/908
+[#916]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/916
+[#921]: https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/921
+[#924]: https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/924
+
 ## [3.12.0] - 2025-03-18
 
 ### Added
@@ -2230,7 +2400,7 @@ Additionally, thanks to [Alexander Turek][@derrabus] for consulting on the repo 
     - Thanks to [Juliette Reinders Folmer][@jrfnl] for the help with this patch
 - Array properties set inside a ruleset.xml file can now extend a previous value instead of always overwriting it
     - e.g., if you include a ruleset that defines forbidden functions, can you now add to that list instead of having to redefine it
-    - To use this feature, add extends="true" to the property tag
+    - To use this feature, add extend="true" to the property tag
         - e.g., property name="forbiddenFunctionNames" type="array" extend="true"
     - Thanks to [Michael Moravec][@Majkl578] for the patch
 - If $XDG_CACHE_HOME is set and points to a valid directory, it will be used for caching instead of the system temp directory
@@ -7412,6 +7582,9 @@ Additionally, thanks to [Alexander Turek][@derrabus] for consulting on the repo 
 -->
 
 [Unreleased]: https://github.com/PHPCSStandards/PHP_CodeSniffer/compare/master...HEAD
+[3.13.0]:     https://github.com/PHPCSStandards/PHP_CodeSniffer/compare/3.12.2...3.13.0
+[3.12.2]:     https://github.com/PHPCSStandards/PHP_CodeSniffer/compare/3.12.1...3.12.2
+[3.12.1]:     https://github.com/PHPCSStandards/PHP_CodeSniffer/compare/3.12.0...3.12.1
 [3.12.0]:     https://github.com/PHPCSStandards/PHP_CodeSniffer/compare/3.11.3...3.12.0
 [3.11.3]:     https://github.com/PHPCSStandards/PHP_CodeSniffer/compare/3.11.2...3.11.3
 [3.11.2]:     https://github.com/PHPCSStandards/PHP_CodeSniffer/compare/3.11.1...3.11.2
@@ -7574,6 +7747,7 @@ Additionally, thanks to [Alexander Turek][@derrabus] for consulting on the repo 
 [@Decave]:              https://github.com/Decave
 [@dereuromark]:         https://github.com/dereuromark
 [@derrabus]:            https://github.com/derrabus
+[@devfrey]:             https://github.com/devfrey
 [@deviantintegral]:     https://github.com/deviantintegral
 [@dhensby]:             https://github.com/dhensby
 [@dingo-d]:             https://github.com/dingo-d
@@ -7765,4 +7939,3 @@ Additionally, thanks to [Alexander Turek][@derrabus] for consulting on the repo 
 [pear-wloche]:          https://pear.php.net/user/wloche
 [pear-woellchen]:       https://pear.php.net/user/woellchen
 [pear-youngian]:        https://pear.php.net/user/youngian
-
