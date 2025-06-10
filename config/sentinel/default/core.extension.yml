@@ -39,8 +39,6 @@ module:
   file_mdm_exif: 0
   filter: 0
   google_tag: 0
-  help: 0
-  help_topics: 0
   honeypot: 0
   http_response_headers: 0
   image: 0
@@ -53,6 +51,7 @@ module:
   media: 0
   media_entity_browser: 0
   media_library: 0
+  menu_link_attributes: 0
   mysql: 0
   node: 0
   options: 0
