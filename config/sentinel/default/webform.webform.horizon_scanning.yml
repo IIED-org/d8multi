@@ -1,0 +1,442 @@
+uuid: 4fad6c6c-d568-4a3e-86ae-82f3fbc89a46
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 1
+template: false
+archive: false
+id: horizon_scanning
+title: 'Horizon scanning'
+description: ''
+categories: {  }
+elements: |-
+  markup_01:
+    '#type': webform_markup
+    '#markup': |-
+      <h3 class="text-center">&quot;Achieving food and nutrition security, reducing inequality, and preserving terrestrial ecosystems:<br />
+      100 critical research questions for decision makers<br />
+      in sub-Saharan Africa&quot;</h3>
+  about_you:
+    '#type': webform_wizard_page
+    '#title': 'About you'
+    '#prev_button_label': '« Previous page'
+    '#next_button_label': 'Next page »'
+    processed_text:
+      '#type': processed_text
+      '#text': |
+        <p class="text-align-right"><a href="/form/analyse-prospective">Voir cette page en français</a></p>
+      '#format': full_html
+    markup:
+      '#type': webform_markup
+      '#markup': |-
+        <p>Please use this form to contribute your questions to the SENTINEL <a href="/call-for-participants">Horizon scanning activity</a>.</p>
+        If you have any questions about how to use this form, or for more information about this project, please get in touch with Adam Devenish: <a href="mailto:a.devenish@imperial.ac.uk">a.devenish@imperial.ac.uk</a>. &nbsp;<br />
+        <br />
+        Thank you very much for participating in this project. We really appreciate your contributions and look forward to identifying research questions that can help decision makers in sub-Saharan Africa to address Sustainable Development Goals.
+    name:
+      '#type': textfield
+      '#title': Name
+      '#size': 20
+    email_address:
+      '#type': email
+      '#title': 'Email address'
+    job_position:
+      '#type': textfield
+      '#title': 'Job position'
+    affiliation:
+      '#type': textfield
+      '#title': Affiliation
+    are_you_a_producer_or_consumer_of_research_:
+      '#type': checkboxes
+      '#title': 'Are you a producer or consumer of research?'
+      '#options':
+        consumer: 'Consumer / user'
+        producer: 'Producer / creator'
+      '#options_display': two_columns
+    please_select_which_of_these_areas_best_describes_your_work:
+      '#type': webform_select_other
+      '#title': 'Please select one of these areas which best describes your work'
+      '#options':
+        'Academic researcher': 'Academic researcher'
+        'Researcher for a private institute': 'Researcher for a private institute'
+        'Public sector - Policy maker': 'Public sector - Policy maker'
+        'Non-state actor - Civil Society Organisation (CSO)': 'Non-state actor - Civil Society Organisation (CSO)'
+        'Non-state actor - Non-Governmental Organisation (NGO)': 'Non-state actor - Non-Governmental Organisation (NGO)'
+        'Private sector - commercial / industry': 'Private sector - commercial / industry'
+        'Governmental Organisation': 'Governmental Organisation'
+        'Intergovernmental Organisation': 'Intergovernmental Organisation'
+        Donor: Donor
+      '#other__option_label': Other...
+    please_select_additional_areas_which_you_work_in:
+      '#type': webform_checkboxes_other
+      '#title': 'Please select additional areas which you work in'
+      '#options':
+        'Academic researcher': 'Academic researcher'
+        'Researcher for a private institute': 'Researcher for a private institute'
+        'Public sector - Policy maker': 'Public sector - Policy maker'
+        'Non-state actor - Civil Society Organisation (CSO)': 'Non-state actor - Civil Society Organisation (CSO)'
+        'Non-state actor - Non-Governmental Organisation (NGO)': 'Non-state actor - Non-Governmental Organisation (NGO)'
+        'Private sector - commercial / industry': 'Private sector - commercial / industry'
+        'Governmental Organisation': 'Governmental Organisation'
+        'Intergovernmental Organisation': 'Intergovernmental Organisation'
+        Donor: Donor
+      '#other__option_label': Other...
+    in_which_country_is_your_place_of_work_:
+      '#type': select
+      '#title': 'In which country is your place of work?'
+      '#title_display': before
+      '#options': country_names
+    what_sector_do_you_work_in_:
+      '#type': textfield
+      '#title': 'What sector do you work in?'
+  your_questions:
+    '#type': webform_wizard_page
+    '#title': 'Your questions'
+    '#prev_button_label': '« Previous page'
+    '#next_button_label': 'Next page »'
+    markup_02:
+      '#type': webform_markup
+      '#markup': |-
+        Please contribute as many questions as you would like to in the boxes provided below. You can submit as many questions as you like, just click the &quot;<strong>+&quot;</strong> button to add another. When you have entered all your questions, click &#39;Next page&#39;.<br />
+        <br />
+        Please contribute questions that aim to address one, some, or all of the following: food security, nutrition, reducing inequality, and preserving ecosystems.
+    question:
+      '#type': textfield
+      '#title': Questions
+      '#multiple': true
+      '#title_display': inline
+      '#size': 25
+      '#placeholder': 'Your question'
+      '#autocomplete': 'off'
+      '#multiple__empty_items': 5
+      '#multiple__sorting': false
+      '#multiple__add_more': false
+  research_priorities:
+    '#type': webform_wizard_page
+    '#title': 'Research priorities'
+    '#prev_button_label': '« Previous page'
+    '#next_button_label': 'Next page »'
+    markup_03:
+      '#type': webform_markup
+      '#markup': 'Here, we ask you to rank the areas of research we are considering in this horizon-scanning activity in order of importance.'
+    how_important_is_preserving_the_terrestrial_ecosystem_when_makin:
+      '#type': range
+      '#title': 'How important is preserving the terrestrial ecosystem when making decisions concerning agricultural development?'
+      '#field_prefix': 'Lowest importance'
+      '#field_suffix': 'Highest importance'
+      '#default_value': '5'
+      '#attributes':
+        style: 'max-width: 40%'
+      '#format': raw
+      '#max': 10
+      '#output': above
+    how_important_is_food_and_nutrition_security_when_making_decisio:
+      '#type': range
+      '#title': 'How important is food and nutrition security when making decisions concerning agricultural development? '
+      '#field_prefix': 'Lowest importance'
+      '#field_suffix': 'Highest importance'
+      '#default_value': '5'
+      '#attributes':
+        style: 'max-width: 40%'
+      '#format': raw
+      '#max': 10
+      '#output': above
+    how_important_is_reducing_inequality_when_making_decisions_conce:
+      '#type': range
+      '#title': 'How important is reducing inequality when making decisions concerning agricultural development?'
+      '#field_prefix': 'Lowest importance'
+      '#field_suffix': 'Highest importance'
+      '#attributes':
+        style: 'max-width: 40%'
+      '#format': raw
+      '#max': 10
+      '#output': above
+    if_you_had_to_prioritise_the_following_what_would_you_consider_t:
+      '#type': select
+      '#title': 'If you had to prioritise the following, what would you consider the <em>least</em> important aspect for agricultural development?'
+      '#options':
+        'Preserving terrestrial ecosystems': 'Preserving terrestrial ecosystems'
+        'Food and nutrition security': 'Food and nutrition security'
+        'Reducing inequality': 'Reducing inequality'
+    if_you_had_to_prioritise_the_following_what_would_you_consider:
+      '#type': select
+      '#title': 'If you had to prioritise the following, what would you consider the <em>most</em> important aspect for agricultural development?'
+      '#options':
+        'Preserving terrestrial ecosystems': 'Preserving terrestrial ecosystems'
+        'Food and nutrition security': 'Food and nutrition security'
+        'Reducing inequality': 'Reducing inequality'
+    if_you_had_to_prioritise_funding_which_would_you_consider_to_be_:
+      '#type': radios
+      '#title': 'If you had to prioritise funding, which would you consider to be the most important? '
+      '#options':
+        'Environmental research': 'Environmental research'
+        'Food self-sufficiency research': 'Food self-sufficiency research'
+        'Social equality research': 'Social equality research'
+    how_much_influence_do_you_feel_your_work_has_on_agricultural_dev:
+      '#type': range
+      '#title': 'How much influence do you feel your work has on agricultural development decision making?'
+      '#field_prefix': 'No influence at all'
+      '#field_suffix': 'A very large amount of influence'
+      '#default_value': '5'
+      '#attributes':
+        style: 'max-width: 40%'
+      '#format': raw
+      '#max': 10
+      '#output': above
+  thank_you:
+    '#type': webform_wizard_page
+    '#title': Confirmation
+    '#prev_button_label': '« Previous page'
+    '#next_button_label': 'Next page »'
+    markup_04:
+      '#type': webform_markup
+      '#markup': |-
+        <h3>Thank you very much for contributing to the SENTINEL Horizon scanning activity. &nbsp;</h3>
+        Please note that, by participating in this activity, you consent to your personal data being used in the way described in our <a href="/privacy-policy">privacy policy</a>. For further information, please contact&nbsp;Adam Devenish (<a href="mailto:a.devenish@imperial.ac.uk">a.devenish@imperial.ac.uk</a>).<br />
+        <br />
+        If you have provided your email address, we look forward to keeping you updated on project progress. In the meantime, have a lovely day and thank you again for your contributions.
+    i_would_like_to_be_contacted_regarding_future_stages_of_the_hori:
+      '#type': checkbox
+      '#title': 'I would like to be contacted regarding future stages of the Horizon-scanning activity'
+      '#description': 'Please ensure that you have given your email address on the first page of this form, if you would like to be contacted.'
+      '#description_display': after
+      '#wrapper_attributes':
+        class:
+          - mb-2
+    i_would_be_interested_in_participating_in_the_later_stages_of_th:
+      '#type': checkbox
+      '#title': 'I would be interested in participating in the later stages of the Horizon-scanning activity'
+      '#wrapper_attributes':
+        class:
+          - mt-3
+css: ''
+javascript: ''
+settings:
+  ajax: true
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: true
+  form_disable_back: false
+  form_submit_back: true
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes:
+    class:
+      - col-md-9
+      - justify-content-center
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: false
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: url_message
+  confirmation_url: ''
+  confirmation_title: 'Thank you'
+  confirmation_message: 'Your submission has been received. Many thanks for participating.'
+  confirmation_attributes: {  }
+  confirmation_back: false
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: true
+  confirmation_exclude_token: true
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles:
+      - site_editor
+      - admin
+    users:
+      - 146
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  email:
+    id: email
+    handler_id: email
+    label: Email
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: a.devenish@imperial.ac.uk
+      to_options: {  }
+      bcc_mail: admin@cbrody.com
+      bcc_options: {  }
+      cc_mail: _default
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
+variants: {  }

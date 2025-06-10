@@ -1,0 +1,10 @@
+adding:
+  dependencies:
+    module:
+      - menu_ui
+  third_party_settings:
+    menu_ui:
+      available_menus:
+        - main
+      parent: 'main:menu_link_content:5c6ffa85-6e1f-4ef7-821d-0d8b40295df4'
+removing: {  }
