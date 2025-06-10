@@ -21,7 +21,7 @@ class MailchimpAuthenticationCommand implements CommandInterface {
    *
    * @var string
    */
-  protected $temp_token;
+  protected $tempToken;
 
   /**
    * The domain being authenticated.
@@ -30,20 +30,19 @@ class MailchimpAuthenticationCommand implements CommandInterface {
    */
   protected $domain;
 
-
   /**
    * Authtentication command constructor.
    *
    * @param string $url
    *   URL to use for authentication.
-   * @param string $temp_token
+   * @param string $tempToken
    *   Temporary token to use in authentication process.
    * @param string $domain
    *   User ID to use in authentication process.
-  */
-  public function __construct($url, $temp_token, $domain) {
+   */
+  public function __construct($url, $tempToken, $domain) {
     $this->url = $url;
-    $this->temp_token = $temp_token;
+    $this->tempToken = $tempToken;
     $this->domain = $domain;
   }
 
@@ -54,7 +53,7 @@ class MailchimpAuthenticationCommand implements CommandInterface {
     return [
       'command' => 'authentication',
       'url' => $this->url,
-      'temp_token' => $this->temp_token,
+      'temp_token' => $this->tempToken,
       'domain' => $this->domain,
     ];
   }

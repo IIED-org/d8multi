@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\ui_patterns_library\FunctionalJavascript;
 
-use Drupal\Core\Serialization\Yaml;
+use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Url;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 
@@ -18,7 +18,7 @@ class UiPatternsLibraryOverviewTest extends WebDriverTestBase {
    *
    * Currently no interface to rely on.
    *
-   * @var \Drupal\Core\Extension\ModuleExtensionList
+   * @var \Drupal\Core\Extension\ThemeExtensionList
    */
   protected $moduleExtensionList;
 
@@ -56,7 +56,7 @@ class UiPatternsLibraryOverviewTest extends WebDriverTestBase {
   public function testOverviewPage() {
     $session = $this->assertSession();
 
-    $this->drupalGet('/patterns');
+    $this->drupalGet(Url::fromRoute('ui_patterns.patterns.overview'));
 
     $session->elementContains('css', 'h1', 'Pattern library');
     $session->elementContains('css', 'h2', 'Available patterns');
@@ -83,7 +83,7 @@ class UiPatternsLibraryOverviewTest extends WebDriverTestBase {
     $session = $this->assertSession();
 
     foreach ($this->getExpectedPatterns() as $pattern) {
-      $this->drupalGet('/patterns/' . $pattern['name']);
+      $this->drupalGet(Url::fromRoute('ui_patterns.patterns.single', ['name' => $pattern['name']]));
       $session->elementContains('css', 'h1', $pattern['label']);
 
       // Assert pattern preview.
@@ -97,7 +97,7 @@ class UiPatternsLibraryOverviewTest extends WebDriverTestBase {
   public function testLocalLibraries() {
     $session = $this->assertSession();
 
-    $this->drupalGet('/patterns/with_local_libraries');
+    $this->drupalGet(Url::fromRoute('ui_patterns.patterns.single', ['name' => 'with_local_libraries']));
 
     $ui_patterns_library_module_test_path = $this->moduleExtensionList->getPath('ui_patterns_library_module_test');
 

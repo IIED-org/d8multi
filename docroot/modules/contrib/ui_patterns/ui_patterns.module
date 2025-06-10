@@ -5,8 +5,10 @@
  * Contains ui_patterns.module.
  */
 
-use Drupal\ui_patterns\UiPatterns;
+use Drupal\Core\Hook\Attribute\LegacyHook;
 use Drupal\ui_patterns\Element\PatternContext;
+use Drupal\ui_patterns\Hook\LibraryHooks;
+use Drupal\ui_patterns\UiPatterns;
 
 /**
  * Implements hook_theme().
@@ -31,12 +33,9 @@ function ui_patterns_theme() {
 /**
  * Implements hook_library_info_build().
  */
+#[LegacyHook]
 function ui_patterns_library_info_build(): array {
-  $definitions = [];
-  foreach (UiPatterns::getManager()->getPatterns() as $pattern) {
-    $definitions += $pattern->getLibraryDefinitions();
-  }
-  return $definitions;
+  return \Drupal::service(LibraryHooks::class)->infoBuild();
 }
 
 /**

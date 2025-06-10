@@ -2,12 +2,12 @@
 
 namespace Drupal\ui_patterns\Plugin;
 
+use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Component\Plugin\PluginBase;
+use Drupal\Component\Plugin\PluginInspectionInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\ui_patterns\Definition\PatternSourceField;
-use Drupal\Component\Plugin\ConfigurableInterface;
-use Drupal\Component\Plugin\PluginInspectionInterface;
 
 /**
  * Base class for UI Patterns Source plugins.

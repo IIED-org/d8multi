@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\ui_patterns\Kernel\Plugin\Deriver;
 
-use Drupal\Tests\ui_patterns\Kernel\AbstractUiPatternsTest;
+use Drupal\Tests\ui_patterns\Kernel\UiPatternsTestBase;
 use Drupal\ui_patterns\UiPatterns;
 
 /**
@@ -10,7 +10,7 @@ use Drupal\ui_patterns\UiPatterns;
  *
  * @group ui_patterns
  */
-class YamlDeriverTest extends AbstractUiPatternsTest {
+class YamlDeriverTest extends UiPatternsTestBase {
 
   /**
    * {@inheritdoc}

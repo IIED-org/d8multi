@@ -2,16 +2,16 @@
 
 namespace Drupal\ui_patterns\Element;
 
-use Drupal\Core\Render\Element\RenderElement;
+use Drupal\Core\Render\Attribute\RenderElement;
+use Drupal\Core\Render\Element\RenderElementBase;
 use Drupal\Core\Template\Attribute;
 use Drupal\ui_patterns\UiPatterns;
 
 /**
  * Renders a pattern element.
- *
- * @RenderElement("pattern")
  */
-class Pattern extends RenderElement {
+#[RenderElement('pattern')]
+class Pattern extends RenderElementBase {
 
   /**
    * {@inheritdoc}

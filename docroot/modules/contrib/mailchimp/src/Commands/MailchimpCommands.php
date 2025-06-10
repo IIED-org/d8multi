@@ -2,6 +2,7 @@
 
 namespace Drupal\mailchimp\Commands;
 
+use Drupal\mailchimp\Queue\Processor as QueueProcessor;
 use Drush\Commands\DrushCommands;
 
 /**
@@ -10,6 +11,23 @@ use Drush\Commands\DrushCommands;
  * @package Drupal\mailchimp\Commands
  */
 class MailchimpCommands extends DrushCommands {
+
+  /**
+   * The MailChimp queue processor.
+   *
+   * @var \Drupal\mailchimp\Queue\Processor
+   */
+  protected $queueProcessor;
+
+  /**
+   * Constructs a new MailChimpCommands object.
+   *
+   * @param \Drupal\mailchimp\Queue\Processor $queue_processor
+   *   The MailChimp queue processor.
+   */
+  public function __construct(QueueProcessor $queue_processor) {
+    $this->queueProcessor = $queue_processor;
+  }
 
   /**
    * This command will trigger Mailchimp Cron jobs.
@@ -27,7 +45,7 @@ class MailchimpCommands extends DrushCommands {
    *  Trigger up to 50 mailchimp cron jobs
    */
   public function cron(int $temp_batchsize): string {
-    $result = mailchimp_cron($temp_batchsize);
+    $result = $this->queueProcessor->process($temp_batchsize);
     return ('Mailchimp cron jobs triggered: ' . $result);
   }
 

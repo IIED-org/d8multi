@@ -3,7 +3,8 @@
 namespace Drupal\Tests\ui_patterns\Unit\Definition;
 
 use Drupal\Component\Serialization\Yaml;
-use Drupal\Tests\ui_patterns\Unit\AbstractUiPatternsTest;
+use Drupal\Core\Url;
+use Drupal\Tests\ui_patterns\Unit\UiPatternsTestBase;
 use Drupal\ui_patterns\Definition\PatternDefinition;
 
 /**
@@ -11,7 +12,7 @@ use Drupal\ui_patterns\Definition\PatternDefinition;
  *
  * @group ui_patterns
  */
-class PatternDefinitionTest extends AbstractUiPatternsTest {
+class PatternDefinitionTest extends UiPatternsTestBase {
 
   /**
    * Test getters.
@@ -44,7 +45,7 @@ class PatternDefinitionTest extends AbstractUiPatternsTest {
    * @return array
    *   Data.
    */
-  public function definitionGettersProvider() {
+  public static function definitionGettersProvider() {
     return [
       ['getProvider', 'provider', 'my_module'],
       ['id', 'id', 'pattern_id'],
@@ -175,7 +176,7 @@ class PatternDefinitionTest extends AbstractUiPatternsTest {
    * @return array
    *   Data.
    */
-  public function hasUseProvider(): array {
+  public static function hasUseProvider(): array {
     return [
       'pattern_without_use' => [
         [
@@ -237,6 +238,138 @@ class PatternDefinitionTest extends AbstractUiPatternsTest {
           ],
         ],
         TRUE,
+      ],
+    ];
+  }
+
+  /**
+   * Test getLinks.
+   *
+   * @param array $links
+   *   The links like in the YAML declaration.
+   * @param array $expected
+   *   The expected result.
+   *
+   * @covers ::getLinks
+   *
+   * @dataProvider definitionGetLinksProvider
+   */
+  public function testGetLinks(array $links, array $expected): void {
+    $definition = new PatternDefinition([
+      'links' => $links,
+    ]);
+    $this->assertEquals($expected, $definition->getLinks());
+  }
+
+  /**
+   * Provider.
+   *
+   * @return array
+   *   Data.
+   */
+  public static function definitionGetLinksProvider(): array {
+    return [
+      [
+        [
+          'https://test.com',
+          [
+            'url' => 'https://example.com',
+            'title' => 'Example',
+            'options' => [
+              'attributes' => [
+                'query' => [
+                  'test_param' => 'test_value',
+                ],
+                'target' => '_blank',
+              ],
+            ],
+          ],
+        ],
+        [
+          [
+            'url' => 'https://test.com',
+            'title' => 'External documentation',
+          ],
+          [
+            'url' => 'https://example.com',
+            'title' => 'Example',
+            'options' => [
+              'attributes' => [
+                'query' => [
+                  'test_param' => 'test_value',
+                ],
+                'target' => '_blank',
+              ],
+            ],
+          ],
+        ],
+      ],
+    ];
+  }
+
+  /**
+   * Test getRenderLinks.
+   *
+   * @param array $links
+   *   The links like in the YAML declaration.
+   * @param array $expected
+   *   The expected result.
+   *
+   * @covers ::getRenderLinks
+   *
+   * @dataProvider definitionGetRenderLinksProvider
+   */
+  public function testGetRenderLinks(array $links, array $expected): void {
+    $definition = new PatternDefinition([
+      'links' => $links,
+    ]);
+    $this->assertEquals($expected, $definition->getRenderLinks());
+  }
+
+  /**
+   * Provider.
+   *
+   * @return array
+   *   Data.
+   */
+  public static function definitionGetRenderLinksProvider(): array {
+    return [
+      [
+        [
+          'https://test.com',
+          [
+            'url' => 'https://example.com',
+            'title' => 'Example',
+            'options' => [
+              'attributes' => [
+                'query' => [
+                  'test_param' => 'test_value',
+                ],
+                'target' => '_blank',
+              ],
+            ],
+          ],
+        ],
+        [
+          [
+            '#type' => 'link',
+            '#url' => Url::fromUri('https://test.com'),
+            '#title' => 'External documentation',
+          ],
+          [
+            '#type' => 'link',
+            '#url' => Url::fromUri('https://example.com'),
+            '#title' => 'Example',
+            '#options' => [
+              'attributes' => [
+                'query' => [
+                  'test_param' => 'test_value',
+                ],
+                'target' => '_blank',
+              ],
+            ],
+          ],
+        ],
       ],
     ];
   }

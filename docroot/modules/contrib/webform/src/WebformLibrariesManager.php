@@ -88,7 +88,7 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
     $libraries = $this->getLibraries();
 
     // Defined REQUIREMENT constants which may not be loaded.
-    // @see ~/Sites/drupal_webfor/mweb/core/includes/install.inc
+    // @see ~/Sites/drupal_webform/mweb/core/includes/install.inc
     if (!defined('REQUIREMENT_OK')) {
       define('REQUIREMENT_INFO', -1);
       define('REQUIREMENT_OK', 0);
@@ -107,7 +107,7 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
 
     // Build library info array.
     $info = [
-      '#prefix' => '<p><hr/></p><dl>',
+      '#prefix' => '<hr class="webform-hr"/><dl>',
       '#suffix' => '</dl>',
     ];
 
@@ -194,7 +194,7 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
       $t_args = [':href' => ($this->moduleHandler->moduleExists('help')) ? Url::fromRoute('help.page', ['name' => 'webform'], ['fragment' => 'libraries'])->toString() : 'https://www.drupal.org/docs/8/modules/webform/webform-libraries'];
       $description['download'] = [
         '#markup' => '<hr/>' .
-          $this->t('Please download external libaries using one the <a href=":href">recommended methods</a>.', $t_args),
+          $this->t('Please download external libraries using one the <a href=":href">recommended methods</a>.', $t_args),
       ];
       $t_args = [':href' => Url::fromRoute('webform.config.advanced')->toString()];
       $description['cdn'] = [

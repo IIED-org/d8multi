@@ -16,8 +16,8 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Messenger\MessengerInterface;
-use Drupal\Core\Url;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -100,7 +100,7 @@ class MailchimpCampaignForm extends ContentEntityForm {
     CacheBackendInterface $cache,
     RendererInterface $render,
     EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL,
-    TimeInterface $time = NULL
+    TimeInterface $time = NULL,
   ) {
     parent::__construct($entity_repository, $entity_type_bundle_info, $time);
     $this->config = $config_factory;
@@ -138,7 +138,7 @@ class MailchimpCampaignForm extends ContentEntityForm {
     // Attach campaign JS and CSS.
     $form['#attached']['library'][] = 'mailchimp_campaign/campaign-form';
 
-    /* @var \Drupal\mailchimp_campaign\Entity\MailchimpCampaign $campaign */
+    /** @var \Drupal\mailchimp_campaign\Entity\MailchimpCampaign $campaign */
     $campaign = $this->getEntity();
 
     $form['title'] = [
@@ -248,7 +248,7 @@ class MailchimpCampaignForm extends ContentEntityForm {
       '#value' => $this->t('Refresh current template and template list from Mailchimp'),
       '#type' => 'submit',
       '#submit' => ['::submitForm', '::refreshTemplates'],
-      '#attributes'=>[
+      '#attributes' => [
         'class' => [
           'button',
           'button-action',
@@ -293,28 +293,28 @@ class MailchimpCampaignForm extends ContentEntityForm {
     if ($mc_template) {
       $template_name = $mc_template->name;
 
-      if ($mc_template->drag_and_drop){
+      if ($mc_template->drag_and_drop) {
         $form['content'] = [
           '#id' => 'content-sections',
           '#type' => 'fieldset',
-          '#title' => $this->t('The \':template_name\' template is drag and drop',[
-            ':template_name' =>  $template_name ,
+          '#title' => $this->t("The ':template_name' template is drag and drop", [
+            ':template_name' => $template_name ,
           ]),
-          '#description' => $this->t('Only Custom HTML Templates can provide editable content areas.<p><strong>Related Mailchimp documentation:</strong><br><a href=":custom_link" target="_blank">Custom HTML Templates</a><br><a href=":editable_link" target="_blank">Editable Content Areas</a></p>' ,[
+          '#description' => $this->t('Only Custom HTML Templates can provide editable content areas.<p><strong>Related Mailchimp documentation:</strong><br><a href=":custom_link" target="_blank">Custom HTML Templates</a><br><a href=":editable_link" target="_blank">Editable Content Areas</a></p>', [
             ':custom_link' => 'https://mailchimp.com/help/import-a-custom-html-template/',
             ':editable_link' => 'https://mailchimp.com/help/create-editable-content-areas-with-mailchimps-template-language/',
           ]),
           '#tree' => TRUE,
         ];
       }
-      elseif (empty((array)$mc_template->info->sections)){
+      elseif (empty((array) $mc_template->info->sections)) {
         $form['content'] = [
           '#id' => 'content-sections',
           '#type' => 'fieldset',
-          '#title' => $this->t('The \':template_name\' template has no editable content areas',[
-            ':template_name' =>  $template_name ,
+          '#title' => $this->t("The ':template_name' template has no editable content areas", [
+            ':template_name' => $template_name ,
           ]),
-          '#description' => $this->t('If you add one through Mailchimp, use the Refresh button above. <p><a href=":link" target="_blank">Mailchimp documentation on Editable Content Areas</a>.</p>' ,[
+          '#description' => $this->t('If you add one through Mailchimp, use the Refresh button above. <p><a href=":link" target="_blank">Mailchimp documentation on Editable Content Areas</a>.</p>', [
             ':link' => 'https://mailchimp.com/help/create-editable-content-areas-with-mailchimps-template-language/',
           ]),
           '#tree' => TRUE,
@@ -328,8 +328,8 @@ class MailchimpCampaignForm extends ContentEntityForm {
           }
         }
         foreach ($mc_template->info->sections as $section => $content) {
-          // Set the default value and text format to either saved campaign values
-          // or defaults coming from the Mailchimp template.
+          // Set the default value and text format to either saved campaign
+          // values or defaults coming from the Mailchimp template.
           $default_value = $content;
           $format = 'mailchimp_campaign';
 
@@ -429,7 +429,7 @@ class MailchimpCampaignForm extends ContentEntityForm {
     $template_content = $this->parseTemplateContent($form_state->getValue('content') ?: []);
 
     if (empty($template_content)) {
-      $form_state->setErrorByName('template_id', t('The chosen template has no editable content areas' ));
+      $form_state->setErrorByName('template_id', $this->t('The chosen template has no editable content areas'));
     }
 
     if ($form_state->getValue('op') == $form['actions']['submit']['#value']) {
@@ -453,7 +453,7 @@ class MailchimpCampaignForm extends ContentEntityForm {
         'preview_text' => $values['preview_text'],
       ];
 
-      /* @var \Drupal\mailchimp_campaign\Entity\MailchimpCampaign $campaign */
+      /** @var \Drupal\mailchimp_campaign\Entity\MailchimpCampaign $campaign */
       $campaign = $this->getEntity();
       $campaign_id = mailchimp_campaign_save_campaign($template_content, $recipients, $settings, $values['template_id'], $campaign->getMcCampaignId());
 
@@ -462,7 +462,7 @@ class MailchimpCampaignForm extends ContentEntityForm {
       // This would result in a SQL exception that leaves the user puzzled.
       // It's better to inform the user and abort the save operation.
       if (empty($campaign_id)) {
-        $form_state->setErrorByName('submit', t('An error occurred while saving this campaign to MailChimp service.'));
+        $form_state->setErrorByName('submit', $this->t('An error occurred while saving this campaign to MailChimp service.'));
       }
       else {
         // Save campaign id to entity.
@@ -476,7 +476,7 @@ class MailchimpCampaignForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
-    /* @var \Drupal\mailchimp_campaign\Entity\MailchimpCampaign $campaign */
+    /** @var \Drupal\mailchimp_campaign\Entity\MailchimpCampaign $campaign */
     $campaign = $this->getEntity();
     $campaign->save();
 
@@ -493,7 +493,7 @@ class MailchimpCampaignForm extends ContentEntityForm {
   public function preview(array $form, FormStateInterface $form_state) {
     $raw_template_content = $form_state->getValue('content');
     if (empty($raw_template_content)) {
-      $this->messenger->addWarning(t('The chosen template has no editable content areas to preview. Update the template from Mailchimp or try a different template.'));
+      $this->messenger->addWarning($this->t('The chosen template has no editable content areas to preview. Update the template from Mailchimp or try a different template.'));
     }
     else {
       $text = '';
@@ -507,7 +507,7 @@ class MailchimpCampaignForm extends ContentEntityForm {
     $form_state->setRebuild(TRUE);
   }
 
-    /**
+  /**
    * Ajax callback to render audience segments when an audience is selected.
    *
    * @param array $form
@@ -581,11 +581,11 @@ class MailchimpCampaignForm extends ContentEntityForm {
   }
 
   /**
-   * Fetches list of templates from Mailchimp, and replaces cache
-   * Defaults to most recent 30 templates
+   * Fetches list of templates from Mailchimp.
+   *
+   * And replaces cacheDefaults to most recent 30 templates.
    */
-
-  public function refreshTemplates(array $form, FormStateInterface $form_state){
+  public function refreshTemplates(array $form, FormStateInterface $form_state) {
     mailchimp_campaign_get_template($form_state->getValue('template_id'), TRUE);
     $form_state->setRebuild(TRUE);
   }
@@ -610,7 +610,7 @@ class MailchimpCampaignForm extends ContentEntityForm {
     }
     foreach ($list as $index => $item) {
       if (!isset($item->id)) {
-        $label = isset($labels[$index]) ? $labels[$index] : $index;
+        $label = $labels[$index] ?? $index;
         if (count($item)) {
           $options[$label] = $this->buildOptionList($item, FALSE, $labels);
         }

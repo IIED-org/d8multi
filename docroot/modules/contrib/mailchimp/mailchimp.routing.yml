@@ -12,7 +12,8 @@ mailchimp.webhook_endpoint:
     _controller: '\Drupal\mailchimp\Controller\MailchimpWebhookController::endpoint'
     _title: 'Mailchimp Webhook Endpoint'
   requirements:
-   _access: 'TRUE'
+    # Needs access from outside resources.
+    _access: 'TRUE'
 
 mailchimp.admin.oauth:
   path: 'admin/config/services/mailchimp/oauth'

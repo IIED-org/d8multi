@@ -5,14 +5,15 @@ namespace Drupal\mailchimp_signup\Form;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Routing\RouteBuilderInterface;
-use Drupal\Core\Url;
 use Drupal\Core\Link;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Routing\RouteBuilderInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Url;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form controller for the MailchimpSignup entity edit form.
@@ -82,7 +83,7 @@ class MailchimpSignupForm extends EntityForm {
     $form['description'] = [
       '#type' => 'textarea',
       '#title' => 'Description',
-      '#default_value' => isset($signup->settings['description']) ? $signup->settings['description'] : '',
+      '#default_value' => $signup->settings['description'] ?? '',
       '#rows' => 2,
       '#maxlength' => 500,
       '#description' => $this->t('This description will be shown on the signup form below the title. (500 characters or less)'),
@@ -97,8 +98,8 @@ class MailchimpSignupForm extends EntityForm {
       '#title' => 'Display Mode',
       '#required' => TRUE,
       '#options' => [
-        MAILCHIMP_SIGNUP_BLOCK => 'Block',
-        MAILCHIMP_SIGNUP_PAGE => 'Page',
+        MAILCHIMP_SIGNUP_BLOCK => $this->t('Block'),
+        MAILCHIMP_SIGNUP_PAGE => $this->t('Page'),
       ],
       '#default_value' => !empty($signup->mode) && is_numeric($signup->mode) ? $mode_defaults[$signup->mode] : [],
     ];
@@ -114,7 +115,7 @@ class MailchimpSignupForm extends EntityForm {
       '#type' => 'textfield',
       '#title' => 'Page URL',
       '#description' => $this->t('Path to the signup page. ie "newsletter/signup".'),
-      '#default_value' => isset($signup->settings['path']) ? $signup->settings['path'] : NULL,
+      '#default_value' => $signup->settings['path'] ?? NULL,
       '#states' => [
         // Hide unless needed.
         'visible' => [
@@ -130,48 +131,81 @@ class MailchimpSignupForm extends EntityForm {
       '#type' => 'textfield',
       '#title' => 'Submit Button Label',
       '#required' => 'TRUE',
-      '#default_value' => isset($signup->settings['submit_button']) ? $signup->settings['submit_button'] : 'Submit',
+      '#default_value' => $signup->settings['submit_button'] ?? 'Submit',
     ];
 
     $form['settings']['confirmation_message'] = [
       '#type' => 'textfield',
       '#title' => 'Confirmation Message',
       '#description' => $this->t('This message will appear after a successful submission of this form. Leave blank for no message, but make sure you configure a destination in that case unless you really want to confuse your site visitors.'),
-      '#default_value' => isset($signup->settings['confirmation_message']) ? $signup->settings['confirmation_message'] : 'You have been successfully subscribed.',
+      '#default_value' => $signup->settings['confirmation_message'] ?? 'You have been successfully subscribed.',
     ];
 
     $form['settings']['destination'] = [
       '#type' => 'textfield',
       '#title' => 'Form destination page',
       '#description' => $this->t('Leave blank to stay on the form page.'),
-      '#default_value' => isset($signup->settings['destination']) ? $signup->settings['destination'] : NULL,
+      '#default_value' => $signup->settings['destination'] ?? NULL,
     ];
 
     $form['settings']['ajax_submit'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('AJAX Form Submit Mode'),
       '#description' => $this->t('Select if signup form submit should use AJAX instead of default page reload. Destination page will be ignored if checked.'),
-      '#default_value' => isset($signup->settings['ajax_submit']) ? $signup->settings['ajax_submit'] : FALSE,
+      '#default_value' => $signup->settings['ajax_submit'] ?? FALSE,
     ];
 
     $form['mc_lists_config'] = [
       '#type' => 'details',
       '#title' => $this->t('Mailchimp Tags & Audience Selection/Configuration'),
       '#open' => TRUE,
+      '#attributes' => ['id' => ['mc-lists-config']],
     ];
 
     $form['mc_lists_config']['tags'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Member tags'),
-      '#default_value' => isset($signup->settings['tags']) ? $signup->settings['tags'] : FALSE,
+      '#default_value' => $signup->settings['tags'] ?? FALSE,
       '#description' => $this->t('Optionally add one or more member tags. Separate multiple tags with a comma.'),
     ];
 
-    $lists = mailchimp_get_lists();
+    $refresh_label = $this->t('Refresh Audiences');
+    $form['mc_lists_config']['mc_lists_refresh'] = [
+      '#type' => 'submit',
+      '#value' => $refresh_label,
+      '#ajax' => [
+        'callback' => [$this, 'listsRefreshCallback'],
+        'progress' => [
+          'type' => 'throbber',
+          'message' => $this->t('Retrieving audiences.'),
+        ],
+      ],
+      '#limit_validation_errors' => [],
+    ];
+
+    // In case the audiences refresh button was clicked.
+    $reset = FALSE;
+    $user_input = $form_state->getUserInput();
+    if (
+      isset($user_input['_triggering_element_value'])
+      && $user_input['_triggering_element_value'] === $refresh_label->render()
+    ) {
+      $reset = TRUE;
+    }
+
+    $lists = mailchimp_get_lists([], $reset);
     $options = [];
     foreach ($lists as $mc_list) {
       $options[$mc_list->id] = $mc_list->name;
     }
+
+    // Make sure we don't try to assign default values that are not available
+    // (anymore).
+    $default_values = [];
+    if (is_array($signup->mc_lists)) {
+      $default_values = array_intersect_key($signup->mc_lists, $options);
+    }
+
     $mc_admin_url = Link::fromTextAndUrl('Mailchimp', Url::fromUri('https://admin.mailchimp.com', ['attributes' => ['target' => '_blank']]));
     $form['mc_lists_config']['mc_lists'] = [
       '#type' => 'checkboxes',
@@ -179,12 +213,12 @@ class MailchimpSignupForm extends EntityForm {
       '#description' => $this->t('Select which audiences to show on your signup form. You can create additional audiences at @Mailchimp.',
         ['@Mailchimp' => $mc_admin_url->toString()]),
       '#options' => $options,
-      '#default_value' => is_array($signup->mc_lists) ? $signup->mc_lists : [],
+      '#default_value' => $default_values,
       '#required' => TRUE,
       '#ajax' => [
         'callback' => '::mergefields_callback',
         'wrapper' => 'mergefields-wrapper',
-        'method' => 'replace',
+        'method' => 'replaceWith',
         'effect' => 'fade',
         'progress' => [
           'type' => 'throbber',
@@ -234,20 +268,20 @@ class MailchimpSignupForm extends EntityForm {
       '#type' => 'checkbox',
       '#title' => $this->t('Require subscribers to Double Opt-in'),
       '#description' => $this->t('New subscribers will be sent a link with an email they must follow to confirm their subscription.'),
-      '#default_value' => isset($signup->settings['doublein']) ? $signup->settings['doublein'] : FALSE,
+      '#default_value' => $signup->settings['doublein'] ?? FALSE,
     ];
 
     $form['subscription_settings']['include_interest_groups'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Include interest groups on subscription form.'),
-      '#default_value' => isset($signup->settings['include_interest_groups']) ? $signup->settings['include_interest_groups'] : FALSE,
+      '#default_value' => $signup->settings['include_interest_groups'] ?? FALSE,
       '#description' => $this->t('If set, subscribers will be able to select applicable interest groups on the signup form.'),
     ];
 
     $form['subscription_settings']['safe_interest_groups'] = [
       '#type' => 'checkbox',
       '#title' => $this->t("Don't opt-out of interest groups: only opt-in."),
-      '#default_value' => isset($signup->settings['safe_interest_groups']) ? $signup->settings['safe_interest_groups'] : FALSE,
+      '#default_value' => $signup->settings['safe_interest_groups'] ?? FALSE,
       '#description' => $this->t('This is useful for "additive" form behavior, so a user adding a new interest will not have other interests removed from their Mailchimp subscription just because they failed to check the box again.'),
       '#states' => [
         // Hide unless needed.
@@ -260,7 +294,7 @@ class MailchimpSignupForm extends EntityForm {
     $form['subscription_settings']['configure_groups'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Pre-configure interest groups'),
-      '#default_value' => isset($signup->settings['configure_groups']) ? $signup->settings['configure_groups'] : FALSE,
+      '#default_value' => $signup->settings['configure_groups'] ?? FALSE,
       '#description' => $this->t('If set, the end-user will not be able to select groups, but rather subscribe to the ones selected by default'),
       '#states' => [
         'visible' => [
@@ -291,14 +325,14 @@ class MailchimpSignupForm extends EntityForm {
       '#type' => 'checkbox',
       '#title' => $this->t('Add a GDPR consent checkbox'),
       '#description' => $this->t('Add a GDPR consent checkbox to the signup form that syncs with the Mailchimp marketing permission field.'),
-      '#default_value' => isset($signup->settings['gdpr_consent']) ? $signup->settings['gdpr_consent'] : FALSE,
+      '#default_value' => $signup->settings['gdpr_consent'] ?? FALSE,
     ];
 
     $form['subscription_settings']['gdpr_checkbox_label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Consent checkbox label'),
       '#description' => $this->t('The label to display on the GDPR consent checkbox, for example "I agree to the privacy policy". This should coincide with what you have in Mailchimp!'),
-      '#default_value' => isset($signup->settings['gdpr_checkbox_label']) ? $signup->settings['gdpr_checkbox_label'] : NULL,
+      '#default_value' => $signup->settings['gdpr_checkbox_label'] ?? NULL,
       '#states' => [
         // Hide unless needed.
         'visible' => [
@@ -314,7 +348,7 @@ class MailchimpSignupForm extends EntityForm {
       '#type' => 'checkbox',
       '#title' => $this->t('GDPR consent required'),
       '#description' => $this->t('Make the GDPR consent checkbox a required field.'),
-      '#default_value' => isset($signup->settings['gdpr_consent_required']) ? $signup->settings['gdpr_consent_required'] : FALSE,
+      '#default_value' => $signup->settings['gdpr_consent_required'] ?? FALSE,
       '#states' => [
         // Hide unless needed.
         'visible' => [
@@ -344,7 +378,7 @@ class MailchimpSignupForm extends EntityForm {
         $selected_lists = array_filter($selected_lists);
 
         // Default value for the list-specific groups.
-        if (!$groups_items = $signup->settings['group_items']) {
+        if (!array_key_exists('group_items', $signup->settings) || !$groups_items = $signup->settings['group_items']) {
           $groups_items = [];
         }
 
@@ -383,6 +417,19 @@ class MailchimpSignupForm extends EntityForm {
    */
   public function configureInterestGroups(array &$form, FormStateInterface $form_state) {
     return $form['subscription_settings']['groups_container'];
+  }
+
+  /**
+   * AJAX callback handler for refreshing the audiences.
+   */
+  public function listsRefreshCallback(array &$form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    $response->addCommand(new ReplaceCommand(
+      '#mc-lists-config',
+      $form['mc_lists_config']
+    ));
+
+    return $response;
   }
 
   /**
@@ -425,7 +472,7 @@ class MailchimpSignupForm extends EntityForm {
   public function save(array $form, FormStateInterface $form_state) {
     $mode = $form_state->getValue('mode');
 
-    /* @var $signup \Drupal\mailchimp_signup\Entity\MailchimpSignup */
+    /** @var \Drupal\mailchimp_signup\Entity\MailchimpSignup $signup */
     $signup = $this->getEntity();
     $signup->mode = array_sum($mode);
 
@@ -480,22 +527,6 @@ class MailchimpSignupForm extends EntityForm {
     $this->routerBuilder->setRebuildNeeded();
 
     $form_state->setRedirect('mailchimp_signup.admin');
-  }
-
-  /**
-   * Determines if a signup exists.
-   *
-   * @param string $id
-   *   The signup ID.
-   *
-   * @return bool
-   *   Whether or not the signup exists.
-   */
-  public function exist($id) {
-    $entity = $this->entityTypeManager->getStorage('mailchimp_signup')->getQuery()
-      ->condition('id', $id)
-      ->execute();
-    return (bool) $entity;
   }
 
   /**

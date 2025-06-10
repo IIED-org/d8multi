@@ -27,7 +27,7 @@ class UiPatternsFieldGroupSettingsTest extends WebDriverTestBase {
    *
    * @todo Fix this by providing actual schema validation.
    */
-  protected $strictConfigSchema = FALSE;
+  protected $strictConfigSchema = FALSE; // phpcs:ignore
 
   /**
    * {@inheritdoc}
@@ -56,7 +56,6 @@ class UiPatternsFieldGroupSettingsTest extends WebDriverTestBase {
 
     // Add new Pattern field group.
     $page->selectFieldOption('Add a new group', 'Pattern');
-    $assert_session->assertWaitOnAjaxRequest();
 
     // Select pattern and save.
     $page->fillField('Label', 'Metadata');
@@ -89,7 +88,6 @@ class UiPatternsFieldGroupSettingsTest extends WebDriverTestBase {
     // Choose variant.
     $page->selectFieldOption('Variant', 'Second');
     $page->selectFieldOption('Destination for Text', 'Field 2');
-    $assert_session->assertWaitOnAjaxRequest();
 
     // Submit field group settings.
     $page->pressButton('Update');

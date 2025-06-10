@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\ui_patterns\Kernel\Plugin;
 
-use Drupal\Tests\ui_patterns\Kernel\AbstractUiPatternsTest;
+use Drupal\Tests\ui_patterns\Kernel\UiPatternsTestBase;
 use Drupal\ui_patterns\Plugin\PatternBase;
 
 /**
@@ -10,7 +10,7 @@ use Drupal\ui_patterns\Plugin\PatternBase;
  *
  * @group ui_patterns
  */
-class PatternBaseTest extends AbstractUiPatternsTest {
+class PatternBaseTest extends UiPatternsTestBase {
 
   /**
    * Test hookLibraryInfoBuild.
@@ -50,13 +50,16 @@ class PatternBaseTest extends AbstractUiPatternsTest {
    *   Mock object.
    */
   protected function getUiPatternBaseMock(array $plugin_definition = [], array $methods = []) {
-    return $this->getMockForAbstractClass(PatternBase::class, [
-      [],
-      'plugin_id',
-      $plugin_definition,
-      \Drupal::getContainer()->getParameter('app.root'),
-      \Drupal::service('module_handler'),
-    ], '', TRUE, TRUE, TRUE, $methods);
+    return $this->getMockBuilder(PatternBase::class)
+      ->setConstructorArgs([
+        [],
+        'plugin_id',
+        $plugin_definition,
+        \Drupal::getContainer()->getParameter('app.root'),
+        \Drupal::service('module_handler'),
+      ])
+      ->onlyMethods($methods)
+      ->getMock();
   }
 
 }

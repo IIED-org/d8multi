@@ -104,7 +104,7 @@ trait AttributesFilterTrait {
    * @see https://www.php.net/manual/en/function.array-is-list.php#126794
    */
   private function arrayIsList(array $array): bool {
-    $i = -1;
+    $i = (int) -1;
     foreach ($array as $k => $v) {
       ++$i;
       if ($k !== $i) {

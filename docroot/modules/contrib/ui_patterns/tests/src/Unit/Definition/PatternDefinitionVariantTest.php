@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\Tests\ui_patterns\Unit\Definition;
 
-use Drupal\Tests\ui_patterns\Unit\AbstractUiPatternsTest;
+use Drupal\Tests\ui_patterns\Unit\UiPatternsTestBase;
 use Drupal\ui_patterns\Definition\PatternDefinitionVariant;
 
 /**
@@ -12,7 +12,7 @@ use Drupal\ui_patterns\Definition\PatternDefinitionVariant;
  *
  * @group ui_patterns
  */
-class PatternDefinitionVariantTest extends AbstractUiPatternsTest {
+class PatternDefinitionVariantTest extends UiPatternsTestBase {
 
   /**
    * Test constructor with either scalar or array.
@@ -93,7 +93,7 @@ class PatternDefinitionVariantTest extends AbstractUiPatternsTest {
    * @return array
    *   Data.
    */
-  public function definitionGettersProvider(): array {
+  public static function definitionGettersProvider(): array {
     return [
       ['getName', 'name', 'Variant name'],
       ['getLabel', 'label', 'Variant label'],

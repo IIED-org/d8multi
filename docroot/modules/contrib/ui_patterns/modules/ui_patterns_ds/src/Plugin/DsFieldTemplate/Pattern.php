@@ -2,15 +2,15 @@
 
 namespace Drupal\ui_patterns_ds\Plugin\DsFieldTemplate;
 
+use Drupal\Core\Entity\EntityFieldManager;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\ds\Plugin\DsFieldTemplate\DsFieldTemplateBase;
 use Drupal\ui_patterns\Form\PatternDisplayFormTrait;
-use Drupal\ui_patterns\UiPatternsSourceManager;
 use Drupal\ui_patterns\UiPatternsManager;
+use Drupal\ui_patterns\UiPatternsSourceManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Drupal\Core\Entity\EntityFieldManager;
 
 /**
  * Plugin for the expert field template.

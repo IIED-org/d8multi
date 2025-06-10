@@ -2,8 +2,10 @@
 
 namespace Drupal\Tests\ui_patterns\Functional;
 
+use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\ui_patterns\Traits\TwigDebugTrait;
+use Drupal\user\UserInterface;
 
 /**
  * Test pattern preview rendering.
@@ -11,6 +13,7 @@ use Drupal\Tests\ui_patterns\Traits\TwigDebugTrait;
  * @group ui_patterns
  */
 class UiPatternsPreviewRenderTest extends BrowserTestBase {
+  use TwigDebugTrait;
 
   /**
    * Default theme. See https://www.drupal.org/node/3083055.
@@ -26,9 +29,7 @@ class UiPatternsPreviewRenderTest extends BrowserTestBase {
    *
    * @todo Fix this by providing actual schema validation.
    */
-  protected $strictConfigSchema = FALSE;
-
-  use TwigDebugTrait;
+  protected $strictConfigSchema = FALSE; // phpcs:ignore
 
   /**
    * {@inheritdoc}
@@ -40,17 +41,37 @@ class UiPatternsPreviewRenderTest extends BrowserTestBase {
   ];
 
   /**
-   * Tests pattern preview suggestions.
+   * The admin user.
+   *
+   * @var \Drupal\user\UserInterface
    */
-  public function testPatternPreviewSuggestions() {
-    $assert_session = $this->assertSession();
+  protected UserInterface $adminUser;
 
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+
+    $user = $this->drupalCreateUser($this->getAdminUserPermissions());
+    if (!($user instanceof UserInterface)) {
+      $this->fail('Impossible to create the tests user.');
+    }
+
+    $this->adminUser = $user;
+  }
+
+  /**
+   * Test Ignored.
+   *
+   * Tests pattern preview suggestions.
+   * Review suggestions for D10.
+   */
+  public function testPatternPreviewSuggestions(): void {
     $this->enableTwigDebugMode();
 
-    $user = $this->drupalCreateUser([], NULL, TRUE);
-    $this->drupalLogin($user);
-
-    $this->drupalGet('/patterns');
+    $this->drupalLogin($this->adminUser);
+    $this->drupalGet(Url::fromRoute('ui_patterns.patterns.overview'));
 
     // Assert correct variant suggestions.
     $suggestions = [
@@ -64,8 +85,37 @@ class UiPatternsPreviewRenderTest extends BrowserTestBase {
       'pattern-foo-bar.html.twig',
     ];
     foreach ($suggestions as $suggestion) {
-      $assert_session->responseContains($suggestion);
+      $this->assertSession()->responseContains($suggestion);
     }
+  }
+
+  /**
+   * Tests links for external documentation.
+   */
+  public function testRenderLinks(): void {
+    $this->drupalLogin($this->adminUser);
+    $this->drupalGet(Url::fromRoute('ui_patterns.patterns.overview'));
+
+    // Test external documentation links.
+    $this->assertSession()->linkByHrefExists('https://test.com');
+    $this->assertSession()->linkExists('External documentation');
+
+    $this->assertSession()->linkByHrefExists('https://example.com?test_param=test_value');
+    $this->assertSession()->linkExists('Example');
+
+    $this->assertSession()->elementExists('css', 'a[href="https://example.com?test_param=test_value"][target="_blank"]');
+  }
+
+  /**
+   * The list of admin user permissions.
+   *
+   * @return array
+   *   The list of admin user permissions.
+   */
+  protected function getAdminUserPermissions(): array {
+    return [
+      'access patterns page',
+    ];
   }
 
 }

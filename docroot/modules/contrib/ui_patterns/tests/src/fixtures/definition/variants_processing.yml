@@ -6,12 +6,12 @@
       name: variant1
       label: variant1
       description: ~
-      use:
+      use: ~
     variant2:
       name: variant2
       label: variant2
       description: ~
-      use:
+      use: ~
 - actual:
     variant1: Variant 1
     variant2: Variant 2
@@ -20,12 +20,12 @@
       name: variant1
       label: Variant 1
       description: ~
-      use:
+      use: ~
     variant2:
       name: variant2
       label: Variant 2
       description: ~
-      use:
+      use: ~
 - actual:
     variant1:
       label: variant1
@@ -34,7 +34,7 @@
       name: variant1
       label: variant1
       description: ~
-      use:
+      use: ~
 - actual:
     - name: variant1
       label: Variant 1

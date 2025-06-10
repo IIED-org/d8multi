@@ -2,10 +2,10 @@
 
 namespace Drupal\mailchimp_events;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityAccessControlHandler;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Access\AccessResult;
 
 /**
  * Access controller for the Mailchimp event entity.
@@ -50,11 +50,15 @@ class MailchimpEventAccessControlHandler extends EntityAccessControlHandler {
     return AccessResult::allowedIfHasPermission($account, 'add mailchimp event types');
   }
 
-  public function overview(){
+  /**
+   * {@inheritdoc}
+   */
+  public function overview() {
     return [
       'description' => [
-        '#markup' => 'Hey cool'
-      ]
+        '#markup' => 'Hey cool',
+      ],
     ];
   }
+
 }

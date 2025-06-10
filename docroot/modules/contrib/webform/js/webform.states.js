@@ -228,7 +228,7 @@
       // Fix #required for fieldsets.
       // @see Issue #2977569: Hidden fieldsets that become visible with conditional logic cannot be made required.
       if ($target.is('.js-webform-type-radios, .js-webform-type-checkboxes, fieldset')) {
-        $target.find('legend span.fieldset-legend:not(.visually-hidden)').toggleClass('js-form-required form-required', e.value);
+        $target.find('legend span.fieldset-legend:not(.visually-hidden),legend span.fieldset__label:not(.visually-hidden)').toggleClass('js-form-required form-required', e.value);
       }
 
       // Issue #2986017: Fieldsets shouldn't have required attribute.
@@ -323,7 +323,7 @@
    */
   Drupal.behaviors.webformCheckboxesRequired = {
     attach: function (context) {
-      $(once('webform-checkboxes-required', '.js-form-type-checkboxes.required, .js-form-type-webform-checkboxes-other.required, .js-webform-type-checkboxes.required, .js-webform-type-webform-checkboxes-other.required, .js-webform-type-webform-radios-other.checkboxes', context))
+      $(once('webform-checkboxes-required', '.js-form-type-checkboxes.required, .webform-term-checkboxes.required, .js-form-type-webform-checkboxes-other.required, .js-webform-type-checkboxes.required, .js-webform-type-webform-checkboxes-other.required, .js-webform-type-webform-radios-other.checkboxes', context))
         .each(function () {
           var $element = $(this);
           $element.find('input[type="checkbox"]').on('click', statesCheckboxesRequiredEventHandler);
@@ -420,7 +420,7 @@
    * @see https://stackoverflow.com/a/37825072/145846
    */
   function statesCheckboxesRequiredEventHandler() {
-    var $element = $(this).closest('.js-webform-type-checkboxes, .js-webform-type-webform-checkboxes-other');
+    var $element = $(this).closest('.js-webform-type-checkboxes, .js-webform-type-webform-checkboxes-other, .js-webform-type-webform-term-checkboxes, .js-webform-tableselect tbody');
     checkboxesRequired($element);
   }
 
@@ -624,6 +624,9 @@
       else {
         $input.removeAttr('required aria-required');
       }
+      // Clear the validation state for the input.
+      // @see Drupal.behaviors.webformRequiredError
+      $input.each(function () {this.setCustomValidity && this.setCustomValidity('')});
     }
   }
 

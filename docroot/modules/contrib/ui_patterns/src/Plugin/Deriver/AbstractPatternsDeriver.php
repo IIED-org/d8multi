@@ -35,9 +35,16 @@ abstract class AbstractPatternsDeriver extends DeriverBase implements PatternsDe
   protected $messenger;
 
   /**
+   * The base plugin ID.
+   *
+   * @var string
+   */
+  protected string $basePluginId;
+
+  /**
    * AbstractPatternsDeriver constructor.
    */
-  public function __construct($base_plugin_id, TypedDataManager $typed_data_manager, MessengerInterface $messenger) {
+  public function __construct(string $base_plugin_id, TypedDataManager $typed_data_manager, MessengerInterface $messenger) {
     $this->basePluginId = $base_plugin_id;
     $this->typedDataManager = $typed_data_manager;
     $this->messenger = $messenger;
@@ -61,6 +68,7 @@ abstract class AbstractPatternsDeriver extends DeriverBase implements PatternsDe
     foreach ($this->getPatterns() as $pattern) {
       $pattern->setDeriver($base_plugin_definition['deriver']);
       $pattern->setClass($base_plugin_definition['class']);
+      $pattern->setProvider($pattern->getProvider() ?? $base_plugin_definition['provider']);
       if ($this->isValidPatternDefinition($pattern)) {
         $this->derivatives[$pattern->id()] = $pattern;
       }

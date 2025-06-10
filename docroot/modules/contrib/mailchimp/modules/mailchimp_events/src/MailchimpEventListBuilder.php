@@ -34,7 +34,7 @@ class MailchimpEventListBuilder extends EntityListBuilder {
     );
 
     $properties_label = [];
-    foreach($entity->getProperties() as $property){
+    foreach ($entity->getProperties() as $property) {
       $properties_label[] = ['#markup' => $property["value"]];
       $properties_label[] = ['#markup' => ', '];
     }
@@ -55,4 +55,5 @@ class MailchimpEventListBuilder extends EntityListBuilder {
     );
     return $build;
   }
+
 }

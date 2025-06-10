@@ -6,8 +6,8 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\ui_patterns\Form\PatternDisplayFormTrait;
 use Drupal\ui_patterns\Element\PatternContext;
+use Drupal\ui_patterns\Form\PatternDisplayFormTrait;
 
 /**
  * Implements hook_theme().
@@ -46,7 +46,10 @@ function ui_patterns_ds_field_overview_submit(array $form, FormStateInterface $f
   });
 
   foreach ($components as $name => $component) {
-    PatternDisplayFormTrait::processFormStateValues($component['third_party_settings']['ds']['ft']['settings']);
+    (new class() {
+      use PatternDisplayFormTrait;
+
+    })::processFormStateValues($component['third_party_settings']['ds']['ft']['settings']);
     $display->setComponent($name, $component);
   }
 

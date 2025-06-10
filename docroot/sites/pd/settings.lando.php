@@ -164,3 +164,14 @@ $config['config_split.config_split.local']['status'] = TRUE;
 $config['config_split.config_split.dev']['status'] = FALSE;
 $config['config_split.config_split.stage']['status'] = FALSE;
 $config['config_split.config_split.prod']['status'] = FALSE;
+
+/**
+ * Stage file proxy.
+ *
+ * To use stage file proxy you will need the module enabled. Then uncomment
+ * the config line below and edit the domain to suit. If the domain is behind
+ * http auth then you can use agile:collective before the @ sign (or whatever
+ * user/pass combination you need). Change the domain.org part to match the
+ * domain (usually production, sometimes development) with the images.
+ */
+$config['stage_file_proxy.settings']['origin'] = 'https://www.protracteddisplacement.org';

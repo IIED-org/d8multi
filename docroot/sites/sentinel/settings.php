@@ -251,7 +251,8 @@ $databases = array();
  *   );
  * @endcode
  */
-$settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_path);
+/* Add config directory */
+$settings['config_sync_directory'] = $app_root . '/../config/sentinel/default/';
 
 /**
  * Settings:
@@ -552,10 +553,6 @@ if ($settings['hash_salt']) {
  * about securing private files.
  */
 # $settings['file_private_path'] = '';
-
-if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
-  $settings['file_private_path'] = '/mnt/files/' . $_ENV['AH_SITE_GROUP'] . '.' . $_ENV['AH_SITE_ENVIRONMENT'] . '/' . $site_path . '/files-private';
-}
 
 /**
  * Session write interval:

@@ -13,23 +13,23 @@
       type: 'text'
       label: 'URL'
       description: 'The button URL'
-      preview: 'http://example.com'
+      preview: 'https://example.com'
   variants:
     - meta:
         name: 'default'
         label: 'Default'
         description: 'A default button, nothing to see here.'
-      preview: '<a href="http://example.com" target="_blank" class="btn btn-default button">Submit</a>'
+      preview: '<a href="https://example.com" target="_blank" class="btn btn-default button">Submit</a>'
     - meta:
         name: 'primary'
         label: 'Primary'
         description: 'A primary button.'
-      preview: '<a href="http://example.com" target="_blank" class="btn btn-primary button">Submit</a>'
+      preview: '<a href="https://example.com" target="_blank" class="btn btn-primary button">Submit</a>'
     - meta:
         name: 'danger'
         label: 'Danger'
         description: 'A button for dangerous operations.'
-      preview: '<a href="http://example.com" target="_blank" class="btn btn-danger button">Delete</a>'
+      preview: '<a href="https://example.com" target="_blank" class="btn btn-danger button">Delete</a>'
 
 - name: 'simple'
   label: 'Simple'
@@ -37,10 +37,10 @@
   has_variants: false
   preview: '<div class="pattern-simple">Simple pattern field</div>'
   fields:
-  - name: 'field'
-    type: 'string'
-    label: 'Field'
-    description: 'Field description'
+    - name: 'field'
+      type: 'string'
+      label: 'Field'
+      description: 'Field description'
 
 - name: 'with_custom_theme_hook'
   theme hook: 'custom_theme_hook'
@@ -49,10 +49,10 @@
   has_variants: false
   preview: 'With custom theme hook: Pattern field value'
   fields:
-  - name: 'field'
-    type: 'string'
-    label: 'Field'
-    description: 'Field description'
+    - name: 'field'
+      type: 'string'
+      label: 'Field'
+      description: 'Field description'
 
 - name: 'with_local_libraries'
   label: 'With local libraries'
@@ -60,10 +60,10 @@
   has_variants: false
   preview: 'With local libraries: Pattern field value'
   fields:
-  - name: 'field'
-    type: 'string'
-    label: 'Field'
-    description: 'Field description'
+    - name: 'field'
+      type: 'string'
+      label: 'Field'
+      description: 'Field description'
 
 - name: 'with_raw_template'
   label: 'With raw template'
@@ -71,10 +71,10 @@
   has_variants: false
   preview: 'With raw template: Pattern field value'
   fields:
-  - name: 'field'
-    type: 'string'
-    label: 'Field'
-    description: 'Field description'
+    - name: 'field'
+      type: 'string'
+      label: 'Field'
+      description: 'Field description'
 
 - name: 'with_variants'
   label: 'With variants'

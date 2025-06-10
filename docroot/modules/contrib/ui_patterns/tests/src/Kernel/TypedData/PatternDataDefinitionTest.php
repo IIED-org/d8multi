@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\ui_patterns\Kernel\TypedData;
 
-use Drupal\Tests\ui_patterns\Kernel\AbstractUiPatternsTest;
+use Drupal\Tests\ui_patterns\Kernel\UiPatternsTestBase;
 use Drupal\ui_patterns\TypedData\PatternDataDefinition;
 
 /**
@@ -10,7 +10,7 @@ use Drupal\ui_patterns\TypedData\PatternDataDefinition;
  *
  * @group ui_patterns
  */
-class PatternDataDefinitionTest extends AbstractUiPatternsTest {
+class PatternDataDefinitionTest extends UiPatternsTestBase {
 
   /**
    * Test plugin validation.

@@ -134,7 +134,7 @@ class MailchimpCampaignController extends ControllerBase {
       return $content;
     }
 
-    /* @var $campaign \Drupal\mailchimp_campaign\Entity\MailchimpCampaign */
+    /** @var \Drupal\mailchimp_campaign\Entity\MailchimpCampaign $campaign */
     foreach ($campaigns as $campaign) {
       if (!$campaign->isInitialized()) {
         continue;
@@ -278,7 +278,7 @@ class MailchimpCampaignController extends ControllerBase {
   public function stats(MailchimpCampaign $mailchimp_campaign) {
     $content = [];
 
-    /* @var \Mailchimp\MailchimpReports $mc_reports */
+    /** @var \Mailchimp\MailchimpReports $mc_reports */
     $mc_reports = mailchimp_get_api_object('MailchimpReports');
 
     try {
@@ -309,9 +309,9 @@ class MailchimpCampaignController extends ControllerBase {
       foreach ($response->timeseries as $series) {
         $content['#attached']['drupalSettings']['mailchimp_campaign']['stats'][] = [
           'timestamp' => $series->timestamp,
-          'emails_sent' => isset($series->emails_sent) ? $series->emails_sent : 0,
+          'emails_sent' => $series->emails_sent ?? 0,
           'unique_opens' => $series->unique_opens,
-          'recipients_click' => isset($series->recipients_click) ? $series->recipients_click : 0,
+          'recipients_click' => $series->recipients_click ?? 0,
         ];
       }
 
@@ -384,6 +384,7 @@ class MailchimpCampaignController extends ControllerBase {
     $q = $this->request->get('q');
 
     $query = $this->entityTypeManager->getStorage($entity_type)->getQuery()
+      ->accessCheck(TRUE)
       ->condition('title', $q, 'CONTAINS')
       ->range(0, 10);
 
@@ -395,7 +396,7 @@ class MailchimpCampaignController extends ControllerBase {
       $entities_data = $this->entityTypeManager->getStorage($entity_type)->loadMultiple($entity_ids);
 
       if (!empty($entities_data)) {
-        /* @var $entity \Drupal\Core\Entity\EntityInterface */
+        /** @var \Drupal\Core\Entity\EntityInterface $entity */
         foreach ($entities_data as $id => $entity) {
           $title = $entity->getTypedData()->getString('title');
 

@@ -2,14 +2,14 @@
 
 namespace Drupal\ui_patterns\Element;
 
+use Drupal\Core\Render\Attribute\RenderElement;
 use Drupal\Core\Render\Markup;
 use Drupal\ui_patterns\UiPatterns;
 
 /**
  * Renders a pattern preview element.
- *
- * @RenderElement("pattern_preview")
  */
+#[RenderElement('pattern_preview')]
 class PatternPreview extends Pattern {
 
   /**
@@ -63,7 +63,10 @@ class PatternPreview extends Pattern {
     if (is_array($preview)) {
       $rendered = [];
       // If preview is a render array add hashes to keys.
-      $hash_keys = array_key_exists('theme', $preview) || array_key_exists('type', $preview);
+      $hash_keys = array_key_exists('theme', $preview)
+        || array_key_exists('type', $preview)
+        || array_key_exists('markup', $preview)
+        || array_key_exists('plain_text', $preview);
       foreach ($preview as $key => $value) {
         $key = $hash_keys ? '#' . $key : $key;
         if (is_array($value)) {

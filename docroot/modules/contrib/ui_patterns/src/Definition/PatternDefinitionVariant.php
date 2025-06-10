@@ -122,4 +122,5 @@ class PatternDefinitionVariant implements \ArrayAccess {
     $this->definition['use'] = $use;
     return $this;
   }
+
 }

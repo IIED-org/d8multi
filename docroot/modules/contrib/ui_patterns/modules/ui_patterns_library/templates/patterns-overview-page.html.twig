@@ -16,7 +16,18 @@
     <ul>
       {% for pattern_name, pattern in group_patterns %}
         <li>
+          {# Anchor link. #}
           <a href="#{{ pattern_name }}">{{ pattern.label }}</a>
+          {# External documentation links. #}
+          {% if pattern.render_links %}
+            <ul>
+              {% for renderLink in pattern.render_links %}
+                <li>
+                  {{ renderLink }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         </li>
       {% endfor %}
     </ul>

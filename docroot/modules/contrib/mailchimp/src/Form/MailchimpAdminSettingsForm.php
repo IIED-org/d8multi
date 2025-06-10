@@ -6,7 +6,7 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Link;
-use Drupal\Core\State\State;
+use Drupal\Core\State\StateInterface;
 use Drupal\Core\Url;
 use Mailchimp\MailchimpAPIException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -25,20 +25,19 @@ class MailchimpAdminSettingsForm extends ConfigFormBase {
   /**
    * StateService.
    *
-   * @var Drupal\Core\State
+   * @var \Drupal\Core\State\StateInterface
    */
-  protected State $stateService;
-
+  protected StateInterface $stateService;
 
   /**
    * Creates a new MailchimpAdminSettingsForm instance.
    *
    * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
    *   The language manager.
-   * @param \Drupal\Core\State $stateService
+   * @param \Drupal\Core\State\StateInterface $stateService
    *   State service.
    */
-  public function __construct(LanguageManagerInterface $languageManager, State $stateService) {
+  public function __construct(LanguageManagerInterface $languageManager, StateInterface $stateService) {
     $this->languageManager = $languageManager;
     $this->stateService = $stateService;
   }
@@ -98,13 +97,13 @@ class MailchimpAdminSettingsForm extends ConfigFormBase {
       ],
     ];
 
-    $form['api_timeout'] = array(
+    $form['api_timeout'] = [
       '#type' => 'textfield',
-      '#title' => t('Mailchimp API Timeout'),
+      '#title' => $this->t('Mailchimp API Timeout'),
       '#required' => TRUE,
       '#default_value' => $config->get('api_timeout'),
-      '#description' => t('The timeout (in seconds) for calls to the MailChimp API. Set to something that won\'t take down the Drupal site.'),
-    );
+      '#description' => $this->t("The timeout (in seconds) for calls to the MailChimp API. Set to something that won't take down the Drupal site."),
+    ];
 
     $form['connected_sites'] = [
       '#type' => 'fieldset',
@@ -121,7 +120,7 @@ class MailchimpAdminSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('enable_connected'),
     ];
 
-    /* @var \Mailchimp\MailchimpConnectedSites $mc_connected */
+    /** @var \Mailchimp\MailchimpConnectedSites $mc_connected */
     try {
       $mc_connected = mailchimp_get_api_object('MailchimpConnectedSites');
       if ($mc_connected) {
@@ -136,8 +135,8 @@ class MailchimpAdminSettingsForm extends ConfigFormBase {
     if (!empty($connected_sites) && !empty($connected_sites->sites)) {
       foreach ($connected_sites->sites as $site) {
         if (empty($site->domain)) {
-          $site->domain = t('Unlabeled site :id',
-            [':id' => $site->foreign_id,]);
+          $site->domain = $this->t('Unlabeled site :id',
+            [':id' => $site->foreign_id]);
         }
         $connected_sites_options[$site->foreign_id] = $site->domain;
       }
@@ -222,7 +221,7 @@ class MailchimpAdminSettingsForm extends ConfigFormBase {
       '#title' => $this->t('Webhook Hash'),
       '#default_value' => $hash,
       '#description' => $this->t('Hash to validate incoming webhooks. Whatever you put here should be appended to the URL you provide Mailchimp.'),
-      '#suffix' => t("Your webhook URL: :url:", [
+      '#suffix' => $this->t("Your webhook URL: :url:", [
         ':url:' => mailchimp_webhook_url($hash),
       ]),
     ];

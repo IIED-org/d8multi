@@ -2,11 +2,11 @@
 
 namespace Drupal\ui_patterns;
 
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\ui_patterns\Definition\PatternDefinition;
 
@@ -40,7 +40,7 @@ class UiPatternsManager extends DefaultPluginManager implements UiPatternsManage
     \Traversable $namespaces,
     CacheBackendInterface $cache_backend,
     ModuleHandlerInterface $module_handler,
-    ThemeHandlerInterface $theme_handler
+    ThemeHandlerInterface $theme_handler,
   ) {
     parent::__construct('Plugin/UiPatterns/Pattern', $namespaces, $module_handler, 'Drupal\ui_patterns\Plugin\PatternInterface', 'Drupal\ui_patterns\Annotation\UiPattern');
     $this->setCacheBackend($cache_backend, 'ui_patterns', ['ui_patterns']);
@@ -61,6 +61,18 @@ class UiPatternsManager extends DefaultPluginManager implements UiPatternsManage
     // Add default category.
     if ($definition instanceof PatternDefinition && empty($definition->getCategory())) {
       $definition->setCategory($this->t('Other'));
+    }
+
+    // Makes links titles translatable.
+    if ($definition instanceof PatternDefinition) {
+      $links = \array_map(static function ($link) {
+        if (\is_array($link) && !$link['title'] instanceof TranslatableMarkup) {
+          // phpcs:ignore Drupal.Semantics.FunctionT.NotLiteralString
+          $link['title'] = new TranslatableMarkup($link['title'], [], ['context' => 'ui_patterns']);
+        }
+        return $link;
+      }, $definition->getLinks());
+      $definition->setLinks($links);
     }
   }
 
@@ -86,6 +98,12 @@ class UiPatternsManager extends DefaultPluginManager implements UiPatternsManage
     $definitions = $definitions ?? $this->getDefinitions();
 
     \uasort($definitions, static function (PatternDefinition $item1, PatternDefinition $item2) {
+      // Sort by weight.
+      $weight = $item1->getWeight() <=> $item2->getWeight();
+      if ($weight != 0) {
+        return $weight;
+      }
+
       // Sort by category.
       $category1 = $item1->getCategory();
       if ($category1 instanceof TranslatableMarkup) {
@@ -97,12 +115,6 @@ class UiPatternsManager extends DefaultPluginManager implements UiPatternsManage
       }
       if ($category1 != $category2) {
         return \strnatcasecmp($category1, $category2);
-      }
-
-      // Sort by weight.
-      $weight = $item1->getWeight() <=> $item2->getWeight();
-      if ($weight != 0) {
-        return $weight;
       }
 
       // Sort by label ignoring parenthesis.

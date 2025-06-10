@@ -2,13 +2,11 @@
 
 namespace Drupal\Tests\ui_patterns\Unit\Template;
 
-// cspell:ignore mila
 use Drupal\Component\Serialization\Json;
-use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Render\Markup;
-use Drupal\ui_patterns\Template\TwigExtension;
-use Drupal\Tests\UnitTestCase;
 use Drupal\Core\Template\Attribute;
+use Drupal\Tests\UnitTestCase;
+use Drupal\ui_patterns\Template\TwigExtension;
 
 /**
  * Tests the twig extension.
@@ -31,14 +29,7 @@ class TwigExtensionTest extends UnitTestCase {
    */
   protected function setUp(): void {
     parent::setUp();
-
-    $renderer = $this->createMock('\Drupal\Core\Render\RendererInterface');
-    $urlGenerator = $this->createMock('\Drupal\Core\Routing\UrlGeneratorInterface');
-    $themeManager = $this->createMock('\Drupal\Core\Theme\ThemeManagerInterface');
-    $dateFormatter = $this->createMock('\Drupal\Core\Datetime\DateFormatterInterface');
-    $fileUrlGenerator = $this->createMock(FileUrlGeneratorInterface::class);
-
-    $this->systemUnderTest = new TwigExtension($renderer, $urlGenerator, $themeManager, $dateFormatter, $fileUrlGenerator);
+    $this->systemUnderTest = new TwigExtension();
   }
 
   /**
@@ -58,7 +49,7 @@ class TwigExtensionTest extends UnitTestCase {
    * @return \Iterator
    *   An iterator.
    */
-  public function providerTestTwigAddClass(): \Iterator {
+  public static function providerTestTwigAddClass(): \Iterator {
     yield 'should add a class on element' => [
       ['#type' => 'container'],
       'my-class',
@@ -145,7 +136,7 @@ class TwigExtensionTest extends UnitTestCase {
    * @return \Iterator
    *   An iterator.
    */
-  public function providerTestTwigSetAttribute(): \Iterator {
+  public static function providerTestTwigSetAttribute(): \Iterator {
     yield 'should add attributes on element' => [
       ['#theme' => 'image'],
       'title',

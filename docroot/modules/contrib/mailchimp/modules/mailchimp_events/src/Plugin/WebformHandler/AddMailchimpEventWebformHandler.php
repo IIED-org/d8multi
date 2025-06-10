@@ -217,7 +217,7 @@ class AddMailchimpEventWebformHandler extends WebformHandlerBase {
       '#type' => 'checkbox',
       '#title' => $this->t('Suppress automations in Mailchimp?'),
       '#description' => $this->t('Events will be logged, but automations will not trigger.'),
-      '#default_value' => isset($this->configuration['is_syncing']) ? $this->configuration['is_syncing'] : FALSE,
+      '#default_value' => $this->configuration['is_syncing'] ?? FALSE,
     ];
 
     // Development.
@@ -386,7 +386,7 @@ class AddMailchimpEventWebformHandler extends WebformHandlerBase {
         '#type' => 'textfield',
         '#title' => $property['value'],
         '#weight' => '0',
-        '#default_value' => isset($this->configuration['properties'][$property['value']]) ? $this->configuration['properties'][$property['value']] : '',
+        '#default_value' => $this->configuration['properties'][$property['value']] ?? '',
       ];
     }
 

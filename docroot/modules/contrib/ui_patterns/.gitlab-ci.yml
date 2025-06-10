@@ -1,0 +1,13 @@
+# https://git.drupalcode.org/project/gitlab_templates/
+
+include:
+  - project: $_GITLAB_TEMPLATES_REPO
+    ref: $_GITLAB_TEMPLATES_REF
+    file:
+      - '/includes/include.drupalci.main.yml'
+      - '/includes/include.drupalci.variables.yml'
+      - '/includes/include.drupalci.workflows.yml'
+
+cspell:
+  variables:
+    _CSPELL_IGNORE_PATHS: '**/tests/src/fixtures/definition/*.yml, **/tests/src/fixtures/*.yml'

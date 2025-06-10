@@ -27,7 +27,7 @@ config_devel:
   - views.view.media_entity_browser_media_library
   - entity_browser.browser.media_entity_browser_media_library
 
-# Information added by Drupal.org packaging script on 2023-02-02
-version: '8.x-2.0-alpha4'
+# Information added by Drupal.org packaging script on 2024-05-20
+version: '8.x-2.0'
 project: 'media_entity_browser'
-datestamp: 1675310827
+datestamp: 1716243516

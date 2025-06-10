@@ -261,7 +261,8 @@ $databases = [];
  * directory in the public files path. The setting below allows you to set
  * its location.
  */
-$settings['config_sync_directory'] = $app_root . '/../config/' . basename($site_path);
+/* Add config directory */
+$settings['config_sync_directory'] = $app_root . '/../config/pd/default/';
 
 /**
  * Settings:

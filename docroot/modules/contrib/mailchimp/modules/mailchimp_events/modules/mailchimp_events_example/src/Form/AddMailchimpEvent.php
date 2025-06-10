@@ -8,7 +8,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\mailchimp_events\Entity\MailchimpEvent;
-use Laminas\Diactoros\Response\RedirectResponse;
 
 /**
  * A sample form for adding a Mailchimp Event.
@@ -47,7 +46,7 @@ class AddMailchimpEvent extends FormBase {
     $events = MailchimpEvent::loadMultiple();
     $event_options = [];
     if (empty($events)) {
-      $this->messenger()->addError($this->t('At least one event type is required. @add-link',[
+      $this->messenger()->addError($this->t('At least one event type is required. @add-link', [
         '@add-link' => $add_link->toString(),
       ]));
       return $form;

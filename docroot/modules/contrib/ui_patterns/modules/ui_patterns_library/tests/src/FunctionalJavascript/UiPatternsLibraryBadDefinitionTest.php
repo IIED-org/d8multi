@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\ui_patterns_library\FunctionalJavascript;
 
+use Drupal\Core\Url;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 
 /**
@@ -37,7 +38,7 @@ class UiPatternsLibraryBadDefinitionTest extends WebDriverTestBase {
     $this->drupalLogin($user);
 
     drupal_flush_all_caches();
-    $this->drupalGet('/patterns');
+    $this->drupalGet(Url::fromRoute('ui_patterns.patterns.overview'));
 
     $session->pageTextContains("Pattern 'bad_definition' is skipped because of the following validation error(s):");
     $session->pageTextContains('Validation error on "bad_definition.label": This value should not be null.');

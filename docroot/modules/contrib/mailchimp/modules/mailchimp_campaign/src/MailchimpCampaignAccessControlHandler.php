@@ -16,7 +16,7 @@ class MailchimpCampaignAccessControlHandler extends EntityAccessControlHandler {
    * {@inheritdoc}
    */
   public function access(EntityInterface $entity, $operation, AccountInterface $account = NULL, $return_as_object = FALSE) {
-    /* @var $entity \Drupal\mailchimp_campaign\Entity\MailchimpCampaign */
+    /** @var \Drupal\mailchimp_campaign\Entity\MailchimpCampaign $entity */
 
     // Ensure the associated list/audience still exists.
     if (!$entity->mc_data) {
