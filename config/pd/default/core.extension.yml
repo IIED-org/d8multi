@@ -44,6 +44,7 @@ module:
   imagemagick: 0
   inline_entity_form: 0
   inline_form_errors: 0
+  klaro: 0
   layout_discovery: 0
   link: 0
   media: 0
@@ -98,7 +99,6 @@ module:
   password_policy_extras: 20
   minimal: 1000
   readonlymode: 9999
-  eu_cookie_compliance: 10000
 theme:
   stark: 0
   bootstrap_barrio: 0
