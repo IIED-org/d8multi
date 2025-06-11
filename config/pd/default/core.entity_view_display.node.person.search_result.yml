@@ -1,0 +1,76 @@
+uuid: c81fd92a-9f15-4cda-bca6-b5893a2489e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.person.body
+    - field.field.node.person.field_country_advisory_group
+    - field.field.node.person.field_email
+    - field.field.node.person.field_external_advisory_group
+    - field.field.node.person.field_image
+    - field.field.node.person.field_link
+    - field.field.node.person.field_project_team
+    - field.field.node.person.field_surname_for_sort
+    - field.field.node.person.field_theme
+    - image.style.thumbnail
+    - node.type.person
+  module:
+    - ds
+    - svg_image
+    - text
+    - user
+id: node.person.search_result
+targetEntityType: node
+bundle: person
+mode: search_result
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 300
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 1
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  field_country_advisory_group: true
+  field_email: true
+  field_external_advisory_group: true
+  field_link: true
+  field_project_team: true
+  field_surname_for_sort: true
+  field_theme: true
+  links: true
+  search_api_excerpt: true

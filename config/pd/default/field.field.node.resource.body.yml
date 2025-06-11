@@ -1,0 +1,23 @@
+uuid: 5bed9f97-ddc0-4171-a7d7-5a2d5c78e83a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.resource
+  module:
+    - text
+id: node.resource.body
+field_name: body
+entity_type: node
+bundle: resource
+label: Abstract
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

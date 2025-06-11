@@ -1,0 +1,25 @@
+uuid: 5b25da39-92ef-4d32-a906-3e5d60ec92a9
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:html:7f398516-f400-48b1-93d2-ac353915104e'
+  module:
+    - block_content
+  theme:
+    - pd_bootstrap_sass
+id: subscribeform
+theme: pd_bootstrap_sass
+region: footer_second
+weight: -14
+provider: null
+plugin: 'block_content:7f398516-f400-48b1-93d2-ac353915104e'
+settings:
+  id: 'block_content:7f398516-f400-48b1-93d2-ac353915104e'
+  label: 'Stay connected'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,29 @@
+uuid: f7fef253-18cd-4198-b8cf-f375408910cd
+langcode: en
+status: false
+dependencies:
+  config:
+    - facets.facet.material_type
+  module:
+    - facets
+    - system
+  theme:
+    - pd_bootstrap_sass
+id: materialtype
+theme: pd_bootstrap_sass
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'facet_block:material_type'
+settings:
+  id: 'facet_block:material_type'
+  label: 'Material type'
+  label_display: '0'
+  provider: facets
+  block_id: materialtype
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /publications

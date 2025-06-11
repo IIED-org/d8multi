@@ -1,0 +1,32 @@
+uuid: 6ad5bf03-9ff1-473d-b061-9cb2af6b61fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.further_text.field_text
+    - paragraphs.paragraphs_type.further_text
+  module:
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: paragraph.further_text.default
+targetEntityType: paragraph
+bundle: further_text
+mode: default
+content:
+  field_text:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

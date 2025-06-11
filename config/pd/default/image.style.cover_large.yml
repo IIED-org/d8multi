@@ -1,0 +1,15 @@
+uuid: a01e5994-d802-4b83-9251-953b3809784e
+langcode: en
+status: true
+dependencies: {  }
+name: cover_large
+label: 'Cover large'
+effects:
+  ac41f608-6fcc-499c-8cf5-55d6017cc985:
+    uuid: ac41f608-6fcc-499c-8cf5-55d6017cc985
+    id: image_scale
+    weight: 2
+    data:
+      width: 320
+      height: null
+      upscale: false

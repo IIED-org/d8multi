@@ -1,0 +1,14 @@
+uuid: 43d45811-e005-4acd-9796-d99b7ca0dde5
+langcode: en
+status: true
+dependencies: {  }
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+name: Person
+type: person
+description: 'For display on Advisory Group pages'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

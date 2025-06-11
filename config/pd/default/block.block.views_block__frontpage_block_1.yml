@@ -1,0 +1,30 @@
+uuid: 642ab79f-899e-4078-b7fc-69141b8919b2
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.frontpage
+  module:
+    - system
+    - views
+  theme:
+    - pd_bootstrap_sass
+id: views_block__frontpage_block_1
+theme: pd_bootstrap_sass
+region: content
+weight: -8
+provider: null
+plugin: 'views_block:frontpage-block_1'
+settings:
+  id: 'views_block:frontpage-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: '<front>'

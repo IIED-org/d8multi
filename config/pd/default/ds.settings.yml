@@ -1,0 +1,24 @@
+_core:
+  default_config_hash: xfB0qOeoAomOThclNNokdKTrVwXLcXz13SU3-4a5-FY
+disabled: false
+field_template: true
+ft-default: default
+ft-show-colon: false
+classes:
+  region:
+    - banner
+    - jumbotron
+    - media
+    - container
+    - col-12
+    - card
+    - col-md-10
+    - my-3
+  field:
+    - media-body
+    - container
+    - col-12
+    - col-md-10
+    - my-3
+    - meta
+use_field_names: true

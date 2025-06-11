@@ -1,0 +1,15 @@
+uuid: 0cc5136d-cd83-44b9-bf4c-9de033121f2d
+langcode: en
+status: true
+dependencies: {  }
+name: logo_sm
+label: 'Logo sm'
+effects:
+  482b1162-7a43-49d3-a63b-14e48d0a467d:
+    uuid: 482b1162-7a43-49d3-a63b-14e48d0a467d
+    id: image_scale
+    weight: 1
+    data:
+      width: 150
+      height: null
+      upscale: false

@@ -1,0 +1,25 @@
+uuid: 553671ba-5362-419a-9436-21c35550c59e
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:html:fbefb97f-d680-428f-89c6-77f41c07f0a7'
+  module:
+    - block_content
+  theme:
+    - pd_bootstrap_sass
+id: footerimage
+theme: pd_bootstrap_sass
+region: footer_fifth
+weight: 0
+provider: null
+plugin: 'block_content:fbefb97f-d680-428f-89c6-77f41c07f0a7'
+settings:
+  id: 'block_content:fbefb97f-d680-428f-89c6-77f41c07f0a7'
+  label: 'Footer image'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

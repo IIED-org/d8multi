@@ -1,0 +1,27 @@
+uuid: 2c945af6-117d-4c7d-ab27-185b3c7c7bde
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_file_upload
+    - node.type.resource
+  module:
+    - file
+id: node.resource.field_file_upload
+field_name: field_file_upload
+entity_type: node
+bundle: resource
+label: File
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: 'resources/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf doc docx xls xlsx jpg jpeg gif png ppt pptx ppsx pptm'
+  max_filesize: '8 MB'
+  description_field: true
+field_type: file

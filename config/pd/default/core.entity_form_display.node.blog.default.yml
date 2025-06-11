@@ -1,0 +1,179 @@
+uuid: 867949eb-a65f-4822-9900-463bfed4bc9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.blog.body
+    - field.field.node.blog.field_author
+    - field.field.node.blog.field_authors
+    - field.field.node.blog.field_country
+    - field.field.node.blog.field_file_upload
+    - field.field.node.blog.field_further
+    - field.field.node.blog.field_image
+    - field.field.node.blog.field_image_caption
+    - field.field.node.blog.field_pubdate
+    - field.field.node.blog.field_theme
+    - field.field.node.blog.field_video
+    - image.style.thumbnail
+    - node.type.blog
+  module:
+    - datetime
+    - entity_browser_entity_form
+    - field_layout
+    - file
+    - inline_entity_form
+    - layout_discovery
+    - paragraphs
+    - path
+    - svg_image
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.blog.default
+targetEntityType: node
+bundle: blog
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 9
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_author:
+    type: inline_entity_form_complex
+    weight: 1
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+  field_country:
+    type: options_buttons
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_file_upload:
+    type: file_generic
+    weight: 15
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_further:
+    type: entity_reference_paragraphs
+    weight: 13
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+  field_image:
+    type: image_image
+    weight: 11
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_image_caption:
+    type: text_textarea
+    weight: 12
+    region: content
+    settings:
+      rows: 2
+      placeholder: 'Title Author via: <a href="#">Source</a>&nbsp;<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>'
+    third_party_settings: {  }
+  field_pubdate:
+    type: datetime_default
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_video:
+    type: entity_reference_autocomplete
+    weight: 14
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 8
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  field_authors: true
+  field_theme: true

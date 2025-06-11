@@ -1,0 +1,49 @@
+uuid: 1ba70468-737a-4a99-8e2f-315f2f096a65
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.research_themes
+  module:
+    - ds
+    - text
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        classes:
+          layout_class: {  }
+          ds_content: {  }
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+    regions:
+      ds_content:
+        - taxonomy_term_title
+        - description
+    fields:
+      taxonomy_term_title:
+        plugin_id: taxonomy_term_title
+        weight: 0
+        label: hidden
+        formatter: default
+id: taxonomy_term.research_themes.default
+targetEntityType: taxonomy_term
+bundle: research_themes
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: ds_content
+hidden: {  }

@@ -1,0 +1,23 @@
+uuid: a60eabca-d24c-4618-beb7-0712d7fc18d0
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - pd_bootstrap_sass
+id: sitebranding
+theme: pd_bootstrap_sass
+region: primary_menu
+weight: -14
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

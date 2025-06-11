@@ -1,0 +1,23 @@
+uuid: 55cddf44-6ba5-4c45-972b-e197f9389a3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.photo_story
+  module:
+    - text
+id: node.photo_story.body
+field_name: body
+entity_type: node
+bundle: photo_story
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

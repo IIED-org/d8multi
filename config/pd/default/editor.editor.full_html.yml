@@ -1,0 +1,124 @@
+uuid: aff8f7a3-3c7f-48f4-9a62-c119a940f418
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.full_html
+  module:
+    - ckeditor5
+format: full_html
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - heading
+      - codeBlock
+      - bold
+      - italic
+      - '|'
+      - alignment
+      - outdent
+      - indent
+      - '|'
+      - link
+      - '|'
+      - bulletedList
+      - numberedList
+      - '|'
+      - blockQuote
+      - style
+      - '|'
+      - sourceEditing
+      - '|'
+      - specialCharacters
+      - insertTable
+      - drupalInsertImage
+  plugins:
+    ckeditor5_alignment:
+      enabled_alignments:
+        - center
+        - justify
+        - left
+        - right
+    ckeditor5_codeBlock:
+      languages:
+        -
+          label: 'Plain text'
+          language: plaintext
+        -
+          label: C
+          language: c
+        -
+          label: 'C#'
+          language: cs
+        -
+          label: C++
+          language: cpp
+        -
+          label: CSS
+          language: css
+        -
+          label: Diff
+          language: diff
+        -
+          label: HTML
+          language: html
+        -
+          label: Java
+          language: java
+        -
+          label: JavaScript
+          language: javascript
+        -
+          label: PHP
+          language: php
+        -
+          label: Python
+          language: python
+        -
+          label: Ruby
+          language: ruby
+        -
+          label: TypeScript
+          language: typescript
+        -
+          label: XML
+          language: xml
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+        - heading5
+        - heading6
+    ckeditor5_imageResize:
+      allow_resize: true
+    ckeditor5_list:
+      properties:
+        reversed: true
+        startIndex: true
+      multiBlock: true
+    ckeditor5_sourceEditing:
+      allowed_tags: {  }
+    ckeditor5_style:
+      styles:
+        -
+          label: Container
+          element: '<div class="container">'
+        -
+          label: '6 column div'
+          element: '<div class="col col-sm-6">'
+        -
+          label: Row
+          element: '<div class="row">'
+        -
+          label: 'Lead (standfirst)'
+          element: '<p class="lead">'
+image_upload:
+  status: true
+  scheme: public
+  directory: inline-images
+  max_size: '4 MB'
+  max_dimensions:
+    width: null
+    height: null

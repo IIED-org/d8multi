@@ -1,0 +1,23 @@
+uuid: 3709b070-fb19-428c-99ab-3ba8de6a2b04
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_half_width
+    - paragraphs.paragraphs_type.further_images
+id: paragraph.further_images.field_half_width
+field_name: field_half_width
+entity_type: paragraph
+bundle: further_images
+label: 'Small width'
+description: 'Select this to display the image three-up on larger screens'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'True'
+  off_label: 'False'
+field_type: boolean

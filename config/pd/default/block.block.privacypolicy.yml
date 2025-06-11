@@ -1,0 +1,31 @@
+uuid: 48f2e825-5efc-4dfa-ba70-a842a6a941db
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:html:9b0dd0b2-bdc9-4d96-8a06-f0fa364ca1fb'
+  module:
+    - block_content
+    - system
+  theme:
+    - pd_bootstrap_sass
+id: privacypolicy
+theme: pd_bootstrap_sass
+region: featured_bottom_first
+weight: -11
+provider: null
+plugin: 'block_content:9b0dd0b2-bdc9-4d96-8a06-f0fa364ca1fb'
+settings:
+  id: 'block_content:9b0dd0b2-bdc9-4d96-8a06-f0fa364ca1fb'
+  label: 'Privacy policy'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /contact

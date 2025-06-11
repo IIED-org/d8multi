@@ -1,0 +1,138 @@
+uuid: cf1d7fe2-4c36-42c9-a2e5-84d7ff79b14a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.blog.body
+    - field.field.node.blog.field_author
+    - field.field.node.blog.field_authors
+    - field.field.node.blog.field_country
+    - field.field.node.blog.field_file_upload
+    - field.field.node.blog.field_further
+    - field.field.node.blog.field_image
+    - field.field.node.blog.field_image_caption
+    - field.field.node.blog.field_pubdate
+    - field.field.node.blog.field_theme
+    - field.field.node.blog.field_video
+    - image.style.card_image
+    - node.type.blog
+  module:
+    - ds
+    - svg_image
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: bb_cardtopimage
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        classes:
+          layout_class: {  }
+          first: {  }
+          second: {  }
+        wrappers:
+          first: div
+          second: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: content
+        link_custom: ''
+        label: ''
+    regions:
+      first:
+        - field_image
+        - 'bundle_field:node'
+      second:
+        - node_title
+        - field_author
+        - node_post_date
+    fields:
+      'bundle_field:node':
+        plugin_id: 'bundle_field:node'
+        weight: 1
+        label: hidden
+        formatter: default
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      node_post_date:
+        plugin_id: node_post_date
+        weight: 4
+        label: hidden
+        formatter: ds_post_date_month
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      node_title:
+        plugin_id: node_title
+        weight: 2
+        label: hidden
+        formatter: default
+        settings:
+          link: false
+          wrapper: h5
+          class: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.blog.card
+targetEntityType: node
+bundle: blog
+mode: card
+content:
+  field_author:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 3
+    region: second
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: card_image
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      ds:
+        ds_limit: '1'
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 0
+    region: first
+hidden:
+  addtoany: true
+  body: true
+  field_authors: true
+  field_country: true
+  field_file_upload: true
+  field_further: true
+  field_image_caption: true
+  field_pubdate: true
+  field_theme: true
+  field_video: true
+  links: true
+  search_api_excerpt: true

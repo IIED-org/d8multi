@@ -1,0 +1,31 @@
+uuid: d0648dbf-580c-4957-978a-698e6e666954
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:html:45ba1774-fa7f-488b-9ace-6db5eac5649c'
+  module:
+    - block_content
+    - system
+  theme:
+    - pd_bootstrap_sass
+id: contactbanner
+theme: pd_bootstrap_sass
+region: content
+weight: -12
+provider: null
+plugin: 'block_content:45ba1774-fa7f-488b-9ace-6db5eac5649c'
+settings:
+  id: 'block_content:45ba1774-fa7f-488b-9ace-6db5eac5649c'
+  label: 'Contact banner'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /contact

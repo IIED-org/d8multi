@@ -1,0 +1,217 @@
+uuid: 40db0995-3e66-4018-89d3-0ebe05f756a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.photo_story.body
+    - field.field.node.photo_story.field_author
+    - field.field.node.photo_story.field_gallery_images
+    - field.field.node.photo_story.field_image
+    - field.field.node.photo_story.field_image_caption
+    - field.field.node.photo_story.field_pubdate
+    - image.style.thumbnail
+    - node.type.photo_story
+  module:
+    - datetime
+    - ds
+    - svg_image
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col_wrapper
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        classes:
+          layout_class: {  }
+          ds_content: {  }
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: content
+        link_custom: ''
+        label: ''
+    regions:
+      ds_content:
+        - field_image
+        - node_title
+        - body
+        - field_author
+        - field_pubdate
+        - 'bundle_field:node'
+    fields:
+      'bundle_field:node':
+        plugin_id: 'bundle_field:node'
+        weight: 5
+        label: inline
+        formatter: default
+        ft:
+          id: expert
+          settings:
+            lb: Type
+            lbw: true
+            lbw-el: strong
+            lbw-cl: ''
+            lbw-at: ''
+            lb-col: true
+            ow: true
+            ow-el: div
+            ow-cl: meta
+            ow-at: ''
+            ow-def-at: true
+            ow-def-cl: true
+            fis: true
+            fis-el: div
+            fis-cl: field-type
+            fis-at: ''
+            fis-def-at: true
+            fi: false
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            fi-def-at: false
+            prefix: ''
+            suffix: ''
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          link: false
+          wrapper: h2
+          class: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.photo_story.search_result
+targetEntityType: node
+bundle: photo_story
+mode: search_result
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 250
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 2
+    region: ds_content
+  field_author:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            lbw: true
+            lbw-el: strong
+            lbw-cl: ''
+            lbw-at: ''
+            lb-col: true
+            ow: true
+            ow-el: div
+            ow-cl: meta
+            ow-at: ''
+            ow-def-at: true
+            ow-def-cl: true
+            fis: true
+            fis-el: ul
+            fis-cl: comma-list
+            fis-at: ''
+            fis-def-at: true
+            fi: true
+            fi-el: li
+            fi-cl: ''
+            fi-at: ''
+            fi-def-at: true
+            prefix: ''
+            suffix: ''
+    weight: 3
+    region: ds_content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 0
+    region: ds_content
+  field_pubdate:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: month
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            lbw: true
+            lbw-el: strong
+            lbw-cl: ''
+            lbw-at: ''
+            lb-col: true
+            ow: true
+            ow-el: div
+            ow-cl: meta
+            ow-at: ''
+            ow-def-at: true
+            ow-def-cl: true
+            fis: true
+            fis-el: div
+            fis-cl: field-date
+            fis-at: ''
+            fis-def-at: true
+            fi: false
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            fi-def-at: false
+            prefix: ''
+            suffix: ''
+    weight: 4
+    region: ds_content
+hidden:
+  addtoany: true
+  field_gallery_images: true
+  field_image_caption: true
+  links: true
+  search_api_excerpt: true

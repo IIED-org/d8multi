@@ -1,0 +1,29 @@
+uuid: 48dfa2a5-af9b-44f2-b892-856df269bca4
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.publications
+  module:
+    - system
+    - views
+  theme:
+    - pd_bootstrap_sass
+id: exposedformpublicationspage_1
+theme: pd_bootstrap_sass
+region: featured_top
+weight: -16
+provider: null
+plugin: 'views_exposed_filter_block:publications-page_1'
+settings:
+  id: 'views_exposed_filter_block:publications-page_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: Publications
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /publications

@@ -1,0 +1,27 @@
+uuid: 5393ab94-8dc3-4ccd-827b-69f994346ae0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_description
+    - media.type.image
+  module:
+    - text
+id: media.image.field_description
+field_name: field_description
+entity_type: media
+bundle: image
+label: Description
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: "<p><meta charset=\"UTF-8\" />Title Author via:&nbsp;<a href=\"#\">Source</a>&nbsp;<a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a></p>\r\n"
+    summary: ''
+    format: full_html
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

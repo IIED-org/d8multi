@@ -1,0 +1,14 @@
+uuid: 8857ee32-bac8-4cd2-aa88-f2384eff5aa6
+langcode: en
+status: true
+dependencies: {  }
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+name: Subpage
+type: subpage
+description: 'Secondary-level page (no banners)'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false
