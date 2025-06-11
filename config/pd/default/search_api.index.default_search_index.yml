@@ -3,17 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_authors
     - field.storage.node.body
+    - field.storage.node.field_authors
     - field.storage.node.field_country
-    - field.storage.node.field_pubdate
     - field.storage.node.field_material_type
+    - field.storage.node.field_pubdate
     - field.storage.node.field_publisher
     - field.storage.node.field_theme
     - search_api.server.pd_db_server
   module:
     - node
-    - search_api
     - taxonomy
 id: default_search_index
 name: 'Default search index'

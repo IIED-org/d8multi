@@ -9,6 +9,7 @@ dependencies:
     - contact
     - file
     - filter
+    - klaro
     - media
     - search
     - system
@@ -23,6 +24,7 @@ permissions:
   - 'access site-wide contact form'
   - 'delete own files'
   - 'search content'
+  - 'use klaro'
   - 'use text format full_html'
   - 'use text format webform_default'
   - 'view media'

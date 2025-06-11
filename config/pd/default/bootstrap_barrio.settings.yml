@@ -19,5 +19,6 @@ bootstrap_barrio_navbar_top_background: bg-secondary
 bootstrap_barrio_navbar_position: ''
 bootstrap_barrio_navbar_color: navbar-dark
 bootstrap_barrio_navbar_background: bg-primary
+bootstrap_barrio_messages_widget_toast_delay: 10000
 bootstrap_barrio_table_style: table-striped
 bootstrap_barrio_table_hover: 1
