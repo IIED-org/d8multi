@@ -26,7 +26,7 @@ class UiPatternsFieldSettingsTest extends WebDriverTestBase {
    *
    * @todo Fix this by providing actual schema validation.
    */
-  protected $strictConfigSchema = FALSE;
+  protected $strictConfigSchema = FALSE; // phpcs:ignore
 
   /**
    * {@inheritdoc}
@@ -62,15 +62,12 @@ class UiPatternsFieldSettingsTest extends WebDriverTestBase {
 
     // Select "Pattern" field template.
     $page->selectFieldOption('Choose a Field Template', 'Pattern');
-    $assert_session->assertWaitOnAjaxRequest();
 
     // Choose test pattern.
     $page->selectFieldOption('fields[body][settings_edit_form][third_party_settings][ds][ft][settings][pattern]', 'Field');
-    $assert_session->assertWaitOnAjaxRequest();
 
     // Choose test variant.
     $page->selectFieldOption('Variant', 'Overridden');
-    $assert_session->assertWaitOnAjaxRequest();
 
     // Map pattern fields.
     $page->selectFieldOption('Destination for Body', '- Hidden -');

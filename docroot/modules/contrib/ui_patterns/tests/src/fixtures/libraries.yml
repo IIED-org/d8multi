@@ -35,8 +35,8 @@
         /pattern/base/path/library_one.js: {}
     pattern_name.library_two:
       css:
-         component:
-           /pattern/base/path/library_one.css: {}
+        component:
+          /pattern/base/path/library_one.css: {}
       js:
         /pattern/base/path/library_two.js: {}
 - actual:
@@ -47,26 +47,26 @@
           css:
             component:
               library_one.css: {}
-              http://example.com/external.min.css: { type: external, minified: true }
+              https://example.com/external.min.css: { type: external, minified: true }
               library_two.css: {}
             theme:
-              http://example.com/external.min.css: { type: external, minified: true }
+              https://example.com/external.min.css: { type: external, minified: true }
           js:
             library_one.js: {}
-            http://example.com/external.min.js: { type: external, minified: true }
+            https://example.com/external.min.js: { type: external, minified: true }
             library_two.js: {}
   expected:
     pattern_name.library_one:
       css:
         component:
           /pattern/base/path/library_one.css: {}
-          http://example.com/external.min.css: { type: external, minified: true }
+          https://example.com/external.min.css: { type: external, minified: true }
           /pattern/base/path/library_two.css: {}
         theme:
-          http://example.com/external.min.css: { type: external, minified: true }
+          https://example.com/external.min.css: { type: external, minified: true }
       js:
         /pattern/base/path/library_one.js: {}
-        http://example.com/external.min.js: { type: external, minified: true }
+        https://example.com/external.min.js: { type: external, minified: true }
         /pattern/base/path/library_two.js: {}
 - actual:
     id: pattern_name
@@ -99,7 +99,7 @@
         library_one.js: {}
     pattern_name.library_two:
       css:
-         component:
-           library_one.css: {}
+        component:
+          library_one.css: {}
       js:
         library_two.js: {}

@@ -9,6 +9,6 @@
   "license": "GPL-2.0",
   "require": {
     "drupal/paragraphs": "~1.0",
-    "drupal/core": "^8 || ^9 || ^10"
+    "drupal/core": "^8 || ^9 || ^10 || ^11"
   }
 }

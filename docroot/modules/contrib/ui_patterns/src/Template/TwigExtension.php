@@ -3,8 +3,8 @@
 namespace Drupal\ui_patterns\Template;
 
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 /**
  * Twig extension providing UI Patterns-specific functionalities.
@@ -27,14 +27,8 @@ class TwigExtension extends AbstractExtension {
    */
   public function getFunctions() {
     return [
-      new TwigFunction('pattern', [
-        $this,
-        'renderPattern',
-      ]),
-      new TwigFunction('pattern_preview', [
-        $this,
-        'renderPatternPreview',
-      ]),
+      new TwigFunction('pattern', $this->renderPattern(...)),
+      new TwigFunction('pattern_preview', $this->renderPatternPreview(...)),
     ];
   }
 
@@ -43,8 +37,8 @@ class TwigExtension extends AbstractExtension {
    */
   public function getFilters() {
     return [
-      new TwigFilter('add_class', [$this, 'addClass']),
-      new TwigFilter('set_attribute', [$this, 'setAttribute']),
+      new TwigFilter('add_class', $this->addClass(...)),
+      new TwigFilter('set_attribute', $this->setAttribute(...)),
     ];
   }
 

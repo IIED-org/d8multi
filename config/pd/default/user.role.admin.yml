@@ -1,0 +1,215 @@
+uuid: 94230769-3018-46e5-b9c0-89117ed31a93
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.media_entity_browser
+    - entity_browser.browser.video_browser
+    - filter.format.full_html
+    - media.type.local_video
+    - media.type.remote_video
+    - node.type.blog
+    - node.type.organisation
+    - node.type.page
+    - node.type.person
+    - node.type.resource
+    - node.type.subpage
+  module:
+    - addtoany
+    - block
+    - block_content
+    - captcha
+    - config
+    - contact
+    - contextual
+    - ds
+    - embed
+    - entity_browser
+    - entity_usage
+    - facets
+    - file
+    - filter
+    - honeypot
+    - image
+    - media
+    - node
+    - paragraphs
+    - path
+    - pathauto
+    - readonlymode
+    - recaptcha
+    - search
+    - search_api
+    - seckit
+    - system
+    - taxonomy
+    - toolbar
+    - update
+    - webform
+id: admin
+label: Admin
+weight: -7
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access any webform configuration'
+  - 'access block library'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access entity usage statistics'
+  - 'access files overview'
+  - 'access media overview'
+  - 'access media_entity_browser entity browser pages'
+  - 'access own webform configuration'
+  - 'access site in maintenance mode'
+  - 'access site reports'
+  - 'access site-wide contact form'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'access user contact forms'
+  - 'access user profiles'
+  - 'access video_browser entity browser pages'
+  - 'access webform overview'
+  - 'access webform submission user'
+  - 'admin classes'
+  - 'admin display suite'
+  - 'admin fields'
+  - 'administer CAPTCHA settings'
+  - 'administer account settings'
+  - 'administer addtoany'
+  - 'administer block content'
+  - 'administer block types'
+  - 'administer blocks'
+  - 'administer contact forms'
+  - 'administer content types'
+  - 'administer embed buttons'
+  - 'administer entity browsers'
+  - 'administer entity usage'
+  - 'administer facets'
+  - 'administer filters'
+  - 'administer honeypot'
+  - 'administer image styles'
+  - 'administer media'
+  - 'administer media types'
+  - 'administer menu'
+  - 'administer modules'
+  - 'administer nodes'
+  - 'administer paragraphs settings'
+  - 'administer paragraphs types'
+  - 'administer pathauto'
+  - 'administer permissions'
+  - 'administer recaptcha'
+  - 'administer search'
+  - 'administer search_api'
+  - 'administer seckit'
+  - 'administer site configuration'
+  - 'administer software updates'
+  - 'administer taxonomy'
+  - 'administer themes'
+  - 'administer url aliases'
+  - 'administer users'
+  - 'administer webform'
+  - 'administer webform element access'
+  - 'administer webform submission'
+  - 'bypass node access'
+  - 'cancel account'
+  - 'change own username'
+  - 'create blog content'
+  - 'create local_video media'
+  - 'create media'
+  - 'create organisation content'
+  - 'create page content'
+  - 'create person content'
+  - 'create remote_video media'
+  - 'create resource content'
+  - 'create subpage content'
+  - 'create url aliases'
+  - 'create webform'
+  - 'delete all revisions'
+  - 'delete any blog content'
+  - 'delete any local_video media'
+  - 'delete any media'
+  - 'delete any organisation content'
+  - 'delete any page content'
+  - 'delete any person content'
+  - 'delete any remote_video media'
+  - 'delete any resource content'
+  - 'delete any subpage content'
+  - 'delete any webform'
+  - 'delete any webform submission'
+  - 'delete blog revisions'
+  - 'delete media'
+  - 'delete organisation revisions'
+  - 'delete own blog content'
+  - 'delete own files'
+  - 'delete own local_video media'
+  - 'delete own organisation content'
+  - 'delete own page content'
+  - 'delete own person content'
+  - 'delete own remote_video media'
+  - 'delete own resource content'
+  - 'delete own subpage content'
+  - 'delete own webform'
+  - 'delete own webform submission'
+  - 'delete page revisions'
+  - 'delete person revisions'
+  - 'delete resource revisions'
+  - 'delete subpage revisions'
+  - 'edit any blog content'
+  - 'edit any local_video media'
+  - 'edit any organisation content'
+  - 'edit any page content'
+  - 'edit any person content'
+  - 'edit any remote_video media'
+  - 'edit any resource content'
+  - 'edit any subpage content'
+  - 'edit any webform'
+  - 'edit any webform submission'
+  - 'edit behavior plugin settings'
+  - 'edit own blog content'
+  - 'edit own local_video media'
+  - 'edit own organisation content'
+  - 'edit own page content'
+  - 'edit own person content'
+  - 'edit own remote_video media'
+  - 'edit own resource content'
+  - 'edit own subpage content'
+  - 'edit own webform'
+  - 'edit own webform submission'
+  - 'edit webform assets'
+  - 'edit webform source'
+  - 'edit webform twig'
+  - 'export configuration'
+  - 'import configuration'
+  - 'link to any page'
+  - 'notify of path changes'
+  - 'perform batch updates entity usage'
+  - 'readonlymode access forms'
+  - 'revert all revisions'
+  - 'revert blog revisions'
+  - 'revert organisation revisions'
+  - 'revert page revisions'
+  - 'revert person revisions'
+  - 'revert resource revisions'
+  - 'revert subpage revisions'
+  - 'select account cancellation method'
+  - 'skip CAPTCHA'
+  - 'synchronize configuration'
+  - 'update any media'
+  - 'update media'
+  - 'use advanced search'
+  - 'use text format full_html'
+  - 'view all media revisions'
+  - 'view all revisions'
+  - 'view any webform submission'
+  - 'view blog revisions'
+  - 'view organisation revisions'
+  - 'view own unpublished content'
+  - 'view own webform submission'
+  - 'view page revisions'
+  - 'view person revisions'
+  - 'view resource revisions'
+  - 'view subpage revisions'
+  - 'view the administration theme'
+  - 'view unpublished paragraphs'
+  - 'view update notifications'

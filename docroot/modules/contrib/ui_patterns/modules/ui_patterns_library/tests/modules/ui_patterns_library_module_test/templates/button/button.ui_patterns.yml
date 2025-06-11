@@ -21,4 +21,4 @@ button:
       type: text
       label: URL
       description: The button URL
-      preview: http://example.com
+      preview: https://example.com

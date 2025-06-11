@@ -40,7 +40,7 @@ class ListMailchimpEventsForMember extends FormBase {
         }
 
         $listing[] = [
-          '#prefix' => isset($event->name) ? $event->name : '',
+          '#prefix' => $event->name ?? '',
           '#theme' => 'item_list',
           '#items' => $properties,
         ];

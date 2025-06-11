@@ -50,7 +50,7 @@ class MailchimpCampaignViewBuilder extends EntityViewBuilder {
     $build['#attached']['library'][] = 'mailchimp_campaign/campaign-view';
 
     // Prepare rendered content.
-    /* @var $entity \Drupal\mailchimp_campaign\Entity\MailchimpCampaign */
+    /** @var \Drupal\mailchimp_campaign\Entity\MailchimpCampaign $entity */
     $content = $this->renderTemplate($entity->getTemplate());
     $rendered = '';
     foreach ($content as $key => $section) {

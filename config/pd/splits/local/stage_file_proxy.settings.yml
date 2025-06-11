@@ -1,0 +1,7 @@
+hotlink: false
+origin: 'https://www.protracteddisplacement.org'
+origin_dir: sites/pd/files
+proxy_headers: ''
+use_imagecache_root: true
+verify: false
+excluded_extensions: ''

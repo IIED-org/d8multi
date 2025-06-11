@@ -23,6 +23,7 @@ function mailchimp_events_help($route_name, RouteMatchInterface $route_match) {
       $output .= '<h3>' . t('Readme') . '</h3>';
       $output .= '<pre>' . file_get_contents($module_path . '/README.md') . '</pre>';
       return $output;
+
     case 'entity.mailchimp_event.collection':
       return t('
         <p>Event types represent custom <a href=":behavioral_targeting_documentation_url" target="_blank">Mailchimp events</a> you want to create.</p>
@@ -30,19 +31,20 @@ function mailchimp_events_help($route_name, RouteMatchInterface $route_match) {
         <p>Events are not imported from Mailchimp.</p>',
         [
           ':behavioral_targeting_documentation_url' => 'https://mailchimp.com/help/use-events-behavioral-targeting/',
-          ':webform_handler_documentation_url' => 'https://www.drupal.org/docs/8/modules/webform/webform-features#s-emails-handlers'
+          ':webform_handler_documentation_url' => 'https://www.drupal.org/docs/8/modules/webform/webform-features#s-emails-handlers',
         ]);
+
     default:
   }
 }
 
 /**
- * Get a list of all events for a given email in a given list.
+ * Gets a list of all events for a given email in a given list.
  *
  * @param string $list_id
- *   The Mailchimp list ID to get member info for.
+ *   The Mailchimp list ID the member is subscribed to.
  * @param string $email
- *   The Mailchimp user email address to load member info for.
+ *   The Mailchimp user email address to load an event list for.
  * @param int $count
  *   The number of records to return up to 1000 from newest to oldest.
  * @param int $offset
@@ -122,15 +124,15 @@ function mailchimp_events_list_member_events($list_id, $email, $count = 10, $off
  * Add an event for a Mailchimp list member with the given email address.
  *
  * @param string $list_id
- *   The Mailchimp list ID to get member info for.
+ *   The Mailchimp list ID the member is subscribed to.
  * @param string $email
- *   The Mailchimp user email address to load member info for.
+ *   The Mailchimp user email address to add an event for.
  * @param string $name
  *   The name of the event: letters, numbers, underscores, and dashes.
  * @param array $properties
  *   Properties for the event in an associative array format (value => hello).
  * @param bool $is_syncing
- *   Events created with is_syncing set to true will not trigger automations.
+ *   Events created with is_syncing set to TRUE will not trigger automations.
  * @param int $occurred_at
  *   The timestamp of when the event occurred.
  *

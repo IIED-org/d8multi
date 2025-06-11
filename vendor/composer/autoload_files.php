@@ -38,7 +38,6 @@ return array(
     '062120a429d7568eacd495a8c34fcf09' => $vendorDir . '/open-telemetry/sdk/Common/Dev/Compatibility/_load.php',
     '88e3b63cfb48eb8ea316a8a85a5f5c5f' => $vendorDir . '/open-telemetry/sdk/_autoload.php',
     'ec07570ca5a812141189b1fa81503674' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
-    '2cffec82183ee1cea088009cef9a6fc3' => $vendorDir . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
     'ad155f8f1cf0d418fe49e248db8c661b' => $vendorDir . '/react/promise/src/functions_include.php',
     '0d59ee240a4cd96ddbb4ff164fccea4d' => $vendorDir . '/symfony/polyfill-php73/bootstrap.php',
     'a4a119a56e50fbb293281d9a48007e0e' => $vendorDir . '/symfony/polyfill-php80/bootstrap.php',

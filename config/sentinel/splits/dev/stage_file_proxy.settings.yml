@@ -1,0 +1,7 @@
+hotlink: false
+origin: 'https://www.sentinel-gcrf.org'
+origin_dir: sites/sentinel/files
+proxy_headers: ''
+use_imagecache_root: true
+verify: false
+excluded_extensions: ''

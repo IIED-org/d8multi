@@ -1,13 +1,12 @@
 eu_cookie_compliance:
   version: VERSION
   js:
-    js/eu_cookie_compliance.min.js: { attributes: { defer: true } }
+    js/eu_cookie_compliance.min.js: { minified: true }
   dependencies:
     - core/jquery
     - core/drupal
     - core/drupalSettings
     - core/once
-    - core/js-cookie
 eu_cookie_compliance_default:
   version: VERSION
   css:

@@ -12,11 +12,11 @@ dependencies:
 
 config_devel:
   install:
-  - field.field.node.article.body
-  - node.type.article
-  - views.view.articles
+    - field.field.node.article.body
+    - node.type.article
+    - views.view.articles
 
-# Information added by Drupal.org packaging script on 2023-06-29
-version: '8.x-1.7'
+# Information added by Drupal.org packaging script on 2025-06-03
+version: '8.x-1.11'
 project: 'ui_patterns'
-datestamp: 1688044508
+datestamp: 1748939525

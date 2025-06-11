@@ -25,7 +25,8 @@ the emails. You can confirm which Merge Tags a list uses from the
 or try a [standard merge tag](https://mailchimp.com/help/all-the-merge-tags-cheat-sheet/).
 
 ## Site Content Import
-Any entity on your site with a Title can be placed into the Content of the Campaign.
+Any entity on your site with a Title can be placed into the Content of the
+Campaign.
 
 Simply select the Entity Type, type in the Title to locate the entity,
 and select a configured View Mode to include.

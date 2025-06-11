@@ -13,3 +13,7 @@ services:
     class: Drupal\ui_patterns\Template\TwigExtension
     tags:
       - { name: twig.extension }
+
+  Drupal\ui_patterns\Hook\LibraryHooks:
+    class: Drupal\ui_patterns\Hook\LibraryHooks
+    autowire: true

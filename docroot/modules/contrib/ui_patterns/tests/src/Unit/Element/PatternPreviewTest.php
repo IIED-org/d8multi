@@ -3,7 +3,7 @@
 namespace Drupal\Tests\ui_patterns\Unit\Element;
 
 use Drupal\Component\Serialization\Yaml;
-use Drupal\Tests\ui_patterns\Unit\AbstractUiPatternsTest;
+use Drupal\Tests\ui_patterns\Unit\UiPatternsTestBase;
 use Drupal\ui_patterns\Element\PatternPreview;
 
 /**
@@ -11,7 +11,7 @@ use Drupal\ui_patterns\Element\PatternPreview;
  *
  * @group ui_patterns
  */
-class PatternPreviewTest extends AbstractUiPatternsTest {
+class PatternPreviewTest extends UiPatternsTestBase {
 
   /**
    * Test getPreviewMarkup.

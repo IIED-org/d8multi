@@ -71,5 +71,35 @@ function hook_mailchimp_lists_mergevars_alter(array &$mergevars, EntityInterface
 }
 
 /**
+ * Alter interest groups before they are sent to Mailchimp.
+ *
+ * @param array $interests
+ *   The current interest groups.
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity used to populate the interest groups.
+ * @param string $choices
+ *   The entity form submission data.
+ *
+ * @ingroup mailchimp
+ */
+function hook_mailchimp_lists_interest_groups_alter(array &$interests, EntityInterface $entity, array $choices) {
+}
+
+/**
+ * Alter campaign template and content.
+ *
+ * @param array $template
+ *   Associative array of template content indexed by section ID.
+ * @param array $content
+ *   Associative array of filtered template content indexed by section ID.
+ * @param string $campaign_id
+ *   The ID of the campaign to save, if updating.
+ *
+ * @ingroup mailchimp
+ */
+function hook_mailchimp_campaign_content_alter(array &$template, array &$content, string $campaign_id) {
+}
+
+/**
  * @} End of "addtogroup hooks".
  */

@@ -9,7 +9,7 @@ use Drupal\ui_patterns\UiPatterns;
  *
  * @group ui_patterns
  */
-class UiPatternsManagerTest extends AbstractUiPatternsTest {
+class UiPatternsManagerTest extends UiPatternsTestBase {
 
   /**
    * {@inheritdoc}

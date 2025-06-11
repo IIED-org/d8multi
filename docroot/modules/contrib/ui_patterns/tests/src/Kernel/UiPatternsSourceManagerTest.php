@@ -7,7 +7,7 @@ namespace Drupal\Tests\ui_patterns\Kernel;
  *
  * @group ui_patterns
  */
-class UiPatternsSourceManagerTest extends AbstractUiPatternsTest {
+class UiPatternsSourceManagerTest extends UiPatternsTestBase {
 
   /**
    * {@inheritdoc}

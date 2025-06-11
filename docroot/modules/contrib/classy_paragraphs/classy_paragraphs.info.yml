@@ -1,13 +1,13 @@
 name: Classy Paragraphs
 type: module
 description: Allows an editor to apply a class to paragraphs.
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^8 || ^9 || ^10 || ^11
 package: Paragraphs
 dependencies:
   - paragraphs:paragraphs
 configure: entity.classy_paragraphs_style.collection
 
-# Information added by Drupal.org packaging script on 2023-04-21
-version: '8.x-1.0-rc2'
+# Information added by Drupal.org packaging script on 2024-05-16
+version: '8.x-1.0-rc3'
 project: 'classy_paragraphs'
-datestamp: 1682066089
+datestamp: 1715891782

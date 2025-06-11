@@ -94,7 +94,7 @@ class Mailchimp implements MailchimpApiInterface {
    *
    * @see http://developer.mailchimp.com/documentation/mailchimp/reference/batches/#create-post_batches
    */
-  private $batch_operations;
+  public $batch_operations;
 
   /**
    * Mailchimp constructor.
@@ -212,6 +212,13 @@ class Mailchimp implements MailchimpApiInterface {
     }
 
     return $this->client->handleRequest($method, $this->endpoint . $path, $options, $parameters, $returnAssoc);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function hasApiAccess() {
+    return isset($this->api_key);
   }
 
   /**

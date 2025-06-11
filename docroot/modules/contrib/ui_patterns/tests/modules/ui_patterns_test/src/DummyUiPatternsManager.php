@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\ui_patterns_test;
 
@@ -34,7 +34,7 @@ class DummyUiPatternsManager extends UiPatternsManager {
     CacheBackendInterface $cache_backend,
     ModuleHandlerInterface $module_handler,
     ThemeHandlerInterface $theme_handler,
-    TranslationInterface $translation
+    TranslationInterface $translation,
   ) {
     $this->stringTranslation = $translation;
     parent::__construct($namespaces, $cache_backend, $module_handler, $theme_handler);
@@ -54,7 +54,7 @@ class DummyUiPatternsManager extends UiPatternsManager {
   /**
    * Getter.
    *
-   * getPatterns is already a method in the real plugin manager.
+   * The getPatterns method is already a method in the real plugin manager.
    *
    * @return array
    *   Property value.

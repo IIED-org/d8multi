@@ -26,3 +26,9 @@ services:
   mailchimp.client_factory:
     class: Drupal\mailchimp\ClientFactory
     arguments: ['@mailchimp.settings', '@logger.channel.mailchimp', '@messenger', '@state']
+
+  mailchimp.queue.processor:
+    class: Drupal\mailchimp\Queue\Processor
+    arguments:
+      - '@config.factory'
+      - '@queue'

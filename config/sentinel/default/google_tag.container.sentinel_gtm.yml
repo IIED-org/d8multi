@@ -1,0 +1,59 @@
+uuid: 27db6191-8fa9-46d4-a6a6-63555f2be313
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+    - user
+id: sentinel_gtm
+label: 'Sentinel GTM'
+weight: 0
+tag_container_ids:
+  - GTM-PSV3NX9
+advanced_settings:
+  consent_mode: false
+  gtm:
+    GTM-PSV3NX9:
+      data_layer: dataLayer
+      include_classes: false
+      allowlist_classes: |-
+        google
+        nonGooglePixels
+        nonGoogleScripts
+        nonGoogleIframes
+      blocklist_classes: |-
+        customScripts
+        customPixels
+      include_environment: false
+      environment_id: ''
+      environment_token: ''
+dimensions_metrics: {  }
+conditions:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/admin*\r\n/batch*\r\n/node/add*\r\n/node/*/edit\r\n/node/*/delete\r\n/node/*/layout\r\n/taxonomy/term/*/edit\r\n/taxonomy/term/*/layout\r\n/user/*/edit*\r\n/user/*/cancel*\r\n/user/*/layout"
+  response_code:
+    id: response_code
+    negate: true
+    response_codes: |-
+      403
+      404
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      anonymous: anonymous
+events:
+  generate_lead:
+    value: ''
+    currency: ''
+  search: {  }
+  webform_purchase: {  }
+  custom: {  }
+  login:
+    method: CMS
+  sign_up:
+    method: CMS

@@ -26,7 +26,7 @@ class UiPatternsFieldRenderTest extends WebDriverTestBase {
    *
    * @todo Fix this by providing actual schema validation.
    */
-  protected $strictConfigSchema = FALSE;
+  protected $strictConfigSchema = FALSE; // phpcs:ignore
 
   use TwigDebugTrait;
 

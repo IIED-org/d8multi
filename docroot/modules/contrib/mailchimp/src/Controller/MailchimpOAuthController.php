@@ -6,6 +6,7 @@ use Drupal\Core\Access\CsrfTokenGenerator;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -76,18 +77,17 @@ class MailchimpOAuthController extends ControllerBase {
         }
       }
     }
-    catch (\GuzzleHttp\Exception\GuzzleException $e) {
+    catch (GuzzleException $e) {
       $this->messenger()->addError($e->getMessage());
     }
 
     return new RedirectResponse($url->toString());
-
   }
 
   /**
    * Initialize a new Guzzle client.
    *
-   * @return Client
+   * @return \GuzzleHttp\Client
    *   Guzzle client.
    */
   protected function client() {
@@ -97,6 +97,5 @@ class MailchimpOAuthController extends ControllerBase {
       'timeout'  => 100.0,
     ]);
   }
-
 
 }

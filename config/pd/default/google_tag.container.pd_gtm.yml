@@ -1,0 +1,59 @@
+uuid: 91139bf3-fa00-422f-8121-77b474f27909
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+    - user
+id: pd_gtm
+label: 'PD GTM'
+weight: 0
+tag_container_ids:
+  - GTM-NL8DQ4J
+advanced_settings:
+  consent_mode: false
+  gtm:
+    GTM-NL8DQ4J:
+      data_layer: dataLayer
+      include_classes: false
+      allowlist_classes: |-
+        google
+        nonGooglePixels
+        nonGoogleScripts
+        nonGoogleIframes
+      blocklist_classes: |-
+        customScripts
+        customPixels
+      include_environment: false
+      environment_id: ''
+      environment_token: ''
+dimensions_metrics: {  }
+conditions:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/admin*\r\n/batch*\r\n/node/add*\r\n/node/*/edit\r\n/node/*/delete\r\n/node/*/layout\r\n/taxonomy/term/*/edit\r\n/taxonomy/term/*/layout\r\n/user/*/edit*\r\n/user/*/cancel*\r\n/user/*/layout"
+  response_code:
+    id: response_code
+    negate: true
+    response_codes: |-
+      403
+      404
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      anonymous: anonymous
+events:
+  generate_lead:
+    value: ''
+    currency: ''
+  search: {  }
+  webform_purchase: {  }
+  custom: {  }
+  login:
+    method: CMS
+  sign_up:
+    method: CMS

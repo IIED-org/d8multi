@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\ui_patterns\Unit\Element;
 
-use Drupal\Tests\ui_patterns\Kernel\AbstractUiPatternsTest;
+use Drupal\Tests\ui_patterns\Kernel\UiPatternsTestBase;
 use Drupal\Tests\ui_patterns\Traits\RenderTrait;
 
 /**
@@ -10,7 +10,7 @@ use Drupal\Tests\ui_patterns\Traits\RenderTrait;
  *
  * @group ui_patterns
  */
-class UiPatternsPreviewTest extends AbstractUiPatternsTest {
+class UiPatternsPreviewTest extends UiPatternsTestBase {
 
   use RenderTrait;
 

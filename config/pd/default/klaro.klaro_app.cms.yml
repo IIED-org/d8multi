@@ -1,0 +1,29 @@
+uuid: 33167343-2f82-421c-b6b2-900a1ad6c4af
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: HBeBrdoMQ8HHvIcge46zv21fgnD6c8V6FjQ_h1eiQkY
+id: cms
+label: Functional
+description: 'Store data (e.g. cookie for user session) in your browser (required to use this website).'
+default: true
+purposes:
+  - cms
+cookies:
+  -
+    regex: '^[SESS|SSESS]'
+    path: ''
+    domain: ''
+required: true
+opt_out: false
+only_once: false
+contextual_consent_only: null
+contextual_consent_text: null
+info_url: ''
+privacy_policy_url: 'internal:/privacy-policy'
+javascripts: {  }
+callback_code: ''
+wrapper_identifier: {  }
+attachments: {  }
+weight: -1

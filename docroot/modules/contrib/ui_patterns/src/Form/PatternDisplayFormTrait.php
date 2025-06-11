@@ -129,7 +129,7 @@ trait PatternDisplayFormTrait {
         'weight' => [
           '#type' => 'weight',
           '#default_value' => $weight,
-          '#delta' => 20,
+          '#delta' => (int) 20,
           '#title' => $this->t('Weight for @field field', ['@field' => $field->getFieldLabel()]),
           '#title_display' => 'invisible',
           '#attributes' => [
@@ -169,7 +169,7 @@ trait PatternDisplayFormTrait {
           unset($settings['pattern_mapping'][$key]);
         }
         else {
-          [$plugin, $source] = explode(PatternSourceBase::DERIVATIVE_SEPARATOR, $key, 2);
+          [$plugin, $source] = explode(PatternSourceBase::DERIVATIVE_SEPARATOR, $key, (int) 2);
           $settings['pattern_mapping'][$key]['plugin'] = $plugin;
           $settings['pattern_mapping'][$key]['source'] = $source;
         }

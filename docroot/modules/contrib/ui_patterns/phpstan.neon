@@ -1,0 +1,48 @@
+parameters:
+  level: 0
+  fileExtensions:
+    - php
+    - module
+    - inc
+    - install
+    - theme
+    - profile
+  reportUnmatchedIgnoredErrors: false
+  ignoreErrors:
+    # new static() is a best practice in Drupal, so we cannot fix that.
+    - "#^Unsafe usage of new static#"
+
+    # Trait used on an anonymous class.
+    -
+      message: "#^Access to an undefined property class@anonymous/modules/ui_patterns_ds/ui_patterns_ds\\.module\\:49\\:\\:\\$moduleHandler\\.$#"
+      count: 1
+      path: modules/ui_patterns_ds/ui_patterns_ds.module
+
+    -
+      message: "#^Access to an undefined property class@anonymous/modules/ui_patterns_ds/ui_patterns_ds\\.module\\:49\\:\\:\\$patternsManager\\.$#"
+      count: 3
+      path: modules/ui_patterns_ds/ui_patterns_ds.module
+
+    -
+      message: "#^Access to an undefined property class@anonymous/modules/ui_patterns_ds/ui_patterns_ds\\.module\\:49\\:\\:\\$sourceManager\\.$#"
+      count: 1
+      path: modules/ui_patterns_ds/ui_patterns_ds.module
+
+    # Legit deprecations usage.
+    -
+      message: """
+				#^Call to deprecated method getPreviewMarkup\\(\\) of class Drupal\\\\ui_patterns\\\\Element\\\\PatternPreview\\:
+				in ui_patterns\\:1\\.6\\.0 and is removed from ui_patterns\\:2\\.0\\.0
+				  without replacement\\.$#
+			"""
+      count: 1
+      path: src/Element/PatternPreview.php
+
+    -
+      message: """
+				#^Call to deprecated method getPreviewMarkup\\(\\) of class Drupal\\\\ui_patterns\\\\Element\\\\PatternPreview\\:
+				in ui_patterns\\:1\\.6\\.0 and is removed from ui_patterns\\:2\\.0\\.0
+				  without replacement\\.$#
+			"""
+      count: 1
+      path: tests/src/Unit/Element/PatternPreviewTest.php

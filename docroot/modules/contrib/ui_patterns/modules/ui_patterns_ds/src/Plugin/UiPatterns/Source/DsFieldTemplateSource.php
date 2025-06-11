@@ -2,10 +2,10 @@
 
 namespace Drupal\ui_patterns_ds\Plugin\UiPatterns\Source;
 
+use Drupal\Core\Entity\EntityFieldManager;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\ui_patterns\Plugin\PatternSourceBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Entity\EntityFieldManager;
 
 /**
  * Defines Display Suite field template source plugin.

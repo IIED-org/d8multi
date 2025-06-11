@@ -17,4 +17,3 @@ view published mailchimp event entities:
 
 view unpublished mailchimp event entities:
   title: 'View unpublished Mailchimp event types'
-
