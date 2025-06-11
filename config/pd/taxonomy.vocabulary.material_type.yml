@@ -1,9 +1,0 @@
-uuid: 00048675-6a07-4972-a59b-e9efcd2e1cdf
-langcode: en
-status: true
-dependencies: {  }
-name: 'Material type'
-vid: material_type
-description: null
-weight: 0
-new_revision: false

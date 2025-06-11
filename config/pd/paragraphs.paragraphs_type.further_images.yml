@@ -1,9 +1,0 @@
-uuid: f1cc8a8a-0793-45c0-b710-d44a178a0d5a
-langcode: en
-status: true
-dependencies: {  }
-id: further_images
-label: 'Further images'
-icon_uuid: null
-description: ''
-behavior_plugins: {  }

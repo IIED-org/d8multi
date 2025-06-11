@@ -1,9 +1,0 @@
-uuid: 23159b3a-07b3-46a5-a770-1ad5dfc128a4
-langcode: en
-status: true
-dependencies: {  }
-id: further_text
-label: 'Further text'
-icon_uuid: null
-description: 'Text to be displayed '
-behavior_plugins: {  }
