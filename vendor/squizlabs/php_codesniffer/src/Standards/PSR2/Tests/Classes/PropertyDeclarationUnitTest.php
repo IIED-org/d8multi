@@ -4,7 +4,7 @@
  *
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @copyright 2006-2015 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   https://github.com/PHPCSStandards/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
+ * @license   https://github.com/PHPCSStandards/PHP_CodeSniffer/blob/HEAD/licence.txt BSD Licence
  */
 
 namespace PHP_CodeSniffer\Standards\PSR2\Tests\Classes;
@@ -61,11 +61,25 @@ final class PropertyDeclarationUnitTest extends AbstractSniffUnitTest
             95  => 1,
             96  => 1,
             97  => 2,
-            101 => 2,
+            101 => 1,
             105 => 1,
-            107 => 1,
             109 => 1,
             111 => 1,
+            115 => 3,
+            116 => 3,
+            117 => 2,
+            118 => 3,
+            120 => 1,
+            121 => 1,
+            122 => 2,
+            123 => 2,
+            125 => 1,
+            126 => 1,
+            127 => 2,
+            132 => 1,
+            133 => 1,
+            134 => 1,
+            135 => 1,
         ];
 
     }//end getErrorList()
