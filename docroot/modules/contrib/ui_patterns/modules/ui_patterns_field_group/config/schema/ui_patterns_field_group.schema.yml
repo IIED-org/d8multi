@@ -1,0 +1,16 @@
+field_group.field_group_formatter_plugin.pattern_formatter:
+  type: field_group.field_group_formatter_plugin.base
+  label: 'Mapping for the pattern formatter settings'
+  mapping:
+    pattern:
+      type: string
+      label: 'Pattern ID'
+    pattern_variant:
+      type: string
+      label: 'Pattern variant ID'
+    pattern_mapping:
+      type: ui_patterns.pattern_mapping
+      label: 'Pattern mapping'
+    show_empty_fields:
+      type: boolean
+      label: 'Display empty fields'

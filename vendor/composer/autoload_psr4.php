@@ -130,6 +130,7 @@ return array(
     'Doctrine\\Deprecations\\' => array($vendorDir . '/doctrine/deprecations/src'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/src'),
     'Dflydev\\DotAccessData\\' => array($vendorDir . '/dflydev/dot-access-data/src'),
+    'Defuse\\Crypto\\' => array($vendorDir . '/defuse/php-encryption/src'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Consolidation\\SiteProcess\\' => array($vendorDir . '/consolidation/site-process/src'),
     'Consolidation\\SiteAlias\\' => array($vendorDir . '/consolidation/site-alias/src'),

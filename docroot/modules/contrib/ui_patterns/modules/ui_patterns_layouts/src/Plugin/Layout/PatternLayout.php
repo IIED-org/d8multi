@@ -108,6 +108,7 @@ class PatternLayout extends LayoutDefault implements PluginFormInterface, Contai
 
     // Prepend a new pre_render method that will copy back altered field arrays
     // to the #fields variable.
+    $build['#pre_render'] = $build['#pre_render'] ?? [];
     array_unshift($build['#pre_render'], [get_class($this), 'preProcessFields']);
 
     return $build;

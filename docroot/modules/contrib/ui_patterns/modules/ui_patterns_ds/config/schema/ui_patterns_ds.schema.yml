@@ -1,0 +1,13 @@
+ds.field_template.pattern:
+  type: mapping
+  label: 'Mapping for the pattern field template'
+  mapping:
+    pattern:
+      type: string
+      label: 'Pattern ID'
+    pattern_variant:
+      type: string
+      label: 'Pattern variant ID'
+    pattern_mapping:
+      type: ui_patterns.pattern_mapping
+      label: 'Pattern mapping'

@@ -41,7 +41,7 @@ function template_preprocess_pattern_views_row(array &$variables) {
 
   foreach ($options['pattern_mapping'] as $mapping) {
     $field_name = $mapping['source'];
-    if (!isset($view->field[$field_name])) {
+    if (empty($view->field[$field_name])) {
       continue;
     }
     $field = $view->field[$field_name];

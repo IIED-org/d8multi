@@ -98,6 +98,7 @@ class PatternFormatter extends FieldGroupFormatterBase implements ContainerFacto
    * {@inheritdoc}
    */
   public function preRender(&$element, $rendering_object) {
+    parent::preRender($element, $rendering_object);
     $this->preRenderGroup($element, $this->group->group_name, $rendering_object);
   }
 
@@ -218,14 +219,15 @@ class PatternFormatter extends FieldGroupFormatterBase implements ContainerFacto
    * {@inheritdoc}
    */
   public function settingsSummary() {
+    $summary = parent::settingsSummary();
+
     $label = $this->t('None');
     if (!empty($this->getSetting('pattern'))) {
       $label = $this->patternsManager->getDefinition($this->getSetting('pattern'))->getLabel();
     }
+    $summary[] = $this->t('Pattern: @pattern', ['@pattern' => $label]);
 
-    return [
-      $this->t('Pattern: @pattern', ['@pattern' => $label]),
-    ];
+    return $summary;
   }
 
   /**

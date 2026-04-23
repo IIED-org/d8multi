@@ -34,8 +34,8 @@ class PatternBaseTest extends UiPatternsTestBase {
    * @return array
    *   A set of dump data for testing.
    */
-  public function hookLibraryInfoBuildDataProvider() {
-    return $this->getFixtureContent('libraries.yml');
+  public static function hookLibraryInfoBuildDataProvider() {
+    return static::getFixtureContent('libraries.yml');
   }
 
   /**

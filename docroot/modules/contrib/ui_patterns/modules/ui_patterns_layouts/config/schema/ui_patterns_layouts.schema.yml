@@ -1,0 +1,14 @@
+layout_plugin.settings.*:
+  type: layout_plugin.settings
+  label: 'Pattern layout settings'
+  mapping:
+    pattern:
+      type: mapping
+      label: 'Layout configuration'
+      mapping:
+        field_templates:
+          type: string
+          label: 'Fields content rendering'
+        variant:
+          type: string
+          label: 'Pattern variant'

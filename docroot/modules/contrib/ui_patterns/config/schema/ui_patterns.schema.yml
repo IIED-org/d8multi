@@ -1,0 +1,19 @@
+ui_patterns.pattern_mapping:
+  type: sequence
+  label: 'Pattern mapping'
+  sequence:
+    type: mapping
+    label: 'Field mapping'
+    mapping:
+      plugin:
+        type: string
+        label: 'Source plugin'
+      source:
+        type: string
+        label: 'Source identifier'
+      destination:
+        type: string
+        label: 'Destination area'
+      weight:
+        type: integer
+        label: 'Field weight'

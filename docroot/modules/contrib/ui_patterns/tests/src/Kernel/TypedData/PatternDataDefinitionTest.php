@@ -17,15 +17,15 @@ class PatternDataDefinitionTest extends UiPatternsTestBase {
    *
    * @dataProvider validationProvider
    */
-  public function testValidation($data, $expected) {
+  public function testValidation($pattern, $messages) {
     $definition = PatternDataDefinition::create();
-    $violations = \Drupal::typedDataManager()->create($definition, $data)->validate();
+    $violations = \Drupal::typedDataManager()->create($definition, $pattern)->validate();
 
     $actual = [];
     foreach ($violations as $violation) {
       $actual[] = $violation->getPropertyPath() . ': ' . $violation->getMessage();
     }
-    $this->assertEquals($expected, $actual);
+    $this->assertEquals($messages, $actual);
   }
 
   /**
@@ -34,8 +34,8 @@ class PatternDataDefinitionTest extends UiPatternsTestBase {
    * @return array
    *   Pattern validation data.
    */
-  public function validationProvider() {
-    return $this->getFixtureContent('validation.yml');
+  public static function validationProvider() {
+    return static::getFixtureContent('validation.yml');
   }
 
 }

@@ -62,7 +62,7 @@ class PatternDataDefinition extends MapDataDefinition {
    */
   protected function getMachineNameDefinition() {
     return DataDefinition::create('string')
-      ->addConstraint('Regex', sprintf(self::MACHINE_NAME, implode('|', $this->reserved)));
+      ->addConstraint('Regex', ['pattern' => sprintf(self::MACHINE_NAME, implode('|', $this->reserved))]);
   }
 
   /**

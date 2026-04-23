@@ -131,8 +131,8 @@ class PatternDefinitionTest extends UiPatternsTestBase {
    * @return array
    *   Data.
    */
-  public function fieldsProcessingProvider() {
-    return Yaml::decode(file_get_contents($this->getFixturePath() . '/definition/fields_processing.yml'));
+  public static function fieldsProcessingProvider() {
+    return Yaml::decode(file_get_contents(static::getFixturePath() . '/definition/fields_processing.yml'));
   }
 
   /**
@@ -154,8 +154,8 @@ class PatternDefinitionTest extends UiPatternsTestBase {
    * @return array
    *   Data.
    */
-  public function variantsProcessingProvider() {
-    return Yaml::decode(file_get_contents($this->getFixturePath() . '/definition/variants_processing.yml'));
+  public static function variantsProcessingProvider() {
+    return Yaml::decode(file_get_contents(static::getFixturePath() . '/definition/variants_processing.yml'));
   }
 
   /**

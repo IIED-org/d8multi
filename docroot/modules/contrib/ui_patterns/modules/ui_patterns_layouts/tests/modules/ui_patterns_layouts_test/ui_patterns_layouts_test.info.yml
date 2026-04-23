@@ -17,7 +17,7 @@ config_devel:
     - node.type.article
     - core.entity_view_display.node.article.default
 
-# Information added by Drupal.org packaging script on 2025-06-03
-version: '8.x-1.11'
+# Information added by Drupal.org packaging script on 2026-04-08
+version: '8.x-1.15'
 project: 'ui_patterns'
-datestamp: 1748939525
+datestamp: 1775641231

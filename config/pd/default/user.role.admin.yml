@@ -16,6 +16,7 @@ dependencies:
     - node.type.subpage
   module:
     - addtoany
+    - autologout
     - block
     - block_content
     - captcha
@@ -43,6 +44,7 @@ dependencies:
     - seckit
     - system
     - taxonomy
+    - tfa
     - toolbar
     - update
     - webform
@@ -74,9 +76,11 @@ permissions:
   - 'admin classes'
   - 'admin display suite'
   - 'admin fields'
+  - 'admin tfa settings'
   - 'administer CAPTCHA settings'
   - 'administer account settings'
   - 'administer addtoany'
+  - 'administer autologout'
   - 'administer block content'
   - 'administer block types'
   - 'administer blocks'
@@ -105,6 +109,7 @@ permissions:
   - 'administer site configuration'
   - 'administer software updates'
   - 'administer taxonomy'
+  - 'administer tfa for other users'
   - 'administer themes'
   - 'administer url aliases'
   - 'administer users'

@@ -51,9 +51,11 @@ function ui_patterns_field_group_field_group_field_overview_submit(array $form, 
       }
 
       if (isset($field_group_form_state[$group_name]->format_settings)) {
-        // Call static processFormStateValues if the plugin implements it.
+        // Retrieve the plugin definition.
         $plugin_definition = \Drupal::service('plugin.manager.field_group.formatters')->getDefinition($field_group_form_state[$group_name]->format_type, FALSE);
-        if (method_exists($plugin_definition['class'], 'processFormStateValues')) {
+
+        // Ensure that $plugin_definition is not null and that the class exists.
+        if (!empty($plugin_definition['class']) && method_exists($plugin_definition['class'], 'processFormStateValues')) {
           call_user_func_array([
             $plugin_definition['class'],
             'processFormStateValues',
