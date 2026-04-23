@@ -16,6 +16,7 @@ dependencies:
     - node.type.subpage
   module:
     - addtoany
+    - autologout
     - block
     - block_content
     - captcha
@@ -79,6 +80,7 @@ permissions:
   - 'administer CAPTCHA settings'
   - 'administer account settings'
   - 'administer addtoany'
+  - 'administer autologout'
   - 'administer block content'
   - 'administer block types'
   - 'administer blocks'
