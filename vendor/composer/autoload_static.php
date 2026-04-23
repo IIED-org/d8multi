@@ -238,6 +238,7 @@ class ComposerStaticInitb5c093e3cb970d7bc99ba6e2b24a7198
             'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Annotations\\' => 28,
             'Dflydev\\DotAccessData\\' => 22,
+            'Defuse\\Crypto\\' => 14,
             'DeepCopy\\' => 9,
         ),
         'C' =>
@@ -776,6 +777,10 @@ class ComposerStaticInitb5c093e3cb970d7bc99ba6e2b24a7198
         'Dflydev\\DotAccessData\\' =>
         array (
             0 => __DIR__ . '/..' . '/dflydev/dot-access-data/src',
+        ),
+        'Defuse\\Crypto\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/defuse/php-encryption/src',
         ),
         'DeepCopy\\' =>
         array (

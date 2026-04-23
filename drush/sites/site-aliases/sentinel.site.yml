@@ -2,3 +2,6 @@ local:
   uri: 'https://sentinel.lndo.site'
   paths:
   - files: ~/Sites/d8multi/docroot'
+ddev:
+  root: ~/Sites/d8multi/docroot/sites/sentinel
+  uri: https://sentinel.ddev.site
