@@ -23,7 +23,7 @@ validation_plugin_settings:
     time_skew: 4
     site_name_prefix: 1
     name_prefix: TFA
-    issuer: PD
+    issuer: IIED
   tfa_hotp:
     counter_window: 10
     site_name_prefix: 1

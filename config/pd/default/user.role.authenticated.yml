@@ -13,6 +13,7 @@ dependencies:
     - media
     - search
     - system
+    - tfa
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
 id: authenticated
@@ -24,6 +25,7 @@ permissions:
   - 'access site-wide contact form'
   - 'delete own files'
   - 'search content'
+  - 'setup own tfa'
   - 'use klaro'
   - 'use text format full_html'
   - 'use text format webform_default'
