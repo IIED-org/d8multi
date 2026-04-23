@@ -16,14 +16,23 @@ class PatternPreviewTest extends UiPatternsTestBase {
   /**
    * Test getPreviewMarkup.
    *
+   * @dataProvider previewMarkupProvider
+   *
    * @covers ::getPreviewMarkup
    */
-  public function testPreviewMarkup() {
-    $assertions = Yaml::decode(file_get_contents($this->getFixturePath() . '/preview_markup.yml'));
-    foreach ($assertions as $assertion) {
-      $result = PatternPreview::getPreviewMarkup($assertion['actual']);
-      $this->assertEquals($assertion['expected'], $result);
-    }
+  public function testPreviewMarkup($actual, $expected) {
+    $result = PatternPreview::getPreviewMarkup($actual);
+    $this->assertEquals($expected, $result);
+  }
+
+  /**
+   * Provider.
+   *
+   * @return array
+   *   Data.
+   */
+  public static function previewMarkupProvider() {
+    return Yaml::decode(file_get_contents(static::getFixturePath() . '/preview_markup.yml'));
   }
 
 }

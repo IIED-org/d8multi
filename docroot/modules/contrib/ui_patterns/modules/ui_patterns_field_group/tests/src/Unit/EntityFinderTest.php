@@ -30,8 +30,8 @@ class EntityFinderTest extends UnitTestCase {
    * @return array
    *   Test data.
    */
-  public function fieldsDataProvider() {
-    $good = $this->createMock(ContentEntityBase::class);
+  public static function fieldsDataProvider() {
+    $good = new TestContentEntity();
     $bad = new \stdClass();
 
     return [
@@ -107,5 +107,14 @@ class EntityFinderTest extends UnitTestCase {
       ],
     ];
   }
+
+}
+
+/**
+ * Test content entity that does not need the container to exist.
+ */
+class TestContentEntity extends ContentEntityBase {
+
+  public function __construct(array $values = [], $entity_type = '', $bundle = FALSE, $translations = []) {}
 
 }

@@ -1,0 +1,19 @@
+views.row.ui_patterns:
+  type: views.row.fields
+  label: 'UI Patterns style options'
+  mapping:
+    hide_empty:
+      type: boolean
+      label: 'Hide empty fields'
+    default_field_elements:
+      type: boolean
+      label: 'Provide default field wrapper elements'
+    pattern:
+      type: string
+      label: 'Pattern ID'
+    pattern_variant:
+      type: string
+      label: 'Pattern variant ID'
+    pattern_mapping:
+      type: ui_patterns.pattern_mapping
+      label: 'Pattern mapping'

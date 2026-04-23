@@ -86,6 +86,7 @@
     "drupal/config_split": "^2.0",
     "drupal/klaro": "^3.0",
     "drupal/menu_link_attributes": "^1.5",
+    "drupal/captcha": "^2.0",
     "drupal/autologout": "^2.0",
     "drupal/real_aes": "^2.6"
   },
@@ -108,9 +109,6 @@
       "docroot/themes/contrib/{$name}": ["type:drupal-theme"]
     },
     "patches": {
-      "drupal/readonlymode": {
-        "Got fatal error when running this module":"https://www.drupal.org/files/issues/2020-12-23/readonlymode-string_not_array-3115119-9.patch"
-      },
       "drupal/media_entity_flickr": {
         "Drupal 9 readiness":"https://www.drupal.org/files/issues/2021-05-31/3215459-5.patch"
       },

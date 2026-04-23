@@ -44,8 +44,8 @@ class UiPatternsPreviewTest extends UiPatternsTestBase {
    * @return array
    *   A set of dump data for testing.
    */
-  public function processContextDataProvider() {
-    return $this->getFixtureContent('preview_process.yml');
+  public static function processContextDataProvider() {
+    return static::getFixtureContent('preview_process.yml');
   }
 
 }

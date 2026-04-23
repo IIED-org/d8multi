@@ -19,7 +19,7 @@ abstract class UiPatternsTestBase extends UnitTestCase {
    * @return string
    *   Fixtures base path.
    */
-  protected function getFixturePath() {
+  protected static function getFixturePath() {
     return realpath(dirname(__FILE__) . '/../fixtures');
   }
 

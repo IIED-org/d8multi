@@ -18,7 +18,7 @@ abstract class UiPatternsTestBase extends KernelTestBase {
    * @return string
    *   Fixtures base path.
    */
-  protected function getFixturePath() {
+  protected static function getFixturePath() {
     return realpath(__DIR__ . '/../fixtures');
   }
 
@@ -31,8 +31,8 @@ abstract class UiPatternsTestBase extends KernelTestBase {
    * @return array
    *   A set of test data.
    */
-  protected function getFixtureContent($filepath) {
-    return Yaml::decode(file_get_contents($this->getFixturePath() . '/' . $filepath));
+  protected static function getFixtureContent($filepath) {
+    return Yaml::decode(file_get_contents(static::getFixturePath() . '/' . $filepath));
   }
 
 }
