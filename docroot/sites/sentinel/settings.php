@@ -782,7 +782,8 @@ if (getenv('LANDO_SERVICE_NAME') == 'appserver' && file_exists($app_root . '/' .
 
 if (file_exists($app_root . '/sites/default/settings.base.php')) {
   include $app_root . '/sites/default/settings.base.php';
-  $databases['sentinel']['default']['database'] = 'sentinel';
+  $databases['default']['default']['database'] = 'sentinel';
+  $databases['sentinel']['default'] = $databases['default']['default'];
 }
 
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
