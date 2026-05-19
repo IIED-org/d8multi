@@ -801,7 +801,7 @@ if (getenv('LANDO_SERVICE_NAME') == 'appserver' && file_exists($app_root . '/' .
   include $app_root . '/' . $site_path . '/settings.lando.php';
 }
 
-if (file_exists($app_root . '/sites/default/settings.base.php')) {
+if (!getenv('LANDO_SERVICE_NAME') && file_exists($app_root . '/sites/default/settings.base.php')) {
   include $app_root . '/sites/default/settings.base.php';
   $databases['default']['default']['database'] = 'pd';
   $databases['pd']['default'] = $databases['default']['default'];
