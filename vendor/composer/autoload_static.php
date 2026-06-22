@@ -43,6 +43,7 @@ class ComposerStaticInitb5c093e3cb970d7bc99ba6e2b24a7198
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '9d2b9fc6db0f153a0a149fefb182415e' => __DIR__ . '/..' . '/symfony/polyfill-php84/bootstrap.php',
+        '47e1160838b5e5a10346ac4084b58c23' => __DIR__ . '/..' . '/laravel/prompts/src/helpers.php',
         '157bbd0180425c7142fbaf1b1646bec3' => __DIR__ . '/..' . '/open-telemetry/exporter-otlp/_register.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
@@ -132,7 +133,6 @@ class ComposerStaticInitb5c093e3cb970d7bc99ba6e2b24a7198
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
             'Symfony\\Bridge\\PhpUnit\\' => 23,
             'SlevomatCodingStandard\\' => 23,
-            'SelfUpdate\\' => 11,
             'Seld\\Signal\\' => 12,
             'Seld\\PharUtils\\' => 15,
             'Seld\\JsonLint\\' => 14,
@@ -189,6 +189,7 @@ class ComposerStaticInitb5c093e3cb970d7bc99ba6e2b24a7198
         'L' =>
         array (
             'League\\Container\\' => 17,
+            'Laravel\\Prompts\\' => 16,
         ),
         'J' =>
         array (
@@ -492,10 +493,6 @@ class ComposerStaticInitb5c093e3cb970d7bc99ba6e2b24a7198
         array (
             0 => __DIR__ . '/..' . '/slevomat/coding-standard/SlevomatCodingStandard',
         ),
-        'SelfUpdate\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/consolidation/self-update/src',
-        ),
         'Seld\\Signal\\' =>
         array (
             0 => __DIR__ . '/..' . '/seld/signal-handler/src',
@@ -649,6 +646,10 @@ class ComposerStaticInitb5c093e3cb970d7bc99ba6e2b24a7198
         'League\\Container\\' =>
         array (
             0 => __DIR__ . '/..' . '/league/container/src',
+        ),
+        'Laravel\\Prompts\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/laravel/prompts/src',
         ),
         'JsonSchema\\' =>
         array (
