@@ -10,7 +10,7 @@ use Drupal\entity_browser\Element\EntityBrowserElement;
 /**
  * Provides a user login form.
  */
-class FormElementTest extends FormBase {
+class FormElementTestForm extends FormBase {
 
   /**
    * {@inheritdoc}
@@ -30,11 +30,13 @@ class FormElementTest extends FormBase {
       '#entity_browser' => 'test_entity_browser_iframe',
     ];
 
-    if ($default = \Drupal::request()->get('default_entity')) {
+    $query = $this->getRequest()->query;
+
+    if ($default = $query->get('default_entity')) {
       $form['fancy_entity_browser']['#default_value'] = [EntityBrowserElement::processEntityId($default)];
     }
 
-    if ($selection_mode = \Drupal::request()->get('selection_mode')) {
+    if ($selection_mode = $query->get('selection_mode')) {
       $form['fancy_entity_browser']['#selection_mode'] = $selection_mode;
     }
 

@@ -21,9 +21,7 @@ class MediaEntityBrowserTest extends WebDriverTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-   * Modules to install.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   protected static $modules = [
     'media',
@@ -31,7 +29,6 @@ class MediaEntityBrowserTest extends WebDriverTestBase {
     'entity_browser',
     'entity_browser_entity_form',
     'media_entity_browser',
-    'video_embed_media',
     'ctools',
   ];
 
@@ -41,14 +38,14 @@ class MediaEntityBrowserTest extends WebDriverTestBase {
   public function setUp(): void {
     parent::setUp();
     $this->drupalLogin($this->drupalCreateUser(array_keys($this->container->get('user.permissions')->getPermissions())));
-    $this->createMediaType('video_embed_field', [
+    $this->createMediaType('oembed:video', [
       'label' => 'Video',
       'id' => 'video',
     ]);
 
     Media::create([
       'bundle' => 'video',
-      'field_media_video_embed_field' => [['value' => 'https://www.youtube.com/watch?v=JQFKVbfqz7w']],
+      'field_media_oembed_video' => [['value' => 'https://www.youtube.com/watch?v=JQFKVbfqz7w']],
     ])->save();
   }
 
@@ -58,7 +55,7 @@ class MediaEntityBrowserTest extends WebDriverTestBase {
   public function testMediaBrowser(): void {
     $this->drupalGet('entity-browser/iframe/media_entity_browser');
     $this->clickLink('Choose existing media');
-    $this->assertSession()->assertWaitOnAjaxRequest();
+    $this->assertSession()->waitForElement('css', '.view-media-entity-browser-view');
 
     $this->assertSession()->elementExists('css', '.view-media-entity-browser-view');
     $thumbnail = $this->assertSession()->elementExists('css', '.views-row img');

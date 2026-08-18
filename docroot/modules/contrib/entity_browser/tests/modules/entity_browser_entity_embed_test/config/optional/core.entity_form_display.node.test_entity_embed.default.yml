@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.test_entity_embed.body
+    - field.field.node.test_entity_embed.entity_browser_body
     - node.type.test_entity_embed
   module:
     - path
@@ -12,7 +12,7 @@ targetEntityType: node
 bundle: test_entity_embed
 mode: default
 content:
-  body:
+  entity_browser_body:
     type: text_textarea_with_summary
     weight: 121
     settings:
