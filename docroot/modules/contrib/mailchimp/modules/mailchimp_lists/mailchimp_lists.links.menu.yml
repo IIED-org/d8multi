@@ -1,5 +1,0 @@
-mailchimp_lists.overview:
-  route_name: mailchimp_lists.overview
-  title: 'Mailchimp Audiences'
-  description: 'Manage Mailchimp Audiences'
-  parent: mailchimp.admin
