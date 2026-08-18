@@ -50,7 +50,7 @@
     "drupal/classy_paragraphs": "^1.0@beta",
     "drupal/search_api": "^1.9",
     "drupal/media_entity_browser": "^2.0",
-    "drupal/inline_entity_form": "^1.0@RC",
+    "drupal/inline_entity_form": "^3.0",
     "drupal/entity_embed": "^1.0@beta",
     "drupal/pathauto": "^1.2",
     "drupal/entity": "^1.0",

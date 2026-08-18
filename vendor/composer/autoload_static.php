@@ -230,6 +230,7 @@ class ComposerStaticInitb5c093e3cb970d7bc99ba6e2b24a7198
         array (
             'Drush\\' => 6,
             'Drupal\\sophron\\' => 15,
+            'Drupal\\rat\\' => 11,
             'Drupal\\bootstrap\\' => 17,
             'Drupal\\Core\\' => 12,
             'Drupal\\Composer\\Plugin\\Scaffold\\' => 32,
@@ -730,6 +731,10 @@ class ComposerStaticInitb5c093e3cb970d7bc99ba6e2b24a7198
         'Drupal\\sophron\\' =>
         array (
             0 => __DIR__ . '/../..' . '/docroot/modules/contrib/sophron/src',
+        ),
+        'Drupal\\rat\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/drupal/rat/src',
         ),
         'Drupal\\bootstrap\\' =>
         array (

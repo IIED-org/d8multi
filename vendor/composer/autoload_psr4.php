@@ -118,6 +118,7 @@ return array(
     'Egulias\\EmailValidator\\' => array($vendorDir . '/egulias/email-validator/src'),
     'Drush\\' => array($vendorDir . '/drush/drush/src'),
     'Drupal\\sophron\\' => array($baseDir . '/docroot/modules/contrib/sophron/src'),
+    'Drupal\\rat\\' => array($vendorDir . '/drupal/rat/src'),
     'Drupal\\bootstrap\\' => array($baseDir . '/docroot/themes/contrib/bootstrap/src'),
     'Drupal\\Core\\' => array($baseDir . '/docroot/core/lib/Drupal/Core'),
     'Drupal\\Composer\\Plugin\\Scaffold\\' => array($vendorDir . '/drupal/core-composer-scaffold'),
