@@ -84,7 +84,8 @@
     "drupal/menu_link_attributes": "^1.5",
     "drupal/captcha": "^2.0",
     "drupal/autologout": "^2.0",
-    "drupal/real_aes": "^2.6"
+    "drupal/real_aes": "^2.6",
+    "drupal/backup_migrate": "^5.1"
   },
   "require-dev": {
     "drupal/stage_file_proxy": "^3.1",
