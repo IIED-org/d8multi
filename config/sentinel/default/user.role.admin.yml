@@ -193,6 +193,7 @@ permissions:
   - 'notify of path changes'
   - 'perform batch updates entity usage'
   - 'readonlymode access forms'
+  - 'rebuild node access permissions'
   - 'revert all revisions'
   - 'revert blog revisions'
   - 'revert organisation revisions'
