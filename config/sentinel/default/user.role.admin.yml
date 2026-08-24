@@ -17,6 +17,7 @@ dependencies:
   module:
     - addtoany
     - autologout
+    - better_passwords
     - block
     - block_content
     - captcha
@@ -81,6 +82,7 @@ permissions:
   - 'administer account settings'
   - 'administer addtoany'
   - 'administer autologout'
+  - 'administer better passwords'
   - 'administer block content'
   - 'administer block types'
   - 'administer blocks'
@@ -115,6 +117,7 @@ permissions:
   - 'administer users'
   - 'administer webform'
   - 'administer webform element access'
+  - 'administer webform overview'
   - 'administer webform submission'
   - 'bypass node access'
   - 'cancel account'
