@@ -15,6 +15,7 @@ module:
   menu_ui: 0
   views_ui: 0
   help: 0
+  help_topics: 0
   stage_file_proxy: 0
 theme: {  }
 complete_list: {  }
