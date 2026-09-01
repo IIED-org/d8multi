@@ -12,6 +12,10 @@ storage: folder
 folder: ../config/sentinel/splits/dev
 module:
   field_ui: 0
+<<<<<<< HEAD
+=======
+  help: 0
+>>>>>>> 40a2f47208 (last trace of help_topics removal)
   menu_ui: 0
   stage_file_proxy: 0
   views_ui: 0
