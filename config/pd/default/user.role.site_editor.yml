@@ -99,6 +99,7 @@ permissions:
   - 'edit terms in material_type'
   - 'edit terms in research_themes'
   - 'notify of path changes'
+  - 'rebuild node access permissions'
   - 'revert blog revisions'
   - 'revert organisation revisions'
   - 'revert page revisions'

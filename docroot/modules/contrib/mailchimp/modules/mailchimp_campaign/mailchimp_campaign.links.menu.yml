@@ -1,5 +1,0 @@
-mailchimp_campaign.overview:
-  route_name: mailchimp_campaign.overview
-  title: 'Mailchimp Campaigns'
-  description: 'Manage Mailchimp Campaigns'
-  parent: mailchimp.admin

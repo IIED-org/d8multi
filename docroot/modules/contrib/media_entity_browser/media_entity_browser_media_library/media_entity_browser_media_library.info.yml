@@ -2,23 +2,17 @@ name: Media Entity Browser (Media Library)
 type: module
 description: 'This module provides an Entity Browser for Media which integrates with the Media Library'
 package: Media
-core: '8.x'
-core_version_requirement: ^8 || ^9  || ^10
+core_version_requirement: ^10.2 || ^11
 
 dependencies:
   - inline_entity_form:inline_entity_form
   - entity_browser:entity_browser
   - entity_browser:entity_browser_entity_form
-  - drupal:media (>=8.7)
-  - drupal:media_library (>=8.7)
+  - drupal:media (>=10.2)
+  - drupal:media_library (>=10.2)
   - drupal:views
 
 test_dependencies:
-  - inline_entity_form (>=8.x-1.x)
-  - entity_browser (>=8.x-2.x)
-  - entity_browser:entity_browser_entity_form (>=8.x-2.x)
-  - drupal:media (>=8.7)
-  - drupal:media_library (>=8.7)
   - ctools:ctools
 
 # To export this config, make sure config_devel is installed, cache is rebuilt
@@ -27,7 +21,7 @@ config_devel:
   - views.view.media_entity_browser_media_library
   - entity_browser.browser.media_entity_browser_media_library
 
-# Information added by Drupal.org packaging script on 2024-05-20
-version: '8.x-2.0'
+# Information added by Drupal.org packaging script on 2025-01-06
+version: '3.0.0'
 project: 'media_entity_browser'
-datestamp: 1716243516
+datestamp: 1736138988

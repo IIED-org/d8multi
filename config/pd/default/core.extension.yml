@@ -77,6 +77,8 @@ module:
   search: 0
   search_api: 0
   search_api_db: 0
+  search_help: 0
+  search_node: 0
   seckit: 0
   session_limit: 0
   sophron: 0
@@ -88,6 +90,7 @@ module:
   token: 0
   toolbar: 0
   update: 0
+  upgrade_status: 0
   user: 0
   username_enumeration_prevention: 0
   varnish_purge_tags: 0
@@ -97,7 +100,6 @@ module:
   ds: 1
   menu_link_content: 1
   pathauto: 1
-  webform_bootstrap: 1
   ds_extras: 2
   password_policy: 10
   views: 10

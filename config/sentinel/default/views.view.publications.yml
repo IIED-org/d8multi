@@ -251,8 +251,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              admin: '0'
             placeholder: 'Search terms'
           is_grouped: false
           group_info:

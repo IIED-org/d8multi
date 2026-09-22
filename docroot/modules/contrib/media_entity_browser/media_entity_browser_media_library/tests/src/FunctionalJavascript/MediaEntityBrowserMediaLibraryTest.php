@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\media_entity_browser_media_library\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
@@ -33,7 +35,6 @@ class MediaEntityBrowserMediaLibraryTest extends WebDriverTestBase {
     'media_entity_browser',
     'media_entity_browser_media_library',
     'media_library',
-    'video_embed_media',
     'ctools',
   ];
 
@@ -42,15 +43,15 @@ class MediaEntityBrowserMediaLibraryTest extends WebDriverTestBase {
    */
   public function setUp(): void {
     parent::setUp();
-    $this->drupalLogin($this->drupalCreateUser(array_keys($this->container->get('user.permissions')->getPermissions())));
-    $this->createMediaType('video_embed_field', [
+    $this->drupalLogin($this->drupalCreateUser(\array_keys($this->container->get('user.permissions')->getPermissions())));
+    $this->createMediaType('oembed:video', [
       'label' => 'Video',
       'id' => 'video',
     ]);
 
     Media::create([
       'bundle' => 'video',
-      'field_media_video_embed_field' => [['value' => 'https://www.youtube.com/watch?v=JQFKVbfqz7w']],
+      'field_media_oembed_video' => [['value' => 'https://www.youtube.com/watch?v=JQFKVbfqz7w']],
     ])->save();
   }
 
@@ -60,7 +61,7 @@ class MediaEntityBrowserMediaLibraryTest extends WebDriverTestBase {
   public function testMediaBrowser(): void {
     $this->drupalGet('entity-browser/iframe/media_entity_browser_media_library');
     $this->clickLink('Choose existing media');
-    $this->assertSession()->assertWaitOnAjaxRequest();
+    $this->assertSession()->waitForElement('css', '.media-library-view');
 
     $this->assertSession()->elementExists('css', '.media-library-view');
     $this->assertSession()->elementExists('css', '.media-library-item');
