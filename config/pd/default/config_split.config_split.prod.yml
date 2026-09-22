@@ -14,5 +14,4 @@ module: {  }
 theme: {  }
 complete_list:
   - password_policy.password_policy.password_expiry
-partial_list:
-  - tfa.settings
+partial_list: {  }
