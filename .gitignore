@@ -46,3 +46,6 @@ CHANGELOG.txt
 # Ignore SQL dumps
 *.sql
 *.sql.gz
+
+# Ignore environment-specific .htaccess
+.htaccess
