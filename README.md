@@ -1,4 +1,3 @@
-Drupal 8 multisite code for:
-- https://landcam.org
+Drupal multisite code for:
 - https://sentinel-gcrf.org
 - https://protracteddisplacement.org
