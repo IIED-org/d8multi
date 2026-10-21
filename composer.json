@@ -81,7 +81,7 @@
     "drupal/password_policy_extras": "^4.0",
     "drupal/config_split": "^2.0",
     "drupal/klaro": "^3.0",
-    "drupal/menu_link_attributes": "^1.5",
+    "drupal/menu_link_attributes": "^1.10",
     "drupal/captcha": "^2.0",
     "drupal/autologout": "^2.0",
     "drupal/real_aes": "^2.6",
